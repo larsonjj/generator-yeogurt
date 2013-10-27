@@ -32,12 +32,13 @@ describe('yeogurt generator', function () {
         ];
 
         helpers.mockPrompt(this.app, {
-            'projectName': 'testing',
-            'versionControl': 'Git',
-            'htmlOption': 'Jade',
-            'cssOption': 'LESS',
-            'javascriptOption': 'Coffeescript',
-            'useModernizr': true
+            projectName: 'testing',
+            versionControl: 'Git',
+            htmlOption: 'Jade',
+            cssOption: 'LESS',
+            javascriptOption: 'Coffeescript',
+            useModernizr: true,
+            linters: ['JSHint']
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {
