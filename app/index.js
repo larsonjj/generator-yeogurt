@@ -90,6 +90,10 @@ YeogurtGenerator.prototype.app = function app() {
     this.template('_bower.json', 'bower.json');
     this.template('_config.json', 'config.json');
     this.template('_package.json', 'package.json');
+
+    this.copy('robots.txt', 'robots.txt');
+    this.copy('404.html', '404.html');
+    this.copy('favicon.ico', 'favicon.ico');
 };
 
 YeogurtGenerator.prototype.projectfiles = function projectfiles() {

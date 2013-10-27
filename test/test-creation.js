@@ -28,7 +28,10 @@ describe('yeogurt generator', function () {
             'bower.json',
             'config.json',
             'package.json',
-            '.bowerrc'
+            '.bowerrc',
+            'robots.txt',
+            '404.html',
+            'favicon.ico'
         ];
 
         helpers.mockPrompt(this.app, {
