@@ -21,17 +21,34 @@ describe('yeogurt generator', function () {
 
     it('creates expected files', function (done) {
         var expected = [
-            // add files you expect to exist here.
+            // add files and folders you expect to exist here.
+            'dev/',
+            'dev/markup',
+            'dev/markup/templates',
+            'dev/markup/pages',
+            'dev/markup/components',
+            'dev/markup/mixins',
+            'dev/styles',
+            'dev/styles/vendor',
+            'dev/styles/partials',
+            'dev/styles/partials/components',
+            'dev/scripts',
+            'dev/scripts/components',
+            'dev/scripts/global',
+            'dev/scripts/vendor',
+            'dev/images',
+            'dev/fonts',
+            'docs',
             '.editorconfig',
             'Gruntfile.js',
-            'index.html',
+            'dev/index.html',
             'bower.json',
             'config.json',
             'package.json',
             '.bowerrc',
-            'robots.txt',
-            '404.html',
-            'favicon.ico'
+            'dev/robots.txt',
+            'dev/404.html',
+            'dev/favicon.ico'
         ];
 
         helpers.mockPrompt(this.app, {

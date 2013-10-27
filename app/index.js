@@ -45,7 +45,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         choices: ['Git', 'SVN', 'None (I like to live on the edge)'],
     }, {
         type: 'list',
-        name: 'useModernizr',
+        name: 'htmlOption',
         message: 'Which HTML templating language would you like to use?',
         choices: ['Jade', 'None (Just plain HTML)'],
     }, {
@@ -59,11 +59,6 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         message: 'Which JavaScript preprocessor would you like to use?',
         choices: ['Coffeescript', 'None (Just plain JavaScript)'],
     }, {
-        type: 'confirm',
-        name: 'useModernizr',
-        message: 'Would you like to include modernizr?',
-        default: 'true'
-    }, {
         type: 'checkbox',
         name: 'linters',
         message: 'Select and Linters you would like to have check your code:',
@@ -76,7 +71,6 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.htmlOption = props.htmlOption;
         this.cssOption = props.cssOption;
         this.javascriptOption = props.javascriptOption;
-        this.useModernizr = props.useModernizr;
         this.linters = props.linters;
 
         cb();
@@ -84,16 +78,44 @@ YeogurtGenerator.prototype.askFor = function askFor() {
 };
 
 YeogurtGenerator.prototype.app = function app() {
+
+    // Create needed Directories
+    this.mkdir('dev');
+    this.mkdir('dev/markup');
+    this.mkdir('dev/styles');
+    this.mkdir('dev/scripts');
+    this.mkdir('dev/images');
+    this.mkdir('dev/fonts');
+    this.mkdir('docs');
+
+    if (this.htmlOption === 'Jade') {
+        this.mkdir('dev/markup/templates');
+        this.mkdir('dev/markup/pages');
+        this.mkdir('dev/markup/components');
+        this.mkdir('dev/markup/mixins');
+    }
+
+    if (this.cssOption === 'LESS' || this.cssOption === 'SASS') {
+        this.mkdir('dev/styles/vendor');
+        this.mkdir('dev/styles/modules');
+        this.mkdir('dev/styles/partials');
+        this.mkdir('dev/styles/partials/components');
+    }
+
+    this.mkdir('dev/scripts/components');
+    this.mkdir('dev/scripts/global');
+    this.mkdir('dev/scripts/vendor');
+
     this.template('Gruntfile.js', 'Gruntfile.js');
-    this.template('index.html', 'index.html');
+    this.template('dev/index.html', 'dev/index.html');
 
     this.template('_bower.json', 'bower.json');
     this.template('_config.json', 'config.json');
     this.template('_package.json', 'package.json');
 
-    this.copy('robots.txt', 'robots.txt');
-    this.copy('404.html', '404.html');
-    this.copy('favicon.ico', 'favicon.ico');
+    this.copy('dev/robots.txt', 'dev/robots.txt');
+    this.copy('dev/404.html', 'dev/404.html');
+    this.copy('dev/favicon.ico', 'dev/favicon.ico');
 };
 
 YeogurtGenerator.prototype.projectfiles = function projectfiles() {

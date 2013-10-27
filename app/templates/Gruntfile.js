@@ -1,56 +1,56 @@
 // Generated on <%= (new Date).toISOString().split('T')[0] %> using <%= pkg.name %> <%= pkg.version %>
 'use strict';
 
-var LIVERELOAD_PORT = 35729;
-var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
-var mountFolder = function (connect, dir) {
-    return connect.static(require('path').resolve(dir));
-};
+// # Globbing
+// for performance reasons we're only matching one level down:
+// 'test/spec/{,*/}*.js'
+// use this if you want to recursively match all subfolders:
+// 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
+    // show elapsed time at the end
+    require('time-grunt')(grunt);
     // load all grunt tasks
-    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+    require('load-grunt-tasks')(grunt);
 
     grunt.initConfig({
+        // configurable paths
+        yeoman: {
+            dev: 'dev',
+            app: 'app',
+            dist: 'dist'
+        },
         watch: {
-            options: {
-                nospawn: true,
-                livereload: LIVERELOAD_PORT
-            },
             livereload: {
+                options: {
+                    livereload: '<%%= connect.options.livereload %>'
+                },
                 files: [
-                    'index.html',
-                ],
-                tasks: ['build']
+                    '<%%= yeoman.dev %>/*.html',
+                    '<%%= yeoman.dev %>/scripts/{,*/}*.js',
+                    '<%%= yeoman.dev %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+                ]
             }
         },
         connect: {
             options: {
                 port: 9000,
+                livereload: 35729,
                 // change this to '0.0.0.0' to access the server from outside
-                hostname: 'localhost'
+                hostname: '0.0.0.0'
             },
             livereload: {
                 options: {
-                    middleware: function (connect) {
-                        return [
-                            lrSnippet,
-                            mountFolder(connect, '.')
-                        ];
-                    }
+                    open: true,
+                    base: '<%%= yeoman.dev %>'
                 }
-            }
-        },
-        open: {
-            server: {
-                path: 'http://localhost:<%%= connect.options.port %>'
             }
         }
     });
 
-    grunt.registerTask('server', ['build', 'connect:livereload', 'open', 'watch']);
+    grunt.registerTask('server', 'Open a developement server within your browser', ['build', 'connect:livereload', 'watch']);
 
-    grunt.registerTask('build', 'Build your blog.', function () {
+    grunt.registerTask('build', 'Build a production ready version of your site.', function () {
 
     });
 };
