@@ -22,11 +22,22 @@ describe('yeogurt generator', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files you expect to exist here.
-            '.editorconfig'
+            '.editorconfig',
+            'Gruntfile.js',
+            'index.html',
+            'bower.json',
+            'config.json',
+            'package.json',
+            '.bowerrc'
         ];
 
         helpers.mockPrompt(this.app, {
-            'someOption': true
+            'projectName': 'testing',
+            'versionControl': 'Git',
+            'htmlOption': 'Jade',
+            'cssOption': 'LESS',
+            'javascriptOption': 'Coffeescript',
+            'useModernizr': true
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {
