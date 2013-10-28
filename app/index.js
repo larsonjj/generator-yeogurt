@@ -106,6 +106,7 @@ YeogurtGenerator.prototype.app = function app() {
 
     this.template('dev/scripts/app.js', 'dev/scripts/app.js');
     this.template('dev/scripts/main.js', 'dev/scripts/main.js');
+    this.template('dev/scripts/components/example.js', 'dev/scripts/components/example.js');
 
     this.template('Gruntfile.js', 'Gruntfile.js');
     this.template('dev/index.html', 'dev/index.html');

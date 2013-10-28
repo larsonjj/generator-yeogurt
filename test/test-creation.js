@@ -35,6 +35,7 @@ describe('yeogurt generator', function () {
             'dev/scripts/vendor',
             'dev/scripts/main.js',
             'dev/scripts/app.js',
+            'dev/scripts/components/example.js',
             'dev/images',
             'dev/fonts',
             'docs',
