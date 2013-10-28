@@ -1,5 +1,6 @@
 require.config({
     paths: {
+        domReady: '../bower_components/requirejs-domready/domReady'
         jquery: '../bower_components/jquery/jquery'<% if (useBootstrap) { %>,
         // Uncomment desired boostrap js components below
         // bootstrapAffix: '../bower_components/sass-bootstrap/js/affix',
@@ -58,10 +59,12 @@ require.config({
     }
 });
 
-require(['app', 'jquery'], function (app, $) {
+require(['app', 'jquery', 'domReady'], function (app, $, domReady) {
     'use strict';
-    // use app here
-    console.log(app);
-    console.log('Running jQuery %s', $().jquery);
+    domReady(function() {
+        // use app here
+        console.log(app);
+        console.log('Running jQuery %s', $().jquery);
+    })
 });
 
