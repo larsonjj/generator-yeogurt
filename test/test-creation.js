@@ -29,13 +29,12 @@ describe('yeogurt generator', function () {
             'dev/markup/components',
             'dev/markup/mixins',
             'dev/styles',
-            'dev/styles/vendor',
-            'dev/styles/partials',
-            'dev/styles/partials/components',
             'dev/scripts',
             'dev/scripts/components',
             'dev/scripts/global',
             'dev/scripts/vendor',
+            'dev/scripts/main.js',
+            'dev/scripts/app.js',
             'dev/images',
             'dev/fonts',
             'docs',
@@ -56,8 +55,8 @@ describe('yeogurt generator', function () {
             versionControl: 'Git',
             htmlOption: 'Jade',
             cssOption: 'LESS',
-            useModernizr: true,
-            linters: ['JSHint']
+            linters: ['JSHint'],
+            jshint: 'y'
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {

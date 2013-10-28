@@ -54,15 +54,13 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         message: 'Which CSS preprocessor would you like to use?',
         choices: ['LESS', 'SASS'],
     }, {
-        type: 'checkbox',
-        name: 'linters',
-        message: 'Select and Linters you would like to have check your code:',
-        choices: [{name: 'JSHint', checked: true}, 'CSSLint']
+        type: 'confirm',
+        name: 'jshint',
+        message: 'Would you like to lint your JavaScript with JSHint?: ',
     }, {
-        type: 'prompt',
+        type: 'confirm',
         name: 'useBootstrap',
-        message: 'Would you liek to include Bootstrap?',
-        default: 'y'
+        message: 'Would you like to include Bootstrap?: ',
     }];
 
     this.prompt(prompts, function (props) {
@@ -70,7 +68,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.versionControl = props.versionControl;
         this.htmlOption = props.htmlOption;
         this.cssOption = props.cssOption;
-        this.linters = props.linters;
+        this.jshint = props.jshint;
         this.useBootstrap = props.useBootstrap;
 
         cb();
@@ -95,16 +93,19 @@ YeogurtGenerator.prototype.app = function app() {
         this.mkdir('dev/markup/mixins');
     }
 
-    if (this.cssOption === 'LESS' || this.cssOption === 'SASS') {
-        this.mkdir('dev/styles/vendor');
-        this.mkdir('dev/styles/modules');
-        this.mkdir('dev/styles/partials');
-        this.mkdir('dev/styles/partials/components');
+    if (this.cssOption === 'LESS') {
+        this.directory('dev/styles/less', 'dev/styles/less');
+    }
+    if (this.cssOption === 'SASS') {
+        this.directory('dev/styles/sass', 'dev/styles/sass');
     }
 
     this.mkdir('dev/scripts/components');
     this.mkdir('dev/scripts/global');
     this.mkdir('dev/scripts/vendor');
+
+    this.template('dev/scripts/app.js', 'dev/scripts/app.js');
+    this.template('dev/scripts/main.js', 'dev/scripts/main.js');
 
     this.template('Gruntfile.js', 'Gruntfile.js');
     this.template('dev/index.html', 'dev/index.html');
@@ -120,11 +121,8 @@ YeogurtGenerator.prototype.app = function app() {
 
 YeogurtGenerator.prototype.projectfiles = function projectfiles() {
     this.copy('editorconfig', '.editorconfig');
-    if (_.contains(this.linters, 'JSHint')) {
+    if (this.jshint) {
         this.copy('jshintrc', '.jshintrc');
-    }
-    if (_.contains(this.linters, 'CSSLint')) {
-        this.copy('csslintrc', '.csslintrc');
     }
 };
 
