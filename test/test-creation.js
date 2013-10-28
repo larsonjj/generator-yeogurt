@@ -56,7 +56,6 @@ describe('yeogurt generator', function () {
             versionControl: 'Git',
             htmlOption: 'Jade',
             cssOption: 'LESS',
-            javascriptOption: 'Coffeescript',
             useModernizr: true,
             linters: ['JSHint']
         });

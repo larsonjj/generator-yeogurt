@@ -5,8 +5,7 @@
     "devDependencies": {
         "grunt": "~0.4.1",
         "grunt-contrib-connect": "~0.5.0",
-        "grunt-contrib-watch": "~0.4.3",<% if (javascriptOption === 'Coffee') { %>
-        "grunt-contrib-coffee": "~0.7.0",<% } %>
+        "grunt-contrib-watch": "~0.4.3",
         "grunt-autoprefixer": "~0.2.0",
         "grunt-contrib-clean": "~0.5.0",
         "grunt-contrib-htmlmin": "~0.1.3",

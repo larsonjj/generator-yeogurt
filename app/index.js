@@ -52,17 +52,17 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         type: 'list',
         name: 'cssOption',
         message: 'Which CSS preprocessor would you like to use?',
-        choices: ['LESS', 'SASS', 'None (Just plain CSS)'],
-    }, {
-        type: 'list',
-        name: 'javascriptOption',
-        message: 'Which JavaScript preprocessor would you like to use?',
-        choices: ['Coffeescript', 'None (Just plain JavaScript)'],
+        choices: ['LESS', 'SASS'],
     }, {
         type: 'checkbox',
         name: 'linters',
         message: 'Select and Linters you would like to have check your code:',
         choices: [{name: 'JSHint', checked: true}, 'CSSLint']
+    }, {
+        type: 'prompt',
+        name: 'useBootstrap',
+        message: 'Would you liek to include Bootstrap?',
+        default: 'y'
     }];
 
     this.prompt(prompts, function (props) {
@@ -70,8 +70,8 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.versionControl = props.versionControl;
         this.htmlOption = props.htmlOption;
         this.cssOption = props.cssOption;
-        this.javascriptOption = props.javascriptOption;
         this.linters = props.linters;
+        this.useBootstrap = props.useBootstrap;
 
         cb();
     }.bind(this));

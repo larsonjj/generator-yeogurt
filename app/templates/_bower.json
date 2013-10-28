@@ -1,8 +1,13 @@
 {
     "name": "<%= _.slugify(projectName) %>",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "dependencies": {
-        "jquery": "~1.10.2"
+        "jquery": "~1.10.2",
+        "modernizr": "~2.6.2"<% if (useBootstrap && cssOption === 'LESS') { %>,
+        "bootstrap": "~3.0.0"<% } else if (useBootstrap && cssOption === 'SASS') { %>,
+        "sass-bootstrap": "~3.0.0"<% } %><% if (cssOption === 'LESS') { %>,
+        "lesshat": "latest"<% } %><% if (cssOption === 'SASS') { %>,
+        "bourbon": "~3.1.8"<% } %>
     },
   "devDependencies": {}
 }
