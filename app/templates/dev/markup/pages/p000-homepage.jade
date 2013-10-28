@@ -1,0 +1,11 @@
+extend ../templates/t000-one-column
+
+block header
+    include ../components/header
+
+block content
+    +heading({type:'h1', class:'heading', text: 'Test Heading'})
+    p Example page
+
+block footer
+    include ../components/footer

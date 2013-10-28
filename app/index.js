@@ -62,6 +62,10 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         message: 'Would you like to include Font Awesome?: ',
     }, {
         type: 'confirm',
+        name: 'ieSupport',
+        message: 'Do you need to support IE8?: ',
+    }, {
+        type: 'confirm',
         name: 'useFTP',
         message: 'Will you deploying code to an FTP server?: ',
     }];
@@ -73,6 +77,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.jshint = props.jshint;
         this.useBootstrap = props.useBootstrap;
         this.useFontAwesome = props.useFontAwesome;
+        this.ieSupport = props.ieSupport;
         this.useFTP = props.useFTP;
 
         cb();
@@ -103,7 +108,6 @@ YeogurtGenerator.prototype.app = function app() {
     }
 
     this.mkdir('dev/scripts/components');
-    this.mkdir('dev/scripts/global');
     this.mkdir('dev/scripts/vendor');
 
     this.template('dev/scripts/app.js', 'dev/scripts/app.js');
@@ -112,6 +116,13 @@ YeogurtGenerator.prototype.app = function app() {
 
     this.template('Gruntfile.js', 'Gruntfile.js');
     this.template('dev/index.html', 'dev/index.html');
+    this.template('dev/markup/components/c000-head.jade', 'dev/markup/components/c000-head.jade');
+    this.copy('dev/markup/components/c001-header.jade', 'dev/markup/components/c001-header.jade');
+    this.copy('dev/markup/components/c002-footer.jade', 'dev/markup/components/c002-footer.jade');
+    this.copy('dev/markup/mixins/m000-all-mixins.jade', 'dev/markup/mixins/m000-all-mixins.jade');
+    this.copy('dev/markup/mixins/m001-heading.jade', 'dev/markup/mixins/m001-heading.jade');
+    this.copy('dev/markup/pages/p000-homepage.jade', 'dev/markup/pages/p000-homepage.jade');
+    this.copy('dev/markup/templates/t000-one-column.jade', 'dev/markup/templates/t000-one-column.jade');
 
     this.template('_bower.json', 'bower.json');
     this.template('_config.json', 'config.json');
