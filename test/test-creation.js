@@ -36,6 +36,7 @@ describe('yeogurt generator', function () {
             'dev/scripts/main.js',
             'dev/scripts/app.js',
             'dev/scripts/components/example.js',
+            'ftppass.json',
             'dev/images',
             'dev/fonts',
             'docs',
@@ -57,7 +58,8 @@ describe('yeogurt generator', function () {
             htmlOption: 'Jade',
             cssOption: 'LESS',
             linters: ['JSHint'],
-            jshint: 'y'
+            jshint: 'y',
+            useFTP: 'y'
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {

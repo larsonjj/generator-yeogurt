@@ -9,7 +9,8 @@
         "bootstrap": "~3.0.0"<% } else if (jshint && cssOption === 'SASS') { %>,
         "sass-bootstrap": "~3.0.0"<% } %><% if (cssOption === 'LESS') { %>,
         "lesshat": "latest"<% } %><% if (cssOption === 'SASS') { %>,
-        "bourbon": "~3.1.8"<% } %>
+        "bourbon": "~3.1.8"<% } %><% if (useFontAwesome) { %>,
+        "font-awesome": "~4.0.0"<% } %>
     },
   "devDependencies": {}
 }

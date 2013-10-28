@@ -45,11 +45,6 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         choices: ['Git', 'SVN', 'None (I like to live on the edge)'],
     }, {
         type: 'list',
-        name: 'htmlOption',
-        message: 'Which HTML templating language would you like to use?',
-        choices: ['Jade', 'None (Just plain HTML)'],
-    }, {
-        type: 'list',
         name: 'cssOption',
         message: 'Which CSS preprocessor would you like to use?',
         choices: ['LESS', 'SASS'],
@@ -61,15 +56,24 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         type: 'confirm',
         name: 'useBootstrap',
         message: 'Would you like to include Bootstrap?: ',
+    }, {
+        type: 'confirm',
+        name: 'useFontAwesome',
+        message: 'Would you like to include Font Awesome?: ',
+    }, {
+        type: 'confirm',
+        name: 'useFTP',
+        message: 'Will you deploying code to an FTP server?: ',
     }];
 
     this.prompt(prompts, function (props) {
         this.projectName = props.projectName;
         this.versionControl = props.versionControl;
-        this.htmlOption = props.htmlOption;
         this.cssOption = props.cssOption;
         this.jshint = props.jshint;
         this.useBootstrap = props.useBootstrap;
+        this.useFontAwesome = props.useFontAwesome;
+        this.useFTP = props.useFTP;
 
         cb();
     }.bind(this));
@@ -86,12 +90,10 @@ YeogurtGenerator.prototype.app = function app() {
     this.mkdir('dev/fonts');
     this.mkdir('docs');
 
-    if (this.htmlOption === 'Jade') {
-        this.mkdir('dev/markup/templates');
-        this.mkdir('dev/markup/pages');
-        this.mkdir('dev/markup/components');
-        this.mkdir('dev/markup/mixins');
-    }
+    this.mkdir('dev/markup/templates');
+    this.mkdir('dev/markup/pages');
+    this.mkdir('dev/markup/components');
+    this.mkdir('dev/markup/mixins');
 
     if (this.cssOption === 'LESS') {
         this.directory('dev/styles/less', 'dev/styles/less');
@@ -114,6 +116,10 @@ YeogurtGenerator.prototype.app = function app() {
     this.template('_bower.json', 'bower.json');
     this.template('_config.json', 'config.json');
     this.template('_package.json', 'package.json');
+
+    if (this.useFTP) {
+        this.copy('ftppass.json', 'ftppass.json');
+    }
 
     this.copy('dev/robots.txt', 'dev/robots.txt');
     this.copy('dev/404.html', 'dev/404.html');
