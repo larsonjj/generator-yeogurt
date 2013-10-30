@@ -35,6 +35,16 @@ Finally, initiate the generator:
 $ yo yeogurt
 ```
 
+### Yeogurt Component Sub-Generator
+
+How to scaffold a component via command line. First navigate to the project folder and within this directory run:
+
+```
+$ yo yeogurt:component "REPLACE COMPONENT NAME"
+```
+
+Note: Component name should be entered like "c000 Component Name"
+
 ### Getting To Know Yeoman
 
 Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
