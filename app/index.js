@@ -99,6 +99,7 @@ YeogurtGenerator.prototype.app = function app() {
     this.mkdir('dev/images');
     this.mkdir('dev/styles/fonts');
     this.mkdir('docs');
+    this.copy('docs/README.md', 'docs/README.md');
 
     this.mkdir('dev/markup/templates');
     this.mkdir('dev/markup/pages');

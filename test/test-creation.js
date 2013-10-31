@@ -58,6 +58,7 @@ describe('yeogurt generator', function () {
             'dev/images',
             'dev/styles/fonts',
             'docs',
+            'docs/README.md',
             '.editorconfig',
             'Gruntfile.js',
             'dev/index.html',
