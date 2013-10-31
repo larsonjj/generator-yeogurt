@@ -92,40 +92,28 @@ YeogurtGenerator.prototype.askFor = function askFor() {
 YeogurtGenerator.prototype.app = function app() {
 
     // Create needed Directories
+
+    // root (/)
+    this.template('Gruntfile.js', 'Gruntfile.js');
+    this.template('_bower.json', 'bower.json');
+    this.template('_config.json', 'config.json');
+    this.template('_package.json', 'package.json');
+
+    if (this.useFTP) {
+        this.copy('ftppass.json', 'ftppass.json');
+    }
+
+    // dev/
     this.mkdir('dev');
-    this.mkdir('dev/markup');
-    this.mkdir('dev/styles');
+
+    this.template('dev/index.html', 'dev/index.html');
+
+    this.copy('dev/robots.txt', 'dev/robots.txt');
+    this.copy('dev/404.html', 'dev/404.html');
+    this.copy('dev/favicon.ico', 'dev/favicon.ico');
+
+    // dev/scripts
     this.mkdir('dev/scripts');
-    this.mkdir('dev/images');
-    this.mkdir('dev/styles/fonts');
-    this.mkdir('docs');
-    this.copy('docs/README.md', 'docs/README.md');
-
-    this.mkdir('dev/markup/templates');
-    this.mkdir('dev/markup/pages');
-    this.mkdir('dev/markup/components');
-    this.mkdir('dev/markup/elements');
-    this.mkdir('dev/markup/partials');
-
-    if (this.cssOption === 'LESS') {
-        this.directory('dev/styles/less/components', 'dev/styles/components');
-        this.directory('dev/styles/less/elements', 'dev/styles/elements');
-        this.directory('dev/styles/less/modules', 'dev/styles/modules');
-        this.directory('dev/styles/less/pages', 'dev/styles/pages');
-        this.directory('dev/styles/less/partials', 'dev/styles/partials');
-        this.directory('dev/styles/less/vendor', 'dev/styles/vendor');
-        this.template('dev/styles/less/main.less', 'dev/styles/main.less');
-    }
-    if (this.cssOption === 'SASS') {
-        this.directory('dev/styles/sass/components', 'dev/styles/components');
-        this.directory('dev/styles/sass/elements', 'dev/styles/elements');
-        this.directory('dev/styles/sass/modules', 'dev/styles/modules');
-        this.directory('dev/styles/sass/pages', 'dev/styles/pages');
-        this.directory('dev/styles/sass/partials', 'dev/styles/partials');
-        this.directory('dev/styles/sass/vendor', 'dev/styles/vendor');
-        this.template('dev/styles/less/main.scss', 'dev/styles/main.scss');
-    }
-
     this.mkdir('dev/scripts/components');
     this.mkdir('dev/scripts/vendor');
 
@@ -133,10 +121,24 @@ YeogurtGenerator.prototype.app = function app() {
     this.template('dev/scripts/main.js', 'dev/scripts/main.js');
     this.template('dev/scripts/components/example.js', 'dev/scripts/components/example.js');
 
-    this.template('Gruntfile.js', 'Gruntfile.js');
-    this.template('dev/index.html', 'dev/index.html');
+    // dev/images
+    this.mkdir('dev/images');
+
+    // docs/
+    this.mkdir('docs');
+    this.copy('docs/README.md', 'docs/README.md');
+
+    // dev/markup
+    this.mkdir('dev/markup');
+    this.mkdir('dev/markup/templates');
+    this.mkdir('dev/markup/pages');
+    this.mkdir('dev/markup/components');
+    this.mkdir('dev/markup/elements');
+    this.mkdir('dev/markup/partials');
+
     this.template('dev/markup/components/all-components.jade', 'dev/markup/components/all-components.jade');
     this.template('dev/markup/components/c000-head.jade', 'dev/markup/components/c000-head.jade');
+
     this.copy('dev/markup/components/c001-header.jade', 'dev/markup/components/c001-header.jade');
     this.copy('dev/markup/components/c002-footer.jade', 'dev/markup/components/c002-footer.jade');
     this.copy('dev/markup/elements/all-elements.jade', 'dev/markup/elements/all-elements.jade');
@@ -147,37 +149,89 @@ YeogurtGenerator.prototype.app = function app() {
     this.copy('dev/markup/partials/all-partials.jade', 'dev/markup/partials/all-partials.jade');
     this.copy('dev/markup/partials/README.md', 'dev/markup/partials/README.md');
 
-    this.template('_bower.json', 'bower.json');
-    this.template('_config.json', 'config.json');
-    this.template('_package.json', 'package.json');
-
-    if (this.useFTP) {
-        this.copy('ftppass.json', 'ftppass.json');
+    // dev/styles
+    this.mkdir('dev/styles');
+    this.mkdir('dev/styles/fonts');
+    if (this.cssOption === 'LESS') {
+        this.directory('dev/styles/less/components', 'dev/styles/components');
+        this.directory('dev/styles/less/elements', 'dev/styles/elements');
+        this.directory('dev/styles/less/modules', 'dev/styles/modules');
+        this.directory('dev/styles/less/pages', 'dev/styles/pages');
+        this.directory('dev/styles/less/partials', 'dev/styles/partials');
+        this.directory('dev/styles/less/templates', 'dev/styles/templates');
+        this.directory('dev/styles/less/vendor', 'dev/styles/vendor');
+        this.template('dev/styles/less/main.less', 'dev/styles/main.less');
+    }
+    if (this.cssOption === 'SASS') {
+        this.directory('dev/styles/sass/components', 'dev/styles/components');
+        this.directory('dev/styles/sass/elements', 'dev/styles/elements');
+        this.directory('dev/styles/sass/modules', 'dev/styles/modules');
+        this.directory('dev/styles/sass/pages', 'dev/styles/pages');
+        this.directory('dev/styles/sass/partials', 'dev/styles/partials');
+        this.directory('dev/styles/sass/templates', 'dev/styles/templates');
+        this.directory('dev/styles/sass/vendor', 'dev/styles/vendor');
+        this.template('dev/styles/less/main.scss', 'dev/styles/main.scss');
     }
 
-    this.copy('dev/robots.txt', 'dev/robots.txt');
-    this.copy('dev/404.html', 'dev/404.html');
-    this.copy('dev/favicon.ico', 'dev/favicon.ico');
-
     // Dashboard
-    this.mkdir('dashboard');
-    this.mkdir('dashboard/markup');
-    this.mkdir('dashboard/markup/pages');
-    this.mkdir('dashboard/markup/elements');
-    this.mkdir('dashboard/markup/components');
-    this.mkdir('dashboard/markup/templates');
-    this.mkdir('dashboard/markup/partials');
-    this.mkdir('dashboard/images');
-    this.mkdir('dashboard/styles');
-    this.mkdir('dashboard/styles/fonts');
-    this.mkdir('dashboard/styles/vendor');
-    this.mkdir('dashboard/styles/partials');
-    this.mkdir('dashboard/styles/pages');
-    this.mkdir('dashboard/styles/templates');
-    this.mkdir('dashboard/styles/elements');
-    this.mkdir('dashboard/scripts');
-    this.mkdir('dashboard/scripts/vendor');
-    this.mkdir('dashboard/scripts/components');
+
+    // markup
+    this.mkdir('dev/dashboard/markup');
+    this.mkdir('dev/dashboard/markup/pages');
+    this.mkdir('dev/dashboard/markup/elements');
+    this.mkdir('dev/dashboard/markup/components');
+    this.mkdir('dev/dashboard/markup/templates');
+    this.mkdir('dev/dashboard/markup/partials');
+
+    this.template('dev/markup/components/all-components.jade', 'dev/dashboard/markup/components/all-components.jade');
+    this.template('dev/markup/components/c000-head.jade', 'dev/dashboard/markup/components/c000-head.jade');
+
+    this.copy('dev/markup/components/c001-header.jade', 'dev/dashboard/markup/components/c001-header.jade');
+    this.copy('dev/markup/components/c002-footer.jade', 'dev/dashboard/markup/components/c002-footer.jade');
+    this.copy('dev/markup/elements/all-elements.jade', 'dev/dashboard/markup/elements/all-elements.jade');
+    this.copy('dev/markup/elements/e000-heading.jade', 'dev/dashboard/markup/elements/e000-heading.jade');
+    this.copy('dev/markup/pages/p000-homepage.jade', 'dev/dashboard/markup/pages/p000-homepage.jade');
+    this.copy('dev/markup/templates/t000-base.jade', 'dev/dashboard/markup/templates/t000-base.jade');
+    this.copy('dev/markup/templates/t001-one-column.jade', 'dev/dashboard/markup/templates/t001-one-column.jade');
+    this.copy('dev/markup/partials/all-partials.jade', 'dev/dashboard/markup/partials/all-partials.jade');
+    this.copy('dev/markup/partials/README.md', 'dev/dashboard/markup/partials/README.md');
+
+    // images
+    this.mkdir('dev/dashboard/images');
+
+    // styles
+    this.mkdir('dev/dashboard/styles');
+    this.mkdir('dev/dashboard/styles/fonts');
+    if (this.cssOption === 'LESS') {
+        this.directory('dev/styles/less/components', 'dev/dashboard/styles/components');
+        this.directory('dev/styles/less/elements', 'dev/dashboard/styles/elements');
+        this.directory('dev/styles/less/modules', 'dev/dashboard/styles/modules');
+        this.directory('dev/styles/less/pages', 'dev/dashboard/styles/pages');
+        this.directory('dev/styles/less/partials', 'dev/dashboard/styles/partials');
+        this.directory('dev/styles/less/templates', 'dev/dashboard/styles/templates');
+        this.directory('dev/styles/less/vendor', 'dev/dashboard/styles/vendor');
+        this.template('dev/styles/less/main.less', 'dev/dashboard/styles/main.less');
+    }
+    if (this.cssOption === 'SASS') {
+        this.directory('dev/styles/sass/components', 'dev/dashboard/styles/components');
+        this.directory('dev/styles/sass/elements', 'dev/dashboard/styles/elements');
+        this.directory('dev/styles/sass/modules', 'dev/dashboard/styles/modules');
+        this.directory('dev/styles/sass/pages', 'dev/dashboard/styles/pages');
+        this.directory('dev/styles/sass/partials', 'dev/dashboard/styles/partials');
+        this.directory('dev/styles/sass/templates', 'dev/dashboard/styles/templates');
+        this.directory('dev/styles/sass/vendor', 'dev/dashboard/styles/vendor');
+        this.template('dev/styles/less/main.scss', 'dev/dashboard/styles/main.scss');
+    }
+
+    // scripts
+    this.mkdir('dev/dashboard/scripts');
+    this.mkdir('dev/dashboard/scripts/vendor');
+    this.mkdir('dev/dashboard/scripts/components');
+
+    this.template('dev/scripts/app.js', 'dev/dashboard/scripts/app.js');
+    this.template('dev/scripts/main.js', 'dev/dashboard/scripts/main.js');
+    this.template('dev/scripts/components/example.js', 'dev/dashboard/scripts/components/example.js');
+
 };
 
 YeogurtGenerator.prototype.projectfiles = function projectfiles() {

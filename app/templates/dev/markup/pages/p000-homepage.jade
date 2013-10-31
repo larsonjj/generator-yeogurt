@@ -1,5 +1,8 @@
 extend ../templates/t001-one-column
 
 block content
-    +heading({type:'h1', class:'heading', text: 'Test Heading'})
-    p Example page
+    //- #content-section.content-section must exist as first element under 'block content' for every page
+    //- Provides Page Level Styling (just add page-level class to #content-section)
+    #content-section.content-section.p000-homepage
+        +heading({type:'h1', class:'heading', text: 'Test Heading'})
+        p Example page
