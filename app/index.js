@@ -42,7 +42,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         type: 'list',
         name: 'versionControl',
         message: 'Which version control software are you using?',
-        choices: ['Git', 'SVN', 'None (I like to live on the edge)'],
+        choices: ['Git', 'SVN', 'Both', 'None (I like to live on the edge)'],
     }, {
         type: 'list',
         name: 'cssOption',
@@ -68,6 +68,10 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         type: 'confirm',
         name: 'useFTP',
         message: 'Will you deploying code to an FTP server?: ',
+    }, {
+        type: 'confirm',
+        name: 'haveDashboard',
+        message: 'Would you like to have a site dashboard?: ',
     }];
 
     this.prompt(prompts, function (props) {
@@ -79,6 +83,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.useFontAwesome = props.useFontAwesome;
         this.ieSupport = props.ieSupport;
         this.useFTP = props.useFTP;
+        this.haveDashboard = props.haveDashboard;
 
         cb();
     }.bind(this));
@@ -92,19 +97,32 @@ YeogurtGenerator.prototype.app = function app() {
     this.mkdir('dev/styles');
     this.mkdir('dev/scripts');
     this.mkdir('dev/images');
-    this.mkdir('dev/fonts');
+    this.mkdir('dev/styles/fonts');
     this.mkdir('docs');
 
     this.mkdir('dev/markup/templates');
     this.mkdir('dev/markup/pages');
     this.mkdir('dev/markup/components');
-    this.mkdir('dev/markup/mixins');
+    this.mkdir('dev/markup/elements');
+    this.mkdir('dev/markup/partials');
 
     if (this.cssOption === 'LESS') {
-        this.directory('dev/styles/less', 'dev/styles/less');
+        this.directory('dev/styles/less/components', 'dev/styles/components');
+        this.directory('dev/styles/less/elements', 'dev/styles/elements');
+        this.directory('dev/styles/less/modules', 'dev/styles/modules');
+        this.directory('dev/styles/less/pages', 'dev/styles/pages');
+        this.directory('dev/styles/less/partials', 'dev/styles/partials');
+        this.directory('dev/styles/less/vendor', 'dev/styles/vendor');
+        this.template('dev/styles/less/main.less', 'dev/styles/main.less');
     }
     if (this.cssOption === 'SASS') {
-        this.directory('dev/styles/sass', 'dev/styles/sass');
+        this.directory('dev/styles/sass/components', 'dev/styles/components');
+        this.directory('dev/styles/sass/elements', 'dev/styles/elements');
+        this.directory('dev/styles/sass/modules', 'dev/styles/modules');
+        this.directory('dev/styles/sass/pages', 'dev/styles/pages');
+        this.directory('dev/styles/sass/partials', 'dev/styles/partials');
+        this.directory('dev/styles/sass/vendor', 'dev/styles/vendor');
+        this.template('dev/styles/less/main.scss', 'dev/styles/main.scss');
     }
 
     this.mkdir('dev/scripts/components');
@@ -116,13 +134,17 @@ YeogurtGenerator.prototype.app = function app() {
 
     this.template('Gruntfile.js', 'Gruntfile.js');
     this.template('dev/index.html', 'dev/index.html');
+    this.template('dev/markup/components/all-components.jade', 'dev/markup/components/all-components.jade');
     this.template('dev/markup/components/c000-head.jade', 'dev/markup/components/c000-head.jade');
     this.copy('dev/markup/components/c001-header.jade', 'dev/markup/components/c001-header.jade');
     this.copy('dev/markup/components/c002-footer.jade', 'dev/markup/components/c002-footer.jade');
-    this.copy('dev/markup/mixins/m000-all-mixins.jade', 'dev/markup/mixins/m000-all-mixins.jade');
-    this.copy('dev/markup/mixins/m001-heading.jade', 'dev/markup/mixins/m001-heading.jade');
+    this.copy('dev/markup/elements/all-elements.jade', 'dev/markup/elements/all-elements.jade');
+    this.copy('dev/markup/elements/e000-heading.jade', 'dev/markup/elements/e000-heading.jade');
     this.copy('dev/markup/pages/p000-homepage.jade', 'dev/markup/pages/p000-homepage.jade');
-    this.copy('dev/markup/templates/t000-one-column.jade', 'dev/markup/templates/t000-one-column.jade');
+    this.copy('dev/markup/templates/t000-base.jade', 'dev/markup/templates/t000-base.jade');
+    this.copy('dev/markup/templates/t001-one-column.jade', 'dev/markup/templates/t001-one-column.jade');
+    this.copy('dev/markup/partials/all-partials.jade', 'dev/markup/partials/all-partials.jade');
+    this.copy('dev/markup/partials/README.md', 'dev/markup/partials/README.md');
 
     this.template('_bower.json', 'bower.json');
     this.template('_config.json', 'config.json');
@@ -135,6 +157,26 @@ YeogurtGenerator.prototype.app = function app() {
     this.copy('dev/robots.txt', 'dev/robots.txt');
     this.copy('dev/404.html', 'dev/404.html');
     this.copy('dev/favicon.ico', 'dev/favicon.ico');
+
+    // Dashboard
+    this.mkdir('dashboard');
+    this.mkdir('dashboard/markup');
+    this.mkdir('dashboard/markup/pages');
+    this.mkdir('dashboard/markup/elements');
+    this.mkdir('dashboard/markup/components');
+    this.mkdir('dashboard/markup/templates');
+    this.mkdir('dashboard/markup/partials');
+    this.mkdir('dashboard/images');
+    this.mkdir('dashboard/styles');
+    this.mkdir('dashboard/styles/fonts');
+    this.mkdir('dashboard/styles/vendor');
+    this.mkdir('dashboard/styles/partials');
+    this.mkdir('dashboard/styles/pages');
+    this.mkdir('dashboard/styles/templates');
+    this.mkdir('dashboard/styles/elements');
+    this.mkdir('dashboard/scripts');
+    this.mkdir('dashboard/scripts/vendor');
+    this.mkdir('dashboard/scripts/components');
 };
 
 YeogurtGenerator.prototype.projectfiles = function projectfiles() {
@@ -150,7 +192,12 @@ YeogurtGenerator.prototype.runtime = function runtime() {
         this.copy('gitignore', '.gitignore');
         this.copy('gitattributes', '.gitattributes');
     }
-    if (this.versionControl === 'SVN') {
+    else if (this.versionControl === 'SVN') {
+        this.copy('svnignore', '.svnignore');
+    }
+    else if (this.versionControl === 'Both') {
+        this.copy('gitignore', '.gitignore');
+        this.copy('gitattributes', '.gitattributes');
         this.copy('svnignore', '.svnignore');
     }
 };
