@@ -37,6 +37,22 @@ $ yo yeogurt
 
 ### Yeogurt Component Sub-Generator
 
+The component generator assumes the project directory has the following sub directories and files.
+
+```
+├── project
+│   └── dashboard
+│   	└── jade
+│   		└── components
+│   			├── page-list.jade
+│   └── jade
+│   	├── mixins.jade
+│   └── styles
+│   	├── main.scss
+```
+
+Each of thses files must include the string `//- end component build`. The generator will add a link to the new component file above . place this line where a link to the new component files should be added. When the sub generator is executed the new component files will be linked respectively.
+
 How to scaffold a component via command line. First navigate to the project folder and within this directory run:
 
 ```
