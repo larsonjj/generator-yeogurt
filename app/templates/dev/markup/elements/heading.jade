@@ -1,8 +1,8 @@
 mixin heading(content)
-    -var content         = content       || {}
-    -var content.type    = content.type  || 'h1'
-    -var content.class   = content.class || ''
-    -var content.text    = content.text  || ''
+    -var content         = content       || {};
+    - content.type    = content.type  || 'h1';
+    - content.class   = content.class || '';
+    - content.text    = content.text  || '';
 
     case content.type
         when "h1"

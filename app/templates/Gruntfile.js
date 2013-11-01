@@ -17,7 +17,7 @@ module.exports = function (grunt) {
         // configurable paths
         yeoman: {
             dev: 'dev',
-            app: 'app',
+            server: 'server',
             dist: 'dist'
         },
         watch: {
@@ -45,10 +45,51 @@ module.exports = function (grunt) {
                     base: '<%%= yeoman.dev %>'
                 }
             }
+        },
+        clean: {
+            server: ['<%%= yeoman.server %>/'],
+            dist: ['<%%= yeoman.dist %>/']
+        },
+        // Put files not handled in other tasks here
+        copy: {
+            server: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '<%%= yeoman.dev %>',
+                    dest: '<%%= yeoman.server %>',
+                    src: [
+                        '*.{ico,png,txt}',
+                        '.htaccess',
+                        'images/{,*/}*.{webp,gif}',
+                        'styles/fonts/{,*/}*.*',
+                    ]
+                }]
+            }
+        },
+        jade: {
+            server: {
+                options: {
+                    pretty: true,
+                    client: false,
+                    data: {
+                        debug: true
+                    }
+                },
+                dest: '<%%= yeoman.server %>',
+                src: ['<%%= yeoman.dev %>/markup/pages/*.jade']
+            }
         }
     });
 
-    grunt.registerTask('server', 'Open a developement server within your browser', ['build', 'connect:livereload', 'watch']);
+    grunt.registerTask('server', 'Open a developement server within your browser', [
+        'clean:server',
+        'copy:server',
+        'jade:server',
+        'build',
+        'connect:livereload',
+        'watch'
+    ]);
 
     grunt.registerTask('build', 'Build a production ready version of your site.', function () {
 
