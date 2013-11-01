@@ -137,15 +137,15 @@ YeogurtGenerator.prototype.app = function app() {
     this.mkdir('dev/markup/partials');
 
     this.template('dev/markup/components/all-components.jade', 'dev/markup/components/all-components.jade');
-    this.template('dev/markup/components/c000-head.jade', 'dev/markup/components/c000-head.jade');
+    this.template('dev/markup/components/head.jade', 'dev/markup/components/head.jade');
 
-    this.copy('dev/markup/components/c001-header.jade', 'dev/markup/components/c001-header.jade');
-    this.copy('dev/markup/components/c002-footer.jade', 'dev/markup/components/c002-footer.jade');
+    this.copy('dev/markup/components/header.jade', 'dev/markup/components/header.jade');
+    this.copy('dev/markup/components/footer.jade', 'dev/markup/components/footer.jade');
     this.copy('dev/markup/elements/all-elements.jade', 'dev/markup/elements/all-elements.jade');
-    this.copy('dev/markup/elements/e000-heading.jade', 'dev/markup/elements/e000-heading.jade');
-    this.copy('dev/markup/pages/p000-homepage.jade', 'dev/markup/pages/p000-homepage.jade');
-    this.copy('dev/markup/templates/t000-base.jade', 'dev/markup/templates/t000-base.jade');
-    this.copy('dev/markup/templates/t001-one-column.jade', 'dev/markup/templates/t001-one-column.jade');
+    this.copy('dev/markup/elements/heading.jade', 'dev/markup/elements/heading.jade');
+    this.copy('dev/markup/pages/index.jade', 'dev/markup/pages/index.jade');
+    this.copy('dev/markup/templates/base.jade', 'dev/markup/templates/base.jade');
+    this.copy('dev/markup/templates/one-column.jade', 'dev/markup/templates/one-column.jade');
     this.copy('dev/markup/partials/all-partials.jade', 'dev/markup/partials/all-partials.jade');
     this.copy('dev/markup/partials/README.md', 'dev/markup/partials/README.md');
 
@@ -184,15 +184,15 @@ YeogurtGenerator.prototype.app = function app() {
     this.mkdir('dev/dashboard/markup/partials');
 
     this.template('dev/markup/components/all-components.jade', 'dev/dashboard/markup/components/all-components.jade');
-    this.template('dev/markup/components/c000-head.jade', 'dev/dashboard/markup/components/c000-head.jade');
+    this.template('dev/markup/components/head.jade', 'dev/dashboard/markup/components/head.jade');
 
-    this.copy('dev/markup/components/c001-header.jade', 'dev/dashboard/markup/components/c001-header.jade');
-    this.copy('dev/markup/components/c002-footer.jade', 'dev/dashboard/markup/components/c002-footer.jade');
+    this.copy('dev/markup/components/header.jade', 'dev/dashboard/markup/components/header.jade');
+    this.copy('dev/markup/components/footer.jade', 'dev/dashboard/markup/components/footer.jade');
     this.copy('dev/markup/elements/all-elements.jade', 'dev/dashboard/markup/elements/all-elements.jade');
-    this.copy('dev/markup/elements/e000-heading.jade', 'dev/dashboard/markup/elements/e000-heading.jade');
-    this.copy('dev/markup/pages/p000-homepage.jade', 'dev/dashboard/markup/pages/p000-homepage.jade');
-    this.copy('dev/markup/templates/t000-base.jade', 'dev/dashboard/markup/templates/t000-base.jade');
-    this.copy('dev/markup/templates/t001-one-column.jade', 'dev/dashboard/markup/templates/t001-one-column.jade');
+    this.copy('dev/markup/elements/heading.jade', 'dev/dashboard/markup/elements/heading.jade');
+    this.copy('dev/markup/pages/index.jade', 'dev/dashboard/markup/pages/index.jade');
+    this.copy('dev/markup/templates/base.jade', 'dev/dashboard/markup/templates/base.jade');
+    this.copy('dev/markup/templates/one-column.jade', 'dev/dashboard/markup/templates/one-column.jade');
     this.copy('dev/markup/partials/all-partials.jade', 'dev/dashboard/markup/partials/all-partials.jade');
     this.copy('dev/markup/partials/README.md', 'dev/dashboard/markup/partials/README.md');
 
