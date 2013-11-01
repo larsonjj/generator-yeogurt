@@ -1,8 +1,9 @@
 extend ../templates/t001-one-column
 
+//- use the 'block body' if you need to set a page-level class on the <body> tag
+block body
+  - var bodyClass = 'p000-homepage';
+
 block content
-    //- #content-section.content-section must exist as first element under 'block content' for every page
-    //- Provides Page Level Styling (just add page-level class to #content-section)
-    #content-section.content-section.p000-homepage
-        +heading({type:'h1', class:'heading', text: 'Test Heading'})
-        p Example page
+    +heading({type:'h1', class:'heading', text: 'Test Heading'})
+    p Example page

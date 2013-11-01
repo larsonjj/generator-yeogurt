@@ -1,12 +1,14 @@
 extend t000-base
 
-block header
-    +header()
+block template
 
-//- .txxx-some-name must exist above 'block content' on every template
-//- Provides template level styling
-.t001-one-column
-    block content
+    block header
+        +header()
 
-block footer
-    +footer()
+    //- .txxx-some-name must exist above 'block content' on every template
+    //- Provides template level styling
+    #template-wrapper.template-wrapper.t001-one-column
+        block content
+
+    block footer
+        +footer()

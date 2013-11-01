@@ -23,5 +23,5 @@ mixin head(content)
             // build:js main.js
             script(data-main='../../scripts/global/main', src='../../bower_components/requirejs/require.js')
             // endbuild
-        body
-            yield
+        if block
+            block
