@@ -48,7 +48,7 @@ ComponentGenerator.prototype.addComponentToMixin = function addComponentToMixin(
 	try {
 		generatorUtils.rewriteFile({
 			file: 'jade/mixins.jade',
-			needle: '//- endbuild',
+			needle: '//- end component build',
 			splicable: [
 				'include components/' + this._.slugify(this.name)
 			]
@@ -62,7 +62,7 @@ ComponentGenerator.prototype.addComponentToCSS = function addComponentToCSS() {
 	try {
 		generatorUtils.rewriteFile({
 			file: 'styles/main.scss',
-			needle: '//- endbuild',
+			needle: '//- end component build',
 			splicable: [
 				'@import \'components/_' + this._.slugify(this.name) + '\';'
 			]
@@ -76,7 +76,7 @@ ComponentGenerator.prototype.addComponentToStyleGuide = function addComponentToS
 	try {
 		generatorUtils.rewriteFile({
 			file: 'dashboard/jade/components/page-list.jade',
-			needle: '//- endbuild',
+			needle: '//- end component build',
 			splicable: [
 				'li.queued.project-list-item: a(href=\'../html/style-guide/' + this._.slugify(this.name) + '.html\', target=\'_top\') ' + this.name
 			]
