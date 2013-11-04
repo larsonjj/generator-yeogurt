@@ -42,7 +42,7 @@ module.exports = function (grunt) {
             livereload: {
                 options: {
                     open: true,
-                    base: '<%%= yeoman.dev %>'
+                    base: '<%%= yeoman.server %>'
                 }
             }
         },
@@ -58,10 +58,31 @@ module.exports = function (grunt) {
                     cwd: '<%%= yeoman.dev %>/',
                     dest: '<%%= yeoman.server %>/',
                     src: [
-                        '*.{ico,png,txt}',
+                        '*.{ico,png,txt,html}',
                         '.htaccess',
                         'images/{,*/}*.{webp,gif}',
                         'styles/fonts/{,*/}*.*',
+                    ]
+                }]
+            },
+            bower: {
+                files: [{
+                    expand: true,
+                    cwd: '<%%= yeoman.dev %>/',
+                    dest: '<%%= yeoman.server %>/',
+                    src: [
+                        'bower_components/requirejs/require.js',
+                        'bower_components/modernizr/modernizr.js'
+                    ]
+                }]
+            },
+            cssFiles: {
+                files: [{
+                    expand: true,
+                    cwd: '<%%= yeoman.dev %>/styles',
+                    dest: '<%%= yeoman.server %>/styles',
+                    src: [
+                        '{,*/}{,*/}*.{scss,less}'
                     ]
                 }]
             }
@@ -81,12 +102,71 @@ module.exports = function (grunt) {
                 src: ['markup/pages/*.jade'],
                 ext: '.html'
             }
+        },
+        'string-replace': {
+            sassMapFix: {
+                options: {
+                    replacements: [
+                        // place files inline example
+                        {
+                            pattern: '../../dev/styles/',
+                            replacement: ''
+                        }
+                    ]
+                },
+                files: {
+                    '<%%= yeoman.server %>/styles/main.css.map' : '<%%= yeoman.server %>/styles/main.css.map'
+                }
+            },
+            lessMainFix: {
+                options: {
+                    replacements: [
+                        // place files inline example
+                        {
+                            pattern: '=./server/styles/',
+                            replacement: '='
+                        }
+                    ]
+                },
+                files: {
+                    '<%%= yeoman.server %>/styles/main.css' : '<%%= yeoman.server %>/styles/main.css'
+                }
+            },
+            lessMapFix: {
+                options: {
+                    replacements: [
+                        // place files inline example
+                        {
+                            pattern: './dev/styles/',
+                            replacement: ''
+                        }
+                    ]
+                },
+                files: {
+                    '<%%= yeoman.server %>/styles/main.css.map' : '<%%= yeoman.server %>/styles/main.css.map'
+                }
+            }
+        },
+        requirejs: {
+            dist: {
+                options: {
+                    name: 'main',
+                    baseUrl: '<%%= yeoman.dev %>/scripts/',
+                    mainConfigFile: '<%%= yeoman.dev %>/scripts/main.js',
+                    out: '<%%= yeoman.server %>/scripts/main.min.js',
+                    optimize: 'uglify2',
+                    generateSourceMaps: true,
+                    preserveLicenseComments: false,
+                }
+            }
         }<% if (cssOption === 'SASS') { %>,
         sass: {
             server: {
                 options: {
                     style: 'expanded',
-                    lineNumbers: true
+                    lineNumbers: true,
+                    sourcemap: true,
+                    trace: true
                 },
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
@@ -98,8 +178,11 @@ module.exports = function (grunt) {
         less: {
             server: {
                 options: {
-                    dumpLineNumbers: true,
-                    paths: ['<%%= yeoman.dev %>/styles']
+                    paths: ['<%%= yeoman.dev %>/'],
+                    sourceMap: true,
+                    sourceMapFilename: '<%%= yeoman.server %>/styles/main.css.map',
+                    sourceMapBasepath: './',
+                    sourceMapRootpath: './'
                 },
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
@@ -113,9 +196,15 @@ module.exports = function (grunt) {
     grunt.registerTask('server', 'Open a developement server within your browser', [
         'clean:server',
         'copy:server',
+        'copy:bower',
+        'copy:cssFiles',
         'jade:server',<% if (cssOption === 'LESS') { %>
-        'less:server',<% } %><% if (cssOption === 'SASS') { %>
-        'sass:server',<% } %>
+        'less:server',
+        'string-replace:lessMapFix',
+        'string-replace:lessMainFix',<% } %><% if (cssOption === 'SASS') { %>
+        'sass:server',
+        'string-replace:sassMapFix',<% } %>
+        'requirejs',
         'build',
         'connect:livereload',
         'watch'

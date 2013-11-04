@@ -1,7 +1,8 @@
 require.config({
     paths: {
-        domReady: '../bower_components/requirejs-domready/domReady'
-        jquery: '../bower_components/jquery/jquery'<% if (useBootstrap) { %>,
+        domReady: '../bower_components/requirejs-domready/domReady',
+        jquery: '../bower_components/jquery/jquery',
+        app: 'app'<% if (useBootstrap) { %>,
         // Uncomment desired boostrap js components below
         // bootstrapAffix: '../bower_components/sass-bootstrap/js/affix',
         // bootstrapAlert: '../bower_components/sass-bootstrap/js/alert',
@@ -18,7 +19,7 @@ require.config({
         <% } %>
     },
     shim: {
-        <% if (useBootstrap) { %>
+        <% if (useBootstrap) { %>// Uncomment desired boostrap js components below
         // bootstrapAffix: {
         //     deps: ['jquery']
         // },
@@ -55,8 +56,7 @@ require.config({
         // bootstrapTransition: {
         //     deps: ['jquery']
         // }
-        <% } %>
-    }
+        <% } %>}
 });
 
 require(['app', 'jquery', 'domReady'], function (app, $, domReady) {
@@ -65,6 +65,6 @@ require(['app', 'jquery', 'domReady'], function (app, $, domReady) {
         // use app here
         console.log(app);
         console.log('Running jQuery %s', $().jquery);
-    })
+    });
 });
 
