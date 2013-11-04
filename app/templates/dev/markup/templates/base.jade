@@ -5,6 +5,8 @@ include ../partials/all-partials
 
 +head()
     block body
-    body(class="#{bodyClass}")
-
-        block template
+    if bodyClass
+        body(class="#{bodyClass}")
+    else
+        body
+            block template

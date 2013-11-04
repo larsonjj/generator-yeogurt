@@ -98,7 +98,7 @@ YeogurtGenerator.prototype.app = function app() {
     this.template('_bower.json', 'bower.json');
     this.template('_config.json', 'config.json');
     this.template('_package.json', 'package.json');
-    this.copy('.htaccess', '.htaccess');
+    this.copy('.htaccess', 'dev/.htaccess');
 
     if (this.useFTP) {
         this.copy('ftppass.json', 'ftppass.json');
@@ -171,7 +171,7 @@ YeogurtGenerator.prototype.app = function app() {
         this.directory('dev/styles/sass/partials', 'dev/styles/partials');
         this.directory('dev/styles/sass/templates', 'dev/styles/templates');
         this.directory('dev/styles/sass/vendor', 'dev/styles/vendor');
-        this.template('dev/styles/less/main.scss', 'dev/styles/main.scss');
+        this.template('dev/styles/sass/main.scss', 'dev/styles/main.scss');
     }
 
     // Dashboard
@@ -221,7 +221,7 @@ YeogurtGenerator.prototype.app = function app() {
         this.directory('dev/styles/sass/partials', 'dev/dashboard/styles/partials');
         this.directory('dev/styles/sass/templates', 'dev/dashboard/styles/templates');
         this.directory('dev/styles/sass/vendor', 'dev/dashboard/styles/vendor');
-        this.template('dev/styles/less/main.scss', 'dev/dashboard/styles/main.scss');
+        this.template('dev/styles/sass/main.scss', 'dev/dashboard/styles/main.scss');
     }
 
     // scripts

@@ -55,9 +55,8 @@ module.exports = function (grunt) {
             server: {
                 files: [{
                     expand: true,
-                    dot: true,
-                    cwd: '<%%= yeoman.dev %>',
-                    dest: '<%%= yeoman.server %>',
+                    cwd: '<%%= yeoman.dev %>/',
+                    dest: '<%%= yeoman.server %>/',
                     src: [
                         '*.{ico,png,txt}',
                         '.htaccess',
@@ -76,16 +75,47 @@ module.exports = function (grunt) {
                         debug: true
                     }
                 },
-                dest: '<%%= yeoman.server %>',
-                src: ['<%%= yeoman.dev %>/markup/pages/*.jade']
+                expand: true,
+                cwd: '<%%= yeoman.dev %>/',
+                dest: '<%%= yeoman.server %>/',
+                src: ['markup/pages/*.jade'],
+                ext: '.html'
             }
-        }
+        }<% if (cssOption === 'SASS') { %>,
+        sass: {
+            server: {
+                options: {
+                    style: 'expanded',
+                    lineNumbers: true
+                },
+                expand: true,
+                cwd: '<%%= yeoman.dev %>/',
+                dest: '<%%= yeoman.server %>/',
+                src: ['styles/*.scss'],
+                ext: '.css'
+            }
+        }<% } %><% if (cssOption === 'LESS') { %>,
+        less: {
+            server: {
+                options: {
+                    dumpLineNumbers: true,
+                    paths: ['<%%= yeoman.dev %>/styles']
+                },
+                expand: true,
+                cwd: '<%%= yeoman.dev %>/',
+                dest: '<%%= yeoman.server %>/',
+                src: ['styles/*.less'],
+                ext: '.css'
+            }
+        }<% } %>
     });
 
     grunt.registerTask('server', 'Open a developement server within your browser', [
         'clean:server',
         'copy:server',
-        'jade:server',
+        'jade:server',<% if (cssOption === 'LESS') { %>
+        'less:server',<% } %><% if (cssOption === 'SASS') { %>
+        'sass:server',<% } %>
         'build',
         'connect:livereload',
         'watch'

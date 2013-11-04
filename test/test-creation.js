@@ -62,7 +62,7 @@ describe('yeogurt generator', function () {
             'docs/README.md',
             '.editorconfig',
             'Gruntfile.js',
-            '.htaccess',
+            'dev/.htaccess',
             'dev/index.html',
             'bower.json',
             'config.json',
