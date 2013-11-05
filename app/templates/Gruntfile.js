@@ -287,7 +287,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 options: {
-                    style: 'expanded',
+                    style: 'compressed',
                     lineNumbers: false,
                     sourcemap: true,
                     trace: true
@@ -321,7 +321,8 @@ module.exports = function (grunt) {
                     sourceMap: true,
                     sourceMapFilename: '<%%= yeoman.dist %>/styles/main.css.map',
                     sourceMapBasepath: './',
-                    sourceMapRootpath: './'
+                    sourceMapRootpath: './',
+                    compress: true
                 },
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
