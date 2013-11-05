@@ -3,10 +3,31 @@ include ../components/all-components
 include ../elements/all-elements
 include ../partials/all-partials
 
-+head()
+doctype 5
+<% if (ieSupport) { %>//if lt IE 9
+    <html class="no-js lt-ie9"><% } %>
+//[if gt IE 8]><!
+html(lang="en", class='no-js')
+    //<![endif]
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+        title <%= projectName %>
+        meta(name='description', content='')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        //- Place favicon.ico and apple-touch-icon.png in the root directory
+        link(rel='stylesheet', href='../../styles/main.css')
+        script(src='../../bower_components/modernizr/modernizr.js')
+        // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+        <% if (ieSupport) { %>//if lt IE 9
+            script(src="../../bower_components/respond/respond.min.js")
+            script(src="../../bower_components/html5shiv/dist/html5shiv.js")<% } %>
+        script(data-main="../../scripts/main", src="../../bower_components/requirejs/require.js")
+    -var bodyClass
     block body
-    if bodyClass
+    if bodyClass != undefined
         body(class="#{bodyClass}")
+            block template
     else
         body
             block template

@@ -7,19 +7,19 @@ mixin heading(content)
     case content.type
         when "h1"
             h1(class=content.class)
-                | content.text
+                !=content.text
         when "h2"
             h2(class=content.class)
-                | content.text
+                !=content.text
         when "h3"
             h3(class=content.class)
-                | content.text
+                !=content.text
         when "h4"
             h4(class=content.class)
-                | content.text
+                !=content.text
         when "h5"
             h5(class=content.class)
-                | content.text
+                !=content.text
         when "h6"
             h6(class=content.class)
-                | content.text
+                !=content.text
