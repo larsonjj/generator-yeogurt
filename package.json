@@ -1,6 +1,6 @@
 {
   "name": "generator-yeogurt",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A generator for Yeoman",
   "keywords": [
     "yeoman-generator",
@@ -28,12 +28,12 @@
   },
   "dependencies": {
     "yeoman-generator": "~0.13.0",
-    "colors": "~0.6.2"
-  },
-  "devDependencies": {
+    "colors": "~0.6.2",
     "mocha": "~1.12.0",
     "lodash": "~2.2.1",
     "cheerio": "~0.12.3"
+  },
+  "devDependencies": {
   },
   "peerDependencies": {
     "yo": ">=1.0.0-rc.1"
