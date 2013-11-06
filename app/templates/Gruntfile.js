@@ -196,11 +196,21 @@ module.exports = function (grunt) {
                 jshintrc: '.jshintrc',
                 reporter: require('jshint-stylish')
             },
-            all: [
+            server: [
                 'Gruntfile.js',
                 '<%%= yeoman.server %>/scripts/{,*/}{,*/}*.js',
                 '!<%%= yeoman.server %>/scripts/vendor/{,*/}*',
-            ]
+            ],
+            build: [
+                'Gruntfile.js',
+                '<%%= yeoman.dist %>/scripts/{,*/}{,*/}*.js',
+                '!<%%= yeoman.dist %>/scripts/vendor/{,*/}*',
+            ],
+            test: [
+                'Gruntfile.js',
+                '<%%= yeoman.dev %>/scripts/{,*/}{,*/}*.js',
+                '!<%%= yeoman.dev %>/scripts/vendor/{,*/}*',
+            ],
         }<% } %>,
         'string-replace': {
             sassMapFixServer: {
@@ -451,7 +461,7 @@ module.exports = function (grunt) {
     grunt.registerTask('server', 'Open a developement server within your browser', [
         'clean:server',
         'copy:server'<% if (jshint) { %>,
-        'jshint'<% } %>,
+        'jshint:server'<% } %>,
         'jade:server',<% if (cssOption === 'LESS') { %>
         'less:server',
         'string-replace:lessMapFixServer',
@@ -476,8 +486,12 @@ module.exports = function (grunt) {
         'requirejs',
         'string-replace:requireDist', // change require main path to 'main.min'
         'uglify'<% if (jshint) { %>,
-        'jshint'<% } %>
-    ]);
+        'jshint:build'<% } %>
+    ]);<% if (jshint) { %>
+
+    grunt.registerTask('test', 'Peform tests on JavaScript', [
+        'jshint:test'
+    ]);<% } %>
 
     grunt.registerTask('zip', 'Build a production ready version of your site and zip it up', [
         'build',
