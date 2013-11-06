@@ -146,9 +146,9 @@ module.exports = function (grunt) {
                     cwd: '<%%= yeoman.dev %>/',
                     dest: '<%%= yeoman.dist %>/',
                     src: [
-                        '*.{ico,txt}',
+                        '*.{ico,png,txt,html}',
                         '.htaccess',
-                        'images/{,*/}*.{webp,gif}',
+                        'images/{,*/}*.{webp}',
                         'styles/fonts/{,*/}*.*',
                     ]
                 }, {
@@ -196,21 +196,11 @@ module.exports = function (grunt) {
                 jshintrc: '.jshintrc',
                 reporter: require('jshint-stylish')
             },
-            server: [
-                'Gruntfile.js',
-                '<%%= yeoman.server %>/scripts/{,*/}{,*/}*.js',
-                '!<%%= yeoman.server %>/scripts/vendor/{,*/}*',
-            ],
-            build: [
-                'Gruntfile.js',
-                '<%%= yeoman.dist %>/scripts/{,*/}{,*/}*.js',
-                '!<%%= yeoman.dist %>/scripts/vendor/{,*/}*',
-            ],
             test: [
                 'Gruntfile.js',
                 '<%%= yeoman.dev %>/scripts/{,*/}{,*/}*.js',
                 '!<%%= yeoman.dev %>/scripts/vendor/{,*/}*',
-            ],
+            ]
         }<% } %>,
         'string-replace': {
             sassMapFixServer: {
@@ -370,6 +360,50 @@ module.exports = function (grunt) {
                 dest: '<%%= yeoman.dist %>/bower_components/',
                 src: ['{,*/}{,*/}*.js'],
                 ext: '.js'
+            },
+            distJS: {
+                options: {
+                    mangle: true,
+                    preserveComments: 'some',
+                },
+                expand: true,
+                cwd: '<%%= yeoman.dev %>/scripts/components',
+                dest: '<%%= yeoman.dist %>/scripts/components',
+                src: ['{,*/}*.js'],
+                ext: '.js'
+            }
+        },
+        imagemin: {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '<%%= yeoman.dev %>/images',
+                    src: '{,*/}{,*/}*.{png,jpg,jpeg,gif}',
+                    dest: '<%%= yeoman.dist %>/images'
+                }]
+            }
+        },
+        svgmin: {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '<%%= yeoman.dev %>/images',
+                    src: '{,*/}{,*/}*.svg',
+                    dest: '<%%= yeoman.dist %>/images'
+                }]
+            }
+        },
+        htmlmin: {
+            dist: {
+                options: {
+                    removeEmptyAttributes: true
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%%= yeoman.dist %>',
+                    src: ['*.html', 'markup/{,*/}{,*/}*.html'],
+                    dest: '<%%= yeoman.dist %>'
+                }]
             }
         },
         requirejs: {
@@ -450,7 +484,7 @@ module.exports = function (grunt) {
     grunt.registerTask('ftpinfo', 'Grab FTP info for deployment; If valid, then deploy to FTP server', function () {
         var ftpJSON = grunt.file.readJSON('.ftppass');
         if (ftpJSON.host === '') {
-            console.log('ERROR: Deploy will not work until you fill out FTP server info in the ".ftppass" file!');
+            grunt.log.error('ERROR: Deploy will not work until you fill out FTP server info in the ".ftppass" file!');
         }
         else {
             grunt.config.set('secret', ftpJSON);
@@ -461,7 +495,7 @@ module.exports = function (grunt) {
     grunt.registerTask('server', 'Open a developement server within your browser', [
         'clean:server',
         'copy:server'<% if (jshint) { %>,
-        'jshint:server'<% } %>,
+        'jshint:test'<% } %>,
         'jade:server',<% if (cssOption === 'LESS') { %>
         'less:server',
         'string-replace:lessMapFixServer',
@@ -475,7 +509,10 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', 'Build a production ready version of your site.', [
         'clean:dist',
-        'copy:dist',
+        'copy:dist',<% if (jshint) { %>
+        'jshint:test',<% } %>
+        'imagemin',
+        'svgmin',
         'jade:dist',<% if (cssOption === 'LESS') { %>
         'less:dist',
         'string-replace:lessMapFixDist',
@@ -485,8 +522,8 @@ module.exports = function (grunt) {
         'autoprefixer:dist',
         'requirejs',
         'string-replace:requireDist', // change require main path to 'main.min'
-        'uglify'<% if (jshint) { %>,
-        'jshint:build'<% } %>
+        'htmlmin',
+        'uglify'
     ]);<% if (jshint) { %>
 
     grunt.registerTask('test', 'Peform tests on JavaScript', [
