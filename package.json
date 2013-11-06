@@ -1,6 +1,6 @@
 {
   "name": "generator-yeogurt",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A generator for Yeoman",
   "keywords": [
     "yeoman-generator",
