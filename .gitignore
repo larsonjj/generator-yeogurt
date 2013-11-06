@@ -3,3 +3,4 @@ node_modules
 server
 dist
 .ftppass
+test/temp
