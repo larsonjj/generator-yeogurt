@@ -335,8 +335,7 @@ module.exports = function (grunt) {
                 cwd: '<%%= yeoman.dist %>/',
                 src: ['*/**', '*.{txt,html}', '!**/*.zip', '!**/*.psd', '!**/.git/']
             }
-        },
-        // don't keep passwords in source control
+        },<% if (useFTP) { %>
         'ftp-deploy': {
             build: {
                 auth: {
@@ -349,7 +348,7 @@ module.exports = function (grunt) {
                 exclusions: ['*.svn', '.svn/', '.svn', '*.git', '.git/', '.git'],
                 server_sep: '/'
             }
-        },
+        },<% } %>
         uglify: {
             dist: {
                 options: {
@@ -436,7 +435,7 @@ module.exports = function (grunt) {
                 ext: '.css'
             }
         }<% } %>
-    });
+    });<% if (useFTP) { %>
 
     grunt.registerTask('ftpinfo', 'Grab FTP info for deployment; If valid, then deploy to FTP server', function () {
         var ftpJSON = grunt.file.readJSON('.ftppass');
@@ -447,7 +446,7 @@ module.exports = function (grunt) {
             grunt.config.set('secret', ftpJSON);
             grunt.task.run(['ftp-deploy']);
         }
-    });
+    });<% } %>
 
     grunt.registerTask('server', 'Open a developement server within your browser', [
         'clean:server',
@@ -483,11 +482,11 @@ module.exports = function (grunt) {
     grunt.registerTask('zip', 'Build a production ready version of your site and zip it up', [
         'build',
         'compress'
-    ]);
+    ]);<% if (useFTP) { %>
 
     grunt.registerTask('deploy', 'Build a production ready version of your site and deploy it to a desired FTP server.', [
         'zip',
         'ftpinfo',
-    ]);
+    ]);<% } %>
 
 };
