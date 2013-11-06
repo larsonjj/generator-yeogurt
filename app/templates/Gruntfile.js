@@ -38,7 +38,7 @@ module.exports = function (grunt) {
             }<% } %>,
             js: {
                 files: ['<%%= yeoman.dev %>/scripts/{,*/}{,*/}*.js', '<%%= yeoman.dev %>/bower_components/{,*/}{,*/}*.js'],
-                tasks: ['copy:server']
+                tasks: ['copy:server'<% if (jshint) { %>, 'jshint'<% } %>]
             },
             images: {
                 files: ['<%%= yeoman.dev %>/images/{,*/}{,*/}*.{png,jpg,gif}'],
@@ -189,7 +189,18 @@ module.exports = function (grunt) {
                 src: ['markup/pages/*.jade'],
                 ext: '.html'
             }
-        },
+        }<% if (jshint) { %>,
+        jshint: {
+            options: {
+                jshintrc: '.jshintrc',
+                reporter: require('jshint-stylish')
+            },
+            all: [
+                'Gruntfile.js',
+                '<%%= yeoman.server %>/scripts/{,*/}{,*/}*.js',
+                '!<%%= yeoman.server %>/scripts/vendor/{,*/}*',
+            ]
+        }<% } %>,
         'string-replace': {
             sassMapFixServer: {
                 options: {
@@ -380,7 +391,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('server', 'Open a developement server within your browser', [
         'clean:server',
-        'copy:server',
+        'copy:server'<% if (jshint) { %>,
+        'jshint'<% } %>,
         'jade:server',<% if (cssOption === 'LESS') { %>
         'less:server',
         'string-replace:lessMapFixServer',
@@ -402,6 +414,7 @@ module.exports = function (grunt) {
         'string-replace:sassMapFixDist',<% } %>
         'requirejs',
         'string-replace:requireDist', // change require main path to 'main.min'
-        'uglify'
+        'uglify'<% if (jshint) { %>,
+        'jshint'<% } %>
     ]);
 };
