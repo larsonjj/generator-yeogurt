@@ -51,9 +51,9 @@ The component generator assumes the project directory has the following sub dire
 │   	├── main.scss
 ```
 
-Each of thses files must include the string `//- end component build`. The generator will add a link to the new component file above . place this line where a link to the new component files should be added. When the sub generator is executed the new component files will be linked respectively.
+Each of these files must include a string `//- end component build` also known as the needle. It is recommended needle be placed below the last component. When the sub generator is executed the new component files will be linked above the needle.
 
-How to scaffold a component via command line. First navigate to the project folder and within this directory run:
+How to scaffold a component via command line. First navigate to the project folder and within this directory and run:
 
 ```
 $ yo yeogurt:component "REPLACE COMPONENT NAME"
