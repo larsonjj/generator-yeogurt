@@ -1,4 +1,5 @@
 // Generated on <%= (new Date).toISOString().split('T')[0] %> using <%= pkg.name %> <%= pkg.version %>
+/*jshint camelcase: false */
 'use strict';
 
 // # Globbing
@@ -322,6 +323,33 @@ module.exports = function (grunt) {
                 }]
             }
         },
+        // gzip assets 1-to-1 for production
+        compress: {
+            main: {
+                options: {
+                    mode: 'zip',
+                    pretty: true,
+                    archive: '<%%= yeoman.dist %>/build.zip'
+                },
+                expand: true,
+                cwd: '<%%= yeoman.dist %>/',
+                src: ['*/**', '*.{txt,html}', '!**/*.zip', '!**/*.psd', '!**/.git/']
+            }
+        },
+        // don't keep passwords in source control
+        'ftp-deploy': {
+            build: {
+                auth: {
+                    host: '<%%= secret.host %>',
+                    port: 21,
+                    authKey: 'key1'
+                },
+                src: '<%%= yeoman.dist %>',
+                dest: '<%%= secret.serverPath %>',
+                exclusions: ['*.svn', '.svn/', '.svn', '*.git', '.git/', '.git'],
+                server_sep: '/'
+            }
+        },
         uglify: {
             dist: {
                 options: {
@@ -410,6 +438,17 @@ module.exports = function (grunt) {
         }<% } %>
     });
 
+    grunt.registerTask('ftpinfo', 'Grab FTP info for deployment; If valid, then deploy to FTP server', function () {
+        var ftpJSON = grunt.file.readJSON('.ftppass');
+        if (ftpJSON.host === '') {
+            console.log('ERROR: Deploy will not work until you fill out FTP server info in the ".ftppass" file!');
+        }
+        else {
+            grunt.config.set('secret', ftpJSON);
+            grunt.task.run(['ftp-deploy']);
+        }
+    });
+
     grunt.registerTask('server', 'Open a developement server within your browser', [
         'clean:server',
         'copy:server'<% if (jshint) { %>,
@@ -440,4 +479,15 @@ module.exports = function (grunt) {
         'uglify'<% if (jshint) { %>,
         'jshint'<% } %>
     ]);
+
+    grunt.registerTask('zip', 'Build a production ready version of your site and zip it up', [
+        'build',
+        'compress'
+    ]);
+
+    grunt.registerTask('deploy', 'Build a production ready version of your site and deploy it to a desired FTP server.', [
+        'zip',
+        'ftpinfo',
+    ]);
+
 };

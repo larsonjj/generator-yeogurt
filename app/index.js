@@ -101,7 +101,7 @@ YeogurtGenerator.prototype.app = function app() {
     this.copy('.htaccess', 'dev/.htaccess');
 
     if (this.useFTP) {
-        this.copy('ftppass.json', 'ftppass.json');
+        this.copy('.ftppass', '.ftppass');
     }
 
     // dev/

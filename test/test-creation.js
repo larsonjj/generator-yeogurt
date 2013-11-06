@@ -55,7 +55,7 @@ describe('yeogurt generator', function () {
             'dev/scripts/main.js',
             'dev/scripts/app.js',
             'dev/scripts/components/example.js',
-            'ftppass.json',
+            '.ftppass',
             'dev/images',
             'dev/styles/fonts',
             'docs',

@@ -1,8 +1,8 @@
 {
-    "host": "someurl.com",
+    "host": "",
     "serverPath": "/html",
     "key1": {
         "username": "jdoe",
-        "password": "jon1"
+        "password": "jdoe1"
       }
 }
