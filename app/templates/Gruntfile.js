@@ -301,6 +301,27 @@ module.exports = function (grunt) {
                 }
             }
         },
+        autoprefixer: {
+            options: {
+                browsers: ['last 5 versions', '> 1%', 'ff 17', 'opera 11.1', 'ie 8']
+            },
+            server: {
+                files: [{
+                    expand: true,
+                    cwd: '<%%= yeoman.server %>/styles',
+                    src: '{,*/}*.css',
+                    dest: '<%%= yeoman.server %>/styles'
+                }]
+            },
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '<%%= yeoman.dist %>/styles',
+                    src: '{,*/}*.css',
+                    dest: '<%%= yeoman.dist %>/styles'
+                }]
+            }
+        },
         uglify: {
             dist: {
                 options: {
@@ -399,6 +420,7 @@ module.exports = function (grunt) {
         'string-replace:lessMainFixServer',<% } %><% if (cssOption === 'SASS') { %>
         'sass:server',
         'string-replace:sassMapFixServer',<% } %>
+        'autoprefixer:server',
         'connect:livereload',
         'watch'
     ]);
@@ -412,6 +434,7 @@ module.exports = function (grunt) {
         'string-replace:lessMainFixDist',<% } %><% if (cssOption === 'SASS') { %>
         'sass:dist',
         'string-replace:sassMapFixDist',<% } %>
+        'autoprefixer:dist',
         'requirejs',
         'string-replace:requireDist', // change require main path to 'main.min'
         'uglify'<% if (jshint) { %>,
