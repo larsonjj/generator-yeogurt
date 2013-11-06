@@ -21,14 +21,52 @@ module.exports = function (grunt) {
             dist: 'dist'
         },
         watch: {
+            options: {
+                nospawn: false
+            },
+            jade: {
+                files: ['<%%= yeoman.dev %>/markup/{,*/}{,*/}*.jade'],
+                tasks: ['jade:server']
+            }<% if (cssOption === 'SASS') { %>,
+            sass: {
+                files: ['<%%= yeoman.dev %>/styles/{,*/}{,*/}*.{scss,sass}'],
+                tasks: ['sass:server', 'copy:server']
+            }<% } %><% if (cssOption === 'LESS') { %>,
+            less: {
+                files: ['<%%= yeoman.dev %>/styles/{,*/}{,*/}*.less'],
+                tasks: ['less:server', 'copy:server']
+            }<% } %>,
+            js: {
+                files: ['<%%= yeoman.dev %>/scripts/{,*/}{,*/}*.js', '<%%= yeoman.dev %>/bower_components/{,*/}{,*/}*.js'],
+                tasks: ['copy:server']
+            },
+            images: {
+                files: ['<%%= yeoman.dev %>/images/{,*/}{,*/}*.{png,jpg,gif}'],
+                tasks: ['copy:server']
+            },
+            root: {
+                files: [
+                    '<%%= yeoman.dev %>/*.{ico,png,txt,html}',
+                    '<%%= yeoman.dev %>/.htaccess',
+                    '<%%= yeoman.dev %>/images/{,*/}*.{webp}',
+                    '<%%= yeoman.dev %>/styles/fonts/{,*/}*.*'
+                ],
+                tasks: ['copy:server']
+            },
             livereload: {
                 options: {
                     livereload: '<%%= connect.options.livereload %>'
                 },
                 files: [
-                    '<%%= yeoman.dev %>/*.html',
-                    '<%%= yeoman.dev %>/scripts/{,*/}*.js',
-                    '<%%= yeoman.dev %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+                    '<%%= yeoman.server %>/*.{ico,png,txt,html}',
+                    '<%%= yeoman.server %>/.htaccess',
+                    '<%%= yeoman.server %>/styles/fonts/{,*/}*.*',
+                    '<%%= yeoman.server %>/markup/{,*/}{,*/}*.html',
+                    '<%%= yeoman.server %>/styles/{,*/}{,*/}*.css'<% if (cssOption === 'SASS') { %>,
+                    '<%%= yeoman.server %>/styles/{,*/}{,*/}*.{sass,scss}'<% } %><% if (cssOption === 'LESS') { %>,
+                    '<%%= yeoman.server %>/styles/{,*/}{,*/}*.less'<% } %>,
+                    '<%%= yeoman.server %>/scripts/{,*/}{,*/}*.js',
+                    '<%%= yeoman.server %>/images/{,*/}{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
             }
         },
@@ -69,6 +107,13 @@ module.exports = function (grunt) {
                     dest: '<%%= yeoman.server %>/',
                     src: [
                         'scripts/**'
+                    ]
+                }, {
+                    expand: true,
+                    cwd: '<%%= yeoman.dev %>/',
+                    dest: '<%%= yeoman.server %>/',
+                    src: [
+                        'images/**'
                     ]
                 }, {
                     expand: true,
