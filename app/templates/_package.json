@@ -31,7 +31,7 @@
         "load-grunt-tasks": "~0.1.0",
         "time-grunt": "~0.1.1",
         "bower": "~1.2.7"<% if (useFTP) { %>,
-        "grunt-ftp-deploy": "~0.0.10"<% } %>
+        "grunt-ftpush": "~0.3.2"<% } %>
     },
     "engines": {
         "node": ">=0.8.0"

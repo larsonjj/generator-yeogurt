@@ -143,6 +143,13 @@ module.exports = function (grunt) {
                     ]
                 }, {
                     expand: true,
+                    cwd: '<%%= yeoman.dev %>/scripts',
+                    dest: '<%%= yeoman.dist %>/scripts',
+                    src: [
+                        '{,*/}{,*/}*.js', '!*.js'
+                    ]
+                }, {
+                    expand: true,
                     cwd: '<%%= yeoman.dev %>/',
                     dest: '<%%= yeoman.dist %>/',
                     src: [
@@ -199,7 +206,7 @@ module.exports = function (grunt) {
             test: [
                 'Gruntfile.js',
                 '<%%= yeoman.dev %>/scripts/{,*/}{,*/}*.js',
-                '!<%%= yeoman.dev %>/scripts/vendor/{,*/}*',
+                '!<%%= yeoman.dev %>/scripts/vendor/{,*/}*'
             ]
         }<% } %>,
         'string-replace': {
@@ -298,7 +305,35 @@ module.exports = function (grunt) {
                     ]
                 },
                 files: {
-                    '<%%= yeoman.dist %>/markup/pages/index.html' : '<%%= yeoman.dist %>/markup/pages/index.html'
+                    '<%%= yeoman.dist %>/../' : ['<%%= yeoman.dist %>/markup/{,*/}{,*/}*.html', '<%%= yeoman.dist %>/*.html']
+                }
+            },
+            requireDistTwo: {
+                options: {
+                    replacements: [
+                        // place files inline example
+                        {
+                            pattern: 'require.js',
+                            replacement: 'require.min.js'
+                        }
+                    ]
+                },
+                files: {
+                    '<%%= yeoman.dist %>/../' : ['<%%= yeoman.dist %>/markup/{,*/}{,*/}*.html', '<%%= yeoman.dist %>/*.html']
+                }
+            },
+            requireDistThree: {
+                options: {
+                    replacements: [
+                        // place files inline example
+                        {
+                            pattern: 'modernizr.js',
+                            replacement: 'modernizr.min.js'
+                        }
+                    ]
+                },
+                files: {
+                    '<%%= yeoman.dist %>/../' : ['<%%= yeoman.dist %>/markup/{,*/}{,*/}*.html', '<%%= yeoman.dist %>/*.html']
                 }
             }
         },
@@ -336,8 +371,9 @@ module.exports = function (grunt) {
                 src: ['*/**', '*.{txt,html}', '!**/*.zip', '!**/*.psd', '!**/.git/']
             }
         },<% if (useFTP) { %>
-        'ftp-deploy': {
+        ftpush: {
             build: {
+                simple: true,
                 auth: {
                     host: '<%%= secret.host %>',
                     port: 21,
@@ -354,23 +390,44 @@ module.exports = function (grunt) {
                 options: {
                     mangle: true,
                     preserveComments: 'some',
+                    sourceMap: function (path) {
+                        return path.replace('.js', '.map');
+                    },
+                    sourceMapPrefix: 3,
+                    sourceMappingURL: function (path) {
+                        var pathArray = path.split('/'),
+                        pathLength = pathArray.length;
+                        return pathArray[(pathLength - 1)].replace('.js', '.map');
+                    }
                 },
                 expand: true,
                 cwd: '<%%= yeoman.dist %>/bower_components/',
                 dest: '<%%= yeoman.dist %>/bower_components/',
-                src: ['{,*/}{,*/}*.js'],
-                ext: '.js'
+                src: [
+                    'requirejs/require.js',
+                    'modernizr/modernizr.js'
+                ],
+                ext: '.min.js'
             },
             distJS: {
                 options: {
                     mangle: true,
                     preserveComments: 'some',
+                    sourceMap: function (path) {
+                        return path.replace('.js', '.map');
+                    },
+                    sourceMapPrefix: 3,
+                    sourceMappingURL: function (path) {
+                        var pathArray = path.split('/'),
+                        pathLength = pathArray.length;
+                        return pathArray[(pathLength - 1)];
+                    }
                 },
                 expand: true,
-                cwd: '<%%= yeoman.dev %>/scripts/components',
-                dest: '<%%= yeoman.dist %>/scripts/components',
-                src: ['{,*/}*.js'],
-                ext: '.js'
+                cwd: '<%%= yeoman.dev %>/scripts/',
+                dest: '<%%= yeoman.dist %>/scripts/',
+                src: ['{,*/}{,*/}*.js', '!*.js'],
+                ext: '.min.js'
             }
         },
         imagemin: {
@@ -488,7 +545,7 @@ module.exports = function (grunt) {
         }
         else {
             grunt.config.set('secret', ftpJSON);
-            grunt.task.run(['ftp-deploy']);
+            grunt.task.run(['ftpush']);
         }
     });<% } %>
 
@@ -522,6 +579,8 @@ module.exports = function (grunt) {
         'autoprefixer:dist',
         'requirejs',
         'string-replace:requireDist', // change require main path to 'main.min'
+        'string-replace:requireDistTwo',
+        'string-replace:requireDistThree',
         'htmlmin',
         'uglify'
     ]);<% if (jshint) { %>
