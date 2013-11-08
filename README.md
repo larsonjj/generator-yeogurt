@@ -45,3 +45,7 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 ## License
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/larsonjj/generator-yeogurt/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
