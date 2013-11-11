@@ -21,6 +21,7 @@ module.exports = function (grunt) {
             server: 'server',
             dist: 'dist'
         },
+        dashboardData: {},
         watch: {
             options: {
                 nospawn: false
@@ -202,7 +203,7 @@ module.exports = function (grunt) {
                     pretty: true,
                     client: false,
                     data: {
-                        debug: true
+                        pages: '<%%= dashboardData %>'
                     }
                 },
                 files: {
@@ -606,11 +607,10 @@ module.exports = function (grunt) {
     });<% } %>
 
     grunt.registerTask('build-dashboard', 'Builds out a static HTML page that lists all created pages', function () {
-        var pagesArray = [];
-        var removeDirFromPath = function (str) {
-            var newArray = str.split('/');
-            newArray.shift();
-            return newArray.join('/');
+        var done = this.async(),
+        pagesArray = [];
+        var updatePath = function (str) {
+            return str.replace('dev', '..');
         };
         var toTitleCase = function (str)
         {
@@ -618,19 +618,21 @@ module.exports = function (grunt) {
         };
         var findPageNames = function (path) {
             var file = grunt.file.read(path),
-            regex = /<body class="(.*?)">/i,
+            regex = /#PageTitle='(.*?)'/i,
             fileTitle = file.match(regex);
-            pagesArray.push({path: removeDirFromPath(path), title: toTitleCase(fileTitle[1])});
-            console.log(pagesArray);
+            pagesArray.push({path: updatePath(path.replace('jade', 'html')), title: toTitleCase(fileTitle[1])});
+            return pagesArray;
         };
-        grunt.file.recurse('dist/markup/pages', function (abspath) {
-            findPageNames(abspath);
+        grunt.file.recurse('dev/markup/pages', function (abspath) {
+            grunt.config(['dashboardData'], findPageNames(abspath));
         });
+        done();
     });
 
     grunt.registerTask('server', 'Open a developement server within your browser', [
         'clean:server',
-        'copy:server'<% if (jshint) { %>,
+        'copy:server',
+        'build-dashboard:server'<% if (jshint) { %>,
         'jshint:test'<% } %>,
         'jade:server',<% if (haveDashboard) { %>
         'jade:serverDashboard',<% } %><% if (cssOption === 'LESS') { %>
@@ -649,7 +651,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', 'Build a production ready version of your site.', [
         'clean:dist',
-        'copy:dist',<% if (jshint) { %>
+        'copy:dist',
+        'build-dashboard:dist',<% if (jshint) { %>
         'jshint:test',<% } %>
         'imagemin',
         'svgmin',
@@ -665,7 +668,6 @@ module.exports = function (grunt) {
         'string-replace:requireDistTwo',
         'string-replace:requireDistThree',
         'htmlmin',
-        'build-dashboard',
         'uglify'
     ]);<% if (jshint) { %>
 

@@ -7,3 +7,8 @@ block body
 block content
     +heading({type:'h1', class:'heading', text: 'Test Heading'})
     p Example page
+    ul
+        each page, i in pages
+            li
+                a(href="#{page.path}")
+                    | #{page.title}
