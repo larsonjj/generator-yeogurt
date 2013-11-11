@@ -176,62 +176,39 @@ YeogurtGenerator.prototype.app = function app() {
 
     // Dashboard
 
-    // markup
-    this.mkdir('dev/dashboard/markup');
-    this.mkdir('dev/dashboard/markup/pages');
-    this.mkdir('dev/dashboard/markup/elements');
-    this.mkdir('dev/dashboard/markup/components');
-    this.mkdir('dev/dashboard/markup/templates');
-    this.mkdir('dev/dashboard/markup/partials');
+    if (this.haveDashboard) {
+        // markup
+        this.mkdir('dev/dashboard');
+        this.mkdir('dev/dashboard/markup');
+        this.mkdir('dev/dashboard/markup/components');
+        this.mkdir('dev/dashboard/markup/templates');
 
-    this.template('dev/markup/components/all-components.jade', 'dev/dashboard/markup/components/all-components.jade');
-    this.template('dev/markup/components/head.jade', 'dev/dashboard/markup/components/head.jade');
+        this.template('dev/dashboard/markup/components/all-components.jade', 'dev/dashboard/markup/components/all-components.jade');
+        this.template('dev/dashboard/markup/components/head.jade', 'dev/dashboard/markup/components/head.jade');
 
-    this.copy('dev/markup/components/header.jade', 'dev/dashboard/markup/components/header.jade');
-    this.copy('dev/markup/components/footer.jade', 'dev/dashboard/markup/components/footer.jade');
-    this.copy('dev/markup/elements/all-elements.jade', 'dev/dashboard/markup/elements/all-elements.jade');
-    this.copy('dev/markup/elements/heading.jade', 'dev/dashboard/markup/elements/heading.jade');
-    this.copy('dev/markup/pages/index.jade', 'dev/dashboard/markup/pages/index.jade');
-    this.copy('dev/markup/templates/base.jade', 'dev/dashboard/markup/templates/base.jade');
-    this.copy('dev/markup/templates/one-column.jade', 'dev/dashboard/markup/templates/one-column.jade');
-    this.copy('dev/markup/partials/all-partials.jade', 'dev/dashboard/markup/partials/all-partials.jade');
-    this.copy('dev/markup/partials/README.md', 'dev/dashboard/markup/partials/README.md');
+        this.copy('dev/dashboard/markup/components/header.jade', 'dev/dashboard/markup/components/header.jade');
+        this.copy('dev/dashboard/markup/components/footer.jade', 'dev/dashboard/markup/components/footer.jade');
+        this.copy('dev/dashboard/markup/index.jade', 'dev/dashboard/markup/index.jade');
+        this.copy('dev/dashboard/markup/templates/base.jade', 'dev/dashboard/markup/templates/base.jade');
+        this.copy('dev/dashboard/markup/templates/one-column.jade', 'dev/dashboard/markup/templates/one-column.jade');
 
-    // images
-    this.mkdir('dev/dashboard/images');
+        // images
+        this.mkdir('dev/dashboard/images');
 
-    // styles
-    this.mkdir('dev/dashboard/styles');
-    this.mkdir('dev/dashboard/styles/fonts');
-    if (this.cssOption === 'LESS') {
-        this.directory('dev/styles/less/components', 'dev/dashboard/styles/components');
-        this.directory('dev/styles/less/elements', 'dev/dashboard/styles/elements');
-        this.directory('dev/styles/less/modules', 'dev/dashboard/styles/modules');
-        this.directory('dev/styles/less/pages', 'dev/dashboard/styles/pages');
-        this.directory('dev/styles/less/partials', 'dev/dashboard/styles/partials');
-        this.directory('dev/styles/less/templates', 'dev/dashboard/styles/templates');
-        this.directory('dev/styles/less/vendor', 'dev/dashboard/styles/vendor');
-        this.template('dev/styles/less/main.less', 'dev/dashboard/styles/main.less');
+        // styles
+        this.mkdir('dev/dashboard/styles');
+        this.directory('dev/dashboard/styles/fonts', 'dev/dashboard/styles/fonts');
+
+        if (this.cssOption === 'LESS') {
+            this.template('dev/dashboard/styles/less/main.less', 'dev/dashboard/styles/main.less');
+        }
+        if (this.cssOption === 'SASS') {
+            this.template('dev/dashboard/styles/sass/main.scss', 'dev/dashboard/styles/main.scss');
+        }
+
+        // scripts
+        this.directory('dev/dashboard/scripts', 'dev/dashboard/scripts');
     }
-    if (this.cssOption === 'SASS') {
-        this.directory('dev/styles/sass/components', 'dev/dashboard/styles/components');
-        this.directory('dev/styles/sass/elements', 'dev/dashboard/styles/elements');
-        this.directory('dev/styles/sass/modules', 'dev/dashboard/styles/modules');
-        this.directory('dev/styles/sass/pages', 'dev/dashboard/styles/pages');
-        this.directory('dev/styles/sass/partials', 'dev/dashboard/styles/partials');
-        this.directory('dev/styles/sass/templates', 'dev/dashboard/styles/templates');
-        this.directory('dev/styles/sass/vendor', 'dev/dashboard/styles/vendor');
-        this.template('dev/styles/sass/main.scss', 'dev/dashboard/styles/main.scss');
-    }
-
-    // scripts
-    this.mkdir('dev/dashboard/scripts');
-    this.mkdir('dev/dashboard/scripts/vendor');
-    this.mkdir('dev/dashboard/scripts/components');
-
-    this.template('dev/scripts/app.js', 'dev/dashboard/scripts/app.js');
-    this.template('dev/scripts/main.js', 'dev/dashboard/scripts/main.js');
-    this.template('dev/scripts/components/example.js', 'dev/dashboard/scripts/components/example.js');
 
 };
 

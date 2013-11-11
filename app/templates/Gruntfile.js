@@ -123,14 +123,28 @@ module.exports = function (grunt) {
                     src: [
                         'bower_components/{,*/}{,*/}*.js'
                     ]
-                }, {
+                }<% if (haveDashboard) { %>, {
                     expand: true,
                     cwd: '<%%= yeoman.dev %>/styles',
                     dest: '<%%= yeoman.server %>/styles',
                     src: [
                         '{,*/}{,*/}*.{scss,less}'
                     ]
-                }]
+                }, {
+                    expand: true,
+                    cwd: '<%%= yeoman.dev %>/',
+                    dest: '<%%= yeoman.server %>/',
+                    src: [
+                        'dashboard/scripts/**'
+                    ]
+                }, {
+                    expand: true,
+                    cwd: '<%%= yeoman.dev %>/',
+                    dest: '<%%= yeoman.server %>/',
+                    src: [
+                        'dashboard/images/**'
+                    ]
+                }<% } %>]
             },
             dist: {
                 files: [{
@@ -182,7 +196,19 @@ module.exports = function (grunt) {
                 dest: '<%%= yeoman.server %>/',
                 src: ['markup/pages/*.jade'],
                 ext: '.html'
-            },
+            },<% if (haveDashboard) { %>
+            serverDashboard: {
+                options: {
+                    pretty: true,
+                    client: false,
+                    data: {
+                        debug: true
+                    }
+                },
+                files: {
+                    '<%%= yeoman.server %>/dashboard/index.html': ['<%%= yeoman.dev %>/dashboard/markup/index.jade']
+                }
+            }<% } %>,
             dist: {
                 options: {
                     pretty: true,
@@ -205,7 +231,8 @@ module.exports = function (grunt) {
             },
             test: [
                 'Gruntfile.js',
-                '<%%= yeoman.dev %>/scripts/{,*/}{,*/}*.js',
+                '<%%= yeoman.dev %>/scripts/{,*/}{,*/}*.js',<% if (haveDashboard) { %>
+                '<%%= yeoman.dev %>/dashboard/scripts/{,*/}{,*/}*.js',<% } %>
                 '!<%%= yeoman.dev %>/scripts/vendor/{,*/}*'
             ]
         }<% } %>,
@@ -348,7 +375,15 @@ module.exports = function (grunt) {
                     src: '{,*/}*.css',
                     dest: '<%%= yeoman.server %>/styles'
                 }]
-            },
+            },<% if (haveDashboard) { %>
+            serverDashboard: {
+                files: [{
+                    expand: true,
+                    cwd: '<%%= yeoman.server %>dashboard/styles',
+                    src: '{,*/}*.css',
+                    dest: '<%%= yeoman.server %>dashboard/styles'
+                }]
+            },<% } %>
             dist: {
                 files: [{
                     expand: true,
@@ -391,13 +426,13 @@ module.exports = function (grunt) {
                     mangle: true,
                     preserveComments: 'some',
                     sourceMap: function (path) {
-                        return path.replace('.js', '.map');
+                        return path.replace('.js', '.js.map');
                     },
                     sourceMapPrefix: 3,
                     sourceMappingURL: function (path) {
                         var pathArray = path.split('/'),
                         pathLength = pathArray.length;
-                        return pathArray[(pathLength - 1)].replace('.js', '.map');
+                        return pathArray[(pathLength - 1)].replace('.js', '.js.map');
                     }
                 },
                 expand: true,
@@ -420,7 +455,7 @@ module.exports = function (grunt) {
                     sourceMappingURL: function (path) {
                         var pathArray = path.split('/'),
                         pathLength = pathArray.length;
-                        return pathArray[(pathLength - 1)];
+                        return pathArray[(pathLength - 1)].replace('.js', '.js.map');
                     }
                 },
                 expand: true,
@@ -487,9 +522,20 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
                 dest: '<%%= yeoman.server %>/',
-                src: ['styles/*.scss'],
+                src: ['styles/*.scss'<% if (haveDashboard) { %>, 'dashboard/styles/*.scss'<% } %>],
                 ext: '.css'
-            },
+            },<% if (haveDashboard) { %>
+            serverDashboard: {
+                options: {
+                    style: 'expanded',
+                    lineNumbers: true,
+                },
+                expand: true,
+                cwd: '<%%= yeoman.dev %>/',
+                dest: '<%%= yeoman.server %>/',
+                src: ['dashboard/styles/*.scss'],
+                ext: '.css'
+            },<% } %>
             dist: {
                 options: {
                     style: 'compressed',
@@ -517,9 +563,19 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
                 dest: '<%%= yeoman.server %>/',
-                src: ['styles/*.less'],
+                src: ['styles/*.less'<% if (haveDashboard) { %>, 'dashboard/styles/*.less'<% } %>],
                 ext: '.css'
-            },
+            },<% if (haveDashboard) { %>
+            serverDashboard: {
+                options: {
+                    dumpLineNumbers: 'comments'
+                },
+                expand: true,
+                cwd: '<%%= yeoman.dev %>/',
+                dest: '<%%= yeoman.server %>/',
+                src: ['dashboard/styles/*.less'],
+                ext: '.css'
+            },<% } %>
             dist: {
                 options: {
                     paths: ['<%%= yeoman.dev %>/'],
@@ -549,17 +605,44 @@ module.exports = function (grunt) {
         }
     });<% } %>
 
+    grunt.registerTask('build-dashboard', 'Builds out a static HTML page that lists all created pages', function () {
+        var pagesArray = [];
+        var removeDirFromPath = function (str) {
+            var newArray = str.split('/');
+            newArray.shift();
+            return newArray.join('/');
+        };
+        var toTitleCase = function (str)
+        {
+            return str.replace(/\w\S*/g, function (txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+        };
+        var findPageNames = function (path) {
+            var file = grunt.file.read(path),
+            regex = /<body class="(.*?)">/i,
+            fileTitle = file.match(regex);
+            pagesArray.push({path: removeDirFromPath(path), title: toTitleCase(fileTitle[1])});
+            console.log(pagesArray);
+        };
+        grunt.file.recurse('dist/markup/pages', function (abspath) {
+            findPageNames(abspath);
+        });
+    });
+
     grunt.registerTask('server', 'Open a developement server within your browser', [
         'clean:server',
         'copy:server'<% if (jshint) { %>,
         'jshint:test'<% } %>,
-        'jade:server',<% if (cssOption === 'LESS') { %>
-        'less:server',
+        'jade:server',<% if (haveDashboard) { %>
+        'jade:serverDashboard',<% } %><% if (cssOption === 'LESS') { %>
+        'less:server',<% if (haveDashboard) { %>
+        'less:serverDashboard',<% } %>
         'string-replace:lessMapFixServer',
         'string-replace:lessMainFixServer',<% } %><% if (cssOption === 'SASS') { %>
-        'sass:server',
+        'sass:server',<% if (haveDashboard) { %>
+        'sass:serverDashboard',<% } %>
         'string-replace:sassMapFixServer',<% } %>
         'autoprefixer:server',
+        'autoprefixer:serverDashboard',
         'connect:livereload',
         'watch'
     ]);
@@ -582,6 +665,7 @@ module.exports = function (grunt) {
         'string-replace:requireDistTwo',
         'string-replace:requireDistThree',
         'htmlmin',
+        'build-dashboard',
         'uglify'
     ]);<% if (jshint) { %>
 

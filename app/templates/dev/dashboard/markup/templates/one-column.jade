@@ -1,0 +1,14 @@
+extend base
+
+block template
+
+    block header
+        +header()
+
+    //- .txxx-some-name must exist above 'block content' on every template
+    //- Provides template level styling
+    #template-wrapper.template-wrapper.one-column
+        block content
+
+    block footer
+        +footer()
