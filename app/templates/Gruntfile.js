@@ -88,7 +88,8 @@ module.exports = function (grunt) {
         },
         clean: {
             server: ['<%%= yeoman.server %>/', '<%%= yeoman.dev %>/.tmp'],
-            dist: ['<%%= yeoman.dist %>/', '<%%= yeoman.dev %>/.tmp']
+            dist: ['<%%= yeoman.dist %>/', '<%%= yeoman.dev %>/.tmp'],
+            temp: ['<%%= yeoman.dev %>/.tmp', '<%%= yeoman.server %>/.tmp', '<%%= yeoman.dist %>/.tmp']
         },
         // Put files not handled in other tasks here
         copy: {
@@ -153,7 +154,17 @@ module.exports = function (grunt) {
                         'markup/**', '!**markup/pages/**'
                     ]
                 }<% } %>]
-            },
+            },<% if (haveDashboard) { %>
+            serverDashboard: {
+                files: [{
+                    expand: true,
+                    cwd: '<%%= yeoman.server %>/.tmp/markup',
+                    dest: '<%%= yeoman.server %>/markup',
+                    src: [
+                        '{,*/}{,*/}*.html'
+                    ]
+                }]
+            },<% } %>
             dist: {
                 files: [{
                     expand: true,
@@ -209,7 +220,17 @@ module.exports = function (grunt) {
                         'markup/**', '!**markup/pages/**'
                     ]
                 }<% } %>]
-            }
+            }<% if (haveDashboard) { %>,
+            distDashboard: {
+                files: [{
+                    expand: true,
+                    cwd: '<%%= yeoman.dist %>/.tmp/markup',
+                    dest: '<%%= yeoman.dist %>/markup',
+                    src: [
+                        '{,*/}{,*/}*.html'
+                    ]
+                }]
+            }<% } %>
         },
         jade: {
             server: {
@@ -223,7 +244,7 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
                 dest: '<%%= yeoman.server %>/',
-                src: ['markup/pages/*.jade'<% if (haveDashboard) { %>, 'markup/templates/*.jade'<% } %>],
+                src: ['markup/pages/*.jade'<% if (haveDashboard) { %>, '.tmp/markup/templates/*.jade', '.tmp/markup/components/*.jade', '.tmp/markup/elements/*.jade'<% } %>],
                 ext: '.html'
             },<% if (haveDashboard) { %>
             serverDashboard: {
@@ -247,7 +268,7 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
                 dest: '<%%= yeoman.dist %>/',
-                src: ['markup/pages/*.jade'<% if (haveDashboard) { %>, 'markup/templates/*.jade'<% } %>],
+                src: ['markup/pages/*.jade'<% if (haveDashboard) { %>, '.tmp/markup/templates/*.jade', '.tmp/markup/components/*.jade', '.tmp/markup/elements/*.jade'<% } %>],
                 ext: '.html'
             }<% if (haveDashboard) { %>,
             distDashboard: {
@@ -692,7 +713,9 @@ module.exports = function (grunt) {
         itemsArray = [],
         dashData = {},
         pageData,
-        templateData;
+        templateData,
+        componentData,
+        elementData;
         var updatePath = function (path, strToRemove) {
             return path.replace(strToRemove, '..');
         };
@@ -704,26 +727,56 @@ module.exports = function (grunt) {
         {
             return str.replace('-', ' ');
         };
-        var findJadeNames = function (path, strToRemove) {
+        var findJadeNames = function (path, type, strToRemove) {
             var titleArray = path.split('/'),
-            title = titleArray[(titleArray.length - 1)];
-            if (title !== 'base.jade') {
-                itemsArray.push({path: updatePath(path.replace('jade', 'html'), strToRemove), title: toTitleCase(convertDashes(title.replace('.jade', '')))});
+            title = titleArray[(titleArray.length - 1)],
+            newPath;
+            if (type === 'element' || type === 'component') {
+                newPath = updatePath(path.replace('.jade', '-' + type + '.html'), strToRemove);
+            }
+            else {
+                newPath = updatePath(path.replace('jade', 'html'), strToRemove);
+            }
+            if (title !== 'base.jade' && title !== 'all-components.jade' && title !== 'all-elements.jade' && title !== 'head.jade') {
+                itemsArray.push({path: newPath, title: toTitleCase(convertDashes(title.replace('.jade', '')))});
             }
             return itemsArray;
         };
+        var generateMarkup = function (path, type) {
+            var file = grunt.file.read(path),
+            regex = /!##([^;]*)##!/,
+            fileMarkupMatch = file.match(regex);
+            if (fileMarkupMatch) {
+                var markup = fileMarkupMatch[1].replace(/\/\/-/g, '');
+                grunt.file.write(path.replace('.jade', '-' + type + '.jade'), 'extend ../templates/base\nblock template\n' + markup);
+            }
+        };
         // Go through jade pages
         grunt.file.recurse('dev/markup/pages', function (abspath) {
-            pageData = findJadeNames(abspath, 'dev');
+            pageData = findJadeNames(abspath, 'page', 'dev');
         });
         itemsArray = []; // reset items array
         // Go through jade templates
         grunt.file.recurse('dev/.tmp/markup/templates', function (abspath) {
-            templateData = findJadeNames(abspath, 'dev/.tmp');
+            templateData = findJadeNames(abspath, 'template', 'dev/.tmp');
+        });
+        itemsArray = []; // reset items array
+        // Go through jade components
+        grunt.file.recurse('dev/.tmp/markup/components', function (abspath) {
+            componentData = findJadeNames(abspath, 'component', 'dev/.tmp');
+            generateMarkup(abspath, 'component');
+        });
+        itemsArray = []; // reset items array
+        // Go through jade elements
+        grunt.file.recurse('dev/.tmp/markup/elements', function (abspath) {
+            elementData = findJadeNames(abspath, 'element', 'dev/.tmp');
+            generateMarkup(abspath, 'element');
         });
         dashData = {
             pages: pageData,
-            templates: templateData
+            templates: templateData,
+            components: componentData,
+            elements: elementData
         };
         console.log(dashData);
         grunt.config(['dashboardData'], dashData);
@@ -736,7 +789,8 @@ module.exports = function (grunt) {
         'build-dashboard'<% } %><% if (jshint) { %>,
         'jshint:test'<% } %>,
         'jade:server',<% if (haveDashboard) { %>
-        'jade:serverDashboard',<% } %><% if (cssOption === 'LESS') { %>
+        'jade:serverDashboard',
+        'copy:serverDashboard',<% } %><% if (cssOption === 'LESS') { %>
         'less:server',<% if (haveDashboard) { %>
         'less:serverDashboard',<% } %>
         'string-replace:lessMapFixServer',
@@ -746,6 +800,7 @@ module.exports = function (grunt) {
         'string-replace:sassMapFixServer',<% } %>
         'autoprefixer:server',
         'autoprefixer:serverDashboard',
+        'clean:temp',
         'connect:livereload',
         'watch'
     ]);
@@ -758,7 +813,8 @@ module.exports = function (grunt) {
         'imagemin',
         'svgmin',
         'jade:dist',<% if (haveDashboard) { %>
-        'jade:distDashboard',<% } %><% if (cssOption === 'LESS') { %>
+        'jade:distDashboard',
+        'copy:distDashboard',<% } %><% if (cssOption === 'LESS') { %>
         'less:dist',<% if (haveDashboard) { %>
         'less:distDashboard',<% } %>
         'string-replace:lessMapFixDist',
@@ -773,7 +829,8 @@ module.exports = function (grunt) {
         'string-replace:requireDistTwo',
         'string-replace:requireDistThree',
         'htmlmin:dist',
-        'uglify'
+        'uglify',
+        'clean:temp'
     ]);<% if (jshint) { %>
 
     grunt.registerTask('test', 'Peform tests on JavaScript', [

@@ -17,3 +17,15 @@ block content
             li
                 a(href="#{template.path}")
                     | #{template.title}
+    +heading({type:'h1', class:'heading', text: 'Components'})
+    ul
+        each component, i in components
+            li
+                a(href="#{component.path}")
+                    | #{component.title}
+    +heading({type:'h1', class:'heading', text: 'Elements'})
+    ul
+        each element, i in elements
+            li
+                a(href="#{element.path}")
+                    | #{element.title}

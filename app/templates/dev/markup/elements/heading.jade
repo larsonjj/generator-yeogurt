@@ -1,8 +1,18 @@
+//- Markup.
+        !##
+        +heading({type:'h1', text:'H1 Header'})
+        +heading({type:'h2', text:'H2 Header'})
+        +heading({type:'h3', text:'H3 Header'})
+        +heading({type:'h4', text:'H4 Header'})
+        +heading({type:'h5', text:'H5 Header'})
+        +heading({type:'h6', text:'H6 Header'})
+        ##!
+
 mixin heading(content)
     -var content         = content       || {};
     - content.type    = content.type  || 'h1';
     - content.class   = content.class || '';
-    - content.text    = content.text  || '';
+    - content.text    = content.text  || 'Empty Header';
 
     case content.type
         when "h1"
