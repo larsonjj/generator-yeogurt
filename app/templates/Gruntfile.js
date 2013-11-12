@@ -27,24 +27,24 @@ module.exports = function (grunt) {
                 nospawn: false
             },
             jade: {
-                files: ['<%%= yeoman.dev %>/markup/{,*/}{,*/}*.jade'],
-                tasks: ['jade:server']
+                files: ['<%%= yeoman.dev %>/markup/{,*/}{,*/}*.jade', '<%%= yeoman.dev %>/dashboard/markup/{,*/}{,*/}*.jade'],
+                tasks: ['any-newer:jade:server', 'any-newer:jade:serverDashboard']
             }<% if (cssOption === 'SASS') { %>,
             sass: {
-                files: ['<%%= yeoman.dev %>/styles/{,*/}{,*/}*.{scss,sass}'],
-                tasks: ['sass:server', 'copy:server']
+                files: ['<%%= yeoman.dev %>/styles/{,*/}{,*/}*.{scss,sass}', '<%%= yeoman.dev %>/dashboard/styles/{,*/}{,*/}*.{scss,sass}'],
+                tasks: ['any-newer:sass:server', 'any-newer:sass:serverDashboard', 'any-newer:copy:server', 'any-newer:copy:server']
             }<% } %><% if (cssOption === 'LESS') { %>,
             less: {
-                files: ['<%%= yeoman.dev %>/styles/{,*/}{,*/}*.less'],
-                tasks: ['less:server', 'copy:server']
+                files: ['<%%= yeoman.dev %>/styles/{,*/}{,*/}*.less', '<%%= yeoman.dev %>/dashboard/styles/{,*/}{,*/}*.less'],
+                tasks: ['any-newer:less:server', 'any-newer:less:serverDashboard', 'any-newer:copy:server', 'any-newer:copy:server']
             }<% } %>,
             js: {
                 files: ['<%%= yeoman.dev %>/scripts/{,*/}{,*/}*.js', '<%%= yeoman.dev %>/bower_components/{,*/}{,*/}*.js'],
-                tasks: ['copy:server'<% if (jshint) { %>, 'jshint'<% } %>]
+                tasks: ['any-newer:copy:server'<% if (jshint) { %>, 'newer:jshint'<% } %>]
             },
             images: {
                 files: ['<%%= yeoman.dev %>/images/{,*/}{,*/}*.{png,jpg,gif}'],
-                tasks: ['copy:server']
+                tasks: ['any-newer:copy:server']
             },
             root: {
                 files: [
@@ -53,7 +53,7 @@ module.exports = function (grunt) {
                     '<%%= yeoman.dev %>/images/{,*/}*.{webp}',
                     '<%%= yeoman.dev %>/styles/fonts/{,*/}*.*'
                 ],
-                tasks: ['copy:server']
+                tasks: ['any-newer:copy:server']
             },
             livereload: {
                 options: {
