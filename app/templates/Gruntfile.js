@@ -746,9 +746,17 @@ module.exports = function (grunt) {
             var file = grunt.file.read(path),
             regex = /!##([^;]*)##!/,
             fileMarkupMatch = file.match(regex);
-            if (fileMarkupMatch) {
-                var markup = fileMarkupMatch[1].replace(/\/\/-/g, '');
+            if (fileMarkupMatch && type !== 'template') {
+                var markup = fileMarkupMatch[1];
                 grunt.file.write(path.replace('.jade', '-' + type + '.jade'), 'extend ../templates/base\nblock template\n' + markup);
+            }
+            else if (fileMarkupMatch && type === 'template') {
+                var blockArray = fileMarkupMatch[1].trim().replace(/ /g, '').split('\n');
+                blockArray.forEach(function (element) {
+                    var pattern = new RegExp('block ' + element + '\\s'),
+                    fpoReplacement = '.fpo-image-container <div class="fpo-background"><span class="fpo-name">block ' + element.trim() + ' </span></div>\n';
+                    grunt.file.write(path, file.replace(pattern, fpoReplacement));
+                });
             }
         };
         // Go through jade pages
@@ -759,6 +767,7 @@ module.exports = function (grunt) {
         // Go through jade templates
         grunt.file.recurse('dev/.tmp/markup/templates', function (abspath) {
             templateData = findJadeNames(abspath, 'template', 'dev/.tmp');
+            generateMarkup(abspath, 'template');
         });
         itemsArray = []; // reset items array
         // Go through jade components
@@ -778,7 +787,7 @@ module.exports = function (grunt) {
             components: componentData,
             elements: elementData
         };
-        console.log(dashData);
+        // console.log(dashData);
         grunt.config(['dashboardData'], dashData);
         done();
     });<% } %>

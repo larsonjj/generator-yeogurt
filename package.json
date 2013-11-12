@@ -1,15 +1,21 @@
 {
   "name": "generator-yeogurt",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A generator for Yeoman",
   "keywords": [
     "yeoman-generator",
     "yeogurt",
     "front-end",
-    "web",
-    "app",
     "html5",
-    "modernizr"
+    "modernizr",
+    "jade",
+    "sass",
+    "less",
+    "requirejs",
+    "adobecq",
+    "cq",
+    "hybris",
+    "dashboard"
   ],
   "homepage": "https://github.com/larsonjj/generator-yeogurt",
   "bugs": "https://github.com/larsonjj/generator-yeogurt/issues",
