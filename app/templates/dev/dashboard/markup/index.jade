@@ -5,10 +5,15 @@ block body
   - var bodyClass = 'homepage';
 
 block content
-    +heading({type:'h1', class:'heading', text: 'Test Heading'})
-    p Example page
+    +heading({type:'h1', class:'heading', text: 'Pages'})
     ul
         each page, i in pages
             li
                 a(href="#{page.path}")
                     | #{page.title}
+    +heading({type:'h1', class:'heading', text: 'Templates'})
+    ul
+        each template, i in templates
+            li
+                a(href="#{template.path}")
+                    | #{template.title}

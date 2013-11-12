@@ -1,5 +1,3 @@
-//- #!pageTitle='Homepage'
-
 extend ../templates/one-column
 
 //- use the 'block body' if you need to set a page-level class on the <body> tag
@@ -9,3 +7,5 @@ block body
 block content
     +heading({type:'h1', class:'heading', text: 'Test Heading'})
     p Example page
+    script.
+        require(['../../scripts/components/example.min.js'])

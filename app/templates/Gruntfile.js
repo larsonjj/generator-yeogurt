@@ -87,8 +87,8 @@ module.exports = function (grunt) {
             }
         },
         clean: {
-            server: ['<%%= yeoman.server %>/'],
-            dist: ['<%%= yeoman.dist %>/']
+            server: ['<%%= yeoman.server %>/', '<%%= yeoman.dev %>/.tmp'],
+            dist: ['<%%= yeoman.dist %>/', '<%%= yeoman.dev %>/.tmp']
         },
         // Put files not handled in other tasks here
         copy: {
@@ -145,6 +145,13 @@ module.exports = function (grunt) {
                     src: [
                         'dashboard/images/**'
                     ]
+                }, {
+                    expand: true,
+                    cwd: '<%%= yeoman.dev %>/',
+                    dest: '<%%= yeoman.dev %>/.tmp',
+                    src: [
+                        'markup/**', '!**markup/pages/**'
+                    ]
                 }<% } %>]
             },
             dist: {
@@ -194,6 +201,13 @@ module.exports = function (grunt) {
                     src: [
                         'dashboard/images/{,*/}*.{webp}'
                     ]
+                }, {
+                    expand: true,
+                    cwd: '<%%= yeoman.dev %>/',
+                    dest: '<%%= yeoman.dev %>/.tmp',
+                    src: [
+                        'markup/**', '!**markup/pages/**'
+                    ]
                 }<% } %>]
             }
         },
@@ -209,16 +223,14 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
                 dest: '<%%= yeoman.server %>/',
-                src: ['markup/pages/*.jade'],
+                src: ['markup/pages/*.jade'<% if (haveDashboard) { %>, 'markup/templates/*.jade'<% } %>],
                 ext: '.html'
             },<% if (haveDashboard) { %>
             serverDashboard: {
                 options: {
                     pretty: true,
                     client: false,
-                    data: {
-                        pages: '<%%= dashboardData %>'
-                    }
+                    data: '<%%= dashboardData %>'
                 },
                 files: {
                     '<%%= yeoman.server %>/dashboard/index.html': ['<%%= yeoman.dev %>/dashboard/markup/index.jade']
@@ -235,16 +247,14 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
                 dest: '<%%= yeoman.dist %>/',
-                src: ['markup/pages/*.jade'],
+                src: ['markup/pages/*.jade'<% if (haveDashboard) { %>, 'markup/templates/*.jade'<% } %>],
                 ext: '.html'
             }<% if (haveDashboard) { %>,
             distDashboard: {
                 options: {
                     pretty: true,
                     client: false,
-                    data: {
-                        pages: '<%%= dashboardData %>'
-                    }
+                    data: '<%%= dashboardData %>'
                 },
                 files: {
                     '<%%= yeoman.dist %>/dashboard/index.html': ['<%%= yeoman.dev %>/dashboard/markup/index.jade']
@@ -484,7 +494,7 @@ module.exports = function (grunt) {
                     mangle: true,
                     preserveComments: 'some',
                     sourceMap: function (path) {
-                        return path.replace('.js', '.map');
+                        return path.replace('.js', '.js.map');
                     },
                     sourceMapPrefix: 3,
                     sourceMappingURL: function (path) {
@@ -679,24 +689,44 @@ module.exports = function (grunt) {
     <% if (haveDashboard) { %>
     grunt.registerTask('build-dashboard', 'Builds out a static HTML page that lists all created pages', function () {
         var done = this.async(),
-        pagesArray = [];
-        var updatePath = function (str) {
-            return str.replace('dev', '..');
+        itemsArray = [],
+        dashData = {},
+        pageData,
+        templateData;
+        var updatePath = function (path, strToRemove) {
+            return path.replace(strToRemove, '..');
         };
         var toTitleCase = function (str)
         {
             return str.replace(/\w\S*/g, function (txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
         };
-        var findPageNames = function (path) {
-            var file = grunt.file.read(path),
-            regex = /#!pageTitle='(.*?)'/i,
-            fileTitle = file.match(regex);
-            pagesArray.push({path: updatePath(path.replace('jade', 'html')), title: toTitleCase(fileTitle[1])});
-            return pagesArray;
+        var convertDashes = function (str)
+        {
+            return str.replace('-', ' ');
         };
+        var findJadeNames = function (path, strToRemove) {
+            var titleArray = path.split('/'),
+            title = titleArray[(titleArray.length - 1)];
+            if (title !== 'base.jade') {
+                itemsArray.push({path: updatePath(path.replace('jade', 'html'), strToRemove), title: toTitleCase(convertDashes(title.replace('.jade', '')))});
+            }
+            return itemsArray;
+        };
+        // Go through jade pages
         grunt.file.recurse('dev/markup/pages', function (abspath) {
-            grunt.config(['dashboardData'], findPageNames(abspath));
+            pageData = findJadeNames(abspath, 'dev');
         });
+        itemsArray = []; // reset items array
+        // Go through jade templates
+        grunt.file.recurse('dev/.tmp/markup/templates', function (abspath) {
+            templateData = findJadeNames(abspath, 'dev/.tmp');
+        });
+        dashData = {
+            pages: pageData,
+            templates: templateData
+        };
+        console.log(dashData);
+        grunt.config(['dashboardData'], dashData);
         done();
     });<% } %>
 
