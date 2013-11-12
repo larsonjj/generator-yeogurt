@@ -142,12 +142,12 @@ YeogurtGenerator.prototype.app = function app() {
 
     this.copy('dev/markup/components/header.jade', 'dev/markup/components/header.jade');
     this.copy('dev/markup/components/footer.jade', 'dev/markup/components/footer.jade');
-    this.copy('dev/markup/elements/all-elements.jade', 'dev/markup/elements/all-elements.jade');
+    this.template('dev/markup/elements/all-elements.jade', 'dev/markup/elements/all-elements.jade');
     this.copy('dev/markup/elements/heading.jade', 'dev/markup/elements/heading.jade');
     this.copy('dev/markup/pages/index.jade', 'dev/markup/pages/index.jade');
-    this.copy('dev/markup/templates/base.jade', 'dev/markup/templates/base.jade');
+    this.template('dev/markup/templates/base.jade', 'dev/markup/templates/base.jade');
     this.copy('dev/markup/templates/one-column.jade', 'dev/markup/templates/one-column.jade');
-    this.copy('dev/markup/partials/all-partials.jade', 'dev/markup/partials/all-partials.jade');
+    this.template('dev/markup/partials/all-partials.jade', 'dev/markup/partials/all-partials.jade');
     this.copy('dev/markup/partials/README.md', 'dev/markup/partials/README.md');
 
     // dev/styles
