@@ -244,7 +244,13 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
                 dest: '<%%= yeoman.server %>/',
-                src: ['markup/pages/*.jade'<% if (haveDashboard) { %>, '.tmp/markup/templates/*.jade', '.tmp/markup/components/*.jade', '.tmp/markup/elements/*.jade'<% } %>],
+                src: ['markup/pages/*.jade'<% if (haveDashboard) { %>,
+                    '.tmp/markup/templates/*.jade',
+                    '!.tmp/markup/templates/base.jade',
+                    '.tmp/markup/components/*-*.jade',
+                    '!.tmp/markup/components/all-components.jade',
+                    '.tmp/markup/elements/*-*.jade',
+                    '!.tmp/markup/elements/all-elements.jade'<% } %>],
                 ext: '.html'
             },<% if (haveDashboard) { %>
             serverDashboard: {
@@ -268,7 +274,14 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
                 dest: '<%%= yeoman.dist %>/',
-                src: ['markup/pages/*.jade'<% if (haveDashboard) { %>, '.tmp/markup/templates/*.jade', '.tmp/markup/components/*.jade', '.tmp/markup/elements/*.jade'<% } %>],
+                src: ['markup/pages/*.jade'<% if (haveDashboard) { %>,
+                    '.tmp/markup/templates/*.jade',
+                    '!.tmp/markup/templates/base.jade',
+                    '.tmp/markup/components/*-*.jade',
+                    '!.tmp/markup/components/all-components.jade',
+                    '!.tmp/markup/components/head.jade',
+                    '.tmp/markup/elements/*-*.jade',
+                    '!.tmp/markup/elements/all-elements.jade'<% } %>],
                 ext: '.html'
             }<% if (haveDashboard) { %>,
             distDashboard: {
@@ -754,7 +767,7 @@ module.exports = function (grunt) {
                 var blockArray = fileMarkupMatch[1].trim().replace(/ /g, '').split('\n');
                 blockArray.forEach(function (element) {
                     var pattern = new RegExp('block ' + element + '\\s'),
-                    fpoReplacement = '.fpo-image-container <div class="fpo-background"><span class="fpo-name">block ' + element.trim() + ' </span></div>\n';
+                    fpoReplacement = '.fpo-image-container <div class="fpo-background"><span class="fpo-name">block ' + element.trim() + '</span></div>\n';
                     grunt.file.write(path, file.replace(pattern, fpoReplacement));
                 });
             }
