@@ -14,11 +14,10 @@ html(lang="en", class='no-js')
         title <%= projectName %> Dashboard
         meta(name='description', content='')
         meta(name='viewport', content='width=device-width, initial-scale=1.0')
-        //- Place favicon.ico and apple-touch-icon.png in the root directory
         link(rel='stylesheet', href='styles/main.css')
         script(src='../bower_components/modernizr/modernizr.js')
-        // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
-        <% if (ieSupport) { %>//if lt IE 9
+        <% if (ieSupport) { %>// HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+        //if lt IE 9
             script(src="../bower_components/respond/respond.min.js")
             script(src="../bower_components/html5shiv/dist/html5shiv.js")<% } %>
         script(src="scripts/main.js")
