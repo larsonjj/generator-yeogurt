@@ -17,8 +17,8 @@ html(lang="en", class='no-js')
         meta(name='description', content='')
         meta(name='viewport', content='width=device-width, initial-scale=1.0')
         link(rel='stylesheet', href='../../styles/main.css')
-        script(src='../../bower_components/modernizr/modernizr.js')
-        <% if (ieSupport) { %>// HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+        script(src='../../bower_components/modernizr/modernizr.js')<% if (ieSupport) { %>
+        // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
         //if lt IE 9
             script(src="../../bower_components/respond/respond.min.js")
             script(src="../../bower_components/html5shiv/dist/html5shiv.js")<% } %>
