@@ -434,6 +434,20 @@ module.exports = function (grunt) {
                 files: {
                     '<%%= yeoman.dist %>/../' : ['<%%= yeoman.dist %>/markup/{,*/}{,*/}*.html', '<%%= yeoman.dist %>/*.html']
                 }
+            },
+            requireInline: {
+                options: {
+                    replacements: [
+                        // place files inline example
+                        {
+                            pattern: '.js\'])',
+                            replacement: '.min.js\'])'
+                        }
+                    ]
+                },
+                files: {
+                    '<%%= yeoman.dist %>/../' : ['<%%= yeoman.dist %>/markup/{,*/}{,*/}*.html', '<%%= yeoman.dist %>/*.html']
+                }
             }
         },
         autoprefixer: {
@@ -850,6 +864,7 @@ module.exports = function (grunt) {
         'string-replace:requireDist', // change require main path to 'main.min'
         'string-replace:requireDistTwo',
         'string-replace:requireDistThree',
+        'string-replace:requireInline',
         'htmlmin:dist',
         'uglify',
         'clean:temp'
