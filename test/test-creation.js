@@ -95,8 +95,7 @@ describe('yeogurt generator', function () {
             cssOption: 'LESS',
             linters: ['JSHint'],
             jshint: 'y',
-            useFTP: 'y',
-            haveDashboard: 'y'
+            useFTP: 'y'
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {

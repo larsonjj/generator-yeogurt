@@ -68,10 +68,6 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         type: 'confirm',
         name: 'useFTP',
         message: 'Will you deploying code to an FTP server?: ',
-    }, {
-        type: 'confirm',
-        name: 'haveDashboard',
-        message: 'Would you like to have a site dashboard?: ',
     }];
 
     this.prompt(prompts, function (props) {
@@ -83,7 +79,6 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.useFontAwesome = props.useFontAwesome;
         this.ieSupport = props.ieSupport;
         this.useFTP = props.useFTP;
-        this.haveDashboard = props.haveDashboard;
 
         cb();
     }.bind(this));
@@ -176,39 +171,37 @@ YeogurtGenerator.prototype.app = function app() {
 
     // Dashboard
 
-    if (this.haveDashboard) {
-        // markup
-        this.mkdir('dev/dashboard');
-        this.mkdir('dev/dashboard/markup');
-        this.mkdir('dev/dashboard/markup/components');
-        this.mkdir('dev/dashboard/markup/templates');
+    // markup
+    this.mkdir('dev/dashboard');
+    this.mkdir('dev/dashboard/markup');
+    this.mkdir('dev/dashboard/markup/components');
+    this.mkdir('dev/dashboard/markup/templates');
 
-        this.template('dev/dashboard/markup/components/all-components.jade', 'dev/dashboard/markup/components/all-components.jade');
-        this.template('dev/dashboard/markup/components/head.jade', 'dev/dashboard/markup/components/head.jade');
+    this.template('dev/dashboard/markup/components/all-components.jade', 'dev/dashboard/markup/components/all-components.jade');
+    this.template('dev/dashboard/markup/components/head.jade', 'dev/dashboard/markup/components/head.jade');
 
-        this.copy('dev/dashboard/markup/components/header.jade', 'dev/dashboard/markup/components/header.jade');
-        this.copy('dev/dashboard/markup/components/footer.jade', 'dev/dashboard/markup/components/footer.jade');
-        this.copy('dev/dashboard/markup/index.jade', 'dev/dashboard/markup/index.jade');
-        this.copy('dev/dashboard/markup/templates/base.jade', 'dev/dashboard/markup/templates/base.jade');
-        this.copy('dev/dashboard/markup/templates/one-column.jade', 'dev/dashboard/markup/templates/one-column.jade');
+    this.copy('dev/dashboard/markup/components/header.jade', 'dev/dashboard/markup/components/header.jade');
+    this.copy('dev/dashboard/markup/components/footer.jade', 'dev/dashboard/markup/components/footer.jade');
+    this.copy('dev/dashboard/markup/index.jade', 'dev/dashboard/markup/index.jade');
+    this.copy('dev/dashboard/markup/templates/base.jade', 'dev/dashboard/markup/templates/base.jade');
+    this.copy('dev/dashboard/markup/templates/one-column.jade', 'dev/dashboard/markup/templates/one-column.jade');
 
-        // images
-        this.mkdir('dev/dashboard/images');
+    // images
+    this.mkdir('dev/dashboard/images');
 
-        // styles
-        this.mkdir('dev/dashboard/styles');
-        this.directory('dev/dashboard/styles/fonts', 'dev/dashboard/styles/fonts');
+    // styles
+    this.mkdir('dev/dashboard/styles');
+    this.directory('dev/dashboard/styles/fonts', 'dev/dashboard/styles/fonts');
 
-        if (this.cssOption === 'LESS') {
-            this.template('dev/dashboard/styles/less/main.less', 'dev/dashboard/styles/main.less');
-        }
-        if (this.cssOption === 'SASS') {
-            this.template('dev/dashboard/styles/sass/main.scss', 'dev/dashboard/styles/main.scss');
-        }
-
-        // scripts
-        this.directory('dev/dashboard/scripts', 'dev/dashboard/scripts');
+    if (this.cssOption === 'LESS') {
+        this.template('dev/dashboard/styles/less/main.less', 'dev/dashboard/styles/main.less');
     }
+    if (this.cssOption === 'SASS') {
+        this.template('dev/dashboard/styles/sass/main.scss', 'dev/dashboard/styles/main.scss');
+    }
+
+    // scripts
+    this.directory('dev/dashboard/scripts', 'dev/dashboard/scripts');
 
 };
 
