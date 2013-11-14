@@ -40,7 +40,7 @@ module.exports = function (grunt) {
             }<% } %>,
             js: {
                 files: ['<%%= yeoman.dev %>/scripts/{,*/}{,*/}*.js', '<%%= yeoman.dev %>/bower_components/{,*/}{,*/}*.js'],
-                tasks: ['newer:copy:server'<% if (jshint) { %>, 'newer:jshint'<% } %>]
+                tasks: [<% if (jshint) { %>'newer:jshint', <% } %>'newer:copy:server']
             },
             images: {
                 files: ['<%%= yeoman.dev %>/images/{,*/}{,*/}*.{png,jpg,gif}'],
@@ -84,6 +84,43 @@ module.exports = function (grunt) {
                 options: {
                     open: true,
                     base: '<%%= yeoman.server %>'
+                }
+            }
+        },
+        notify: {
+            server: {
+                options: {
+                    // Task-specific options go here.
+                    title: 'Server is now running.',
+                    message: 'http://<%%= connect.options.hostname %>:<%%= connect.options.port %>'
+                }
+            },
+            build: {
+                options: {
+                    // Task-specific options go here.
+                    title: 'Build Succeeded!',
+                    message: '\'Do… or do not. There is no try.\' - Yoda'
+                }
+            },
+            zip: {
+                options: {
+                    // Task-specific options go here.
+                    title: 'Build Successfully Zipped',
+                    message: '\'You\'ve got the backpack? Gonna pack it up nice!\' - Andy Sandberg'
+                }
+            },
+            deploy: {
+                options: {
+                    // Task-specific options go here.
+                    title: 'FTP Deploy Succeeded!',
+                    message: '\'With great power comes great responsibility.\' - Ben Parker'
+                }
+            },
+            watch: {
+                options: {
+                    // Task-specific options go here.
+                    title: 'Files Reloaded!',
+                    message: '\'Do you feel lucky, punk?\' - Dirty Harry'
                 }
             }
         },
@@ -838,6 +875,7 @@ module.exports = function (grunt) {
         'autoprefixer:serverDashboard',
         'clean:temp',
         'connect:livereload',
+        'notify:server',
         'watch'
     ]);
 
@@ -867,7 +905,8 @@ module.exports = function (grunt) {
         'string-replace:requireInline',
         'htmlmin:dist',
         'uglify',
-        'clean:temp'
+        'clean:temp',
+        'notify:build'
     ]);<% if (jshint) { %>
 
     grunt.registerTask('test', 'Peform tests on JavaScript', [
@@ -876,12 +915,14 @@ module.exports = function (grunt) {
 
     grunt.registerTask('zip', 'Build a production ready version of your site and zip it up', [
         'build',
-        'compress'
+        'compress',
+        'notify:zip'
     ]);<% if (useFTP) { %>
 
     grunt.registerTask('deploy', 'Build a production ready version of your site and deploy it to a desired FTP server.', [
         'zip',
         'ftpinfo',
+        'notify:deploy'
     ]);<% } %>
 
 };
