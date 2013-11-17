@@ -91,11 +91,8 @@ describe('yeogurt generator', function () {
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
             versionControl: 'Git',
-            htmlOption: 'Jade',
             cssOption: 'LESS',
-            linters: ['JSHint'],
-            jshint: 'y',
-            useFTP: 'y'
+            extras: ['jshint', 'useBootstrap', 'useFontAwesome', 'ieSupport', 'useFTP']
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {
