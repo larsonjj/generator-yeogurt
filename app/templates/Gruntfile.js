@@ -127,7 +127,7 @@ module.exports = function (grunt) {
         clean: {
             server: ['<%%= yeoman.server %>/', '<%%= yeoman.dev %>/.tmp'],
             dist: ['<%%= yeoman.dist %>/', '<%%= yeoman.dev %>/.tmp'],
-            temp: ['<%%= yeoman.dev %>/.tmp', '<%%= yeoman.server %>/.tmp', '<%%= yeoman.dist %>/.tmp']
+            temp: ['<%%= yeoman.dev %>/.tmp/**', '<%%= yeoman.server %>/.tmp/**', '<%%= yeoman.dist %>/.tmp/**']
         },
         // Put files not handled in other tasks here
         copy: {
@@ -193,16 +193,6 @@ module.exports = function (grunt) {
                     ]
                 }]
             },
-            serverDashboard: {
-                files: [{
-                    expand: true,
-                    cwd: '<%%= yeoman.server %>/.tmp/markup',
-                    dest: '<%%= yeoman.server %>/markup',
-                    src: [
-                        '{,*/}{,*/}*.html'
-                    ]
-                }]
-            },
             dist: {
                 files: [{
                     expand: true,
@@ -258,16 +248,6 @@ module.exports = function (grunt) {
                         'markup/**', '!**markup/pages/**'
                     ]
                 }]
-            },
-            distDashboard: {
-                files: [{
-                    expand: true,
-                    cwd: '<%%= yeoman.dist %>/.tmp/markup',
-                    dest: '<%%= yeoman.dist %>/markup',
-                    src: [
-                        '{,*/}{,*/}*.html'
-                    ]
-                }]
             }
         },
         jade: {
@@ -289,7 +269,11 @@ module.exports = function (grunt) {
                     '!.tmp/markup/components/all-components.jade',
                     '.tmp/markup/elements/*-*.jade',
                     '!.tmp/markup/elements/all-elements.jade'],
-                ext: '.html'
+                ext: '.html',
+                rename: function (dest, matchedSrcPath) {
+                    matchedSrcPath = matchedSrcPath.replace('.tmp/', '');
+                    return dest + matchedSrcPath;
+                }
             },
             serverDashboard: {
                 options: {
@@ -320,7 +304,11 @@ module.exports = function (grunt) {
                     '!.tmp/markup/components/head.jade',
                     '.tmp/markup/elements/*-*.jade',
                     '!.tmp/markup/elements/all-elements.jade'],
-                ext: '.html'
+                ext: '.html',
+                rename: function (dest, matchedSrcPath) {
+                    matchedSrcPath = matchedSrcPath.replace('.tmp/', '');
+                    return dest + matchedSrcPath;
+                }
             },
             distDashboard: {
                 options: {
@@ -862,8 +850,7 @@ module.exports = function (grunt) {
         'build-dashboard'<% if (jshint) { %>,
         'jshint:test'<% } %>,
         'jade:server',
-        'jade:serverDashboard',
-        'copy:serverDashboard',<% if (cssOption === 'LESS') { %>
+        'jade:serverDashboard',<% if (cssOption === 'LESS') { %>
         'less:server',
         'less:serverDashboard',
         'string-replace:lessMapFixServer',
@@ -887,8 +874,7 @@ module.exports = function (grunt) {
         'imagemin',
         'svgmin',
         'jade:dist',
-        'jade:distDashboard',
-        'copy:distDashboard',<% if (cssOption === 'LESS') { %>
+        'jade:distDashboard',<% if (cssOption === 'LESS') { %>
         'less:dist',
         'less:distDashboard',
         'string-replace:lessMapFixDist',
