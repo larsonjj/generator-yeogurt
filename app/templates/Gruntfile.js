@@ -112,7 +112,7 @@ module.exports = function (grunt) {
             deploy: {
                 options: {
                     // Task-specific options go here.
-                    title: 'FTP Deploy Succeeded!',
+                    title: 'FTP Uploaded Started',
                     message: '\'With great power comes great responsibility.\' - Ben Parker'
                 }
             },
@@ -522,7 +522,7 @@ module.exports = function (grunt) {
                 },
                 expand: true,
                 cwd: '<%%= yeoman.dist %>/',
-                src: ['*/**', '*.{txt,html}', '!**/*.zip', '!**/*.psd', '!**/.git/']
+                src: ['*/**', '!**/*.zip', '!**/*.psd', '!**/.git', '!**/.svn']
             }
         },<% if (useFTP) { %>
         ftpush: {
@@ -758,6 +758,7 @@ module.exports = function (grunt) {
         else {
             grunt.config.set('secret', ftpJSON);
             grunt.task.run(['ftpush']);
+            grunt.task.run(['notify:deploy']);
         }
     });<% } %>
     grunt.registerTask('build-dashboard', 'Builds out a static HTML page that lists all created pages', function () {
@@ -907,8 +908,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('deploy', 'Build a production ready version of your site and deploy it to a desired FTP server.', [
         'zip',
-        'ftpinfo',
-        'notify:deploy'
+        'ftpinfo'
     ]);<% } %>
 
 };

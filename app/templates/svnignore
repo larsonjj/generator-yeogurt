@@ -1,5 +1,7 @@
-node_modules/
+node_modules
 *.log
-server/
-dist/
+server
+dist
 .ftppass
+dev/bower_components
+dev/.tmp

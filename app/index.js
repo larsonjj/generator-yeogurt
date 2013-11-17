@@ -49,36 +49,47 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         message: 'Which CSS preprocessor would you like to use?',
         choices: ['LESS', 'SASS'],
     }, {
-        type: 'confirm',
-        name: 'jshint',
-        message: 'Would you like to lint your JavaScript with JSHint?: ',
-    }, {
-        type: 'confirm',
-        name: 'useBootstrap',
-        message: 'Would you like to include Bootstrap?: ',
-    }, {
-        type: 'confirm',
-        name: 'useFontAwesome',
-        message: 'Would you like to include Font Awesome?: ',
-    }, {
-        type: 'confirm',
-        name: 'ieSupport',
-        message: 'Do you need to support IE8?: ',
-    }, {
-        type: 'confirm',
-        name: 'useFTP',
-        message: 'Will you deploying code to an FTP server?: ',
+        type: 'checkbox',
+        name: 'extras',
+        message: 'Select any extras you would like:',
+        choices: [{
+            name: 'JSHint',
+            value: 'jshint',
+            checked: true
+        }, {
+            name: 'Bootstrap',
+            value: 'useBootstrap',
+            checked: true
+        }, {
+            name: 'Font Awesome',
+            value: 'useFontAwesome',
+            checked: true
+        }, {
+            name: 'IE8 Support',
+            value: 'ieSupport',
+            checked: true
+        }, {
+            name: 'Deploy to FTP Server',
+            value: 'useFTP',
+            checked: true
+        }]
     }];
 
     this.prompt(prompts, function (props) {
         this.projectName = props.projectName;
         this.versionControl = props.versionControl;
         this.cssOption = props.cssOption;
-        this.jshint = props.jshint;
-        this.useBootstrap = props.useBootstrap;
-        this.useFontAwesome = props.useFontAwesome;
-        this.ieSupport = props.ieSupport;
-        this.useFTP = props.useFTP;
+        var extras = props.extras;
+
+        function hasFeature(feat) {
+            return extras.indexOf(feat) !== -1;
+        }
+
+        this.jshint = hasFeature('jshint');
+        this.useBootstrap = hasFeature('useBootstrap');
+        this.useFontAwesome = hasFeature('useFontAwesome');
+        this.ieSupport = hasFeature('ieSupport');
+        this.useFTP = hasFeature('useFTP');
 
         cb();
     }.bind(this));

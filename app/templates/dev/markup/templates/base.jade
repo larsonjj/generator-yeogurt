@@ -25,9 +25,5 @@ html(lang="en", class='no-js')
         script(data-main="../../scripts/main", src="../../bower_components/requirejs/require.js")
     -var bodyClass
     block body
-    if bodyClass != undefined
-        body(class="#{bodyClass}")
-            block template
-    else
-        body
-            block template
+    body(class=(bodyClass ? bodyClass : false))
+        block template
