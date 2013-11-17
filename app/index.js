@@ -202,10 +202,10 @@ YeogurtGenerator.prototype.app = function app() {
     this.copy('dev/dashboard/markup/components/footer.jade', 'dev/dashboard/markup/components/footer.jade');
     this.copy('dev/dashboard/markup/index.jade', 'dev/dashboard/markup/index.jade');
     this.copy('dev/dashboard/markup/templates/base.jade', 'dev/dashboard/markup/templates/base.jade');
-    this.copy('dev/dashboard/markup/templates/one-column.jade', 'dev/dashboard/markup/templates/one-column.jade');
+    this.copy('dev/dashboard/markup/templates/dashboard.jade', 'dev/dashboard/markup/templates/dashboard.jade');
 
     // images
-    this.mkdir('dev/dashboard/images');
+    this.directory('dev/dashboard/images', 'dev/dashboard/images');
 
     // styles
     this.mkdir('dev/dashboard/styles');

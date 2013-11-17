@@ -84,7 +84,7 @@ describe('yeogurt generator', function () {
             'dev/dashboard/markup/components/footer.jade',
             'dev/dashboard/markup/index.jade',
             'dev/dashboard/markup/templates/base.jade',
-            'dev/dashboard/markup/templates/one-column.jade',
+            'dev/dashboard/markup/templates/dashboard.jade',
         ];
 
         helpers.mockPrompt(this.app, {

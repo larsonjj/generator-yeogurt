@@ -1,7 +1,20 @@
 /*
-*   main.scss
-*   Import all desired SCSS files here
+*   main.less
+*   Styles for dashboard
 */
+
+@mixin clearfix() {
+    zoom: 1;
+    &:before {
+        content: '';
+        display: block;
+    }
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
 
 /* apply a natural box layout model to all elements */
 *,
@@ -10,4 +23,46 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
- }
+}
+
+header {
+    width: 100%;
+}
+
+.logo-wrapper {
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.logo {
+    width: 100%;
+    text-align: center;
+}
+
+.row {
+    width: 100%;
+    max-width: 960px;
+    @include clearfix();
+}
+
+.container {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sidebar {
+    width: 33.3333%;
+    float: left;
+}
+
+.content {
+    width: 66.6666%;
+    float: left;
+}
+
+footer {
+    text-align: right;
+}

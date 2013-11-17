@@ -1,0 +1,46 @@
+extend base
+
+block template
+
+    block header
+        +header()
+
+    //- Provides template level styling
+    #template-wrapper.template-wrapper.one-column
+        .container
+            .row
+                .sidebar
+                    block sidebar
+                    p This is the sidebar
+
+                .content
+                    block content
+
+                    +heading({type:'h1', class:'heading', text: 'Pages'})
+                    ul
+                        each page, i in pages
+                            li
+                                a(href="#{page.path}")
+                                    | #{page.title}
+                    +heading({type:'h1', class:'heading', text: 'Templates'})
+                    ul
+                        each template, i in templates
+                            li
+                                a(href="#{template.path}")
+                                    | #{template.title}
+                    +heading({type:'h1', class:'heading', text: 'Components'})
+                    ul
+                        each component, i in components
+                            li
+                                a(href="#{component.path}")
+                                    | #{component.title}
+                    +heading({type:'h1', class:'heading', text: 'Elements'})
+                    ul
+                        each element, i in elements
+                            li
+                                a(href="#{element.path}")
+                                    | #{element.title}
+
+    block footer
+        .container
+            +footer()
