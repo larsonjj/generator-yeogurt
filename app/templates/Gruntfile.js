@@ -24,19 +24,20 @@ module.exports = function (grunt) {
         dashboardData: {},
         watch: {
             options: {
-                nospawn: false
+                spawn: true,
+                livereload: false
             },
             jade: {
                 files: ['<%%= yeoman.dev %>/markup/{,*/}{,*/}*.jade', '<%%= yeoman.dev %>/dashboard/markup/{,*/}{,*/}*.jade'],
-                tasks: ['newer:copy:server', 'build-dashboard', 'jade:server', 'jade:serverDashboard', 'newer:copy:serverDashboard', 'clean:temp']
+                tasks: ['newer:copy:server', 'build-dashboard', 'jade:server', 'jade:serverDashboard', 'clean:temp']
             }<% if (cssOption === 'SASS') { %>,
             sass: {
                 files: ['<%%= yeoman.dev %>/styles/{,*/}{,*/}*.{scss,sass}', '<%%= yeoman.dev %>/dashboard/styles/{,*/}{,*/}*.{scss,sass}'],
-                tasks: ['sass:server', 'sass:serverDashboard', 'newer:copy:server', 'newer:copy:serverDashboard']
+                tasks: ['sass:server', 'sass:serverDashboard', 'newer:copy:server']
             }<% } %><% if (cssOption === 'LESS') { %>,
             less: {
                 files: ['<%%= yeoman.dev %>/styles/{,*/}{,*/}*.less', '<%%= yeoman.dev %>/dashboard/styles/{,*/}{,*/}*.less'],
-                tasks: ['less:server', 'less:serverDashboard', 'newer:copy:server', 'newer:copy:serverDashboard']
+                tasks: ['less:server', 'less:serverDashboard', 'newer:copy:server']
             }<% } %>,
             js: {
                 files: ['<%%= yeoman.dev %>/scripts/{,*/}{,*/}*.js', '<%%= yeoman.dev %>/bower_components/{,*/}{,*/}*.js'],
@@ -49,7 +50,7 @@ module.exports = function (grunt) {
             root: {
                 files: [
                     '<%%= yeoman.dev %>/*.{ico,png,txt,html}',
-                    '<%%= yeoman.dev %>/.htaccess',
+                    <% if (extras.indexOf(htaccess) !== -1) { %>'<%%= yeoman.dev %>/.htaccess',<% } %>
                     '<%%= yeoman.dev %>/images/{,*/}*.{webp}',
                     '<%%= yeoman.dev %>/styles/fonts/{,*/}*.*'
                 ],
@@ -61,10 +62,10 @@ module.exports = function (grunt) {
                 },
                 files: [
                     '<%%= yeoman.server %>/*.{ico,png,txt,html}',
-                    '<%%= yeoman.server %>/.htaccess',
+                    <% if (extras.indexOf(htaccess) !== -1) { %>'<%%= yeoman.server %>/.htaccess',<% } %>
                     '<%%= yeoman.server %>/styles/fonts/{,*/}*.*',
-                    '<%%= yeoman.server %>/markup/{,*/}{,*/}*.html',
-                    '<%%= yeoman.server %>/dashboard/markup/{,*/}{,*/}*.html',
+                    '<%%= yeoman.server %>/markup/{,*/}*.html',
+                    '<%%= yeoman.server %>/dashboard/markup/{,*/}*.html',
                     '<%%= yeoman.server %>/styles/{,*/}{,*/}*.css'<% if (cssOption === 'SASS') { %>,
                     '<%%= yeoman.server %>/styles/{,*/}{,*/}*.{sass,scss}'<% } %><% if (cssOption === 'LESS') { %>,
                     '<%%= yeoman.server %>/styles/{,*/}{,*/}*.less'<% } %>,
@@ -806,8 +807,9 @@ module.exports = function (grunt) {
             else if (fileMarkupMatch && type === 'template') {
                 var blockArray = fileMarkupMatch[1].trim().replace(/ /g, '').split('\n');
                 blockArray.forEach(function (element) {
-                    var pattern = new RegExp('block ' + element + '\\s'),
-                    fpoReplacement = '.fpo-image-container <div class="fpo-background"><span class="fpo-name">block ' + element.trim() + '</span></div>\n';
+                    var eleObj = JSON.parse(element),
+                    pattern = new RegExp('block ' + (eleObj.blockName ? eleObj.blockName : 'Block name not configured') + '\\s'),
+                    fpoReplacement = '.fpo-container(style="width:' + (eleObj.width ? eleObj.width : '100px') + '; height:' + (eleObj.height ? eleObj.height : '100px') + ';") <div class="fpo-background" style="width:100%;height:100%;background-color:' + (eleObj.bgcolor ? eleObj.bgcolor : '#f7f7f7') + '"><span class="fpo-name" style="line-height:' + (eleObj.height ? eleObj.height : '100px') + ';color:' + eleObj.textColor + ';text-align:center;display:inline-block;width:100%;">block ' + (eleObj.blockName ? eleObj.blockName : 'Block name not configured') + '</span></div>\n';
                     grunt.file.write(path, file.replace(pattern, fpoReplacement));
                 });
             }

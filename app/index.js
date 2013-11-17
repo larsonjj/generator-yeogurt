@@ -57,6 +57,10 @@ YeogurtGenerator.prototype.askFor = function askFor() {
             value: 'jshint',
             checked: true
         }, {
+            name: 'HTML5 Boilerplate .htaccess file',
+            value: 'htaccess',
+            checked: true
+        }, {
             name: 'Bootstrap',
             value: 'useBootstrap',
             checked: true
@@ -79,13 +83,15 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.projectName = props.projectName;
         this.versionControl = props.versionControl;
         this.cssOption = props.cssOption;
-        var extras = props.extras;
+        this.extras = props.extras;
+        var extras = this.extras;
 
         function hasFeature(feat) {
             return extras.indexOf(feat) !== -1;
         }
 
         this.jshint = hasFeature('jshint');
+        this.htaccess = hasFeature('htaccess');
         this.useBootstrap = hasFeature('useBootstrap');
         this.useFontAwesome = hasFeature('useFontAwesome');
         this.ieSupport = hasFeature('ieSupport');
@@ -104,7 +110,9 @@ YeogurtGenerator.prototype.app = function app() {
     this.template('_bower.json', 'bower.json');
     this.template('_config.json', 'config.json');
     this.template('_package.json', 'package.json');
-    this.copy('.htaccess', 'dev/.htaccess');
+    if (this.htaccess) {
+        this.copy('.htaccess', 'dev/.htaccess');
+    }
 
     if (this.useFTP) {
         this.copy('.ftppass', '.ftppass');
@@ -116,7 +124,6 @@ YeogurtGenerator.prototype.app = function app() {
     this.template('dev/index.html', 'dev/index.html');
 
     this.copy('dev/robots.txt', 'dev/robots.txt');
-    this.copy('dev/404.html', 'dev/404.html');
     this.copy('dev/favicon.ico', 'dev/favicon.ico');
 
     // dev/scripts

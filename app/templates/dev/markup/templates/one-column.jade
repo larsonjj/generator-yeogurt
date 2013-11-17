@@ -1,6 +1,6 @@
 //- blocks.
         !##
-        content
+        {"blockName": "content", "width": "100px", "height": "100px", "bgcolor": "#9d9d9d", "textColor": "#fff"}
         ##!
 
 extend base
@@ -10,7 +10,6 @@ block template
     block header
         +header()
 
-    //- .txxx-some-name must exist above 'block content' on every template
     //- Provides template level styling
     #template-wrapper.template-wrapper.one-column
         block content
