@@ -40,7 +40,7 @@ module.exports = function (grunt) {
                 tasks: ['less:server', 'less:serverDashboard', 'newer:copy:server']
             }<% } %>,
             js: {
-                files: ['<%%= yeoman.dev %>/scripts/{,*/}{,*/}*.js', '<%%= yeoman.dev %>/bower_components/{,*/}{,*/}*.js'],
+                files: ['<%%= yeoman.dev %>/scripts/{,*/}{,*/}*.js', '<%%= yeoman.dev %>/bower_components/{,*/}{,*/}*.js', '<%%= yeoman.dev %>/dashboard/{,*/}{,*/}*.js'],
                 tasks: [<% if (jshint) { %>'newer:jshint', <% } %>'newer:copy:server']
             },
             images: {
@@ -66,6 +66,7 @@ module.exports = function (grunt) {
                     '<%%= yeoman.server %>/styles/fonts/{,*/}*.*',
                     '<%%= yeoman.server %>/markup/{,*/}*.html',
                     '<%%= yeoman.server %>/dashboard/markup/{,*/}*.html',
+                    '<%%= yeoman.server %>/dashboard/scripts/{,*/}*.js',
                     '<%%= yeoman.server %>/styles/{,*/}{,*/}*.css'<% if (cssOption === 'SASS') { %>,
                     '<%%= yeoman.server %>/styles/{,*/}{,*/}*.{sass,scss}'<% } %><% if (cssOption === 'LESS') { %>,
                     '<%%= yeoman.server %>/styles/{,*/}{,*/}*.less'<% } %>,
@@ -162,7 +163,8 @@ module.exports = function (grunt) {
                     cwd: '<%%= yeoman.dev %>/',
                     dest: '<%%= yeoman.server %>/',
                     src: [
-                        'bower_components/{,*/}{,*/}*.js'
+                        'bower_components/{,*/}{,*/}*.js',
+                        'bower_components/jquery/*.map'
                     ]
                 }, {
                     expand: true,
@@ -201,7 +203,8 @@ module.exports = function (grunt) {
                     dest: '<%%= yeoman.dist %>/',
                     src: [
                         'bower_components/requirejs/require.js',
-                        'bower_components/modernizr/modernizr.js'
+                        'bower_components/modernizr/modernizr.js',
+                        'bower_components/jquery/jquery.min.{js,map}',
                     ]
                 }, {
                     expand: true,

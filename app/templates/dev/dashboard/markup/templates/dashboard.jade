@@ -9,37 +9,32 @@ block template
     #template-wrapper.template-wrapper.one-column
         .container
             .row
-                .sidebar
-                    block sidebar
-                    p This is the sidebar
-
                 .content
                     block content
 
-                    +heading({type:'h1', class:'heading', text: 'Pages'})
-                    ul
+                    ul.dashboard-list
                         each page, i in pages
-                            li
+                            li.dashboard-list-item
                                 a(href="#{page.path}")
                                     | #{page.title}
-                    +heading({type:'h1', class:'heading', text: 'Templates'})
-                    ul
-                        each template, i in templates
-                            li
-                                a(href="#{template.path}")
-                                    | #{template.title}
-                    +heading({type:'h1', class:'heading', text: 'Components'})
-                    ul
+                    ul.dashboard-list.hide
                         each component, i in components
-                            li
+                            li.dashboard-list-item
                                 a(href="#{component.path}")
                                     | #{component.title}
-                    +heading({type:'h1', class:'heading', text: 'Elements'})
-                    ul
+                    ul.dashboard-list.hide
+                        each template, i in templates
+                            li.dashboard-list-item
+                                a(href="#{template.path}")
+                                    | #{template.title}
+                    ul.dashboard-list.hide
                         each element, i in elements
-                            li
+                            li.dashboard-list-item
                                 a(href="#{element.path}")
                                     | #{element.title}
+                .sidebar
+                    block sidebar
+                    p This is the sidebar
 
     block footer
         .container
