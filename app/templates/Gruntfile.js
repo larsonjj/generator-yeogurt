@@ -33,11 +33,11 @@ module.exports = function (grunt) {
             }<% if (cssOption === 'SASS') { %>,
             sass: {
                 files: ['<%%= yeoman.dev %>/styles/{,*/}{,*/}*.{scss,sass}', '<%%= yeoman.dev %>/dashboard/styles/{,*/}{,*/}*.{scss,sass}'],
-                tasks: ['sass:server', 'sass:serverDashboard', 'newer:copy:server']
+                tasks: ['sass:server', 'sass:serverDashboard', 'string-replace:sassMapFixServer', 'newer:copy:server']
             }<% } %><% if (cssOption === 'LESS') { %>,
             less: {
                 files: ['<%%= yeoman.dev %>/styles/{,*/}{,*/}*.less', '<%%= yeoman.dev %>/dashboard/styles/{,*/}{,*/}*.less'],
-                tasks: ['less:server', 'less:serverDashboard', 'newer:copy:server']
+                tasks: ['less:server', 'less:serverDashboard', 'string-replace:lessMapFixServer', 'string-replace:lessMainFixServer', 'newer:copy:server']
             }<% } %>,
             js: {
                 files: ['<%%= yeoman.dev %>/scripts/{,*/}{,*/}*.js', '<%%= yeoman.dev %>/bower_components/{,*/}{,*/}*.js', '<%%= yeoman.dev %>/dashboard/{,*/}{,*/}*.js'],
