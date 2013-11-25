@@ -439,6 +439,20 @@ module.exports = function (grunt) {
                 files: {
                     '<%%= yeoman.dist %>/../' : ['<%%= yeoman.dist %>/markup/{,*/}{,*/}*.html', '<%%= yeoman.dist %>/*.html']
                 }
+            },
+            indexLinkFix: {
+                options: {
+                    replacements: [
+                        // place files inline example
+                        {
+                            pattern: '.server/',
+                            replacement: ''
+                        }
+                    ]
+                },
+                files: {
+                    '<%%= yeoman.dist %>/index.html' : ['<%%= yeoman.dist %>/*.html']
+                }
             }
         },
         autoprefixer: {
@@ -856,6 +870,7 @@ module.exports = function (grunt) {
         'string-replace:requireDistTwo',
         'string-replace:requireDistThree',
         'string-replace:requireInline',
+        'string-replace:indexLinkFix',
         'htmlmin:dist',
         'uglify',
         'clean:temp',
