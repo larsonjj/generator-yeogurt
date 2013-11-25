@@ -18,7 +18,7 @@ module.exports = function (grunt) {
         // configurable paths
         yeoman: {
             dev: 'dev',
-            server: 'server',
+            server: 'dev/.server',
             dist: 'dist'
         },
         dashboardData: {},
@@ -32,12 +32,20 @@ module.exports = function (grunt) {
                 tasks: ['newer:copy:server', 'build-dashboard', 'jade:server', 'jade:serverDashboard', 'clean:temp']
             }<% if (cssOption === 'SASS') { %>,
             sass: {
-                files: ['<%%= yeoman.dev %>/styles/{,*/}{,*/}*.{scss,sass}', '<%%= yeoman.dev %>/dashboard/styles/{,*/}{,*/}*.{scss,sass}'],
-                tasks: ['sass:server', 'sass:serverDashboard', 'string-replace:sassMapFixServer', 'newer:copy:server']
+                files: ['<%%= yeoman.dev %>/styles/{,*/}{,*/}*.{scss,sass}'],
+                tasks: ['sass:server']
+            },
+            sassDash: {
+                files: ['<%%= yeoman.dev %>/dashboard/styles/{,*/}{,*/}*.{scss,sass}'],
+                tasks: ['sass:serverDashboard']
             }<% } %><% if (cssOption === 'LESS') { %>,
             less: {
-                files: ['<%%= yeoman.dev %>/styles/{,*/}{,*/}*.less', '<%%= yeoman.dev %>/dashboard/styles/{,*/}{,*/}*.less'],
-                tasks: ['less:server', 'less:serverDashboard', 'string-replace:lessMapFixServer', 'string-replace:lessMainFixServer', 'newer:copy:server']
+                files: ['<%%= yeoman.dev %>/styles/{,*/}{,*/}*.less'],
+                tasks: ['less:server']
+            },
+            lessDash: {
+                files: ['<%%= yeoman.dev %>/dashboard/styles/{,*/}{,*/}*.less'],
+                tasks: ['less:serverDashboard']
             }<% } %>,
             js: {
                 files: ['<%%= yeoman.dev %>/scripts/{,*/}{,*/}*.js', '<%%= yeoman.dev %>/bower_components/{,*/}{,*/}*.js', '<%%= yeoman.dev %>/dashboard/{,*/}{,*/}*.js'],
@@ -61,15 +69,14 @@ module.exports = function (grunt) {
                     livereload: '<%%= connect.options.livereload %>'
                 },
                 files: [
-                    '<%%= yeoman.server %>/*.{ico,png,txt,html}',
-                    <% if (extras.indexOf(htaccess) !== -1) { %>'<%%= yeoman.server %>/.htaccess',<% } %>
+                    '<%%= yeoman.dev %>/*.{ico,png,txt,html}',
+                    <% if (extras.indexOf(htaccess) !== -1) { %>'<%%= yeoman.dev %>/.htaccess',<% } %>
                     '<%%= yeoman.server %>/styles/fonts/{,*/}*.*',
                     '<%%= yeoman.server %>/markup/{,*/}*.html',
                     '<%%= yeoman.server %>/dashboard/markup/{,*/}*.html',
-                    '<%%= yeoman.server %>/dashboard/scripts/{,*/}*.js',
-                    '<%%= yeoman.server %>/styles/{,*/}{,*/}*.css'<% if (cssOption === 'SASS') { %>,
-                    '<%%= yeoman.server %>/styles/{,*/}{,*/}*.{sass,scss}'<% } %><% if (cssOption === 'LESS') { %>,
-                    '<%%= yeoman.server %>/styles/{,*/}{,*/}*.less'<% } %>,
+                    '<%%= yeoman.server %>/dashboard/scripts/{,*/}*.js'<% if (cssOption === 'SASS') { %>,
+                    '<%%= yeoman.dev %>/styles/{,*/}{,*/}*.{sass,scss}'<% } %><% if (cssOption === 'LESS') { %>,
+                    '<%%= yeoman.dev %>/styles/{,*/}{,*/}*.less'<% } %>,
                     '<%%= yeoman.server %>/scripts/{,*/}{,*/}*.js',
                     '<%%= yeoman.server %>/images/{,*/}{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
@@ -85,7 +92,7 @@ module.exports = function (grunt) {
             livereload: {
                 options: {
                     open: true,
-                    base: '<%%= yeoman.server %>'
+                    base: '<%%= yeoman.dev %>'
                 }
             }
         },
@@ -139,16 +146,6 @@ module.exports = function (grunt) {
                     cwd: '<%%= yeoman.dev %>/',
                     dest: '<%%= yeoman.server %>/',
                     src: [
-                        '*.{ico,png,txt,html}',
-                        '.htaccess',
-                        'images/{,*/}*.{webp,gif}',
-                        'styles/fonts/{,*/}*.*',
-                    ]
-                }, {
-                    expand: true,
-                    cwd: '<%%= yeoman.dev %>/',
-                    dest: '<%%= yeoman.server %>/',
-                    src: [
                         'scripts/**'
                     ]
                 }, {
@@ -165,13 +162,6 @@ module.exports = function (grunt) {
                     src: [
                         'bower_components/{,*/}{,*/}*.js',
                         'bower_components/jquery/*.map'
-                    ]
-                }, {
-                    expand: true,
-                    cwd: '<%%= yeoman.dev %>/styles',
-                    dest: '<%%= yeoman.server %>/styles',
-                    src: [
-                        '{,*/}{,*/}*.{scss,less}'
                     ]
                 }, {
                     expand: true,
@@ -343,7 +333,7 @@ module.exports = function (grunt) {
                     replacements: [
                         // place files inline example
                         {
-                            pattern: '../../dev/styles/',
+                            pattern: '../../dev/',
                             replacement: ''
                         }
                     ]
@@ -352,12 +342,12 @@ module.exports = function (grunt) {
                     '<%%= yeoman.server %>/styles/main.css.map' : '<%%= yeoman.server %>/styles/main.css.map'
                 }
             },
-            lessMainFixServer: {
+            sassMainFixServer: {
                 options: {
                     replacements: [
                         // place files inline example
                         {
-                            pattern: '=./server/styles/',
+                            pattern: '=./dev/.server/styles/',
                             replacement: '='
                         }
                     ]
@@ -366,18 +356,18 @@ module.exports = function (grunt) {
                     '<%%= yeoman.server %>/styles/main.css' : '<%%= yeoman.server %>/styles/main.css'
                 }
             },
-            lessMapFixServer: {
+            sassMainFixDist: {
                 options: {
                     replacements: [
                         // place files inline example
                         {
-                            pattern: './dev/styles/',
-                            replacement: ''
+                            pattern: '=./dev/.server/styles/',
+                            replacement: '='
                         }
                     ]
                 },
                 files: {
-                    '<%%= yeoman.server %>/styles/main.css.map' : '<%%= yeoman.server %>/styles/main.css.map'
+                    '<%%= yeoman.server %>/styles/main.css' : '<%%= yeoman.server %>/styles/main.css'
                 }
             },
             sassMapFixDist: {
@@ -386,34 +376,6 @@ module.exports = function (grunt) {
                         // place files inline example
                         {
                             pattern: '../../dev/styles/',
-                            replacement: ''
-                        }
-                    ]
-                },
-                files: {
-                    '<%%= yeoman.dist %>/styles/main.css.map' : '<%%= yeoman.dist %>/styles/main.css.map'
-                }
-            },
-            lessMainFixDist: {
-                options: {
-                    replacements: [
-                        // place files inline example
-                        {
-                            pattern: '=./dist/styles/',
-                            replacement: '='
-                        }
-                    ]
-                },
-                files: {
-                    '<%%= yeoman.dist %>/styles/main.css' : '<%%= yeoman.dist %>/styles/main.css'
-                }
-            },
-            lessMapFixDist: {
-                options: {
-                    replacements: [
-                        // place files inline example
-                        {
-                            pattern: './dev/styles/',
                             replacement: ''
                         }
                     ]
@@ -661,7 +623,7 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
                 dest: '<%%= yeoman.server %>/',
-                src: ['styles/*.scss', 'dashboard/styles/*.scss'],
+                src: ['styles/*.{sass,scss}'],
                 ext: '.css'
             },
             serverDashboard: {
@@ -672,7 +634,7 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
                 dest: '<%%= yeoman.server %>/',
-                src: ['dashboard/styles/*.scss'],
+                src: ['dashboard/styles/*.{sass,scss}'],
                 ext: '.css'
             },
             dist: {
@@ -685,7 +647,7 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
                 dest: '<%%= yeoman.dist %>/',
-                src: ['styles/*.scss'],
+                src: ['styles/*.{sass,scss}'],
                 ext: '.css'
             },
             distDashboard: {
@@ -696,7 +658,7 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
                 dest: '<%%= yeoman.dist %>/',
-                src: ['dashboard/styles/*.scss'],
+                src: ['dashboard/styles/*.{sass,scss}'],
                 ext: '.css'
             },
         }<% } %><% if (cssOption === 'LESS') { %>,
@@ -706,9 +668,10 @@ module.exports = function (grunt) {
                     paths: ['<%%= yeoman.dev %>/'],
                     sourceMap: true,
                     sourceMapFilename: '<%%= yeoman.server %>/styles/main.css.map',
-                    sourceMapBasepath: './',
-                    sourceMapRootpath: './',
-                    dumpLineNumbers: 'comments'
+                    sourceMapBasepath: '<%%= yeoman.server %>/styles/',
+                    sourceMapRootpath: '',
+                    dumpLineNumbers: 'comments',
+                    outputSourceFiles: true
                 },
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
@@ -731,9 +694,10 @@ module.exports = function (grunt) {
                     paths: ['<%%= yeoman.dev %>/'],
                     sourceMap: true,
                     sourceMapFilename: '<%%= yeoman.dist %>/styles/main.css.map',
-                    sourceMapBasepath: './',
+                    sourceMapBasepath: '<%%= yeoman.dist %>/styles/',
                     sourceMapRootpath: './',
-                    compress: true
+                    compress: true,
+                    outputSourceFiles: true
                 },
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
@@ -858,12 +822,11 @@ module.exports = function (grunt) {
         'jade:server',
         'jade:serverDashboard',<% if (cssOption === 'LESS') { %>
         'less:server',
-        'less:serverDashboard',
-        'string-replace:lessMapFixServer',
-        'string-replace:lessMainFixServer',<% } %><% if (cssOption === 'SASS') { %>
+        'less:serverDashboard',<% } %><% if (cssOption === 'SASS') { %>
         'sass:server',
         'sass:serverDashboard',
-        'string-replace:sassMapFixServer',<% } %>
+        'string-replace:sassMapFixServer',
+        'string-replace:sassMainFixServer',<% } %>
         'autoprefixer:server',
         'autoprefixer:serverDashboard',
         'clean:temp',
@@ -882,9 +845,7 @@ module.exports = function (grunt) {
         'jade:dist',
         'jade:distDashboard',<% if (cssOption === 'LESS') { %>
         'less:dist',
-        'less:distDashboard',
-        'string-replace:lessMapFixDist',
-        'string-replace:lessMainFixDist',<% } %><% if (cssOption === 'SASS') { %>
+        'less:distDashboard',<% } %><% if (cssOption === 'SASS') { %>
         'sass:dist',
         'sass:distDashboard',
         'string-replace:sassMapFixDist',<% } %>
