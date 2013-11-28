@@ -1,7 +1,7 @@
 {
   "name": "generator-yeogurt",
-  "version": "0.1.8",
-  "description": "A generator for Yeoman",
+  "version": "0.1.9",
+  "description": "A Yeoman generator for creating a sensible structure to client-based work. Utilizes Jade, Sass/Less, and RequireJS",
   "keywords": [
     "yeoman-generator",
     "yeogurt",

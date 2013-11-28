@@ -148,10 +148,8 @@ YeogurtGenerator.prototype.app = function app() {
     this.mkdir('dev/markup/pages');
     this.mkdir('dev/markup/components');
     this.mkdir('dev/markup/elements');
-    this.mkdir('dev/markup/partials');
 
     this.template('dev/markup/components/all-components.jade', 'dev/markup/components/all-components.jade');
-    this.template('dev/markup/components/head.jade', 'dev/markup/components/head.jade');
 
     this.copy('dev/markup/components/header.jade', 'dev/markup/components/header.jade');
     this.copy('dev/markup/components/footer.jade', 'dev/markup/components/footer.jade');
@@ -160,8 +158,6 @@ YeogurtGenerator.prototype.app = function app() {
     this.copy('dev/markup/pages/index.jade', 'dev/markup/pages/index.jade');
     this.template('dev/markup/templates/base.jade', 'dev/markup/templates/base.jade');
     this.copy('dev/markup/templates/one-column.jade', 'dev/markup/templates/one-column.jade');
-    this.template('dev/markup/partials/all-partials.jade', 'dev/markup/partials/all-partials.jade');
-    this.copy('dev/markup/partials/README.md', 'dev/markup/partials/README.md');
 
     // dev/styles
     this.mkdir('dev/styles');
@@ -171,7 +167,6 @@ YeogurtGenerator.prototype.app = function app() {
         this.directory('dev/styles/less/elements', 'dev/styles/elements');
         this.directory('dev/styles/less/modules', 'dev/styles/modules');
         this.directory('dev/styles/less/pages', 'dev/styles/pages');
-        this.directory('dev/styles/less/partials', 'dev/styles/partials');
         this.directory('dev/styles/less/templates', 'dev/styles/templates');
         this.directory('dev/styles/less/vendor', 'dev/styles/vendor');
         this.template('dev/styles/less/main.less', 'dev/styles/main.less');
@@ -181,7 +176,6 @@ YeogurtGenerator.prototype.app = function app() {
         this.directory('dev/styles/sass/elements', 'dev/styles/elements');
         this.directory('dev/styles/sass/modules', 'dev/styles/modules');
         this.directory('dev/styles/sass/pages', 'dev/styles/pages');
-        this.directory('dev/styles/sass/partials', 'dev/styles/partials');
         this.directory('dev/styles/sass/templates', 'dev/styles/templates');
         this.directory('dev/styles/sass/vendor', 'dev/styles/vendor');
         this.template('dev/styles/sass/main.scss', 'dev/styles/main.scss');
@@ -196,11 +190,11 @@ YeogurtGenerator.prototype.app = function app() {
     this.mkdir('dev/dashboard/markup/templates');
 
     this.template('dev/dashboard/markup/components/all-components.jade', 'dev/dashboard/markup/components/all-components.jade');
-    this.template('dev/dashboard/markup/components/head.jade', 'dev/dashboard/markup/components/head.jade');
 
     this.copy('dev/dashboard/markup/components/header.jade', 'dev/dashboard/markup/components/header.jade');
     this.copy('dev/dashboard/markup/components/footer.jade', 'dev/dashboard/markup/components/footer.jade');
     this.copy('dev/dashboard/markup/components/dashboard-switcher.jade', 'dev/dashboard/markup/components/dashboard-switcher.jade');
+    this.copy('dev/dashboard/markup/components/status-key.jade', 'dev/dashboard/markup/components/status-key.jade');
     this.copy('dev/dashboard/markup/index.jade', 'dev/dashboard/markup/index.jade');
     this.copy('dev/dashboard/markup/templates/base.jade', 'dev/dashboard/markup/templates/base.jade');
     this.copy('dev/dashboard/markup/templates/dashboard.jade', 'dev/dashboard/markup/templates/dashboard.jade');

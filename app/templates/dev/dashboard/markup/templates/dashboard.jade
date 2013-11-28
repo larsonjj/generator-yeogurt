@@ -1,41 +1,45 @@
+//- Extend from base template to access it's defined blocks (header/footer)
 extend base
 
 block template
-
+    //- Define header block from base template
     block header
         +header()
 
-    //- Provides template level styling
-    #template-wrapper.template-wrapper.one-column
-        .container
+    +dashboard-switcher()
+
+    .container
+        //- Provides template level styling
+        #template-wrapper.template-wrapper.dashboard-template
             .row
                 .content
-                    block content
-
+                    //- Build out pages list
                     ul.dashboard-list
                         each page, i in pages
-                            li.dashboard-list-item
+                            li.dashboard-list-item(class="")
                                 a(href="#{page.path}")
                                     | #{page.title}
+                    //- Build out components list
                     ul.dashboard-list.hide
                         each component, i in components
-                            li.dashboard-list-item
+                            li.dashboard-list-item(class="")
                                 a(href="#{component.path}")
                                     | #{component.title}
+                    //- Build out templates list
                     ul.dashboard-list.hide
                         each template, i in templates
-                            li.dashboard-list-item
+                            li.dashboard-list-item(class="")
                                 a(href="#{template.path}")
                                     | #{template.title}
+                    //- Build out elements list
                     ul.dashboard-list.hide
                         each element, i in elements
-                            li.dashboard-list-item
+                            li.dashboard-list-item(class="")
                                 a(href="#{element.path}")
                                     | #{element.title}
                 .sidebar
+                    //- Define sidebar block so pages have access to it when this template is extended
                     block sidebar
-                    p This is the sidebar
-
-    block footer
-        .container
+        //- Define footer block from base template
+        block footer
             +footer()

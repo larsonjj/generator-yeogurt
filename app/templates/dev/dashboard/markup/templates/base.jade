@@ -1,4 +1,9 @@
-//- Include all mixins
+//-
+    Base template
+    All other templates will extend from this
+//-
+
+//- Include all mixins (components/elements)
 include ../components/all-components
 include ../../../markup/elements/all-elements
 
@@ -22,7 +27,9 @@ html(lang="en", class='no-js')
             script(src="../bower_components/html5shiv/dist/html5shiv.js")<% } %>
         script(src="../bower_components/jquery/jquery.min.js")
         script(src="scripts/main.js")
+    //- Define bodyClass variable and body block to give pages access to change <body> classes
     -var bodyClass
     block body
     body(class=(bodyClass ? bodyClass : false))
+        //- Define template block so templates have access to it when this template is extended
         block template

@@ -161,6 +161,7 @@ module.exports = function (grunt) {
                     dest: '<%%= yeoman.server %>/',
                     src: [
                         'bower_components/{,*/}{,*/}*.js',
+                        'bower_components/{,*/}{,*/}*.{woff,otf,ttf,eot,svg}',
                         'bower_components/jquery/*.map'
                     ]
                 }, {
