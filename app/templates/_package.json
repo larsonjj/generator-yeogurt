@@ -26,6 +26,7 @@
         "grunt-svgmin": "~0.2.0",
         "grunt-newer": "~0.5.4",
         "load-grunt-tasks": "~0.1.0",
+        "lodash": "~2.4.0",
         "time-grunt": "~0.1.1",
         "bower": "~1.2.7"<% if (useFTP) { %>,
         "grunt-ftpush": "~0.3.2"<% } %>

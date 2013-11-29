@@ -2,6 +2,8 @@
 /*jshint camelcase: false */
 'use strict';
 
+var _ = require('lodash');
+
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
@@ -751,7 +753,11 @@ module.exports = function (grunt) {
         pageData,
         templateData,
         componentData,
-        elementData;
+        elementData,
+        pageExtraData = [],
+        templateExtraData = [],
+        componentExtraData = [],
+        elementExtraData = [];
         var updatePath = function (path, strToRemove) {
             return path.replace(strToRemove, '..');
         };
@@ -763,10 +769,21 @@ module.exports = function (grunt) {
         {
             return str.replace('-', ' ');
         };
-        var findJadeNames = function (path, type, strToRemove) {
+        var removeSymbols = function (str) {
+            var tempStr = str.replace('!##', '');
+            return tempStr.replace('##!', '');
+        };
+        var getStatus = function (data) {
+            if (data) {
+                var dataStr = data.trim().replace(/ /g, '');
+                return JSON.parse(dataStr);
+            }
+        };
+        var findJadeNames = function (path, type, strToRemove, data) {
             var titleArray = path.split('/'),
             title = titleArray[(titleArray.length - 1)],
-            newPath;
+            newPath,
+            dataObj;
             if (type === 'element' || type === 'component') {
                 newPath = updatePath(path.replace('.jade', '-' + type + '.html'), strToRemove);
             }
@@ -774,49 +791,80 @@ module.exports = function (grunt) {
                 newPath = updatePath(path.replace('jade', 'html'), strToRemove);
             }
             if (title !== 'base.jade' && title !== 'all-components.jade' && title !== 'all-elements.jade' && title !== 'head.jade') {
-                itemsArray.push({path: newPath, title: toTitleCase(convertDashes(title.replace('.jade', '')))});
+                dataObj = {path: newPath, title: toTitleCase(convertDashes(title.replace('.jade', '')))};
+                itemsArray.push(_.extend(dataObj, data[itemsArray.length]));
             }
-            return itemsArray;
+            return {links: itemsArray};
         };
-        var generateMarkup = function (path, type) {
+        var parseFiles = function (path, type) {
             var file = grunt.file.read(path),
-            regex = /!##([^;]*)##!/,
+            regex = /!##([^;]*?)##!/g,
             fileMarkupMatch = file.match(regex);
-            if (fileMarkupMatch && type !== 'template') {
-                var markup = fileMarkupMatch[1];
-                grunt.file.write(path.replace('.jade', '-' + type + '.jade'), 'extend ../templates/base\nblock template\n' + markup);
-            }
-            else if (fileMarkupMatch && type === 'template') {
-                var blockArray = fileMarkupMatch[1].trim().replace(/ /g, '').split('\n');
-                blockArray.forEach(function (element) {
-                    var eleObj = JSON.parse(element),
-                    pattern = new RegExp('block ' + (eleObj.blockName ? eleObj.blockName : 'Block name not configured') + '\\s'),
-                    fpoReplacement = '.fpo-container(style="width:' + (eleObj.width ? eleObj.width : '100px') + '; height:' + (eleObj.height ? eleObj.height : '100px') + ';") <div class="fpo-background" style="width:100%;height:100%;background-color:' + (eleObj.bgcolor ? eleObj.bgcolor : '#f7f7f7') + '"><span class="fpo-name" style="line-height:' + (eleObj.height ? eleObj.height : '100px') + ';color:' + eleObj.textColor + ';text-align:center;display:inline-block;width:100%;">block ' + (eleObj.blockName ? eleObj.blockName : 'Block name not configured') + '</span></div>\n';
-                    grunt.file.write(path, file.replace(pattern, fpoReplacement));
+            if (fileMarkupMatch) {
+                fileMarkupMatch.forEach(function (element, i) {
+                    fileMarkupMatch[i] = removeSymbols(element);
                 });
+                if (type !== 'page') {
+                    if (type !== 'template') {
+                        var markup = fileMarkupMatch[0];
+                        grunt.file.write(path.replace('.jade', '-' + type + '.jade'), 'extend ../templates/base\nblock template\n' + markup);
+                    }
+                    else if (type === 'template') {
+                        var blockArray = fileMarkupMatch[0].trim().replace(/ /g, '').split('\n');
+                        blockArray.forEach(function (element) {
+                            var eleObj = JSON.parse(element),
+                            pattern = new RegExp('block ' + (eleObj.blockName ? eleObj.blockName : 'Block name not configured') + '\\s'),
+                            fpoReplacement = '.fpo-container(style="width:' + (eleObj.width ? eleObj.width : '100px') + '; height:' + (eleObj.height ? eleObj.height : '100px') + ';") <div class="fpo-background" style="width:100%;height:100%;background-color:' + (eleObj.bgcolor ? eleObj.bgcolor : '#f7f7f7') + '"><span class="fpo-name" style="line-height:' + (eleObj.height ? eleObj.height : '100px') + ';color:' + eleObj.textColor + ';text-align:center;display:inline-block;width:100%;">block ' + (eleObj.blockName ? eleObj.blockName : 'Block name not configured') + '</span></div>\n';
+                            grunt.file.write(path, file.replace(pattern, fpoReplacement));
+                        });
+                    }
+                    else {
+                        grunt.log.error('Something went wrong when parsing jade files');
+                    }
+                    return getStatus(fileMarkupMatch[1]);
+                }
+                else {
+                    return getStatus(fileMarkupMatch[0]);
+                }
+            }
+            else {
+                grunt.log.writeln(['No data found.']);
             }
         };
         // Go through jade pages
         grunt.file.recurse('dev/markup/pages', function (abspath) {
-            pageData = findJadeNames(abspath, 'page', 'dev');
+            var data = parseFiles(abspath, 'page');
+            if (data) {
+                pageExtraData.push(data);
+            }
+            pageData = findJadeNames(abspath, 'page', 'dev', pageExtraData);
         });
         itemsArray = []; // reset items array
         // Go through jade templates
         grunt.file.recurse('dev/.tmp/markup/templates', function (abspath) {
-            templateData = findJadeNames(abspath, 'template', 'dev/.tmp');
-            generateMarkup(abspath, 'template');
+            var data = parseFiles(abspath, 'template');
+            if (data) {
+                templateExtraData.push(data);
+            }
+            templateData = findJadeNames(abspath, 'template', 'dev/.tmp', templateExtraData);
         });
         itemsArray = []; // reset items array
         // Go through jade components
         grunt.file.recurse('dev/.tmp/markup/components', function (abspath) {
-            componentData = findJadeNames(abspath, 'component', 'dev/.tmp');
-            generateMarkup(abspath, 'component');
+            var data = parseFiles(abspath, 'component');
+            if (data) {
+                componentExtraData.push(data);
+            }
+            componentData = findJadeNames(abspath, 'component', 'dev/.tmp', componentExtraData);
         });
         itemsArray = []; // reset items array
         // Go through jade elements
         grunt.file.recurse('dev/.tmp/markup/elements', function (abspath) {
-            elementData = findJadeNames(abspath, 'element', 'dev/.tmp');
-            generateMarkup(abspath, 'element');
+            var data = parseFiles(abspath, 'element');
+            if (data) {
+                elementExtraData.push(data);
+            }
+            elementData = findJadeNames(abspath, 'element', 'dev/.tmp', elementExtraData);
         });
         dashData = {
             pages: pageData,
@@ -824,7 +872,6 @@ module.exports = function (grunt) {
             components: componentData,
             elements: elementData
         };
-        console.log(dashData);
         grunt.config(['dashboardData'], dashData);
         done();
     });

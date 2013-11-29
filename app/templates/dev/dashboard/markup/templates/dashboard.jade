@@ -15,28 +15,28 @@ block template
                 .content
                     //- Build out pages list
                     ul.dashboard-list
-                        each page, i in pages
-                            li.dashboard-list-item(class="")
-                                a(href="#{page.path}")
-                                    | #{page.title}
+                        each link, i in pages.links
+                            li.dashboard-list-item(class="#{link.status}")
+                                a(href="#{link.path}")
+                                    | #{link.title}
                     //- Build out components list
                     ul.dashboard-list.hide
-                        each component, i in components
-                            li.dashboard-list-item(class="")
-                                a(href="#{component.path}")
-                                    | #{component.title}
+                        each link, i in components.links
+                            li.dashboard-list-item(class="#{link.status}")
+                                a(href="#{link.path}")
+                                    | #{link.title}
                     //- Build out templates list
                     ul.dashboard-list.hide
-                        each template, i in templates
-                            li.dashboard-list-item(class="")
-                                a(href="#{template.path}")
-                                    | #{template.title}
+                        each link, i in templates.links
+                            li.dashboard-list-item(class="#{link.status}")
+                                a(href="#{link.path}")
+                                    | #{link.title}
                     //- Build out elements list
                     ul.dashboard-list.hide
-                        each element, i in elements
-                            li.dashboard-list-item(class="")
-                                a(href="#{element.path}")
-                                    | #{element.title}
+                        each link, i in elements.links
+                            li.dashboard-list-item(class="#{link.status}")
+                                a(href="#{link.path}")
+                                    | #{link.title}
                 .sidebar
                     //- Define sidebar block so pages have access to it when this template is extended
                     block sidebar

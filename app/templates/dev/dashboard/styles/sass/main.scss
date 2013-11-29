@@ -75,14 +75,13 @@ header {
 .sidebar {
     width: 33.3333%;
     float: right;
-    padding: 0 20px;
+    padding: 0 20px 0 10px;
 }
 
 .content {
     width: 66.6666%;
     float: left;
-    padding: 0 5px;
-    margin-top: 10px;
+    padding: 0 10px 0 20px;
 }
 
 footer {
@@ -101,18 +100,40 @@ hr {
 .dashboard-list {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 .dashboard-list-item {
     padding: 10px 5px;
     margin-bottom: 5px;
-    background: $primary-color;
+    background: $default-status-color;
     a {
         text-decoration: none;
         color: $white-color;
         padding-left: 5px;
         width: 100%;
         display: inline-block;
+    }
+    &.blocked {
+        background: $blocked-color;
+    }
+    &.queued {
+        background: $queued-color;
+    }
+    &.development {
+        background: $development-color;
+    }
+    &.qa {
+        background: $qa-color;
+    }
+    &.review {
+        background: $review-color;
+    }
+    &.integration {
+        background: $integration-color;
+    }
+    &.live {
+        background: $live-color;
     }
 }
 
@@ -167,11 +188,13 @@ hr {
 .status-key {
     .status-key-list {
         list-style-type: none;
+        padding: 0;
     }
     .status-key-list-item {
         line-height: 30px;
         font-size: 14px;
         padding-left: 10px;
+        width: 100%;
         color: $white-color;
         background: $default-status-color;
         &.blocked {
@@ -203,16 +226,15 @@ hr {
     padding: 0 20px;
 }
 
-@media (max-width: 600px)  {
+@media (max-width: 640px)  {
     .sidebar {
         width: 100%;
         float: right;
-        padding: 0 5px;
+        padding: 0 10px;
     }
-
     .content {
         width: 100%;
-        padding: 10px 5px;
+        padding: 10px 10px;
         float: left;
     }
     .dashboard-switcher .dashboard-switcher-list .dashboard-switcher-button-text {
@@ -221,12 +243,6 @@ hr {
 }
 
 @media (min-width: 400px) {
-    .dashboard-list {
-        padding: 0 15px;
-    }
-    .dashboard-switcher-list {
-        padding: 0 15px;
-    }
     .dashboard-switcher {
         .dashboard-switcher-list {
             button {
