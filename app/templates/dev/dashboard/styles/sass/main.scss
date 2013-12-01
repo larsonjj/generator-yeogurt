@@ -3,10 +3,13 @@
 *   Styles for dashboard
 */
 
+// Font Awesome
+$fa-font-path: '../../bower_components/font-awesome/fonts';
+
 // Imports
 @import '../../bower_components/normalize-scss/normalize.scss';
 @import '../../styles/modules/_all-modules.scss';
-@import '../../styles/vendor/_all-vendor.scss';
+@import '../../bower_components/font-awesome/scss/font-awesome';
 
 // Variables
 $primary-color: #e96556;
@@ -70,6 +73,7 @@ header {
     float: left;
     width: 85%;
     margin-left: 15%;
+    margin-top: 10px;
 }
 
 .sidebar {

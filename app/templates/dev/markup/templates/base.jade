@@ -18,8 +18,8 @@ html(lang="en", class='no-js')
         link(rel='stylesheet', href='../../styles/main.css')
         script(src='../../bower_components/modernizr/modernizr.js')<% if (ieSupport) { %>
         // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
-        //if lt IE 9
-            script(src="../../bower_components/respond/respond.min.js")
+        //if lt IE 9<% if (responsive) { %>
+            script(src="../../bower_components/respond/respond.min.js")<% } %>
             script(src="../../bower_components/html5shiv/dist/html5shiv.js")<% } %>
         script(data-main="../../scripts/main", src="../../bower_components/requirejs/require.js")
     -var bodyClass

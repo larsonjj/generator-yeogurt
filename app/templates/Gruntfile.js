@@ -197,6 +197,7 @@ module.exports = function (grunt) {
                     src: [
                         'bower_components/requirejs/require.js',
                         'bower_components/modernizr/modernizr.js',
+                        'bower_components/{,*/}{,*/}*.{woff,otf,ttf,eot,svg}',
                         'bower_components/jquery/jquery.min.{js,map}',
                     ]
                 }, {

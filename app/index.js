@@ -37,11 +37,11 @@ YeogurtGenerator.prototype.askFor = function askFor() {
     var prompts = [{
         name: 'projectName',
         message: 'What would you like to' + ' name your project'.blue + '?',
-        default: 'sample'
+        default: 'Sample'
     }, {
         type: 'list',
         name: 'versionControl',
-        message: 'Which version control software are you using?',
+        message: 'Which version control software are you using (or plan to use)?',
         choices: ['Git', 'SVN', 'Both', 'None (I like to live on the edge)'],
     }, {
         type: 'list',
@@ -53,7 +53,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         name: 'extras',
         message: 'Select any extras you would like:',
         choices: [{
-            name: 'JSHint',
+            name: 'Lint JavaScript with JSHint',
             value: 'jshint',
             checked: true
         }, {
@@ -61,7 +61,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
             value: 'htaccess',
             checked: true
         }, {
-            name: 'Bootstrap',
+            name: 'Twitter Bootstrap',
             value: 'useBootstrap',
             checked: true
         }, {
@@ -71,6 +71,10 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         }, {
             name: 'IE8 Support',
             value: 'ieSupport',
+            checked: true
+        }, {
+            name: 'Responsive',
+            value: 'responsive',
             checked: true
         }, {
             name: 'Deploy to FTP Server',
@@ -95,6 +99,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.useBootstrap = hasFeature('useBootstrap');
         this.useFontAwesome = hasFeature('useFontAwesome');
         this.ieSupport = hasFeature('ieSupport');
+        this.responsive = hasFeature('responsive');
         this.useFTP = hasFeature('useFTP');
 
         cb();
@@ -168,7 +173,8 @@ YeogurtGenerator.prototype.app = function app() {
         this.directory('dev/styles/less/modules', 'dev/styles/modules');
         this.directory('dev/styles/less/pages', 'dev/styles/pages');
         this.directory('dev/styles/less/templates', 'dev/styles/templates');
-        this.directory('dev/styles/less/vendor', 'dev/styles/vendor');
+        this.mkdir('dev/styles/vendor');
+        this.template('dev/styles/less/vendor/_all-vendor.less', 'dev/styles/vendor/_all-vendor.less');
         this.template('dev/styles/less/main.less', 'dev/styles/main.less');
     }
     if (this.cssOption === 'SASS') {
@@ -177,7 +183,8 @@ YeogurtGenerator.prototype.app = function app() {
         this.directory('dev/styles/sass/modules', 'dev/styles/modules');
         this.directory('dev/styles/sass/pages', 'dev/styles/pages');
         this.directory('dev/styles/sass/templates', 'dev/styles/templates');
-        this.directory('dev/styles/sass/vendor', 'dev/styles/vendor');
+        this.mkdir('dev/styles/vendor');
+        this.template('dev/styles/sass/vendor/_all-vendor.scss', 'dev/styles/vendor/_all-vendor.scss');
         this.template('dev/styles/sass/main.scss', 'dev/styles/main.scss');
     }
 
