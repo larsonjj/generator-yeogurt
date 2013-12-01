@@ -76,6 +76,7 @@ module.exports = function (grunt) {
                     '<%%= yeoman.server %>/styles/fonts/{,*/}*.*',
                     '<%%= yeoman.server %>/markup/{,*/}*.html',
                     '<%%= yeoman.server %>/dashboard/markup/{,*/}*.html',
+                    '<%%= yeoman.server %>/dashboard/styles/{,*/}*.css',
                     '<%%= yeoman.server %>/dashboard/scripts/{,*/}*.js'<% if (cssOption === 'SASS') { %>,
                     '<%%= yeoman.dev %>/styles/{,*/}{,*/}*.{sass,scss}'<% } %><% if (cssOption === 'LESS') { %>,
                     '<%%= yeoman.dev %>/styles/{,*/}{,*/}*.less'<% } %>,
@@ -136,9 +137,9 @@ module.exports = function (grunt) {
             }
         },
         clean: {
-            server: ['<%%= yeoman.server %>/', '<%%= yeoman.dev %>/.tmp'],
-            dist: ['<%%= yeoman.dist %>/', '<%%= yeoman.dev %>/.tmp'],
-            temp: ['<%%= yeoman.dev %>/.tmp/**', '<%%= yeoman.server %>/.tmp/**', '<%%= yeoman.dist %>/.tmp/**']
+            server: ['<%%= yeoman.server %>/', '<%%= yeoman.dev %>/.server/tmp'],
+            dist: ['<%%= yeoman.dist %>/', '<%%= yeoman.dev %>/.server/tmp'],
+            temp: ['<%%= yeoman.dev %>/.server/tmp/**', '<%%= yeoman.server %>/.server/tmp/**', '<%%= yeoman.dist %>/.server/tmp/**']
         },
         // Put files not handled in other tasks here
         copy: {
@@ -183,7 +184,7 @@ module.exports = function (grunt) {
                 }, {
                     expand: true,
                     cwd: '<%%= yeoman.dev %>/',
-                    dest: '<%%= yeoman.dev %>/.tmp',
+                    dest: '<%%= yeoman.dev %>/.server/tmp',
                     src: [
                         'markup/**', '!**markup/pages/**'
                     ]
@@ -241,7 +242,7 @@ module.exports = function (grunt) {
                 }, {
                     expand: true,
                     cwd: '<%%= yeoman.dev %>/',
-                    dest: '<%%= yeoman.dev %>/.tmp',
+                    dest: '<%%= yeoman.dev %>/.server/tmp',
                     src: [
                         'markup/**', '!**markup/pages/**'
                     ]
@@ -261,15 +262,15 @@ module.exports = function (grunt) {
                 cwd: '<%%= yeoman.dev %>/',
                 dest: '<%%= yeoman.server %>/',
                 src: ['markup/pages/*.jade',
-                    '.tmp/markup/templates/*.jade',
-                    '!.tmp/markup/templates/base.jade',
-                    '.tmp/markup/components/*-*.jade',
-                    '!.tmp/markup/components/all-components.jade',
-                    '.tmp/markup/elements/*-*.jade',
-                    '!.tmp/markup/elements/all-elements.jade'],
+                    '.server/tmp/markup/templates/*.jade',
+                    '!.server/tmp/markup/templates/base.jade',
+                    '.server/tmp/markup/components/*-*.jade',
+                    '!.server/tmp/markup/components/all-components.jade',
+                    '.server/tmp/markup/elements/*-*.jade',
+                    '!.server/tmp/markup/elements/all-elements.jade'],
                 ext: '.html',
                 rename: function (dest, matchedSrcPath) {
-                    matchedSrcPath = matchedSrcPath.replace('.tmp/', '');
+                    matchedSrcPath = matchedSrcPath.replace('.server/tmp/', '');
                     return dest + matchedSrcPath;
                 }
             },
@@ -295,16 +296,16 @@ module.exports = function (grunt) {
                 cwd: '<%%= yeoman.dev %>/',
                 dest: '<%%= yeoman.dist %>/',
                 src: ['markup/pages/*.jade',
-                    '.tmp/markup/templates/*.jade',
-                    '!.tmp/markup/templates/base.jade',
-                    '.tmp/markup/components/*-*.jade',
-                    '!.tmp/markup/components/all-components.jade',
-                    '!.tmp/markup/components/head.jade',
-                    '.tmp/markup/elements/*-*.jade',
-                    '!.tmp/markup/elements/all-elements.jade'],
+                    '.server/tmp/markup/templates/*.jade',
+                    '!.server/tmp/markup/templates/base.jade',
+                    '.server/tmp/markup/components/*-*.jade',
+                    '!.server/tmp/markup/components/all-components.jade',
+                    '!.server/tmp/markup/components/head.jade',
+                    '.server/tmp/markup/elements/*-*.jade',
+                    '!.server/tmp/markup/elements/all-elements.jade'],
                 ext: '.html',
                 rename: function (dest, matchedSrcPath) {
-                    matchedSrcPath = matchedSrcPath.replace('.tmp/', '');
+                    matchedSrcPath = matchedSrcPath.replace('.server/tmp/', '');
                     return dest + matchedSrcPath;
                 }
             },
@@ -648,6 +649,8 @@ module.exports = function (grunt) {
                 options: {
                     style: 'expanded',
                     lineNumbers: true,
+                    sourcemap: true,
+                    trace: true
                 },
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
@@ -670,8 +673,10 @@ module.exports = function (grunt) {
             },
             distDashboard: {
                 options: {
-                    style: 'expanded',
-                    lineNumbers: true,
+                    style: 'compressed',
+                    lineNumbers: false,
+                    sourcemap: true,
+                    trace: true
                 },
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
@@ -699,7 +704,13 @@ module.exports = function (grunt) {
             },
             serverDashboard: {
                 options: {
-                    dumpLineNumbers: 'comments'
+                    paths: ['<%%= yeoman.dev %>/'],
+                    sourceMap: true,
+                    sourceMapFilename: '<%%= yeoman.server %>/dashboard/styles/main.css.map',
+                    sourceMapBasepath: '<%%= yeoman.server %>/dashboard/styles/',
+                    sourceMapRootpath: '',
+                    dumpLineNumbers: 'comments',
+                    outputSourceFiles: true
                 },
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
@@ -725,7 +736,13 @@ module.exports = function (grunt) {
             },
             distDashboard: {
                 options: {
-                    dumpLineNumbers: 'comments'
+                    paths: ['<%%= yeoman.dev %>/'],
+                    sourceMap: true,
+                    sourceMapFilename: '<%%= yeoman.dist %>/dashboard/styles/main.css.map',
+                    sourceMapBasepath: '<%%= yeoman.dist %>/dashboard/styles/',
+                    sourceMapRootpath: './',
+                    compress: true,
+                    outputSourceFiles: true
                 },
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
@@ -842,30 +859,30 @@ module.exports = function (grunt) {
         });
         itemsArray = []; // reset items array
         // Go through jade templates
-        grunt.file.recurse('dev/.tmp/markup/templates', function (abspath) {
+        grunt.file.recurse('dev/.server/tmp/markup/templates', function (abspath) {
             var data = parseFiles(abspath, 'template');
             if (data) {
                 templateExtraData.push(data);
             }
-            templateData = findJadeNames(abspath, 'template', 'dev/.tmp', templateExtraData);
+            templateData = findJadeNames(abspath, 'template', 'dev/.server/tmp', templateExtraData);
         });
         itemsArray = []; // reset items array
         // Go through jade components
-        grunt.file.recurse('dev/.tmp/markup/components', function (abspath) {
+        grunt.file.recurse('dev/.server/tmp/markup/components', function (abspath) {
             var data = parseFiles(abspath, 'component');
             if (data) {
                 componentExtraData.push(data);
             }
-            componentData = findJadeNames(abspath, 'component', 'dev/.tmp', componentExtraData);
+            componentData = findJadeNames(abspath, 'component', 'dev/.server/tmp', componentExtraData);
         });
         itemsArray = []; // reset items array
         // Go through jade elements
-        grunt.file.recurse('dev/.tmp/markup/elements', function (abspath) {
+        grunt.file.recurse('dev/.server/tmp/markup/elements', function (abspath) {
             var data = parseFiles(abspath, 'element');
             if (data) {
                 elementExtraData.push(data);
             }
-            elementData = findJadeNames(abspath, 'element', 'dev/.tmp', elementExtraData);
+            elementData = findJadeNames(abspath, 'element', 'dev/.server/tmp', elementExtraData);
         });
         dashData = {
             pages: pageData,
