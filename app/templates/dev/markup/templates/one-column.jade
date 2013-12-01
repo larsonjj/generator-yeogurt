@@ -7,10 +7,11 @@
     {"status": "development"}
     ##!
 
+//- One Column Template
 extend base
 
 block template
-
+    //- Define header block from base template
     block header
         +header()
 
@@ -18,5 +19,6 @@ block template
     #template-wrapper.template-wrapper.one-column
         block content
 
+    //- Define footer block from base template
     block footer
         +footer()
