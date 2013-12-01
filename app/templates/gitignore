@@ -4,4 +4,4 @@ server
 dist
 .ftppass
 dev/bower_components
-dev/.tmp
+dev/.server

@@ -131,6 +131,10 @@ YeogurtGenerator.prototype.app = function app() {
     this.copy('dev/robots.txt', 'dev/robots.txt');
     this.copy('dev/favicon.ico', 'dev/favicon.ico');
 
+    if (this.versionControl === 'SVN') {
+        this.copy('svn-init.sh', 'svn-init.sh');
+    }
+
     // dev/scripts
     this.mkdir('dev/scripts');
     this.mkdir('dev/scripts/components');
