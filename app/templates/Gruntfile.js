@@ -460,43 +460,6 @@ module.exports = function (grunt) {
                 }
             }
         },
-        autoprefixer: {
-            options: {
-                browsers: ['last 5 versions', '> 1%', 'ff 17', 'opera 11.1', 'ie 8']
-            },
-            server: {
-                files: [{
-                    expand: true,
-                    cwd: '<%%= yeoman.server %>/styles',
-                    src: '{,*/}*.css',
-                    dest: '<%%= yeoman.server %>/styles'
-                }]
-            },
-            serverDashboard: {
-                files: [{
-                    expand: true,
-                    cwd: '<%%= yeoman.server %>/dashboard/styles',
-                    src: '{,*/}*.css',
-                    dest: '<%%= yeoman.server %>/dashboard/styles'
-                }]
-            },
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '<%%= yeoman.dist %>/styles',
-                    src: '{,*/}*.css',
-                    dest: '<%%= yeoman.dist %>/styles'
-                }]
-            },
-            distDashboard: {
-                files: [{
-                    expand: true,
-                    cwd: '<%%= yeoman.dist %>/dashboard/styles',
-                    src: '{,*/}*.css',
-                    dest: '<%%= yeoman.dist %>/dashboard/styles'
-                }]
-            }
-        },
         // gzip assets 1-to-1 for production
         compress: {
             main: {
@@ -907,8 +870,6 @@ module.exports = function (grunt) {
         'sass:serverDashboard',
         'string-replace:sassMapFixServer',
         'string-replace:sassMainFixServer',<% } %>
-        'autoprefixer:server',
-        'autoprefixer:serverDashboard',
         'clean:temp',
         'connect:livereload',
         'notify:server',
@@ -929,8 +890,6 @@ module.exports = function (grunt) {
         'sass:dist',
         'sass:distDashboard',
         'string-replace:sassMapFixDist',<% } %>
-        'autoprefixer:dist',
-        'autoprefixer:distDashboard',
         'requirejs',
         'string-replace:requireDist', // change require main path to 'main.min'
         'string-replace:requireDistTwo',
