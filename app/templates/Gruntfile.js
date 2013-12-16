@@ -791,13 +791,15 @@ module.exports = function (grunt) {
                         grunt.file.write(path.replace('.jade', '-' + type + '.jade'), 'extend ../templates/base\nblock template\n' + markup);
                     }
                     else if (type === 'template') {
-                        var blockArray = fileMarkupMatch[0].trim().replace(/ /g, '').split('\n');
+                        var blockArray = fileMarkupMatch[0].trim().replace(/ /g, '').split('\n'),
+                        fileTemp = file;
                         blockArray.forEach(function (element) {
                             var eleObj = JSON.parse(element),
                             pattern = new RegExp('block ' + (eleObj.blockName ? eleObj.blockName : 'Block name not configured') + '\\s'),
                             fpoReplacement = '.fpo-container(style="width:' + (eleObj.width ? eleObj.width : '100px') + '; height:' + (eleObj.height ? eleObj.height : '100px') + ';") <div class="fpo-background" style="width:100%;height:100%;background-color:' + (eleObj.bgcolor ? eleObj.bgcolor : '#f7f7f7') + '"><span class="fpo-name" style="line-height:' + (eleObj.height ? eleObj.height : '100px') + ';color:' + eleObj.textColor + ';text-align:center;display:inline-block;width:100%;">block ' + (eleObj.blockName ? eleObj.blockName : 'Block name not configured') + '</span></div>\n';
-                            grunt.file.write(path, file.replace(pattern, fpoReplacement));
+                            fileTemp = fileTemp.replace(pattern, fpoReplacement);
                         });
+                        grunt.file.write(path, fileTemp);
                     }
                     else {
                         grunt.log.error('Something went wrong when parsing jade files');

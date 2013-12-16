@@ -1,0 +1,27 @@
+//- Blocks.
+    !##
+    {"blockName": "left-content", "width": "200px", "height": "100px", "bgcolor": "#9d9d9d", "textColor": "#fff"}
+    {"blockName": "right-content", "width": "200px", "height": "100px", "bgcolor": "#707070", "textColor": "#fff"}
+    ##!
+//- Data
+    !##
+    {"status": "development"}
+    ##!
+
+//- One Column Template
+extend base
+
+block template
+    //- Define header block from base template
+    block header
+        +header()
+
+    //- Provides template level styling
+    #template-wrapper.template-wrapper.one-column
+        block left-content
+
+        block right-content
+
+    //- Define footer block from base template
+    block footer
+        +footer()

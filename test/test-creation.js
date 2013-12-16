@@ -36,6 +36,7 @@ describe('yeogurt generator', function () {
             'dev/markup/pages/index.jade',
             'dev/markup/templates/base.jade',
             'dev/markup/templates/one-column.jade',
+            'dev/markup/templates/two-column.jade',
             'dev/styles',
             'dev/styles/components',
             'dev/styles/elements',
