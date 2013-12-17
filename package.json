@@ -33,16 +33,15 @@
     "test": "mocha"
   },
   "dependencies": {
-    "yeoman-generator": "~0.13.0",
+    "yeoman-generator": "~0.14.0",
     "colors": "~0.6.2",
-    "mocha": "~1.12.0",
-    "lodash": "~2.2.1",
-    "cheerio": "~0.12.3"
+    "lodash": "~2.2.1"
   },
   "devDependencies": {
   },
   "peerDependencies": {
-    "yo": ">=1.0.6"
+    "yo": "~1.0.6",
+    "mocha": "~1.12.0"
   },
   "engines": {
     "node": ">=0.8.0",
