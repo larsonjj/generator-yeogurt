@@ -1,0 +1,31 @@
+/*
+*   _mixins.less
+*   Author Custom Mixins
+*/
+<% if (cssOption === 'LESS') { %>
+.clearfix() {
+    zoom: 1;
+    &:before {
+        content: '';
+        display: block;
+    }
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}<% } %>
+
+<% if (cssOption === 'SASS') { %>
+@mixin clearfix() {
+    zoom: 1;
+    &:before {
+        content: '';
+        display: block;
+    }
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}<% } %>

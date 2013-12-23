@@ -3,57 +3,41 @@
 *   Styles for dashboard
 */
 
-// Font Awesome
-$fa-font-path: '../../bower_components/font-awesome/fonts';
-
-// Imports
-@import '../../bower_components/normalize-scss/normalize';
+// Project Module Imports
 @import '../../styles/modules/_all-modules';
-@import '../../bower_components/font-awesome/scss/font-awesome';
-
-// Variables
-$primary-color: #e96556;
-$secondary-color: #e1c2c2;
-$hr-color: #d2d6d7;
-$text-color: #333;
-$white-color: #fff;
-$header-shadow-color: #ccc;
-$header-border: #c7c7c7;
-
-// Status Colors
-$default-status-color: #6e6e6e;
-$blocked-color: #df342e;
-$queued-color: #c6cacc;
-$development-color: #2eb8e9;
-$qa-color: #ee8b1e;
-$review-color: #84b623;
-$integration-color: #194177;
-$live-color: #27374b;
-
-a:focus, button:focus {
-    outline: none;
-}
-
-button::-moz-focus-inner {
-  border: 0;
-}
-
+<% if (cssOption === 'SASS') { %>
+// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
+@import '../../bower_components/normalize-scss/normalize';<% } %>
+<% if (cssOption === 'LESS') { %>
+// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
+@import '../../bower_components/normalize-less/normalize';<% } %>
+// Project Vendor Imports
+@import '../../styles/vendor/_all-vendor';
+<% if (cssOption === 'LESS') { %>
 body {
-    color: #333;
-}
-
+    color: @text-color;
+}<% } %><% if (cssOption === 'SASS') { %>
+body {
+    color: $text-color;
+}<% } %>
 .hide {
     display: none !important;
 }
-
+<% if (cssOption === 'LESS') { %>
+header {
+    width: 100%;
+    height: 55px;
+    padding: 10px 0;
+    border-bottom: 1px solid @header-border;
+    box-shadow: @header-shadow-color 1px 1px 15px;
+}<% } %><% if (cssOption === 'SASS') { %>
 header {
     width: 100%;
     height: 55px;
     padding: 10px 0;
     border-bottom: 1px solid $header-border;
     box-shadow: $header-shadow-color 1px 1px 15px;
-}
-
+}<% } %>
 .logo-wrapper {
     max-width: 150px;
     margin: 0 auto;
@@ -63,12 +47,15 @@ header {
     width: 100%;
     text-align: center;
 }
-
+<% if (cssOption === 'LESS') { %>
+.row {
+    width: 100%;
+    .clearfix();
+}<% } %><% if (cssOption === 'SASS') { %>
 .row {
     width: 100%;
     @include clearfix();
-}
-
+}<% } %>
 .container {
     float: left;
     width: 85%;
@@ -92,21 +79,61 @@ footer {
     text-align: right;
     margin-top: 20px;
 }
-
+<% if (cssOption === 'LESS') { %>
+hr {
+    border: 0;
+    padding: 0;
+    border-top: 1px solid @hr-color;
+    height: 1px;
+    display: block;
+}<% } %><% if (cssOption === 'SASS') { %>
 hr {
     border: 0;
     padding: 0;
     border-top: 1px solid $hr-color;
     height: 1px;
     display: block;
-}
+}<% } %>
 
 .dashboard-list {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
-
+<% if (cssOption === 'LESS') { %>
+.dashboard-list-item {
+    padding: 10px 5px;
+    margin-bottom: 5px;
+    background: @default-status-color;
+    a {
+        text-decoration: none;
+        color: @white-color;
+        padding-left: 5px;
+        width: 100%;
+        display: inline-block;
+    }
+    &.blocked {
+        background: @blocked-color;
+    }
+    &.queued {
+        background: @queued-color;
+    }
+    &.development {
+        background: @development-color;
+    }
+    &.qa {
+        background: @qa-color;
+    }
+    &.review {
+        background: @review-color;
+    }
+    &.integration {
+        background: @integration-color;
+    }
+    &.complete {
+        background: @live-color;
+    }
+}<% } %><% if (cssOption === 'SASS') { %>
 .dashboard-list-item {
     padding: 10px 5px;
     margin-bottom: 5px;
@@ -139,8 +166,49 @@ hr {
     &.complete {
         background: $live-color;
     }
-}
-
+}<% } %>
+<% if (cssOption === 'LESS') { %>
+.dashboard-switcher {
+    margin: 0;
+    float: left;
+    width: 15%;
+    height: auto;
+    position: absolute;
+    background: @secondary-color;
+    top: 55px;
+    bottom: 0;
+    .dashboard-switcher-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        li {
+            display: block;
+            background: @secondary-color;
+            width: 100%;
+            margin: 0;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid #D8B4B4;
+            &.active {
+                background: @primary-color;
+            }
+        }
+        button {
+            border: none;
+            background: none;
+            color: @white-color;
+            line-height: 30px;
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+        span {
+            position: relative;
+            margin-top: -6px;
+            display: block;
+            font-size: 14px;
+        }
+    }
+}<% } %><% if (cssOption === 'SASS') { %>
 .dashboard-switcher {
     margin: 0;
     float: left;
@@ -181,19 +249,53 @@ hr {
             font-size: 14px;
         }
     }
-}
-
+}<% } %>
+<% if (cssOption === 'LESS') { %>
+.sidebar-title {
+    font-size: 16px;
+    color: @text-color;
+    margin-bottom: 5px;
+}<% } %><% if (cssOption === 'SASS') { %>
 .sidebar-title {
     font-size: 16px;
     color: $text-color;
     margin-bottom: 5px;
-}
+}<% } %>
 
 .status-key {
     .status-key-list {
         list-style-type: none;
         padding: 0;
-    }
+    }<% if (cssOption === 'LESS') { %>
+    .status-key-list-item {
+        line-height: 30px;
+        font-size: 14px;
+        padding-left: 10px;
+        width: 100%;
+        color: @white-color;
+        background: @default-status-color;
+        &.blocked {
+            background: @blocked-color;
+        }
+        &.queued {
+            background: @queued-color;
+        }
+        &.development {
+            background: @development-color;
+        }
+        &.qa {
+            background: @qa-color;
+        }
+        &.review {
+            background: @review-color;
+        }
+        &.integration {
+            background: @integration-color;
+        }
+        &.complete {
+            background: @live-color;
+        }
+    }<% } %><% if (cssOption === 'SASS') { %>
     .status-key-list-item {
         line-height: 30px;
         font-size: 14px;
@@ -222,7 +324,7 @@ hr {
         &.complete {
             background: $live-color;
         }
-    }
+    }<% } %>
 }
 
 .footer-copyright {

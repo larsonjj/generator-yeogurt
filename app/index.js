@@ -173,24 +173,44 @@ YeogurtGenerator.prototype.app = function app() {
     this.mkdir('dev/styles');
     this.mkdir('dev/styles/fonts');
     if (this.cssOption === 'LESS') {
-        this.directory('dev/styles/less/components', 'dev/styles/components');
-        this.directory('dev/styles/less/elements', 'dev/styles/elements');
-        this.directory('dev/styles/less/modules', 'dev/styles/modules');
-        this.directory('dev/styles/less/pages', 'dev/styles/pages');
-        this.directory('dev/styles/less/templates', 'dev/styles/templates');
+        this.directory('dev/styles/components', 'dev/styles/components');
+        this.directory('dev/styles/elements', 'dev/styles/elements');
+        this.directory('dev/styles/modules', 'dev/styles/modules');
+        this.directory('dev/styles/pages', 'dev/styles/pages');
+        this.directory('dev/styles/templates', 'dev/styles/templates');
         this.mkdir('dev/styles/vendor');
-        this.template('dev/styles/less/vendor/_all-vendor.less', 'dev/styles/vendor/_all-vendor.less');
-        this.template('dev/styles/less/main.less', 'dev/styles/main.less');
+        this.template('dev/styles/vendor/_all-vendor.less', 'dev/styles/vendor/_all-vendor.less');
+        if (this.useFontAwesome) {
+            this.template('dev/styles/vendor/_font-awesome.less', 'dev/styles/vendor/_font-awesome.less');
+        }
+        this.template('dev/styles/vendor/_lesshat.less', 'dev/styles/vendor/_lesshat.less');
+        this.template('dev/styles/main.less', 'dev/styles/main.less');
     }
     if (this.cssOption === 'SASS') {
-        this.directory('dev/styles/sass/components', 'dev/styles/components');
-        this.directory('dev/styles/sass/elements', 'dev/styles/elements');
-        this.directory('dev/styles/sass/modules', 'dev/styles/modules');
-        this.directory('dev/styles/sass/pages', 'dev/styles/pages');
-        this.directory('dev/styles/sass/templates', 'dev/styles/templates');
+        this.directory('dev/styles/components');
+        this.copy('dev/styles/components/_all-components.less', 'dev/styles/components/_all-components.scss');
+        this.copy('dev/styles/components/_footer.less', 'dev/styles/components/_footer.scss');
+        this.copy('dev/styles/components/_header.less', 'dev/styles/components/_header.scss');
+        this.directory('dev/styles/elements');
+        this.copy('dev/styles/elements/_all-elements.less', 'dev/styles/elements/_all-elements.scss');
+        this.directory('dev/styles/modules');
+        this.copy('dev/styles/modules/_all-modules.less', 'dev/styles/modules/_all-modules.scss');
+        this.copy('dev/styles/modules/_box-sizing.less', 'dev/styles/modules/_box-sizing.scss');
+        this.copy('dev/styles/modules/_mixins.less', 'dev/styles/modules/_mixins.scss');
+        this.copy('dev/styles/modules/_reset.less', 'dev/styles/modules/_reset.scss');
+        this.copy('dev/styles/modules/_variables.less', 'dev/styles/modules/_variables.scss');
+        this.directory('dev/styles/pages');
+        this.copy('dev/styles/pages/_all-pages.less', 'dev/styles/pages/_all-pages.scss');
+        this.directory('dev/styles/templates');
+        this.copy('dev/styles/templates/_all-templates.less', 'dev/styles/templates/_all-templates.scss');
         this.mkdir('dev/styles/vendor');
-        this.template('dev/styles/sass/vendor/_all-vendor.scss', 'dev/styles/vendor/_all-vendor.scss');
-        this.template('dev/styles/sass/main.scss', 'dev/styles/main.scss');
+        this.template('dev/styles/vendor/_all-vendor.less', 'dev/styles/vendor/_all-vendor.scss');
+        this.template('dev/styles/vendor/_bourbon.scss', 'dev/styles/vendor/_bourbon.scss');
+        if (this.useFontAwesome) {
+            this.template('dev/styles/vendor/_font-awesome.less', 'dev/styles/vendor/_font-awesome.scss');
+        }
+        this.template('dev/styles/vendor/_bourbon.scss', 'dev/styles/vendor/_bourbon.scss');
+        this.template('dev/styles/main.less', 'dev/styles/main.scss');
     }
 
     // Dashboard
@@ -219,10 +239,10 @@ YeogurtGenerator.prototype.app = function app() {
     this.directory('dev/dashboard/styles/fonts', 'dev/dashboard/styles/fonts');
 
     if (this.cssOption === 'LESS') {
-        this.template('dev/dashboard/styles/less/main.less', 'dev/dashboard/styles/main.less');
+        this.template('dev/dashboard/styles/main.less', 'dev/dashboard/styles/main.less');
     }
     if (this.cssOption === 'SASS') {
-        this.template('dev/dashboard/styles/sass/main.scss', 'dev/dashboard/styles/main.scss');
+        this.template('dev/dashboard/styles/main.less', 'dev/dashboard/styles/main.scss');
     }
 
     // scripts

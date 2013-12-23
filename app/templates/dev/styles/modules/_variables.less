@@ -1,0 +1,50 @@
+/*
+*   _variables.less
+*   Author Custom Variables
+*/
+
+//  Dashboard Specific Variables
+<% if (cssOption === 'LESS') { %>
+// Font Awesome
+@fa-font-path: '../../bower_components/font-awesome/fonts';
+
+@primary-color: #e96556;
+@secondary-color: #e1c2c2;
+@hr-color: #d2d6d7;
+@text-color: #333;
+@white-color: #fff;
+@header-shadow-color: #ccc;
+@header-border: #c7c7c7;
+
+// Status Colors
+@default-status-color: #6e6e6e;
+@blocked-color: #df342e;
+@queued-color: #c6cacc;
+@development-color: #2eb8e9;
+@qa-color: #ee8b1e;
+@review-color: #84b623;
+@integration-color: #194177;
+@live-color: #27374b;<% } %>
+<% if (cssOption === 'SASS') { %>
+// Font Awesome
+$fa-font-path: '../../bower_components/font-awesome/fonts';
+
+$primary-color: #e96556;
+$secondary-color: #e1c2c2;
+$hr-color: #d2d6d7;
+$text-color: #333;
+$white-color: #fff;
+$header-shadow-color: #ccc;
+$header-border: #c7c7c7;
+
+// Status Colors
+$default-status-color: #6e6e6e;
+$blocked-color: #df342e;
+$queued-color: #c6cacc;
+$development-color: #2eb8e9;
+$qa-color: #ee8b1e;
+$review-color: #84b623;
+$integration-color: #194177;
+$live-color: #27374b;<% } %>
+
+// Author Specific Variables
