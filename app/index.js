@@ -156,14 +156,14 @@ YeogurtGenerator.prototype.app = function app() {
     this.mkdir('dev/markup/templates');
     this.mkdir('dev/markup/pages');
     this.mkdir('dev/markup/components');
-    this.mkdir('dev/markup/elements');
+    this.mkdir('dev/markup/modules');
 
     this.template('dev/markup/components/all-components.jade', 'dev/markup/components/all-components.jade');
 
     this.copy('dev/markup/components/header.jade', 'dev/markup/components/header.jade');
     this.copy('dev/markup/components/footer.jade', 'dev/markup/components/footer.jade');
-    this.template('dev/markup/elements/all-elements.jade', 'dev/markup/elements/all-elements.jade');
-    this.copy('dev/markup/elements/heading.jade', 'dev/markup/elements/heading.jade');
+    this.template('dev/markup/modules/all-modules.jade', 'dev/markup/modules/all-modules.jade');
+    this.copy('dev/markup/modules/heading.jade', 'dev/markup/modules/heading.jade');
     this.copy('dev/markup/pages/index.jade', 'dev/markup/pages/index.jade');
     this.template('dev/markup/templates/base.jade', 'dev/markup/templates/base.jade');
     this.copy('dev/markup/templates/one-column.jade', 'dev/markup/templates/one-column.jade');
@@ -173,10 +173,12 @@ YeogurtGenerator.prototype.app = function app() {
     this.mkdir('dev/styles');
     this.mkdir('dev/styles/fonts');
     if (this.cssOption === 'LESS') {
+        this.directory('dev/styles/base', 'dev/styles/base');
         this.directory('dev/styles/components', 'dev/styles/components');
-        this.directory('dev/styles/elements', 'dev/styles/elements');
+        this.directory('dev/styles/modules', 'dev/styles/modules');
         this.directory('dev/styles/modules', 'dev/styles/modules');
         this.directory('dev/styles/pages', 'dev/styles/pages');
+        this.directory('dev/styles/partials', 'dev/styles/partials');
         this.directory('dev/styles/templates', 'dev/styles/templates');
         this.mkdir('dev/styles/vendor');
         this.template('dev/styles/vendor/_all-vendor.less', 'dev/styles/vendor/_all-vendor.less');
@@ -184,24 +186,26 @@ YeogurtGenerator.prototype.app = function app() {
             this.template('dev/styles/vendor/_font-awesome.less', 'dev/styles/vendor/_font-awesome.less');
         }
         this.template('dev/styles/vendor/_lesshat.less', 'dev/styles/vendor/_lesshat.less');
+        this.template('dev/styles/vendor/_normalize.less', 'dev/styles/vendor/_normalize.less');
         this.template('dev/styles/main.less', 'dev/styles/main.less');
     }
     if (this.cssOption === 'SASS') {
-        this.directory('dev/styles/components');
+        this.mkdir('dev/styles/base');
+        this.copy('dev/styles/base/_all-base.less', 'dev/styles/base/_all-base.scss');
+        this.copy('dev/styles/base/_mixins.less', 'dev/styles/base/_mixins.scss');
+        this.copy('dev/styles/base/_variables.less', 'dev/styles/base/_variables.scss');
+        this.mkdir('dev/styles/components');
         this.copy('dev/styles/components/_all-components.less', 'dev/styles/components/_all-components.scss');
         this.copy('dev/styles/components/_footer.less', 'dev/styles/components/_footer.scss');
         this.copy('dev/styles/components/_header.less', 'dev/styles/components/_header.scss');
-        this.directory('dev/styles/elements');
-        this.copy('dev/styles/elements/_all-elements.less', 'dev/styles/elements/_all-elements.scss');
-        this.directory('dev/styles/modules');
+        this.mkdir('dev/styles/modules');
         this.copy('dev/styles/modules/_all-modules.less', 'dev/styles/modules/_all-modules.scss');
-        this.copy('dev/styles/modules/_box-sizing.less', 'dev/styles/modules/_box-sizing.scss');
-        this.copy('dev/styles/modules/_mixins.less', 'dev/styles/modules/_mixins.scss');
-        this.copy('dev/styles/modules/_reset.less', 'dev/styles/modules/_reset.scss');
-        this.copy('dev/styles/modules/_variables.less', 'dev/styles/modules/_variables.scss');
-        this.directory('dev/styles/pages');
+        this.mkdir('dev/styles/pages');
         this.copy('dev/styles/pages/_all-pages.less', 'dev/styles/pages/_all-pages.scss');
-        this.directory('dev/styles/templates');
+        this.mkdir('dev/styles/partials');
+        this.copy('dev/styles/partials/_box-sizing.less', 'dev/styles/partials/_box-sizing.scss');
+        this.copy('dev/styles/partials/_reset.less', 'dev/styles/partials/_reset.scss');
+        this.mkdir('dev/styles/templates');
         this.copy('dev/styles/templates/_all-templates.less', 'dev/styles/templates/_all-templates.scss');
         this.mkdir('dev/styles/vendor');
         this.template('dev/styles/vendor/_all-vendor.less', 'dev/styles/vendor/_all-vendor.scss');
@@ -210,6 +214,7 @@ YeogurtGenerator.prototype.app = function app() {
             this.template('dev/styles/vendor/_font-awesome.less', 'dev/styles/vendor/_font-awesome.scss');
         }
         this.template('dev/styles/vendor/_bourbon.scss', 'dev/styles/vendor/_bourbon.scss');
+        this.template('dev/styles/vendor/_normalize.less', 'dev/styles/vendor/_normalize.scss');
         this.template('dev/styles/main.less', 'dev/styles/main.scss');
     }
 

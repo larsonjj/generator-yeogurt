@@ -32,9 +32,9 @@ block template
                             li.dashboard-list-item(class="#{link.status}")
                                 a(href="#{link.path}")
                                     | #{link.title}
-                    //- Build out elements list
+                    //- Build out modules list
                     ul.dashboard-list.hide
-                        each link, i in elements.links
+                        each link, i in modules.links
                             li.dashboard-list-item(class="#{link.status}")
                                 a(href="#{link.path}")
                                     | #{link.title}

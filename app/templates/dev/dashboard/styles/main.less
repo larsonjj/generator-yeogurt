@@ -4,15 +4,17 @@
 */
 
 // Project Module Imports
-@import '../../styles/modules/_all-modules';
-<% if (cssOption === 'SASS') { %>
-// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
-@import '../../bower_components/normalize-scss/normalize';<% } %>
-<% if (cssOption === 'LESS') { %>
-// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
-@import '../../bower_components/normalize-less/normalize';<% } %>
+@import '../../styles/base/_all-base';
+
 // Project Vendor Imports
 @import '../../styles/vendor/_all-vendor';
+
+// Project Partial Imports
+@import '../../styles/partials/_reset';
+@import '../../styles/partials/_box-sizing';
+
+// Project Module Imports
+@import '../../styles/modules/_all-modules';
 <% if (cssOption === 'LESS') { %>
 body {
     color: @text-color;

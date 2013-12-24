@@ -266,8 +266,8 @@ module.exports = function (grunt) {
                     '!.server/tmp/markup/templates/base.jade',
                     '.server/tmp/markup/components/*-*.jade',
                     '!.server/tmp/markup/components/all-components.jade',
-                    '.server/tmp/markup/elements/*-*.jade',
-                    '!.server/tmp/markup/elements/all-elements.jade'],
+                    '.server/tmp/markup/modules/*-*.jade',
+                    '!.server/tmp/markup/modules/all-modules.jade'],
                 ext: '.html',
                 rename: function (dest, matchedSrcPath) {
                     matchedSrcPath = matchedSrcPath.replace('.server/tmp/', '');
@@ -301,8 +301,8 @@ module.exports = function (grunt) {
                     '.server/tmp/markup/components/*-*.jade',
                     '!.server/tmp/markup/components/all-components.jade',
                     '!.server/tmp/markup/components/head.jade',
-                    '.server/tmp/markup/elements/*-*.jade',
-                    '!.server/tmp/markup/elements/all-elements.jade'],
+                    '.server/tmp/markup/modules/*-*.jade',
+                    '!.server/tmp/markup/modules/all-modules.jade'],
                 ext: '.html',
                 rename: function (dest, matchedSrcPath) {
                     matchedSrcPath = matchedSrcPath.replace('.server/tmp/', '');
@@ -734,11 +734,11 @@ module.exports = function (grunt) {
         pageData,
         templateData,
         componentData,
-        elementData,
+        moduleData,
         pageExtraData = [],
         templateExtraData = [],
         componentExtraData = [],
-        elementExtraData = [];
+        moduleExtraData = [];
         var updatePath = function (path, strToRemove) {
             return path.replace(strToRemove, '..');
         };
@@ -765,13 +765,13 @@ module.exports = function (grunt) {
             title = titleArray[(titleArray.length - 1)],
             newPath,
             dataObj;
-            if (type === 'element' || type === 'component') {
+            if (type === 'module' || type === 'component') {
                 newPath = updatePath(path.replace('.jade', '-' + type + '.html'), strToRemove);
             }
             else {
                 newPath = updatePath(path.replace('jade', 'html'), strToRemove);
             }
-            if (title !== 'base.jade' && title !== 'all-components.jade' && title !== 'all-elements.jade' && title !== 'head.jade') {
+            if (title !== 'base.jade' && title !== 'all-components.jade' && title !== 'all-modules.jade' && title !== 'head.jade') {
                 dataObj = {path: newPath, title: toTitleCase(convertDashes(title.replace('.jade', '')))};
                 itemsArray.push(_.extend(dataObj, data[itemsArray.length]));
             }
@@ -841,19 +841,19 @@ module.exports = function (grunt) {
             componentData = findJadeNames(abspath, 'component', 'dev/.server/tmp', componentExtraData);
         });
         itemsArray = []; // reset items array
-        // Go through jade elements
-        grunt.file.recurse('dev/.server/tmp/markup/elements', function (abspath) {
-            var data = parseFiles(abspath, 'element');
+        // Go through jade modules
+        grunt.file.recurse('dev/.server/tmp/markup/modules', function (abspath) {
+            var data = parseFiles(abspath, 'module');
             if (data) {
-                elementExtraData.push(data);
+                moduleExtraData.push(data);
             }
-            elementData = findJadeNames(abspath, 'element', 'dev/.server/tmp', elementExtraData);
+            moduleData = findJadeNames(abspath, 'module', 'dev/.server/tmp', moduleExtraData);
         });
         dashData = {
             pages: pageData,
             templates: templateData,
             components: componentData,
-            elements: elementData
+            modules: moduleData
         };
         grunt.config(['dashboardData'], dashData);
         done();
