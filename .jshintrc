@@ -1,8 +1,14 @@
 {
-    "node": true,
-    "esnext": true,
+    "globals": {
+        "module": true,
+        "define": true,
+        "requirejs": true,
+        "require": true,
+        "node": true
+    },
+    "browser": true,
+    "globalstrict": true,
     "bitwise": true,
-    "camelcase": true,
     "curly": true,
     "eqeqeq": true,
     "immed": true,
@@ -17,5 +23,5 @@
     "strict": true,
     "trailing": true,
     "smarttabs": true,
-    "white": true
+    "devel": true
 }

@@ -1,3 +1,4 @@
+'use strict';
 require.config({
     paths: {
         domReady: '../bower_components/requirejs-domready/domReady',
@@ -60,7 +61,6 @@ require.config({
 });
 
 require(['app', 'jquery', 'domReady'], function (app, $, domReady) {
-    'use strict';
     domReady(function () {
         // use app here
         console.log(app);

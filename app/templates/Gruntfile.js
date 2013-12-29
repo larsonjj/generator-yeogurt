@@ -727,18 +727,14 @@ module.exports = function (grunt) {
             grunt.task.run(['notify:deploy']);
         }
     });<% } %>
-    grunt.registerTask('build-dashboard', 'Builds out a static HTML page that lists all created pages', function () {
+    grunt.registerTask('build-dashboard', 'Runs through project Jade files and gathers needed data to build the dashboard', function () {
         var done = this.async(),
         itemsArray = [],
         dashData = {},
         pageData,
         templateData,
         componentData,
-        moduleData,
-        pageExtraData = [],
-        templateExtraData = [],
-        componentExtraData = [],
-        moduleExtraData = [];
+        moduleData;
         var updatePath = function (path, strToRemove) {
             return path.replace(strToRemove, '..');
         };
@@ -754,11 +750,22 @@ module.exports = function (grunt) {
             var tempStr = str.replace('!##', '');
             return tempStr.replace('##!', '');
         };
-        var getStatus = function (data) {
+        var getJSON = function (data) {
             if (data) {
                 var dataStr = data.trim().replace(/ /g, '');
                 return JSON.parse(dataStr);
             }
+        };
+        var recursiveParse = function(path, type, namePath) {
+            var extraData = [];
+            itemsArray = []; // reset items array
+            grunt.file.recurse(path, function (abspath) {
+                var data = parseFiles(abspath, type);
+                if (data) {
+                    extraData.push(data);
+                }
+                pageData = findJadeNames(abspath, type, namePath, extraData);
+            });
         };
         var findJadeNames = function (path, type, strToRemove, data) {
             var titleArray = path.split('/'),
@@ -780,82 +787,64 @@ module.exports = function (grunt) {
         var parseFiles = function (path, type) {
             var file = grunt.file.read(path),
             regex = /!##([^;]*?)##!/g,
-            fileMarkupMatch = file.match(regex);
+            markupRegex = /"markup": "([^;]*?)"/g,
+            markupRegexAfter = /,"markup":"([^;]*?)"/g,
+            fileMarkupMatch = file.match(regex),
+            fileData;
             if (fileMarkupMatch) {
-                fileMarkupMatch.forEach(function (element, i) {
-                    fileMarkupMatch[i] = removeSymbols(element);
-                });
-                if (type !== 'page') {
-                    if (type !== 'template') {
-                        var markup = fileMarkupMatch[0];
-                        grunt.file.write(path.replace('.jade', '-' + type + '.jade'), 'extend ../templates/base\nblock template\n' + markup);
-                    }
-                    else if (type === 'template') {
-                        var blockArray = fileMarkupMatch[0].trim().replace(/ /g, '').split('\n'),
-                        fileTemp = file;
-                        blockArray.forEach(function (element) {
-                            var eleObj = JSON.parse(element),
-                            pattern = new RegExp('block ' + (eleObj.blockName ? eleObj.blockName : 'Block name not configured') + '\\s'),
-                            fpoReplacement = '.fpo-container(style="width:' + (eleObj.width ? eleObj.width : '100px') + '; height:' + (eleObj.height ? eleObj.height : '100px') + ';") <div class="fpo-background" style="width:100%;height:100%;background-color:' + (eleObj.bgcolor ? eleObj.bgcolor : '#f7f7f7') + '"><span class="fpo-name" style="line-height:' + (eleObj.height ? eleObj.height : '100px') + ';color:' + eleObj.textColor + ';text-align:center;display:inline-block;width:100%;">block ' + (eleObj.blockName ? eleObj.blockName : 'Block name not configured') + '</span></div>\n';
-                            fileTemp = fileTemp.replace(pattern, fpoReplacement);
-                        });
-                        grunt.file.write(path, fileTemp);
-                    }
-                    else {
-                        grunt.log.error('Something went wrong when parsing jade files');
-                    }
-                    return getStatus(fileMarkupMatch[1]);
+                // Grab only first instance of data and remove !## ##! symbols
+                fileMarkupMatch = removeSymbols(fileMarkupMatch[0]);
+                // Find markup property, remove "markup" key as well as any double quotes (") so we have a clean set of markup
+                var markup = fileMarkupMatch.match(markupRegex);
+                // Check to see if markup exists
+                if (markup) {
+                    markup = markup[0].replace('"markup": ', '').replace(/\"/g, '');
                 }
                 else {
-                    return getStatus(fileMarkupMatch[0]);
+                    markup = 'p. No Markup Found';
                 }
+                // Remove all newline statements (\n), any extra space, and the entire "markup" key
+                fileData = fileMarkupMatch.replace(/\n/g, '').replace(/ /g, '').replace(markupRegexAfter, '');
+                if (type === 'module' || type === 'component') {
+                    grunt.file.write(path.replace('.jade', '-' + type + '.jade'), 'extend ../templates/base\nblock template\n' + markup);
+                }
+                else if (type === 'template') {
+                    var JSONData = getJSON(fileMarkupMatch),
+                    fileTemp = file;
+                    JSONData.blocks.forEach(function (element) {
+                        var pattern = new RegExp('block ' + (element.blockName ? element.blockName : 'Block name not configured') + '\\s'),
+                        fpoReplacement = '| <div class="fpo-container" style="width:' + (element.width ? element.width : '100px') + '; height:' + (element.height ? element.height : '100px') + ';"> <div class="fpo-background" style="width:100%;height:100%;background-color:' + (element.bgcolor ? element.bgcolor : '#f7f7f7') + '"><span class="fpo-name" style="line-height:' + (element.height ? element.height : '100px') + ';color:' + element.textColor + ';text-align:center;display:inline-block;width:100%;">block ' + (element.blockName ? element.blockName : 'Block name not configured') + '</span></div></div>\n';
+                        fileTemp = fileTemp.replace(pattern, fpoReplacement);
+                    });
+                    grunt.file.write(path, fileTemp);
+                }
+                else if (type !== 'page') {
+                    grunt.log.error('Something went wrong when parsing jade files');
+                }
+                return getJSON(fileData);
             }
             else {
-                grunt.log.writeln(['No data found.']);
+                grunt.log.writeln(['Skipping/No data found for: ' + path]);
             }
         };
         // Go through jade pages
-        grunt.file.recurse('dev/markup/pages', function (abspath) {
-            var data = parseFiles(abspath, 'page');
-            if (data) {
-                pageExtraData.push(data);
-            }
-            pageData = findJadeNames(abspath, 'page', 'dev', pageExtraData);
-        });
-        itemsArray = []; // reset items array
+        recursiveParse('dev/markup/pages', 'page', 'dev');
         // Go through jade templates
-        grunt.file.recurse('dev/.server/tmp/markup/templates', function (abspath) {
-            var data = parseFiles(abspath, 'template');
-            if (data) {
-                templateExtraData.push(data);
-            }
-            templateData = findJadeNames(abspath, 'template', 'dev/.server/tmp', templateExtraData);
-        });
-        itemsArray = []; // reset items array
+        recursiveParse('dev/.server/tmp/markup/templates', 'template', 'dev/.server/tmp');
         // Go through jade components
-        grunt.file.recurse('dev/.server/tmp/markup/components', function (abspath) {
-            var data = parseFiles(abspath, 'component');
-            if (data) {
-                componentExtraData.push(data);
-            }
-            componentData = findJadeNames(abspath, 'component', 'dev/.server/tmp', componentExtraData);
-        });
-        itemsArray = []; // reset items array
+        recursiveParse('dev/.server/tmp/markup/components', 'component', 'dev/.server/tmp');
         // Go through jade modules
-        grunt.file.recurse('dev/.server/tmp/markup/modules', function (abspath) {
-            var data = parseFiles(abspath, 'module');
-            if (data) {
-                moduleExtraData.push(data);
-            }
-            moduleData = findJadeNames(abspath, 'module', 'dev/.server/tmp', moduleExtraData);
-        });
+        recursiveParse('dev/.server/tmp/markup/modules', 'module', 'dev/.server/tmp');
+        // Setup all parsed data to be passed to jade templates
         dashData = {
             pages: pageData,
             templates: templateData,
             components: componentData,
             modules: moduleData
         };
+        // Set dashboard data variable to be used by Jade task
         grunt.config(['dashboardData'], dashData);
+        // Finish task
         done();
     });
 

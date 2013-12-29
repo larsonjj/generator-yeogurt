@@ -1,3 +1,7 @@
 node_modules
 *.log
-test/temp
+server
+dist
+.ftppass
+dev/bower_components
+dev/.server
