@@ -757,7 +757,6 @@ module.exports = function (grunt) {
             }
         };
         var recursiveParse = function(path, type, namePath) {
-            var extraData = [];
             var extraData = [],
             nameData;
             itemsArray = []; // reset items array
