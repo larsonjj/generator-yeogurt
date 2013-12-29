@@ -758,14 +758,17 @@ module.exports = function (grunt) {
         };
         var recursiveParse = function(path, type, namePath) {
             var extraData = [];
+            var extraData = [],
+            nameData;
             itemsArray = []; // reset items array
             grunt.file.recurse(path, function (abspath) {
                 var data = parseFiles(abspath, type);
                 if (data) {
                     extraData.push(data);
                 }
-                pageData = findJadeNames(abspath, type, namePath, extraData);
+                nameData = findJadeNames(abspath, type, namePath, extraData);
             });
+            return nameData;
         };
         var findJadeNames = function (path, type, strToRemove, data) {
             var titleArray = path.split('/'),
@@ -828,13 +831,13 @@ module.exports = function (grunt) {
             }
         };
         // Go through jade pages
-        recursiveParse('dev/markup/pages', 'page', 'dev');
+        pageData = recursiveParse('dev/markup/pages', 'page', 'dev');
         // Go through jade templates
-        recursiveParse('dev/.server/tmp/markup/templates', 'template', 'dev/.server/tmp');
+        templateData = recursiveParse('dev/.server/tmp/markup/templates', 'template', 'dev/.server/tmp');
         // Go through jade components
-        recursiveParse('dev/.server/tmp/markup/components', 'component', 'dev/.server/tmp');
+        componentData = recursiveParse('dev/.server/tmp/markup/components', 'component', 'dev/.server/tmp');
         // Go through jade modules
-        recursiveParse('dev/.server/tmp/markup/modules', 'module', 'dev/.server/tmp');
+        moduleData = recursiveParse('dev/.server/tmp/markup/modules', 'module', 'dev/.server/tmp');
         // Setup all parsed data to be passed to jade templates
         dashData = {
             pages: pageData,
