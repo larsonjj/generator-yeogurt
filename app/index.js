@@ -49,6 +49,11 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         message: 'Which CSS preprocessor would you like to use?',
         choices: ['LESS', 'SASS'],
     }, {
+        type: 'list',
+        name: 'jsOption',
+        message: 'Which JavaScript module library would you like to use?',
+        choices: ['RequireJS', 'Browserify'],
+    }, {
         type: 'checkbox',
         name: 'extras',
         message: 'Select any extras you would like:',
@@ -87,6 +92,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.projectName = props.projectName;
         this.versionControl = props.versionControl;
         this.cssOption = props.cssOption;
+        this.jsOption = props.jsOption;
         this.extras = props.extras;
         var extras = this.extras;
 

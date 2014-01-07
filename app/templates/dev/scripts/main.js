@@ -1,5 +1,5 @@
 'use strict';
-require.config({
+<% if (jsOption ==='RequireJS') { %>require.config({
     paths: {
         domReady: '../bower_components/requirejs-domready/domReady',
         jquery: '../bower_components/jquery/jquery',
@@ -66,5 +66,9 @@ require(['app', 'jquery', 'domReady'], function (app, $, domReady) {
         console.log(app);
         console.log('Running jQuery %s', $().jquery);
     });
-});
+});<% } %>
 
+<% if (jsOption ==='Browserify') { %>var app = require('./app');
+
+app.init();
+<% } %>

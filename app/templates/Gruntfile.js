@@ -149,7 +149,9 @@ module.exports = function (grunt) {
                     cwd: '<%%= yeoman.dev %>/',
                     dest: '<%%= yeoman.server %>/',
                     src: [
-                        'scripts/**'
+                        'scripts/**'<% if (jsOption ==='Browserify') { %>,
+                        '!scripts/app.js',
+                        '!scripts/main.js'<% } %>
                     ]
                 }, {
                     expand: true,
@@ -388,7 +390,7 @@ module.exports = function (grunt) {
                 files: {
                     '<%%= yeoman.dist %>/styles/main.css.map' : '<%%= yeoman.dist %>/styles/main.css.map'
                 }
-            },
+            },<% if (jsOption ==='RequireJS') { %>
             requireDist: {
                 options: {
                     replacements: [
@@ -444,7 +446,7 @@ module.exports = function (grunt) {
                 files: {
                     '<%%= yeoman.dist %>/../' : ['<%%= yeoman.dist %>/markup/{,*/}{,*/}*.html', '<%%= yeoman.dist %>/*.html']
                 }
-            },
+            },<% } %>
             indexLinkFix: {
                 options: {
                     replacements: [
@@ -580,7 +582,25 @@ module.exports = function (grunt) {
                     dest: '<%%= yeoman.dist %>'
                 }]
             }
-        },
+        },<% if (jsOption ==='Browserify') { %>
+        browserify: {
+            server: {
+                options: {
+                    debug: true
+                },
+                files: {
+                    '<%%= yeoman.server %>/scripts/main.js': ['<%%= yeoman.dev %>/scripts/main.js']
+                }
+            },
+            dist: {
+                options: {
+                    debug: true
+                },
+                files: {
+                    '<%%= yeoman.dist %>/scripts/main.min.js': ['<%%= yeoman.dev %>/scripts/main.js']
+                }
+            }
+        },<% } %><% if (jsOption ==='RequireJS') { %>
         requirejs: {
             dist: {
                 options: {
@@ -593,7 +613,7 @@ module.exports = function (grunt) {
                     preserveLicenseComments: false,
                 }
             }
-        }<% if (cssOption === 'SASS') { %>,
+        },<% } %><% if (cssOption === 'SASS') { %>
         sass: {
             server: {
                 options: {
@@ -647,7 +667,7 @@ module.exports = function (grunt) {
                 src: ['dashboard/styles/*.{sass,scss}'],
                 ext: '.css'
             },
-        }<% } %><% if (cssOption === 'LESS') { %>,
+        },<% } %><% if (cssOption === 'LESS') { %>
         less: {
             server: {
                 options: {
@@ -712,7 +732,7 @@ module.exports = function (grunt) {
                 dest: '<%%= yeoman.dist %>/',
                 src: ['dashboard/styles/*.less'],
                 ext: '.css'
-            },
+            }
         }<% } %>
     });<% if (useFTP) { %>
 
@@ -854,7 +874,8 @@ module.exports = function (grunt) {
         'clean:server',
         'copy:server',
         'build-dashboard'<% if (jshint) { %>,
-        'jshint:test'<% } %>,
+        'jshint:test'<% } %><% if (jsOption ==='Browserify') { %>,
+        'browserify:server'<% } %>,
         'jade:server',
         'jade:serverDashboard',<% if (cssOption === 'LESS') { %>
         'less:server',
@@ -873,7 +894,8 @@ module.exports = function (grunt) {
         'clean:dist',
         'copy:dist',
         'build-dashboard',<% if (jshint) { %>
-        'jshint:test',<% } %>
+        'jshint:test',<% } %><% if (jsOption ==='Browserify') { %>,
+        'browserify:dist'<% } %>,
         'imagemin',
         'svgmin',
         'jade:dist',
@@ -882,8 +904,8 @@ module.exports = function (grunt) {
         'less:distDashboard',<% } %><% if (cssOption === 'SASS') { %>
         'sass:dist',
         'sass:distDashboard',
-        'string-replace:sassMapFixDist',<% } %>
-        'requirejs',
+        'string-replace:sassMapFixDist',<% } %><% if (jsOption ==='RequireJS') { %>,
+        'requirejs'<% } %>,
         'string-replace:requireDist', // change require main path to 'main.min'
         'string-replace:requireDistTwo',
         'string-replace:requireDistThree',

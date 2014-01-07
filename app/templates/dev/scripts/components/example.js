@@ -1,4 +1,4 @@
-'use strict';
+<% if (jsOption ==='RequireJS') { %>'use strict';
 
 // Asyncronous with module loading
 require(['domReady', 'jquery'], function (domReady, $) {
@@ -6,3 +6,10 @@ require(['domReady', 'jquery'], function (domReady, $) {
         console.log($('body'));
     });
 });
+<% } %>
+<% if (jsOption ==='Browserify') { %>/*global $:false */
+'use strict';
+
+$(function () {
+    console.log($('body'));
+});<% } %>

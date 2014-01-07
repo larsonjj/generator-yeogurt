@@ -13,5 +13,6 @@ block body
 block content
     +heading({type:'h1', class:'heading', text: 'Test Heading'})
     p Example page
-    script.
-        require(['../../scripts/components/example.js'])
+    <% if (jsOption ==='RequireJS') { %>script.
+        require(['../../scripts/components/example.js'])<% } %><% if (jsOption ==='Browserify') { %>
+        script(src="../../scripts/components/example.js", defer)<% } %>
