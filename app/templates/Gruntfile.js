@@ -432,20 +432,6 @@ module.exports = function (grunt) {
                 files: {
                     '<%%= yeoman.dist %>/../' : ['<%%= yeoman.dist %>/markup/{,*/}{,*/}*.html', '<%%= yeoman.dist %>/*.html']
                 }
-            },
-            requireInline: {
-                options: {
-                    replacements: [
-                        // place files inline example
-                        {
-                            pattern: '.js\'])',
-                            replacement: '.min.js\'])'
-                        }
-                    ]
-                },
-                files: {
-                    '<%%= yeoman.dist %>/../' : ['<%%= yeoman.dist %>/markup/{,*/}{,*/}*.html', '<%%= yeoman.dist %>/*.html']
-                }
             },<% } %>
             indexLinkFix: {
                 options: {
@@ -597,7 +583,7 @@ module.exports = function (grunt) {
                     debug: true
                 },
                 files: {
-                    '<%%= yeoman.dist %>/scripts/main.min.js': ['<%%= yeoman.dev %>/scripts/main.js']
+                    '<%%= yeoman.dist %>/scripts/main.js': ['<%%= yeoman.dev %>/scripts/main.js']
                 }
             }
         },<% } %><% if (jsOption ==='RequireJS') { %>
@@ -607,7 +593,7 @@ module.exports = function (grunt) {
                     name: 'main',
                     baseUrl: '<%%= yeoman.dev %>/scripts/',
                     mainConfigFile: '<%%= yeoman.dev %>/scripts/main.js',
-                    out: '<%%= yeoman.dist %>/scripts/main.min.js',
+                    out: '<%%= yeoman.dist %>/scripts/main.js',
                     optimize: 'uglify2',
                     generateSourceMaps: true,
                     preserveLicenseComments: false,
@@ -894,7 +880,7 @@ module.exports = function (grunt) {
         'clean:dist',
         'copy:dist',
         'build-dashboard',<% if (jshint) { %>
-        'jshint:test',<% } %><% if (jsOption ==='Browserify') { %>,
+        'jshint:test',<% } %><% if (jsOption ==='Browserify') { %>
         'browserify:dist'<% } %>,
         'imagemin',
         'svgmin',
@@ -904,12 +890,12 @@ module.exports = function (grunt) {
         'less:distDashboard',<% } %><% if (cssOption === 'SASS') { %>
         'sass:dist',
         'sass:distDashboard',
-        'string-replace:sassMapFixDist',<% } %><% if (jsOption ==='RequireJS') { %>,
-        'requirejs'<% } %>,
+        'string-replace:sassMapFixDist',<% } %><% if (jsOption ==='RequireJS') { %>
+        'requirejs',
         'string-replace:requireDist', // change require main path to 'main.min'
         'string-replace:requireDistTwo',
         'string-replace:requireDistThree',
-        'string-replace:requireInline',
+        'string-replace:requireInline',<% } %>
         'string-replace:indexLinkFix',
         'htmlmin:dist',
         'uglify',
