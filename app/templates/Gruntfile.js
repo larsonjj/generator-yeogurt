@@ -572,7 +572,12 @@ module.exports = function (grunt) {
         browserify: {
             server: {
                 options: {
-                    debug: true
+                    debug: true,
+                    aliasMappings: {
+                        cwd: '<%%= yeoman.dev %>/',
+                        src: ['!scripts/main.js', '!scripts/app.js', 'scripts/{,*/}*.js'],
+                        dest: ''
+                    }
                 },
                 files: {
                     '<%%= yeoman.server %>/scripts/main.js': ['<%%= yeoman.dev %>/scripts/main.js']
