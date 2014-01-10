@@ -42,7 +42,6 @@ describe('yeogurt generator', function () {
             'dev/styles/modules',
             'dev/styles/pages',
             'dev/styles/vendor',
-            'dev/styles/modules',
             'dev/styles/partials',
             'dev/styles/partials/_box-sizing.less',
             'dev/styles/templates',

@@ -1,34 +1,55 @@
 {
-    "name": "sample",
-    "version": "0.0.1",
-    "dependencies": {},
+  "name": "generator-yeogurt",
+  "version": "0.2.1",
+  "description": "A Yeoman generator for creating a sensible structure to client-based work. Utilizes Jade, Sass/Less, and RequireJS",
+  "keywords": [
+    "yeoman-generator",
+    "yeogurt",
+    "front-end",
+    "html5",
+    "modernizr",
+    "jade",
+    "sass",
+    "less",
+    "requirejs",
+    "adobecq",
+    "cq",
+    "hybris",
+    "dashboard"
+  ],
+  "homepage": "https://github.com/larsonjj/generator-yeogurt",
+  "bugs": "https://github.com/larsonjj/generator-yeogurt/issues",
+  "author": {
+    "name": "Jake Larson",
+    "email": "jake.j.larson@gmail.com",
+    "url": "https://github.com/larsonjj"
+  },
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/larsonjj/generator-yeogurt.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "yeoman-generator": "~0.14.0",
+    "colors": "~0.6.2",
+    "lodash": "~2.2.1",
+    "mocha": ">=1.12.0"
+  },
     "devDependencies": {
-        "grunt": "~0.4.2",
-        "grunt-contrib-connect": "~0.5.0",
-        "grunt-contrib-watch": "~0.5.3",
-        "grunt-contrib-clean": "~0.5.0",
-        "grunt-contrib-compress": "~0.5.3",
-        "grunt-contrib-jade": "~0.9.0",
-        "grunt-contrib-htmlmin": "~0.1.3",
-        "grunt-contrib-requirejs": "~0.4.1",
-        "grunt-contrib-imagemin": "~0.4.0",
-        "grunt-contrib-jshint": "~0.8.0",
-        "jshint-stylish": "~0.1.4",
-        "grunt-contrib-copy": "~0.5.0",
-        "grunt-contrib-uglify": "~0.2.7",
-        "grunt-contrib-less": "~0.8.3",
-        "grunt-open": "~0.2.2",
-        "grunt-notify": "~0.2.16",
-        "grunt-string-replace": "~0.2.7",
-        "grunt-svgmin": "~0.3.0",
-        "grunt-newer": "~0.6.0",
-        "load-grunt-tasks": "~0.2.1",
-        "lodash": "~2.4.1",
-        "time-grunt": "~0.2.5",
-        "bower": "~1.2.8",
-        "grunt-ftpush": "~0.3.3"
+  },
+  "peerDependencies": {
+    "yo": ">=1.0.6"
     },
     "engines": {
-        "node": ">=0.8.0"
+    "node": ">=0.8.0",
+    "npm": ">=1.2.10"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
     }
+  ]
 }

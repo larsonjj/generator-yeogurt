@@ -21,9 +21,9 @@ html(lang="en", class='no-js')
         //if lt IE 9<% if (responsive) { %>
             script(src="../../bower_components/respond/respond.min.js")<% } %>
             script(src="../../bower_components/html5shiv/dist/html5shiv.js")<% } %>
-        <% if (jsOption ==='RequireJS') { %>script(data-main="../../scripts/main", src="../../bower_components/requirejs/require.js")<% } %>
+        <% if (jsOption ==='RequireJS') { %>script(data-main="../../scripts/main", src="../../bower_components/requirejs/require.js")<% } else if (jsOption ==='Browserify') { %>
+        script(src="../../scripts/main.js", defer)<% } %>
     -var bodyClass
     block body
     body(class=(bodyClass ? bodyClass : false))
         block template
-        <% if (jsOption ==='Browserify') { %>script(src="../../scripts/main.js")<% } %>
