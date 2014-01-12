@@ -14,7 +14,8 @@ module.exports = function (grunt) {
     // show elapsed time at the end
     require('time-grunt')(grunt);
     // load all grunt tasks
-    require('load-grunt-tasks')(grunt);
+    // require('load-grunt-tasks')(grunt);
+    require('jit-grunt')(grunt);
 
     grunt.initConfig({
         // configurable paths
@@ -432,20 +433,20 @@ module.exports = function (grunt) {
                 files: {
                     '<%%= yeoman.dist %>/../' : ['<%%= yeoman.dist %>/markup/{,*/}{,*/}*.html', '<%%= yeoman.dist %>/*.html']
                 }
-	    },
-	    requireInline: {
-		options: {
-		    replacements: [
-			// place files inline example
-			{
-			    pattern: '.js\'])',
-			    replacement: '.min.js\'])'
-			}
-		    ]
-		},
-		files: {
-		    '<%%= yeoman.dist %>/../' : ['<%%= yeoman.dist %>/markup/{,*/}{,*/}*.html', '<%%= yeoman.dist %>/*.html']
-		}
+            },
+            requireInline: {
+                options: {
+                    replacements: [
+                    // place files inline example
+                        {
+                            pattern: '.js\'])',
+                            replacement: '.min.js\'])'
+                        }
+                    ]
+                },
+                files: {
+                    '<%= yeoman.dist %>/../' : ['<%= yeoman.dist %>/markup/{,*/}{,*/}*.html', '<%= yeoman.dist %>/*.html']
+                }
             },<% } %>
             indexLinkFix: {
                 options: {
@@ -913,8 +914,8 @@ module.exports = function (grunt) {
         'requirejs',
         'string-replace:requireDist', // change require main path to 'main.min'
         'string-replace:requireDistTwo',
-	'string-replace:requireDistThree',
-	'string-replace:requireInline',<% } %>
+        'string-replace:requireDistThree',
+        'string-replace:requireInline',<% } %>
         'string-replace:indexLinkFix',
         'htmlmin:dist',
         'uglify',

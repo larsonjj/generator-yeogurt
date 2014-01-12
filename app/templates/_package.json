@@ -36,6 +36,7 @@
         "grunt-string-replace": "~0.2.7",
         "grunt-svgmin": "~0.3.0",
         "grunt-newer": "~0.6.0",
+        "jit-grunt": "~0.1.2",
         "load-grunt-tasks": "~0.2.1",
         "lodash": "~2.4.1",
         "time-grunt": "~0.2.5",

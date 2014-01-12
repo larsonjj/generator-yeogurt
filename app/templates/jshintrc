@@ -1,11 +1,9 @@
 {
-    "globals": {
-        "module": true,
-        "define": true,
-        "requirejs": true,
-        "require": true,
-        "node": true
-    },
+    "module": true,
+    "define": true,
+    "requirejs": true,
+    "require": true,
+    "node": true,
     "browser": true,
     "globalstrict": true,
     "bitwise": true,

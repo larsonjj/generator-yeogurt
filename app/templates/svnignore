@@ -1,6 +1,5 @@
 node_modules
 *.log
-server
 dist
 .ftppass
 dev/bower_components
