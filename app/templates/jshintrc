@@ -1,23 +1,7 @@
 {
     // --------------------------------------------------------------------
-    // JSHint Configuration, Strict Edition
+    // JSHint Configuration, Based off of https://gist.github.com/haschek/2595796
     // --------------------------------------------------------------------
-    //
-    // This is a options template for [JSHint][1], using [JSHint example][2]
-    // and [Ory Band's example][3] as basis and setting config values to
-    // be most strict:
-    //
-    // * set all enforcing options to true
-    // * set all relaxing options to false
-    // * set all environment options to false, except the browser value
-    // * set all JSLint legacy options to false
-    //
-    // [1]: http://www.jshint.com/
-    // [2]: https://github.com/jshint/node-jshint/blob/master/example/config.json
-    // [3]: https://github.com/oryband/dotfiles/blob/master/jshintrc
-    //
-    // @author http://michael.haschke.biz/
-    // @license http://unlicense.org/
 
     // == Enforcing Options ===============================================
     //
@@ -104,11 +88,6 @@
     "white"         : false,    // Check against strict whitespace and indentation rules.
 
     // == Undocumented Options ============================================
-    //
-    // While I've found these options in [example1][2] and [example2][3]
-    // they are not described in the [JSHint Options documentation][4].
-    //
-    // [4]: http://www.jshint.com/options/
 
     "maxerr"        : 100,      // Maximum errors before stopping.
     "predef"        : [         // Extra globals.
