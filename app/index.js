@@ -211,6 +211,7 @@ YeogurtGenerator.prototype.app = function app() {
         this.mkdir('dev/styles/pages');
         this.copy('dev/styles/pages/_all-pages.less', 'dev/styles/pages/_all-pages.scss');
         this.mkdir('dev/styles/partials');
+        this.copy('dev/styles/partials/_all-partials.less', 'dev/styles/partials/_all-partials.scss');
         this.copy('dev/styles/partials/_box-sizing.less', 'dev/styles/partials/_box-sizing.scss');
         this.copy('dev/styles/partials/_reset.less', 'dev/styles/partials/_reset.scss');
         this.mkdir('dev/styles/templates');
@@ -250,11 +251,50 @@ YeogurtGenerator.prototype.app = function app() {
     // styles
     this.mkdir('dev/dashboard/styles');
     this.directory('dev/dashboard/styles/fonts', 'dev/dashboard/styles/fonts');
-
     if (this.cssOption === 'LESS') {
+        this.directory('dev/dashboard/styles/base', 'dev/dashboard/styles/base');
+        this.directory('dev/dashboard/styles/components', 'dev/dashboard/styles/components');
+        this.directory('dev/dashboard/styles/modules', 'dev/dashboard/styles/modules');
+        this.directory('dev/dashboard/styles/modules', 'dev/dashboard/styles/modules');
+        this.directory('dev/dashboard/styles/pages', 'dev/dashboard/styles/pages');
+        this.directory('dev/dashboard/styles/partials', 'dev/dashboard/styles/partials');
+        this.directory('dev/dashboard/styles/templates', 'dev/dashboard/styles/templates');
+        this.mkdir('dev/dashboard/styles/vendor');
+        this.template('dev/dashboard/styles/vendor/_all-vendor.less', 'dev/dashboard/styles/vendor/_all-vendor.less');
+        if (this.useFontAwesome) {
+            this.template('dev/dashboard/styles/vendor/_font-awesome.less', 'dev/dashboard/styles/vendor/_font-awesome.less');
+        }
+        this.template('dev/dashboard/styles/vendor/_lesshat.less', 'dev/dashboard/styles/vendor/_lesshat.less');
+        this.template('dev/dashboard/styles/vendor/_normalize.less', 'dev/dashboard/styles/vendor/_normalize.less');
         this.template('dev/dashboard/styles/main.less', 'dev/dashboard/styles/main.less');
     }
     if (this.cssOption === 'SASS') {
+        this.mkdir('dev/dashboard/styles/base');
+        this.copy('dev/dashboard/styles/base/_all-base.less', 'dev/dashboard/styles/base/_all-base.scss');
+        this.copy('dev/dashboard/styles/base/_mixins.less', 'dev/dashboard/styles/base/_mixins.scss');
+        this.copy('dev/dashboard/styles/base/_variables.less', 'dev/dashboard/styles/base/_variables.scss');
+        this.mkdir('dev/dashboard/styles/components');
+        this.copy('dev/dashboard/styles/components/_all-components.less', 'dev/dashboard/styles/components/_all-components.scss');
+        this.copy('dev/dashboard/styles/components/_footer.less', 'dev/dashboard/styles/components/_footer.scss');
+        this.copy('dev/dashboard/styles/components/_header.less', 'dev/dashboard/styles/components/_header.scss');
+        this.mkdir('dev/dashboard/styles/modules');
+        this.copy('dev/dashboard/styles/modules/_all-modules.less', 'dev/dashboard/styles/modules/_all-modules.scss');
+        this.mkdir('dev/dashboard/styles/pages');
+        this.copy('dev/dashboard/styles/pages/_all-pages.less', 'dev/dashboard/styles/pages/_all-pages.scss');
+        this.mkdir('dev/dashboard/styles/partials');
+        this.copy('dev/dashboard/styles/partials/_all-partials.less', 'dev/dashboard/styles/partials/_all-partials.scss');
+        this.copy('dev/dashboard/styles/partials/_box-sizing.less', 'dev/dashboard/styles/partials/_box-sizing.scss');
+        this.copy('dev/dashboard/styles/partials/_reset.less', 'dev/dashboard/styles/partials/_reset.scss');
+        this.mkdir('dev/dashboard/styles/templates');
+        this.copy('dev/dashboard/styles/templates/_all-templates.less', 'dev/dashboard/styles/templates/_all-templates.scss');
+        this.mkdir('dev/dashboard/styles/vendor');
+        this.template('dev/dashboard/styles/vendor/_all-vendor.less', 'dev/dashboard/styles/vendor/_all-vendor.scss');
+        this.template('dev/dashboard/styles/vendor/_bourbon.scss', 'dev/dashboard/styles/vendor/_bourbon.scss');
+        if (this.useFontAwesome) {
+            this.template('dev/dashboard/styles/vendor/_font-awesome.less', 'dev/dashboard/styles/vendor/_font-awesome.scss');
+        }
+        this.template('dev/dashboard/styles/vendor/_bourbon.scss', 'dev/dashboard/styles/vendor/_bourbon.scss');
+        this.template('dev/dashboard/styles/vendor/_normalize.less', 'dev/dashboard/styles/vendor/_normalize.scss');
         this.template('dev/dashboard/styles/main.less', 'dev/dashboard/styles/main.scss');
     }
 

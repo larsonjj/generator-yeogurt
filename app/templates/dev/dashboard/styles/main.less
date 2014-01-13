@@ -3,18 +3,20 @@
 *   Styles for dashboard
 */
 
-// Project Module Imports
-@import '../../styles/base/_all-base';
+// Base Imports
+@import 'base/_all-base';
 
-// Project Vendor Imports
-@import '../../styles/vendor/_all-vendor';
+// Vendor Imports
+@import 'vendor/_all-vendor';
 
-// Project Partial Imports
-@import '../../styles/partials/_reset';
-@import '../../styles/partials/_box-sizing';
+// Partial Imports
+@import 'partials/_all-partials';
 
-// Project Module Imports
-@import '../../styles/modules/_all-modules';
+// Module Imports
+@import 'modules/_all-modules';
+
+// Components
+@import 'components/_all-components';
 <% if (cssOption === 'LESS') { %>
 body {
     color: @text-color;
