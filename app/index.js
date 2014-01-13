@@ -184,7 +184,6 @@ YeogurtGenerator.prototype.app = function app() {
         this.directory('dev/styles/base', 'dev/styles/base');
         this.directory('dev/styles/components', 'dev/styles/components');
         this.directory('dev/styles/modules', 'dev/styles/modules');
-        this.directory('dev/styles/modules', 'dev/styles/modules');
         this.directory('dev/styles/pages', 'dev/styles/pages');
         this.directory('dev/styles/partials', 'dev/styles/partials');
         this.directory('dev/styles/templates', 'dev/styles/templates');
@@ -253,12 +252,18 @@ YeogurtGenerator.prototype.app = function app() {
     this.directory('dev/dashboard/styles/fonts', 'dev/dashboard/styles/fonts');
     if (this.cssOption === 'LESS') {
         this.directory('dev/dashboard/styles/base', 'dev/dashboard/styles/base');
-        this.directory('dev/dashboard/styles/components', 'dev/dashboard/styles/components');
-        this.directory('dev/dashboard/styles/modules', 'dev/dashboard/styles/modules');
+        this.mkdir('dev/dashboard/styles/components');
+        this.copy('dev/dashboard/styles/components/_all-components.less', 'dev/dashboard/styles/components/_all-components.less');
+        this.copy('dev/dashboard/styles/components/_footer.less', 'dev/dashboard/styles/components/_footer.less');
+        this.copy('dev/dashboard/styles/components/_header.less', 'dev/dashboard/styles/components/_header.less');
+        this.template('dev/dashboard/styles/components/_status-key.less', 'dev/dashboard/styles/components/_status-key.less');
+        this.template('dev/dashboard/styles/components/_dashboard-switcher.less', 'dev/dashboard/styles/components/_dashboard-switcher.less');
         this.directory('dev/dashboard/styles/modules', 'dev/dashboard/styles/modules');
         this.directory('dev/dashboard/styles/pages', 'dev/dashboard/styles/pages');
         this.directory('dev/dashboard/styles/partials', 'dev/dashboard/styles/partials');
-        this.directory('dev/dashboard/styles/templates', 'dev/dashboard/styles/templates');
+        this.mkdir('dev/dashboard/styles/templates');
+        this.template('dev/dashboard/styles/templates/_all-templates.less', 'dev/dashboard/styles/templates/_all-templates.less');
+        this.template('dev/dashboard/styles/templates/_dashboard.less', 'dev/dashboard/styles/templates/_dashboard.less');
         this.mkdir('dev/dashboard/styles/vendor');
         this.template('dev/dashboard/styles/vendor/_all-vendor.less', 'dev/dashboard/styles/vendor/_all-vendor.less');
         if (this.useFontAwesome) {

@@ -5,8 +5,10 @@ extend base
 block template
     //- Define header block from base template
     block header
+        //- Header component
         +header()
 
+    //- Dashbaord switcher component
     +dashboard-switcher()
 
     .container
@@ -43,4 +45,5 @@ block template
                     block sidebar
         //- Define footer block from base template
         block footer
+            //- Footer component
             +footer()

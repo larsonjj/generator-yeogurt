@@ -1,6 +1,9 @@
-<% if (cssOption === 'SASS') { %>
-// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
-@import '../../../bower_components/normalize-scss/normalize';<% } %>
-<% if (cssOption === 'LESS') { %>
+/*
+*   _normalize.less
+*   Import Normalize Library
+*/
+
+<% if (cssOption === 'SASS') { %>// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
+@import '../../../bower_components/normalize-scss/normalize';<% } %><% if (cssOption === 'LESS') { %>
 // Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
 @import '../../../bower_components/normalize-less/normalize';<% } %>
