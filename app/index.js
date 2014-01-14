@@ -43,12 +43,12 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         name: 'versionControl',
         message: 'Which version control software are you using (or plan to use)?',
         choices: ['Git', 'SVN', 'Both', 'None (I like to live on the edge)'],
-    },/* {
+    }, {
         type: 'list',
         name: 'cssOption',
         message: 'Which CSS preprocessor would you like to use?',
-        choices: ['LESS', 'SASS'],
-    }, {
+        choices: ['SASS', 'LESS'],
+    }, /*{
         type: 'list',
         name: 'jsOption',
         message: 'Which JavaScript module library would you like to use?',
@@ -91,8 +91,8 @@ YeogurtGenerator.prototype.askFor = function askFor() {
     this.prompt(prompts, function (props) {
         this.projectName = props.projectName;
         this.versionControl = props.versionControl;
-        this.cssOption = 'LESS';
-        // this.cssOption = props.cssOption;
+        // this.cssOption = 'LESS';
+        this.cssOption = props.cssOption;
         this.jsOption = 'RequireJS';
         // this.jsOption = props.jsOption;
         this.extras = props.extras;
@@ -259,7 +259,6 @@ YeogurtGenerator.prototype.app = function app() {
         this.template('dev/dashboard/styles/components/_status-key.less', 'dev/dashboard/styles/components/_status-key.less');
         this.template('dev/dashboard/styles/components/_dashboard-switcher.less', 'dev/dashboard/styles/components/_dashboard-switcher.less');
         this.directory('dev/dashboard/styles/modules', 'dev/dashboard/styles/modules');
-        this.directory('dev/dashboard/styles/pages', 'dev/dashboard/styles/pages');
         this.directory('dev/dashboard/styles/partials', 'dev/dashboard/styles/partials');
         this.mkdir('dev/dashboard/styles/templates');
         this.template('dev/dashboard/styles/templates/_all-templates.less', 'dev/dashboard/styles/templates/_all-templates.less');
@@ -282,16 +281,17 @@ YeogurtGenerator.prototype.app = function app() {
         this.copy('dev/dashboard/styles/components/_all-components.less', 'dev/dashboard/styles/components/_all-components.scss');
         this.copy('dev/dashboard/styles/components/_footer.less', 'dev/dashboard/styles/components/_footer.scss');
         this.copy('dev/dashboard/styles/components/_header.less', 'dev/dashboard/styles/components/_header.scss');
+        this.template('dev/dashboard/styles/components/_status-key.less', 'dev/dashboard/styles/components/_status-key.scss');
+        this.template('dev/dashboard/styles/components/_dashboard-switcher.less', 'dev/dashboard/styles/components/_dashboard-switcher.scss');
         this.mkdir('dev/dashboard/styles/modules');
         this.copy('dev/dashboard/styles/modules/_all-modules.less', 'dev/dashboard/styles/modules/_all-modules.scss');
-        this.mkdir('dev/dashboard/styles/pages');
-        this.copy('dev/dashboard/styles/pages/_all-pages.less', 'dev/dashboard/styles/pages/_all-pages.scss');
         this.mkdir('dev/dashboard/styles/partials');
         this.copy('dev/dashboard/styles/partials/_all-partials.less', 'dev/dashboard/styles/partials/_all-partials.scss');
         this.copy('dev/dashboard/styles/partials/_box-sizing.less', 'dev/dashboard/styles/partials/_box-sizing.scss');
         this.copy('dev/dashboard/styles/partials/_reset.less', 'dev/dashboard/styles/partials/_reset.scss');
         this.mkdir('dev/dashboard/styles/templates');
         this.copy('dev/dashboard/styles/templates/_all-templates.less', 'dev/dashboard/styles/templates/_all-templates.scss');
+        this.copy('dev/dashboard/styles/templates/_dashboard.less', 'dev/dashboard/styles/templates/_dashboard.scss');
         this.mkdir('dev/dashboard/styles/vendor');
         this.template('dev/dashboard/styles/vendor/_all-vendor.less', 'dev/dashboard/styles/vendor/_all-vendor.scss');
         this.template('dev/dashboard/styles/vendor/_bourbon.scss', 'dev/dashboard/styles/vendor/_bourbon.scss');

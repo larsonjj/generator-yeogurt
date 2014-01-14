@@ -29,7 +29,7 @@
         "jshint-stylish": "~0.1.4",<% } %>
         "grunt-contrib-copy": "~0.5.0",
         "grunt-contrib-uglify": "~0.2.7",<% if (cssOption ==='SASS') { %>
-        "grunt-contrib-sass": "~0.6.0",<% } %><% if (cssOption === 'LESS') { %>
+        "grunt-sass": "~0.10.0",<% } %><% if (cssOption === 'LESS') { %>
         "grunt-contrib-less": "~0.8.3",<% } %>
         "grunt-open": "~0.2.2",
         "grunt-notify": "~0.2.16",

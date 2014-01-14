@@ -623,29 +623,29 @@ module.exports = function (grunt) {
         sass: {
             server: {
                 options: {
-                    style: 'expanded',
-                    lineNumbers: true,
-                    sourcemap: true,
-                    trace: true
+                    sourceComments: 'map',
+                    outputStyle: 'compressed',
+                    sourceMap: '<%%= yeoman.server %>/styles/main.css.map',
+                    includePaths: [
+                        '<%%= yeoman.dev %>/styles/{,*/}*.scss'
+                    ]
                 },
-                expand: true,
-                cwd: '<%%= yeoman.dev %>/',
-                dest: '<%%= yeoman.server %>/',
-                src: ['styles/*.{sass,scss}'],
-                ext: '.css'
+                files: {
+                    '<%%= yeoman.server %>/styles/main.css': '<%%= yeoman.dev %>/styles/main.scss'
+                }
             },
             serverDashboard: {
                 options: {
-                    style: 'expanded',
-                    lineNumbers: true,
-                    sourcemap: true,
-                    trace: true
+                    sourceComments: 'map',
+                    outputStyle: 'compressed',
+                    sourceMap: '<%%= yeoman.server %>/dashboard/styles/main.css.map',
+                    includePaths: [
+                        '<%%= yeoman.dev %>/dashboard/styles/{,*/}*.scss'
+                    ]
                 },
-                expand: true,
-                cwd: '<%%= yeoman.dev %>/',
-                dest: '<%%= yeoman.server %>/',
-                src: ['dashboard/styles/*.{sass,scss}'],
-                ext: '.css'
+                files: {
+                    '<%%= yeoman.server %>/dashboard/styles/main.css': '<%%= yeoman.dev %>/dashboard/styles/main.scss'
+                }
             },
             dist: {
                 options: {
@@ -887,9 +887,7 @@ module.exports = function (grunt) {
         'less:server',
         'less:serverDashboard',<% } %><% if (cssOption === 'SASS') { %>
         'sass:server',
-        'sass:serverDashboard',
-        'string-replace:sassMapFixServer',
-        'string-replace:sassMainFixServer',<% } %>
+        'sass:serverDashboard',<% } %>
         'clean:temp',
         'connect:livereload',
         'notify:server',
