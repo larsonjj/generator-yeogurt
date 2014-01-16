@@ -504,7 +504,7 @@ module.exports = function (grunt) {
                     name: 'main',
                     baseUrl: '<%%= yeoman.dev %>/scripts/',
                     mainConfigFile: '<%%= yeoman.dev %>/scripts/main.js',
-                    out: '<%%= yeoman.dist %>/scripts/main.js',
+                    out: '<%%= yeoman.dist %>/scripts/main.min.js',
                     optimize: 'uglify2',
                     generateSourceMaps: true,
                     preserveLicenseComments: false,
