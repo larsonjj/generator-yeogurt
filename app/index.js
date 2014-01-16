@@ -306,6 +306,9 @@ YeogurtGenerator.prototype.app = function app() {
     // scripts
     this.directory('dev/dashboard/scripts', 'dev/dashboard/scripts');
 
+    // test files
+    this.directory('test', 'test');
+
 };
 
 YeogurtGenerator.prototype.projectfiles = function projectfiles() {
