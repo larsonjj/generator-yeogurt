@@ -13,7 +13,10 @@ describe('yeogurt generator', function () {
             }
 
             this.app = helpers.createGenerator('yeogurt:app', [
-                '../../app'
+                '../../app',[
+                    helpers.createDummyGenerator(),
+                    'mocha:app'
+                ]
             ]);
             done();
         }.bind(this));

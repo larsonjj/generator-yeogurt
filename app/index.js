@@ -3,7 +3,6 @@ var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var colors = require('colors');
-var _ = require('lodash');
 
 
 var YeogurtGenerator = module.exports = function YeogurtGenerator(args, options, config) {
@@ -12,6 +11,25 @@ var YeogurtGenerator = module.exports = function YeogurtGenerator(args, options,
     this.on('end', function () {
         this.installDependencies({ skipInstall: options['skip-install'] });
     });
+
+    // setup the test-framework property, Gruntfile template will need this
+    this.testFramework = options['test-framework'] || 'mocha';
+
+    // for hooks to resolve on mocha by default
+    options['test-framework'] = this.testFramework;
+
+    // resolved to mocha by default (could be switched to jasmine for instance)
+    this.hookFor('test-framework', {
+        as: 'app',
+        options: {
+            options: {
+                'skip-install': options['skip-install-message'],
+                'skip-message': options['skip-install']
+            }
+        }
+    });
+
+    this.options = options;
 
     this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 };

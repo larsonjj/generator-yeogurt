@@ -98,12 +98,30 @@ module.exports = function (grunt) {
                     open: true,
                     base: '<%%= yeoman.dev %>'
                 }
-            }
+            },
+            test: {
+                options: {
+                    port: 9001,
+                    base: [
+                        'test',
+                        '<%= yeoman.dev %>'
+                    ]
+                }
+            },
         },
         clean: {
             server: ['<%%= yeoman.server %>/', '<%%= yeoman.dev %>/.server/tmp'],
             dist: ['<%%= yeoman.dist %>/', '<%%= yeoman.dev %>/.server/tmp'],
             temp: ['<%%= yeoman.dev %>/.server/tmp/**', '<%%= yeoman.server %>/.server/tmp/**', '<%%= yeoman.dist %>/.server/tmp/**']
+        },
+        // Mocha testing framework configuration options
+        mocha: {
+            all: {
+                options: {
+                    run: true,
+                    urls: ['http://<%%= connect.options.hostname %>:<%%= connect.test.options.port %>/index.html']
+                }
+            }
         },
         // Put files not handled in other tasks here
         copy: {
@@ -807,7 +825,9 @@ module.exports = function (grunt) {
     ]);<% if (jshint) { %>
 
     grunt.registerTask('test', 'Peform tests on JavaScript', [
-        'jshint:test'
+        'jshint:test',
+        'connect:test',
+        'mocha'
     ]);<% } %>
 
     grunt.registerTask('zip', 'Build a production ready version of your site and zip it up', [
