@@ -498,9 +498,9 @@ module.exports = function (grunt) {
                 options: {
                     debug: true,
                     aliasMappings: {
-                        cwd: '<%%= yeoman.dev %>/',
-                        src: ['!scripts/main.js', 'scripts/{,*/}*.js'],
-                        dest: ''
+                        cwd: '<%%= yeoman.dev %>/scripts',
+                        src: ['app.js', 'vendor/**/*.js'],
+                        dest: 'lib'
                     }
                 },
                 files: {

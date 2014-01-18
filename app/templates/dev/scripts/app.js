@@ -7,11 +7,10 @@
 'use strict';
 define([], function () {
     return 'Welcome to Yeogurt!';
-});<% } %>
-<% if (jsOption ==='Browserify') { %>
+});<% } %><% if (jsOption ==='Browserify') { %>
 'use strict';
 /* jshint unused:false */
-/* global jquery:false */
+/* global $:true */
 var $ = require('jquery');
 var app = {
     init: function() {

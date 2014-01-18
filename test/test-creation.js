@@ -125,7 +125,6 @@ describe('yeogurt generator', function () {
             'dev/dashboard/markup/index.jade',
             'dev/dashboard/markup/templates/base.jade',
             'dev/dashboard/markup/templates/dashboard.jade',
-            'test'
         ];
 
         helpers.mockPrompt(this.app, {
