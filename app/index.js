@@ -56,18 +56,18 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         type: 'list',
         name: 'versionControl',
         message: 'Which version control software are you using (or plan to use)?',
-        choices: ['Git', 'SVN', 'Both', 'None (I like to live on the edge)'],
+        choices: ['Git', 'SVN', 'None (I like to live on the edge)'],
     }, {
         type: 'list',
         name: 'cssOption',
         message: 'Which CSS preprocessor would you like to use?',
         choices: ['SASS', 'LESS'],
-    }, /*{
+    }, {
         type: 'list',
         name: 'jsOption',
         message: 'Which JavaScript module library would you like to use?',
         choices: ['RequireJS', 'Browserify'],
-    }, */{
+    }, {
         type: 'checkbox',
         name: 'extras',
         message: 'Select any extras you would like:',
@@ -105,10 +105,8 @@ YeogurtGenerator.prototype.askFor = function askFor() {
     this.prompt(prompts, function (props) {
         this.projectName = props.projectName;
         this.versionControl = props.versionControl;
-        // this.cssOption = 'LESS';
         this.cssOption = props.cssOption;
-        this.jsOption = 'RequireJS';
-        // this.jsOption = props.jsOption;
+        this.jsOption = props.jsOption;
         this.extras = props.extras;
         var extras = this.extras;
 
@@ -147,8 +145,6 @@ YeogurtGenerator.prototype.app = function app() {
 
     // dev/
     this.mkdir('dev');
-
-    this.template('dev/index.html', 'dev/index.html');
 
     this.copy('dev/robots.txt', 'dev/robots.txt');
     this.copy('dev/favicon.ico', 'dev/favicon.ico');

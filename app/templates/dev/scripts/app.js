@@ -2,7 +2,6 @@
 *   app.js
 *   This file is where all global/app specific javascript should go
 */
-
 <% if (jsOption ==='RequireJS') { %>/* global define */
 'use strict';
 define([], function () {

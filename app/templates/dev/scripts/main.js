@@ -72,7 +72,6 @@ require(['app', 'jquery', 'domReady'], function (app, $, domReady) {
         console.log('Running jQuery %s', $().jquery);
     });
 });<% } %>
-
 <% if (jsOption ==='Browserify') { %>var app = require('./app');
 
 app.init();

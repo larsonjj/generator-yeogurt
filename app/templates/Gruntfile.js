@@ -2,6 +2,10 @@
 /*jshint camelcase: false */
 'use strict';
 
+// Choose to include dashboard
+var includeDashboard = true;
+
+// Modules
 var _ = require('lodash');
 
 // # Globbing
@@ -22,7 +26,8 @@ module.exports = function (grunt) {
         yeoman: {
             dev: 'dev',
             server: 'dev/.server',
-            dist: 'dist'
+            dist: 'dist',
+            dashPath: (includeDashboard ? 'dashboard/' : '')
         },
         dashboardData: {},
         watch: {
@@ -95,7 +100,7 @@ module.exports = function (grunt) {
             },
             livereload: {
                 options: {
-                    open: true,
+                    open: 'http://0.0.0.0:9000/.server/dashboard/index.html',
                     base: '<%%= yeoman.dev %>'
                 }
             },
@@ -300,7 +305,7 @@ module.exports = function (grunt) {
                     data: '<%%= dashboardData %>'
                 },
                 files: {
-                    '<%%= yeoman.dist %>/dashboard/index.html': ['<%%= yeoman.dev %>/dashboard/markup/index.jade']
+                    '<%%= yeoman.dist %>/index.html': ['<%%= yeoman.dev %>/dashboard/markup/index.jade']
                 }
             }
         }<% if (jshint) { %>,
@@ -316,19 +321,45 @@ module.exports = function (grunt) {
                 '!<%%= yeoman.dev %>/scripts/vendor/{,*/}*'
             ]
         }<% } %>,
-        'string-replace': {
+        'string-replace': {<% if (cssOption === 'SASS') { %>
             sassMapFixDist: {
                 options: {
                     replacements: [
                         // place files inline example
                         {
-                            pattern: /..\/..\/dev\/styles\//g,
+                            pattern: /\.\.\/\.\.\/dev\/styles\//g,
                             replacement: ''
                         }
                     ]
                 },
                 files: {
                     '<%%= yeoman.dist %>/styles/main.css.map' : '<%%= yeoman.dist %>/styles/main.css.map'
+                }
+            },<% } %>
+            dashboardLinkFixDist: {
+                options: {
+                    replacements: [
+                        // place files inline example
+                        {
+                            pattern: /\"\.\.\//g,
+                            replacement: '"'
+                        },
+                        {
+                            pattern: /scripts\//g,
+                            replacement: 'dashboard/scripts/'
+                        },
+                        {
+                            pattern: /styles\//g,
+                            replacement: 'dashboard/styles/'
+                        },
+                        {
+                            pattern: /images\//g,
+                            replacement: 'dashboard/images/'
+                        }
+                    ]
+                },
+                files: {
+                    '<%%= yeoman.dist %>/index.html' : '<%%= yeoman.dist %>/index.html'
                 }
             },<% if (jsOption ==='RequireJS') { %>
             requireDist: {
@@ -442,7 +473,17 @@ module.exports = function (grunt) {
                 dest: '<%%= yeoman.dist %>/scripts/',
                 src: ['{,*/}{,*/}*.js', '!*.js'],
                 ext: '.min.js'
-            }
+            }<% if (jsOption ==='Browserify') { %>,
+            distBrowserify: {
+                options: {
+                    mangle: true,
+                    preserveComments: 'some',
+                },
+                expand: true,
+                cwd: '<%%= yeoman.dist %>/scripts/',
+                dest: '<%%= yeoman.dist %>/scripts/',
+                src: ['main.js']
+            }<% } %>
         },
         imagemin: {
             dist: {
@@ -501,7 +542,7 @@ module.exports = function (grunt) {
                         cwd: '<%%= yeoman.dev %>/scripts',
                         src: ['app.js', 'vendor/**/*.js'],
                         dest: 'lib'
-                    }
+                    },
                 },
                 files: {
                     '<%%= yeoman.server %>/scripts/main.js': ['<%%= yeoman.dev %>/scripts/main.js']
@@ -509,7 +550,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 options: {
-                    debug: true
+                    debug: false
                 },
                 files: {
                     '<%%= yeoman.dist %>/scripts/main.js': ['<%%= yeoman.dev %>/scripts/main.js']
@@ -819,6 +860,7 @@ module.exports = function (grunt) {
         'requirejs',
         'string-replace:requireDist', /* change require main path to 'main.min'*/<% } %>
         'string-replace:indexLinkFix',
+        'string-replace:dashboardLinkFixDist',
         'htmlmin:dist',
         'uglify',
         'clean:temp',
