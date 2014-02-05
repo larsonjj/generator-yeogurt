@@ -23,10 +23,10 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to clie
 - Modular JavaScript with [RequireJS](http://requirejs.org/) or [Browserify](http://browserify.org/)
 - IE8+ Support via [HTML5shiv](https://github.com/aFarkas/html5shiv) and [RespondJS](https://github.com/scottjehl/Respond)
 - JavaScript Linting with [JSHint](http://www.jshint.com/)
-- Default ignores for [Git](http://git-scm.com/) and [SVN](http://subversion.apache.org/)
+- Default ignores for [Git](http://git-scm.com/) or [SVN](http://subversion.apache.org/)
 - Build deployment to FTP server
 
-**Always includes:**
+**Included by default:**
 
 - Template inspiration from [HTML5 Boilerplate](http://html5boilerplate.com/)
 - [Jade](http://jade-lang.com/) markup templating
