@@ -130,7 +130,9 @@ describe('yeogurt generator', function () {
             projectName: 'testing',
             versionControl: 'Git',
             cssOption: 'LESS',
-            extras: ['jshint', 'htaccess', 'useBootstrap', 'useFontAwesome', 'ieSupport', 'responsive', 'useFTP']
+            useFTP: true,
+            jshint: true,
+            extras: ['htaccess', 'useBootstrap', 'useFontAwesome', 'ieSupport', 'responsive']
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {

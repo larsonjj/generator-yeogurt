@@ -68,36 +68,38 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         message: 'Which JavaScript module library would you like to use?',
         choices: ['RequireJS', 'Browserify'],
     }, {
+        type: 'confirm',
+        name: 'useFTP',
+        message: 'Will you be deploying code to an FTP server?',
+        default: true,
+    }, {
+        type: 'confirm',
+        name: 'jshint',
+        message: 'Would you like to lint your Javascript with JSHint?',
+        default: true,
+    }, {
         type: 'checkbox',
         name: 'extras',
         message: 'Select any extras you would like:',
         choices: [{
-            name: 'Lint JavaScript with JSHint',
-            value: 'jshint',
-            checked: true
-        }, {
             name: 'HTML5 Boilerplate .htaccess file',
             value: 'htaccess',
             checked: true
         }, {
-            name: 'Twitter Bootstrap',
+            name: 'Twitter Bootstrap 3.x',
             value: 'useBootstrap',
             checked: true
         }, {
-            name: 'Font Awesome',
+            name: 'Font Awesome 4.x',
             value: 'useFontAwesome',
             checked: true
         }, {
-            name: 'IE8 Support',
+            name: 'IE8+ Support',
             value: 'ieSupport',
             checked: true
         }, {
             name: 'Responsive',
             value: 'responsive',
-            checked: true
-        }, {
-            name: 'Deploy to FTP Server',
-            value: 'useFTP',
             checked: true
         }]
     }];
@@ -108,19 +110,19 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.cssOption = props.cssOption;
         this.jsOption = props.jsOption;
         this.extras = props.extras;
+        this.jshint = props.jshint;
+        this.useFTP = props.useFTP;
         var extras = this.extras;
 
         function hasFeature(feat) {
             return extras.indexOf(feat) !== -1;
         }
 
-        this.jshint = hasFeature('jshint');
         this.htaccess = hasFeature('htaccess');
         this.useBootstrap = hasFeature('useBootstrap');
         this.useFontAwesome = hasFeature('useFontAwesome');
         this.ieSupport = hasFeature('ieSupport');
         this.responsive = hasFeature('responsive');
-        this.useFTP = hasFeature('useFTP');
 
         cb();
     }.bind(this));
