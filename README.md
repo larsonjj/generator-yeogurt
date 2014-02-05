@@ -1,45 +1,45 @@
-# generator-yeogurt [![Build Status](https://secure.travis-ci.org/larsonjj/generator-yeogurt.png?branch=master)](https://travis-ci.org/larsonjj/generator-yeogurt)
+<center>
+	<img src="http://i.imgur.com/obNKseX.png" />
+</center>
 
-A generator for [Yeoman](http://yeoman.io).
+<br>
+
+# Yeogurt Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-yeogurt.png?branch=master)](https://travis-ci.org/larsonjj/generator-yeogurt)
+<hr>
+
+A [Yeoman](http://yeoman.io) generator focused on accelerating front-end architecture and development. 
 
 
 ## Getting Started
 
-### What is Yeoman?
+- First off, You will need to have [Node.js](http://nodejs.org/) `>= 0.10` installed. <br>
+- Be sure to install yeoman of course! `npm install -g yo` <br>
+- Install the generator: `npm install -g generator-yeogurt` <br>
+- Run the generator: `yo yeogurt`
 
-Trick question. It's not a thing. It's this guy:
+## Features
 
-![](http://i.imgur.com/JHaAlBJ.png)
+**Available Scaffolding Options:**
 
-Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
+- Project/Site naming
+- CSS Preprocessing with [LESS](http://lesscss.org/) or [Sass](http://sass-lang.com/)
+- Modular JavaScript with [RequireJS](http://requirejs.org/) or [Browserify](http://browserify.org/)
+- IE8+ Support via [HTML5shiv](https://github.com/aFarkas/html5shiv) and [RespondJS](https://github.com/scottjehl/Respond)
+- JavaScript Linting with [JSHint](http://www.jshint.com/)
+- Default ignores for [Git](http://git-scm.com/) and [SVN](http://subversion.apache.org/)
+- Build deployment to FTP server
 
-Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
+**Always includes:**
 
-```
-$ npm install -g yo
-```
-
-### Yeoman Generators
-
-Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
-
-To install generator-yeogurt from npm, run:
-
-```
-$ npm install -g generator-yeogurt
-```
-
-Finally, initiate the generator:
-
-```
-$ yo yeogurt
-```
-
-### Getting To Know Yeoman
-
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
-
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
+- Inspiration from [HTML5 Boilerplate](http://html5boilerplate.com/)
+- [Jade](http://jade-lang.com/) markup templating
+- Feature detection with [Modernizr](http://modernizr.com/)
+- Built in preview server with LiveReload
+- [.editorconfig](http://editorconfig.org/) for consistent coding styles within text editors
+- JavaScript unit testing with [Mocha](http://visionmedia.github.io/mocha/), [Chai](http://chaijs.com/), and [PhantomJS](http://phantomjs.org/)
+- Automatic build process that includes concatenation, image optimization, CSS and HTML minification, and JS uglification.
+- Dynamic Dashboard - auto-generated dashboard for your site (focused on client-based work)
+- [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for both JavaScript and Sass/LESS
 
 
 ## License
