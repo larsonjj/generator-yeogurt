@@ -2,10 +2,7 @@
 	<img src="http://i.imgur.com/obNKseX.png" />
 </center>
 
-<br>
-
 # Yeogurt Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-yeogurt.png?branch=master)](https://travis-ci.org/larsonjj/generator-yeogurt)
-<hr>
 
 A [Yeoman](http://yeoman.io) generator focused on accelerating front-end architecture and development. 
 
