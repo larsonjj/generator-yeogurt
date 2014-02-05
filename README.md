@@ -28,7 +28,7 @@ A [Yeoman](http://yeoman.io) generator focused on accelerating front-end archite
 
 **Always includes:**
 
-- Inspiration from [HTML5 Boilerplate](http://html5boilerplate.com/)
+- Template inspiration from [HTML5 Boilerplate](http://html5boilerplate.com/)
 - [Jade](http://jade-lang.com/) markup templating
 - Feature detection with [Modernizr](http://modernizr.com/)
 - Built in preview server with LiveReload
