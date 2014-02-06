@@ -36,14 +36,15 @@ YeogurtGenerator.prototype.askFor = function askFor() {
     var cb = this.async();
 
     var yeogurtLogo = '' +
-        ' __     __                         _   \n'.red +
-        ' \\ \\   / /        '.red + 'Welcome To'.green + '      | |  \n'.red +
-        '  \\ \\_/ /__  ___   __ _ _   _ _ __| |_ \n'.red +
-        '   \\   / _ \\/ _ \\ / _` | | | | \\\'__| __|\n'.red +
-        '    | |  __/ (_) | (_| | |_| | |  | |_ \n'.red +
-        '    |_|\\___|\\___/ \\__, |\\__,_|_|   \\__|\n'.red +
-        '                   __/ |               \n'.red +
-        '                  |___/                  '.red;
+        '                                    _   \n'.red +
+        '                  ' + 'Welcome to'.green +'       | |  \n'.red +
+        '  _   _  ___  ___   __ _ _   _ _ __| |_ \n'.red +
+        ' | | | |/ _ \\\/ _ \\ \/ _` | | | | \'__| __|\n'.red +
+        ' | |_| |  __/ (_) | (_| | |_| | |  | |_ \n'.red +
+        '  \\__, |\\___|\\___/ \\__, |\\__,_|_|   \\__|\n'.red +
+        '   __/ |            __/ |               \n'.red +
+        '  |___/            |___/     \n'.red +
+        '                                      ';
 
     // have Yeogurt greet the user.
     console.log(yeogurtLogo);
