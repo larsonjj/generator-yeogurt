@@ -53,7 +53,7 @@ Runs `grunt build` and compresses the entire site to a ZIP file
 Runs `grunt zip` and pushes both production-ready files and zip file to a specified FTP server
 
 ## Dynamic Dashboard
-Here is what the dashboard looks like when you start a local server:<br>
+Here is what the dashboard looks like when you run `grunt server`:<br>
 ![](http://i.imgur.com/yW4QC3e.png =650x)
 
 It is 'dynamic' because it is generated at compile time using comments placed at the top of development files. An example of these comments in a template file is as follows:
