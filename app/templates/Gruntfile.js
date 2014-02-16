@@ -26,7 +26,7 @@ module.exports = function(grunt) {
         yeoman: {
             dev: 'dev',
             server: 'dev/.server',
-            dist: 'dist'
+	    dist: 'dist'
         },
         dashboardData: {},
         watch: {
@@ -884,5 +884,9 @@ module.exports = function(grunt) {
         'zip',
         'ftpinfo'
     ]);<% } %>
+
+    grunt.registerTask('default', 'Defaults to building a production ready version of your site.', [
+        'build'
+    ]);
 
 };
