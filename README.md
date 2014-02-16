@@ -81,7 +81,7 @@ For Jade pages, components, templates, and modules, these comments create the ab
 ### Data Properties
 
 ##### Pages, Modules, Templates, and Components
-property: 
+property:
 
 - `status` [String]
 
@@ -96,7 +96,7 @@ possible values:
 - `Complete`: 'Development is complete'
 
 ##### Templates Only
-property: 
+property:
 
 - `blocks` [Array]
 
@@ -110,7 +110,7 @@ possible values [Each object in Array]:
 - `fontSize`: Size of font within block
 
 ##### Modules and Components Only
-property: 
+property:
 
 - `markup` [String]
 
@@ -123,6 +123,11 @@ possible values
 A bit confused? No worries, I recommend generating a test project and taking a look at the jade files within the generated pages, components, templates, and modules folders. They will have some simple examples of what's possible and you can see your changes in real time if you run `grunt server`.
 
 Also, feel free to open up an issue if you think something is too confusing or can be improved.
+
+## Release History
+
+ * 2014-02-16   v0.2.5   Added dynamic dashboard option to generator choices (No longer added by default). Updated sourcemap logic for uglify task based on latest plugin release
+ * 2014-02-06   v0.2.4   Official Release
 
 ## License
 
