@@ -448,15 +448,8 @@ module.exports = function(grunt) {
                 options: {
                     mangle: true,
                     preserveComments: 'some',
-                    sourceMap: function(path) {
-                        return path.replace('.js', '.js.map');
-                    },
-                    sourceMapPrefix: 3,
-                    sourceMappingURL: function(path) {
-                        var pathArray = path.split('/'),
-                            pathLength = pathArray.length;
-                        return pathArray[(pathLength - 1)].replace('.js', '.js.map');
-                    }
+                    sourceMap: true,
+                    sourceMapIncludeSources: true
                 },
                 expand: true,
                 cwd: '<%%= yeoman.dist %>/bower_components/',
@@ -471,15 +464,8 @@ module.exports = function(grunt) {
                 options: {
                     mangle: true,
                     preserveComments: 'some',
-                    sourceMap: function(path) {
-                        return path.replace('.js', '.js.map');
-                    },
-                    sourceMapPrefix: 3,
-                    sourceMappingURL: function(path) {
-                        var pathArray = path.split('/'),
-                            pathLength = pathArray.length;
-                        return pathArray[(pathLength - 1)].replace('.js', '.js.map');
-                    }
+                    sourceMap: true,
+                    sourceMapIncludeSources: true
                 },
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/scripts/',
