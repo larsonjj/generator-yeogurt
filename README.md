@@ -2,7 +2,7 @@
 
 # Yeogurt Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-yeogurt.png?branch=master)](https://travis-ci.org/larsonjj/generator-yeogurt) [![NPM version](https://badge.fury.io/js/generator-yeogurt.png)](http://badge.fury.io/js/generator-yeogurt)
 
-A [Yeoman](http://yeoman.io) generator for creating a sensible structure to client-based work.
+A [Yeoman](http://yeoman.io) generator for creating a sensible structure to front-end work.
 
 
 ## Getting Started
@@ -33,7 +33,7 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to clie
 - [.editorconfig](http://editorconfig.org/) for consistent coding styles within text editors
 - JavaScript unit testing with [Mocha](http://visionmedia.github.io/mocha/), [Chai](http://chaijs.com/), and [PhantomJS](http://phantomjs.org/)
 - Automatic build process that includes concatenation, image optimization, CSS and HTML minification, and JS uglification.
-- Dynamic Dashboard - auto-generated dashboard for your site (focused on client-based work)
+- Dynamic Dashboard - auto-generated dashboard for your site
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for both JavaScript and Sass/LESS
 
 ## Grunt Tasks
