@@ -37,7 +37,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
 
     var yeogurtLogo = '' +
         '                                    _   \n'.red +
-        '                  ' + 'Welcome to'.green +'       | |  \n'.red +
+        '                  ' + 'Welcome to'.green + '       | |  \n'.red +
         '  _   _  ___  ___   __ _ _   _ _ __| |_ \n'.red +
         ' | | | |/ _ \\\/ _ \\ \/ _` | | | | \'__| __|\n'.red +
         ' | |_| |  __/ (_) | (_| | |_| | |  | |_ \n'.red +
@@ -79,6 +79,11 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         message: 'Would you like to lint your Javascript with JSHint?',
         default: true,
     }, {
+        type: 'confirm',
+        name: 'useDashboard',
+        message: 'Would you like to generate a dynamic dashboard?',
+        default: true,
+    }, {
         type: 'checkbox',
         name: 'extras',
         message: 'Select any extras you would like:',
@@ -105,7 +110,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         }]
     }];
 
-    this.prompt(prompts, function (props) {
+    this.prompt(prompts, function(props) {
         this.projectName = props.projectName;
         this.versionControl = props.versionControl;
         this.cssOption = props.cssOption;
@@ -113,6 +118,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.extras = props.extras;
         this.jshint = props.jshint;
         this.useFTP = props.useFTP;
+        this.useDashboard = props.useDashboard;
         var extras = this.extras;
 
         function hasFeature(feat) {
@@ -241,83 +247,85 @@ YeogurtGenerator.prototype.app = function app() {
 
     // Dashboard
 
-    // markup
-    this.mkdir('dev/dashboard');
-    this.mkdir('dev/dashboard/markup');
-    this.mkdir('dev/dashboard/markup/components');
-    this.mkdir('dev/dashboard/markup/templates');
+    if (this.useDashboard) {
+        // markup
+        this.mkdir('dev/dashboard');
+        this.mkdir('dev/dashboard/markup');
+        this.mkdir('dev/dashboard/markup/components');
+        this.mkdir('dev/dashboard/markup/templates');
 
-    this.template('dev/dashboard/markup/components/all-components.jade', 'dev/dashboard/markup/components/all-components.jade');
+        this.template('dev/dashboard/markup/components/all-components.jade', 'dev/dashboard/markup/components/all-components.jade');
 
-    this.copy('dev/dashboard/markup/components/header.jade', 'dev/dashboard/markup/components/header.jade');
-    this.copy('dev/dashboard/markup/components/footer.jade', 'dev/dashboard/markup/components/footer.jade');
-    this.copy('dev/dashboard/markup/components/dashboard-switcher.jade', 'dev/dashboard/markup/components/dashboard-switcher.jade');
-    this.copy('dev/dashboard/markup/components/status-key.jade', 'dev/dashboard/markup/components/status-key.jade');
-    this.copy('dev/dashboard/markup/index.jade', 'dev/dashboard/markup/index.jade');
-    this.copy('dev/dashboard/markup/templates/base.jade', 'dev/dashboard/markup/templates/base.jade');
-    this.copy('dev/dashboard/markup/templates/dashboard.jade', 'dev/dashboard/markup/templates/dashboard.jade');
+        this.copy('dev/dashboard/markup/components/header.jade', 'dev/dashboard/markup/components/header.jade');
+        this.copy('dev/dashboard/markup/components/footer.jade', 'dev/dashboard/markup/components/footer.jade');
+        this.copy('dev/dashboard/markup/components/dashboard-switcher.jade', 'dev/dashboard/markup/components/dashboard-switcher.jade');
+        this.copy('dev/dashboard/markup/components/status-key.jade', 'dev/dashboard/markup/components/status-key.jade');
+        this.copy('dev/dashboard/markup/index.jade', 'dev/dashboard/markup/index.jade');
+        this.copy('dev/dashboard/markup/templates/base.jade', 'dev/dashboard/markup/templates/base.jade');
+        this.copy('dev/dashboard/markup/templates/dashboard.jade', 'dev/dashboard/markup/templates/dashboard.jade');
 
-    // images
-    this.directory('dev/dashboard/images', 'dev/dashboard/images');
+        // images
+        this.directory('dev/dashboard/images', 'dev/dashboard/images');
 
-    // styles
-    this.mkdir('dev/dashboard/styles');
-    this.directory('dev/dashboard/styles/fonts', 'dev/dashboard/styles/fonts');
-    if (this.cssOption === 'LESS') {
-        this.directory('dev/dashboard/styles/base', 'dev/dashboard/styles/base');
-        this.mkdir('dev/dashboard/styles/components');
-        this.copy('dev/dashboard/styles/components/_all-components.less', 'dev/dashboard/styles/components/_all-components.less');
-        this.copy('dev/dashboard/styles/components/_footer.less', 'dev/dashboard/styles/components/_footer.less');
-        this.copy('dev/dashboard/styles/components/_header.less', 'dev/dashboard/styles/components/_header.less');
-        this.template('dev/dashboard/styles/components/_status-key.less', 'dev/dashboard/styles/components/_status-key.less');
-        this.template('dev/dashboard/styles/components/_dashboard-switcher.less', 'dev/dashboard/styles/components/_dashboard-switcher.less');
-        this.directory('dev/dashboard/styles/modules', 'dev/dashboard/styles/modules');
-        this.directory('dev/dashboard/styles/partials', 'dev/dashboard/styles/partials');
-        this.mkdir('dev/dashboard/styles/templates');
-        this.template('dev/dashboard/styles/templates/_all-templates.less', 'dev/dashboard/styles/templates/_all-templates.less');
-        this.template('dev/dashboard/styles/templates/_dashboard.less', 'dev/dashboard/styles/templates/_dashboard.less');
-        this.mkdir('dev/dashboard/styles/vendor');
-        this.template('dev/dashboard/styles/vendor/_all-vendor.less', 'dev/dashboard/styles/vendor/_all-vendor.less');
-        if (this.useFontAwesome) {
-            this.template('dev/dashboard/styles/vendor/_font-awesome.less', 'dev/dashboard/styles/vendor/_font-awesome.less');
+        // styles
+        this.mkdir('dev/dashboard/styles');
+        this.directory('dev/dashboard/styles/fonts', 'dev/dashboard/styles/fonts');
+        if (this.cssOption === 'LESS') {
+            this.directory('dev/dashboard/styles/base', 'dev/dashboard/styles/base');
+            this.mkdir('dev/dashboard/styles/components');
+            this.copy('dev/dashboard/styles/components/_all-components.less', 'dev/dashboard/styles/components/_all-components.less');
+            this.copy('dev/dashboard/styles/components/_footer.less', 'dev/dashboard/styles/components/_footer.less');
+            this.copy('dev/dashboard/styles/components/_header.less', 'dev/dashboard/styles/components/_header.less');
+            this.template('dev/dashboard/styles/components/_status-key.less', 'dev/dashboard/styles/components/_status-key.less');
+            this.template('dev/dashboard/styles/components/_dashboard-switcher.less', 'dev/dashboard/styles/components/_dashboard-switcher.less');
+            this.directory('dev/dashboard/styles/modules', 'dev/dashboard/styles/modules');
+            this.directory('dev/dashboard/styles/partials', 'dev/dashboard/styles/partials');
+            this.mkdir('dev/dashboard/styles/templates');
+            this.template('dev/dashboard/styles/templates/_all-templates.less', 'dev/dashboard/styles/templates/_all-templates.less');
+            this.template('dev/dashboard/styles/templates/_dashboard.less', 'dev/dashboard/styles/templates/_dashboard.less');
+            this.mkdir('dev/dashboard/styles/vendor');
+            this.template('dev/dashboard/styles/vendor/_all-vendor.less', 'dev/dashboard/styles/vendor/_all-vendor.less');
+            if (this.useFontAwesome) {
+                this.template('dev/dashboard/styles/vendor/_font-awesome.less', 'dev/dashboard/styles/vendor/_font-awesome.less');
+            }
+            this.template('dev/dashboard/styles/vendor/_lesshat.less', 'dev/dashboard/styles/vendor/_lesshat.less');
+            this.template('dev/dashboard/styles/vendor/_normalize.less', 'dev/dashboard/styles/vendor/_normalize.less');
+            this.template('dev/dashboard/styles/main.less', 'dev/dashboard/styles/main.less');
         }
-        this.template('dev/dashboard/styles/vendor/_lesshat.less', 'dev/dashboard/styles/vendor/_lesshat.less');
-        this.template('dev/dashboard/styles/vendor/_normalize.less', 'dev/dashboard/styles/vendor/_normalize.less');
-        this.template('dev/dashboard/styles/main.less', 'dev/dashboard/styles/main.less');
-    }
-    if (this.cssOption === 'SASS') {
-        this.mkdir('dev/dashboard/styles/base');
-        this.copy('dev/dashboard/styles/base/_all-base.less', 'dev/dashboard/styles/base/_all-base.scss');
-        this.copy('dev/dashboard/styles/base/_mixins.less', 'dev/dashboard/styles/base/_mixins.scss');
-        this.copy('dev/dashboard/styles/base/_variables.less', 'dev/dashboard/styles/base/_variables.scss');
-        this.mkdir('dev/dashboard/styles/components');
-        this.copy('dev/dashboard/styles/components/_all-components.less', 'dev/dashboard/styles/components/_all-components.scss');
-        this.copy('dev/dashboard/styles/components/_footer.less', 'dev/dashboard/styles/components/_footer.scss');
-        this.copy('dev/dashboard/styles/components/_header.less', 'dev/dashboard/styles/components/_header.scss');
-        this.template('dev/dashboard/styles/components/_status-key.less', 'dev/dashboard/styles/components/_status-key.scss');
-        this.template('dev/dashboard/styles/components/_dashboard-switcher.less', 'dev/dashboard/styles/components/_dashboard-switcher.scss');
-        this.mkdir('dev/dashboard/styles/modules');
-        this.copy('dev/dashboard/styles/modules/_all-modules.less', 'dev/dashboard/styles/modules/_all-modules.scss');
-        this.mkdir('dev/dashboard/styles/partials');
-        this.copy('dev/dashboard/styles/partials/_all-partials.less', 'dev/dashboard/styles/partials/_all-partials.scss');
-        this.copy('dev/dashboard/styles/partials/_box-sizing.less', 'dev/dashboard/styles/partials/_box-sizing.scss');
-        this.copy('dev/dashboard/styles/partials/_reset.less', 'dev/dashboard/styles/partials/_reset.scss');
-        this.mkdir('dev/dashboard/styles/templates');
-        this.copy('dev/dashboard/styles/templates/_all-templates.less', 'dev/dashboard/styles/templates/_all-templates.scss');
-        this.copy('dev/dashboard/styles/templates/_dashboard.less', 'dev/dashboard/styles/templates/_dashboard.scss');
-        this.mkdir('dev/dashboard/styles/vendor');
-        this.template('dev/dashboard/styles/vendor/_all-vendor.less', 'dev/dashboard/styles/vendor/_all-vendor.scss');
-        this.template('dev/dashboard/styles/vendor/_bourbon.scss', 'dev/dashboard/styles/vendor/_bourbon.scss');
-        if (this.useFontAwesome) {
-            this.template('dev/dashboard/styles/vendor/_font-awesome.less', 'dev/dashboard/styles/vendor/_font-awesome.scss');
+        if (this.cssOption === 'SASS') {
+            this.mkdir('dev/dashboard/styles/base');
+            this.copy('dev/dashboard/styles/base/_all-base.less', 'dev/dashboard/styles/base/_all-base.scss');
+            this.copy('dev/dashboard/styles/base/_mixins.less', 'dev/dashboard/styles/base/_mixins.scss');
+            this.copy('dev/dashboard/styles/base/_variables.less', 'dev/dashboard/styles/base/_variables.scss');
+            this.mkdir('dev/dashboard/styles/components');
+            this.copy('dev/dashboard/styles/components/_all-components.less', 'dev/dashboard/styles/components/_all-components.scss');
+            this.copy('dev/dashboard/styles/components/_footer.less', 'dev/dashboard/styles/components/_footer.scss');
+            this.copy('dev/dashboard/styles/components/_header.less', 'dev/dashboard/styles/components/_header.scss');
+            this.template('dev/dashboard/styles/components/_status-key.less', 'dev/dashboard/styles/components/_status-key.scss');
+            this.template('dev/dashboard/styles/components/_dashboard-switcher.less', 'dev/dashboard/styles/components/_dashboard-switcher.scss');
+            this.mkdir('dev/dashboard/styles/modules');
+            this.copy('dev/dashboard/styles/modules/_all-modules.less', 'dev/dashboard/styles/modules/_all-modules.scss');
+            this.mkdir('dev/dashboard/styles/partials');
+            this.copy('dev/dashboard/styles/partials/_all-partials.less', 'dev/dashboard/styles/partials/_all-partials.scss');
+            this.copy('dev/dashboard/styles/partials/_box-sizing.less', 'dev/dashboard/styles/partials/_box-sizing.scss');
+            this.copy('dev/dashboard/styles/partials/_reset.less', 'dev/dashboard/styles/partials/_reset.scss');
+            this.mkdir('dev/dashboard/styles/templates');
+            this.copy('dev/dashboard/styles/templates/_all-templates.less', 'dev/dashboard/styles/templates/_all-templates.scss');
+            this.copy('dev/dashboard/styles/templates/_dashboard.less', 'dev/dashboard/styles/templates/_dashboard.scss');
+            this.mkdir('dev/dashboard/styles/vendor');
+            this.template('dev/dashboard/styles/vendor/_all-vendor.less', 'dev/dashboard/styles/vendor/_all-vendor.scss');
+            this.template('dev/dashboard/styles/vendor/_bourbon.scss', 'dev/dashboard/styles/vendor/_bourbon.scss');
+            if (this.useFontAwesome) {
+                this.template('dev/dashboard/styles/vendor/_font-awesome.less', 'dev/dashboard/styles/vendor/_font-awesome.scss');
+            }
+            this.template('dev/dashboard/styles/vendor/_bourbon.scss', 'dev/dashboard/styles/vendor/_bourbon.scss');
+            this.template('dev/dashboard/styles/vendor/_normalize.less', 'dev/dashboard/styles/vendor/_normalize.scss');
+            this.template('dev/dashboard/styles/main.less', 'dev/dashboard/styles/main.scss');
         }
-        this.template('dev/dashboard/styles/vendor/_bourbon.scss', 'dev/dashboard/styles/vendor/_bourbon.scss');
-        this.template('dev/dashboard/styles/vendor/_normalize.less', 'dev/dashboard/styles/vendor/_normalize.scss');
-        this.template('dev/dashboard/styles/main.less', 'dev/dashboard/styles/main.scss');
-    }
 
-    // scripts
-    this.directory('dev/dashboard/scripts', 'dev/dashboard/scripts');
+        // scripts
+        this.directory('dev/dashboard/scripts', 'dev/dashboard/scripts');
+    }
 
 };
 
@@ -333,18 +341,12 @@ YeogurtGenerator.prototype.runtime = function runtime() {
     if (this.versionControl === 'Git') {
         this.copy('gitignore', '.gitignore');
         this.copy('gitattributes', '.gitattributes');
-    }
-    else if (this.versionControl === 'SVN') {
-        this.copy('svnignore', '.svnignore');
-    }
-    else if (this.versionControl === 'Both') {
-        this.copy('gitignore', '.gitignore');
-        this.copy('gitattributes', '.gitattributes');
+    } else if (this.versionControl === 'SVN') {
         this.copy('svnignore', '.svnignore');
     }
 };
 
-YeogurtGenerator.prototype.install = function () {
+YeogurtGenerator.prototype.install = function() {
     if (this.options['skip-install']) {
         return;
     }

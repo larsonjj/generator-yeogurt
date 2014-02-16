@@ -132,6 +132,7 @@ describe('yeogurt generator', function () {
             cssOption: 'LESS',
             useFTP: true,
             jshint: true,
+            useDashboard: true,
             extras: ['htaccess', 'useBootstrap', 'useFontAwesome', 'ieSupport', 'responsive']
         });
         this.app.options['skip-install'] = true;
