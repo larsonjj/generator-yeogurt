@@ -2,6 +2,7 @@ v0.2.6:
   date: 2014-02-16
   changes:
     - Changed server and build tasks to put HTML files in root folders
+    - Removed tasks/logic that creates .min.js files for build tasks
 v0.2.5:
   date: 2014-02-16
   changes:

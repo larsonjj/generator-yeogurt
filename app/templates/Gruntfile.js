@@ -381,44 +381,7 @@ module.exports = function(grunt) {
                 files: {
                     '<%%= yeoman.dist %>/index.html': '<%%= yeoman.dist %>/index.html'
                 }
-            },<% } %><% if (jsOption === 'RequireJS') { %>
-            requireDist: {
-                options: {
-                    replacements: [
-                        // place files inline example
-                        {
-                            <% if (useDashboard) { %>pattern: 'data-main="../../scripts/main"',<% } else { %>pattern: 'data-main="scripts/main"',<% } %>
-                            <% if (useDashboard) { %>replacement: 'data-main="../../scripts/main.min"'<% } else { %>replacement: 'data-main="scripts/main.min"'<% } %>
-                        }, {
-                            pattern: 'require.js',
-                            replacement: 'require.min.js'
-                        }, {
-                            pattern: 'modernizr.js',
-                            replacement: 'modernizr.min.js'
-                        }, {
-                            pattern: '.js\'])',
-                            replacement: '.min.js\'])'
-                        }
-                    ]
-                },
-                files: {
-                    '<%%= yeoman.dist %>/../': ['<%%= yeoman.dist %>/markup/{,*/}{,*/}*.html', '<%%= yeoman.dist %>/*.html']
-                }
-            },<% } %>
-            indexLinkFix: {
-                options: {
-                    replacements: [
-                        // place files inline example
-                        {
-                            pattern: '.server/',
-                            replacement: ''
-                        }
-                    ]
-                },
-                files: {
-                    '<%%= yeoman.dist %>/index.html': ['<%%= yeoman.dist %>/*.html']
-                }
-            }
+            }<% } %>
         },
         // gzip assets 1-to-1 for production
         compress: {
@@ -462,7 +425,7 @@ module.exports = function(grunt) {
                     'requirejs/require.js',
                     'modernizr/modernizr.js'
                 ],
-                ext: '.min.js'
+                ext: '.js'
             },
             distJS: {
                 options: {
@@ -475,7 +438,7 @@ module.exports = function(grunt) {
                 cwd: '<%%= yeoman.dev %>/scripts/',
                 dest: '<%%= yeoman.dist %>/scripts/',
                 src: ['{,*/}{,*/}*.js', '!*.js'],
-                ext: '.min.js'
+                ext: '.js'
             }<% if (jsOption === 'Browserify') { %>,
             distBrowserify: {
                 options: {
@@ -569,7 +532,7 @@ module.exports = function(grunt) {
                     name: 'main',
                     baseUrl: '<%%= yeoman.dev %>/scripts/',
                     mainConfigFile: '<%%= yeoman.dev %>/scripts/main.js',
-                    out: '<%%= yeoman.dist %>/scripts/main.min.js',
+                    out: '<%%= yeoman.dist %>/scripts/main.js',
                     optimize: 'uglify2',
                     generateSourceMaps: true,
                     preserveLicenseComments: false,
@@ -864,9 +827,7 @@ module.exports = function(grunt) {
         'sass:dist',<% if (useDashboard) { %>
         'sass:distDashboard',<% } %>
         'string-replace:sassMapFixDist',<% } %><% if (jsOption === 'RequireJS') { %>
-        'requirejs',
-        'string-replace:requireDist',<% } %>
-        'string-replace:indexLinkFix',<% if (useDashboard) { %>
+        'requirejs',<% } %><% if (useDashboard) { %>
         'string-replace:dashboardLinkFixDist',<% } %>
         'htmlmin:dist',
         'uglify',
