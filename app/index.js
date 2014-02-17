@@ -187,14 +187,14 @@ YeogurtGenerator.prototype.app = function app() {
 
     this.template('dev/markup/components/all-components.jade', 'dev/markup/components/all-components.jade');
 
-    this.copy('dev/markup/components/header.jade', 'dev/markup/components/header.jade');
-    this.copy('dev/markup/components/footer.jade', 'dev/markup/components/footer.jade');
+    this.template('dev/markup/components/header.jade', 'dev/markup/components/header.jade');
+    this.template('dev/markup/components/footer.jade', 'dev/markup/components/footer.jade');
     this.template('dev/markup/modules/all-modules.jade', 'dev/markup/modules/all-modules.jade');
-    this.copy('dev/markup/modules/heading.jade', 'dev/markup/modules/heading.jade');
-    this.copy('dev/markup/pages/index.jade', 'dev/markup/pages/index.jade');
+    this.template('dev/markup/modules/heading.jade', 'dev/markup/modules/heading.jade');
+    this.template('dev/markup/pages/index.jade', 'dev/markup/pages/index.jade');
     this.template('dev/markup/templates/base.jade', 'dev/markup/templates/base.jade');
-    this.copy('dev/markup/templates/one-column.jade', 'dev/markup/templates/one-column.jade');
-    this.copy('dev/markup/templates/two-column.jade', 'dev/markup/templates/two-column.jade');
+    this.template('dev/markup/templates/one-column.jade', 'dev/markup/templates/one-column.jade');
+    this.template('dev/markup/templates/two-column.jade', 'dev/markup/templates/two-column.jade');
 
     // dev/styles
     this.mkdir('dev/styles');
