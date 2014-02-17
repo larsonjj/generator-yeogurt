@@ -1,0 +1,13 @@
+<% if (useDashboard) { %>//- Dashboard Data
+    !##
+    {
+        "status": "development",
+        "markup": "
+            +<%= name %>({})
+        "
+    }
+    ##!
+
+<% } %>//- <%= name %> component
+mixin <%= name || 'component' %>()
+    p This is an example paragraph

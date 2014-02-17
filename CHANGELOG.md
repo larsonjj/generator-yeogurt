@@ -1,3 +1,7 @@
+v0.2.8:
+  date: 2014-02-17
+  changes:
+    - Created subgenerators for jade modules, components, pages, and templates
 v0.2.7:
   date: 2014-02-16
   changes:

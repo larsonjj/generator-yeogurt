@@ -1,0 +1,20 @@
+<% if (useDashboard) { %>//- Dashboard Data
+    !##
+    {
+        "status": "development",
+        "markup": "
+            +<%= name || 'module' %>({id:'<%= name || 'blank' %>', class:'<%= name || 'blank' %>', text:'Some text'})
+        "
+    }
+    ##!
+
+<% } %>//- <%= name %> Mixin
+//- <%= name %> module
+mixin <%= name || 'module' %>(content)
+    - var content       = content           || {};
+    - content.id        = content.id        || '';
+    - content.class     = content.class     || '';
+    - content.text      = content.text      || 'Empty Text';
+
+    div(id=content.id, class=content.class)
+        !=content.text

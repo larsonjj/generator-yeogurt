@@ -194,7 +194,6 @@ YeogurtGenerator.prototype.app = function app() {
     this.template('dev/markup/pages/index.jade', 'dev/markup/pages/index.jade');
     this.template('dev/markup/templates/base.jade', 'dev/markup/templates/base.jade');
     this.template('dev/markup/templates/one-column.jade', 'dev/markup/templates/one-column.jade');
-    this.template('dev/markup/templates/two-column.jade', 'dev/markup/templates/two-column.jade');
 
     // dev/styles
     this.mkdir('dev/styles');
