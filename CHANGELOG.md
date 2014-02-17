@@ -2,6 +2,7 @@ v0.2.7:
   date: 2014-02-16
   changes:
     - Setup dashboard data to not be generated when dynamic dashboard option is not enabled
+    - Fixed issue where HTML files were not being reloaded with watch task
 v0.2.6:
   date: 2014-02-16
   changes:

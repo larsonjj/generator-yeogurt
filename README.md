@@ -126,7 +126,7 @@ Also, feel free to open up an issue if you think something is too confusing or c
 
 ## Release History
 
- * 2014-02-16   v0.2.7   Setup dashboard data to not be generated when dynamic dashboard option is not enabled.
+ * 2014-02-16   v0.2.7   Setup dashboard data to not be generated when dynamic dashboard option is not enabled. Fixed issue where HTML files were not being reloaded with watch task.
  * 2014-02-16   v0.2.6   Changed server and build tasks to put HTML files in root folders. Removed tasks/logic that creates .min.js files for build tasks.
  * 2014-02-16   v0.2.5   Added dynamic dashboard option to generator choices (No longer added by default). Updated sourcemap logic for uglify task based on latest plugin release
  * 2014-02-06   v0.2.4   Official Release
