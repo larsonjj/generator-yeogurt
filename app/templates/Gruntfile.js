@@ -26,7 +26,7 @@ module.exports = function(grunt) {
         yeoman: {
             dev: 'dev',
             server: 'dev/.server',
-	    dist: 'dist'
+            dist: 'dist'
         },
         dashboardData: {},
         watch: {
@@ -117,7 +117,7 @@ module.exports = function(grunt) {
             livereload: {
                 options: {<% if (useDashboard) { %>
                     open: 'http://0.0.0.0:9000/.server/dashboard/index.html',<% } else { %>
-                    open: 'http://0.0.0.0:9000/.server/markup/pages/index.html',<% } %>
+                    open: 'http://0.0.0.0:9000/.server/index.html',<% } %>
                     base: '<%%= yeoman.dev %>'
                 }
             },
@@ -265,16 +265,18 @@ module.exports = function(grunt) {
                     }
                 },
                 expand: true,
-                cwd: '<%%= yeoman.dev %>/',
+                cwd: <% if (useDashboard) { %>'<%%= yeoman.dev %>/'<% } else { %>'<%%= yeoman.dev %>/markup/pages/'<% } %>,
                 dest: '<%%= yeoman.server %>/',
-                src: ['markup/pages/*.jade',
+                src: [<% if (!useDashboard) { %>'*.jade'
+                    <% } %><% if (useDashboard) {
+                    %>'markup/pages/*.jade',
                     '.server/tmp/markup/templates/*.jade',
                     '!.server/tmp/markup/templates/base.jade',
                     '.server/tmp/markup/components/*-*.jade',
                     '!.server/tmp/markup/components/all-components.jade',
                     '.server/tmp/markup/modules/*-*.jade',
                     '!.server/tmp/markup/modules/all-modules.jade'
-                ],
+                <% } %>],
                 ext: '.html',
                 rename: function(dest, matchedSrcPath) {
                     matchedSrcPath = matchedSrcPath.replace('.server/tmp/', '');
@@ -300,9 +302,11 @@ module.exports = function(grunt) {
                     }
                 },
                 expand: true,
-                cwd: '<%%= yeoman.dev %>/',
+                cwd: <% if (useDashboard) { %>'<%%= yeoman.dev %>/'<% } else { %>'<%%= yeoman.dev %>/markup/pages/'<% } %>,
                 dest: '<%%= yeoman.dist %>/',
-                src: ['markup/pages/*.jade',
+                src: [<% if (!useDashboard) { %>'*.jade'
+                    <% } %><% if (useDashboard) {
+                    %>'markup/pages/*.jade',
                     '.server/tmp/markup/templates/*.jade',
                     '!.server/tmp/markup/templates/base.jade',
                     '.server/tmp/markup/components/*-*.jade',
@@ -310,7 +314,7 @@ module.exports = function(grunt) {
                     '!.server/tmp/markup/components/head.jade',
                     '.server/tmp/markup/modules/*-*.jade',
                     '!.server/tmp/markup/modules/all-modules.jade'
-                ],
+                <% } %>],
                 ext: '.html',
                 rename: function(dest, matchedSrcPath) {
                     matchedSrcPath = matchedSrcPath.replace('.server/tmp/', '');
@@ -383,8 +387,8 @@ module.exports = function(grunt) {
                     replacements: [
                         // place files inline example
                         {
-                            pattern: 'data-main="../../scripts/main"',
-                            replacement: 'data-main="../../scripts/main.min"'
+                            <% if (useDashboard) { %>pattern: 'data-main="../../scripts/main"',<% } else { %>pattern: 'data-main="scripts/main"',<% } %>
+                            <% if (useDashboard) { %>replacement: 'data-main="../../scripts/main.min"'<% } else { %>replacement: 'data-main="scripts/main.min"'<% } %>
                         }, {
                             pattern: 'require.js',
                             replacement: 'require.min.js'
