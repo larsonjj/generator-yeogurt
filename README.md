@@ -126,6 +126,7 @@ Also, feel free to open up an issue if you think something is too confusing or c
 
 ## Release History
 
+ * 2014-02-16   v0.2.6   Changed server and build tasks to put HTML files in root folders.
  * 2014-02-16   v0.2.5   Added dynamic dashboard option to generator choices (No longer added by default). Updated sourcemap logic for uglify task based on latest plugin release
  * 2014-02-06   v0.2.4   Official Release
 

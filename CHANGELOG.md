@@ -1,3 +1,7 @@
+v0.2.6:
+  date: 2014-02-16
+  changes:
+    - Changed server and build tasks to put HTML files in root folders
 v0.2.5:
   date: 2014-02-16
   changes:
