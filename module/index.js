@@ -9,6 +9,7 @@ var ModuleGenerator = module.exports = function ModuleGenerator(args, options, c
 
     // options
     this.useDashboard = this.options.dashboard || false;
+    this.useStyles = this.options.styles || true;
 
     console.log('You called the module subgenerator with the argument ' + this.name + '.');
 };
@@ -19,7 +20,9 @@ ModuleGenerator.prototype.files = function files() {
     if (this.name) {
         if (this.name !== 'all-modules') {
             this.template('module.jade', 'dev/markup/modules/' + this._.slugify(this.name.toLowerCase()) + '.jade');
-            this.template('module.scss', 'dev/styles/modules/' + this._.slugify(this.name.toLowerCase()) + '.scss');
+            if (this.useStyles) {
+                this.template('module.scss', 'dev/styles/modules/' + this._.slugify(this.name.toLowerCase()) + '.scss');
+            }
         } else {
             console.log('The all-modules file should not be overwritten. Operation aborted.');
         }

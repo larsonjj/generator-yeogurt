@@ -9,6 +9,7 @@ var TemplateGenerator = module.exports = function TemplateGenerator(args, option
 
     // options
     this.useDashboard = this.options.dashboard || false;
+    this.useStyles = this.options.styles || false;
 
     console.log('You called the template subgenerator with the argument ' + this.name + '.');
 };
@@ -19,7 +20,9 @@ TemplateGenerator.prototype.files = function files() {
     if (this.name) {
         if (this.name !== 'base') {
             this.template('template.jade', 'dev/markup/templates/' + this._.slugify(this.name.toLowerCase()) + '.jade');
-            this.template('template.scss', 'dev/styles/templates/' + this._.slugify(this.name.toLowerCase()) + '.scss');
+            if (this.useStyles) {
+                this.template('template.scss', 'dev/styles/templates/' + this._.slugify(this.name.toLowerCase()) + '.scss');
+            }
         } else {
             console.log('The base template should not be overwritten. Operation aborted.');
         }

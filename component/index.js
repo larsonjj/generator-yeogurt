@@ -9,6 +9,7 @@ var ComponentGenerator = module.exports = function ComponentGenerator(args, opti
 
     // options
     this.useDashboard = this.options.dashboard || false;
+    this.useStyles = this.options.styles || true;
 
     console.log('You called the component subgenerator with the argument ' + this.name + '.');
 };
@@ -19,7 +20,9 @@ ComponentGenerator.prototype.files = function files() {
     if (this.name) {
         if (this.name !== 'all-components') {
             this.template('component.jade', 'dev/markup/components/' + this._.slugify(this.name.toLowerCase()) + '.jade');
-            this.template('component.scss', 'dev/styles/components/' + this._.slugify(this.name.toLowerCase()) + '.scss');
+            if (this.useStyles) {
+                this.template('component.scss', 'dev/styles/components/' + this._.slugify(this.name.toLowerCase()) + '.scss');
+            }
         } else {
             console.log('The all-components file should not be overwritten. Operation aborted.');
         }

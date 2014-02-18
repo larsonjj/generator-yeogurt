@@ -10,6 +10,7 @@ var PageGenerator = module.exports = function PageGenerator(args, options, confi
     // options
     this.useDashboard = this.options.dashboard || false;
     this.useTemplate = this.options.template || false;
+    this.useStyles = this.options.styles || true;
 
     console.log('You called the page subgenerator with the argument ' + this.name + '.');
     console.log(this.options.template);
@@ -20,7 +21,9 @@ util.inherits(PageGenerator, yeoman.generators.NamedBase);
 PageGenerator.prototype.files = function files() {
     if (this.name) {
         this.template('page.jade', 'dev/markup/pages/' + this._.slugify(this.name.toLowerCase()) + '.jade');
-        this.template('page.scss', 'dev/styles/pages/' + this._.slugify(this.name.toLowerCase()) + '.scss');
+        if (this.useStyles) {
+            this.template('page.scss', 'dev/styles/pages/' + this._.slugify(this.name.toLowerCase()) + '.scss');
+        }
     }
     else {
         console.log('Name cannot be empty.');
