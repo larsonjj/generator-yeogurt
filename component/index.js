@@ -16,9 +16,15 @@ var ComponentGenerator = module.exports = function ComponentGenerator(args, opti
 util.inherits(ComponentGenerator, yeoman.generators.NamedBase);
 
 ComponentGenerator.prototype.files = function files() {
-    if (this.name !== "all-components") {
-        this.template('component.jade', 'dev/markup/components/' + this._.slugify(this.name.toLowerCase()) + '.jade');
-    } else {
-        console.log('The all-components file should not be overwritten. Operation aborted.');
+    if (this.name) {
+        if (this.name !== 'all-components') {
+            this.template('component.jade', 'dev/markup/components/' + this._.slugify(this.name.toLowerCase()) + '.jade');
+            this.template('component.scss', 'dev/styles/components/' + this._.slugify(this.name.toLowerCase()) + '.scss');
+        } else {
+            console.log('The all-components file should not be overwritten. Operation aborted.');
+        }
+    }
+    else {
+        console.log('Name cannot be empty.');
     }
 };

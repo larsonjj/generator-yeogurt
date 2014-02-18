@@ -10,4 +10,5 @@
 
 <% } %>//- <%= name %> component
 mixin <%= name || 'component' %>()
-    p This is an example paragraph
+    div.<%= _.slugify(name.toLowerCase()) %>
+        p This is an example paragraph

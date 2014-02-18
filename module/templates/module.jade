@@ -16,5 +16,5 @@ mixin <%= name || 'module' %>(content)
     - content.class     = content.class     || '';
     - content.text      = content.text      || 'Empty Text';
 
-    div(id=content.id, class=content.class)
+    div.<%= _.slugify(name.toLowerCase()) %>(id=content.id, class=content.class)
         !=content.text

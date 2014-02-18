@@ -16,9 +16,15 @@ var ModuleGenerator = module.exports = function ModuleGenerator(args, options, c
 util.inherits(ModuleGenerator, yeoman.generators.NamedBase);
 
 ModuleGenerator.prototype.files = function files() {
-    if (this.name !== "all-modules") {
-        this.template('module.jade', 'dev/markup/modules/' + this._.slugify(this.name.toLowerCase()) + '.jade');
-    } else {
-        console.log('The all-modules file should not be overwritten. Operation aborted.');
+    if (this.name) {
+        if (this.name !== 'all-modules') {
+            this.template('module.jade', 'dev/markup/modules/' + this._.slugify(this.name.toLowerCase()) + '.jade');
+            this.template('module.scss', 'dev/styles/modules/' + this._.slugify(this.name.toLowerCase()) + '.scss');
+        } else {
+            console.log('The all-modules file should not be overwritten. Operation aborted.');
+        }
+    }
+    else {
+        console.log('Name cannot be empty.');
     }
 };
