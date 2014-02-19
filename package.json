@@ -1,7 +1,7 @@
 {
   "name": "generator-yeogurt",
-  "version": "0.2.8",
-  "description": "A Yeoman generator for creating a sensible structure to front-end work. Utilizes Jade, Sass/Less, and RequireJS",
+  "version": "0.2.9",
+  "description": "A Yeoman generator for creating a sensible structure to front-end work.",
   "keywords": [
     "yeoman-generator",
     "yeogurt",
@@ -12,6 +12,7 @@
     "sass",
     "less",
     "requirejs",
+    "browserify",
     "dashboard"
   ],
   "homepage": "https://github.com/larsonjj/generator-yeogurt",

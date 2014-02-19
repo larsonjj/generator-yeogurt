@@ -1,3 +1,8 @@
+v0.2.9:
+  date: 2014-02-18
+  changes:
+    - Updated sub generators to have a script generating option
+    - .yeogurtrc file is now generated to store user choices from generator
 v0.2.8:
   date: 2014-02-17
   changes:
