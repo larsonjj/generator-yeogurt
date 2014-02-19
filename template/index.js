@@ -1,7 +1,7 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var fileJSON = require(process.cwd() + '/yeogurt.json');
+var fileJSON = require(process.cwd() + '/.yeogurtrc');
 
 var TemplateGenerator = module.exports = function TemplateGenerator(args, options, config) {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
