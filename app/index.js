@@ -140,7 +140,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
 YeogurtGenerator.prototype.app = function app() {
 
     // Create yeogurtrc file
-    this.template('.yeogurtrc', '.yeogurtrc');
+    this.template('yeogurt.json', 'yeogurt.json');
 
     // Create needed Directories
 

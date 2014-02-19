@@ -74,7 +74,7 @@ describe('yeogurt generator', function () {
             'dev/scripts/app.js',
             'dev/scripts/components/example.js',
             '.ftppass',
-            '.yeogurtrc',
+            'yeogurt.json',
             'dev/images',
             'dev/styles/fonts',
             'docs',
