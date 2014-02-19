@@ -52,6 +52,50 @@ Runs `grunt build` and compresses the entire site to a ZIP file
 - `grunt deploy`<br>
 Runs `grunt zip` and pushes both production-ready files and zip file to a specified FTP server
 
+
+## Sub-Generators
+
+Available sub-generators:
+
+* [yeogurt:component](#component)
+* [yeogurt:module](#module)
+* [yeogurt:template](#template)
+* [yeogurt:page](#page)
+
+**Note: Generators are to be run from the root directory of your app.**
+
+### Component
+Creates component jade and scss files in `dev/markup/components` and `dev/styles/components` respectively
+
+Example:
+```bash
+yo angular controller:mycontroller
+```
+
+### Module
+Creates module jade and scss files in `dev/markup/module` and `dev/styles/module` respectively
+
+Example:
+```bash
+yo angular module:mymodule
+```
+
+### Template
+Creates template jade and scss files in `dev/markup/template` and `dev/styles/template` respectively
+
+Example:
+```bash
+yo angular template:mytemplate
+```
+
+### Page
+Creates page jade and scss files in `dev/markup/page` and `dev/styles/page` respectively
+
+Example:
+```bash
+yo angular page:mypage
+```
+
 ## Dynamic Dashboard
 Here is what the dashboard looks like when you run `grunt server`:<br>
 ![](http://i.imgur.com/yW4QC3e.png =650x)
