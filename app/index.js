@@ -131,11 +131,16 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.ieSupport = hasFeature('ieSupport');
         this.responsive = hasFeature('responsive');
 
+        this.props = props;
+
         cb();
     }.bind(this));
 };
 
 YeogurtGenerator.prototype.app = function app() {
+
+    // Create yeogurtrc file
+    this.template('.yeogurtrc', '.yeogurtrc');
 
     // Create needed Directories
 
@@ -165,6 +170,9 @@ YeogurtGenerator.prototype.app = function app() {
     // dev/scripts
     this.mkdir('dev/scripts');
     this.mkdir('dev/scripts/components');
+    this.mkdir('dev/scripts/templates');
+    this.mkdir('dev/scripts/modules');
+    this.mkdir('dev/scripts/pages');
     this.mkdir('dev/scripts/vendor');
 
     this.template('dev/scripts/app.js', 'dev/scripts/app.js');

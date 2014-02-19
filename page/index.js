@@ -1,6 +1,7 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
+var fileJSON = require(process.cwd() + '/yeogurt.json');
 
 var PageGenerator = module.exports = function PageGenerator(args, options, config) {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -11,6 +12,9 @@ var PageGenerator = module.exports = function PageGenerator(args, options, confi
     this.useDashboard = this.options.dashboard || false;
     this.useTemplate = this.options.template || false;
     this.useStyles = this.options.styles || true;
+    this.useScripts = this.options.script || false;
+    this.jsOption = fileJSON.jsOption;
+    this.cssOption = fileJSON.jsOption;
 
     console.log('You called the page subgenerator with the argument ' + this.name + '.');
     console.log(this.options.template);
@@ -24,8 +28,11 @@ PageGenerator.prototype.files = function files() {
         if (this.useStyles) {
             this.template('page.scss', 'dev/styles/pages/' + this._.slugify(this.name.toLowerCase()) + '.scss');
         }
+        if (this.useScripts) {
+            this.template('page.js', 'dev/scripts/pages/' + this._.slugify(this.name.toLowerCase()) + '.js');
+        }
     }
     else {
-        console.log('Name cannot be empty.');
+        console.log('Name cannot be empty. Operation aborted.');
     }
 };
