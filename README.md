@@ -170,7 +170,7 @@ Also, feel free to open up an issue if you think something is too confusing or c
 
 ## Release History
 
- * 2014-02-18   v0.2.9   Updated sub generators to have a script generating option. .yeogurtrc file is now generated to store user choices from generator17   v0.2.8   Created subgenerators for jade modules, components, pages, and templates
+ * 2014-02-18   v0.2.9   Updated sub generators to have a script generating option. .yeogurtrc file is now generated to store user choices from generator.
  * 2014-02-17   v0.2.8   Created subgenerators for jade modules, components, pages, and templates
  * 2014-02-16   v0.2.7   Setup dashboard data to not be generated when dynamic dashboard option is not enabled. Fixed issue where HTML files were not being reloaded with watch task.
  * 2014-02-16   v0.2.6   Changed server and build tasks to put HTML files in root folders. Removed tasks/logic that creates .min.js files for build tasks.
