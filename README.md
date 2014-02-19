@@ -69,7 +69,7 @@ Creates component jade and scss files in `dev/markup/components` and `dev/styles
 
 Example:
 ```bash
-yo angular controller:mycontroller
+yo yeogurt controller:mycontroller
 ```
 
 ### Module
@@ -77,7 +77,7 @@ Creates module jade and scss files in `dev/markup/module` and `dev/styles/module
 
 Example:
 ```bash
-yo angular module:mymodule
+yo yeogurt module:mymodule
 ```
 
 ### Template
@@ -85,7 +85,7 @@ Creates template jade and scss files in `dev/markup/template` and `dev/styles/te
 
 Example:
 ```bash
-yo angular template:mytemplate
+yo yeogurt template:mytemplate
 ```
 
 ### Page
@@ -93,7 +93,7 @@ Creates page jade and scss files in `dev/markup/page` and `dev/styles/page` resp
 
 Example:
 ```bash
-yo angular page:mypage
+yo yeogurt page:mypage
 ```
 
 ## Dynamic Dashboard
