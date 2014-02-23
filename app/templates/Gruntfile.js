@@ -46,7 +46,7 @@ module.exports = function(grunt) {
                     'jade:serverDashboard',<% } %>
                     'clean:temp'
                 ]
-            },<% if (cssOption === 'SASS') { %>
+            },<% if (cssOption === 'SCSS') { %>
             sass: {
                 files: ['<%%= yeoman.dev %>/styles/{,*/}{,*/}*.{scss,sass}'],
                 tasks: ['sass:server']
@@ -100,7 +100,7 @@ module.exports = function(grunt) {
                     '<%%= yeoman.server %>/dashboard/markup/{,*/}*.html',
                     '<%%= yeoman.server %>/dashboard/styles/{,*/}*.css',
                     '<%%= yeoman.server %>/dashboard/scripts/{,*/}*.js'<% } else { %>,
-                    '<%%= yeoman.server %>/{,*/}*.html'<% } %><% if (cssOption === 'SASS') { %>,
+                    '<%%= yeoman.server %>/{,*/}*.html'<% } %><% if (cssOption === 'SCSS') { %>,
                     '<%%= yeoman.dev %>/styles/{,*/}{,*/}*.{sass,scss}'<% } %><% if (cssOption === 'LESS') { %>,
                     '<%%= yeoman.dev %>/styles/{,*/}{,*/}*.less'<% } %>,
                     '<%%= yeoman.server %>/scripts/{,*/}{,*/}*.js',
@@ -345,7 +345,7 @@ module.exports = function(grunt) {
                 '!<%%= yeoman.dev %>/scripts/vendor/{,*/}*'
             ]
         },<% } %>
-        'string-replace': {<% if (cssOption === 'SASS') { %>
+        'string-replace': {<% if (cssOption === 'SCSS') { %>
             sassMapFixDist: {
                 options: {
                     replacements: [
@@ -539,7 +539,7 @@ module.exports = function(grunt) {
                     preserveLicenseComments: false,
                 }
             }
-        },<% } %><% if (cssOption === 'SASS') { %>
+        },<% } %><% if (cssOption === 'SCSS') { %>
         sass: {
             server: {
                 options: {
@@ -553,7 +553,20 @@ module.exports = function(grunt) {
                 files: {
                     '<%%= yeoman.server %>/styles/main.css': '<%%= yeoman.dev %>/styles/main.scss'
                 }
-            },<% if (useDashboard) { %>
+            },<% if (ieSupport) { %>
+            serverPrint: {
+                options: {
+                    sourceComments: 'map',
+                    outputStyle: 'compressed',
+                    sourceMap: '<%%= yeoman.server %>/styles/print.css.map',
+                    includePaths: [
+                        '<%%= yeoman.dev %>/styles/{,*/}*.scss'
+                    ]
+                },
+                files: {
+                    '<%%= yeoman.server %>/styles/print.css': '<%%= yeoman.dev %>/styles/print.scss'
+                }
+            },<% } %><% if (useDashboard) { %>
             serverDashboard: {
                 options: {
                     sourceComments: 'map',
@@ -579,7 +592,20 @@ module.exports = function(grunt) {
                 files: {
                     '<%%= yeoman.dist %>/styles/main.css': '<%%= yeoman.dev %>/styles/main.scss'
                 }
-            },<% if (useDashboard) { %>
+            },<% if (ieSupport) { %>
+            distPrint: {
+                options: {
+                    sourceComments: 'map',
+                    outputStyle: 'compressed',
+                    sourceMap: '<%%= yeoman.server %>/styles/print.css.map',
+                    includePaths: [
+                        '<%%= yeoman.dev %>/styles/{,*/}*.scss'
+                    ]
+                },
+                files: {
+                    '<%%= yeoman.dist %>/styles/print.css': '<%%= yeoman.dev %>/styles/print.scss'
+                }
+            },<% } %><% if (useDashboard) { %>
             distDashboard: {
                 options: {
                     sourceComments: 'map',
@@ -608,7 +634,10 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
                 dest: '<%%= yeoman.server %>/',
-                src: ['styles/*.less'],
+                src: [
+                    'styles/main.less'<% if (ieSupport) { %>,
+                    'styles/print.less'<% } %>
+                ],
                 ext: '.css'
             },
             <% if (useDashboard) { %>
@@ -641,7 +670,10 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
                 dest: '<%%= yeoman.dist %>/',
-                src: ['styles/*.less'],
+                src: [
+                    'styles/main.less'<% if (ieSupport) { %>,
+                    'styles/print.less'<% } %>
+                ],
                 ext: '.css'
             }<% if (useDashboard) { %>,
             distDashboard: {
@@ -805,8 +837,9 @@ module.exports = function(grunt) {
         'jade:server'<% if (useDashboard) { %>,
         'jade:serverDashboard'<% } %><% if (cssOption === 'LESS') { %>,
         'less:server'<% if (useDashboard) { %>,
-        'less:serverDashboard'<% } %><% } %><% if (cssOption === 'SASS') { %>,
-        'sass:server'<% if (useDashboard) { %>,
+        'less:serverDashboard'<% } %><% } %><% if (cssOption === 'SCSS') { %>,
+        'sass:server'<% if (ieSupport) { %>,
+        'sass:serverPrint'<% } %><% if (useDashboard) { %>,
         'sass:serverDashboard'<% } %><%} %>,
         'clean:temp',
         'connect:livereload',
@@ -824,15 +857,16 @@ module.exports = function(grunt) {
         'jade:dist',<% if (useDashboard) { %>
         'jade:distDashboard',<% } %><% if (cssOption === 'LESS') { %>
         'less:dist',<% if (useDashboard) { %>
-        'less:distDashboard',<% } %><% } %><% if (cssOption === 'SASS') { %>
-        'sass:dist',<% if (useDashboard) { %>
+        'less:distDashboard',<% } %><% } %><% if (cssOption === 'SCSS') { %>
+        'sass:dist',<% if (ieSupport) { %>
+        'sass:distPrint',<% } %><% if (useDashboard) { %>
         'sass:distDashboard',<% } %>
         'string-replace:sassMapFixDist',<% } %><% if (jsOption === 'RequireJS') { %>
         'requirejs',<% } %><% if (useDashboard) { %>
         'string-replace:dashboardLinkFixDist',<% } %>
         'htmlmin:dist',
         'uglify',
-        'clean:temp',
+        'clean:temp'
     ]);
     <% if (jshint) { %>
     grunt.registerTask('test', 'Peform tests on JavaScript', [
@@ -843,7 +877,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('zip', 'Build a production ready version of your site and zip it up', [
         'build',
-        'compress',
+        'compress'
     ]);
     <% if (useFTP) { %>
     grunt.registerTask('deploy', 'Build a production ready version of your site and deploy it to a desired FTP server.', [

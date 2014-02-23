@@ -168,6 +168,15 @@ A bit confused? No worries, I recommend generating a test project and taking a l
 
 Also, feel free to open up an issue if you think something is too confusing or can be improved.
 
+## Contributing to this project
+
+Anyone and everyone is welcome to contribute. Please take a moment to
+review the [guidelines for contributing](CONTRIBUTING.md).
+
+* [Bug reports](CONTRIBUTING.md#bugs)
+* [Feature requests](CONTRIBUTING.md#features)
+* [Pull requests](CONTRIBUTING.md#pull-requests)
+
 ## Release History
 
  * 2014-02-18   v0.2.9   Updated sub generators to have a script generating option. .yeogurtrc file is now generated to store user choices from generator.

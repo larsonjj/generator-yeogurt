@@ -15,17 +15,45 @@ html.no-js(lang="en")
         title <%= projectName %>
         meta(name='description', content='')
         meta(name='viewport', content='width=device-width, initial-scale=1.0')
-        link(rel='stylesheet', href='<% if (useDashboard) { %>../../<% } %>styles/main.css')
+        link(rel='stylesheet', href='<% if (useDashboard) { %>../../<% } %>styles/main.css' media="screen")<% if (ieSupport) { %>
+        link(rel='stylesheet', href='<% if (useDashboard) { %>../../<% } %>styles/print.css' media="print")<% } %>
         script(src='<% if (useDashboard) { %>../../<% } %>bower_components/modernizr/modernizr.js')<% if (ieSupport) { %>
         // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
         <!--[if IE 8]>
         <% if (responsive) { %>
         script(src="<% if (useDashboard) { %>../../<% } %>bower_components/respond/respond.min.js")<% } %>
-        script(src="<% if (useDashboard) { %>../../<% } %>bower_components/html5shiv/dist/html5shiv.js")<% } %>
-        <![endif]-->
+        script(src="<% if (useDashboard) { %>../../<% } %>bower_components/html5shiv/dist/html5shiv-printshiv.js")
+        script.
+            // Protect window.console method calls, e.g. console is not defined on IE
+            (function() {
+                if (!window.console) {
+                    window.console = {};
+                }
+                // union of Chrome, FF, IE, and Safari console methods
+                var m = [
+                    "log", "info", "warn", "error", "debug", "trace", "dir", "group",
+                    "groupCollapsed", "groupEnd", "time", "timeEnd", "profile", "profileEnd",
+                    "dirxml", "assert", "count", "markTimeline", "timeStamp", "clear"
+                ];
+                // define undefined methods as noops to prevent errors
+                for (var i = 0; i < m.length; i++) {
+                    if (!window.console[m[i]]) {
+                        window.console[m[i]] = function() {};
+                    }
+                }
+            })();
+        <![endif]--><% } %>
         <% if (jsOption ==='RequireJS') { %>script(data-main="<% if (useDashboard) { %>../../<% } %>scripts/main", src="<% if (useDashboard) { %>../../<% } %>bower_components/requirejs/require.js")<% } else if (jsOption ==='Browserify') { %>
         script(src="<% if (useDashboard) { %>../../<% } %>scripts/main.js", defer)<% } %>
     -var bodyClass
     block body
     body(class=(bodyClass ? bodyClass : false))
         block template
+        <% if (useGA) { %><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        script.
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');<% } %>

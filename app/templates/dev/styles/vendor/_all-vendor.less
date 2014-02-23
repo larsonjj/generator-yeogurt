@@ -1,12 +1,12 @@
 /*
-*   _all-vendor.less
+*   _all-vendor.<% if (cssOption === 'LESS') { %>less<% } else if (cssOption === 'SCSS') { %>scss<% } %>
 *   Import all vendor stylesheets here
 */
 
 @import '_normalize';<% if (cssOption === 'LESS') { %>
 // Import lesshat
 @import '_lesshat';<% } %>
-<% if (cssOption === 'SASS') { %>
+<% if (cssOption === 'SCSS') { %>
 // Import Bourbon Library
 @import '_bourbon';<% } %><% if (useFontAwesome) { %>
 // Import Font Awesome

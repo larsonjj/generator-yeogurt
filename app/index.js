@@ -62,12 +62,17 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         type: 'list',
         name: 'cssOption',
         message: 'Which CSS preprocessor would you like to use?',
-        choices: ['SASS', 'LESS'],
+        choices: ['SCSS', 'LESS'],
     }, {
         type: 'list',
         name: 'jsOption',
         message: 'Which JavaScript module library would you like to use?',
         choices: ['RequireJS', 'Browserify'],
+    }, {
+        type: 'confirm',
+        name: 'useGA',
+        message: 'Will you be using Google Analytics?',
+        default: true,
     }, {
         type: 'confirm',
         name: 'useFTP',
@@ -117,6 +122,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.jsOption = props.jsOption;
         this.extras = props.extras;
         this.jshint = props.jshint;
+        this.useGA = props.useGA;
         this.useFTP = props.useFTP;
         this.useDashboard = props.useDashboard;
         var extras = this.extras;
@@ -156,6 +162,16 @@ YeogurtGenerator.prototype.app = function app() {
     if (this.useFTP) {
         this.copy('.ftppass', '.ftppass');
     }
+
+    this.copy('browserconfig.xml', 'browserconfig.xml');
+    this.copy('crossdomain.xml', 'crossdomain.xml');
+    this.copy('tile.png', 'tile.png');
+    this.copy('tile-wide.png', 'tile-wide.png');
+    this.copy('tile-wide.png', 'tile-wide.png');
+    this.copy('apple-touch-icon-precomposed.png', 'apple-touch-icon-precomposed.png');
+    this.copy('robots.txt', 'robots.txt');
+    this.copy('robots.txt', 'robots.txt');
+    this.copy('humans.txt', 'humans.txt');
 
     // dev/
     this.mkdir('dev');
@@ -221,26 +237,33 @@ YeogurtGenerator.prototype.app = function app() {
         this.template('dev/styles/vendor/_lesshat.less', 'dev/styles/vendor/_lesshat.less');
         this.template('dev/styles/vendor/_normalize.less', 'dev/styles/vendor/_normalize.less');
         this.template('dev/styles/main.less', 'dev/styles/main.less');
+        if (this.ieSupport) {
+            this.template('dev/styles/partials/_print.less', 'dev/styles/print.less');
+            this.template('dev/styles/partials/_ie8.less', 'dev/styles/partials/_ie8.less');
+        }
+        else {
+            this.template('dev/styles/partials/_print.less', 'dev/styles/partials/_print.less');
+        }
     }
-    if (this.cssOption === 'SASS') {
+    if (this.cssOption === 'SCSS') {
         this.mkdir('dev/styles/base');
-        this.copy('dev/styles/base/_all-base.less', 'dev/styles/base/_all-base.scss');
-        this.copy('dev/styles/base/_mixins.less', 'dev/styles/base/_mixins.scss');
-        this.copy('dev/styles/base/_variables.less', 'dev/styles/base/_variables.scss');
+        this.template('dev/styles/base/_all-base.less', 'dev/styles/base/_all-base.scss');
+        this.template('dev/styles/base/_mixins.less', 'dev/styles/base/_mixins.scss');
+        this.template('dev/styles/base/_variables.less', 'dev/styles/base/_variables.scss');
         this.mkdir('dev/styles/components');
-        this.copy('dev/styles/components/_all-components.less', 'dev/styles/components/_all-components.scss');
-        this.copy('dev/styles/components/_footer.less', 'dev/styles/components/_footer.scss');
-        this.copy('dev/styles/components/_header.less', 'dev/styles/components/_header.scss');
+        this.template('dev/styles/components/_all-components.less', 'dev/styles/components/_all-components.scss');
+        this.template('dev/styles/components/_footer.less', 'dev/styles/components/_footer.scss');
+        this.template('dev/styles/components/_header.less', 'dev/styles/components/_header.scss');
         this.mkdir('dev/styles/modules');
-        this.copy('dev/styles/modules/_all-modules.less', 'dev/styles/modules/_all-modules.scss');
+        this.template('dev/styles/modules/_all-modules.less', 'dev/styles/modules/_all-modules.scss');
         this.mkdir('dev/styles/pages');
-        this.copy('dev/styles/pages/_all-pages.less', 'dev/styles/pages/_all-pages.scss');
+        this.template('dev/styles/pages/_all-pages.less', 'dev/styles/pages/_all-pages.scss');
         this.mkdir('dev/styles/partials');
-        this.copy('dev/styles/partials/_all-partials.less', 'dev/styles/partials/_all-partials.scss');
-        this.copy('dev/styles/partials/_box-sizing.less', 'dev/styles/partials/_box-sizing.scss');
-        this.copy('dev/styles/partials/_reset.less', 'dev/styles/partials/_reset.scss');
+        this.template('dev/styles/partials/_all-partials.less', 'dev/styles/partials/_all-partials.scss');
+        this.template('dev/styles/partials/_box-sizing.less', 'dev/styles/partials/_box-sizing.scss');
+        this.template('dev/styles/partials/_reset.less', 'dev/styles/partials/_reset.scss');
         this.mkdir('dev/styles/templates');
-        this.copy('dev/styles/templates/_all-templates.less', 'dev/styles/templates/_all-templates.scss');
+        this.template('dev/styles/templates/_all-templates.less', 'dev/styles/templates/_all-templates.scss');
         this.mkdir('dev/styles/vendor');
         this.template('dev/styles/vendor/_all-vendor.less', 'dev/styles/vendor/_all-vendor.scss');
         this.template('dev/styles/vendor/_bourbon.scss', 'dev/styles/vendor/_bourbon.scss');
@@ -249,6 +272,13 @@ YeogurtGenerator.prototype.app = function app() {
         }
         this.template('dev/styles/vendor/_bourbon.scss', 'dev/styles/vendor/_bourbon.scss');
         this.template('dev/styles/vendor/_normalize.less', 'dev/styles/vendor/_normalize.scss');
+        if (this.ieSupport) {
+            this.template('dev/styles/partials/_print.less', 'dev/styles/print.scss');
+            this.template('dev/styles/partials/_ie8.less', 'dev/styles/partials/_ie8.scss');
+        }
+        else {
+            this.template('dev/styles/partials/_print.less', 'dev/styles/partials/_print.scss');
+        }
         this.template('dev/styles/main.less', 'dev/styles/main.scss');
     }
 
@@ -299,7 +329,7 @@ YeogurtGenerator.prototype.app = function app() {
             this.template('dev/dashboard/styles/vendor/_normalize.less', 'dev/dashboard/styles/vendor/_normalize.less');
             this.template('dev/dashboard/styles/main.less', 'dev/dashboard/styles/main.less');
         }
-        if (this.cssOption === 'SASS') {
+        if (this.cssOption === 'SCSS') {
             this.mkdir('dev/dashboard/styles/base');
             this.copy('dev/dashboard/styles/base/_all-base.less', 'dev/dashboard/styles/base/_all-base.scss');
             this.copy('dev/dashboard/styles/base/_mixins.less', 'dev/dashboard/styles/base/_mixins.scss');

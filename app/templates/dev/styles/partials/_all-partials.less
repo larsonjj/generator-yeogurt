@@ -1,7 +1,9 @@
 /*
-*   _all-partials.less
+*   _all-partials.<% if (cssOption === 'LESS') { %>less<% } else if (cssOption === 'SCSS') { %>scss<% } %>
 *   Import all partials here
 */
 
 @import '_box-sizing';
-@import '_reset';
+@import '_reset';<% if (!ieSupport) { %>
+@import '_print';<% } else { %>
+@import '_ie8';<% } %>
