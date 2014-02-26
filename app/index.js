@@ -185,15 +185,12 @@ YeogurtGenerator.prototype.app = function app() {
 
     // dev/scripts
     this.mkdir('dev/scripts');
-    this.mkdir('dev/scripts/components');
-    this.mkdir('dev/scripts/templates');
     this.mkdir('dev/scripts/modules');
-    this.mkdir('dev/scripts/pages');
     this.mkdir('dev/scripts/vendor');
 
     this.template('dev/scripts/app.js', 'dev/scripts/app.js');
     this.template('dev/scripts/main.js', 'dev/scripts/main.js');
-    this.template('dev/scripts/components/example.js', 'dev/scripts/components/example.js');
+    this.template('dev/scripts/modules/module.js', 'dev/scripts/modules/module.js');
 
     // dev/images
     this.mkdir('dev/images');
