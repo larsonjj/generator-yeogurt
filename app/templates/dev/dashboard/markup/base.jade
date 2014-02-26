@@ -2,8 +2,13 @@
 //- All other templates will extend from this
 
 //- Include all modules (components/modules)
-include ../components/all-components
-include ../../../markup/modules/all-modules
+//-!##
+include components/header
+include components/footer
+include components/dashboard-switcher
+include components/status-key
+include ../../markup/helpers/heading
+//-##!
 
 doctype html<% if (ieSupport) { %>
 <!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->

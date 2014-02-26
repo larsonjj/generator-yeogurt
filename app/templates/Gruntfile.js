@@ -272,11 +272,9 @@ module.exports = function(grunt) {
                     <% } %><% if (useDashboard) {
                     %>'markup/pages/*.jade',
                     '.server/tmp/markup/templates/*.jade',
-                    '!.server/tmp/markup/templates/base.jade',
+                    '!.server/tmp/markup/base.jade',
                     '.server/tmp/markup/components/*-*.jade',
-                    '!.server/tmp/markup/components/all-components.jade',
-                    '.server/tmp/markup/modules/*-*.jade',
-                    '!.server/tmp/markup/modules/all-modules.jade'
+                    '.server/tmp/markup/helpers/*-*.jade',
                 <% } %>],
                 ext: '.html',
                 rename: function(dest, matchedSrcPath) {
@@ -291,7 +289,7 @@ module.exports = function(grunt) {
                     data: '<%%= dashboardData %>'
                 },
                 files: {
-                    '<%%= yeoman.server %>/dashboard/index.html': ['<%%= yeoman.dev %>/dashboard/markup/index.jade']
+                    '<%%= yeoman.server %>/dashboard/index.html': ['<%%= yeoman.dev %>/dashboard/markup/pages/index.jade']
                 }
             },<% } %>
             dist: {
@@ -309,12 +307,10 @@ module.exports = function(grunt) {
                     <% } %><% if (useDashboard) {
                     %>'markup/pages/*.jade',
                     '.server/tmp/markup/templates/*.jade',
-                    '!.server/tmp/markup/templates/base.jade',
+                    '!.server/tmp/markup/base.jade',
                     '.server/tmp/markup/components/*-*.jade',
-                    '!.server/tmp/markup/components/all-components.jade',
                     '!.server/tmp/markup/components/head.jade',
-                    '.server/tmp/markup/modules/*-*.jade',
-                    '!.server/tmp/markup/modules/all-modules.jade'
+                    '.server/tmp/markup/helpers/*-*.jade',
                 <% } %>],
                 ext: '.html',
                 rename: function(dest, matchedSrcPath) {
@@ -329,7 +325,7 @@ module.exports = function(grunt) {
                     data: '<%%= dashboardData %>'
                 },
                 files: {
-                    '<%%= yeoman.dist %>/index.html': ['<%%= yeoman.dev %>/dashboard/markup/index.jade']
+                    '<%%= yeoman.dist %>/index.html': ['<%%= yeoman.dev %>/dashboard/markup/pages/index.jade']
                 }
             }<% } %>
         },<% if (jshint) { %>
@@ -712,7 +708,7 @@ module.exports = function(grunt) {
             pageData,
             templateData,
             componentData,
-            moduleData;
+            helpersData;
         var updatePath = function(path, strToRemove) {
             return path.replace(strToRemove, '..');
         };
@@ -757,13 +753,11 @@ module.exports = function(grunt) {
             } else {
                 newPath = updatePath(path.replace('jade', 'html'), strToRemove);
             }
-            if (title !== 'base.jade' && title !== 'all-components.jade' && title !== 'all-modules.jade' && title !== 'head.jade') {
-                dataObj = {
-                    path: newPath,
-                    title: toTitleCase(convertDashes(title.replace('.jade', '')))
-                };
-                itemsArray.push(_.extend(dataObj, data[itemsArray.length]));
-            }
+            dataObj = {
+                path: newPath,
+                title: toTitleCase(convertDashes(title.replace('.jade', '')))
+            };
+            itemsArray.push(_.extend(dataObj, data[itemsArray.length]));
             return {
                 links: itemsArray
             };
@@ -789,7 +783,7 @@ module.exports = function(grunt) {
                 // Remove all newline statements (\n), any extra space, and the entire "markup" key
                 fileData = fileMarkupMatch.replace(/\n/g, '').replace(/ /g, '').replace(markupRegexAfter, '');
                 if (type === 'module' || type === 'component') {
-                    grunt.file.write(path.replace('.jade', '-' + type + '.jade'), 'extend ../templates/base\nblock template\n' + markup);
+                    grunt.file.write(path.replace('.jade', '-' + type + '.jade'), 'extend ../base\nblock template\n' + markup);
                 } else if (type === 'template') {
                     var JSONData = getJSON(fileMarkupMatch),
                         fileTemp = file;
@@ -814,13 +808,13 @@ module.exports = function(grunt) {
         // Go through jade components
         componentData = recursiveParse('dev/.server/tmp/markup/components', 'component', 'dev/.server/tmp');
         // Go through jade modules
-        moduleData = recursiveParse('dev/.server/tmp/markup/modules', 'module', 'dev/.server/tmp');
+        helpersData = recursiveParse('dev/.server/tmp/markup/helpers', 'module', 'dev/.server/tmp');
         // Setup all parsed data to be passed to jade templates
         dashData = {
             pages: pageData,
             templates: templateData,
             components: componentData,
-            modules: moduleData
+            helpers: helpersData
         };
         // Set dashboard data variable to be used by Jade task
         grunt.config(['dashboardData'], dashData);

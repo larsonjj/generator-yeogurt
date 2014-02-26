@@ -207,16 +207,16 @@ YeogurtGenerator.prototype.app = function app() {
     this.mkdir('dev/markup/templates');
     this.mkdir('dev/markup/pages');
     this.mkdir('dev/markup/components');
-    this.mkdir('dev/markup/modules');
+    this.mkdir('dev/markup/helpers');
 
-    this.template('dev/markup/components/all-components.jade', 'dev/markup/components/all-components.jade');
+    // this.template('dev/markup/components/all-components.jade', 'dev/markup/components/all-components.jade');
 
     this.template('dev/markup/components/header.jade', 'dev/markup/components/header.jade');
     this.template('dev/markup/components/footer.jade', 'dev/markup/components/footer.jade');
-    this.template('dev/markup/modules/all-modules.jade', 'dev/markup/modules/all-modules.jade');
-    this.template('dev/markup/modules/heading.jade', 'dev/markup/modules/heading.jade');
+    // this.template('dev/markup/helpers/all-modules.jade', 'dev/markup/helpers/all-modules.jade');
+    this.template('dev/markup/helpers/heading.jade', 'dev/markup/helpers/heading.jade');
     this.template('dev/markup/pages/index.jade', 'dev/markup/pages/index.jade');
-    this.template('dev/markup/templates/base.jade', 'dev/markup/templates/base.jade');
+    this.template('dev/markup/base.jade', 'dev/markup/base.jade');
     this.template('dev/markup/templates/one-column.jade', 'dev/markup/templates/one-column.jade');
 
     // dev/styles
@@ -291,14 +291,14 @@ YeogurtGenerator.prototype.app = function app() {
         this.mkdir('dev/dashboard/markup/components');
         this.mkdir('dev/dashboard/markup/templates');
 
-        this.template('dev/dashboard/markup/components/all-components.jade', 'dev/dashboard/markup/components/all-components.jade');
+        // this.template('dev/dashboard/markup/components/all-components.jade', 'dev/dashboard/markup/components/all-components.jade');
 
         this.copy('dev/dashboard/markup/components/header.jade', 'dev/dashboard/markup/components/header.jade');
         this.copy('dev/dashboard/markup/components/footer.jade', 'dev/dashboard/markup/components/footer.jade');
         this.copy('dev/dashboard/markup/components/dashboard-switcher.jade', 'dev/dashboard/markup/components/dashboard-switcher.jade');
         this.copy('dev/dashboard/markup/components/status-key.jade', 'dev/dashboard/markup/components/status-key.jade');
-        this.copy('dev/dashboard/markup/index.jade', 'dev/dashboard/markup/index.jade');
-        this.copy('dev/dashboard/markup/templates/base.jade', 'dev/dashboard/markup/templates/base.jade');
+        this.copy('dev/dashboard/markup/pages/index.jade', 'dev/dashboard/markup/pages/index.jade');
+        this.copy('dev/dashboard/markup/base.jade', 'dev/dashboard/markup/base.jade');
         this.copy('dev/dashboard/markup/templates/dashboard.jade', 'dev/dashboard/markup/templates/dashboard.jade');
 
         // images

@@ -1,6 +1,6 @@
 //- Dashboard Template
 //- Extend from base template to access it's defined blocks (header/footer)
-extend base
+extend ../base
 
 block template
     //- Define header block from base template
@@ -34,9 +34,9 @@ block template
                             li.dashboard-list-item(class="#{link.status}")
                                 a(href="#{link.path}")
                                     | #{link.title}
-                    //- Build out modules list
+                    //- Build out helpers list
                     ul.dashboard-list.hide
-                        each link, i in modules.links
+                        each link, i in helpers.links
                             li.dashboard-list-item(class="#{link.status}")
                                 a(href="#{link.path}")
                                     | #{link.title}

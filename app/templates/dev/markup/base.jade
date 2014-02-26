@@ -1,7 +1,12 @@
-//- NOTE: This template will not be included on the dashboard
-//- Include all modules
-include ../components/all-components
-include ../modules/all-modules
+//- Base template
+//- All other templates will extend from this
+
+//- Include all helpers and components
+//-!##
+include components/header
+include components/footer
+include helpers/heading
+//-##!
 
 doctype html<% if (ieSupport) { %>
 <!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->
