@@ -14,5 +14,7 @@ block content
     +heading({type:'h1', class:'heading', text: 'Test Heading'})
     p Example page
     <% if (jsOption ==='RequireJS') { %>script.
-        require(['<% if (useDashboard) { %>../../<% } %>scripts/components/example.js']);<% } %><% if (jsOption ==='Browserify') { %>
-    script(src="<% if (useDashboard) { %>../../<% } %>scripts/components/example.js", defer)<% } %>
+        require(['<% if (useDashboard) { %>../../<% } %>scripts/modules/module.js']);<% } %><% if (jsOption ==='Browserify') { %>
+    script.
+        var module = require('<% if (useDashboard) { %>../../<% } %>scripts/modules/module.js');
+        module.init();<% } %>

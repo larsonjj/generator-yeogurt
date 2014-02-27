@@ -4,22 +4,19 @@
 */
 
 // Base (variables, mixins, etc)
-@import 'base/_all-base';
+@import 'base/_box-sizing';<% if (ieSupport) { %>
+@import 'base/_ie8';<% } %>
+@import 'base/_mixins';
+@import 'base/_reset';
+@import 'base/_variables';
 
 // Third-Party (Vendor)
-@import 'vendor/_all-vendor';
+@import 'vendor/_normalize';<% if (cssOption === 'SCSS') { %>
+@import 'vendor/_bourbon';<% } else { %>
+@import 'vendor/_lesshat';<% } %>
+@import 'vendor/_font-awesome';
 
 // Partials
-@import 'partials/_all-partials';
-
-// Templates
-@import 'templates/_all-templates';
-
-// Pages
-@import 'pages/_all-pages';
-
-// Modules
-@import 'modules/_all-modules';
-
-// Components
-@import 'components/_all-components';
+@import 'partials/_header';
+@import 'partials/_footer';<% if (!ieSupport) { %>
+@import 'partials/_print';<% } %>
