@@ -18,7 +18,6 @@ module.exports = function(grunt) {
     // show elapsed time at the end
     require('time-grunt')(grunt);
     // load all grunt tasks
-    // require('load-grunt-tasks')(grunt);
     require('jit-grunt')(grunt);
 
     grunt.initConfig({
@@ -822,7 +821,7 @@ module.exports = function(grunt) {
         done();
     });<% } %>
 
-    grunt.registerTask('server', 'Open a developement server within your browser', [
+    grunt.registerTask('serve', 'Open a developement server within your browser', [
         'clean:server',
         'copy:server'<% if (useDashboard) { %>,
         'build-dashboard'<% } %><% if (jshint) { %>,

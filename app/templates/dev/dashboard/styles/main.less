@@ -1,22 +1,24 @@
 /*
-*   main.less
-*   Styles for dashboard
+*   main.<% if (cssOption === 'LESS') { %>less<% } else if (cssOption === 'SCSS') { %>scss<% } %>
+*   Import all desired LESS files here
 */
 
-// Base Imports
-@import 'base/_all-base';
+// Base (variables, mixins, etc)
+@import 'base/_box-sizing';<% if (ieSupport) { %>
+@import 'base/_ie8';<% } %>
+@import 'base/_mixins';
+@import 'base/_reset';
+@import 'base/_variables';
 
-// Vendor Imports
-@import 'vendor/_all-vendor';
+// Third-Party (Vendor)
+@import 'vendor/_normalize';<% if (cssOption === 'SCSS') { %>
+@import 'vendor/_bourbon';<% } else { %>
+@import 'vendor/_lesshat';<% } %>
+@import 'vendor/_font-awesome';
 
-// Partial Imports
-@import 'partials/_all-partials';
-
-// Templates
-@import 'templates/_all-templates';
-
-// Module Imports
-@import 'modules/_all-modules';
-
-// Components
-@import 'components/_all-components';
+// Partials
+@import 'partials/_header';
+@import 'partials/_footer';
+@import 'partials/_status-key';
+@import 'partials/_dashboard';
+@import 'partials/_dashboard-switcher';
