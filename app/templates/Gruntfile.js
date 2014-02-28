@@ -153,7 +153,7 @@ module.exports = function(grunt) {
                     cwd: '<%%= yeoman.dev %>/',
                     dest: '<%%= yeoman.server %>/',
                     src: [
-                        'scripts/**'<% if (jsOption === 'Browserify') { %>,
+                        'scripts/{,*/}{,*/}*.js'<% if (jsOption === 'Browserify') { %>,
                         '!scripts/app.js',
                         '!scripts/main.js'<% } %>
                     ]
@@ -212,7 +212,7 @@ module.exports = function(grunt) {
                     cwd: '<%%= yeoman.dev %>/scripts',
                     dest: '<%%= yeoman.dist %>/scripts',
                     src: [
-                        '{,*/}{,*/}*.js', '!*.js'
+                        'scripts/modules/inline-*.*', '!*.js'
                     ]
                 }, {
                     expand: true,

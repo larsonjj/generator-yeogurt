@@ -10,9 +10,11 @@ define([], function () {
 'use strict';
 /* jshint unused:false */
 /* global $:true */
-var $ = require('jquery');
+var $ = require('jquery'),
+someModule = require('./modules/module');
 var app = {
     init: function() {
+        someModule.init();
         console.log('Welcome to Yeogurt!');
     }
 };

@@ -1,5 +1,5 @@
 /*
-*   example.js
+*   module.js
 *   This is just an example file showing basic use of component scripts
 */
 <% if (jsOption ==='RequireJS') { %>define([
@@ -24,8 +24,10 @@
 <% } %><% if (jsOption ==='Browserify') { %>'use strict';
 
 // private function
-var init = function() {
-    console.log($('body'));
+var someModule = {
+    init: function() {
+        console.log($('body'));
+    }
 };
 
-exports.init = init;<% } %>
+module.exports = someModule;<% } %>

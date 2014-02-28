@@ -25,6 +25,7 @@ describe('yeogurt generator', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
+            '.yo-rc.json',
             'dev/',
             'dev/markup',
             'dev/markup/templates',
@@ -60,8 +61,8 @@ describe('yeogurt generator', function () {
             'dev/scripts/main.js',
             'dev/scripts/app.js',
             'dev/scripts/modules/module.js',
+            'dev/scripts/modules/inline-module.js',
             '.ftppass',
-            'yeogurt.json',
             'browserconfig.xml',
             'crossdomain.xml',
             'tile.png',

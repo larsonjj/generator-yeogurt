@@ -146,7 +146,6 @@ YeogurtGenerator.prototype.askFor = function askFor() {
 YeogurtGenerator.prototype.app = function app() {
 
     // Create yeogurtrc file
-    this.template('yeogurt.json', 'yeogurt.json');
     this.config.set('config', this.props);
     this.config.save();
 
@@ -193,6 +192,7 @@ YeogurtGenerator.prototype.app = function app() {
     this.template('dev/scripts/app.js', 'dev/scripts/app.js');
     this.template('dev/scripts/main.js', 'dev/scripts/main.js');
     this.template('dev/scripts/modules/module.js', 'dev/scripts/modules/module.js');
+    this.template('dev/scripts/modules/inline-module.js', 'dev/scripts/modules/inline-module.js');
 
     // dev/images
     this.mkdir('dev/images');
