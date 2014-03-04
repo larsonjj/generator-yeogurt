@@ -15,7 +15,7 @@ describe('yeogurt generator', function () {
             this.app = helpers.createGenerator('yeogurt:app', [
                 '../../app',[
                     helpers.createDummyGenerator(),
-                    'mocha:app'
+                    'karma:app'
                 ]
             ]);
             done();
@@ -63,6 +63,8 @@ describe('yeogurt generator', function () {
             'dev/scripts/modules/module.js',
             'dev/scripts/modules/inline-module.js',
             '.ftppass',
+            'test',
+            'karma.conf.js',
             'browserconfig.xml',
             'crossdomain.xml',
             'tile.png',
@@ -120,11 +122,13 @@ describe('yeogurt generator', function () {
             projectName: 'testing',
             versionControl: 'Git',
             cssOption: 'LESS',
+            ieSupport: true,
+            responsive: true,
             useGA: true,
             useFTP: true,
             jshint: true,
             useDashboard: true,
-            extras: ['htaccess', 'useBootstrap', 'useFontAwesome', 'ieSupport', 'responsive']
+            extras: ['htaccess', 'useBootstrap', 'useFontAwesome', 'ieIcons', 'adobeXdomain', 'appleIcon']
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {

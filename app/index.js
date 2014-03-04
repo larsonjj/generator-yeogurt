@@ -8,23 +8,6 @@ var colors = require('colors');
 var YeogurtGenerator = module.exports = function YeogurtGenerator(args, options, config) {
     yeoman.generators.Base.apply(this, arguments);
 
-    // setup the test-framework property, Gruntfile template will need this
-    this.testFramework = options['test-framework'] || 'mocha';
-
-    // for hooks to resolve on mocha by default
-    options['test-framework'] = this.testFramework;
-
-    // resolved to mocha by default (could be switched to jasmine for instance)
-    this.hookFor('test-framework', {
-        as: 'app',
-        options: {
-            options: {
-                'skip-install': options['skip-install-message'],
-                'skip-message': options['skip-install']
-            }
-        }
-    });
-
     this.options = options;
 
     this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
@@ -70,6 +53,16 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         choices: ['RequireJS', 'Browserify'],
     }, {
         type: 'confirm',
+        name: 'ieSupport',
+        message: 'Do you need to support IE8+?',
+        default: true,
+    }, {
+        type: 'confirm',
+        name: 'responsive',
+        message: 'Will the site be responsive?',
+        default: true,
+    }, {
+        type: 'confirm',
         name: 'useGA',
         message: 'Will you be using Google Analytics?',
         default: true,
@@ -97,20 +90,24 @@ YeogurtGenerator.prototype.askFor = function askFor() {
             value: 'htaccess',
             checked: true
         }, {
+            name: 'IE11 tile icons',
+            value: 'ieIcons',
+            checked: true
+        }, {
+            name: 'Adobe Flash crossdomain rules',
+            value: 'adobeXdomain',
+            checked: true
+        }, {
+            name: 'Apple homescreen icon',
+            value: 'appleIcon',
+            checked: true
+        }, {
             name: 'Twitter Bootstrap 3.x',
             value: 'useBootstrap',
             checked: true
         }, {
             name: 'Font Awesome 4.x',
             value: 'useFontAwesome',
-            checked: true
-        }, {
-            name: 'IE8+ Support',
-            value: 'ieSupport',
-            checked: true
-        }, {
-            name: 'Responsive',
-            value: 'responsive',
             checked: true
         }]
     }];
@@ -120,6 +117,8 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.versionControl = props.versionControl;
         this.cssOption = props.cssOption;
         this.jsOption = props.jsOption;
+        this.ieSupport = props.ieSupport;
+        this.responsive = props.responsive;
         this.extras = props.extras;
         this.jshint = props.jshint;
         this.useGA = props.useGA;
@@ -134,8 +133,9 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.htaccess = hasFeature('htaccess');
         this.useBootstrap = hasFeature('useBootstrap');
         this.useFontAwesome = hasFeature('useFontAwesome');
-        this.ieSupport = hasFeature('ieSupport');
-        this.responsive = hasFeature('responsive');
+        this.ieIcons = hasFeature('ieIcons');
+        this.adobeXdomain = hasFeature('adobeXdomain');
+        this.appleIcon = hasFeature('appleIcon');
 
         this.props = props;
 
@@ -156,21 +156,11 @@ YeogurtGenerator.prototype.app = function app() {
     this.template('_bower.json', 'bower.json');
     this.template('_config.json', 'config.json');
     this.template('_package.json', 'package.json');
-    if (this.htaccess) {
-        this.copy('.htaccess', 'dev/.htaccess');
-    }
 
     if (this.useFTP) {
         this.copy('.ftppass', '.ftppass');
     }
 
-    this.copy('browserconfig.xml', 'browserconfig.xml');
-    this.copy('crossdomain.xml', 'crossdomain.xml');
-    this.copy('tile.png', 'tile.png');
-    this.copy('tile-wide.png', 'tile-wide.png');
-    this.copy('tile-wide.png', 'tile-wide.png');
-    this.copy('apple-touch-icon-precomposed.png', 'apple-touch-icon-precomposed.png');
-    this.copy('robots.txt', 'robots.txt');
     this.copy('robots.txt', 'robots.txt');
     this.copy('humans.txt', 'humans.txt');
 
@@ -342,10 +332,40 @@ YeogurtGenerator.prototype.app = function app() {
 
 };
 
+YeogurtGenerator.prototype.testing = function testing() {
+    this.mkdir('test');
+    this.mkdir('test/spec');
+    if (this.jsOption === 'RequireJS') {
+        this.copy('test/test-main.js', 'test/test-main.js');
+    }
+    this.template('test/spec/appSpec.js', 'test/spec/appSpec.js');
+    this.template('karma.conf.js', 'karma.conf.js');
+};
+
 YeogurtGenerator.prototype.projectfiles = function projectfiles() {
     this.copy('editorconfig', '.editorconfig');
     if (this.jshint) {
         this.copy('jshintrc', '.jshintrc');
+    }
+};
+
+YeogurtGenerator.prototype.extras = function extras() {
+    if (this.adobeXdomain) {
+        this.copy('crossdomain.xml', 'crossdomain.xml');
+    }
+
+    if (this.ieIcons) {
+        this.copy('browserconfig.xml', 'browserconfig.xml');
+        this.copy('tile.png', 'tile.png');
+        this.copy('tile-wide.png', 'tile-wide.png');
+    }
+
+    if (this.htaccess) {
+        this.copy('.htaccess', 'dev/.htaccess');
+    }
+
+    if (this.appleIcon) {
+        this.copy('apple-touch-icon-precomposed.png', 'apple-touch-icon-precomposed.png');
     }
 };
 

@@ -2,10 +2,18 @@
 *   app.js
 *   This file is where all global/app specific javascript should go
 */
-<% if (jsOption ==='RequireJS') { %>/* global define */
-'use strict';
-define([], function () {
-    return 'Welcome to Yeogurt!';
+<% if (jsOption ==='RequireJS') { %>'use strict';
+
+define(['./modules/module'], function (someModule) {
+    var app = {
+        init: function(msg) {
+            someModule.init();
+            console.log(msg);
+            return msg;
+        }
+    };
+    return app;
+
 });<% } %><% if (jsOption ==='Browserify') { %>
 'use strict';
 /* jshint unused:false */
@@ -13,9 +21,10 @@ define([], function () {
 var $ = require('jquery'),
 someModule = require('./modules/module');
 var app = {
-    init: function() {
+    init: function(msg) {
         someModule.init();
-        console.log('Welcome to Yeogurt!');
+        console.log(msg);
+        return msg;
     }
 };
 

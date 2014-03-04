@@ -11,7 +11,10 @@
 
     // private function
     var init = function() {
-        console.log($('body'));
+        var $ele = $('<p></p>');
+
+        $ele.append('Module loaded!');
+        console.log($ele.text());
     };
 
     // Public API
@@ -26,7 +29,10 @@
 // private function
 var someModule = {
     init: function() {
-        console.log($('body'));
+        var $ele = $('<p></p>');
+
+        $ele.append('Module loaded!');
+        console.log($ele.text());
     }
 };
 

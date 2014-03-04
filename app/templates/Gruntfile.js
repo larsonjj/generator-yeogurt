@@ -136,13 +136,18 @@ module.exports = function(grunt) {
             dist: ['<%%= yeoman.dist %>/', '<%%= yeoman.dev %>/.server/tmp'],
             temp: ['<%%= yeoman.dev %>/.server/tmp/**', '<%%= yeoman.server %>/.server/tmp/**', '<%%= yeoman.dist %>/.server/tmp/**']
         },
-        // Mocha testing framework configuration options
-        mocha: {
-            all: {
-                options: {
-                    run: true,
-                    urls: ['http://<%%= connect.options.hostname %>:<%%= connect.test.options.port %>/index.html']
-                }
+        // Karma testing framework configuration options
+        karma: {
+            options: {
+                configFile: 'karma.conf.js'
+            },
+            unit: {
+                singleRun: true
+            },
+            //continuous integration mode: run tests once in PhantomJS browser.
+            continuous: {
+                singleRun: true,
+                browsers: ['PhantomJS']
             }
         },
         // Put files not handled in other tasks here
@@ -843,7 +848,8 @@ module.exports = function(grunt) {
         'clean:dist',
         'copy:dist',<% if (useDashboard) { %>
         'build-dashboard',<% } %><% if (jshint) { %>
-        'jshint:test',<% } %><% if (jsOption === 'Browserify') { %>
+        'jshint:test',<% } %>
+        'karma:continuous',<% if (jsOption === 'Browserify') { %>
         'browserify:dist',<% } %>
         'imagemin',
         'svgmin',
@@ -865,7 +871,7 @@ module.exports = function(grunt) {
     grunt.registerTask('test', 'Peform tests on JavaScript', [
         'jshint:test',
         'connect:test',
-        'mocha'
+        'karma:unit'
     ]);<% } %>
 
     grunt.registerTask('zip', 'Build a production ready version of your site and zip it up', [

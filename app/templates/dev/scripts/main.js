@@ -68,11 +68,11 @@
 require(['app', 'jquery', 'domReady'], function (app, $, domReady) {
     domReady(function () {
         // use app here
-        console.log(app);
+        app.init('Welcome to Yeogurt!');
         console.log('Running jQuery %s', $().jquery);
     });
 });<% } %>
 <% if (jsOption ==='Browserify') { %>var app = require('./app');
 
-app.init();
+app.init('Welcome to Yeogurt!');
 <% } %>
