@@ -105,7 +105,7 @@ yo yeogurt:style mystyle --folder=base
 ```
 
 ## Dynamic Dashboard
-Here is what the dashboard looks like when you run `grunt server`:<br>
+Here is what the dashboard looks like when you run `grunt serve`:<br>
 ![](http://i.imgur.com/yW4QC3e.png =650x)
 
 It is 'dynamic' because it is generated at compile time using comments placed at the top of development files. An example of these comments in a template file is as follows:
