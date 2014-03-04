@@ -71,13 +71,13 @@ Example:
 yo yeogurt:markup mypage --type=page
 
 ## Template
-yo yeogurt:markup mypage --type=page --template=one-column
+yo yeogurt:markup mytemplate --type=page --template=one-column
 
 ## Helper
-yo yeogurt:markup mypage --type=helper
+yo yeogurt:markup myhelper --type=helper
 
 ## Component
-yo yeogurt:markup mypage --type=component
+yo yeogurt:markup mycomponent --type=component
 ```
 
 ### Script
