@@ -93,7 +93,23 @@
     "predef"        : [         // Extra globals.
         "require",
         "module",
-        "define"
+        "define",
+        "afterEach",
+        "beforeEach",
+        "confirm",
+        "context",
+        "describe",
+        "expect",
+        "it",
+        "jasmine",
+        "JSHINT",
+        "mostRecentAjaxRequest",
+        "qq",
+        "runs",
+        "spyOn",
+        "spyOnEvent",
+        "waitsFor",
+        "xdescribe"
     ],
     "indent"        : 4         // Specify indentation spacing
 }

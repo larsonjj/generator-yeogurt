@@ -18,7 +18,6 @@ module.exports = function(grunt) {
     // show elapsed time at the end
     require('time-grunt')(grunt);
     // load all grunt tasks
-    // require('load-grunt-tasks')(grunt);
     require('jit-grunt')(grunt);
 
     grunt.initConfig({
@@ -40,13 +39,13 @@ module.exports = function(grunt) {
                     '<%%= yeoman.dev %>/dashboard/markup/{,*/}{,*/}*.jade'<% } %>
                 ],
                 tasks: [
-                    'newer:copy:server',
+                    'newer:copy:server',<% if (useDashboard) { %>
+                    'build-dashboard',<% } %>
                     'jade:server',<% if (useDashboard) { %>
-                    'build-dashboard',
                     'jade:serverDashboard',<% } %>
                     'clean:temp'
                 ]
-            },<% if (cssOption === 'SASS') { %>
+            },<% if (cssOption === 'SCSS') { %>
             sass: {
                 files: ['<%%= yeoman.dev %>/styles/{,*/}{,*/}*.{scss,sass}'],
                 tasks: ['sass:server']
@@ -100,7 +99,7 @@ module.exports = function(grunt) {
                     '<%%= yeoman.server %>/dashboard/markup/{,*/}*.html',
                     '<%%= yeoman.server %>/dashboard/styles/{,*/}*.css',
                     '<%%= yeoman.server %>/dashboard/scripts/{,*/}*.js'<% } else { %>,
-                    '<%%= yeoman.server %>/{,*/}*.html'<% } %><% if (cssOption === 'SASS') { %>,
+                    '<%%= yeoman.server %>/{,*/}*.html'<% } %><% if (cssOption === 'SCSS') { %>,
                     '<%%= yeoman.dev %>/styles/{,*/}{,*/}*.{sass,scss}'<% } %><% if (cssOption === 'LESS') { %>,
                     '<%%= yeoman.dev %>/styles/{,*/}{,*/}*.less'<% } %>,
                     '<%%= yeoman.server %>/scripts/{,*/}{,*/}*.js',
@@ -137,13 +136,18 @@ module.exports = function(grunt) {
             dist: ['<%%= yeoman.dist %>/', '<%%= yeoman.dev %>/.server/tmp'],
             temp: ['<%%= yeoman.dev %>/.server/tmp/**', '<%%= yeoman.server %>/.server/tmp/**', '<%%= yeoman.dist %>/.server/tmp/**']
         },
-        // Mocha testing framework configuration options
-        mocha: {
-            all: {
-                options: {
-                    run: true,
-                    urls: ['http://<%%= connect.options.hostname %>:<%%= connect.test.options.port %>/index.html']
-                }
+        // Karma testing framework configuration options
+        karma: {
+            options: {
+                configFile: 'karma.conf.js'
+            },
+            unit: {
+                singleRun: true
+            },
+            //continuous integration mode: run tests once in PhantomJS browser.
+            continuous: {
+                singleRun: true,
+                browsers: ['PhantomJS']
             }
         },
         // Put files not handled in other tasks here
@@ -154,7 +158,7 @@ module.exports = function(grunt) {
                     cwd: '<%%= yeoman.dev %>/',
                     dest: '<%%= yeoman.server %>/',
                     src: [
-                        'scripts/**'<% if (jsOption === 'Browserify') { %>,
+                        'scripts/{,*/}{,*/}*.js'<% if (jsOption === 'Browserify') { %>,
                         '!scripts/app.js',
                         '!scripts/main.js'<% } %>
                     ]
@@ -213,7 +217,7 @@ module.exports = function(grunt) {
                     cwd: '<%%= yeoman.dev %>/scripts',
                     dest: '<%%= yeoman.dist %>/scripts',
                     src: [
-                        '{,*/}{,*/}*.js', '!*.js'
+                        'scripts/modules/inline-*.*', '!*.js'
                     ]
                 }, {
                     expand: true,
@@ -272,11 +276,9 @@ module.exports = function(grunt) {
                     <% } %><% if (useDashboard) {
                     %>'markup/pages/*.jade',
                     '.server/tmp/markup/templates/*.jade',
-                    '!.server/tmp/markup/templates/base.jade',
+                    '!.server/tmp/markup/base.jade',
                     '.server/tmp/markup/components/*-*.jade',
-                    '!.server/tmp/markup/components/all-components.jade',
-                    '.server/tmp/markup/modules/*-*.jade',
-                    '!.server/tmp/markup/modules/all-modules.jade'
+                    '.server/tmp/markup/helpers/*-*.jade',
                 <% } %>],
                 ext: '.html',
                 rename: function(dest, matchedSrcPath) {
@@ -291,7 +293,7 @@ module.exports = function(grunt) {
                     data: '<%%= dashboardData %>'
                 },
                 files: {
-                    '<%%= yeoman.server %>/dashboard/index.html': ['<%%= yeoman.dev %>/dashboard/markup/index.jade']
+                    '<%%= yeoman.server %>/dashboard/index.html': ['<%%= yeoman.dev %>/dashboard/markup/pages/index.jade']
                 }
             },<% } %>
             dist: {
@@ -309,12 +311,10 @@ module.exports = function(grunt) {
                     <% } %><% if (useDashboard) {
                     %>'markup/pages/*.jade',
                     '.server/tmp/markup/templates/*.jade',
-                    '!.server/tmp/markup/templates/base.jade',
+                    '!.server/tmp/markup/base.jade',
                     '.server/tmp/markup/components/*-*.jade',
-                    '!.server/tmp/markup/components/all-components.jade',
                     '!.server/tmp/markup/components/head.jade',
-                    '.server/tmp/markup/modules/*-*.jade',
-                    '!.server/tmp/markup/modules/all-modules.jade'
+                    '.server/tmp/markup/helpers/*-*.jade',
                 <% } %>],
                 ext: '.html',
                 rename: function(dest, matchedSrcPath) {
@@ -329,7 +329,7 @@ module.exports = function(grunt) {
                     data: '<%%= dashboardData %>'
                 },
                 files: {
-                    '<%%= yeoman.dist %>/index.html': ['<%%= yeoman.dev %>/dashboard/markup/index.jade']
+                    '<%%= yeoman.dist %>/index.html': ['<%%= yeoman.dev %>/dashboard/markup/pages/index.jade']
                 }
             }<% } %>
         },<% if (jshint) { %>
@@ -345,7 +345,7 @@ module.exports = function(grunt) {
                 '!<%%= yeoman.dev %>/scripts/vendor/{,*/}*'
             ]
         },<% } %>
-        'string-replace': {<% if (cssOption === 'SASS') { %>
+        'string-replace': {<% if (cssOption === 'SCSS') { %>
             sassMapFixDist: {
                 options: {
                     replacements: [
@@ -539,7 +539,7 @@ module.exports = function(grunt) {
                     preserveLicenseComments: false,
                 }
             }
-        },<% } %><% if (cssOption === 'SASS') { %>
+        },<% } %><% if (cssOption === 'SCSS') { %>
         sass: {
             server: {
                 options: {
@@ -553,7 +553,20 @@ module.exports = function(grunt) {
                 files: {
                     '<%%= yeoman.server %>/styles/main.css': '<%%= yeoman.dev %>/styles/main.scss'
                 }
-            },<% if (useDashboard) { %>
+            },<% if (ieSupport) { %>
+            serverPrint: {
+                options: {
+                    sourceComments: 'map',
+                    outputStyle: 'compressed',
+                    sourceMap: '<%%= yeoman.server %>/styles/print.css.map',
+                    includePaths: [
+                        '<%%= yeoman.dev %>/styles/{,*/}*.scss'
+                    ]
+                },
+                files: {
+                    '<%%= yeoman.server %>/styles/print.css': '<%%= yeoman.dev %>/styles/print.scss'
+                }
+            },<% } %><% if (useDashboard) { %>
             serverDashboard: {
                 options: {
                     sourceComments: 'map',
@@ -579,7 +592,20 @@ module.exports = function(grunt) {
                 files: {
                     '<%%= yeoman.dist %>/styles/main.css': '<%%= yeoman.dev %>/styles/main.scss'
                 }
-            },<% if (useDashboard) { %>
+            },<% if (ieSupport) { %>
+            distPrint: {
+                options: {
+                    sourceComments: 'map',
+                    outputStyle: 'compressed',
+                    sourceMap: '<%%= yeoman.server %>/styles/print.css.map',
+                    includePaths: [
+                        '<%%= yeoman.dev %>/styles/{,*/}*.scss'
+                    ]
+                },
+                files: {
+                    '<%%= yeoman.dist %>/styles/print.css': '<%%= yeoman.dev %>/styles/print.scss'
+                }
+            },<% } %><% if (useDashboard) { %>
             distDashboard: {
                 options: {
                     sourceComments: 'map',
@@ -608,7 +634,10 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
                 dest: '<%%= yeoman.server %>/',
-                src: ['styles/*.less'],
+                src: [
+                    'styles/main.less'<% if (ieSupport) { %>,
+                    'styles/print.less'<% } %>
+                ],
                 ext: '.css'
             },
             <% if (useDashboard) { %>
@@ -641,7 +670,10 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: '<%%= yeoman.dev %>/',
                 dest: '<%%= yeoman.dist %>/',
-                src: ['styles/*.less'],
+                src: [
+                    'styles/main.less'<% if (ieSupport) { %>,
+                    'styles/print.less'<% } %>
+                ],
                 ext: '.css'
             }<% if (useDashboard) { %>,
             distDashboard: {
@@ -680,7 +712,7 @@ module.exports = function(grunt) {
             pageData,
             templateData,
             componentData,
-            moduleData;
+            helpersData;
         var updatePath = function(path, strToRemove) {
             return path.replace(strToRemove, '..');
         };
@@ -725,13 +757,11 @@ module.exports = function(grunt) {
             } else {
                 newPath = updatePath(path.replace('jade', 'html'), strToRemove);
             }
-            if (title !== 'base.jade' && title !== 'all-components.jade' && title !== 'all-modules.jade' && title !== 'head.jade') {
-                dataObj = {
-                    path: newPath,
-                    title: toTitleCase(convertDashes(title.replace('.jade', '')))
-                };
-                itemsArray.push(_.extend(dataObj, data[itemsArray.length]));
-            }
+            dataObj = {
+                path: newPath,
+                title: toTitleCase(convertDashes(title.replace('.jade', '')))
+            };
+            itemsArray.push(_.extend(dataObj, data[itemsArray.length]));
             return {
                 links: itemsArray
             };
@@ -757,7 +787,7 @@ module.exports = function(grunt) {
                 // Remove all newline statements (\n), any extra space, and the entire "markup" key
                 fileData = fileMarkupMatch.replace(/\n/g, '').replace(/ /g, '').replace(markupRegexAfter, '');
                 if (type === 'module' || type === 'component') {
-                    grunt.file.write(path.replace('.jade', '-' + type + '.jade'), 'extend ../templates/base\nblock template\n' + markup);
+                    grunt.file.write(path.replace('.jade', '-' + type + '.jade'), 'extend ../base\nblock template\n' + markup);
                 } else if (type === 'template') {
                     var JSONData = getJSON(fileMarkupMatch),
                         fileTemp = file;
@@ -782,13 +812,13 @@ module.exports = function(grunt) {
         // Go through jade components
         componentData = recursiveParse('dev/.server/tmp/markup/components', 'component', 'dev/.server/tmp');
         // Go through jade modules
-        moduleData = recursiveParse('dev/.server/tmp/markup/modules', 'module', 'dev/.server/tmp');
+        helpersData = recursiveParse('dev/.server/tmp/markup/helpers', 'module', 'dev/.server/tmp');
         // Setup all parsed data to be passed to jade templates
         dashData = {
             pages: pageData,
             templates: templateData,
             components: componentData,
-            modules: moduleData
+            helpers: helpersData
         };
         // Set dashboard data variable to be used by Jade task
         grunt.config(['dashboardData'], dashData);
@@ -796,7 +826,7 @@ module.exports = function(grunt) {
         done();
     });<% } %>
 
-    grunt.registerTask('server', 'Open a developement server within your browser', [
+    grunt.registerTask('serve', 'Open a developement server within your browser', [
         'clean:server',
         'copy:server'<% if (useDashboard) { %>,
         'build-dashboard'<% } %><% if (jshint) { %>,
@@ -805,8 +835,9 @@ module.exports = function(grunt) {
         'jade:server'<% if (useDashboard) { %>,
         'jade:serverDashboard'<% } %><% if (cssOption === 'LESS') { %>,
         'less:server'<% if (useDashboard) { %>,
-        'less:serverDashboard'<% } %><% } %><% if (cssOption === 'SASS') { %>,
-        'sass:server'<% if (useDashboard) { %>,
+        'less:serverDashboard'<% } %><% } %><% if (cssOption === 'SCSS') { %>,
+        'sass:server'<% if (ieSupport) { %>,
+        'sass:serverPrint'<% } %><% if (useDashboard) { %>,
         'sass:serverDashboard'<% } %><%} %>,
         'clean:temp',
         'connect:livereload',
@@ -817,33 +848,35 @@ module.exports = function(grunt) {
         'clean:dist',
         'copy:dist',<% if (useDashboard) { %>
         'build-dashboard',<% } %><% if (jshint) { %>
-        'jshint:test',<% } %><% if (jsOption === 'Browserify') { %>
+        'jshint:test',<% } %>
+        'karma:continuous',<% if (jsOption === 'Browserify') { %>
         'browserify:dist',<% } %>
         'imagemin',
         'svgmin',
         'jade:dist',<% if (useDashboard) { %>
         'jade:distDashboard',<% } %><% if (cssOption === 'LESS') { %>
         'less:dist',<% if (useDashboard) { %>
-        'less:distDashboard',<% } %><% } %><% if (cssOption === 'SASS') { %>
-        'sass:dist',<% if (useDashboard) { %>
+        'less:distDashboard',<% } %><% } %><% if (cssOption === 'SCSS') { %>
+        'sass:dist',<% if (ieSupport) { %>
+        'sass:distPrint',<% } %><% if (useDashboard) { %>
         'sass:distDashboard',<% } %>
         'string-replace:sassMapFixDist',<% } %><% if (jsOption === 'RequireJS') { %>
         'requirejs',<% } %><% if (useDashboard) { %>
         'string-replace:dashboardLinkFixDist',<% } %>
         'htmlmin:dist',
         'uglify',
-        'clean:temp',
+        'clean:temp'
     ]);
     <% if (jshint) { %>
     grunt.registerTask('test', 'Peform tests on JavaScript', [
         'jshint:test',
         'connect:test',
-        'mocha'
+        'karma:unit'
     ]);<% } %>
 
     grunt.registerTask('zip', 'Build a production ready version of your site and zip it up', [
         'build',
-        'compress',
+        'compress'
     ]);
     <% if (useFTP) { %>
     grunt.registerTask('deploy', 'Build a production ready version of your site and deploy it to a desired FTP server.', [

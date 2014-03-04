@@ -1,0 +1,69 @@
+/*
+*   _status-key.less
+*   Status key component styles
+*/
+
+.status-key {
+    .status-key-list {
+        list-style-type: none;
+        padding: 0;
+    }<% if (cssOption === 'LESS') { %>
+    .status-key-list-item {
+        line-height: 30px;
+        font-size: 14px;
+        padding-left: 10px;
+        width: 100%;
+        color: @white-color;
+        background: @default-status-color;
+        &.blocked {
+            background: @blocked-color;
+        }
+        &.queued {
+            background: @queued-color;
+        }
+        &.development {
+            background: @development-color;
+        }
+        &.qa {
+            background: @qa-color;
+        }
+        &.review {
+            background: @review-color;
+        }
+        &.integration {
+            background: @integration-color;
+        }
+        &.complete {
+            background: @live-color;
+        }
+    }<% } %><% if (cssOption === 'SCSS') { %>
+    .status-key-list-item {
+        line-height: 30px;
+        font-size: 14px;
+        padding-left: 10px;
+        width: 100%;
+        color: $white-color;
+        background: $default-status-color;
+        &.blocked {
+            background: $blocked-color;
+        }
+        &.queued {
+            background: $queued-color;
+        }
+        &.development {
+            background: $development-color;
+        }
+        &.qa {
+            background: $qa-color;
+        }
+        &.review {
+            background: $review-color;
+        }
+        &.integration {
+            background: $integration-color;
+        }
+        &.complete {
+            background: $live-color;
+        }
+    }<% } %>
+}

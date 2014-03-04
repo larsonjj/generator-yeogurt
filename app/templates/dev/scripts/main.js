@@ -9,7 +9,7 @@
         domReady: '../bower_components/requirejs-domready/domReady',
         jquery: '../bower_components/jquery/jquery',
         app: 'app'<% if (useBootstrap) { %>,
-        // Uncomment desired boostrap js components below
+        // Comment out undesired boostrap js components below
         bootstrapAffix: '../bower_components/sass-bootstrap/js/affix',
         bootstrapAlert: '../bower_components/sass-bootstrap/js/alert',
         bootstrapButton: '../bower_components/sass-bootstrap/js/button',
@@ -25,7 +25,7 @@
         <% } %>
     },
     shim: {
-        <% if (useBootstrap) { %>// Uncomment desired boostrap js components below
+        <% if (useBootstrap) { %>// Comment out undesired boostrap js components below
         bootstrapAffix: {
             deps: ['jquery']
         },
@@ -68,11 +68,11 @@
 require(['app', 'jquery', 'domReady'], function (app, $, domReady) {
     domReady(function () {
         // use app here
-        console.log(app);
+        app.init('Welcome to Yeogurt!');
         console.log('Running jQuery %s', $().jquery);
     });
 });<% } %>
 <% if (jsOption ==='Browserify') { %>var app = require('./app');
 
-app.init();
+app.init('Welcome to Yeogurt!');
 <% } %>
