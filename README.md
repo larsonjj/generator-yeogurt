@@ -128,11 +128,11 @@ It is 'dynamic' because it is generated at compile time using comments placed at
     }
     ##!
 ```
-For Jade pages, components, templates, and modules, these comments create the ability to pass data directly to the dashboard. In the above code example, we are setting a template file's status to be in 'development' and are adding a content block with a name of 'content' and a couple of CSS properties.
+For Jade pages, components, templates, and helpers, these comments create the ability to pass data directly to the dashboard. In the above code example, we are setting a template file's status to be in 'development' and are adding a content block with a name of 'content' and a couple of CSS properties.
 
 ### Data Properties
 
-##### Pages, Modules, Templates, and Components
+##### Pages, Helpers, Templates, and Components
 property:
 
 - `status` [String]
@@ -161,7 +161,7 @@ possible values [Each object in Array]:
 - `textColor`: Color of text within block
 - `fontSize`: Size of font within block
 
-##### Modules and Components Only
+##### Helpers and Components Only
 property:
 
 - `markup` [String]
@@ -172,7 +172,7 @@ possible values
 
 ##### Huh?
 
-A bit confused? No worries, I recommend generating a test project and taking a look at the jade files within the generated pages, components, templates, and modules folders. They will have some simple examples of what's possible and you can see your changes in real time if you run `grunt serve`.
+A bit confused? No worries, I recommend generating a test project and taking a look at the jade files within the generated pages, components, templates, and helpers folders. They will have some simple examples of what's possible and you can see your changes in real time if you run `grunt serve`.
 
 Also, feel free to open up an issue if you think something is too confusing or can be improved.
 
