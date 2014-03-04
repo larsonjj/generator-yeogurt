@@ -17,7 +17,7 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to fron
 **Available Scaffolding Options:**
 
 - Project/Site naming
-- CSS Preprocessing with [LESS](http://lesscss.org/) or [Sass](http://sass-lang.com/)
+- CSS Preprocessing with [LESS](http://lesscss.org/) or [SCSS](http://sass-lang.com/)
 - Modular JavaScript with [RequireJS](http://requirejs.org/) or [Browserify](http://browserify.org/)
 - IE8+ Support via [HTML5shiv](https://github.com/aFarkas/html5shiv) and [RespondJS](https://github.com/scottjehl/Respond)
 - JavaScript Linting with [JSHint](http://www.jshint.com/)
@@ -31,13 +31,12 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to fron
 - Feature detection with [Modernizr](http://modernizr.com/)
 - Built in preview server with LiveReload
 - [.editorconfig](http://editorconfig.org/) for consistent coding styles within text editors
-- JavaScript unit testing with [Mocha](http://visionmedia.github.io/mocha/), [Chai](http://chaijs.com/), and [PhantomJS](http://phantomjs.org/)
-- Automatic build process that includes concatenation, image optimization, CSS and HTML minification, and JS uglification.
+- JavaScript unit testing with [Jasmine](http://jasmine.github.io/) and [Karma](http://karma-runner.github.io/0.10/index.html) - Automatic build process that includes concatenation, image optimization, CSS and HTML minification, and JS uglification.
 - Dynamic Dashboard - auto-generated dashboard for your site
-- [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for both JavaScript and Sass/LESS
+- [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for both JavaScript and SCSS/LESS
 
 ## Grunt Tasks
-- `grunt server`<br>
+- `grunt serve`<br>
 Starts up a development server that watches for local file changes and automatically reloads them to the browser.
 
 - `grunt test`<br>
@@ -57,43 +56,52 @@ Runs `grunt zip` and pushes both production-ready files and zip file to a specif
 
 Available sub-generators:
 
-* [yeogurt:component](#component)
-* [yeogurt:module](#module)
-* [yeogurt:template](#template)
-* [yeogurt:page](#page)
+* [yeogurt:markup](#markup)
+* [yeogurt:script](#script)
+* [yeogurt:style](#style)
 
 **Note: Generators are to be run from the root directory of your app.**
 
-### Component
-Creates component jade and scss files in `dev/markup/components` and `dev/styles/components` respectively
+### Markup
+Creates jade file within the `dev/markup/pages` folder by default or within another folder using the `--type` option.
 
 Example:
 ```bash
-yo yeogurt controller:mycontroller
+## Page
+yo yeogurt:markup mypage --type=page
+
+## Template
+yo yeogurt:markup mypage --type=page --template=one-column
+
+## Helper
+yo yeogurt:markup mypage --type=helper
+
+## Component
+yo yeogurt:markup mypage --type=component
 ```
 
-### Module
-Creates module jade and scss files in `dev/markup/module` and `dev/styles/module` respectively
+### Script
+Creates module script within the `dev/scripts/modules` folder by default or a inline script using the `--inline=true` option.
 
 Example:
 ```bash
-yo yeogurt module:mymodule
+## Module
+yo yeogurt:script myscript --inline=true
+
+## Inline
+yo yeogurt:script myscript --inline=true
 ```
 
-### Template
-Creates template jade and scss files in `dev/markup/template` and `dev/styles/template` respectively
+### Style
+Creates stylesheet file within the `dev/styles/partials` by default or inside a specified folder using the `--folder` option.
 
 Example:
 ```bash
-yo yeogurt template:mytemplate
-```
+### Create mystyle file within dev/styles/partials folder
+yo yeogurt:style mystyle
 
-### Page
-Creates page jade and scss files in `dev/markup/page` and `dev/styles/page` respectively
-
-Example:
-```bash
-yo yeogurt page:mypage
+### Create mystyle file within dev/styles/base folder
+yo yeogurt:style mystyle --folder=base
 ```
 
 ## Dynamic Dashboard
@@ -179,6 +187,7 @@ review the [guidelines for contributing](CONTRIBUTING.md).
 
 ## Release History
 
+ * 2014-03-03   v0.3.0   Massive amount of updates. Please see [Changelog](https://github.com/larsonjj/generator-yeogurt/blob/master/CHANGELOG.md)
  * 2014-02-18   v0.2.9   Updated sub generators to have a script generating option. .yeogurtrc file is now generated to store user choices from generator.
  * 2014-02-17   v0.2.8   Created subgenerators for jade modules, components, pages, and templates
  * 2014-02-16   v0.2.7   Setup dashboard data to not be generated when dynamic dashboard option is not enabled. Fixed issue where HTML files were not being reloaded with watch task.
@@ -192,4 +201,3 @@ review the [guidelines for contributing](CONTRIBUTING.md).
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/larsonjj/generator-yeogurt/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
