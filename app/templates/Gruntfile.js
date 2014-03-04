@@ -39,9 +39,9 @@ module.exports = function(grunt) {
                     '<%%= yeoman.dev %>/dashboard/markup/{,*/}{,*/}*.jade'<% } %>
                 ],
                 tasks: [
-                    'newer:copy:server',
+                    'newer:copy:server',<% if (useDashboard) { %>
+                    'build-dashboard',<% } %>
                     'jade:server',<% if (useDashboard) { %>
-                    'build-dashboard',
                     'jade:serverDashboard',<% } %>
                     'clean:temp'
                 ]
