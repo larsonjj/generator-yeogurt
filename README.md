@@ -172,7 +172,7 @@ possible values
 
 ##### Huh?
 
-A bit confused? No worries, I recommend generating a test project and taking a look at the jade files within the generated pages, components, templates, and modules folders. They will have some simple examples of what's possible and you can see your changes in real time if you run `grunt server`.
+A bit confused? No worries, I recommend generating a test project and taking a look at the jade files within the generated pages, components, templates, and modules folders. They will have some simple examples of what's possible and you can see your changes in real time if you run `grunt serve`.
 
 Also, feel free to open up an issue if you think something is too confusing or can be improved.
 
