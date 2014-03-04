@@ -93,7 +93,7 @@ yo yeogurt:script myscript --inline=true
 ```
 
 ### Style
-Creates stylesheet file within the `dev/styles/partials` by default or inside a specified folder using the `--folder` option.
+Creates stylesheet file within the `dev/styles/partials` folder by default or inside a specified folder using the `--folder` option.
 
 Example:
 ```bash
