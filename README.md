@@ -97,10 +97,10 @@ Creates stylesheet file within the `dev/styles/partials` by default or inside a 
 
 Example:
 ```bash
-### Create mystyle file within dev/styles/partials folder
+## Create mystyle file within dev/styles/partials folder
 yo yeogurt:style mystyle
 
-### Create mystyle file within dev/styles/base folder
+## Create mystyle file within dev/styles/base folder
 yo yeogurt:style mystyle --folder=base
 ```
 
