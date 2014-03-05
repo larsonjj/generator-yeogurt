@@ -157,22 +157,21 @@ YeogurtGenerator.prototype.app = function app() {
     this.template('_config.json', 'config.json');
     this.template('_package.json', 'package.json');
 
+    this.copy('robots.txt', 'robots.txt');
+    this.copy('robots.txt', 'dev/robots.txt');
+    this.copy('humans.txt', 'humans.txt');
+    this.copy('dev/favicon.ico', 'dev/favicon.ico');
+
     if (this.useFTP) {
         this.copy('.ftppass', '.ftppass');
     }
 
-    this.copy('robots.txt', 'robots.txt');
-    this.copy('humans.txt', 'humans.txt');
-
-    // dev/
-    this.mkdir('dev');
-
-    this.copy('dev/robots.txt', 'dev/robots.txt');
-    this.copy('dev/favicon.ico', 'dev/favicon.ico');
-
     if (this.versionControl === 'SVN') {
         this.copy('svn-init.sh', 'svn-init.sh');
     }
+
+    // dev/
+    this.mkdir('dev');
 
     // dev/scripts
     this.mkdir('dev/scripts');
@@ -186,10 +185,6 @@ YeogurtGenerator.prototype.app = function app() {
 
     // dev/images
     this.mkdir('dev/images');
-
-    // docs/
-    this.mkdir('docs');
-    this.copy('docs/README.md', 'docs/README.md');
 
     // dev/markup
     this.mkdir('dev/markup');

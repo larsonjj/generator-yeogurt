@@ -2,22 +2,19 @@
 /*jshint camelcase: false */
 'use strict';
 
-// Choose to include dashboard
-var includeDashboard = true;
-
 // Modules
 var _ = require('lodash');
 
 // # Globbing
-// for performance reasons we're only matching one level down:
-// 'test/spec/{,*/}*.js'
-// use this if you want to recursively match all subfolders:
-// 'test/spec/**/*.js'
+// for performance reasons use the {,*/} expression, this will only search one folder level deep
+// ex: 'test/spec/{,*/}*.js'
+// If you want to recursively match all subfolders us the /**/ expression:
+// ex: 'test/spec/**/*.js'
 
 module.exports = function(grunt) {
     // show elapsed time at the end
     require('time-grunt')(grunt);
-    // load all grunt tasks
+    // load all grunt tasks with JIT (loads only needed tasks, so there is a large gain in speed)
     require('jit-grunt')(grunt);
 
     grunt.initConfig({
@@ -27,6 +24,7 @@ module.exports = function(grunt) {
             server: 'dev/.server',
             dist: 'dist'
         },
+        // Create dashboard data object as a placeholder for the 'build-dashboard' task
         dashboardData: {},
         watch: {
             options: {
@@ -656,7 +654,7 @@ module.exports = function(grunt) {
                     'styles/print.less'
                 ],
                 ext: '.css'
-            }<% } %><% if (useDashboard) { %>,
+            },<% } %><% if (useDashboard) { %>
             serverDashboard: {
                 options: {
                     paths: ['<%%= yeoman.dev %>/'],

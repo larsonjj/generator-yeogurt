@@ -28,14 +28,17 @@
     "url": "git://github.com/larsonjj/generator-yeogurt.git"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "istanbul cover _mocha --report lcovonly -- test/*.js --reporter list --timeout 100000 && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "dependencies": {
-    "yeoman-generator": "~0.14.0",
+    "yeoman-generator": "~0.16.0",
     "colors": "~0.6.2"
   },
-    "devDependencies": {
-    "mocha": ">=1.12.0"
+  "devDependencies": {
+    "mocha": "~1.12.0",
+    "coveralls": "~2.8.0",
+    "mocha-lcov-reporter": "0.0.1",
+    "istanbul": "~0.1.44"
   },
   "peerDependencies": {
     "yo": ">=1.0.6"
