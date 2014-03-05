@@ -229,14 +229,14 @@ module.exports = function(grunt) {
                         'images/{,*/}*.{webp}',
                         'styles/fonts/{,*/}*.*',
                     ]
-                }, {
+                },<% if (cssOption === 'SCSS') { %> {
                     expand: true,
                     cwd: '<%%= yeoman.dev %>/styles',
                     dest: '<%%= yeoman.dist %>/styles',
                     src: [
-                        '{,*/}{,*/}*.{scss,less}'
+                        '{,*/}{,*/}*.scss'
                     ]
-                },<% if (useDashboard) { %> {
+                },<% } %><% if (useDashboard) { %> {
                     expand: true,
                     cwd: '<%%= yeoman.dev %>/',
                     dest: '<%%= yeoman.dist %>/',
@@ -635,12 +635,28 @@ module.exports = function(grunt) {
                 cwd: '<%%= yeoman.dev %>/',
                 dest: '<%%= yeoman.server %>/',
                 src: [
-                    'styles/main.less'<% if (ieSupport) { %>,
-                    'styles/print.less'<% } %>
+                    'styles/main.less'
                 ],
                 ext: '.css'
-            },
-            <% if (useDashboard) { %>
+            },<% if (ieSupport) { %>
+            serverPrint: {
+                options: {
+                    paths: ['<%%= yeoman.dev %>/'],
+                    sourceMap: true,
+                    sourceMapFilename: '<%%= yeoman.server %>/styles/print.css.map',
+                    sourceMapBasepath: '<%%= yeoman.server %>/styles/',
+                    sourceMapRootpath: './',
+                    compress: true,
+                    outputSourceFiles: true
+                },
+                expand: true,
+                cwd: '<%%= yeoman.dev %>/',
+                dest: '<%%= yeoman.server %>/',
+                src: [
+                    'styles/print.less'
+                ],
+                ext: '.css'
+            }<% } %><% if (useDashboard) { %>,
             serverDashboard: {
                 options: {
                     paths: ['<%%= yeoman.dev %>/'],
@@ -671,11 +687,28 @@ module.exports = function(grunt) {
                 cwd: '<%%= yeoman.dev %>/',
                 dest: '<%%= yeoman.dist %>/',
                 src: [
-                    'styles/main.less'<% if (ieSupport) { %>,
-                    'styles/print.less'<% } %>
+                    'styles/main.less'
                 ],
                 ext: '.css'
-            }<% if (useDashboard) { %>,
+            },<% if (ieSupport) { %>
+            distPrint: {
+                options: {
+                    paths: ['<%%= yeoman.dev %>/'],
+                    sourceMap: true,
+                    sourceMapFilename: '<%%= yeoman.dist %>/styles/print.css.map',
+                    sourceMapBasepath: '<%%= yeoman.dist %>/styles/',
+                    sourceMapRootpath: './',
+                    compress: true,
+                    outputSourceFiles: true
+                },
+                expand: true,
+                cwd: '<%%= yeoman.dev %>/',
+                dest: '<%%= yeoman.dist %>/',
+                src: [
+                    'styles/print.less'
+                ],
+                ext: '.css'
+            }<% } %><% if (useDashboard) { %>,
             distDashboard: {
                 options: {
                     paths: ['<%%= yeoman.dev %>/'],
@@ -834,7 +867,8 @@ module.exports = function(grunt) {
         'browserify:server'<% } %>,
         'jade:server'<% if (useDashboard) { %>,
         'jade:serverDashboard'<% } %><% if (cssOption === 'LESS') { %>,
-        'less:server'<% if (useDashboard) { %>,
+        'less:server'<% if (ieSupport) { %>,
+        'less:serverPrint'<% } %><% if (useDashboard) { %>,
         'less:serverDashboard'<% } %><% } %><% if (cssOption === 'SCSS') { %>,
         'sass:server'<% if (ieSupport) { %>,
         'sass:serverPrint'<% } %><% if (useDashboard) { %>,
@@ -855,7 +889,8 @@ module.exports = function(grunt) {
         'svgmin',
         'jade:dist',<% if (useDashboard) { %>
         'jade:distDashboard',<% } %><% if (cssOption === 'LESS') { %>
-        'less:dist',<% if (useDashboard) { %>
+        'less:dist',<% if (ieSupport) { %>
+        'less:distPrint',<% } %><% if (useDashboard) { %>
         'less:distDashboard',<% } %><% } %><% if (cssOption === 'SCSS') { %>
         'sass:dist',<% if (ieSupport) { %>
         'sass:distPrint',<% } %><% if (useDashboard) { %>

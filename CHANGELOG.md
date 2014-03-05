@@ -1,3 +1,14 @@
+### v0.3.1:
+#### date: 2014-03-04
+##### changes:
+* Fixed location of Contribute.md (moved to root)
+* Updated Readme.md to correct some errors and typos
+* Added back svn-init.sh in order to help setup ignores for SVN repositories
+* Fixed font awesome pathing for LESS and SCSS
+* Fixed print styles (IE8 Support)
+* Removed unneeded less copy task for sourcemaps
+* Solidified dependency versions
+
 ### v0.3.0:
 #### date: 2014-03-04
 ##### changes:

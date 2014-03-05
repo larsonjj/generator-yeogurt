@@ -1,7 +1,7 @@
 /*
 *   _print.<% if (cssOption === 'LESS') { %>less<% } else if (cssOption === 'SCSS') { %>scss<% } %>
 *   Print styles
-*/<% if (ieSupport) { %>
+*/<% if (!ieSupport) { %>
 
 /* ==========================================================================
 EXAMPLE Media Queries for Responsive Design.
@@ -22,7 +22,7 @@ Print styles.
 Inlined to avoid required HTTP connection: h5bp.com/r
 ========================================================================== */
 
-<% if (ieSupport) { %>@media print {
+<% if (!ieSupport) { %>@media print {
     * {
         background: transparent !important;
         color: #000 !important;
