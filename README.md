@@ -129,11 +129,11 @@ It is 'dynamic' because it is generated at compile time using comments placed at
     }
     ##!
 ```
-For Jade pages, components, templates, and modules, these comments create the ability to pass data directly to the dashboard. In the above code example, we are setting a template file's status to be in 'development' and are adding a content block with a name of 'content' and a couple of CSS properties.
+For Jade pages, components, templates, and helpers, these comments create the ability to pass data directly to the dashboard. In the above code example, we are setting a template file's status to be in 'development' and are adding a content block with a name of 'content' and a couple of CSS properties.
 
 ### Data Properties
 
-##### Pages, Modules, Templates, and Components
+##### Pages, Helpers, Templates, and Components
 property:
 
 - `status` [String]
@@ -162,7 +162,7 @@ possible values [Each object in Array]:
 - `textColor`: Color of text within block
 - `fontSize`: Size of font within block
 
-##### Modules and Components Only
+##### Helpers and Components Only
 property:
 
 - `markup` [String]
@@ -171,9 +171,9 @@ possible values
 
 - `Any Jade Markup`
 
-##### Huh?
+#### Huh?
 
-A bit confused? No worries, I recommend generating a test project and taking a look at the jade files within the generated pages, components, templates, and modules folders. They will have some simple examples of what's possible and you can see your changes in real time if you run `grunt serve`.
+A bit confused? No worries, I recommend generating a test project and taking a look at the jade files within the generated pages, components, templates, and helpers folders. They will have some simple examples of what's possible and you can see your changes in real time if you run `grunt serve`.
 
 Also, feel free to open up an issue if you think something is too confusing or can be improved.
 
@@ -188,13 +188,7 @@ review the [guidelines for contributing](CONTRIBUTING.md).
 
 ## Release History
 
- * 2014-03-03   v0.3.0   Massive amount of updates. Please see [Changelog](https://github.com/larsonjj/generator-yeogurt/blob/master/CHANGELOG.md)
- * 2014-02-18   v0.2.9   Updated sub generators to have a script generating option. .yeogurtrc file is now generated to store user choices from generator.
- * 2014-02-17   v0.2.8   Created subgenerators for jade modules, components, pages, and templates
- * 2014-02-16   v0.2.7   Setup dashboard data to not be generated when dynamic dashboard option is not enabled. Fixed issue where HTML files were not being reloaded with watch task.
- * 2014-02-16   v0.2.6   Changed server and build tasks to put HTML files in root folders. Removed tasks/logic that creates .min.js files for build tasks.
- * 2014-02-16   v0.2.5   Added dynamic dashboard option to generator choices (No longer added by default). Updated sourcemap logic for uglify task based on latest plugin release
- * 2014-02-06   v0.2.4   Official Release
+See [Changelog](https://github.com/larsonjj/generator-yeogurt/blob/master/CHANGELOG.md)
 
 ## License
 

@@ -14,40 +14,40 @@
     },<% } %>
     "dependencies": {},
     "devDependencies": {
-        "grunt": "~0.4.2",
-        "grunt-contrib-connect": "~0.5.0",
-        "grunt-contrib-watch": "~0.5.3",
-        "grunt-contrib-clean": "~0.5.0",
-        "grunt-contrib-compress": "~0.5.3",
-        "grunt-contrib-jade": "~0.9.0",
-        "grunt-contrib-htmlmin": "~0.1.3",<% if (jsOption ==='RequireJS') { %>
-        "grunt-contrib-requirejs": "~0.4.1",<% } %><% if (jsOption ==='Browserify') { %>
-        "grunt-browserify": "~1.3.0",
-        "browserify-shim": "~3.1.4",<% } %>
-        "grunt-contrib-imagemin": "~0.4.0",<% if (jshint) { %>
-        "grunt-contrib-jshint": "~0.8.0",
-        "jshint-stylish": "~0.1.4",<% } %>
-        "grunt-contrib-copy": "~0.5.0",
-        "grunt-contrib-uglify": "~0.3.2",<% if (cssOption ==='SCSS') { %>
-        "grunt-sass": "~0.10.0",<% } %><% if (cssOption === 'LESS') { %>
-        "grunt-contrib-less": "~0.8.3",<% } %>
-        "grunt-open": "~0.2.2",
-        "grunt-string-replace": "~0.2.7",
-        "grunt-svgmin": "~0.3.0",
+        "grunt": "0.4.2",
+        "grunt-contrib-connect": "0.7.1",
+        "grunt-contrib-watch": "0.5.3",
+        "grunt-contrib-clean": "0.5.0",
+        "grunt-contrib-compress": "0.7.0",
+        "grunt-contrib-jade": "0.11.0",
+        "grunt-contrib-htmlmin": "0.2.0",<% if (jsOption ==='RequireJS') { %>
+        "grunt-contrib-requirejs": "0.4.3",<% } %><% if (jsOption ==='Browserify') { %>
+        "grunt-browserify": "1.3.1",
+        "browserify-shim": "3.3.1",<% } %>
+        "grunt-contrib-imagemin": "0.5.0",<% if (jshint) { %>
+        "grunt-contrib-jshint": "0.8.0",
+        "jshint-stylish": "0.1.5",<% } %>
+        "grunt-contrib-copy": "0.5.0",
+        "grunt-contrib-uglify": "0.4.0",<% if (cssOption ==='SCSS') { %>
+        "grunt-sass": "0.11.0",<% } %><% if (cssOption === 'LESS') { %>
+        "grunt-contrib-less": "0.10.0",<% } %>
+        "grunt-open": "0.2.3",
+        "grunt-string-replace": "0.2.7",
+        "grunt-svgmin": "0.4.0",
         "grunt-karma": "0.6.0",
-        "grunt-newer": "~0.6.0",
-        "jit-grunt": "~0.1.2",<% if (jsOption === 'Browserify') { %>
+        "grunt-newer": "0.6.1",
+        "jit-grunt": "0.2.3",<% if (jsOption === 'Browserify') { %>
         "karma-browserify": "0.0.6",<% } %>
         "karma-phantomjs-launcher": "0.1.2",
         "karma-chrome-launcher": "0.1.2",
         "karma-firefox-launcher": "0.1.3",
         "karma-jasmine": "0.1.5",
-        "lodash": "~2.4.1",
-        "time-grunt": "~0.2.5",
-        "bower": "~1.2.8"<% if (useFTP) { %>,
-        "grunt-ftpush": "~0.3.3"<% } %>
+        "lodash": "2.4.1",
+        "time-grunt": "0.2.10",
+        "bower": "1.2.8"<% if (useFTP) { %>,
+        "grunt-ftpush": "0.3.3"<% } %>
     },
     "engines": {
-        "node": ">=0.8.0"
+        "node": ">=0.10.0"
     }
 }
