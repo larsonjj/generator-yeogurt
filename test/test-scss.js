@@ -32,7 +32,6 @@ describe('yeogurt generator SCSS', function () {
             'dev/styles/partials',
             'dev/styles/partials/_footer.scss',
             'dev/styles/partials/_header.scss',
-            'dev/styles/partials/_print.scss',
             'dev/styles/vendor',
             'dev/styles/vendor/_font-awesome.scss',
             'dev/styles/vendor/_bourbon.scss',

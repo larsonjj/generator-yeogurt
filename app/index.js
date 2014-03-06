@@ -218,7 +218,6 @@ YeogurtGenerator.prototype.app = function app() {
         this.template('dev/styles/vendor/_normalize.less', 'dev/styles/vendor/_normalize.less');
         this.template('dev/styles/partials/_footer.less', 'dev/styles/partials/_footer.less');
         this.template('dev/styles/partials/_header.less', 'dev/styles/partials/_header.less');
-        this.template('dev/styles/partials/_print.less', 'dev/styles/partials/_print.less');
         this.template('dev/styles/main.less', 'dev/styles/main.less');
         if (this.ieSupport) {
             this.template('dev/styles/partials/_print.less', 'dev/styles/print.less');
@@ -237,9 +236,7 @@ YeogurtGenerator.prototype.app = function app() {
         this.mkdir('dev/styles/partials');
         this.template('dev/styles/partials/_footer.less', 'dev/styles/partials/_footer.scss');
         this.template('dev/styles/partials/_header.less', 'dev/styles/partials/_header.scss');
-        this.template('dev/styles/partials/_print.less', 'dev/styles/partials/_print.scss');
         this.mkdir('dev/styles/vendor');
-        this.template('dev/styles/vendor/_bourbon.scss', 'dev/styles/vendor/_bourbon.scss');
         if (this.useFontAwesome) {
             this.template('dev/styles/vendor/_font-awesome.less', 'dev/styles/vendor/_font-awesome.scss');
         }

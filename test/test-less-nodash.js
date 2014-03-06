@@ -33,7 +33,6 @@ describe('yeogurt generator LESS with no dashbaord', function () {
             'dev/styles/partials',
             'dev/styles/partials/_footer.less',
             'dev/styles/partials/_header.less',
-            'dev/styles/partials/_print.less',
             'dev/styles/vendor',
             'dev/styles/vendor/_font-awesome.less',
             'dev/styles/vendor/_lesshat.less',
