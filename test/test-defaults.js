@@ -46,8 +46,6 @@ describe('yeogurt generator defaults', function () {
             'dev/scripts/modules/inline-module.js',
             'test',
             'karma.conf.js',
-            'humans.txt',
-            'robots.txt',
             'dev/images',
             'dev/styles/fonts',
             '.editorconfig',

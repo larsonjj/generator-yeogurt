@@ -157,10 +157,8 @@ YeogurtGenerator.prototype.app = function app() {
     this.template('_config.json', 'config.json');
     this.template('_package.json', 'package.json');
 
-    this.copy('robots.txt', 'robots.txt');
-    this.copy('robots.txt', 'dev/robots.txt');
-    this.copy('humans.txt', 'humans.txt');
-    this.copy('humans.txt', 'dev/humans.txt');
+    this.copy('dev/robots.txt', 'dev/robots.txt');
+    this.copy('dev/humans.txt', 'dev/humans.txt');
     this.copy('dev/favicon.ico', 'dev/favicon.ico');
 
     if (this.useFTP) {
@@ -345,21 +343,21 @@ YeogurtGenerator.prototype.projectfiles = function projectfiles() {
 
 YeogurtGenerator.prototype.extras = function extras() {
     if (this.adobeXdomain) {
-        this.copy('crossdomain.xml', 'crossdomain.xml');
+        this.copy('dev/crossdomain.xml', 'dev/crossdomain.xml');
     }
 
     if (this.ieIcons) {
-        this.copy('browserconfig.xml', 'browserconfig.xml');
-        this.copy('tile.png', 'tile.png');
-        this.copy('tile-wide.png', 'tile-wide.png');
+        this.copy('dev/browserconfig.xml', 'dev/browserconfig.xml');
+        this.copy('dev/tile.png', 'dev/tile.png');
+        this.copy('dev/tile-wide.png', 'dev/tile-wide.png');
     }
 
     if (this.htaccess) {
-        this.copy('.htaccess', 'dev/.htaccess');
+        this.copy('dev/.htaccess', 'dev/.htaccess');
     }
 
     if (this.appleIcon) {
-        this.copy('apple-touch-icon-precomposed.png', 'apple-touch-icon-precomposed.png');
+        this.copy('dev/apple-touch-icon-precomposed.png', 'dev/apple-touch-icon-precomposed.png');
     }
 };
 
