@@ -154,7 +154,6 @@ YeogurtGenerator.prototype.app = function app() {
     // root (/)
     this.template('Gruntfile.js', 'Gruntfile.js');
     this.template('_bower.json', 'bower.json');
-    this.template('_config.json', 'config.json');
     this.template('_package.json', 'package.json');
 
     this.copy('dev/robots.txt', 'dev/robots.txt');

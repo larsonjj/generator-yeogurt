@@ -51,7 +51,6 @@ describe('yeogurt generator defaults', function () {
             '.editorconfig',
             'Gruntfile.js',
             'bower.json',
-            'config.json',
             'package.json',
             '.bowerrc',
             'dev/robots.txt',
