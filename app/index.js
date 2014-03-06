@@ -253,8 +253,10 @@ YeogurtGenerator.prototype.app = function app() {
         this.template('dev/styles/main.less', 'dev/styles/main.scss');
     }
 
-    // Dashboard
+};
 
+YeogurtGenerator.prototype.dashboard = function dashboard() {
+    // Dashboard
     if (this.useDashboard) {
         // markup
         this.mkdir('dev/dashboard');
@@ -322,7 +324,6 @@ YeogurtGenerator.prototype.app = function app() {
         // scripts
         this.directory('dev/dashboard/scripts', 'dev/dashboard/scripts');
     }
-
 };
 
 YeogurtGenerator.prototype.testing = function testing() {
