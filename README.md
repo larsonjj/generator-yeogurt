@@ -1,6 +1,6 @@
 <img src="http://i.imgur.com/obNKseX.png" />
 
-# Yeogurt Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-yeogurt.png?branch=master)](https://travis-ci.org/larsonjj/generator-yeogurt) [![NPM version](https://badge.fury.io/js/generator-yeogurt.png)](http://badge.fury.io/js/generator-yeogurt)
+# Yeogurt Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-yeogurt.png?branch=master)](https://travis-ci.org/larsonjj/generator-yeogurt) [![NPM version](https://badge.fury.io/js/generator-yeogurt.png)](http://badge.fury.io/js/generator-yeogurt) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-yeogurt/badge.png)](https://coveralls.io/r/larsonjj/generator-yeogurt)
 
 A [Yeoman](http://yeoman.io) generator for creating a sensible structure to front-end work.
 
@@ -31,7 +31,7 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to fron
 - Feature detection with [Modernizr](http://modernizr.com/)
 - Built in preview server with LiveReload
 - [.editorconfig](http://editorconfig.org/) for consistent coding styles within text editors
-- JavaScript unit testing with [Jasmine](http://jasmine.github.io/) and [Karma](http://karma-runner.github.io/0.10/index.html) 
+- JavaScript unit testing with [Jasmine](http://jasmine.github.io/) and [Karma](http://karma-runner.github.io/0.10/index.html)
 - Automatic build process that includes concatenation, image optimization, CSS and HTML minification, and JS uglification.
 - Dynamic Dashboard - auto-generated dashboard for your site
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for both JavaScript and SCSS/LESS
@@ -106,7 +106,7 @@ yo yeogurt:style mystyle --folder=base
 ```
 
 ## Dynamic Dashboard
-Here is what the dashboard looks like when you run `grunt serve`:<br>
+Here is what the dashboard looks like:<br>
 ![](http://i.imgur.com/yW4QC3e.png =650x)
 
 It is 'dynamic' because it is generated at compile time using comments placed at the top of development files. An example of these comments in a template file is as follows:
@@ -129,7 +129,7 @@ It is 'dynamic' because it is generated at compile time using comments placed at
     }
     ##!
 ```
-For Jade pages, components, templates, and helpers, these comments create the ability to pass data directly to the dashboard. In the above code example, we are setting a template file's status to be in 'development' and are adding a content block with a name of 'content' and a couple of CSS properties.
+For markup pages, components, templates, and helpers, these comments create the ability to pass data directly to the dashboard. In the above code example, we are setting a template file's status to be in 'development' and are adding a content block with a name of 'content' and a couple of CSS properties.
 
 ### Data Properties
 
