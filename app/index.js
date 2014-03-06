@@ -160,6 +160,7 @@ YeogurtGenerator.prototype.app = function app() {
     this.copy('robots.txt', 'robots.txt');
     this.copy('robots.txt', 'dev/robots.txt');
     this.copy('humans.txt', 'humans.txt');
+    this.copy('humans.txt', 'dev/humans.txt');
     this.copy('dev/favicon.ico', 'dev/favicon.ico');
 
     if (this.useFTP) {

@@ -57,6 +57,7 @@ describe('yeogurt generator defaults', function () {
             'package.json',
             '.bowerrc',
             'dev/robots.txt',
+            'dev/humans.txt',
             'dev/favicon.ico',
         ];
 
