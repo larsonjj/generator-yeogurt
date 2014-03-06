@@ -1,3 +1,13 @@
+### v0.3.2:
+#### date: 2014-03-05
+##### changes:
+* Fixed issues where choosind IE8+ support caused the Less dist task to break
+* Wrote new tests to cover many more generator possiblilities
+* Added coveralls.io integration for code coverage tracking
+* Fixed target filename in svn-init.sh to correctly setup SVN ignores
+* Removed the docs/ folder as it really isn't needed
+* Fixed issue where the dashboard base.jade template's compiled HTML was not valid when IE8+ support was not selected
+
 ### v0.3.1:
 #### date: 2014-03-04
 ##### changes:
