@@ -74,7 +74,7 @@ describe('yeogurt generator LESS', function () {
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {
-            helpers.assertFiles(expected);
+            helpers.assertFile(expected);
             done();
         });
     });

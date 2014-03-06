@@ -55,7 +55,7 @@ describe('yeogurt generator LESS with no dashbaord', function () {
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {
-            helpers.assertFiles(expected);
+            helpers.assertFile(expected);
             done();
         });
     });
