@@ -1,3 +1,11 @@
+### v0.3.3:
+#### date: 2014-03-06
+##### changes:
+* Moved root files (.htaccess, tile.png, crossdomain.xml, etc) and moved them to the dev/ folder where they should be
+* Removed unneeded tests (redundant)
+* Updated README to reflect the dashboard as optional rather than default
+* Other small bug fixes/cleanup
+
 ### v0.3.2:
 #### date: 2014-03-05
 ##### changes:
