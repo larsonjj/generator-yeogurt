@@ -23,6 +23,7 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to fron
 - JavaScript Linting with [JSHint](http://www.jshint.com/)
 - Default ignores for [Git](http://git-scm.com/) or [SVN](http://subversion.apache.org/)
 - Build deployment to FTP server
+- Dynamic Dashboard - auto-generated dashboard for your site
 
 **Included by default:**
 
@@ -33,7 +34,6 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to fron
 - [.editorconfig](http://editorconfig.org/) for consistent coding styles within text editors
 - JavaScript unit testing with [Jasmine](http://jasmine.github.io/) and [Karma](http://karma-runner.github.io/0.10/index.html)
 - Automatic build process that includes concatenation, image optimization, CSS and HTML minification, and JS uglification.
-- Dynamic Dashboard - auto-generated dashboard for your site
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for both JavaScript and SCSS/LESS
 
 ## Grunt Tasks
