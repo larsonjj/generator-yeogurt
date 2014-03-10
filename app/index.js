@@ -145,7 +145,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
 
 YeogurtGenerator.prototype.app = function app() {
 
-    // Create yeogurtrc file
+    // Create .yo-rc.json file
     this.config.set('config', this.props);
     this.config.save();
 
@@ -171,19 +171,12 @@ YeogurtGenerator.prototype.app = function app() {
     // dev/
     this.mkdir('dev');
 
-    // dev/scripts
-    this.mkdir('dev/scripts');
-    this.mkdir('dev/scripts/modules');
-    this.mkdir('dev/scripts/vendor');
-
-    this.template('dev/scripts/app.js', 'dev/scripts/app.js');
-    this.template('dev/scripts/main.js', 'dev/scripts/main.js');
-    this.template('dev/scripts/modules/module.js', 'dev/scripts/modules/module.js');
-    this.template('dev/scripts/modules/inline-module.js', 'dev/scripts/modules/inline-module.js');
-
     // dev/images
     this.mkdir('dev/images');
 
+};
+
+YeogurtGenerator.prototype.markup = function markup() {
     // dev/markup
     this.mkdir('dev/markup');
     this.mkdir('dev/markup/templates');
@@ -197,7 +190,21 @@ YeogurtGenerator.prototype.app = function app() {
     this.template('dev/markup/pages/index.jade', 'dev/markup/pages/index.jade');
     this.template('dev/markup/base.jade', 'dev/markup/base.jade');
     this.template('dev/markup/templates/one-column.jade', 'dev/markup/templates/one-column.jade');
+};
 
+YeogurtGenerator.prototype.scripts = function scripts() {
+    // dev/scripts
+    this.mkdir('dev/scripts');
+    this.mkdir('dev/scripts/modules');
+    this.mkdir('dev/scripts/vendor');
+
+    this.template('dev/scripts/app.js', 'dev/scripts/app.js');
+    this.template('dev/scripts/main.js', 'dev/scripts/main.js');
+    this.template('dev/scripts/modules/module.js', 'dev/scripts/modules/module.js');
+    this.template('dev/scripts/modules/inline-module.js', 'dev/scripts/modules/inline-module.js');
+};
+
+YeogurtGenerator.prototype.styles = function styles() {
     // dev/styles
     this.mkdir('dev/styles');
     this.mkdir('dev/styles/fonts');
@@ -249,7 +256,6 @@ YeogurtGenerator.prototype.app = function app() {
         }
         this.template('dev/styles/main.less', 'dev/styles/main.scss');
     }
-
 };
 
 YeogurtGenerator.prototype.dashboard = function dashboard() {
