@@ -1,6 +1,6 @@
 {
   "name": "generator-yeogurt",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "A Yeoman generator for creating a sensible structure to front-end work.",
   "keywords": [
     "yeoman-generator",
