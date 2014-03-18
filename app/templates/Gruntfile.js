@@ -107,21 +107,21 @@ module.exports = function(grunt) {
         },
         connect: {
             options: {
-                port: 9000,
+                port: 9010,
                 livereload: 35729,
                 // change this to '0.0.0.0' to access the server from outside
                 hostname: '0.0.0.0'
             },
             livereload: {
                 options: {<% if (useDashboard) { %>
-                    open: 'http://0.0.0.0:9000/.server/dashboard/index.html',<% } else { %>
-                    open: 'http://0.0.0.0:9000/.server/index.html',<% } %>
+                    open: 'http://0.0.0.0:9010/.server/dashboard/index.html',<% } else { %>
+                    open: 'http://0.0.0.0:9010/.server/index.html',<% } %>
                     base: '<%%= yeoman.dev %>'
                 }
             },
             test: {
                 options: {
-                    port: 9001,
+                    port: 9011,
                     base: [
                         'test',
                         '<%= yeoman.dev %>'

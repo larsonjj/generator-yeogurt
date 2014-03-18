@@ -1,6 +1,6 @@
 /*
 *   inline-module.js
-*   This is just an example file showing basic use of component scripts
+*   This is just an example file showing basic creation of an inline script
 */
 <% if (jsOption ==='RequireJS') { %>'use strict';
 

@@ -1,6 +1,6 @@
 /*
 *   module.js
-*   This is just an example file showing basic use of component scripts
+*   This is just an example file showing basic module creation
 */
 <% if (jsOption ==='RequireJS') { %>define([
     // module dependencies

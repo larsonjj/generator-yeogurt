@@ -1,3 +1,16 @@
+### v0.3.5:
+#### date: 2014-03-18
+##### changes:
+* Updated istanbul, mocha, karma, grunt-karma, and bower dependencies
+* Changed serve and test ports to 9010 and 9011 repectively to avoid conflicts
+* Fixed some typos within JS module comments
+
+### v0.3.4:
+#### date: 2014-03-10
+##### changes:
+* Simple maintenence release (small comment/code changes)
+* Added better readability to yeoman index.js file
+
 ### v0.3.3:
 #### date: 2014-03-06
 ##### changes:
