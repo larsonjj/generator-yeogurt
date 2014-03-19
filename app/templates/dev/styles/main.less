@@ -12,8 +12,10 @@
 
 // Third-Party (Vendor)
 @import 'vendor/_normalize';<% if (cssOption === 'SCSS') { %>
-@import 'vendor/_bourbon';<% } else { %>
-@import 'vendor/_lesshat';<% } %>
+<% if (useBootstrap) { %>@import 'vendor/_bootstrap';
+<% } %>@import 'vendor/_bourbon';<% } else { %>
+<% if (useBootstrap) { %>@import 'vendor/_bootstrap';
+<% } %>@import 'vendor/_lesshat';<% } %>
 @import 'vendor/_font-awesome';
 
 // Partials

@@ -37,6 +37,7 @@ describe('yeogurt generator LESS', function () {
             'dev/styles/vendor/_font-awesome.less',
             'dev/styles/vendor/_lesshat.less',
             'dev/styles/vendor/_normalize.less',
+            'dev/styles/vendor/_bootstrap.less',
             'dev/styles/print.less',
             'dev/styles/main.less',
             'dev/dashboard/',

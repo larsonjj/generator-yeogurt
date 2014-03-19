@@ -36,6 +36,7 @@ describe('yeogurt generator SCSS with no dashbaord', function () {
             'dev/styles/vendor/_font-awesome.scss',
             'dev/styles/vendor/_bourbon.scss',
             'dev/styles/vendor/_normalize.scss',
+            'dev/styles/vendor/_bootstrap.scss',
             'dev/styles/print.scss',
             'dev/styles/main.scss'
         ];

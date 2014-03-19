@@ -215,6 +215,9 @@ YeogurtGenerator.prototype.styles = function styles() {
         if (this.useFontAwesome) {
             this.template('dev/styles/vendor/_font-awesome.less', 'dev/styles/vendor/_font-awesome.less');
         }
+        if (this.useBootstrap) {
+            this.template('dev/styles/vendor/_bootstrap.less', 'dev/styles/vendor/_bootstrap.less');
+        }
         this.template('dev/styles/base/_box-sizing.less', 'dev/styles/base/_box-sizing.less');
         this.template('dev/styles/base/_mixins.less', 'dev/styles/base/_mixins.less');
         this.template('dev/styles/base/_variables.less', 'dev/styles/base/_variables.less');
@@ -244,6 +247,9 @@ YeogurtGenerator.prototype.styles = function styles() {
         this.mkdir('dev/styles/vendor');
         if (this.useFontAwesome) {
             this.template('dev/styles/vendor/_font-awesome.less', 'dev/styles/vendor/_font-awesome.scss');
+        }
+        if (this.useBootstrap) {
+            this.template('dev/styles/vendor/_bootstrap.less', 'dev/styles/vendor/_bootstrap.scss');
         }
         this.template('dev/styles/vendor/_bourbon.scss', 'dev/styles/vendor/_bourbon.scss');
         this.template('dev/styles/vendor/_normalize.less', 'dev/styles/vendor/_normalize.scss');
