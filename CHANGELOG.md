@@ -4,6 +4,7 @@
 * Updated istanbul, mocha, karma, grunt-karma, and bower dependencies
 * Changed serve and test ports to 9010 and 9011 repectively to avoid conflicts
 * Fixed some typos within JS module comments
+* Added bootstrap stylesheet that include each of it's modules for either LESS or SASS
 
 ### v0.3.4:
 #### date: 2014-03-10
