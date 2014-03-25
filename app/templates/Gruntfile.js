@@ -68,7 +68,8 @@ module.exports = function(grunt) {
                     '<%%= yeoman.dev %>/dashboard/{,*/}{,*/}*.js'<% } %>
                 ],
                 tasks: [<% if (jshint) { %>
-                    'newer:jshint',<% } %>
+                    'newer:jshint',<% } %><% if (jsOption === 'Browserify') { %>
+                    'browserify:server',<% } %>
                     'newer:copy:server'
                 ]
             },
