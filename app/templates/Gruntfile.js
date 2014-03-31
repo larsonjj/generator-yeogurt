@@ -15,7 +15,9 @@ module.exports = function(grunt) {
     // show elapsed time at the end
     require('time-grunt')(grunt);
     // load all grunt tasks with JIT (loads only needed tasks, so there is a large gain in speed)
-    require('jit-grunt')(grunt);
+    require('jit-grunt')(grunt<% if (jsOption === 'None (Vanilla JavaScript)' || cssOption === 'None (Vanilla CSS)') {%>, {
+        useminPrepare: 'grunt-usemin'
+    }<% } %>);
 
     grunt.initConfig({
         // configurable paths
@@ -24,6 +26,8 @@ module.exports = function(grunt) {
             server: 'dev/.server',
             dist: 'dist'
         },
+        <% if (useFTP) { %>// Create holder object for FTP deployment credentials
+        secret: {},<% } %>
         // Create dashboard data object as a placeholder for the 'build-dashboard' task
         dashboardData: {},
         watch: {
@@ -133,7 +137,12 @@ module.exports = function(grunt) {
         clean: {
             server: ['<%%= yeoman.server %>/', '<%%= yeoman.dev %>/.server/tmp'],
             dist: ['<%%= yeoman.dist %>/', '<%%= yeoman.dev %>/.server/tmp'],
-            temp: ['<%%= yeoman.dev %>/.server/tmp/**', '<%%= yeoman.server %>/.server/tmp/**', '<%%= yeoman.dist %>/.server/tmp/**']
+            temp: [
+                '<%%= yeoman.dev %>/.server/tmp/**',
+                '<%%= yeoman.server %>/.server/tmp/**',
+                '<%%= yeoman.dist %>/.server/tmp/**',
+                '.tmp'
+            ]
         },
         // Karma testing framework configuration options
         karma: {
@@ -177,7 +186,15 @@ module.exports = function(grunt) {
                         'bower_components/{,*/}{,*/}*.{woff,otf,ttf,eot,svg}',
                         'bower_components/jquery/*.map'
                     ]
-                },<% if (useDashboard) { %> {
+                },<% if (cssOption === 'None (Vanilla CSS)') { %> {
+                    expand: true,
+                    cwd: '<%%= yeoman.dev %>/',
+                    dest: '<%%= yeoman.server %>/',
+                    src: [
+                        'styles/{,*/}{,*/}*.css',
+                        'bower_components/bootstrap/dist/css/*.{css,map}'
+                    ]
+                },<% } %><% if (useDashboard) { %> {
                     expand: true,
                     cwd: '<%%= yeoman.dev %>/',
                     dest: '<%%= yeoman.server %>/',
@@ -206,10 +223,10 @@ module.exports = function(grunt) {
                     cwd: '<%%= yeoman.dev %>/',
                     dest: '<%%= yeoman.dist %>/',
                     src: [
-                        'bower_components/requirejs/require.js',
+                        <% if (jsOption === 'RequireJS') { %>'bower_components/requirejs/require.js',<% } %>
                         'bower_components/modernizr/modernizr.js',
                         'bower_components/{,*/}{,*/}*.{woff,otf,ttf,eot,svg}',
-                        'bower_components/jquery/jquery.min.{js,map}',
+                        'bower_components/jquery/jquery.min.*'
                     ]
                 }, {
                     expand: true,
@@ -226,7 +243,7 @@ module.exports = function(grunt) {
                         '*.{ico,png,txt,html}',
                         '.htaccess',
                         'images/{,*/}*.{webp}',
-                        'styles/fonts/{,*/}*.*',
+                        'styles/fonts/{,*/}*.*'
                     ]
                 },<% if (cssOption === 'SCSS') { %> {
                     expand: true,
@@ -421,12 +438,12 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: '<%%= yeoman.dist %>/bower_components/',
                 dest: '<%%= yeoman.dist %>/bower_components/',
-                src: [
-                    'requirejs/require.js',
+                src: [<% if (jsOption === 'RequireJS') { %>
+                    'requirejs/require.js',<% } %>
                     'modernizr/modernizr.js'
                 ],
                 ext: '.js'
-            },
+            },<% if (jsOption !== 'None (Vanilla JavaScript)') { %>
             distJS: {
                 options: {
                     mangle: true,
@@ -439,7 +456,7 @@ module.exports = function(grunt) {
                 dest: '<%%= yeoman.dist %>/scripts/',
                 src: ['{,*/}{,*/}*.js', '!*.js'],
                 ext: '.js'
-            }<% if (jsOption === 'Browserify') { %>,
+            }<% } %><% if (jsOption === 'Browserify') { %>,
             distBrowserify: {
                 options: {
                     mangle: true,
@@ -502,7 +519,33 @@ module.exports = function(grunt) {
                     dest: '<%%= yeoman.dist %>'
                 }]
             }
-        },<% if (jsOption === 'Browserify') { %>
+        },<% if (ieSupport && cssOption === 'None (Vanilla CSS)' && useDashboard) { %>
+        cssmin: {
+            serverDashboard: {
+                files: {
+                    '<%%= yeoman.server %>/dashboard/styles/main.css': ['<%%= yeoman.dev %>/dashboard/styles/main.css']
+                }
+            },
+            distDashboard: {
+                files: {
+                    '<%%= yeoman.dist %>/dashboard/styles/main.css': ['<%%= yeoman.dev %>/dashboard/styles/main.css']
+                }
+            }
+        },<% } %><% if (jsOption === 'None (Vanilla JavaScript)' || cssOption === 'None (Vanilla CSS)') { %>
+        useminPrepare: {
+            html: '<%%= yeoman.dist %>/<% if (useDashboard) { %>markup/pages/<% } %>index.html',
+            options: {
+                root: '<%%= yeoman.dev %><% if (useDashboard) { %>/markup/pages/<% } %>',
+                dest: '<%%= yeoman.dist %><% if (useDashboard) { %>/markup/pages/<% } %>'
+            }
+        },
+        usemin: {
+            html: '<%%= yeoman.dist %>/<% if (useDashboard) { %>markup/pages/<% } %>index.html',
+            css: ['<%%= yeoman.dist %>/styles/{,*/}*.css'],
+            options: {
+                assetsDirs: ['<%%= yeoman.dev %>', '<%%= yeoman.dev %>/images']
+            }
+        },<% } %><% if (jsOption === 'Browserify') { %>
         browserify: {
             server: {
                 options: {
@@ -872,6 +915,8 @@ module.exports = function(grunt) {
         'sass:server'<% if (ieSupport) { %>,
         'sass:serverPrint'<% } %><% if (useDashboard) { %>,
         'sass:serverDashboard'<% } %><%} %>,
+        <% if (cssOption === 'None (Vanilla CSS)' && useDashboard) { %>
+        'cssmin:serverDashboard',<% } %>
         'clean:temp',
         'connect:livereload',
         'watch'
@@ -887,7 +932,8 @@ module.exports = function(grunt) {
         'imagemin',
         'svgmin',
         'jade:dist',<% if (useDashboard) { %>
-        'jade:distDashboard',<% } %><% if (cssOption === 'LESS') { %>
+        'jade:distDashboard',<% } %><% if (jsOption === 'None (Vanilla JavaScript)' || cssOption === 'None (Vanilla CSS)') { %>
+        'useminPrepare',<% } %><% if (cssOption === 'LESS') { %>
         'less:dist',<% if (ieSupport) { %>
         'less:distPrint',<% } %><% if (useDashboard) { %>
         'less:distDashboard',<% } %><% } %><% if (cssOption === 'SCSS') { %>
@@ -896,7 +942,11 @@ module.exports = function(grunt) {
         'sass:distDashboard',<% } %>
         'string-replace:sassMapFixDist',<% } %><% if (jsOption === 'RequireJS') { %>
         'requirejs',<% } %><% if (useDashboard) { %>
-        'string-replace:dashboardLinkFixDist',<% } %>
+        'string-replace:dashboardLinkFixDist',<% } %><% if (jsOption === 'None (Vanilla JavaScript)' || cssOption === 'None (Vanilla CSS)') { %>
+        'concat:generated',<% if (cssOption === 'None (Vanilla CSS)') { %><% if (useDashboard) { %>
+        'cssmin:distDashboard',<% } %>
+        'cssmin:generated',<% } %>
+        'usemin',<% } %>
         'htmlmin:dist',
         'uglify',
         'clean:temp'

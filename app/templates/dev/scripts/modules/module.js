@@ -10,11 +10,12 @@
     'use strict';
 
     // private function
-    var init = function() {
+    var init = function(msg) {
         var $ele = $('<p></p>');
 
-        $ele.append('Module loaded!');
+        $ele.append('Module loaded! - Message: ' + msg);
         console.log($ele.text());
+        return $ele.text();
     };
 
     // Public API

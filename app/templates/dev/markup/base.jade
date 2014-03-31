@@ -1,12 +1,12 @@
 //- Base template
 //- All other templates will extend from this
 
-//- Include all helpers and components
-//-!##
+//- Include components
 include components/header
 include components/footer
+
+//- Include helpers
 include helpers/heading
-//-##!
 
 doctype html<% if (ieSupport) { %>
 <!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->
@@ -20,8 +20,17 @@ html.no-js(lang="en")
         title <%= projectName %>
         meta(name='description', content='')
         meta(name='viewport', content='width=device-width, initial-scale=1.0')
-        link(rel='stylesheet', href='<% if (useDashboard) { %>../../<% } %>styles/main.css' media="screen")<% if (ieSupport) { %>
-        link(rel='stylesheet', href='<% if (useDashboard) { %>../../<% } %>styles/print.css' media="print")<% } %>
+        <% if (cssOption === 'None (Vanilla CSS)') { %>// build:css(dev<% if (useDashboard) { %>/markup/pages<% } %>) <% if (useDashboard) { %>../../<% } %>styles/main.css
+        <% if (useBootstrap) { %>link(rel='stylesheet', href='<% if (useDashboard) { %>../../<% } %>bower_components/bootstrap/dist/css/bootstrap.css' media="screen")
+        <% } %>link(rel='stylesheet', href='<% if (useDashboard) { %>../../<% } %>styles/main.css' media="screen")
+        <% if (ieSupport) { %>// endbuild
+        // build:css(dev<% if (useDashboard) { %>/markup/pages<% } %>) <% if (useDashboard) { %>../../<% } %>styles/print.css
+        link(rel='stylesheet', href='<% if (useDashboard) { %>../../<% } %>styles/print.css', media="print")
+        // endbuild<% } else { %>
+        link(rel='stylesheet', href='<% if (useDashboard) { %>../../<% } %>styles/print.css')
+        // endbuild<% } %>
+        <% } else { %>link(rel='stylesheet', href='<% if (useDashboard) { %>../../<% } %>styles/main.css' media="screen")<% if (ieSupport) { %>
+        link(rel='stylesheet', href='<% if (useDashboard) { %>../../<% } %>styles/print.css' media="print")<% } %><% } %>
         script(src='<% if (useDashboard) { %>../../<% } %>bower_components/modernizr/modernizr.js')<% if (ieSupport) { %>
         // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
         <!--[if IE 8]>
@@ -48,12 +57,30 @@ html.no-js(lang="en")
                 }
             })();
         <![endif]--><% } %>
-        <% if (jsOption ==='RequireJS') { %>script(data-main="<% if (useDashboard) { %>../../<% } %>scripts/main", src="<% if (useDashboard) { %>../../<% } %>bower_components/requirejs/require.js")<% } else if (jsOption ==='Browserify') { %>
-        script(src="<% if (useDashboard) { %>../../<% } %>scripts/main.js", defer)<% } %>
     -var bodyClass
     block body
     body(class=(bodyClass ? bodyClass : false))
         block template
+
+        <% if (jsOption ==='RequireJS') { %>script(data-main="<% if (useDashboard) { %>../../<% } %>scripts/main", src="<% if (useDashboard) { %>../../<% } %>bower_components/requirejs/require.js")<% } else if (jsOption ==='Browserify') { %>
+        script(src="<% if (useDashboard) { %>../../<% } %>scripts/main.js", defer)<% } else { %>//- Place all vendor library/plugin/framework scripts within the 'build:js' comments below,
+            so they will be optimised correctly during a 'grunt build' task
+        // build:js(dev<% if (useDashboard) { %>/markup/pages<% } %>) <% if (useDashboard) { %>../../<% } %>scripts/vendor.js
+        script(src="<% if (useDashboard) { %>../../<% } %>bower_components/jquery/jquery.js")
+        <% if (useBootstrap) { %>script(src="<% if (useDashboard) { %>../../<% } %>bower_components/bootstrap/js/affix.js")
+        script(src="<% if (useDashboard) { %>../../<% } %>bower_components/bootstrap/js/alert.js")
+        script(src="<% if (useDashboard) { %>../../<% } %>bower_components/bootstrap/js/button.js")
+        script(src="<% if (useDashboard) { %>../../<% } %>bower_components/bootstrap/js/carousel.js")
+        script(src="<% if (useDashboard) { %>../../<% } %>bower_components/bootstrap/js/collapse.js")
+        script(src="<% if (useDashboard) { %>../../<% } %>bower_components/bootstrap/js/dropdown.js")
+        script(src="<% if (useDashboard) { %>../../<% } %>bower_components/bootstrap/js/modal.js")
+        script(src="<% if (useDashboard) { %>../../<% } %>bower_components/bootstrap/js/scrollspy.js")
+        script(src="<% if (useDashboard) { %>../../<% } %>bower_components/bootstrap/js/tab.js")
+        script(src="<% if (useDashboard) { %>../../<% } %>bower_components/bootstrap/js/tooltip.js")
+        script(src="<% if (useDashboard) { %>../../<% } %>bower_components/bootstrap/js/popover.js")
+        script(src="<% if (useDashboard) { %>../../<% } %>bower_components/bootstrap/js/transition.js")
+        <% } %>// endbuild<% } %>
+
         <% if (useGA) { %><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         script.
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -62,3 +89,9 @@ html.no-js(lang="en")
             e.src='//www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');<% } %>
+
+        <% if (jsOption === 'None (Vanilla JavaScript)') { %>//- Place all author scripts within the 'build:js' comments below,
+            so they will be optimised correctly during a 'grunt build' task
+        // build:js(dev<% if (useDashboard) { %>/markup/pages<% } %>) <% if (useDashboard) { %>../../<% } %>scripts/app.js
+        script(src="<% if (useDashboard) { %>../../<% } %>scripts/app.js")
+        // endbuild<% } %>

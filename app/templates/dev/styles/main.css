@@ -1,0 +1,18 @@
+/*
+*   main.css
+*/
+
+/*   Box sizing styles:
+     Apply a natural box layout model to all elements */
+
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/*
+    Author Custom Styles
+ */

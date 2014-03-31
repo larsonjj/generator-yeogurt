@@ -82,15 +82,12 @@ yo yeogurt:markup mycomponent --type=component
 ```
 
 ### Script
-Creates module script within the `dev/scripts/modules` folder by default or a inline script using the `--inline=true` option.
+Creates module script within the `dev/scripts/modules` folder by default.
 
 Example:
 ```bash
 ## Module
 yo yeogurt:script myscript
-
-## Inline
-yo yeogurt:script myscript --inline=true
 ```
 
 ### Style

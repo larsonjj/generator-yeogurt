@@ -8,7 +8,7 @@ module.exports = function(config) {
         basePath: '',
 
         // testing framework to use (jasmine/mocha/qunit/...)
-        frameworks: ['jasmine',<% if (jsOption === 'RequireJS') { %>'requirejs'<% } else if (jsOption === 'Browserify') { %>'browserify'<% } %>],
+        frameworks: ['jasmine'<% if (jsOption === 'RequireJS') { %>,'requirejs'<% } else if (jsOption === 'Browserify') { %>,'browserify'<% } %>],
 
         // list of files / patterns to load in the browser
         files: [<% if (jsOption === 'RequireJS') { %>
@@ -24,6 +24,9 @@ module.exports = function(config) {
             },
 
             'test/test-main.js'<% } else if (jsOption === 'Browserify') { %>
+            'test/spec/*.js'<% } else { %>
+            'dev/bower_components/jquery/jquery.js',
+            'dev/scripts/*.js',
             'test/spec/*.js'<% } %>
         ],
 

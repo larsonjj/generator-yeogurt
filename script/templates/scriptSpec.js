@@ -3,7 +3,7 @@
 */
 <% if (jsOption === 'RequireJS') { %>'use strict';
 
-define(['<%= name %>', 'jquery'], function(<%= name %>, $) {
+define(['modules/<%= camelCase(name) %>', 'jquery'], function(<%= camelCase(name) %>, $) {
 
     describe('just checking', function() {
 
@@ -20,16 +20,28 @@ define(['<%= name %>', 'jquery'], function(<%= name %>, $) {
 });<% } else if (jsOption === 'Browserify') { %>
 'use strict';
 
-var <%= name %> = require('../../dev/scripts/modules/<%= _.slugify(name.toLowerCase()) %>.js');
+var <%= camelCase(name) %> = require('../../dev/scripts/modules/<%= _.slugify(name.toLowerCase()) %>.js');
 
 describe('just checking', function() {
 
     it('works for <%= _.slugify(name.toLowerCase()) %>', function() {
-        var msg = '<%= name %> loaded!';
+        var msg = '<%= camelCase(name) %> loaded!';
 
-        var message = <%= name %>.init(msg);
+        var message = <%= camelCase(name) %>.init(msg);
 
-        expect(message).toMatch(/<%= name %>/);
+        expect(message).toMatch(/<%= camelCase(name) %>/);
+    });
+
+});
+<% } else { %>
+describe('just checking <%= _.slugify(name.toLowerCase()) %>', function() {
+
+    it('works for <%= _.slugify(name.toLowerCase()) %>', function() {
+        var msg = '<%= _.slugify(name.toLowerCase()) %> is working!';
+
+        var message = <%= camelCase(name) %>.init(msg);
+
+        expect(message).toMatch(/<%= _.slugify(name.toLowerCase()) %>/);
     });
 
 });

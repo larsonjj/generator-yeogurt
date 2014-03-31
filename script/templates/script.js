@@ -9,11 +9,12 @@
     'use strict';
 
     // private function
-    var init = function() {
+    var init = function(msg) {
         var $ele = $('<p></p>');
 
-        $ele.append('<%= name %> loaded!');
+        $ele.append('<%= name %> loaded! - Message: ' + msg);
         console.log($ele.text());
+        return $ele.text();
     };
 
     // Public API
@@ -23,16 +24,27 @@
     };
 
 });
-<% } %><% if (jsOption ==='Browserify') { %>'use strict';
+<% } else if (jsOption ==='Browserify') { %>'use strict';
 
 // private function
-var <%= name %> = {
-    init: function() {
+var <%= camelCase(name) %> = {
+    init: function(msg) {
         var $ele = $('<p></p>');
 
-        $ele.append('<%= name %> loaded!');
+        $ele.append('<%= name %> loaded! - Message: ' + msg);
         console.log($ele.text());
+        return $ele.text();
     }
 };
 
-module.exports = <%= name %>;<% } %>
+module.exports = <%= name %>;<% } else { %>'use strict';
+var <%= camelCase(name) %> = {
+    init: function(msg) {
+        var $ele = $('<p></p>');
+
+        $ele.append('<%= name %> loaded! - Message: ' + msg);
+        console.log($ele.text());
+        return $ele.text();
+    }
+};
+<% } %>
