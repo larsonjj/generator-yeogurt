@@ -42,7 +42,7 @@ StyleGenerator.prototype.files = function files() {
             this.template('style.less', 'dev/styles/partials/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
         }
         else {
-            this.template('style.less', 'dev/styles/partials/' + this._.slugify(this.name.toLowerCase()) + '.css');
+            this.template('style.less', 'dev/styles/' + this._.slugify(this.name.toLowerCase()) + '.css');
         }
     }
 };

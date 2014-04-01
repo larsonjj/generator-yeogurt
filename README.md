@@ -69,10 +69,10 @@ Creates jade file within the `dev/markup/pages` folder by default or within anot
 Example:
 ```bash
 ## Page
-yo yeogurt:markup mypage --type=page
+yo yeogurt:markup mypage
 
 ## Page using specific Template
-yo yeogurt:markup mypage --type=page --template=one-column
+yo yeogurt:markup mypage --template=one-column
 
 ## Template
 yo yeogurt:markup mytemplate --type=template
@@ -85,7 +85,8 @@ yo yeogurt:markup mycomponent --type=component
 ```
 
 ### Script
-If using Browserify or RequireJS, this creates module script within the `dev/scripts/modules` folder by default. Otherwise, the script will be created within `dev/scripts`
+If using Browserify or RequireJS, this creates module script within the `dev/scripts/modules` folder by default. Otherwise, the script will be created within `dev/scripts`.
+This sub-generator will also create a unit test *Spec file within the `test/spec` folder (enter `grunt test` command to run your tests)
 
 Example:
 ```bash

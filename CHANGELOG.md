@@ -11,6 +11,7 @@
 * Removed karma and jshint tests from 'build task' and added to the 'default' task
 * Defined the console object within the dynamic dashboard for IE
 * Added Jade file check for dynamic dashboard (fixes problem with file types other than .jade causing status classes to fail)
+* Externalized sourcemaps for browserify builds (sourcesContent property is null for grunt build tasks, should be fixed after this PR is merged: https://github.com/gruntjs/grunt-contrib-uglify/pull/196)
 
 ### v0.3.5:
 #### date: 2014-03-18

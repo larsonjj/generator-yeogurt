@@ -73,7 +73,8 @@ module.exports = function(grunt) {
                 ],
                 tasks: [<% if (jshint) { %>
                     'newer:jshint',<% } %><% if (jsOption === 'Browserify') { %>
-                    'browserify:server',<% } %>
+                    'browserify:server',
+                    'exorcise:server',<% } %>
                     'newer:copy:server'
                 ]
             },
@@ -549,12 +550,9 @@ module.exports = function(grunt) {
         browserify: {
             server: {
                 options: {
-                    debug: true,
-                    aliasMappings: {
-                        cwd: '<%%= yeoman.dev %>/scripts',
-                        src: ['app.js', 'vendor/**/*.js'],
-                        dest: 'lib'
-                    },
+                    bundleOptions: {
+                        debug: true
+                    }
                 },
                 files: {
                     '<%%= yeoman.server %>/scripts/main.js': ['<%%= yeoman.dev %>/scripts/main.js']
@@ -562,10 +560,26 @@ module.exports = function(grunt) {
             },
             dist: {
                 options: {
-                    debug: false
+                    bundleOptions: {
+                        debug: true
+                    }
                 },
                 files: {
                     '<%%= yeoman.dist %>/scripts/main.js': ['<%%= yeoman.dev %>/scripts/main.js']
+                }
+            }
+        },
+        exorcise: {
+            server: {
+                options: {},
+                files: {
+                    '<%%= yeoman.server %>/scripts/main.js.map': ['<%%= yeoman.server %>/scripts/main.js'],
+                }
+            },
+            dist: {
+                options: {},
+                files: {
+                    '<%%= yeoman.dist %>/scripts/main.js.map': ['<%%= yeoman.dist %>/scripts/main.js'],
                 }
             }
         },<% } %><% if (jsOption === 'RequireJS') { %>
@@ -908,7 +922,8 @@ module.exports = function(grunt) {
         'copy:server'<% if (useDashboard) { %>,
         'build-dashboard'<% } %><% if (jshint) { %>,
         'jshint:test'<% } %><% if (jsOption === 'Browserify') { %>,
-        'browserify:server'<% } %>,
+        'browserify:server',
+        'exorcise:server'<% } %>,
         'jade:server'<% if (useDashboard) { %>,
         'jade:serverDashboard'<% } %><% if (cssOption === 'LESS') { %>,
         'less:server'<% if (ieSupport) { %>,
@@ -928,7 +943,8 @@ module.exports = function(grunt) {
         'clean:dist',
         'copy:dist',<% if (useDashboard) { %>
         'build-dashboard',<% } %><% if (jsOption === 'Browserify') { %>
-        'browserify:dist',<% } %>
+        'browserify:dist',
+        'exorcise:dist',<% } %>
         'imagemin',
         'svgmin',
         'jade:dist',<% if (useDashboard) { %>

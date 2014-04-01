@@ -1,6 +1,7 @@
 /*
 *   <%= _.slugify(name.toLowerCase()) %>Spec.js
 */
+
 <% if (jsOption === 'RequireJS') { %>'use strict';
 
 define(['modules/<%= camelCase(name) %>', 'jquery'], function(<%= camelCase(name) %>, $) {
@@ -17,8 +18,7 @@ define(['modules/<%= camelCase(name) %>', 'jquery'], function(<%= camelCase(name
 
     });
 
-});<% } else if (jsOption === 'Browserify') { %>
-'use strict';
+});<% } else if (jsOption === 'Browserify') { %>'use strict';
 
 var <%= camelCase(name) %> = require('../../dev/scripts/modules/<%= _.slugify(name.toLowerCase()) %>.js');
 
@@ -33,7 +33,8 @@ describe('just checking', function() {
     });
 
 });
-<% } else { %>
+<% } else { %>'use strict';
+
 describe('just checking <%= _.slugify(name.toLowerCase()) %>', function() {
 
     it('works for <%= _.slugify(name.toLowerCase()) %>', function() {
