@@ -193,6 +193,3 @@ See [Changelog](https://github.com/larsonjj/generator-yeogurt/blob/master/CHANGE
 ## License
 
 [MIT License](LICENSE.md)
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/larsonjj/generator-yeogurt/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
