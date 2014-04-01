@@ -30,6 +30,9 @@ StyleGenerator.prototype.files = function files() {
         else if (this.cssOption === 'SCSS') {
             this.template('style.less', 'dev/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
         }
+        else {
+            this.template('style.less', 'dev/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.css');
+        }
     }
     else {
         if (this.cssOption === 'LESS') {
@@ -37,6 +40,9 @@ StyleGenerator.prototype.files = function files() {
         }
         else if (this.cssOption === 'SCSS') {
             this.template('style.less', 'dev/styles/partials/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
+        }
+        else {
+            this.template('style.less', 'dev/styles/partials/' + this._.slugify(this.name.toLowerCase()) + '.css');
         }
     }
 };

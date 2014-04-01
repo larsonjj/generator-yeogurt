@@ -1,6 +1,7 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
+var fileJSON = require(process.cwd() + '/.yo-rc.json')['generator-yeogurt'].config;
 
 var MarkupGenerator = module.exports = function MarkupGenerator(args, options, config) {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -11,6 +12,7 @@ var MarkupGenerator = module.exports = function MarkupGenerator(args, options, c
     this.useDashboard = this.options.dashboard || false;
     this.markup = this.options.type || 'page';
     this.useTemplate = this.options.template || false;
+    this.useDashboard = fileJSON.useDashboard;
 
     console.log('You called the markup subgenerator with the argument ' + this.name + '.');
 };

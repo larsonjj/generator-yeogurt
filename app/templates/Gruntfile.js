@@ -809,16 +809,18 @@ module.exports = function(grunt) {
                 return JSON.parse(dataStr);
             }
         };
-        var recursiveParse = function(path, type, namePath) {
+        var recursiveParse = function(path, type, namePath, fileExt) {
             var extraData = [],
                 nameData;
             itemsArray = []; // reset items array
             grunt.file.recurse(path, function(abspath) {
-                var data = parseFiles(abspath, type);
-                if (data) {
-                    extraData.push(data);
+                if (abspath.indexOf(fileExt) > -1) {
+                    var data = parseFiles(abspath, type);
+                    if (data) {
+                        extraData.push(data);
+                    }
+                    nameData = findJadeNames(abspath, type, namePath, extraData);
                 }
-                nameData = findJadeNames(abspath, type, namePath, extraData);
             });
             return nameData;
         };
@@ -881,13 +883,13 @@ module.exports = function(grunt) {
             }
         };
         // Go through jade pages
-        pageData = recursiveParse('dev/markup/pages', 'page', 'dev');
+        pageData = recursiveParse('dev/markup/pages', 'page', 'dev', '.jade');
         // Go through jade templates
-        templateData = recursiveParse('dev/.server/tmp/markup/templates', 'template', 'dev/.server/tmp');
+        templateData = recursiveParse('dev/.server/tmp/markup/templates', 'template', 'dev/.server/tmp', '.jade');
         // Go through jade components
-        componentData = recursiveParse('dev/.server/tmp/markup/components', 'component', 'dev/.server/tmp');
+        componentData = recursiveParse('dev/.server/tmp/markup/components', 'component', 'dev/.server/tmp', '.jade');
         // Go through jade modules
-        helpersData = recursiveParse('dev/.server/tmp/markup/helpers', 'module', 'dev/.server/tmp');
+        helpersData = recursiveParse('dev/.server/tmp/markup/helpers', 'module', 'dev/.server/tmp', '.jade');
         // Setup all parsed data to be passed to jade templates
         dashData = {
             pages: pageData,
@@ -925,9 +927,7 @@ module.exports = function(grunt) {
     grunt.registerTask('build', 'Build a production ready version of your site.', [
         'clean:dist',
         'copy:dist',<% if (useDashboard) { %>
-        'build-dashboard',<% } %><% if (jshint) { %>
-        'jshint:test',<% } %>
-        'karma:continuous',<% if (jsOption === 'Browserify') { %>
+        'build-dashboard',<% } %><% if (jsOption === 'Browserify') { %>
         'browserify:dist',<% } %>
         'imagemin',
         'svgmin',
@@ -969,6 +969,7 @@ module.exports = function(grunt) {
     ]);<% } %>
 
     grunt.registerTask('default', 'Defaults to building a production ready version of your site.', [
+        'test',
         'build'
     ]);
 

@@ -2,7 +2,7 @@
 
 # Yeogurt Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-yeogurt.png?branch=master)](https://travis-ci.org/larsonjj/generator-yeogurt) [![NPM version](https://badge.fury.io/js/generator-yeogurt.png)](http://badge.fury.io/js/generator-yeogurt) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-yeogurt/badge.png)](https://coveralls.io/r/larsonjj/generator-yeogurt)
 
-A [Yeoman](http://yeoman.io) generator for creating a sensible structure to front-end work.
+A [Yeoman](http://yeoman.io) generator for creating a sensible structure to front-end work using your favorite tools.
 
 
 ## Getting Started
@@ -71,8 +71,11 @@ Example:
 ## Page
 yo yeogurt:markup mypage --type=page
 
+## Page using specific Template
+yo yeogurt:markup mypage --type=page --template=one-column
+
 ## Template
-yo yeogurt:markup mytemplate --type=page --template=one-column
+yo yeogurt:markup mytemplate --type=template
 
 ## Helper
 yo yeogurt:markup myhelper --type=helper
@@ -82,7 +85,7 @@ yo yeogurt:markup mycomponent --type=component
 ```
 
 ### Script
-Creates module script within the `dev/scripts/modules` folder by default.
+If using Browserify or RequireJS, this creates module script within the `dev/scripts/modules` folder by default. Otherwise, the script will be created within `dev/scripts`
 
 Example:
 ```bash
@@ -91,11 +94,11 @@ yo yeogurt:script myscript
 ```
 
 ### Style
-Creates stylesheet file within the `dev/styles/partials` folder by default or inside a specified folder using the `--folder` option.
+If using SASS or LESS, this creates a stylesheet file within the `dev/styles/partials` folder by default. Otherwise, the stylesheet will be created within `dev/styles` folder. You can also specify a folder using the `--folder` option.
 
 Example:
 ```bash
-## Create mystyle file within dev/styles/partials folder
+## Create mystyle file within dev/styles/partials folder (SASS or LESS) or dev/styles folder (CSS)
 yo yeogurt:style mystyle
 
 ## Create mystyle file within dev/styles/base folder
@@ -170,7 +173,7 @@ possible values
 
 #### Huh?
 
-A bit confused? No worries, I recommend generating a test project and taking a look at the jade files within the generated pages, components, templates, and helpers folders. They will have some simple examples of what's possible and you can see your changes in real time if you run `grunt serve`.
+A bit confused? No worries, I recommend generating a test project and taking a look at the jade files within the generated pages, components, templates, and helpers folders. They will have some simple examples of what's possible and you can see your changes if you run `grunt serve`.
 
 Also, feel free to open up an issue if you think something is too confusing or can be improved.
 
@@ -189,7 +192,7 @@ See [Changelog](https://github.com/larsonjj/generator-yeogurt/blob/master/CHANGE
 
 ## License
 
-[MIT License](http://en.wikipedia.org/wiki/MIT_License)
+[MIT License](LICENSE.md)
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/larsonjj/generator-yeogurt/trend.png)](https://bitdeli.com/free "Bitdeli Badge")

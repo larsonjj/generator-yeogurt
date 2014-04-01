@@ -1,7 +1,7 @@
 {
   "name": "generator-yeogurt",
   "version": "0.3.5",
-  "description": "A Yeoman generator for creating a sensible structure to front-end work.",
+  "description": "A Yeoman generator for creating a sensible structure to front-end work using your favorite tools.",
   "keywords": [
     "yeoman-generator",
     "yeogurt",
@@ -35,10 +35,10 @@
     "colors": "~0.6.2"
   },
   "devDependencies": {
-    "mocha": "~1.17.0",
-    "coveralls": "~2.8.0",
+    "mocha": "1.17.0",
+    "coveralls": "2.8.0",
     "mocha-lcov-reporter": "0.0.1",
-    "istanbul": "~0.2.6"
+    "istanbul": "0.2.6"
   },
   "peerDependencies": {
     "yo": ">=1.0.6"

@@ -1,3 +1,17 @@
+### v0.4.0:
+#### date: 2014-04-01
+##### changes:
+* Updated Bower and NPM dependencies
+* Added new option to use Vanilla CSS
+* Added new option to use Vanilla JavaScript
+* Moved Author and Vendor JavaScript right before </body> (Reasoning: http://developer.yahoo.com/performance/rules.html)
+* Updated Script subgenerator to no longer create inline scripts
+* Switched to use official Bootstrap SASS Library
+* Fixed Browserify Livereload issue (browserify script changes didn't trigger a rebuild)
+* Removed karma and jshint tests from 'build task' and added to the 'default' task
+* Defined the console object within the dynamic dashboard for IE
+* Added Jade file check for dynamic dashboard (fixes problem with file types other than .jade causing status classes to fail)
+
 ### v0.3.5:
 #### date: 2014-03-18
 ##### changes:

@@ -1,4 +1,4 @@
 /*
-*   _<%= _.slugify(name.toLowerCase()) %>.<% if (cssOption === 'LESS') { %>less<% } else if (cssOption === 'SCSS') { %>scss<% } %>
+*   <% if (cssOption === 'LESS' || cssOption === 'SCSS') { %>_<% } %><%= _.slugify(name.toLowerCase()) %>.<% if (cssOption === 'LESS') { %>less<% } else if (cssOption === 'SCSS') { %>scss<% } else { %>css<% } %>
 *   <%= _.slugify(name.toLowerCase()) %> styles
 */
