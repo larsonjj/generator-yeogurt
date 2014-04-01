@@ -4,7 +4,7 @@
 * Updated Bower and NPM dependencies
 * Added new option to use Vanilla CSS
 * Added new option to use Vanilla JavaScript
-* Moved Author and Vendor JavaScript right before </body> (Reasoning: http://developer.yahoo.com/performance/rules.html)
+* Moved Author and Vendor JavaScript right before `</body>` (Reasoning: http://developer.yahoo.com/performance/rules.html)
 * Updated Script subgenerator to no longer create inline scripts
 * Switched to use official Bootstrap SASS Library
 * Fixed Browserify Livereload issue (browserify script changes didn't trigger a rebuild)
