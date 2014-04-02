@@ -15,8 +15,8 @@
 <% if (useBootstrap) { %>@import 'vendor/_bootstrap';
 <% } %>@import 'vendor/_bourbon';<% } else { %>
 <% if (useBootstrap) { %>@import 'vendor/_bootstrap';
-<% } %>@import 'vendor/_lesshat';<% } %>
-@import 'vendor/_font-awesome';
+<% } %>@import 'vendor/_lesshat';<% } %><% if (useFontAwesome) { %>
+@import 'vendor/_font-awesome';<% } %>
 
 // Partials
 @import 'partials/_header';
