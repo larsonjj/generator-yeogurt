@@ -59,7 +59,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
     }, {
         type: 'confirm',
         name: 'responsive',
-        message: 'Will the site be responsive?',
+        message: 'Will the site be responsive (Use CSS3 media queries)?',
         default: true
     }, {
         type: 'confirm',
@@ -77,31 +77,10 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         message: 'Would you like to lint your Javascript with JSHint?',
         default: true
     }, {
-        type: 'confirm',
-        name: 'useDashboard',
-        message: 'Would you like to generate a dynamic dashboard?',
-        default: true
-    }, {
         type: 'checkbox',
         name: 'extras',
         message: 'Select any extras you would like:',
         choices: [{
-            name: 'HTML5 Boilerplate .htaccess file',
-            value: 'htaccess',
-            checked: true
-        }, {
-            name: 'IE11 tile icons',
-            value: 'ieIcons',
-            checked: true
-        }, {
-            name: 'Adobe Flash crossdomain rules',
-            value: 'adobeXdomain',
-            checked: true
-        }, {
-            name: 'Apple homescreen icon',
-            value: 'appleIcon',
-            checked: true
-        }, {
             name: 'Twitter Bootstrap 3.x',
             value: 'useBootstrap',
             checked: true
@@ -109,6 +88,14 @@ YeogurtGenerator.prototype.askFor = function askFor() {
             name: 'Font Awesome 4.x',
             value: 'useFontAwesome',
             checked: true
+        }, {
+            name: 'HTML5 Boilerplate extras (.htaccess, Apple homescreen icon, etc)',
+            value: 'htaccess',
+            checked: false
+        }, {
+            name: 'Dynamic Dashboard: Generate a dashboard for your site/app',
+            value: 'useDashboard',
+            checked: false
         }]
     }];
 
@@ -133,9 +120,13 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.htaccess = hasFeature('htaccess');
         this.useBootstrap = hasFeature('useBootstrap');
         this.useFontAwesome = hasFeature('useFontAwesome');
-        this.ieIcons = hasFeature('ieIcons');
-        this.adobeXdomain = hasFeature('adobeXdomain');
-        this.appleIcon = hasFeature('appleIcon');
+        this.useDashboard = hasFeature('useDashboard');
+
+        if (this.htaccess) {
+            this.ieIcons = true;
+            this.adobeXdomain = true;
+            this.appleIcon = true;
+        }
 
         this.props = props;
 
