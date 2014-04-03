@@ -66,7 +66,7 @@ describe('yeogurt generator dashboard', function () {
             useFTP: true,
             jshint: true,
             useDashboard: true,
-            extras: ['htaccess', 'useBootstrap', 'useFontAwesome', 'ieIcons', 'adobeXdomain', 'appleIcon']
+            extras: ['htaccess', 'useBootstrap', 'useFontAwesome', 'useDashboard']
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {

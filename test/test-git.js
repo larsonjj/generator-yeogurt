@@ -34,8 +34,7 @@ describe('yeogurt generator git', function () {
             useGA: true,
             useFTP: true,
             jshint: true,
-            useDashboard: true,
-            extras: ['htaccess', 'useBootstrap', 'useFontAwesome', 'ieIcons', 'adobeXdomain', 'appleIcon']
+            extras: ['htaccess', 'useBootstrap', 'useFontAwesome', 'useDashboard']
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {

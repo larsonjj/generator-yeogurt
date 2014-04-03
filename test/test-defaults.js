@@ -67,7 +67,6 @@ describe('yeogurt generator defaults', function () {
             useGA: false,
             useFTP: false,
             jshint: false,
-            useDashboard: false,
             extras: []
         });
         this.app.options['skip-install'] = true;
