@@ -197,8 +197,8 @@ module.exports = function(grunt) {
                     cwd: '<%%= yeogurt.dev %>/',
                     dest: '<%%= yeogurt.server %>/',
                     src: [
-                        'bower_components/{,*/}{,*/}*.js',
-                        'bower_components/{,*/}{,*/}*.{woff,otf,ttf,eot,svg}',
+                        'bower_components/**/*.js',
+                        'bower_components/**/*.{woff,otf,ttf,eot,svg}',
                         'bower_components/jquery/*.map'
                     ]
                 },<% if (cssOption === 'None (Vanilla CSS)') { %> {
