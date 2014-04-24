@@ -883,8 +883,8 @@ module.exports = function(grunt) {
                 } else {
                     markup = 'p. No Markup Found';
                 }
-                // Remove all newline statements (\n), any extra space, and the entire "markup" key
-                fileData = fileMarkupMatch.replace(/\n/g, '').replace(/ /g, '').replace(markupRegexAfter, '');
+                // Remove all newline statements (\n), any tabs, any extra space, and the entire "markup" key
+                fileData = fileMarkupMatch.replace(/\n/g, '').replace(/ /g, '').replace(/\t/g, '').replace(markupRegexAfter, '');
                 if (type === 'module' || type === 'component') {
                     grunt.file.write(path.replace('.jade', '-' + type + '.jade'), 'extend ../base\nblock template\n' + markup);
                 } else if (type === 'template') {
