@@ -1,3 +1,9 @@
+### v0.4.2:
+#### date: 2014-04-23
+##### changes:
+* Fixed issue [#20](https://github.com/larsonjj/generator-yeogurt/issues/20)
+* Fixed issue where dynamic dashboard would not compile if tabs were used for formatting
+
 ### v0.4.1:
 #### date: 2014-04-02
 ##### changes:
