@@ -3,6 +3,8 @@
 ##### changes:
 * Removed normalize.less dependency and replaced it with normalize.css (fixes SSH issues when installing via bower)
 * Made Bourbon and Lesshat mixin libraries conditional
+* Fixed pathing issue when running `grunt serve` with a dashboard
+* Added/Updated unit tests
 
 ### v0.4.2:
 #### date: 2014-04-23
