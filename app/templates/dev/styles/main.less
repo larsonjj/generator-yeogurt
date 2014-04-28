@@ -11,11 +11,12 @@
 @import 'base/_variables';
 
 // Third-Party (Vendor)
-@import 'vendor/_normalize';<% if (cssOption === 'SCSS') { %>
+<% if (!useBootstrap) { %>
+@import 'vendor/_normalize';<% } %><% if (cssOption === 'SCSS') { %>
 <% if (useBootstrap) { %>@import 'vendor/_bootstrap';
-<% } %>@import 'vendor/_bourbon';<% } else { %>
+<% } %><% if (useBourbon) { %>@import 'vendor/_bourbon';<% } %><% } else { %>
 <% if (useBootstrap) { %>@import 'vendor/_bootstrap';
-<% } %>@import 'vendor/_lesshat';<% } %><% if (useFontAwesome) { %>
+<% } %><% if (useLesshat) { %>@import 'vendor/_lesshat';<% } %><% } %><% if (useFontAwesome) { %>
 @import 'vendor/_font-awesome';<% } %>
 
 // Partials
