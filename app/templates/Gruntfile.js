@@ -406,6 +406,26 @@ module.exports = function(grunt) {
                 files: {
                     '<%%= yeogurt.dist %>/index.html': '<%%= yeogurt.dist %>/index.html'
                 }
+            },
+            dashboardLinkFixServer: {
+                options: {
+                    replacements: [
+                        // place files inline example
+                        {
+                            pattern: /\"\.\.\/\.\.\/scripts\//g,
+                            replacement: '"scripts/'
+                        }, {
+                            pattern: /\"\.\.\/\.\.\/styles\//g,
+                            replacement: '"styles/'
+                        }, {
+                            pattern: /\"\.\.\/\.\.\/images\//g,
+                            replacement: '"images/'
+                        }
+                    ]
+                },
+                files: {
+                    '<%%= yeogurt.server %>/index.html': '<%%= yeogurt.server %>/index.html'
+                }
             }<% } %>
         },
         // gzip assets 1-to-1 for production
@@ -884,7 +904,8 @@ module.exports = function(grunt) {
                     markup = 'p. No Markup Found';
                 }
                 // Remove all newline statements (\n), any tabs, any extra space, and the entire "markup" key
-                fileData = fileMarkupMatch.replace(/\n/g, '').replace(/ /g, '').replace(/\t/g, '').replace(markupRegexAfter, ''); 'module' || type === 'component') {
+                fileData = fileMarkupMatch.replace(/\n/g, '').replace(/ /g, '').replace(/\t/g, '').replace(markupRegexAfter, '');
+                if (type === 'module' || type === 'component') {
                     grunt.file.write(path.replace('.jade', '-' + type + '.jade'), 'extend ../base\nblock template\n' + markup);
                 } else if (type === 'template') {
                     var JSONData = getJSON(fileMarkupMatch),
@@ -937,13 +958,14 @@ module.exports = function(grunt) {
             'browserify:server',
             'exorcise:server'<% } %>,
             'jade:server'<% if (useDashboard) { %>,
-            'jade:serverDashboard'<% } %><% if (cssOption === 'LESS') { %>,
+            'jade:serverDashboard',
+            'string-replace:dashboardLinkFixServer'<% } %><% if (cssOption === 'LESS') { %>,
             'less:server'<% if (ieSupport) { %>,
             'less:serverPrint'<% } %><% if (useDashboard) { %>,
             'less:serverDashboard'<% } %><% } %><% if (cssOption === 'SCSS') { %>,
             'sass:server'<% if (ieSupport) { %>,
             'sass:serverPrint'<% } %><% if (useDashboard) { %>,
-            'sass:serverDashboard'<% } %><%} %>,
+            'sass:serverDashboard'<% } %><% } %>,
             <% if (cssOption === 'None (Vanilla CSS)' && useDashboard) { %>
             'cssmin:serverDashboard',<% } %>
             'clean:temp',

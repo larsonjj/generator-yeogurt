@@ -34,8 +34,6 @@ describe('yeogurt generator SCSS with no dashbaord', function () {
             'dev/styles/partials/_header.scss',
             'dev/styles/vendor',
             'dev/styles/vendor/_font-awesome.scss',
-            'dev/styles/vendor/_bourbon.scss',
-            'dev/styles/vendor/_normalize.scss',
             'dev/styles/vendor/_bootstrap.scss',
             'dev/styles/print.scss',
             'dev/styles/main.scss'
@@ -45,6 +43,7 @@ describe('yeogurt generator SCSS with no dashbaord', function () {
             projectName: 'testing',
             versionControl: 'Git',
             cssOption: 'SCSS',
+            useBourbon: true,
             ieSupport: true,
             responsive: true,
             useGA: true,

@@ -4,7 +4,7 @@
 var path    = require('path');
 var helpers = require('yeoman-generator').test;
 
-describe('yeogurt generator SCSS', function () {
+describe('yeogurt generator SCSS no bootstrap', function () {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -35,7 +35,7 @@ describe('yeogurt generator SCSS', function () {
             'dev/styles/vendor',
             'dev/styles/vendor/_font-awesome.scss',
             'dev/styles/vendor/_bourbon.scss',
-            'dev/styles/vendor/_bootstrap.scss',
+            'dev/styles/vendor/_normalize.scss',
             'dev/styles/print.scss',
             'dev/styles/main.scss',
             'dev/dashboard',
@@ -54,6 +54,7 @@ describe('yeogurt generator SCSS', function () {
             'dev/dashboard/styles/partials/_dashboard.scss',
             'dev/dashboard/styles/vendor',
             'dev/dashboard/styles/vendor/_font-awesome.scss',
+            'dev/dashboard/styles/vendor/_normalize.scss',
             'dev/dashboard/styles/main.scss'
         ];
 
@@ -67,7 +68,7 @@ describe('yeogurt generator SCSS', function () {
             useGA: true,
             useFTP: true,
             jshint: true,
-            extras: ['htaccess', 'useBootstrap', 'useFontAwesome', 'useDashboard']
+            extras: ['htaccess', 'useFontAwesome', 'useDashboard']
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {

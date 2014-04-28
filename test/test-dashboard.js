@@ -44,7 +44,6 @@ describe('yeogurt generator dashboard', function () {
             'dev/dashboard/styles/partials/_dashboard.less',
             'dev/dashboard/styles/vendor',
             'dev/dashboard/styles/vendor/_font-awesome.less',
-            'dev/dashboard/styles/vendor/_lesshat.less',
             'dev/dashboard/styles/vendor/_normalize.less',
             'dev/dashboard/styles/main.less',
             'dev/dashboard/scripts',
@@ -66,7 +65,7 @@ describe('yeogurt generator dashboard', function () {
             useFTP: true,
             jshint: true,
             useDashboard: true,
-            extras: ['htaccess', 'useBootstrap', 'useFontAwesome', 'useDashboard']
+            extras: ['htaccess', 'useFontAwesome', 'useDashboard']
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {

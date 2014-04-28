@@ -35,8 +35,6 @@ describe('yeogurt generator LESS', function () {
             'dev/styles/partials/_header.less',
             'dev/styles/vendor',
             'dev/styles/vendor/_font-awesome.less',
-            'dev/styles/vendor/_lesshat.less',
-            'dev/styles/vendor/_normalize.less',
             'dev/styles/vendor/_bootstrap.less',
             'dev/styles/print.less',
             'dev/styles/main.less',
@@ -56,8 +54,6 @@ describe('yeogurt generator LESS', function () {
             'dev/dashboard/styles/partials/_dashboard.less',
             'dev/dashboard/styles/vendor',
             'dev/dashboard/styles/vendor/_font-awesome.less',
-            'dev/dashboard/styles/vendor/_lesshat.less',
-            'dev/dashboard/styles/vendor/_normalize.less',
             'dev/dashboard/styles/main.less'
         ];
 
@@ -65,6 +61,7 @@ describe('yeogurt generator LESS', function () {
             projectName: 'testing',
             versionControl: 'Git',
             cssOption: 'LESS',
+            useLesshat: true,
             ieSupport: true,
             responsive: true,
             useGA: true,

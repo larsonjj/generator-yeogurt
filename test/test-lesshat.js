@@ -5,7 +5,7 @@ var path    = require('path');
 var helpers = require('yeoman-generator').test;
 
 
-describe('yeogurt generator no IE with scss', function () {
+describe('yeogurt generator LESS with no dashbaord', function () {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -22,20 +22,24 @@ describe('yeogurt generator no IE with scss', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'dev/styles/partials/_print.scss'
+            'dev/',
+            'dev/styles',
+            'dev/styles/vendor',
+            'dev/styles/vendor/_lesshat.less',
+
         ];
 
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
-            versionControl: 'SVN',
-            cssOption: 'SCSS',
-            useBourbon: true,
-            ieSupport: false,
+            versionControl: 'Git',
+            cssOption: 'LESS',
+            useLesshat: true,
+            ieSupport: true,
             responsive: true,
             useGA: true,
             useFTP: true,
             jshint: true,
-            extras: ['htaccess', 'useBootstrap', 'useFontAwesome', 'useDashboard']
+            extras: ['htaccess', 'useBootstrap', 'useFontAwesome']
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {

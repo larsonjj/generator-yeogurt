@@ -29,6 +29,7 @@ describe('yeogurt generator no IE with less', function () {
             projectName: 'testing',
             versionControl: 'SVN',
             cssOption: 'LESS',
+            useLesshat: true,
             ieSupport: false,
             responsive: true,
             useGA: true,
