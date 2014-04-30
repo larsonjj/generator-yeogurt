@@ -42,7 +42,7 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to fron
 Starts up a development server that watches for local file changes and automatically reloads them to the browser.
 
 - `grunt test`<br>
-Runs JSHint and Mocha to lint and unit test JavaScript, respectively.
+Runs JSHint and Karma to lint and unit test JavaScript, respectively.
 
 - `grunt build`<br>
 Builds out an optimised site through minification of CSS and HTML, as well as  uglification and optimisation(RequireJS) of Javascript.
