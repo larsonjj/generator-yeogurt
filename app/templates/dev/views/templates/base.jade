@@ -1,0 +1,97 @@
+//- Base template
+//- All other templates will extend from this
+
+//- Include components
+include ../components/header
+include ../components/footer
+
+//- Include helpers
+include ../helpers/heading
+
+doctype html<% if (ieSupport) { %>
+<!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->
+<!--[if IE 9]><html lang="en" class="ie9 no-js"><![endif]--><% } %>
+<!--[if !IE]><!-->
+html.no-js(lang="en")
+    <!--<![endif]-->
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+        title <%= projectName %>
+        meta(name='description', content='')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        <% if (cssOption === 'None (Vanilla CSS)') { %>// build:css(dev) styles/main.css
+        <% if (useBootstrap) { %>link(rel='stylesheet', href='bower_components/bootstrap/dist/css/bootstrap.css' media="screen")
+        <% } %>link(rel='stylesheet', href='styles/main.css' media="screen")
+        <% if (ieSupport) { %>// endbuild
+        // build:css(dev) styles/print.css
+        link(rel='stylesheet', href='styles/print.css', media="print")
+        // endbuild<% } else { %>
+        link(rel='stylesheet', href='styles/print.css')
+        // endbuild<% } %>
+        <% } else { %>link(rel='stylesheet', href='styles/main.css' media="screen")<% if (ieSupport) { %>
+        link(rel='stylesheet', href='styles/print.css' media="print")<% } %><% } %>
+        script(src='bower_components/modernizr/modernizr.js')<% if (ieSupport) { %>
+        // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+        <!--[if IE 8]>
+        <% if (responsive) { %>
+        script(src="bower_components/respond/respond.min.js")<% } %>
+        script(src="bower_components/html5shiv/dist/html5shiv-printshiv.js")
+        script.
+            // Protect window.console method calls, e.g. console is not defined on IE
+            (function() {
+                if (!window.console) {
+                    window.console = {};
+                }
+                // union of Chrome, FF, IE, and Safari console methods
+                var m = [
+                    "log", "info", "warn", "error", "debug", "trace", "dir", "group",
+                    "groupCollapsed", "groupEnd", "time", "timeEnd", "profile", "profileEnd",
+                    "dirxml", "assert", "count", "markTimeline", "timeStamp", "clear"
+                ];
+                // define undefined methods as noops to prevent errors
+                for (var i = 0; i < m.length; i++) {
+                    if (!window.console[m[i]]) {
+                        window.console[m[i]] = function() {};
+                    }
+                }
+            })();
+        <![endif]--><% } %>
+    -var bodyClass
+    block body
+    body(class=(bodyClass ? bodyClass : false))
+        block content
+
+        <% if (jsOption ==='RequireJS') { %>script(data-main="scripts/main", src="bower_components/requirejs/require.js")<% } else if (jsOption ==='Browserify') { %>
+        script(src="scripts/main.js", defer)<% } else { %>//- Place all vendor library/plugin/framework scripts within the 'build:js' comments below,
+            so they will be optimised correctly during a 'grunt build' task
+        // build:js(dev) scripts/vendor.js
+        script(src="bower_components/jquery/jquery.js")
+        <% if (useBootstrap) { %>script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>affix.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>alert.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>button.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>carousel.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>collapse.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>dropdown.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>modal.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>scrollspy.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>tab.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>tooltip.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>popover.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>transition.js")
+        <% } %>// endbuild<% } %>
+
+        <% if (useGA) { %><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        script.
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');<% } %>
+
+        <% if (jsOption === 'None (Vanilla JavaScript)') { %>//- Place all author scripts within the 'build:js' comments below,
+            so they will be optimised correctly during a 'grunt build' task
+        // build:js(dev) scripts/app.js
+        script(src="scripts/app.js")
+        // endbuild<% } %>

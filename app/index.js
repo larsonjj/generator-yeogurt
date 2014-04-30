@@ -181,20 +181,18 @@ YeogurtGenerator.prototype.app = function app() {
 
 };
 
-YeogurtGenerator.prototype.markup = function markup() {
-    // dev/markup
-    this.mkdir('dev/markup');
-    this.mkdir('dev/markup/templates');
-    this.mkdir('dev/markup/pages');
-    this.mkdir('dev/markup/components');
-    this.mkdir('dev/markup/helpers');
+YeogurtGenerator.prototype.views = function views() {
+    // dev/views
+    this.mkdir('dev/views');
+    this.mkdir('dev/views/templates');
+    this.mkdir('dev/views/components');
+    this.mkdir('dev/views/helpers');
 
-    this.template('dev/markup/components/header.jade', 'dev/markup/components/header.jade');
-    this.template('dev/markup/components/footer.jade', 'dev/markup/components/footer.jade');
-    this.template('dev/markup/helpers/heading.jade', 'dev/markup/helpers/heading.jade');
-    this.template('dev/markup/pages/index.jade', 'dev/markup/pages/index.jade');
-    this.template('dev/markup/base.jade', 'dev/markup/base.jade');
-    this.template('dev/markup/templates/one-column.jade', 'dev/markup/templates/one-column.jade');
+    this.template('dev/views/components/header.jade', 'dev/views/components/header.jade');
+    this.template('dev/views/components/footer.jade', 'dev/views/components/footer.jade');
+    this.template('dev/views/helpers/heading.jade', 'dev/views/helpers/heading.jade');
+    this.template('dev/views/index.jade', 'dev/views/index.jade');
+    this.template('dev/views/templates/base.jade', 'dev/views/templates/base.jade');
 };
 
 YeogurtGenerator.prototype.scripts = function scripts() {
@@ -285,87 +283,6 @@ YeogurtGenerator.prototype.styles = function styles() {
         this.template('dev/styles/print.css', 'dev/styles/print.css');
     }
 
-};
-
-YeogurtGenerator.prototype.dashboard = function dashboard() {
-    // Dashboard
-    if (this.useDashboard) {
-        // markup
-        this.mkdir('dev/dashboard');
-        this.mkdir('dev/dashboard/markup');
-        this.mkdir('dev/dashboard/markup/components');
-        this.mkdir('dev/dashboard/markup/templates');
-
-        this.copy('dev/dashboard/markup/components/header.jade', 'dev/dashboard/markup/components/header.jade');
-        this.copy('dev/dashboard/markup/components/footer.jade', 'dev/dashboard/markup/components/footer.jade');
-        this.copy('dev/dashboard/markup/components/dashboard-switcher.jade', 'dev/dashboard/markup/components/dashboard-switcher.jade');
-        this.copy('dev/dashboard/markup/components/status-key.jade', 'dev/dashboard/markup/components/status-key.jade');
-        this.copy('dev/dashboard/markup/pages/index.jade', 'dev/dashboard/markup/pages/index.jade');
-        this.copy('dev/dashboard/markup/base.jade', 'dev/dashboard/markup/base.jade');
-        this.copy('dev/dashboard/markup/templates/dashboard.jade', 'dev/dashboard/markup/templates/dashboard.jade');
-
-        // images
-        this.directory('dev/dashboard/images', 'dev/dashboard/images');
-
-        // styles
-        this.mkdir('dev/dashboard/styles');
-        this.directory('dev/dashboard/styles/fonts', 'dev/dashboard/styles/fonts');
-
-        if (this.cssOption !== 'None (Vanilla CSS)') {
-            if (this.cssOption === 'LESS') {
-                this.mkdir('dev/dashboard/styles/base');
-                this.template('dev/dashboard/styles/base/_box-sizing.less', 'dev/dashboard/styles/base/_box-sizing.less');
-                this.template('dev/dashboard/styles/base/_ie8.less', 'dev/dashboard/styles/base/_ie8.less');
-                this.template('dev/dashboard/styles/base/_mixins.less', 'dev/dashboard/styles/base/_mixins.less');
-                this.template('dev/dashboard/styles/base/_reset.less', 'dev/dashboard/styles/base/_reset.less');
-                this.template('dev/dashboard/styles/base/_variables.less', 'dev/dashboard/styles/base/_variables.less');
-                this.mkdir('dev/dashboard/styles/partials');
-                this.copy('dev/dashboard/styles/partials/_footer.less', 'dev/dashboard/styles/partials/_footer.less');
-                this.copy('dev/dashboard/styles/partials/_header.less', 'dev/dashboard/styles/partials/_header.less');
-                this.template('dev/dashboard/styles/partials/_status-key.less', 'dev/dashboard/styles/partials/_status-key.less');
-                this.template('dev/dashboard/styles/partials/_dashboard-switcher.less', 'dev/dashboard/styles/partials/_dashboard-switcher.less');
-                this.template('dev/dashboard/styles/partials/_dashboard.less', 'dev/dashboard/styles/partials/_dashboard.less');
-                this.mkdir('dev/dashboard/styles/vendor');
-                if (this.useFontAwesome) {
-                    this.template('dev/dashboard/styles/vendor/_font-awesome.less', 'dev/dashboard/styles/vendor/_font-awesome.less');
-                }
-                if (this.useLesshat) {
-                    this.template('dev/dashboard/styles/vendor/_lesshat.less', 'dev/dashboard/styles/vendor/_lesshat.less');
-                }
-                this.template('dev/dashboard/styles/vendor/_normalize.less', 'dev/dashboard/styles/vendor/_normalize.less');
-                this.template('dev/dashboard/styles/main.less', 'dev/dashboard/styles/main.less');
-            }
-            if (this.cssOption === 'SCSS') {
-                this.mkdir('dev/dashboard/styles/base');
-                this.template('dev/dashboard/styles/base/_box-sizing.less', 'dev/dashboard/styles/base/_box-sizing.scss');
-                this.template('dev/dashboard/styles/base/_ie8.less', 'dev/dashboard/styles/base/_ie8.scss');
-                this.template('dev/dashboard/styles/base/_mixins.less', 'dev/dashboard/styles/base/_mixins.scss');
-                this.template('dev/dashboard/styles/base/_reset.less', 'dev/dashboard/styles/base/_reset.scss');
-                this.template('dev/dashboard/styles/base/_variables.less', 'dev/dashboard/styles/base/_variables.scss');
-                this.mkdir('dev/dashboard/styles/partials');
-                this.copy('dev/dashboard/styles/partials/_footer.less', 'dev/dashboard/styles/partials/_footer.scss');
-                this.copy('dev/dashboard/styles/partials/_header.less', 'dev/dashboard/styles/partials/_header.scss');
-                this.template('dev/dashboard/styles/partials/_status-key.less', 'dev/dashboard/styles/partials/_status-key.scss');
-                this.template('dev/dashboard/styles/partials/_dashboard-switcher.less', 'dev/dashboard/styles/partials/_dashboard-switcher.scss');
-                this.template('dev/dashboard/styles/partials/_dashboard.less', 'dev/dashboard/styles/partials/_dashboard.scss');
-                this.mkdir('dev/dashboard/styles/vendor');
-                if (this.useFontAwesome) {
-                    this.template('dev/dashboard/styles/vendor/_font-awesome.less', 'dev/dashboard/styles/vendor/_font-awesome.scss');
-                }
-                if (this.useBourbon) {
-                    this.template('dev/dashboard/styles/vendor/_bourbon.scss', 'dev/dashboard/styles/vendor/_bourbon.scss');
-                }
-                this.template('dev/dashboard/styles/vendor/_normalize.less', 'dev/dashboard/styles/vendor/_normalize.scss');
-                this.template('dev/dashboard/styles/main.less', 'dev/dashboard/styles/main.scss');
-            }
-        }
-        else {
-            this.template('dev/dashboard/styles/main.css', 'dev/dashboard/styles/main.css');
-        }
-
-        // scripts
-        this.directory('dev/dashboard/scripts', 'dev/dashboard/scripts');
-    }
 };
 
 YeogurtGenerator.prototype.testing = function testing() {

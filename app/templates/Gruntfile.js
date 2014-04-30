@@ -15,7 +15,7 @@ module.exports = function(grunt) {
     // show elapsed time at the end
     require('time-grunt')(grunt);
     // load all grunt tasks with JIT (loads only needed tasks, so there is a large gain in speed)
-    require('jit-grunt')(grunt<% if (jsOption === 'None (Vanilla JavaScript)' || cssOption === 'None (Vanilla CSS)') {%>, {
+    require('jit-grunt')(grunt<% if (jsOption === 'None (Vanilla JavaScript)' || cssOption === 'None (Vanilla CSS)') { %>, {
         useminPrepare: 'grunt-usemin'
     }<% } %>);
 
@@ -28,8 +28,6 @@ module.exports = function(grunt) {
         },
         <% if (useFTP) { %>// Create holder object for FTP deployment credentials
         secret: {},<% } %>
-        // Create dashboard data object as a placeholder for the 'build-dashboard' task
-        dashboardData: {},
         watch: {
             options: {
                 spawn: true,
@@ -37,39 +35,27 @@ module.exports = function(grunt) {
             },
             jade: {
                 files: [
-                    '<%%= yeogurt.dev %>/markup/{,*/}{,*/}*.jade'<% if (useDashboard) { %>,
-                    '<%%= yeogurt.dev %>/dashboard/markup/{,*/}{,*/}*.jade'<% } %>
+                    '<%%= yeogurt.dev %>/views/{,*/}{,*/}*.jade'
                 ],
                 tasks: [
-                    'newer:copy:server',<% if (useDashboard) { %>
-                    'build-dashboard',<% } %>
-                    'jade:server',<% if (useDashboard) { %>
-                    'jade:serverDashboard',<% } %>
+                    'newer:copy:server',
+                    'jade:server',
+                    'dashboard:server',
                     'clean:temp'
                 ]
             },<% if (cssOption === 'SCSS') { %>
             sass: {
                 files: ['<%%= yeogurt.dev %>/styles/{,*/}{,*/}*.{scss,sass}'],
                 tasks: ['sass:server']
-            },<% if (useDashboard) { %>
-            sassDash: {
-                files: ['<%%= yeogurt.dev %>/dashboard/styles/{,*/}{,*/}*.{scss,sass}'],
-                tasks: ['sass:serverDashboard']
-            },<% } %><% } %><%if (cssOption === 'LESS') { %>
+            },<% } else if (cssOption === 'LESS') { %>
             less: {
                 files: ['<%%= yeogurt.dev %>/styles/{,*/}{,*/}*.less'],
                 tasks: ['less:server']
-            },
-            <% if (useDashboard) { %>
-            lessDash: {
-                files: ['<%%= yeogurt.dev %>/dashboard/styles/{,*/}{,*/}*.less'],
-                tasks: ['less:serverDashboard']
-            },<% } %><% } %>
+            },<% } %>
             js: {
                 files: [
                     '<%%= yeogurt.dev %>/scripts/{,*/}{,*/}*.js',
-                    '<%%= yeogurt.dev %>/bower_components/{,*/}{,*/}*.js'<% if (useDashboard) { %>,
-                    '<%%= yeogurt.dev %>/dashboard/{,*/}{,*/}*.js'<% } %>
+                    '<%%= yeogurt.dev %>/bower_components/{,*/}{,*/}*.js'
                 ],
                 tasks: [<% if (jshint) { %>
                     'newer:jshint',<% } %><% if (jsOption === 'Browserify') { %>
@@ -98,13 +84,9 @@ module.exports = function(grunt) {
                 files: [
                     '<%%= yeogurt.dev %>/*.{ico,png,txt,html}'<% if (extras.indexOf(htaccess) !== -1) { %>,
                     '<%%= yeogurt.dev %>/.htaccess'<% } %>,
-                    '<%%= yeogurt.server %>/styles/fonts/{,*/}*.*'<% if (useDashboard) { %>,
-                    '<%%= yeogurt.server %>/markup/{,*/}*.html',
-                    '<%%= yeogurt.server %>/dashboard/markup/{,*/}*.html',
-                    '<%%= yeogurt.server %>/dashboard/styles/{,*/}*.css',
-                    '<%%= yeogurt.server %>/dashboard/scripts/{,*/}*.js'<% } else { %>,
-                    '<%%= yeogurt.server %>/{,*/}*.html'<% } %><% if (cssOption === 'SCSS') { %>,
-                    '<%%= yeogurt.dev %>/styles/{,*/}{,*/}*.{sass,scss}'<% } %><% if (cssOption === 'LESS') { %>,
+                    '<%%= yeogurt.server %>/styles/fonts/{,*/}*.*',
+                    '<%%= yeogurt.server %>/{,*/}*.html'<% if (cssOption === 'SCSS') { %>,
+                    '<%%= yeogurt.dev %>/styles/{,*/}{,*/}*.{sass,scss}'<% } else if (cssOption === 'LESS') { %>,
                     '<%%= yeogurt.dev %>/styles/{,*/}{,*/}*.less'<% } %>,
                     '<%%= yeogurt.server %>/scripts/{,*/}{,*/}*.js',
                     '<%%= yeogurt.server %>/images/{,*/}{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
@@ -119,9 +101,8 @@ module.exports = function(grunt) {
                 hostname: '0.0.0.0'
             },
             livereload: {
-                options: {<% if (useDashboard) { %>
-                    open: 'http://0.0.0.0:9010/.server/dashboard/index.html',<% } else { %>
-                    open: 'http://0.0.0.0:9010/.server/index.html',<% } %>
+                options: {
+                    open: 'http://0.0.0.0:9010/.server/index.html',
                     base: '<%%= yeogurt.dev %>'
                 }
             },
@@ -136,26 +117,41 @@ module.exports = function(grunt) {
             },
             dist: {
                 options: {
-                    <% if (useDashboard) { %>
-                    open: 'http://0.0.0.0:9010/dashboard/index.html',<% } else { %>
-                    open: 'http://0.0.0.0:9010/index.html',<% } %>
+                    open: 'http://0.0.0.0:9010/index.html',
                     base: '<%%= yeogurt.dist %>',
                     livereload: false
                 }
             }
         },
         clean: {
-            server: ['<%%= yeogurt.server %>/', '<%%= yeogurt.dev %>/.server/tmp'],
-            dist: ['<%%= yeogurt.dist %>/', '<%%= yeogurt.dev %>/.server/tmp'],
+            server: ['<%%= yeogurt.server %>/'],
+            dist: ['<%%= yeogurt.dist %>/'],
             temp: [
-                '<%%= yeogurt.dev %>/.server/tmp/**',
                 '.tmp'
             ]
-        },<% if (cssOption === 'None (Vanilla CSS)') { %>
+        },<% if (useDashboard) { %>
+        dashboard: {
+            server: {
+                options: {
+                    debug: true
+                },
+                files: {
+                    '<%%= yeogurt.server %>/dashboard/index.html': ['<%%= yeogurt.server %>/*.html']
+                }
+            },
+            dist: {
+                options: {
+                    debug: false
+                },
+                files: {
+                    '<%%= yeogurt.dist %>/dashboard/index.html': ['<%%= yeogurt.dist %>/*.html']
+                }
+            }
+        },<% } %><% if (cssOption === 'None (Vanilla CSS)') { %>
         uncss: {
             dist: {
                 files: {
-                    '<%%= yeogurt.dist %>/styles/main.css': [<% if (!useDashboard) { %>'<%%= yeogurt.dist %>/index.html', <% } %>'<%%= yeogurt.dist %>/markup/pages/*.html']
+                    '<%%= yeogurt.dist %>/styles/main.css': ['<%%= yeogurt.dist %>/views/*.html']
                 }
             }
         },<% } %>
@@ -209,26 +205,12 @@ module.exports = function(grunt) {
                         'styles/{,*/}{,*/}*.css',
                         'bower_components/bootstrap/dist/css/*.{css,map}'
                     ]
-                },<% } %><% if (useDashboard) { %> {
-                    expand: true,
-                    cwd: '<%%= yeogurt.dev %>/',
-                    dest: '<%%= yeogurt.server %>/',
-                    src: [
-                        'dashboard/scripts/**'
-                    ]
-                }, {
-                    expand: true,
-                    cwd: '<%%= yeogurt.dev %>/',
-                    dest: '<%%= yeogurt.server %>/',
-                    src: [
-                        'dashboard/images/**'
-                    ]
                 },<% } %> {
                     expand: true,
                     cwd: '<%%= yeogurt.dev %>/',
                     dest: '<%%= yeogurt.dev %>/.server/tmp',
                     src: [
-                        'markup/**', '!**markup/pages/**'
+                        'views/**', '!**views/*.*'
                     ]
                 }]
             },
@@ -267,26 +249,12 @@ module.exports = function(grunt) {
                     src: [
                         '{,*/}{,*/}*.scss'
                     ]
-                },<% } %><% if (useDashboard) { %> {
-                    expand: true,
-                    cwd: '<%%= yeogurt.dev %>/',
-                    dest: '<%%= yeogurt.dist %>/',
-                    src: [
-                        'dashboard/scripts/**'
-                    ]
-                }, {
-                    expand: true,
-                    cwd: '<%%= yeogurt.dev %>/',
-                    dest: '<%%= yeogurt.dist %>/',
-                    src: [
-                        'dashboard/images/{,*/}*.{webp}'
-                    ]
-                }, <% } %>{
+                },<% } %> {
                     expand: true,
                     cwd: '<%%= yeogurt.dev %>/',
                     dest: '<%%= yeogurt.dev %>/.server/tmp',
                     src: [
-                        'markup/**', '!**markup/pages/**'
+                        'views/**', '!**views/*.*'
                     ]
                 }]
             }
@@ -301,30 +269,15 @@ module.exports = function(grunt) {
                     }
                 },
                 expand: true,
-                cwd: '<%%= yeogurt.dev %>/markup/pages/',
+                cwd: '<%%= yeogurt.dev %>/views/',
                 dest: '<%%= yeogurt.server %>/',
-                src: ['*.jade'<% if (useDashboard) {%>,
-                    '../../.server/tmp/markup/templates/*.jade',
-                    '!../../.server/tmp/markup/base.jade',
-                    '../../.server/tmp/markup/components/*-*.jade',
-                    '../../.server/tmp/markup/helpers/*-*.jade'
-                <% } %>],
+                src: ['*.jade'],
                 ext: '.html',
                 rename: function(dest, matchedSrcPath) {
                     matchedSrcPath = matchedSrcPath.replace('../../.server/tmp/', '');
                     return dest + matchedSrcPath;
                 }
-            },<% if (useDashboard) { %>
-            serverDashboard: {
-                options: {
-                    pretty: true,
-                    client: false,
-                    data: '<%%= dashboardData %>'
-                },
-                files: {
-                    '<%%= yeogurt.server %>/dashboard/index.html': ['<%%= yeogurt.dev %>/dashboard/markup/pages/index.jade']
-                }
-            },<% } %>
+            },
             dist: {
                 options: {
                     pretty: true,
@@ -334,31 +287,15 @@ module.exports = function(grunt) {
                     }
                 },
                 expand: true,
-                cwd: '<%%= yeogurt.dev %>/markup/pages/',
+                cwd: '<%%= yeogurt.dev %>/views/',
                 dest: '<%%= yeogurt.dist %>/',
-                src: ['*.jade'<% if (useDashboard) {%>,
-                    '../../.server/tmp/markup/templates/*.jade',
-                    '!../../.server/tmp/markup/base.jade',
-                    '../../.server/tmp/markup/components/*-*.jade',
-                    '!../../.server/tmp/markup/components/head.jade',
-                    '../../.server/tmp/markup/helpers/*-*.jade'
-                <% } %>],
+                src: ['*.jade'],
                 ext: '.html',
                 rename: function(dest, matchedSrcPath) {
                     matchedSrcPath = matchedSrcPath.replace('../../.server/tmp/', '');
                     return dest + matchedSrcPath;
                 }
-            },<% if (useDashboard) { %>
-            distDashboard: {
-                options: {
-                    pretty: true,
-                    client: false,
-                    data: '<%%= dashboardData %>'
-                },
-                files: {
-                    '<%%= yeogurt.dist %>/dashboard/index.html': ['<%%= yeogurt.dev %>/dashboard/markup/pages/index.jade']
-                }
-            }<% } %>
+            },
         },<% if (jshint) { %>
         jshint: {
             options: {
@@ -367,8 +304,7 @@ module.exports = function(grunt) {
             },
             test: [
                 'Gruntfile.js',
-                '<%%= yeogurt.dev %>/scripts/{,*/}{,*/}*.js',<% if (useDashboard) { %>
-                '<%%= yeogurt.dev %>/dashboard/scripts/{,*/}{,*/}*.js',<% } %>
+                '<%%= yeogurt.dev %>/scripts/{,*/}{,*/}*.js',
                 '!<%%= yeogurt.dev %>/scripts/vendor/{,*/}*'
             ]
         },<% } %>
@@ -386,47 +322,7 @@ module.exports = function(grunt) {
                 files: {
                     '<%%= yeogurt.dist %>/styles/main.css.map': '<%%= yeogurt.dist %>/styles/main.css.map'
                 }
-            },<% } %><% if (useDashboard) { %>
-            dashboardLinkFixDist: {
-                options: {
-                    replacements: [
-                        // place files inline example
-                        {
-                            pattern: /\"\.\.\/\.\.\/scripts\//g,
-                            replacement: '"scripts/'
-                        }, {
-                            pattern: /\"\.\.\/\.\.\/styles\//g,
-                            replacement: '"styles/'
-                        }, {
-                            pattern: /\"\.\.\/\.\.\/images\//g,
-                            replacement: '"images/'
-                        }
-                    ]
-                },
-                files: {
-                    '<%%= yeogurt.dist %>/index.html': '<%%= yeogurt.dist %>/index.html'
-                }
-            },
-            dashboardLinkFixServer: {
-                options: {
-                    replacements: [
-                        // place files inline example
-                        {
-                            pattern: /\"\.\.\/\.\.\/scripts\//g,
-                            replacement: '"scripts/'
-                        }, {
-                            pattern: /\"\.\.\/\.\.\/styles\//g,
-                            replacement: '"styles/'
-                        }, {
-                            pattern: /\"\.\.\/\.\.\/images\//g,
-                            replacement: '"images/'
-                        }
-                    ]
-                },
-                files: {
-                    '<%%= yeogurt.server %>/index.html': '<%%= yeogurt.server %>/index.html'
-                }
-            }<% } %>
+            },<% } %>
         },
         // gzip assets 1-to-1 for production
         compress: {
@@ -504,15 +400,7 @@ module.exports = function(grunt) {
                     src: '{,*/}{,*/}*.{png,jpg,jpeg,gif}',
                     dest: '<%%= yeogurt.dist %>/images'
                 }]
-            }<% if (useDashboard) { %>,
-            distDashboard: {
-                files: [{
-                    expand: true,
-                    cwd: '<%%= yeogurt.dev %>/dashboard/images',
-                    src: '{,*/}{,*/}*.{png,jpg,jpeg,gif}',
-                    dest: '<%%= yeogurt.dist %>/dashboard/images'
-                }]
-            }<% } %>
+            }
         },
         svgmin: {
             dist: {
@@ -522,15 +410,7 @@ module.exports = function(grunt) {
                     src: '{,*/}{,*/}*.svg',
                     dest: '<%%= yeogurt.dist %>/images'
                 }]
-            }<% if (useDashboard) { %>,
-            distDashboard: {
-                files: [{
-                    expand: true,
-                    cwd: '<%%= yeogurt.dev %>/dashboard/images',
-                    src: '{,*/}{,*/}*.svg',
-                    dest: '<%%= yeogurt.dist %>/dashboard/images'
-                }]
-            }<% } %>
+            }
         },
         htmlmin: {
             dist: {
@@ -541,34 +421,21 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd: '<%%= yeogurt.dist %>',
                     src: [
-                        '*.html', 'markup/{,*/}{,*/}*.html'<% if (useDashboard) { %>,
-                        'dashboard/markup/{,*/}{,*/}*.html'<% } %>
+                        '*.html', 'views/{,*/}{,*/}*.html'
                     ],
                     dest: '<%%= yeogurt.dist %>'
                 }]
             }
-        },<% if (ieSupport && cssOption === 'None (Vanilla CSS)' && useDashboard) { %>
-        cssmin: {
-            serverDashboard: {
-                files: {
-                    '<%%= yeogurt.server %>/dashboard/styles/main.css': ['<%%= yeogurt.dev %>/dashboard/styles/main.css']
-                }
-            },
-            distDashboard: {
-                files: {
-                    '<%%= yeogurt.dist %>/dashboard/styles/main.css': ['<%%= yeogurt.dev %>/dashboard/styles/main.css']
-                }
-            }
-        },<% } %><% if (jsOption === 'None (Vanilla JavaScript)' || cssOption === 'None (Vanilla CSS)') { %>
+        },<% if (jsOption === 'None (Vanilla JavaScript)' || cssOption === 'None (Vanilla CSS)') { %>
         useminPrepare: {
-            html: '<%%= yeogurt.dist %>/<% if (useDashboard) { %>markup/pages/<% } %>index.html',
+            html: '<%%= yeogurt.dist %>/index.html',
             options: {
-                root: '<%%= yeogurt.dev %><% if (useDashboard) { %>/markup/pages/<% } %>',
-                dest: '<%%= yeogurt.dist %><% if (useDashboard) { %>/markup/pages/<% } %>'
+                root: '<%%= yeogurt.dev %>',
+                dest: '<%%= yeogurt.dist %>'
             }
         },
         usemin: {
-            html: '<%%= yeogurt.dist %>/<% if (useDashboard) { %>markup/pages/<% } %>index.html',
+            html: '<%%= yeogurt.dist %>/index.html',
             css: ['<%%= yeogurt.dist %>/styles/{,*/}*.css'],
             options: {
                 assetsDirs: ['<%%= yeogurt.dev %>', '<%%= yeogurt.dev %>/images']
@@ -649,19 +516,6 @@ module.exports = function(grunt) {
                 files: {
                     '<%%= yeogurt.server %>/styles/print.css': '<%%= yeogurt.dev %>/styles/print.scss'
                 }
-            },<% } %><% if (useDashboard) { %>
-            serverDashboard: {
-                options: {
-                    sourceComments: 'map',
-                    outputStyle: 'compressed',
-                    sourceMap: '<%%= yeogurt.server %>/dashboard/styles/main.css.map',
-                    includePaths: [
-                        '<%%= yeogurt.dev %>/dashboard/styles/{,*/}*.scss'
-                    ]
-                },
-                files: {
-                    '<%%= yeogurt.server %>/dashboard/styles/main.css': '<%%= yeogurt.dev %>/dashboard/styles/main.scss'
-                }
             },<% } %>
             dist: {
                 options: {
@@ -688,20 +542,7 @@ module.exports = function(grunt) {
                 files: {
                     '<%%= yeogurt.dist %>/styles/print.css': '<%%= yeogurt.dev %>/styles/print.scss'
                 }
-            },<% } %><% if (useDashboard) { %>
-            distDashboard: {
-                options: {
-                    sourceComments: 'map',
-                    outputStyle: 'compressed',
-                    sourceMap: '<%%= yeogurt.dist %>/dashboard/styles/main.css.map',
-                    includePaths: [
-                        '<%%= yeogurt.dev %>/dashboard/styles/{,*/}*.scss'
-                    ]
-                },
-                files: {
-                    '<%%= yeogurt.dist %>/dashboard/styles/main.css': '<%%= yeogurt.dev %>/dashboard/styles/main.scss'
-                }
-            }<% } %>
+            },<% } %>
         },<% } %><% if (cssOption === 'LESS') { %>
         less: {
             server: {
@@ -739,22 +580,6 @@ module.exports = function(grunt) {
                     'styles/print.less'
                 ],
                 ext: '.css'
-            },<% } %><% if (useDashboard) { %>
-            serverDashboard: {
-                options: {
-                    paths: ['<%%= yeogurt.dev %>/'],
-                    sourceMap: true,
-                    sourceMapFilename: '<%%= yeogurt.server %>/dashboard/styles/main.css.map',
-                    sourceMapBasepath: '<%%= yeogurt.server %>/dashboard/styles/',
-                    sourceMapRootpath: '',
-                    dumpLineNumbers: 'comments',
-                    outputSourceFiles: true
-                },
-                expand: true,
-                cwd: '<%%= yeogurt.dev %>/',
-                dest: '<%%= yeogurt.server %>/',
-                src: ['dashboard/styles/*.less'],
-                ext: '.css'
             },<% } %>
             dist: {
                 options: {
@@ -791,22 +616,6 @@ module.exports = function(grunt) {
                     'styles/print.less'
                 ],
                 ext: '.css'
-            }<% } %><% if (useDashboard) { %>,
-            distDashboard: {
-                options: {
-                    paths: ['<%%= yeogurt.dev %>/'],
-                    sourceMap: true,
-                    sourceMapFilename: '<%%= yeogurt.dist %>/dashboard/styles/main.css.map',
-                    sourceMapBasepath: '<%%= yeogurt.dist %>/dashboard/styles/',
-                    sourceMapRootpath: './',
-                    compress: true,
-                    outputSourceFiles: true
-                },
-                expand: true,
-                cwd: '<%%= yeogurt.dev %>/',
-                dest: '<%%= yeogurt.dist %>/',
-                src: ['dashboard/styles/*.less'],
-                ext: '.css'
             }<% } %>
         }<% } %>
     });
@@ -820,130 +629,6 @@ module.exports = function(grunt) {
             grunt.task.run(['ftpush']);
         }
     });<% } %>
-    <% if (useDashboard) { %>
-    grunt.registerTask('build-dashboard', 'Runs through project Jade files and gathers needed data to build the dashboard', function() {
-        var done = this.async(),
-            itemsArray = [],
-            dashData = {},
-            pageData,
-            templateData,
-            componentData,
-            helpersData;
-        var updatePath = function(path, strToRemove) {
-            return path.replace(strToRemove, '..');
-        };
-        var toTitleCase = function(str) {
-            return str.replace(/\w\S*/g, function(txt) {
-                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-            });
-        };
-        var convertDashes = function(str) {
-            return str.replace('-', ' ');
-        };
-        var removeSymbols = function(str) {
-            var tempStr = str.replace('!##', '');
-            return tempStr.replace('##!', '');
-        };
-        var getJSON = function(data) {
-            if (data) {
-                var dataStr = data.trim().replace(/ /g, '');
-                return JSON.parse(dataStr);
-            }
-        };
-        var recursiveParse = function(path, type, namePath, fileExt) {
-            var extraData = [],
-                nameData;
-            itemsArray = []; // reset items array
-            grunt.file.recurse(path, function(abspath) {
-                if (abspath.indexOf(fileExt) > -1) {
-                    var data = parseFiles(abspath, type);
-                    if (data) {
-                        extraData.push(data);
-                    }
-                    nameData = findJadeNames(abspath, type, namePath, extraData);
-                }
-            });
-            return nameData;
-        };
-        var findJadeNames = function(path, type, strToRemove, data) {
-            var titleArray = path.split('/'),
-                title = titleArray[(titleArray.length - 1)],
-                newPath,
-                dataObj;
-            if (type === 'module' || type === 'component') {
-                newPath = updatePath(path.replace('.jade', '-' + type + '.html'), strToRemove);
-            }
-            else {
-                newPath = updatePath(path.replace('jade', 'html'), strToRemove);
-            }
-            dataObj = {
-                path: newPath,
-                title: toTitleCase(convertDashes(title.replace('.jade', '')))
-            };
-            itemsArray.push(_.extend(dataObj, data[itemsArray.length]));
-            return {
-                links: itemsArray
-            };
-        };
-        var parseFiles = function(path, type) {
-            var file = grunt.file.read(path),
-                regex = /!##([^;]*?)##!/g,
-                markupRegex = /"markup": "([^;]*?)"/g,
-                markupRegexAfter = /,"markup":"([^;]*?)"/g,
-                fileMarkupMatch = file.match(regex),
-                fileData;
-            if (fileMarkupMatch) {
-                // Grab only first instance of data and remove !## ##! symbols
-                fileMarkupMatch = removeSymbols(fileMarkupMatch[0]);
-                // Find markup property, remove "markup" key as well as any double quotes (") so we have a clean set of markup
-                var markup = fileMarkupMatch.match(markupRegex);
-                // Check to see if markup exists
-                if (markup) {
-                    markup = markup[0].replace('"markup": ', '').replace(/\"/g, '');
-                } else {
-                    markup = 'p. No Markup Found';
-                }
-                // Remove all newline statements (\n), any tabs, any extra space, and the entire "markup" key
-                fileData = fileMarkupMatch.replace(/\n/g, '').replace(/ /g, '').replace(/\t/g, '').replace(markupRegexAfter, '');
-                if (type === 'module' || type === 'component') {
-                    grunt.file.write(path.replace('.jade', '-' + type + '.jade'), 'extend ../base\nblock template\n' + markup);
-                } else if (type === 'template') {
-                    var JSONData = getJSON(fileMarkupMatch),
-                        fileTemp = file;
-                    JSONData.blocks.forEach(function(element) {
-                        var pattern = new RegExp('block ' + (element.blockName ? element.blockName : 'Block name not configured') + '\\s'),
-                            fpoReplacement = '| <div class="fpo-container" style="width:' + (element.width ? element.width : '100px') + '; height:' + (element.height ? element.height : '100px') + ';"> <div class="fpo-background" style="width:100%;height:100%;background-color:' + (element.bgcolor ? element.bgcolor : '#f7f7f7') + '"><span class="fpo-name" style="line-height:' + (element.height ? element.height : '100px') + ';color:' + (element.textColor ? element.textColor : '#fff') + ';font-size:' + (element.fontSize ? element.fontSize : '10px') + ';text-align:center;display:inline-block;width:100%;">block ' + (element.blockName ? element.blockName : 'Block name not configured') + '</span></div></div>\n';
-                        fileTemp = fileTemp.replace(pattern, fpoReplacement);
-                    });
-                    grunt.file.write(path, fileTemp);
-                } else if (type !== 'page') {
-                    grunt.log.error('Something went wrong when parsing jade files');
-                }
-                return getJSON(fileData);
-            } else {
-                grunt.log.writeln(['Skipping/No data found for: ' + path]);
-            }
-        };
-        // Go through jade pages
-        pageData = recursiveParse('dev/markup/pages', 'page', 'dev/markup/pages', '.jade');
-        // Go through jade templates
-        templateData = recursiveParse('dev/.server/tmp/markup/templates', 'template', 'dev/.server/tmp', '.jade');
-        // Go through jade components
-        componentData = recursiveParse('dev/.server/tmp/markup/components', 'component', 'dev/.server/tmp', '.jade');
-        // Go through jade modules
-        helpersData = recursiveParse('dev/.server/tmp/markup/helpers', 'module', 'dev/.server/tmp', '.jade');
-        // Setup all parsed data to be passed to jade templates
-        dashData = {
-            pages: pageData,
-            templates: templateData,
-            components: componentData,
-            helpers: helpersData
-        };
-        // Set dashboard data variable to be used by Jade task
-        grunt.config(['dashboardData'], dashData);
-        // Finish task
-        done();
-    });<% } %>
 
     grunt.registerTask('serve', 'Open a development server within your browser', function (target) {
         if (target === 'dist') {
@@ -952,22 +637,16 @@ module.exports = function(grunt) {
 
         grunt.task.run([
             'clean:server',
-            'copy:server'<% if (useDashboard) { %>,
-            'build-dashboard'<% } %><% if (jshint) { %>,
-            'jshint:test'<% } %><% if (jsOption === 'Browserify') { %>,
+            'copy:server',<% if (jshint) { %>
+            'jshint:test',<% } %><% if (jsOption === 'Browserify') { %>
             'browserify:server',
-            'exorcise:server'<% } %>,
-            'jade:server'<% if (useDashboard) { %>,
-            'jade:serverDashboard',
-            'string-replace:dashboardLinkFixServer'<% } %><% if (cssOption === 'LESS') { %>,
-            'less:server'<% if (ieSupport) { %>,
-            'less:serverPrint'<% } %><% if (useDashboard) { %>,
-            'less:serverDashboard'<% } %><% } %><% if (cssOption === 'SCSS') { %>,
-            'sass:server'<% if (ieSupport) { %>,
-            'sass:serverPrint'<% } %><% if (useDashboard) { %>,
-            'sass:serverDashboard'<% } %><% } %>,
-            <% if (cssOption === 'None (Vanilla CSS)' && useDashboard) { %>
-            'cssmin:serverDashboard',<% } %>
+            'exorcise:server',<% } %>
+            'jade:server',<% if (useDashboard) { %>
+            'dashboard:server',<% } %><% if (cssOption === 'LESS') { %>
+            'less:server',<% if (ieSupport) { %>
+            'less:serverPrint',<% } %><% } %><% if (cssOption === 'SCSS') { %>
+            'sass:server',<% if (ieSupport) { %>
+            'sass:serverPrint',<% } %><% } %>
             'clean:temp',
             'connect:livereload',
             'watch'
@@ -976,26 +655,21 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', 'Build a production ready version of your site.', [
         'clean:dist',
-        'copy:dist',<% if (useDashboard) { %>
-        'build-dashboard',<% } %><% if (jsOption === 'Browserify') { %>
+        'copy:dist',<% if (jsOption === 'Browserify') { %>
         'browserify:dist',
         'exorcise:dist',<% } %>
         'imagemin',
         'svgmin',
         'jade:dist',<% if (useDashboard) { %>
-        'jade:distDashboard',<% } %><% if (jsOption === 'None (Vanilla JavaScript)' || cssOption === 'None (Vanilla CSS)') { %>
+        'dashboard:dist',<% } %><% if (jsOption === 'None (Vanilla JavaScript)' || cssOption === 'None (Vanilla CSS)') { %>
         'useminPrepare',<% } %><% if (cssOption === 'LESS') { %>
         'less:dist',<% if (ieSupport) { %>
-        'less:distPrint',<% } %><% if (useDashboard) { %>
-        'less:distDashboard',<% } %><% } %><% if (cssOption === 'SCSS') { %>
+        'less:distPrint',<% } %><% } %><% if (cssOption === 'SCSS') { %>
         'sass:dist',<% if (ieSupport) { %>
-        'sass:distPrint',<% } %><% if (useDashboard) { %>
-        'sass:distDashboard',<% } %>
+        'sass:distPrint',<% } %>
         'string-replace:sassMapFixDist',<% } %><% if (jsOption === 'RequireJS') { %>
-        'requirejs',<% } %><% if (useDashboard) { %>
-        'string-replace:dashboardLinkFixDist',<% } %><% if (jsOption === 'None (Vanilla JavaScript)' || cssOption === 'None (Vanilla CSS)') { %>
-        'concat:generated',<% if (cssOption === 'None (Vanilla CSS)') { %><% if (useDashboard) { %>
-        'cssmin:distDashboard',<% } %>
+        'requirejs',<% } %><% if (jsOption === 'None (Vanilla JavaScript)' || cssOption === 'None (Vanilla CSS)') { %>
+        'concat:generated',<% if (cssOption === 'None (Vanilla CSS)') { %>
         'cssmin:generated',<% } %>
         'usemin',<% } %>
         'htmlmin:dist',<% if (cssOption === 'None (Vanilla CSS)') { %>
