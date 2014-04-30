@@ -1,3 +1,9 @@
+### v0.4.4:
+#### date: 2014-04-30
+##### changes:
+* Fixed localhost issue for Windows
+* Fixed issue where font awesome was not being correctly loaded when font awesome is deselected and dashboard is selected in the generator
+
 ### v0.4.3:
 #### date: 2014-04-28
 ##### changes:
