@@ -349,9 +349,7 @@ YeogurtGenerator.prototype.dashboard = function dashboard() {
                 this.template('dev/dashboard/styles/partials/_dashboard-switcher.less', 'dev/dashboard/styles/partials/_dashboard-switcher.scss');
                 this.template('dev/dashboard/styles/partials/_dashboard.less', 'dev/dashboard/styles/partials/_dashboard.scss');
                 this.mkdir('dev/dashboard/styles/vendor');
-                if (this.useFontAwesome) {
-                    this.template('dev/dashboard/styles/vendor/_font-awesome.less', 'dev/dashboard/styles/vendor/_font-awesome.scss');
-                }
+                this.template('dev/dashboard/styles/vendor/_font-awesome.less', 'dev/dashboard/styles/vendor/_font-awesome.scss');
                 if (this.useBourbon) {
                     this.template('dev/dashboard/styles/vendor/_bourbon.scss', 'dev/dashboard/styles/vendor/_bourbon.scss');
                 }
