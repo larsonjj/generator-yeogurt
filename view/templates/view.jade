@@ -1,4 +1,16 @@
-//- <%= name %> <%= view %><% if (view === 'component' || view === 'module') { %>
+//- <%= name %> <%= view %><% if (view === 'component' || view === 'helper') { %>
+<% if (useDashboard) { %>//- [dash:data]
+    {
+        "status": "development",
+        "category": "<%= view %>",
+        "label": "<%= name %>",
+        "link": "../dashboard/generated/<%= name %>.html"
+    }
+    [/dash]
+//- [dash:jade]
+    +<%= name || 'example' %>()
+    [/dash]<% } %>
+
 mixin <%= name || 'example' %>()
     div.<%= _.slugify(name.toLowerCase()) %>
         p This is an example paragraph<% } else if (view === 'template') { %>
@@ -22,7 +34,7 @@ block template
 //- use the 'block body' if you need to set a page-level class on the <body> tag
 block body
     - var bodyClass = '<%= _.slugify(name.toLowerCase()) %>';
-    <% if (useDashboard) { %>//[dash:data]
+    <% if (useDashboard) { %>// [dash:data]
         {
             "status": "development",
             "category": "<%= view ? view : 'page' %>",

@@ -1,14 +1,15 @@
-<% if (useDashboard) { %>//- Dashboard Data
-    !##
+<% if (useDashboard) { %>//- [dash:data]
     {
         "status": "development",
-        "markup": "
-            +header({})
-        "
+        "category": "component",
+        "label": "Header",
+        "link": "../dashboard/generated/header.html"
     }
-    ##!
-
-<% } %>//- Header Mixin
+    [/dash]
+//- [dash:jade]
+    +header()
+    [/dash]<% } %>
+//- Header Mixin
 //- Define markup that makes up header component
 mixin header()
     header

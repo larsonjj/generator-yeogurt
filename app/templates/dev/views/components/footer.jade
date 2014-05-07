@@ -1,14 +1,16 @@
-<% if (useDashboard) { %>//- Dashboard Data
-    !##
+<% if (useDashboard) { %>//- [dash:data]
     {
         "status": "development",
-        "markup": "
-            +footer({})
-        "
+        "category": "component",
+        "label": "Footer",
+        "link": "../dashboard/generated/footer.html"
     }
-    ##!
+    [/dash]
+//- [dash:jade]
+    +footer()
+    [/dash]<% } %>
 
-<% } %>//- Footer Mixin
+//- Footer Mixin
 //- Define markup that makes up footer component
 mixin footer()
     footer

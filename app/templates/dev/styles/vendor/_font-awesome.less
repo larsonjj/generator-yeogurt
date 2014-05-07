@@ -2,11 +2,11 @@
 *   _font-awesome.<% if (cssOption === 'LESS') { %>less<% } else if (cssOption === 'SCSS') { %>scss<% } %>
 *   Import Font Awesome Library
 */
-<% if (cssOption === 'LESS') { %>
+<% if (cssOption === 'LESS') { %><% if (useFontAwesome) { %>
 // Import Font Awesome Library
 @import '../../bower_components/font-awesome/less/font-awesome';
-@fa-font-path: '../bower_components/font-awesome/fonts';<% } %>
-<% if (cssOption === 'SCSS') { %>
+@fa-font-path: '../bower_components/font-awesome/fonts';<% } %><% } %>
+<% if (cssOption === 'SCSS') { %><% if (useFontAwesome) { %>
 // Import Font Awesome Library
 @import '../../bower_components/font-awesome/scss/font-awesome';
-$fa-font-path: '../bower_components/font-awesome/fonts';<% } %>
+$fa-font-path: '../bower_components/font-awesome/fonts';<% } %><% } %>

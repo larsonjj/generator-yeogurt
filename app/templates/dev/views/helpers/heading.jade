@@ -1,19 +1,21 @@
-<% if (useDashboard) { %>//- Dashboard Data
-    !##
+<% if (useDashboard) { %>//- [dash:data]
     {
         "status": "development",
-        "markup": "
-            +heading({type:'h1', text:'H1 Header'})
-            +heading({type:'h2', text:'H2 Header'})
-            +heading({type:'h3', text:'H3 Header'})
-            +heading({type:'h4', text:'H4 Header'})
-            +heading({type:'h5', text:'H5 Header'})
-            +heading({type:'h6', text:'H6 Header'})
-        "
+        "category": "helper",
+        "label": "Heading",
+        "link": "../dashboard/generated/heading.html"
     }
-    ##!
+    [/dash]
+//- [dash:jade]
+    +heading({type:'h1', text:'H1 Header'})
+    +heading({type:'h2', text:'H2 Header'})
+    +heading({type:'h3', text:'H3 Header'})
+    +heading({type:'h4', text:'H4 Header'})
+    +heading({type:'h5', text:'H5 Header'})
+    +heading({type:'h6', text:'H6 Header'})
+    [/dash]<% } %>
 
-<% } %>//- Heading Element
+//- Heading Element
 //- Defines mixin for creating header tags (h1, h2, h3, etc)
 mixin heading(content)
     -var content         = content       || {};

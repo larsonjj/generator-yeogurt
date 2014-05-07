@@ -133,18 +133,38 @@ module.exports = function(grunt) {
         dashboard: {
             server: {
                 options: {
-                    debug: true
+                    debug: true,
+                    logo: 'images/yeogurt-logo.png',
+                    generatedDir: '<%%= yeogurt.server %>/dashboard/generated',
+                    assets: [
+                        '<%%= yeogurt.dev %>/views/components/*.jade',
+                        '<%%= yeogurt.dev %>/views/helpers/*.jade'
+                    ]
                 },
                 files: {
-                    '<%%= yeogurt.server %>/dashboard/index.html': ['<%%= yeogurt.server %>/*.html']
+                    '<%%= yeogurt.server %>/dashboard/index.html': [
+                        '<%%= yeogurt.server %>/*.html',
+                        '<%%= yeogurt.dev %>/views/components/*.jade',
+                        '<%%= yeogurt.dev %>/views/helpers/*.jade'
+                    ]
                 }
             },
             dist: {
                 options: {
-                    debug: false
+                    debug: false,
+                    logo: 'images/yeogurt-logo.png',
+                    generatedDir: '<%%= yeogurt.dist %>/dashboard/generated',
+                    assets: [
+                        '<%%= yeogurt.dev %>/views/components/*.jade',
+                        '<%%= yeogurt.dev %>/views/helpers/*.jade'
+                    ]
                 },
                 files: {
-                    '<%%= yeogurt.dist %>/dashboard/index.html': ['<%%= yeogurt.dist %>/*.html']
+                    '<%%= yeogurt.dist %>/dashboard/index.html': [
+                        '<%%= yeogurt.dist %>/*.html',
+                        '<%%= yeogurt.dev %>/views/components/*.jade',
+                        '<%%= yeogurt.dev %>/views/helpers/*.jade'
+                    ]
                 }
             }
         },<% } %><% if (cssOption === 'None (Vanilla CSS)') { %>
@@ -177,7 +197,8 @@ module.exports = function(grunt) {
                     cwd: '<%%= yeogurt.dev %>/',
                     dest: '<%%= yeogurt.server %>/',
                     src: [
-                        'scripts/{,*/}{,*/}*.js'<% if (jsOption === 'Browserify') { %>,
+                        'scripts/{,*/}{,*/}*.js'<% if (useDashboard) { %>,
+                        'dashboard/**/*.*'<% } %><% if (jsOption === 'Browserify') { %>,
                         '!scripts/app.js',
                         '!scripts/main.js'<% } %>
                     ]
@@ -205,14 +226,7 @@ module.exports = function(grunt) {
                         'styles/{,*/}{,*/}*.css',
                         'bower_components/bootstrap/dist/css/*.{css,map}'
                     ]
-                },<% } %> {
-                    expand: true,
-                    cwd: '<%%= yeogurt.dev %>/',
-                    dest: '<%%= yeogurt.dev %>/.server/tmp',
-                    src: [
-                        'views/**', '!**views/*.*'
-                    ]
-                }]
+                }<% } %>]
             },
             dist: {
                 files: [{
@@ -222,7 +236,8 @@ module.exports = function(grunt) {
                     src: [
                         <% if (jsOption === 'RequireJS') { %>'bower_components/requirejs/require.js',<% } %>
                         'bower_components/modernizr/modernizr.js',
-                        'bower_components/{,*/}{,*/}*.{woff,otf,ttf,eot,svg}',
+                        'bower_components/{,*/}{,*/}*.{woff,otf,ttf,eot,svg}',<% if (useDashboard) { %>
+                        'dashboard/**/*.*',<% } %>
                         'bower_components/jquery/jquery.min.*'
                     ]
                 }, {
@@ -249,14 +264,7 @@ module.exports = function(grunt) {
                     src: [
                         '{,*/}{,*/}*.scss'
                     ]
-                },<% } %> {
-                    expand: true,
-                    cwd: '<%%= yeogurt.dev %>/',
-                    dest: '<%%= yeogurt.dev %>/.server/tmp',
-                    src: [
-                        'views/**', '!**views/*.*'
-                    ]
-                }]
+                }<% } %>]
             }
         },
         jade: {

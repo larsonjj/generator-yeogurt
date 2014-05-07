@@ -1,3 +1,15 @@
+### v0.5.0:
+#### date: 2014-05-07
+##### changes:
+* Major Change: Removed original dynamic dashboard and replaced with `grunt-dashboard` plugin
+
+
+### v0.4.4:
+#### date: 2014-04-30
+##### changes:
+* Fixed localhost issue for Windows
+* Fixed issue where font awesome was not being correctly loaded when font awesome is deselected and dashboard is selected in the generator
+
 ### v0.4.3:
 #### date: 2014-04-28
 ##### changes:
