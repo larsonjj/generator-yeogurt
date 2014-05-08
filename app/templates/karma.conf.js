@@ -11,7 +11,9 @@ module.exports = function(config) {
         frameworks: ['jasmine'<% if (jsOption === 'RequireJS') { %>,'requirejs'<% } else if (jsOption === 'Browserify') { %>,'browserify'<% } %>],
 
         // list of files / patterns to load in the browser
-        files: [<% if (jsOption === 'RequireJS') { %>
+        files: [
+            // Add all vendor scripts here
+            'dev/bower_components/jquery/dist/jquery.js',<% if (jsOption === 'RequireJS') { %>
             {
                 pattern: 'dev/bower_components/**/*.js',
                 included: false
@@ -22,10 +24,8 @@ module.exports = function(config) {
                 pattern: 'test/**/*Spec.js',
                 included: false
             },
-
-            'test/test-main.js'<% } else if (jsOption === 'Browserify') { %>
+            'test/test-main.js',<% } else if (jsOption === 'Browserify') { %>
             'test/spec/*.js'<% } else { %>
-            'dev/bower_components/jquery/jquery.js',
             'dev/scripts/*.js',
             'test/spec/*.js'<% } %>
         ],
@@ -69,7 +69,7 @@ module.exports = function(config) {
         browserify: {
             // extensions: ['.coffee'],
             // ignore: [],
-            transform: ['browserify-shim'],
+            // transform: ['browserify-shim'],
             // debug: true,
             // noParse: ['jquery'],
             watch: true,

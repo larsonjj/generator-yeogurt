@@ -1,4 +1,4 @@
-<img src="http://i.imgur.com/obNKseX.png" />
+<img src="https://github.com/larsonjj/generator-yeogurt/tree/master/docs/images/logo.png" />
 
 # Yeogurt Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-yeogurt.png?branch=master)](https://travis-ci.org/larsonjj/generator-yeogurt) [![NPM version](https://badge.fury.io/js/generator-yeogurt.png)](http://badge.fury.io/js/generator-yeogurt) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-yeogurt/badge.png)](https://coveralls.io/r/larsonjj/generator-yeogurt)
 
@@ -8,6 +8,7 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to fron
 ## Getting Started
 
 - First off, You will need to have [Node.js](http://nodejs.org/) `>= 0.10` installed. <br>
+- You will also need [Git](http://git-scm.com/) `>= 1.8.2` installed if you don't already. <br>
 - Be sure to install yeoman of course! `npm install -g yo` <br>
 - Install the generator: `npm install -g generator-yeogurt` <br>
 - Run the generator: `yo yeogurt`
@@ -21,6 +22,7 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to fron
 - Modular JavaScript with [RequireJS](http://requirejs.org/) or [Browserify](http://browserify.org/)
 - IE8+ Support via [HTML5shiv](https://github.com/aFarkas/html5shiv) and [RespondJS](https://github.com/scottjehl/Respond)
 - JavaScript Linting with [JSHint](http://www.jshint.com/)
+- Feature detection with [Modernizr](http://modernizr.com/)
 - Default ignores for [Git](http://git-scm.com/) or [SVN](http://subversion.apache.org/)
 - Build deployment to FTP server
 - Dynamic Dashboard - auto-generated dashboard for your site
@@ -29,7 +31,6 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to fron
 
 - Template inspiration from [HTML5 Boilerplate](http://html5boilerplate.com/)
 - [Jade](http://jade-lang.com/) markup templating
-- Feature detection with [Modernizr](http://modernizr.com/)
 - Built in preview server with LiveReload
 - [.editorconfig](http://editorconfig.org/) for consistent coding styles within text editors
 - JavaScript unit testing with [Jasmine](http://jasmine.github.io/) and [Karma](http://karma-runner.github.io/0.10/index.html)
@@ -45,7 +46,7 @@ Starts up a development server that watches for local file changes and automatic
 Runs JSHint and Karma to lint and unit test JavaScript, respectively.
 
 - `grunt build`<br>
-Builds out an optimised site through minification of CSS and HTML, as well as  uglification and optimisation(RequireJS) of Javascript.
+Builds out an optimised site through minification of CSS and HTML, as well as  uglification and optimisation of Javascript.
 
 - `grunt zip`<br>
 Runs `grunt build` and compresses the entire site to a ZIP file
@@ -58,31 +59,31 @@ Runs `grunt zip` and pushes both production-ready files and zip file to a specif
 
 Available sub-generators:
 
-* [yeogurt:markup](#markup)
+* [yeogurt:view](#views)
 * [yeogurt:script](#script)
 * [yeogurt:style](#style)
 
 **Note: Generators are to be run from the root directory of your app.**
 
-### Markup
-Creates jade file within the `dev/markup/pages` folder by default or within another folder using the `--type` option.
+### View
+Creates jade file within the `dev/views` folder by default or within another folder using the `--type` option.
 
 Example:
 ```bash
 ## Page
-yo yeogurt:markup mypage
+yo yeogurt:view mypage
 
 ## Page using specific Template
-yo yeogurt:markup mypage --template=one-column
+yo yeogurt:view mypage --template=one-column
 
 ## Template
-yo yeogurt:markup mytemplate --type=template
+yo yeogurt:view mytemplate --type=template
 
 ## Helper
-yo yeogurt:markup myhelper --type=helper
+yo yeogurt:view myhelper --type=helper
 
 ## Component
-yo yeogurt:markup mycomponent --type=component
+yo yeogurt:view mycomponent --type=component
 ```
 
 ### Script
@@ -108,76 +109,10 @@ yo yeogurt:style mystyle --folder=base
 ```
 
 ## Dynamic Dashboard
-Here is what the dashboard looks like:<br>
-![](http://i.imgur.com/yW4QC3e.png =650x)
+The dashboard has been completely overhauled from v0.4.x and moved into it's own plugin: `grunt-dashboard`.
+Please refer to the plugin [documentation](https://github.com/larsonjj/grunt-dashboard) for example usage.
 
-It is 'dynamic' because it is generated at compile time using comments placed at the top of development files. An example of these comments in a template file is as follows:
-
-```
-//- Dashboard Data
-    !##
-    {
-        "status": "development",
-        "blocks": [
-            {
-                "blockName": "content",
-                "width": "100px",
-                "height": "100px",
-                "bgcolor": "#9d9d9d",
-                "textColor": "#fff",
-                "fontSize": "10px"
-            }
-        ]
-    }
-    ##!
-```
-For markup pages, components, templates, and helpers, these comments create the ability to pass data directly to the dashboard. In the above code example, we are setting a template file's status to be in 'development' and are adding a content block with a name of 'content' and a couple of CSS properties.
-
-### Data Properties
-
-##### Pages, Helpers, Templates, and Components
-property:
-
-- `status` [String]
-
-possible values:
-
-- `blocked`: When development is blocked from continuing
-- `queued`: Ready to be assigned to a developer
-- `development`: Development is under way
-- `qa`: Being tested and evaluated for correct implementation
-- `review`: 'Under review from code quality stand-point',
-- `integration`: Being integrated to final development environment (Usually for Content Managment Systems)
-- `Complete`: 'Development is complete'
-
-##### Templates Only
-property:
-
-- `blocks` [Array]
-
-possible values [Each object in Array]:
-
-- `blockName`: Name that will be displayed within the created block
-- `width`: Width of block
-- `height`: Height of block
-- `bgcolor`: Background color of block
-- `textColor`: Color of text within block
-- `fontSize`: Size of font within block
-
-##### Helpers and Components Only
-property:
-
-- `markup` [String]
-
-possible values
-
-- `Any Jade Markup`
-
-#### Huh?
-
-A bit confused? No worries, I recommend generating a test project and taking a look at the jade files within the generated pages, components, templates, and helpers folders. They will have some simple examples of what's possible and you can see your changes if you run `grunt serve`.
-
-Also, feel free to open up an issue if you think something is too confusing or can be improved.
+For documentation on old v0.4.x dashboard, please refer to [here](https://github.com/larsonjj/generator-yeogurt/tree/master/docs/old-dashboard.md)
 
 ## Contributing to this project
 

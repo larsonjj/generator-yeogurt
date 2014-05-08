@@ -37,24 +37,7 @@ describe('yeogurt generator LESS', function () {
             'dev/styles/vendor/_font-awesome.less',
             'dev/styles/vendor/_bootstrap.less',
             'dev/styles/print.less',
-            'dev/styles/main.less',
-            'dev/dashboard/',
-            'dev/dashboard/styles',
-            'dev/dashboard/styles/base',
-            'dev/dashboard/styles/base/_mixins.less',
-            'dev/dashboard/styles/base/_variables.less',
-            'dev/dashboard/styles/base/_box-sizing.less',
-            'dev/dashboard/styles/base/_reset.less',
-            'dev/dashboard/styles/base/_ie8.less',
-            'dev/dashboard/styles/partials',
-            'dev/dashboard/styles/partials/_footer.less',
-            'dev/dashboard/styles/partials/_header.less',
-            'dev/dashboard/styles/partials/_status-key.less',
-            'dev/dashboard/styles/partials/_dashboard-switcher.less',
-            'dev/dashboard/styles/partials/_dashboard.less',
-            'dev/dashboard/styles/vendor',
-            'dev/dashboard/styles/vendor/_font-awesome.less',
-            'dev/dashboard/styles/main.less'
+            'dev/styles/main.less'
         ];
 
         helpers.mockPrompt(this.app, {
@@ -67,7 +50,7 @@ describe('yeogurt generator LESS', function () {
             useGA: true,
             useFTP: true,
             jshint: true,
-            extras: ['htaccess', 'useBootstrap', 'useFontAwesome', 'useDashboard']
+            extras: ['htaccess', 'useBootstrap', 'useBorderBox', 'useFontAwesome', 'useDashboard']
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {

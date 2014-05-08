@@ -1,3 +1,16 @@
+### v0.5.0:
+#### date: 2014-05-07
+##### changes:
+* Major Change: Removed original dynamic dashboard and replaced with `grunt-dashboard` plugin
+* Added option to use Modernizr
+* Updated base template to load vendor scripts seperately from author scripts
+* Removed browserify-shim
+* Added option for box-sizing:border-box in the generator
+* Usemin plugin is used now by default for vendor scripts
+* Updated bower dependencies
+* Added logo to repository
+
+
 ### v0.4.4:
 #### date: 2014-04-30
 ##### changes:

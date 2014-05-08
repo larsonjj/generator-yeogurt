@@ -3,8 +3,7 @@
 */
 <% if (jsOption ==='RequireJS') { %>define([
     // module dependencies
-    'jquery'
-], function ($) {
+], function () {
 
     'use strict';
 

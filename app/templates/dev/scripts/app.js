@@ -18,8 +18,7 @@ define(['./modules/module'], function (someModule) {
 'use strict';
 /* jshint unused:false */
 /* global $:true */
-var $ = require('jquery'),
-someModule = require('./modules/module');
+var someModule = require('./modules/module');
 var app = {
     init: function(msg) {
         someModule.init('Module called from app.js');
