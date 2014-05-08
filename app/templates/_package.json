@@ -38,7 +38,7 @@
         "karma": "0.12.0",
         "lodash": "2.4.1",
         "time-grunt": "0.2.10",<% if (useDashboard) { %>
-        "grunt-dashboard": "0.1.2",<% } %>
+        "grunt-dashboard": "~0.1.2",<% } %>
         "bower": "1.3.0"<% if (useFTP) { %>,
         "grunt-ftpush": "0.3.3"<% } %>
     },
