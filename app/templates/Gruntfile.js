@@ -171,7 +171,10 @@ module.exports = function(grunt) {
         uncss: {
             dist: {
                 files: {
-                    '<%%= yeogurt.dist %>/styles/main.css': ['<%%= yeogurt.dist %>/views/*.html']
+                    '<%%= yeogurt.dist %>/styles/main.css': [
+                        '<%%= yeogurt.dist %>/*.html'<% if (useDashboard) { %>,
+                        '<%%= yeogurt.dist %>/dashboard/generated/*.html'<% } %>
+                    ]
                 }
             }
         },<% } %>

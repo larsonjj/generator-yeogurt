@@ -4,7 +4,7 @@
 
 <% if (jsOption === 'RequireJS') { %>'use strict';
 
-define(['app', 'jquery'], function(app, $) {
+define(['app'], function(app) {
 
     describe('just checking', function() {
 

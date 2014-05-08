@@ -62,24 +62,6 @@ html.no-js(lang="en")
     body(class=(bodyClass ? bodyClass : false))
         block content
 
-        //- Place all vendor library/plugin/framework scripts within the 'build:js' comments below,
-            so they will be optimised correctly during a 'grunt build' task
-        // build:js(dev) scripts/vendor.js
-        script(src="bower_components/jquery/jquery.js")
-        <% if (useBootstrap) { %>script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>affix.js")
-        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>alert.js")
-        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>button.js")
-        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>carousel.js")
-        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>collapse.js")
-        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>dropdown.js")
-        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>modal.js")
-        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>scrollspy.js")
-        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>tab.js")
-        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>tooltip.js")
-        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>popover.js")
-        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>transition.js")
-        <% } %>// endbuild
-
         <% if (useGA) { %><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         script.
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -88,6 +70,24 @@ html.no-js(lang="en")
             e.src='//www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');<% } %>
+
+        //- Place all vendor library/plugin/framework scripts within the 'build:js' comments below,
+            so they will be optimised correctly during a 'grunt build' task
+        // build:js(dev) scripts/vendor.js
+        script(src="bower_components/jquery/dist/jquery.js")
+        <% if (useBootstrap) { %>script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>affix.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>alert.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>button.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>carousel.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>collapse.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>dropdown.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>modal.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>scrollspy.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>tab.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>tooltip.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>popover.js")
+        script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>transition.js")
+        <% } %>// endbuild
 
         <% if (jsOption ==='RequireJS') { %>script(data-main="scripts/main", src="bower_components/requirejs/require.js")<% } else if (jsOption ==='Browserify') { %>
         script(src="scripts/main.js")<% } else { %>//- Place all author scripts within the 'build:js' comments below,
