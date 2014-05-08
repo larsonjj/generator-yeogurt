@@ -12,7 +12,7 @@ doctype html<% if (ieSupport) { %>
 <!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->
 <!--[if IE 9]><html lang="en" class="ie9 no-js"><![endif]--><% } %>
 <!--[if !IE]><!-->
-html.no-js(lang="en")
+html<% if (useModernizr) { %>.no-js<% } %>(lang="en")
     <!--<![endif]-->
     head
         meta(charset='utf-8')
@@ -30,8 +30,8 @@ html.no-js(lang="en")
         link(rel='stylesheet', href='styles/print.css')
         // endbuild<% } %>
         <% } else { %>link(rel='stylesheet', href='styles/main.css' media="screen")<% if (ieSupport) { %>
-        link(rel='stylesheet', href='styles/print.css' media="print")<% } %><% } %>
-        script(src='bower_components/modernizr/modernizr.js')<% if (ieSupport) { %>
+        link(rel='stylesheet', href='styles/print.css' media="print")<% } %><% } %><% if (useModernizr) { %>
+        script(src='bower_components/modernizr/modernizr.js')<% } %><% if (ieSupport) { %>
         // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
         <!--[if IE 8]>
         <% if (responsive) { %>

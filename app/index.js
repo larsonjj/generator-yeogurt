@@ -100,6 +100,10 @@ YeogurtGenerator.prototype.askFor = function askFor() {
             name: 'Font Awesome 4.x',
             value: 'useFontAwesome',
             checked: true
+        },  {
+            name: 'Modernizr',
+            value: 'useModernizr',
+            checked: true
         }, {
             name: 'Box Sizing: Border-Box',
             value: 'useBorderBox',
@@ -140,6 +144,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.useFontAwesome = hasFeature('useFontAwesome');
         this.useDashboard = hasFeature('useDashboard');
         this.useBorderBox = hasFeature('useBorderBox');
+        this.useModernizr = hasFeature('useModernizr');
 
         if (this.htaccess) {
             this.ieIcons = true;
