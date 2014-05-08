@@ -24,6 +24,7 @@ module.exports = function(config) {
             },
 
             'test/test-main.js'<% } else if (jsOption === 'Browserify') { %>
+            'dev/bower_components/jquery/jquery.js',
             'test/spec/*.js'<% } else { %>
             'dev/bower_components/jquery/jquery.js',
             'dev/scripts/*.js',
@@ -69,7 +70,7 @@ module.exports = function(config) {
         browserify: {
             // extensions: ['.coffee'],
             // ignore: [],
-            transform: ['browserify-shim'],
+            // transform: ['browserify-shim'],
             // debug: true,
             // noParse: ['jquery'],
             watch: true,

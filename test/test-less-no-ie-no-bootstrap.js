@@ -22,7 +22,7 @@ describe('yeogurt generator no IE with less', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'dev/styles/partials/_print.less'
+            'dev/styles/base/_print.less'
         ];
 
         helpers.mockPrompt(this.app, {
@@ -35,7 +35,7 @@ describe('yeogurt generator no IE with less', function () {
             useGA: true,
             useFTP: true,
             jshint: true,
-            extras: ['htaccess', 'useBootstrap', 'useFontAwesome', 'useDashboard']
+            extras: ['htaccess', 'useFontAwesome', 'useDashboard']
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {

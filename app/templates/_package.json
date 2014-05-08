@@ -1,17 +1,6 @@
 {
     "name": "<%= _.slugify(projectName) %>",
-    "version": "0.0.1",<% if (jsOption ==='Browserify') { %>
-    "browser": {
-        "jquery": "./dev/bower_components/jquery/jquery.js"
-    },
-    "browserify-shim": {
-        "jquery": "$"
-    },
-    "browserify": {
-        "transform": [
-            "browserify-shim"
-        ]
-    },<% } %>
+    "version": "0.0.1",
     "dependencies": {},
     "devDependencies": {
         "grunt": "0.4.2",
@@ -23,10 +12,9 @@
         "grunt-contrib-htmlmin": "0.2.0",<% if (jsOption ==='RequireJS') { %>
         "grunt-contrib-requirejs": "0.4.3",<% } else if (jsOption ==='Browserify') { %>
         "grunt-browserify": "2.0.1",
-        "grunt-exorcise": "0.1.0",
-        "browserify-shim": "3.3.2",<% } %><% if (jsOption === 'None (Vanilla JavaScript)' || cssOption === 'None (Vanilla CSS)') { %>
+        "grunt-exorcise": "0.1.0",<% } %>
         "grunt-usemin": "2.1.0",
-        "grunt-contrib-concat": "0.3.0",<% } %><% if (cssOption === 'None (Vanilla CSS)') { %>
+        "grunt-contrib-concat": "0.3.0",<% if (cssOption === 'None (Vanilla CSS)') { %>
         "grunt-contrib-cssmin": "0.9.0",<% } %>
         "grunt-contrib-imagemin": "0.5.0",<% if (jshint) { %>
         "grunt-contrib-jshint": "0.8.0",

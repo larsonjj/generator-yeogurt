@@ -15,9 +15,9 @@ module.exports = function(grunt) {
     // show elapsed time at the end
     require('time-grunt')(grunt);
     // load all grunt tasks with JIT (loads only needed tasks, so there is a large gain in speed)
-    require('jit-grunt')(grunt<% if (jsOption === 'None (Vanilla JavaScript)' || cssOption === 'None (Vanilla CSS)') { %>, {
+    require('jit-grunt')(grunt, {
         useminPrepare: 'grunt-usemin'
-    }<% } %>);
+    });
 
     grunt.initConfig({
         // configurable paths
@@ -434,7 +434,7 @@ module.exports = function(grunt) {
                     dest: '<%%= yeogurt.dist %>'
                 }]
             }
-        },<% if (jsOption === 'None (Vanilla JavaScript)' || cssOption === 'None (Vanilla CSS)') { %>
+        },
         useminPrepare: {
             html: '<%%= yeogurt.dist %>/index.html',
             options: {
@@ -443,12 +443,12 @@ module.exports = function(grunt) {
             }
         },
         usemin: {
-            html: '<%%= yeogurt.dist %>/index.html',
-            css: ['<%%= yeogurt.dist %>/styles/{,*/}*.css'],
+            html: '<%%= yeogurt.dist %>/index.html',<% if (cssOption === 'None (Vanilla CSS)') { %>
+            css: ['<%%= yeogurt.dist %>/styles/{,*/}*.css'],<% } %>
             options: {
                 assetsDirs: ['<%%= yeogurt.dev %>', '<%%= yeogurt.dev %>/images']
             }
-        },<% } %><% if (jsOption === 'Browserify') { %>
+        },<% if (jsOption === 'Browserify') { %>
         browserify: {
             server: {
                 options: {
@@ -669,17 +669,17 @@ module.exports = function(grunt) {
         'imagemin',
         'svgmin',
         'jade:dist',<% if (useDashboard) { %>
-        'dashboard:dist',<% } %><% if (jsOption === 'None (Vanilla JavaScript)' || cssOption === 'None (Vanilla CSS)') { %>
-        'useminPrepare',<% } %><% if (cssOption === 'LESS') { %>
+        'dashboard:dist',<% } %>
+        'useminPrepare',<% if (cssOption === 'LESS') { %>
         'less:dist',<% if (ieSupport) { %>
         'less:distPrint',<% } %><% } %><% if (cssOption === 'SCSS') { %>
         'sass:dist',<% if (ieSupport) { %>
         'sass:distPrint',<% } %>
         'string-replace:sassMapFixDist',<% } %><% if (jsOption === 'RequireJS') { %>
-        'requirejs',<% } %><% if (jsOption === 'None (Vanilla JavaScript)' || cssOption === 'None (Vanilla CSS)') { %>
+        'requirejs',<% } %>
         'concat:generated',<% if (cssOption === 'None (Vanilla CSS)') { %>
         'cssmin:generated',<% } %>
-        'usemin',<% } %>
+        'usemin',
         'htmlmin:dist',<% if (cssOption === 'None (Vanilla CSS)') { %>
         'uncss',<% } %>
         'uglify',

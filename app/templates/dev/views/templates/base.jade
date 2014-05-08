@@ -62,8 +62,7 @@ html.no-js(lang="en")
     body(class=(bodyClass ? bodyClass : false))
         block content
 
-        <% if (jsOption ==='RequireJS') { %>script(data-main="scripts/main", src="bower_components/requirejs/require.js")<% } else if (jsOption ==='Browserify') { %>
-        script(src="scripts/main.js", defer)<% } else { %>//- Place all vendor library/plugin/framework scripts within the 'build:js' comments below,
+        //- Place all vendor library/plugin/framework scripts within the 'build:js' comments below,
             so they will be optimised correctly during a 'grunt build' task
         // build:js(dev) scripts/vendor.js
         script(src="bower_components/jquery/jquery.js")
@@ -79,7 +78,7 @@ html.no-js(lang="en")
         script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>tooltip.js")
         script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>popover.js")
         script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS') { %>bootstrap/js/<% } %>transition.js")
-        <% } %>// endbuild<% } %>
+        <% } %>// endbuild
 
         <% if (useGA) { %><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         script.
@@ -90,7 +89,8 @@ html.no-js(lang="en")
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');<% } %>
 
-        <% if (jsOption === 'None (Vanilla JavaScript)') { %>//- Place all author scripts within the 'build:js' comments below,
+        <% if (jsOption ==='RequireJS') { %>script(data-main="scripts/main", src="bower_components/requirejs/require.js")<% } else if (jsOption ==='Browserify') { %>
+        script(src="scripts/main.js")<% } else { %>//- Place all author scripts within the 'build:js' comments below,
             so they will be optimised correctly during a 'grunt build' task
         // build:js(dev) scripts/app.js
         script(src="scripts/app.js")

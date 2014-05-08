@@ -50,7 +50,7 @@ describe('yeogurt generator LESS with no dashboard', function () {
             useGA: true,
             useFTP: true,
             jshint: true,
-            extras: ['htaccess', 'useBootstrap', 'useFontAwesome']
+            extras: ['htaccess', 'useBootstrap', 'useBorderBox', 'useFontAwesome']
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {
