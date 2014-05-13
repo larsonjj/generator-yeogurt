@@ -1,4 +1,4 @@
-## This documentation is for the old dashbaord from v0.4.x versions of this generator
+## This documentation is for the old dashboard from v0.4.x versions of this generator
 
 ## Dynamic Dashboard
 Here is what the dashboard looks like:<br>
