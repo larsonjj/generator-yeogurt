@@ -30,13 +30,13 @@ ViewGenerator.prototype.files = function files() {
     if (this.view === 'page') {
         this.template('view.jade', 'dev/views/' + this._.slugify(this.name.toLowerCase()) + '.jade');
     }
-    else if (this.view === 'component' || this.view === 'template' || this.view === 'helper') {
+    else if (this.view === 'component' || this.view === 'template') {
         this.template('view.jade', 'dev/views/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.jade');
     }
     else if (!this.name) {
         console.log('Name cannot be empty. Operation aborted.');
     }
     else {
-        console.log('Must use a supported type: page, template, helper, component. Operation aborted');
+        console.log('Must use a supported type: page, template, component. Operation aborted');
     }
 };

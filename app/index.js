@@ -43,6 +43,11 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         choices: ['Git', 'SVN', 'None (I like to live on the edge)']
     }, {
         type: 'list',
+        name: 'htmlOption',
+        message: 'Which HTML preprocessor would you like to use?',
+        choices: ['Jade', 'Swig', 'None (Vanilla HTML)']
+    }, {
+        type: 'list',
         name: 'cssOption',
         message: 'Which CSS preprocessor would you like to use?',
         choices: ['SCSS', 'LESS', 'None (Vanilla CSS)']
@@ -122,6 +127,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
     this.prompt(prompts, function(props) {
         this.projectName = props.projectName;
         this.versionControl = props.versionControl;
+        this.htmlOption = props.htmlOption;
         this.cssOption = props.cssOption;
         this.jsOption = props.jsOption;
         this.ieSupport = props.ieSupport;
@@ -191,18 +197,92 @@ YeogurtGenerator.prototype.app = function app() {
 
 };
 
+YeogurtGenerator.prototype.tasks = function tasks() {
+    // Folders
+    this.mkdir('grunt');
+    this.mkdir('grunt/config');
+    this.mkdir('grunt/tasks');
+
+    // Config
+    if (this.jsOption === 'Browserify') {
+        this.template('grunt/config/browserify.js', 'grunt/config/browserify.js');
+        this.template('grunt/config/exorcise.js', 'grunt/config/exorcise.js');
+    }
+    this.template('grunt/config/clean.js', 'grunt/config/clean.js');
+    this.template('grunt/config/compress.js', 'grunt/config/compress.js');
+    this.template('grunt/config/connect.js', 'grunt/config/connect.js');
+    this.template('grunt/config/copy.js', 'grunt/config/copy.js');
+    this.template('grunt/config/concat.js', 'grunt/config/concat.js');
+    if (this.useDashboard) {
+        this.template('grunt/config/dashboard.js', 'grunt/config/dashboard.js');
+    }
+    if (this.useFTP) {
+        this.template('grunt/config/ftpush.js', 'grunt/config/ftpush.js');
+    }
+    this.template('grunt/config/htmlmin.js', 'grunt/config/htmlmin.js');
+    this.template('grunt/config/imagemin.js', 'grunt/config/imagemin.js');
+    if (this.htmlOption === 'Jade') {
+        this.template('grunt/config/jade.js', 'grunt/config/jade.js');
+    }
+    else if (this.htmlOption === 'Swig') {
+        this.template('grunt/config/swig.js', 'grunt/config/swig.js');
+    }
+    if (this.jshint) {
+        this.template('grunt/config/jshint.js', 'grunt/config/jshint.js');
+    }
+    this.template('grunt/config/karma.js', 'grunt/config/karma.js');
+    if (this.cssOption === 'LESS') {
+        this.template('grunt/config/less.js', 'grunt/config/less.js');
+    }
+    if (this.jsOption === 'RequireJS') {
+        this.template('grunt/config/requirejs.js', 'grunt/config/requirejs.js');
+    }
+    if (this.cssOption === 'SCSS') {
+        this.template('grunt/config/sass.js', 'grunt/config/sass.js');
+    }
+    this.template('grunt/config/svgmin.js', 'grunt/config/svgmin.js');
+    this.template('grunt/config/uglify.js', 'grunt/config/uglify.js');
+    if (this.cssOption === 'None (Vanilla CSS)') {
+        this.template('grunt/config/uncss.js', 'grunt/config/uncss.js');
+        this.template('grunt/config/cssmin.js', 'grunt/config/cssmin.js');
+    }
+    this.template('grunt/config/usemin.js', 'grunt/config/usemin.js');
+    this.template('grunt/config/watch.js', 'grunt/config/watch.js');
+
+    // Tasks
+    this.template('grunt/tasks/build.js', 'grunt/tasks/build.js');
+    this.template('grunt/tasks/default.js', 'grunt/tasks/default.js');
+    if (this.useFTP) {
+        this.template('grunt/tasks/deploy.js', 'grunt/tasks/deploy.js');
+    }
+    this.template('grunt/tasks/serve.js', 'grunt/tasks/serve.js');
+    this.template('grunt/tasks/test.js', 'grunt/tasks/test.js');
+    this.template('grunt/tasks/zip.js', 'grunt/tasks/zip.js');
+};
+
 YeogurtGenerator.prototype.views = function views() {
     // dev/views
     this.mkdir('dev/views');
     this.mkdir('dev/views/templates');
     this.mkdir('dev/views/components');
-    this.mkdir('dev/views/helpers');
 
-    this.template('dev/views/components/header.jade', 'dev/views/components/header.jade');
-    this.template('dev/views/components/footer.jade', 'dev/views/components/footer.jade');
-    this.template('dev/views/helpers/heading.jade', 'dev/views/helpers/heading.jade');
-    this.template('dev/views/index.jade', 'dev/views/index.jade');
-    this.template('dev/views/templates/base.jade', 'dev/views/templates/base.jade');
+    if (this.htmlOption === 'Jade') {
+        this.template('dev/views/jade/components/header.jade', 'dev/views/components/header.jade');
+        this.template('dev/views/jade/components/footer.jade', 'dev/views/components/footer.jade');
+        this.template('dev/views/jade/components/heading.jade', 'dev/views/components/heading.jade');
+        this.template('dev/views/jade/index.jade', 'dev/views/index.jade');
+        this.template('dev/views/jade/templates/base.jade', 'dev/views/templates/base.jade');
+    }
+    else if (this.htmlOption === 'Swig') {
+        this.template('dev/views/swig/components/header.swig', 'dev/views/components/header.swig');
+        this.template('dev/views/swig/components/footer.swig', 'dev/views/components/footer.swig');
+        this.template('dev/views/swig/components/heading.swig', 'dev/views/components/heading.swig');
+        this.template('dev/views/swig/index.swig', 'dev/views/index.swig');
+        this.template('dev/views/swig/templates/base.swig', 'dev/views/templates/base.swig');
+    }
+    else if (this.htmlOption === 'None (Vanilla HTML)') {
+        this.template('dev/views/html/index.html', 'dev/views/index.html');
+    }
 };
 
 YeogurtGenerator.prototype.scripts = function scripts() {

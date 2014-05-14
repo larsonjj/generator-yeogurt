@@ -4,9 +4,7 @@
 //- Include components
 include ../components/header
 include ../components/footer
-
-//- Include helpers
-include ../helpers/heading
+include ../components/heading
 
 doctype html<% if (ieSupport) { %>
 <!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->
@@ -21,8 +19,8 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang="en")
         meta(name='description', content='')
         meta(name='viewport', content='width=device-width, initial-scale=1.0')
         <% if (cssOption === 'None (Vanilla CSS)') { %>// build:css(dev) styles/main.css
-        <% if (useBootstrap) { %>link(rel='stylesheet', href='bower_components/bootstrap/dist/css/bootstrap.css' media="screen")
-        <% } %>link(rel='stylesheet', href='styles/main.css' media="screen")
+        <% if (useBootstrap) { %>link(rel='stylesheet', href='bower_components/bootstrap/dist/css/bootstrap.css', media="screen")
+        <% } %>link(rel='stylesheet', href='styles/main.css', media="screen")
         <% if (ieSupport) { %>// endbuild
         // build:css(dev) styles/print.css
         link(rel='stylesheet', href='styles/print.css', media="print")
@@ -30,7 +28,7 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang="en")
         link(rel='stylesheet', href='styles/print.css')
         // endbuild<% } %>
         <% } else { %>link(rel='stylesheet', href='styles/main.css' media="screen")<% if (ieSupport) { %>
-        link(rel='stylesheet', href='styles/print.css' media="print")<% } %><% } %><% if (useModernizr) { %>
+        link(rel='stylesheet', href='styles/print.css', media="print")<% } %><% } %><% if (useModernizr) { %>
         script(src='bower_components/modernizr/modernizr.js')<% } %><% if (ieSupport) { %>
         // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
         <!--[if IE 8]>

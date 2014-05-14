@@ -18,7 +18,7 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to fron
 **Available Scaffolding Options:**
 
 - Project/Site naming
-- CSS Preprocessing with [LESS](http://lesscss.org/) or [SCSS](http://sass-lang.com/)
+- CSS Preprocessing with [LESS](http://lesscss.org/) or [SCSS](http://sass-lang.com/) via [node-sass](https://github.com/andrew/node-sass)
 - Modular JavaScript with [RequireJS](http://requirejs.org/) or [Browserify](http://browserify.org/)
 - IE8+ Support via [HTML5shiv](https://github.com/aFarkas/html5shiv) and [RespondJS](https://github.com/scottjehl/Respond)
 - JavaScript Linting with [JSHint](http://www.jshint.com/)
@@ -78,9 +78,6 @@ yo yeogurt:view mypage --template=one-column
 
 ## Template
 yo yeogurt:view mytemplate --type=template
-
-## Helper
-yo yeogurt:view myhelper --type=helper
 
 ## Component
 yo yeogurt:view mycomponent --type=component
