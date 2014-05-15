@@ -19,7 +19,6 @@
 * Updated bower dependencies
 * Added logo to repository
 
-
 ### v0.4.4:
 #### date: 2014-04-30
 ##### changes:
