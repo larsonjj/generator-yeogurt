@@ -5,7 +5,7 @@ var path    = require('path');
 var helpers = require('yeoman-generator').test;
 
 
-describe('yeogurt generator LESS no bootstrap', function () {
+describe('yeogurt generator Swig', function () {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -23,37 +23,27 @@ describe('yeogurt generator LESS no bootstrap', function () {
         var expected = [
             // add files and folders you expect to exist here.
             'dev/',
-            'dev/styles',
-            'dev/styles/base',
-            'dev/styles/base/_mixins.less',
-            'dev/styles/base/_variables.less',
-            'dev/styles/base/_box-sizing.less',
-            'dev/styles/base/_reset.less',
-            'dev/styles/base/_ie8.less',
-            'dev/styles/partials',
-            'dev/styles/partials/_footer.less',
-            'dev/styles/partials/_header.less',
-            'dev/styles/vendor',
-            'dev/styles/vendor/_font-awesome.less',
-            'dev/styles/vendor/_normalize.less',
-            'dev/styles/print.less',
-            'dev/styles/main.less',
-            'grunt/',
-            'grunt/config',
-            'grunt/config/less.js'
+            'dev/views',
+            'dev/views/templates',
+            'dev/views/components',
+            'dev/views/components/header.swig',
+            'dev/views/components/footer.swig',
+            'dev/views/components/heading.swig',
+            'dev/views/index.swig',
+            'dev/views/templates/base.swig'
         ];
 
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
-            versionControl: 'Git',
-            cssOption: 'LESS',
-            useLesshat: true,
+            versionControl: 'SVN',
+            htmlOption: 'Swig',
+            cssOption: 'SCSS',
             ieSupport: true,
             responsive: true,
             useGA: true,
             useFTP: true,
             jshint: true,
-            extras: ['htaccess', 'useFontAwesome', 'useBorderBox', 'useDashboard']
+            extras: ['htaccess', 'useBootstrap', 'useFontAwesome', 'useDashboard']
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {

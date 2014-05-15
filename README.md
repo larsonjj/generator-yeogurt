@@ -18,6 +18,7 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to fron
 **Available Scaffolding Options:**
 
 - Project/Site naming
+- HTML Templating with [Jade](http://jade-lang.com/) or [Swig](http://paularmstrong.github.io/swig/)
 - CSS Preprocessing with [LESS](http://lesscss.org/) or [SCSS](http://sass-lang.com/) via [node-sass](https://github.com/andrew/node-sass)
 - Modular JavaScript with [RequireJS](http://requirejs.org/) or [Browserify](http://browserify.org/)
 - IE8+ Support via [HTML5shiv](https://github.com/aFarkas/html5shiv) and [RespondJS](https://github.com/scottjehl/Respond)
@@ -25,20 +26,20 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to fron
 - Feature detection with [Modernizr](http://modernizr.com/)
 - Default ignores for [Git](http://git-scm.com/) or [SVN](http://subversion.apache.org/)
 - Build deployment to FTP server
-- Dynamic Dashboard - auto-generated dashboard for your site
+- Dynamic Dashboard - auto-generated dashboard for your site with [grunt-dashboard](https://github.com/larsonjj/grunt-dashboard)
 
 **Included by default:**
 
 - Template inspiration from [HTML5 Boilerplate](http://html5boilerplate.com/)
-- [Jade](http://jade-lang.com/) markup templating
 - Built in preview server with LiveReload
 - [.editorconfig](http://editorconfig.org/) for consistent coding styles within text editors
 - JavaScript unit testing with [Jasmine](http://jasmine.github.io/) and [Karma](http://karma-runner.github.io/0.10/index.html)
-- Automatic build process that includes concatenation, image optimization, CSS and HTML minification, and JS uglification.
+- Automatic build process that includes concatenation, image optimization, CSS/HTML minification, and JS uglification.
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and either SCSS or LESS
 - If using regular CSS, [grunt-uncss](https://github.com/addyosmani/grunt-uncss) is used to cleanup unused styles and boost performance.
 
 ## Grunt Tasks
+
 - `grunt serve`<br>
 Starts up a development server that watches for local file changes and automatically reloads them to the browser.
 
@@ -94,7 +95,7 @@ yo yeogurt:script myscript
 ```
 
 ### Style
-If using SASS or LESS, this creates a stylesheet file within the `dev/styles/partials` folder by default. Otherwise, the stylesheet will be created within `dev/styles` folder. You can also specify a folder using the `--folder` option.
+If using SASS or LESS, this creates a stylesheet file within the `dev/styles/partials` folder by default. Otherwise, the stylesheet will be created within `dev/styles` folder. You can also specify a folder using the `--folder` option which is relative to the `dev/styles` folder.
 
 Example:
 ```bash
@@ -105,11 +106,33 @@ yo yeogurt:style mystyle
 yo yeogurt:style mystyle --folder=base
 ```
 
+## SVN usage
+If using SVN for version control, you will want to runt the generated shell script with the following command: `sh svn-init.sh`
+This Shell script will take all files/folders outlined within the `.svnignore` file and add them to the svn:ignore property of your repository.
+This will make sure that the files in the `.svnignore` file will not be added to your SVN repository.
+
+## FTP Deployment
+If you answer `Yes` to the `Will you be deploying code to an FTP server?` question in the generator, you will need to make sure that you fill out the generated .ftppass file.
+This file looks like this:
+```bash
+{
+    "host": "",
+    "serverPath": "/html",
+    "key1": {
+        "username": "jdoe",
+        "password": "jdoe1"
+      }
+}
+```
+
+Be sure to fill out the pertinent FTP information and test to see if it is working by running `grunt deploy`.
+For more info on setting up the .ftppass file, refer to the [grunt-ftpush](https://github.com/inossidabile/grunt-ftpush) documentation
+
 ## Dynamic Dashboard
 The dashboard has been completely overhauled from v0.4.x and moved into it's own plugin: `grunt-dashboard`.
 Please refer to the plugin [documentation](https://github.com/larsonjj/grunt-dashboard) for example usage.
 
-For documentation on old v0.4.x dashboard, please refer to [here](https://github.com/larsonjj/generator-yeogurt/tree/master/docs/old-dashboard.md)
+For documentation on the old v0.4.x dashboard, please refer to [here](https://github.com/larsonjj/generator-yeogurt/tree/master/docs/old-dashboard.md)
 
 ## Contributing to this project
 

@@ -37,7 +37,10 @@ describe('yeogurt generator LESS', function () {
             'dev/styles/vendor/_font-awesome.less',
             'dev/styles/vendor/_bootstrap.less',
             'dev/styles/print.less',
-            'dev/styles/main.less'
+            'dev/styles/main.less',
+            'grunt/',
+            'grunt/config',
+            'grunt/config/less.js'
         ];
 
         helpers.mockPrompt(this.app, {

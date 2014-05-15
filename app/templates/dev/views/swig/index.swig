@@ -5,8 +5,8 @@
         "label": "Home",
         "link": "../index.html"
     }
-    [/dash] #}<% } %>
-{# Homepage Markup #}
+    [/dash] #}
+<% } %>{# Homepage Markup #}
 {% extends './templates/base.swig' %}
 
 {# use the 'block body' if you need to set a page-level class on the <body> tag #}

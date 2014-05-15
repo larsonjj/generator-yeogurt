@@ -63,7 +63,14 @@ module.exports = function(grunt) {
                     'dashboard/**/*.*',<% } %>
                     'bower_components/jquery/jquery.min.*'
                 ]
-            }, {
+            },<% if (htmlOption === 'None (Vanilla HTML)') { %> {
+                expand: true,
+                cwd: '<%%= yeogurt.dev %>/views/',
+                dest: '<%%= yeogurt.dist %>/',
+                src: [
+                    '*.html'
+                ]
+            }, <% } %>{
                 expand: true,
                 cwd: '<%%= yeogurt.dev %>/scripts',
                 dest: '<%%= yeogurt.dist %>/scripts',

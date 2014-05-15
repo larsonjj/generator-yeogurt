@@ -1,3 +1,12 @@
+### v0.6.0:
+#### date: 2014-05-14
+##### changes:
+* Added Ability to use Swig templates as well as Vanilla HTML rather than just Jade
+* Modularized all grunt configuration and tasks in a new `grunt/` folder
+* Updated view subgenerator to create Swig and HTML files in addition to Jade
+* Updated NPM dependencies
+* Added new unit tests to cover latest changes
+
 ### v0.5.0:
 #### date: 2014-05-07
 ##### changes:

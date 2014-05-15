@@ -8,8 +8,8 @@
     [/dash] #}
 {# [dash:swig]
     {{ footer.content() }}
-    [/dash] #}<% } %>
-{#
+    [/dash] #}
+<% } %>{#
     Footer Mixin
     Define markup that makes up footer component
 #}

@@ -66,7 +66,9 @@
         {% else %}
         <body>
         {% endif %}
-    {% endblock %}{% block content %}
+    {% endblock %}
+
+    {% block content %}{% endblock %}
 
         <% if (useGA) { %><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
@@ -106,6 +108,5 @@
         <!-- build:js(dev) scripts/app.js -->
         <script src="scripts/app.js"></script>
         <!-- endbuild --><% } %>
-    {% endblock %}
     </body>
 </html>

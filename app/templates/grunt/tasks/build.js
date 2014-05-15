@@ -7,26 +7,16 @@
 module.exports = function(grunt) {
     grunt.registerTask('build', 'Build a production ready version of your site.', [
         'clean:dist',
-        'copy:dist',<% if (jsOption === 'Browserify') { %>
-        'browserify:dist',
+        'copy:dist',
+        'concurrent:optimise',<% if (jsOption === 'Browserify') { %>
         'exorcise:dist',<% } %>
-        'newer:imagemin',
-        'svgmin',<% if (htmlOption === 'Jade') { %>
-        'jade:dist',<% } else if(htmlOption === 'Swig') {  %>
-        'swig:dist',<% } %><% if (useDashboard) { %>
-        'dashboard:dist',<% } %>
-        'useminPrepare',<% if (cssOption === 'LESS') { %>
-        'less:dist',<% if (ieSupport) { %>
-        'less:distPrint',<% } %><% } %><% if (cssOption === 'SCSS') { %>
-        'sass:dist',<% if (ieSupport) { %>
-        'sass:distPrint',<% } %><% } %><% if (jsOption === 'RequireJS') { %>
-        'requirejs',<% } %>
+        'useminPrepare',
         'concat:generated',<% if (cssOption === 'None (Vanilla CSS)') { %>
         'cssmin:generated',<% } %>
         'usemin',
         'htmlmin:dist',<% if (cssOption === 'None (Vanilla CSS)') { %>
         'uncss',<% } %>
-        'uglify',
+        'concurrent:uglify',
         'clean:temp'
     ]);
 };

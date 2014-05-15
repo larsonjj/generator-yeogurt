@@ -211,6 +211,7 @@ YeogurtGenerator.prototype.tasks = function tasks() {
     this.template('grunt/config/clean.js', 'grunt/config/clean.js');
     this.template('grunt/config/compress.js', 'grunt/config/compress.js');
     this.template('grunt/config/connect.js', 'grunt/config/connect.js');
+    this.template('grunt/config/concurrent.js', 'grunt/config/concurrent.js');
     this.template('grunt/config/copy.js', 'grunt/config/copy.js');
     this.template('grunt/config/concat.js', 'grunt/config/concat.js');
     if (this.useDashboard) {
@@ -263,10 +264,10 @@ YeogurtGenerator.prototype.tasks = function tasks() {
 YeogurtGenerator.prototype.views = function views() {
     // dev/views
     this.mkdir('dev/views');
-    this.mkdir('dev/views/templates');
-    this.mkdir('dev/views/components');
 
     if (this.htmlOption === 'Jade') {
+        this.mkdir('dev/views/templates');
+        this.mkdir('dev/views/components');
         this.template('dev/views/jade/components/header.jade', 'dev/views/components/header.jade');
         this.template('dev/views/jade/components/footer.jade', 'dev/views/components/footer.jade');
         this.template('dev/views/jade/components/heading.jade', 'dev/views/components/heading.jade');
@@ -274,6 +275,8 @@ YeogurtGenerator.prototype.views = function views() {
         this.template('dev/views/jade/templates/base.jade', 'dev/views/templates/base.jade');
     }
     else if (this.htmlOption === 'Swig') {
+        this.mkdir('dev/views/templates');
+        this.mkdir('dev/views/components');
         this.template('dev/views/swig/components/header.swig', 'dev/views/components/header.swig');
         this.template('dev/views/swig/components/footer.swig', 'dev/views/components/footer.swig');
         this.template('dev/views/swig/components/heading.swig', 'dev/views/components/heading.swig');

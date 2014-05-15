@@ -13,8 +13,8 @@
     {{ heading.content({type:'h4', text:'H4 Header'}) }}
     {{ heading.content({type:'h5', text:'H5 Header'}) }}
     {{ heading.content({type:'h6', text:'H6 Header'}) }}
-    [/dash] #}<% } %>
-{#
+    [/dash] #}
+<% } %>{#
     Heading Element
     Defines mixin for creating header tags (h1, h2, h3, etc)
 #}

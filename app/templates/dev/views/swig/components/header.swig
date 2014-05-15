@@ -8,8 +8,8 @@
     [/dash] #}
 {# [dash:swig]
     {{ header.content() }}
-    [/dash] #}<% } %>
-{#
+    [/dash] #}
+<% } %>{#
     Header Mixin
     Define markup that makes up header component
 #}
