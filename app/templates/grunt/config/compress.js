@@ -15,7 +15,7 @@ module.exports = function(grunt) {
             },
             expand: true,
             cwd: '<%%= yeogurt.dist %>/',
-            src: ['*/**', '!**/*.zip', '!**/*.psd', '!**/.git', '!**/.svn']
+            src: ['**/*', '!*/**.zip', '!*/**.psd', '!**/.git', '!**/.svn']
         }
     });
 
