@@ -17,6 +17,7 @@ module.exports = function(grunt) {
         'htmlmin:dist',<% if (cssOption === 'None (Vanilla CSS)') { %>
         'uncss',<% } %>
         'concurrent:uglify',
+        'uglify:generated',
         'clean:temp'
     ]);
 };

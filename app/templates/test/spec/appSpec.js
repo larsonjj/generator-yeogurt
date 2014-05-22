@@ -4,7 +4,8 @@
 
 <% if (jsOption === 'RequireJS') { %>'use strict';
 
-define(['app'], function(app) {
+define(function(require) {
+    var app = require('app');
 
     describe('just checking', function() {
 
@@ -12,8 +13,8 @@ define(['app'], function(app) {
             var msg = 'Welcome to yeogurt!';
 
             var message = app.init(msg);
-
-            expect(message).toMatch(/Welcome/);
+            <% if (testFramework === 'Jasmine') { %>
+            expect(message).toMatch(/initialized/);<% } else if (testFramework === 'Mocha + Chai') { %>expect(message).to.match(/initialized/);<% } %>
         });
 
     });
@@ -30,7 +31,8 @@ describe('just checking', function() {
 
         var message = app.init(msg);
 
-        expect(message).toMatch(/Welcome/);
+        <% if (testFramework === 'Jasmine') { %>
+        expect(message).toMatch(/initialized/);<% } else if (testFramework === 'Mocha + Chai') { %>expect(message).to.match(/initialized/);<% } %>
     });
 
 });
@@ -43,7 +45,8 @@ describe('just checking', function() {
 
         var message = app.init(msg);
 
-        expect(message).toMatch(/Welcome/);
+        <% if (testFramework === 'Jasmine') { %>
+        expect(message).toMatch(/initialized/);<% } else if (testFramework === 'Mocha + Chai') { %>expect(message).to.match(/initialized/);<% } %>
     });
 
 });

@@ -25,24 +25,24 @@ StyleGenerator.prototype.files = function files() {
     }
     if (this.folder) {
         if (this.cssOption === 'LESS') {
-            this.template('style.less', 'dev/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.less');
+            this.template('style.less', 'dev/styles/' + this.folder + '/' + '_' + this._.camelize(this.name) + '.less');
         }
         else if (this.cssOption === 'SCSS') {
-            this.template('style.less', 'dev/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
+            this.template('style.less', 'dev/styles/' + this.folder + '/' + '_' + this._.camelize(this.name) + '.scss');
         }
         else {
-            this.template('style.less', 'dev/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.css');
+            this.template('style.less', 'dev/styles/' + this.folder + '/' + '_' + this._.camelize(this.name) + '.css');
         }
     }
     else {
         if (this.cssOption === 'LESS') {
-            this.template('style.less', 'dev/styles/partials/' + '_' + this._.slugify(this.name.toLowerCase()) + '.less');
+            this.template('style.less', 'dev/styles/partials/' + '_' + this._.camelize(this.name) + '.less');
         }
         else if (this.cssOption === 'SCSS') {
-            this.template('style.less', 'dev/styles/partials/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
+            this.template('style.less', 'dev/styles/partials/' + '_' + this._.camelize(this.name) + '.scss');
         }
         else {
-            this.template('style.less', 'dev/styles/' + this._.slugify(this.name.toLowerCase()) + '.css');
+            this.template('style.less', 'dev/styles/' + this._.camelize(this.name) + '.css');
         }
     }
 };

@@ -13,14 +13,14 @@ module.exports = function(grunt) {
                 cwd: '<%%= yeogurt.dev %>/',
                 dest: '<%%= yeogurt.server %>/',
                 src: [
-                    'scripts/{,*/}{,*/}*.js'<% if (useDashboard) { %>,
+                    'scripts/{,*/}{,*/}*.<% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>{js,jsx}<% } else { %>js<% } %>'<% if (useDashboard) { %>,
                     'dashboard/**/*.*'<% } %><% if (jsOption === 'Browserify') { %>,
                     '!scripts/app.js',
                     '!scripts/main.js'<% } %>
                 ]
-            },<% if (htmlOption === 'None (Vanilla HTML)') { %> {
+            },<% if (htmlOption === 'None (Vanilla HTML)' || (/Backbone/i).test(jsFramework)) { %> {
                 expand: true,
-                cwd: '<%%= yeogurt.dev %>/views/',
+                cwd: '<%%= yeogurt.dev %>/',
                 dest: '<%%= yeogurt.server %>/',
                 src: [
                     '*.html'
@@ -63,9 +63,9 @@ module.exports = function(grunt) {
                     'dashboard/**/*.*',<% } %>
                     'bower_components/jquery/jquery.min.*'
                 ]
-            },<% if (htmlOption === 'None (Vanilla HTML)') { %> {
+            },<% if (htmlOption === 'None (Vanilla HTML)' || (/Backbone/i).test(jsFramework)) { %> {
                 expand: true,
-                cwd: '<%%= yeogurt.dev %>/views/',
+                cwd: '<%%= yeogurt.dev %>/',
                 dest: '<%%= yeogurt.dist %>/',
                 src: [
                     '*.html'

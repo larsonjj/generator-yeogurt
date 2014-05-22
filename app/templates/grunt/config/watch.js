@@ -32,7 +32,7 @@ module.exports = function(grunt) {
                 <% if (useDashboard) { %>'dashboard:server',<% } %>
                 'clean:temp'
             ]
-        },<% } else if (htmlOption === 'None (Vanilla HTML)') { %>html: {
+        },<% } else if (htmlOption === 'None (Vanilla HTML)' || (/Backbone/i).test(jsFramework)) { %>html: {
             files: [
                 '<%%= yeogurt.dev %>/views/{,*/}{,*/}*.html'
             ],

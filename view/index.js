@@ -13,6 +13,9 @@ var ViewGenerator = module.exports = function ViewGenerator(args, options, confi
     this.view = this.options.type || 'page';
     this.useTemplate = this.options.template || false;
     this.useDashboard = fileJSON.extras.indexOf('useDashboard') > -1 ? true : false;
+    this.structure = fileJSON.structure;
+    this.projectName = fileJSON.projectName;
+    this.jsTemplate = fileJSON.jsTemplate;
     this.htmlOption = fileJSON.htmlOption;
     this.useBootstrap = fileJSON.extras.indexOf('useBootstrap') > -1 ? true : false;
     this.cssOption = fileJSON.cssOption;
@@ -33,47 +36,69 @@ var ViewGenerator = module.exports = function ViewGenerator(args, options, confi
 util.inherits(ViewGenerator, yeoman.generators.NamedBase);
 
 ViewGenerator.prototype.files = function files() {
-    if (this.useTemplate && this.view !== 'page') {
-        console.log('The template option will be ignored as the type is not "page"');
-    }
+    if (this.structure === 'Static Site') {
+        if (this.useTemplate && this.view !== 'page') {
+            console.log('The template option will be ignored as the type is not "page"');
+        }
 
-    if (this.htmlOption === 'Jade') {
-        if (this.view === 'page') {
-            this.template('view.jade', 'dev/views/' + this._.slugify(this.name.toLowerCase()) + '.jade');
+        if (this.htmlOption === 'Jade') {
+            if (this.view === 'page') {
+                this.template('view.jade', 'dev/views/' + this._.camelize(this.name) + '.jade');
+            }
+            else if (this.view === 'component' || this.view === 'template') {
+                this.template('view.jade', 'dev/views/' + this.view +'s/' + this._.camelize(this.name) + '.jade');
+            }
+            else if (!this.name) {
+                console.log('Name cannot be empty. Operation aborted.');
+            }
+            else {
+                console.log('Must use a supported type: page, template, component. Operation aborted');
+            }
         }
-        else if (this.view === 'component' || this.view === 'template') {
-            this.template('view.jade', 'dev/views/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.jade');
+        else if (this.htmlOption === 'Swig') {
+            if (this.view === 'page') {
+                this.template('view.swig', 'dev/views/' + this._.camelize(this.name) + '.swig');
+            }
+            else if (this.view === 'component' || this.view === 'template') {
+                this.template('view.swig', 'dev/views/' + this.view +'s/' + this._.camelize(this.name) + '.swig');
+            }
+            else if (!this.name) {
+                console.log('Name cannot be empty. Operation aborted.');
+            }
+            else {
+                console.log('Must use a supported type: page, template, component. Operation aborted');
+            }
         }
-        else if (!this.name) {
-            console.log('Name cannot be empty. Operation aborted.');
-        }
-        else {
-            console.log('Must use a supported type: page, template, component. Operation aborted');
+        else if (this.htmlOption === 'None (Vanilla HTML)') {
+            console.log(this.useDashboard);
+            if (this.view === 'page') {
+                this.template('view.html', 'dev/views/' + this._.camelize(this.name) + '.html');
+            }
+            else {
+                console.log('You have chosen to use Vanilla HTML, so only pages can be generated.');
+                console.log('Try the following to generate a page: yo yeogurt:view mypage');
+                console.log('Operation aborted');
+            }
         }
     }
-    else if (this.htmlOption === 'Swig') {
-        if (this.view === 'page') {
-            this.template('view.swig', 'dev/views/' + this._.slugify(this.name.toLowerCase()) + '.swig');
-        }
-        else if (this.view === 'component' || this.view === 'template') {
-            this.template('view.swig', 'dev/views/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.swig');
-        }
-        else if (!this.name) {
+    else if (this.structure === 'Single Page Application') {
+        if (!this.name) {
             console.log('Name cannot be empty. Operation aborted.');
+            return;
         }
-        else {
-            console.log('Must use a supported type: page, template, component. Operation aborted');
+        this.template('view.js', 'dev/scripts/views/' + this._.camelize(this.name) + '.js');
+        this.template('viewSpec.js', 'test/spec/views/' + this._.camelize(this.name) + 'Spec.js');
+        if (this.jsTemplate === 'Lo-dash (Underscore)') {
+            this.template('template.html', 'dev/scripts/templates/' + this._.camelize(this.name) + '.jst');
         }
-    }
-    else if (this.htmlOption === 'None (Vanilla HTML)') {
-        console.log(this.useDashboard);
-        if (this.view === 'page') {
-            this.template('view.html', 'dev/views/' + this._.slugify(this.name.toLowerCase()) + '.html');
+        else if (this.jsTemplate === 'Handlebars') {
+            this.template('template.html', 'dev/scripts/templates/' + this._.camelize(this.name) + '.hbs');
         }
-        else {
-            console.log('You have chosen to use Vanilla HTML, so only pages can be generated.');
-            console.log('Try the following to generate a page: yo yeogurt:view mypage');
-            console.log('Operation aborted');
+        else if (this.jsTemplate === 'Swig') {
+            this.template('template.html', 'dev/scripts/templates/' + this._.camelize(this.name) + '.swig');
+        }
+        else if (this.jsTemplate === 'Jade') {
+            this.template('template.html', 'dev/scripts/templates/' + this._.camelize(this.name) + '.jade');
         }
     }
 

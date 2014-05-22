@@ -8,26 +8,32 @@ module.exports = function(config) {
         basePath: '',
 
         // testing framework to use (jasmine/mocha/qunit/...)
-        frameworks: ['jasmine'<% if (jsOption === 'RequireJS') { %>,'requirejs'<% } else if (jsOption === 'Browserify') { %>,'browserify'<% } %>],
+        frameworks: [<% if (testFramework === 'Jasmine') { %>'jasmine'<% } else if (testFramework === 'Mocha + Chai') { %>'mocha', 'chai'<% } %><% if (jsOption === 'Browserify') { %>,'browserify'<% } %>],
 
         // list of files / patterns to load in the browser
         files: [
             // Add all vendor scripts here
-            'dev/bower_components/jquery/dist/jquery.js',<% if (jsOption === 'RequireJS') { %>
+            'dev/bower_components/jquery/dist/jquery.js',<% if ((/Backbone/i).test(jsFramework)) { %>
+            'dev/bower_components/underscore/underscore.js',
+            'dev/bower_components/backbone/backbone.js',<% } %><% if (jsTemplate === 'Handlebars') { %>
+            'dev/bower_components/handlebars/handlebars.runtime.js',<% } else if (jsTemplate === 'Jade') { %>'dev/bower_components/jade/runtime.js',<% } %><% if (jsFramework === 'Backbone') { %>
+            '.tmp/templates.js',<% } %><% if (jsOption === 'RequireJS') { %>
             {
                 pattern: 'dev/bower_components/**/*.js',
                 included: false
             }, {
-                pattern: 'dev/scripts/**/*.js',
+                pattern: 'dev/scripts/**/*.<% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>{js,jsx}<% } else { %>js<% } %>',
                 included: false
             }, {
                 pattern: 'test/**/*Spec.js',
                 included: false
             },
+            'node_modules/requirejs/require.js',
+            'node_modules/karma-requirejs/lib/adapter.js',
             'test/test-main.js',<% } else if (jsOption === 'Browserify') { %>
-            'test/spec/*.js'<% } else { %>
+            'test/**/*Spec.js'<% } else { %>
             'dev/scripts/*.js',
-            'test/spec/*.js'<% } %>
+            'test/**/*Spec.js'<% } %>
         ],
 
         // list of files to exclude
@@ -69,14 +75,15 @@ module.exports = function(config) {
         browserify: {
             // extensions: ['.coffee'],
             // ignore: [],
-            // transform: ['browserify-shim'],
+            // transform: ['browserify-shim'],<% if (jsFramework === 'Backbone + React') { %>
+            transform: [require('grunt-react').browserify],<% } %>
             // debug: true,
             // noParse: ['jquery'],
             watch: true,
         },
 
         // Add browserify to preprocessors
-        preprocessors: {'test/spec/*': ['browserify']},<% } %>
+        preprocessors: {'test/**/*Spec.js': ['browserify']},<% } %>
 
         // If browser does not capture in given timeout [ms], kill it
         captureTimeout: 60000,

@@ -7,6 +7,14 @@
 module.exports = function(grunt) {
 
     grunt.config.set('uglify', {
+        generated: {
+            options: {
+                mangle: true,
+                preserveComments: 'some',
+                sourceMap: true,
+                sourceMapIncludeSources: true
+            }
+        },
         dist: {
             options: {
                 mangle: true,
@@ -45,6 +53,16 @@ module.exports = function(grunt) {
             cwd: '<%%= yeogurt.dist %>/scripts/',
             dest: '<%%= yeogurt.dist %>/scripts/',
             src: ['main.js']
+        }<% } %><% if (structure === 'Single Page Application') { %>,
+        distTemplates: {
+            options: {
+                mangle: false,
+                preserveComments: 'some',
+            },
+            expand: true,
+            cwd: '<%%= yeogurt.dist %>/scripts/templates/',
+            dest: '<%%= yeogurt.dist %>/scripts/templates/',
+            src: ['templates.js']
         }<% } %>
     });
 

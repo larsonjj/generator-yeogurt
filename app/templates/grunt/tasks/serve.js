@@ -15,7 +15,10 @@ module.exports = function(grunt) {
             'copy:server',<% if (jshint) { %>
             'jshint:test',<% } %><% if (jsOption === 'Browserify') { %>
             'browserify:server',
-            'exorcise:server',<% } %><% if (htmlOption === 'Jade') { %>
+            'exorcise:server',<% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>
+            'jst:server',<% } else if (jsTemplate === 'Handlebars') { %>
+            'handlebars:server',<% } else if (jsTemplate === 'Jade') { %>
+            'jade:server',<% } %><% if (htmlOption === 'Jade') { %>
             'jade:server',<% } else if(htmlOption === 'Swig') {  %>
             'swig:server',<% } %><% if (useDashboard) { %>
             'dashboard:server',<% } %><% if (cssOption === 'LESS') { %>

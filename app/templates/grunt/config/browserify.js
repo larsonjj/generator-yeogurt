@@ -8,8 +8,9 @@ module.exports = function(grunt) {
 
     grunt.config.set('browserify', {
         server: {
-            options: {
-                bundleOptions: {
+            options: {<% if (jsFramework === 'Backbone + React') { %>
+                transform:  [ require('grunt-react').browserify ],
+                <% } %>bundleOptions: {
                     debug: true
                 }
             },
@@ -18,8 +19,9 @@ module.exports = function(grunt) {
             }
         },
         dist: {
-            options: {
-                bundleOptions: {
+            options: {<% if (jsFramework === 'Backbone + React') { %>
+                transform:  [ require('grunt-react').browserify ],
+                <% } %>bundleOptions: {
                     debug: true
                 }
             },

@@ -43,9 +43,51 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         choices: ['Git', 'SVN', 'None (I like to live on the edge)']
     }, {
         type: 'list',
+        name: 'structure',
+        message: 'What type of application will you be creating?',
+        choices: ['Static Site', 'Single Page Application']
+    }, {
+        when: function(props) { return (/Static Site/i).test(props.structure); },
+        type: 'list',
         name: 'htmlOption',
         message: 'Which HTML preprocessor would you like to use?',
         choices: ['Jade', 'Swig', 'None (Vanilla HTML)']
+    }, {
+        when: function(props) { return (/Single Page Application/i).test(props.structure); },
+        type: 'list',
+        name: 'jsFramework',
+        message: 'Which JavaScript Framework and/or Library would you like to use?',
+        choices: ['Backbone + React', 'Backbone']
+    }, {
+        when: function(props) {
+            if (props.jsFramework === 'Backbone + Marionette' || props.jsFramework === 'Backbone') {
+                return true;
+            }
+            else {
+                return false;
+            }
+        },
+        type: 'list',
+        name: 'jsTemplate',
+        message: 'Which JavaScript Templating Library would you like to use?',
+        choices: ['Lo-dash (Underscore)', 'Handlebars', 'Jade']
+    }, {
+        when: function(props) { return (/Single Page Application/i).test(props.structure);},
+        type: 'list',
+        name: 'jsOption',
+        message: 'Which JavaScript module library would you like to use?',
+        choices: ['RequireJS', 'Browserify']
+    }, {
+        when: function(props) { return (/Static Site/i).test(props.structure); },
+        type: 'list',
+        name: 'jsOption',
+        message: 'Which JavaScript module library would you like to use?',
+        choices: ['RequireJS', 'Browserify', 'None (Vanilla JavaScript)']
+    }, {
+        type: 'list',
+        name: 'testFramework',
+        message: 'Which testing framework would you like to use?',
+        choices: ['Jasmine', 'Mocha + Chai']
     }, {
         type: 'list',
         name: 'cssOption',
@@ -63,11 +105,6 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         name: 'useLesshat',
         message: 'Would you like to use the Lesshat Mixin Library?',
         default: true
-    }, {
-        type: 'list',
-        name: 'jsOption',
-        message: 'Which JavaScript module library would you like to use?',
-        choices: ['RequireJS', 'Browserify', 'None (Vanilla JavaScript)']
     }, {
         type: 'confirm',
         name: 'ieSupport',
@@ -128,8 +165,14 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.projectName = props.projectName;
         this.versionControl = props.versionControl;
         this.htmlOption = props.htmlOption;
+        this.structure = props.structure;
+        this.jsFramework = props.jsFramework;
+        this.jsTemplate = props.jsTemplate ? props.jsTemplate : 'React';
+        props.jsTemplate = props.jsTemplate ? props.jsTemplate : 'React';
+        this.testFramework = props.testFramework;
         this.cssOption = props.cssOption;
-        this.jsOption = props.jsOption;
+        this.jsOption = props.jsOption ? props.jsOption : 'Browserify';
+        props.jsOption = props.jsOption ? props.jsOption : 'Browserify';
         this.ieSupport = props.ieSupport;
         this.responsive = props.responsive;
         this.extras = props.extras;
@@ -222,7 +265,7 @@ YeogurtGenerator.prototype.tasks = function tasks() {
     }
     this.template('grunt/config/htmlmin.js', 'grunt/config/htmlmin.js');
     this.template('grunt/config/imagemin.js', 'grunt/config/imagemin.js');
-    if (this.htmlOption === 'Jade') {
+    if (this.htmlOption === 'Jade' || this.jsTemplate === 'Jade') {
         this.template('grunt/config/jade.js', 'grunt/config/jade.js');
     }
     else if (this.htmlOption === 'Swig') {
@@ -240,6 +283,12 @@ YeogurtGenerator.prototype.tasks = function tasks() {
     }
     if (this.cssOption === 'SCSS') {
         this.template('grunt/config/sass.js', 'grunt/config/sass.js');
+    }
+    if (this.jsTemplate === 'Lo-dash (Underscore)') {
+        this.template('grunt/config/jst.js', 'grunt/config/jst.js');
+    }
+    else if (this.jsTemplate === 'Handlebars') {
+        this.template('grunt/config/handlebars.js', 'grunt/config/handlebars.js');
     }
     this.template('grunt/config/svgmin.js', 'grunt/config/svgmin.js');
     this.template('grunt/config/uglify.js', 'grunt/config/uglify.js');
@@ -284,8 +333,13 @@ YeogurtGenerator.prototype.views = function views() {
         this.template('dev/views/swig/templates/base.swig', 'dev/views/templates/base.swig');
     }
     else if (this.htmlOption === 'None (Vanilla HTML)') {
-        this.template('dev/views/html/index.html', 'dev/views/index.html');
+        this.template('dev/views/html/index.html', 'dev/index.html');
     }
+
+    if (this.structure === 'Single Page Application') {
+        this.template('dev/views/html/index.html', 'dev/index.html');
+    }
+
 };
 
 YeogurtGenerator.prototype.scripts = function scripts() {
@@ -299,6 +353,32 @@ YeogurtGenerator.prototype.scripts = function scripts() {
     if (this.jsOption === 'Browserify' || this.jsOption === 'RequireJS') {
         this.template('dev/scripts/main.js', 'dev/scripts/main.js');
         this.template('dev/scripts/modules/module.js', 'dev/scripts/modules/module.js');
+    }
+
+    if (this.jsFramework === 'Backbone') {
+        this.mkdir('dev/scripts/routers');
+        this.mkdir('dev/scripts/templates');
+        this.mkdir('dev/scripts/views');
+
+        this.template('dev/scripts/backbone/routers/root.js', 'dev/scripts/routers/root.js');
+        if (this.jsTemplate === 'Lo-dash (Underscore)') {
+            this.template('dev/scripts/backbone/templates/root.html', 'dev/scripts/templates/root.jst');
+        }
+        else if (this.jsTemplate === 'Handlebars') {
+            this.template('dev/scripts/backbone/templates/root.html', 'dev/scripts/templates/root.hbs');
+        }
+        else if (this.jsTemplate === 'Jade') {
+            this.template('dev/scripts/backbone/templates/root.html', 'dev/scripts/templates/root.jade');
+        }
+
+        this.template('dev/scripts/backbone/views/root.js', 'dev/scripts/views/root.js');
+    }
+    else if (this.jsFramework === 'Backbone + React') {
+        this.mkdir('dev/scripts/routers');
+        this.mkdir('dev/scripts/components');
+
+        this.template('dev/scripts/backbone/routers/root.js', 'dev/scripts/routers/root.js');
+        this.template('dev/scripts/react/root.jsx', 'dev/scripts/components/root.jsx');
     }
 };
 
@@ -403,7 +483,7 @@ YeogurtGenerator.prototype.testing = function testing() {
 YeogurtGenerator.prototype.projectfiles = function projectfiles() {
     this.copy('editorconfig', '.editorconfig');
     if (this.jshint) {
-        this.copy('jshintrc', '.jshintrc');
+        this.template('jshintrc', '.jshintrc');
     }
 };
 

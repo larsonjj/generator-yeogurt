@@ -10,12 +10,11 @@ module.exports = function(grunt) {
         options: {
             port: 9010,
             livereload: 35729,
-            // change this to '0.0.0.0' to access the server from outside
-            hostname: '0.0.0.0'
+            hostname: '127.0.0.1'
         },
         livereload: {
             options: {
-                open: 'http://0.0.0.0:9010/.server/index.html',
+                open: 'http://127.0.0.1:9010/.server/index.html',
                 base: '<%%= yeogurt.dev %>'
             }
         },
@@ -30,7 +29,7 @@ module.exports = function(grunt) {
         },
         dist: {
             options: {
-                open: 'http://0.0.0.0:9010/index.html',
+                open: 'http://127.0.0.1:9010/index.html',
                 base: '<%%= yeogurt.dist %>',
                 livereload: false
             }

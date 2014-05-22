@@ -42,11 +42,12 @@ ScriptGenerator.prototype.files = function files() {
         return;
     }
     if (this.jsOption !== 'None (Vanilla JavaScript)') {
-        this.template('script.js', 'dev/scripts/modules/' + this._.slugify(this.name.toLowerCase()) + '.js');
+        this.template('script.js', 'dev/scripts/modules/' + this._.camelize(this.name) + '.js');
+        this.template('scriptSpec.js', 'test/spec/modules/' + this._.camelize(this.name) + 'Spec.js');
     }
     else {
-        this.template('script.js', 'dev/scripts/' + this._.slugify(this.name.toLowerCase()) + '.js');
+        this.template('script.js', 'dev/scripts/' + this._.camelize(this.name) + '.js');
+        this.template('scriptSpec.js', 'test/spec/' + this._.camelize(this.name) + 'Spec.js');
     }
 
-    this.template('scriptSpec.js', 'test/spec/' + this._.slugify(this.name.toLowerCase()) + 'Spec.js');
 };

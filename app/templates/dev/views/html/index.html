@@ -59,13 +59,14 @@
         <![endif]--><% } %>
     </head>
     <body>
+        <% if (structure === 'Static Site') { %>
         <h1 class="heading">
             Test Heading
         </h1>
 
         <p>
             Example page
-        </p>
+        </p><% } %>
 
         <% if (useGA) { %><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
@@ -78,7 +79,11 @@
         </script><% } %>
 
         <!-- build:js(dev) scripts/vendor.js -->
-        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/jquery/dist/jquery.js"></script><% if ((/Backbone/i).test(jsFramework)) { %>
+        <script src="bower_components/lodash/dist/lodash.underscore.js"></script>
+        <script src="bower_components/backbone/backbone.js"></script><% } %><% if ((/Handlebars/i).test(jsTemplate)) { %>
+        <script src="bower_components/handlebars/handlebars.runtime.js"></script>
+        <% } else if ((/Jade/i).test(jsTemplate)) { %><script src="bower_components/jade/runtime.js"></script><% } %>
         <% if (useBootstrap) { %><script src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>affix.js"></script>
         <script src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>alert.js"></script>
         <script src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>button.js"></script>
@@ -92,6 +97,8 @@
         <script src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>popover.js"></script>
         <script src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>transition.js"></script>
         <% } %><!-- endbuild -->
+        <% if (structure === 'Single Page Application' && jsFramework !== 'Backbone + React') { %>
+        <script src="scripts/templates/templates.js"></script><% } %>
 
         <% if (jsOption ==='RequireJS') { %><script data-main="scripts/main", src="bower_components/requirejs/require.js"></script><% } else if (jsOption ==='Browserify') { %>
         <script src="scripts/main.js"></script><% } else { %>

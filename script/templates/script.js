@@ -1,9 +1,7 @@
 /*
-*   <%= _.slugify(name.toLowerCase()) %>.js
+*   <%= _.camelize(name) %>.js
 */
-<% if (jsOption ==='RequireJS') { %>define([
-    // module dependencies
-], function () {
+<% if (jsOption ==='RequireJS') { %>define(function(require) {
 
     'use strict';
 
@@ -13,7 +11,7 @@
 
         $ele.append('<%= name %> loaded! - Message: ' + msg);
         console.log($ele.text());
-        return $ele.text();
+        return $ele.text() + 'initialized';
     };
 
     // Public API
@@ -32,7 +30,7 @@ var <%= camelCase(name) %> = {
 
         $ele.append('<%= name %> loaded! - Message: ' + msg);
         console.log($ele.text());
-        return $ele.text();
+        return $ele.text() + 'initialized';
     }
 };
 
@@ -43,7 +41,7 @@ var <%= camelCase(name) %> = {
 
         $ele.append('<%= name %> loaded! - Message: ' + msg);
         console.log($ele.text());
-        return $ele.text();
+        return $ele.text() + 'initialized';
     }
 };
 <% } %>

@@ -15,7 +15,10 @@ module.exports = function(grunt) {
                 out: '<%%= yeogurt.dist %>/scripts/main.js',
                 optimize: 'uglify2',
                 generateSourceMaps: true,
-                preserveLicenseComments: false,
+                preserveLicenseComments: false<% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>,
+                onBuildWrite: function (moduleName, path, singleContents) {
+                  return singleContents.replace(/jsx!/g, '');
+                }<% } %>
             }
         }
     });

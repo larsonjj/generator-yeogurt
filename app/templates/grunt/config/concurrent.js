@@ -15,7 +15,10 @@ module.exports = function(grunt) {
             'less:dist',<% if (ieSupport) { %>
             'less:distPrint',<% } %><% } %><% if (cssOption === 'SCSS') { %>
             'sass:dist',<% if (ieSupport) { %>
-            'sass:distPrint',<% } %><% } %><% if (useDashboard) { %>
+            'sass:distPrint',<% } %><% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>
+            'jst:dist',<% } else if (jsTemplate === 'Handlebars') { %>
+            'handlebars:dist',<% } else if (jsTemplate === 'Jade') { %>
+            'jade:dist',<% } %><% if (useDashboard) { %>
             'dashboard:dist',<% } %><% if (jsOption === 'RequireJS') { %>
             'requirejs'<% } %><% if (jsOption === 'Browserify') { %>
             'browserify:dist'<% } %>

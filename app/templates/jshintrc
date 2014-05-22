@@ -19,7 +19,7 @@
     "newcap"        : true,     // Require capitalization of all constructor functions e.g. `new F()`.
     "noarg"         : true,     // Prohibit use of `arguments.caller` and `arguments.callee`.
     "noempty"       : true,     // Prohibit use of empty blocks.
-    "nonew"         : true,     // Prohibit use of constructors for side-effects.
+    "nonew"         : false,    // Prohibit use of constructors for side-effects.
     "plusplus"      : false,    // Prohibit use of `++` & `--`.
     "regexp"        : true,     // Prohibit `.` and `[^...]` in regular expressions.
     "undef"         : true,     // Require all non-global variables be declared before they are used.
@@ -92,7 +92,12 @@
     "maxerr"        : 100,      // Maximum errors before stopping.
     "predef"        : [         // Extra globals.
         "require",
-        "module",
+        "module",<% if ((/Backbone/i).test(jsFramework)) { %>
+        "Backbone",
+        "<%= _.classify(projectName) %>",
+        "_",<% } %><% if ((/Underscore/i).test(jsTemplate) || (/Handlebars/i).test(jsTemplate) || (/Jade/i).test(jsTemplate) || (/React/i).test(jsFramework)) { %>
+        "JST",<% } %><% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>
+        "React",<% } %>
         "define",
         "afterEach",
         "beforeEach",
