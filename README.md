@@ -8,10 +8,13 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to fron
 ## Getting Started
 
 - First off, You will need to have [Node.js](http://nodejs.org/) `>= 0.10` installed. <br>
+- You will need to install Grunt CLI globally: `npm install -g grunt`
 - You will also need [Git](http://git-scm.com/) `>= 1.8.2` installed if you don't already. <br>
 - Be sure to install yeoman of course! `npm install -g yo` <br>
 - Install the generator: `npm install -g generator-yeogurt` <br>
 - Run the generator: `yo yeogurt`
+
+Note For Mac Users: If you haven't already, you will need to install and accept the licensing agreement for XCode: `sudo xcodebuild -license`
 
 ## Features
 
