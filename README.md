@@ -14,7 +14,7 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to fron
 - Install the generator: `npm install -g generator-yeogurt` <br>
 - Run the generator: `yo yeogurt`
 
-Note: If you haven't already, you will need to install and accept the licensing agreement for XCode: `sudo xcodebuild -license`
+Note For Mac Users: If you haven't already, you will need to install and accept the licensing agreement for XCode: `sudo xcodebuild -license`
 
 ## Features
 
