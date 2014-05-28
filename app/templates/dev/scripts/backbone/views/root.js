@@ -1,5 +1,5 @@
-/*
-*   root.js
+/**
+*   Root View Description
 */
 <% if (jsOption === 'RequireJS') { %>define(function (require) {
     'use strict';
@@ -39,7 +39,7 @@ var RootView = Backbone.View.extend({
     // the App already present in the HTML.
     el: 'body',
 
-    // Compile our stats template
+    // Load up JST template
     template: JST['dev/scripts/templates/root<% if (jsTemplate === 'Lo-dash (Underscore)') { %>.jst<% } else if (jsTemplate === 'Handlebars') { %>.hbs<% } else if (jsTemplate === 'Jade') { %><% } %>'],
 
     // Delegated events

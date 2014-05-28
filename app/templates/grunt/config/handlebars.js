@@ -1,5 +1,4 @@
 /**
- * handlebars.js
  * Configuration for handlebars task(s)
  */
 'use strict';

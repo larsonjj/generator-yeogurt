@@ -1,11 +1,11 @@
-/*
-*   <%= _.camelize(name) %>Spec.js
+/**
+*   <%= _.classify(name) %> Spec Description
 */
-<% if (jsOption === 'RequireJS') { %>'use strict';
 
-define(function(require) {
+<% if (jsOption === 'RequireJS') { %>define(function(require) {
+    'use strict';
 
-    var <%= _.camelize(name) %> = require('routers/<%= _.camelize(name) %>Spec');
+    var <%= _.camelize(name) %> = require('routers/<%= _.camelize(name) %>-spec');
 
     describe('<%= _.classify(name) %> Router', function () {
 
@@ -21,7 +21,7 @@ define(function(require) {
 
 });<% } else if (jsOption === 'Browserify') { %>'use strict';
 
-var <%= _.camelize(name) %> = require('../../dev/scripts/routers/<%= _.camelize(name) %>Spec.js');
+var <%= _.camelize(name) %> = require('../../dev/scripts/routers/<%= _.camelize(name) %>-spec.js');
 
 describe('just checking', function() {
 

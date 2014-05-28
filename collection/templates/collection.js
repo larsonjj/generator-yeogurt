@@ -1,7 +1,8 @@
-<% if (jsOption === 'RequireJS') { %>/*
-*   <%= _.camelize(name) %>.js
+/**
+*   <%= _.classify(name) %> Collection Description
 */
-define(function (require) {
+
+<% if (jsOption === 'RequireJS') { %>define(function (require) {
     'use strict';
 
     var <%= _.camelize('-' + name.toLowerCase()) %>Model = require('models/<%= _.camelize('-' + name.toLowerCase()) %>Model');
@@ -13,10 +14,7 @@ define(function (require) {
     });
 
     return <%= _.camelize('-' + name.toLowerCase()) %>Collection;
-});<% } else if (jsOption === 'Browserify') { %>/*
-*   <%= _.camelize(name) %>.js
-*/
-'use strict';
+});<% } else if (jsOption === 'Browserify') { %>'use strict';
 
 var <%= _.camelize('-' + name.toLowerCase()) %>Model = require('models/<%= _.camelize('-' + name.toLowerCase()) %>Model');
 

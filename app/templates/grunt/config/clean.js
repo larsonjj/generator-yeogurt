@@ -1,5 +1,4 @@
 /**
- * clean.js
  * Configuration for clean task(s)
  */
 'use strict';

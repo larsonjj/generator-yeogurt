@@ -100,8 +100,10 @@
         <script src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>transition.js"></script>
         <% } %><!-- endbuild -->
 
-        <% if  (jsOption ==='RequireJS') { %><script data-main="scripts/main", src="bower_components/requirejs/require.js"></script><% } else if (jsOption ==='Browserify') { %>
-        <script src="scripts/main.js"></script><% } else { %>{#
+        {#
+            Author Scripts
+        #}
+        <% if  (jsOption ==='RequireJS') { %><script data-main="scripts/main", src="bower_components/requirejs/require.js"></script><% } else if (jsOption ==='Browserify') { %><script src="scripts/main.js"></script><% } else { %>{#
             Place all author scripts within the 'build:js' comments below,
             so they will be optimised correctly during a 'grunt build' task
         #}

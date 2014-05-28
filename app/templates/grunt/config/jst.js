@@ -1,5 +1,4 @@
 /**
- * jst.js
  * Configuration for jst task(s)
  */
 'use strict';

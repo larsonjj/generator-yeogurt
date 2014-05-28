@@ -1,5 +1,4 @@
 /**
- * concat.js
  * Configuration for concat task(s)
  */
 'use strict';

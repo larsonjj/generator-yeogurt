@@ -1,5 +1,4 @@
 /**
- * connect.js
  * Configuration for connect task(s)
  */
 'use strict';

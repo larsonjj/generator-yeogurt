@@ -1,5 +1,4 @@
 /**
- * imagemin.js
  * Configuration for imagemin task(s)
  */
 'use strict';
@@ -11,7 +10,7 @@ module.exports = function(grunt) {
             files: [{
                 expand: true,
                 cwd: '<%%= yeogurt.dev %>/images',
-                src: '{,*/}{,*/}*.{png,jpg,jpeg,gif}',
+                src: '**/*.{png,jpg,jpeg,gif}',
                 dest: '<%%= yeogurt.dist %>/images'
             }]
         }

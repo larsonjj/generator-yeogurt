@@ -33,8 +33,7 @@
         <script src="bower_components/modernizr/modernizr.js"></script><% } %><% if (ieSupport) { %>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if IE 8]>
-        <% if (responsive) { %>
-        <script src="bower_components/respond/respond.min.js"></script><% } %>
+        <% if (responsive) { %><script src="bower_components/respond/respond.min.js"></script><% } %>
         <script src="bower_components/html5shiv/dist/html5shiv-printshiv.js"></script>
         <script>
             // Protect window.console method calls, e.g. console is not defined on IE
@@ -78,10 +77,15 @@
             ga('create','UA-XXXXX-X');ga('send','pageview');
         </script><% } %>
 
+        <!--
+            Place all vendor library/plugin/framework scripts within the 'build:js' comments below,
+            so they will be optimised correctly during a 'grunt build' task
+         -->
         <!-- build:js(dev) scripts/vendor.js -->
         <script src="bower_components/jquery/dist/jquery.js"></script><% if ((/Backbone/i).test(jsFramework)) { %>
         <script src="bower_components/lodash/dist/lodash.underscore.js"></script>
-        <script src="bower_components/backbone/backbone.js"></script><% } %><% if ((/Handlebars/i).test(jsTemplate)) { %>
+        <script src="bower_components/backbone/backbone.js"></script><% } %><% if (jsFramework === 'Backbone + React') { %>
+        <script src="bower_components/backbone-react-component/lib/component.js"></script><% } %><% if ((/Handlebars/i).test(jsTemplate)) { %>
         <script src="bower_components/handlebars/handlebars.runtime.js"></script>
         <% } else if ((/Jade/i).test(jsTemplate)) { %><script src="bower_components/jade/runtime.js"></script><% } %>
         <% if (useBootstrap) { %><script src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>affix.js"></script>
@@ -100,10 +104,10 @@
         <% if (structure === 'Single Page Application' && jsFramework !== 'Backbone + React') { %>
         <script src="scripts/templates/templates.js"></script><% } %>
 
-        <% if (jsOption ==='RequireJS') { %><script data-main="scripts/main", src="bower_components/requirejs/require.js"></script><% } else if (jsOption ==='Browserify') { %>
-        <script src="scripts/main.js"></script><% } else { %>
-        <!-- build:js(dev) scripts/app.js -->
+        <!-- Author scripts -->
+        <% if (jsOption ==='RequireJS') { %><script data-main="scripts/main", src="bower_components/requirejs/require.js"></script><% } else if (jsOption ==='Browserify') { %><script src="scripts/main.js"></script><% } else { %><!-- build:js(dev) scripts/app.js -->
         <script src="scripts/app.js"></script>
         <!-- endbuild --><% } %>
+
     </body>
 </html>

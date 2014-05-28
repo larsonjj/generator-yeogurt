@@ -1,5 +1,4 @@
 /**
- * swig.js
  * Configuration for swig task(s)
  */
 'use strict';

@@ -1,5 +1,4 @@
 /**
- * less.js
  * Configuration for LESS task(s)
  */
 'use strict';

@@ -1,5 +1,4 @@
 /**
- * requirejs.js
  * Configuration for Require task(s)
  */
 'use strict';

@@ -1,5 +1,4 @@
 /**
- * uglify.js
  * Configuration for uglify task(s)
  */
 'use strict';
@@ -41,23 +40,13 @@ module.exports = function(grunt) {
             expand: true,
             cwd: '<%%= yeogurt.dev %>/scripts/',
             dest: '<%%= yeogurt.dist %>/scripts/',
-            src: ['{,*/}{,*/}*.js', '!*.js'],
+            src: ['**/*.js', '!*.js'],
             ext: '.js'
-        }<% } %><% if (jsOption === 'Browserify') { %>,
-        distBrowserify: {
-            options: {
-                mangle: true,
-                preserveComments: 'some',
-            },
-            expand: true,
-            cwd: '<%%= yeogurt.dist %>/scripts/',
-            dest: '<%%= yeogurt.dist %>/scripts/',
-            src: ['main.js']
-        }<% } %><% if (structure === 'Single Page Application') { %>,
+        }<% } %><% if (structure === 'Single Page Application' && jsFramework !== 'Backbone + React') { %>,
         distTemplates: {
             options: {
                 mangle: false,
-                preserveComments: 'some',
+                preserveComments: 'some'
             },
             expand: true,
             cwd: '<%%= yeogurt.dist %>/scripts/templates/',

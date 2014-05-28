@@ -1,5 +1,5 @@
-/*
-*   print.css
+/**
+*   Print styles
 */
 
 <% if (!ieSupport) { %>

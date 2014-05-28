@@ -1,30 +1,27 @@
-/*
-*   <%= _.camelize(name) %>.js
+/**
+*   <%= _.classify(name) %> Script Description
 */
+
 <% if (jsOption ==='RequireJS') { %>define(function(require) {
 
     'use strict';
 
-    // private function
-    var init = function(msg) {
-        var $ele = $('<p></p>');
+    var <%= _.classify(name) %> = {
+        init: function(msg) {
+            var $ele = $('<p></p>');
 
-        $ele.append('<%= name %> loaded! - Message: ' + msg);
-        console.log($ele.text());
-        return $ele.text() + 'initialized';
+            $ele.append('<%= name %> loaded! - Message: ' + msg);
+            console.log($ele.text());
+            return $ele.text() + 'initialized';
+        }
     };
 
-    // Public API
-    return {
-        // run private initialize function
-        init: init
-    };
+    return <%= _.classify(name) %>;
 
 });
 <% } else if (jsOption ==='Browserify') { %>'use strict';
 
-// private function
-var <%= camelCase(name) %> = {
+var <%= _.classify(name) %> = {
     init: function(msg) {
         var $ele = $('<p></p>');
 
@@ -34,8 +31,8 @@ var <%= camelCase(name) %> = {
     }
 };
 
-module.exports = <%= name %>;<% } else { %>'use strict';
-var <%= camelCase(name) %> = {
+module.exports = <%= _.classify(name) %>;<% } else { %>'use strict';
+var <%= _.classify(name) %> = {
     init: function(msg) {
         var $ele = $('<p></p>');
 

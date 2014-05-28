@@ -12,25 +12,6 @@ var ScriptGenerator = module.exports = function ScriptGenerator(args, options, c
     this.useDashboard = this.options.dashboard || false;
     this.jsOption = fileJSON.jsOption;
 
-    // Will look for dashes (-) or periods (.) and the following letter.
-    // If any are found, it will remove them and replace the following letter with it's uppercase form.
-    // ex. two-test.tester => twoTestTester
-    this.camelCase = function camelCase(input) {
-        input = input.toLowerCase().replace(/-(.)/g, function(match, group1) {
-            if (group1) {
-                return group1.toUpperCase();
-            }
-        });
-
-        input = input.toLowerCase().replace(/\.(.)/g, function(match, group1) {
-            if (group1) {
-                return group1.toUpperCase();
-            }
-        });
-
-        return input;
-    };
-
     console.log('You called the script subgenerator with the argument ' + this.name + '.');
 };
 
@@ -43,11 +24,11 @@ ScriptGenerator.prototype.files = function files() {
     }
     if (this.jsOption !== 'None (Vanilla JavaScript)') {
         this.template('script.js', 'dev/scripts/modules/' + this._.camelize(this.name) + '.js');
-        this.template('scriptSpec.js', 'test/spec/modules/' + this._.camelize(this.name) + 'Spec.js');
+        this.template('script-spec.js', 'test/spec/modules/' + this._.camelize(this.name) + '-spec.js');
     }
     else {
         this.template('script.js', 'dev/scripts/' + this._.camelize(this.name) + '.js');
-        this.template('scriptSpec.js', 'test/spec/' + this._.camelize(this.name) + 'Spec.js');
+        this.template('script-spec.js', 'test/spec/' + this._.camelize(this.name) + '-spec.js');
     }
 
 };

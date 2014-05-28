@@ -1,13 +1,12 @@
-/*
-*   app.js
-*   This file is where all global/app specific javascript should go
+/**
+*   App Description
 */
-<% if (jsOption === 'RequireJS') { %>'use strict';
 
-define(function (require) {<% if ((/Backbone/i).test(jsFramework)) { %>
+<% if (jsOption === 'RequireJS') { %>define(function (require) {
+    'use strict';<% if ((/Backbone/i).test(jsFramework)) { %>
     var RootRouter = require('routers/root');<% } %>
     var someModule = require('./modules/module');
-    var App = {
+    var app = {
         init: function(msg) {
             someModule.init('Module loaded from app.js');
             console.log(msg);<% if ((/Backbone/i).test(jsFramework)) { %>
@@ -18,7 +17,7 @@ define(function (require) {<% if ((/Backbone/i).test(jsFramework)) { %>
             return 'app initialized';
         }
     };
-    return App;
+    return app;
 
 });<% } else if (jsOption === 'Browserify') { %>
 'use strict';
@@ -26,7 +25,7 @@ define(function (require) {<% if ((/Backbone/i).test(jsFramework)) { %>
 /* global $:true */<% if ((/Backbone/i).test(jsFramework)) { %>
 var RootRouter = require('./routers/root');<% } %>
 var someModule = require('./modules/module');
-var App = {
+var app = {
     init: function(msg) {
         someModule.init('Module called from app.js');
         console.log(msg);<% if ((/Backbone/i).test(jsFramework)) { %>
@@ -38,10 +37,10 @@ var App = {
     }
 };
 
-module.exports = App;<% } else if (jsOption === 'None (Vanilla JavaScript)') { %>
+module.exports = app;<% } else if (jsOption === 'None (Vanilla JavaScript)') { %>
 'use strict';
 
-var App = {
+var app = {
     init: function(msg) {
         console.log(msg);
         console.log('jQuery version: %s', $().jquery);
@@ -49,5 +48,5 @@ var App = {
     }
 };
 
-App.init('Welcome to Yeogurt!');
+app.init('Welcome to Yeogurt!');
 <% } %>

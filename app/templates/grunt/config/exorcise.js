@@ -1,5 +1,4 @@
 /**
- * exorcise.js
  * Configuration for extracting browserify sourcemap with exorcise task(s)
  */
 'use strict';

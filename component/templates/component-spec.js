@@ -1,15 +1,14 @@
-<% if (jsOption === 'RequireJS') { %>/** @jsx React.DOM */
+/** @jsx React.DOM */
 
 /* jshint -W024 */
 /* jshint expr:true */
 
-/*
-*   <%= _.camelize(name) %>Spec.js
+/**
+*   <%= _.classify(name) %> Spec Description
 */
 
-'use strict';
-
-define(function(require) {
+<% if (jsOption === 'RequireJS') { %>define(function(require) {
+    'use strict';
 
     var <%= _.classify(name) %> = require('jsx!components/<%= _.camelize(name) %>');
     var ReactTestUtils = require('react').addons.TestUtils;
@@ -32,16 +31,7 @@ define(function(require) {
         });
     });
 
-});<% } else if (jsOption === 'Browserify') { %>/** @jsx React.DOM */
-
-/* jshint -W024 */
-/* jshint expr:true */
-
-/*
-*   <%= _.camelize(name) %>Spec.js
-*/
-
-'use strict';
+});<% } else if (jsOption === 'Browserify') { %>'use strict';
 
 var <%= _.classify(name) %> = require('../../../dev/scripts/components/<%= _.camelize(name) %>.jsx');
 

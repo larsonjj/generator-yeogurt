@@ -23,6 +23,7 @@ describe('yeogurt generator defaults', function () {
         var expected = [
             // add files and folders you expect to exist here.
             '.yo-rc.json',
+            'README.md',
             'dev/',
             'dev/views',
             'dev/views/templates',

@@ -3,7 +3,7 @@
     {
         "status": "development",
         "category": "<%= view ? view : 'page' %>",
-        "label": "<%= toTitleCase(name) %>",
+        "label": "<%= _.titleize(name) %>",
         "link": "<% if (view === 'page') { %>../<%= _.slugify(name.toLowerCase()) %>.html<% } else { %>../views/<%= view %>s/<%= _.slugify(name.toLowerCase()) %>.html<% } %>"
     }
     [/dash] -->
@@ -16,7 +16,7 @@
     <head>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-        <title><%= toTitleCase(name) %></title>
+        <title><%= _.titleize(name) %></title>
         <meta name="description" content=""/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <% if (cssOption === 'None (Vanilla CSS)') { %><!-- build:css(dev) styles/main.css -->
@@ -60,7 +60,7 @@
     </head>
     <body>
         <h1 class="heading">
-            <%= toTitleCase(name) %>
+            <%= _.titleize(name) %>
         </h1>
 
         <p>

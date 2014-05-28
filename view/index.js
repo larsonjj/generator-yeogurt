@@ -87,7 +87,7 @@ ViewGenerator.prototype.files = function files() {
             return;
         }
         this.template('view.js', 'dev/scripts/views/' + this._.camelize(this.name) + '.js');
-        this.template('viewSpec.js', 'test/spec/views/' + this._.camelize(this.name) + 'Spec.js');
+        this.template('view-spec.js', 'test/spec/views/' + this._.camelize(this.name) + '-spec.js');
         if (this.jsTemplate === 'Lo-dash (Underscore)') {
             this.template('template.html', 'dev/scripts/templates/' + this._.camelize(this.name) + '.jst');
         }

@@ -1,5 +1,4 @@
 /**
- * sass.js
  * Configuration for SASS task(s)
  */
 'use strict';
@@ -10,10 +9,10 @@ module.exports = function(grunt) {
         server: {
             options: {
                 sourceComments: 'map',
-                outputStyle: 'compressed',
+                outputStyle: 'nested',
                 sourceMap: '<%%= yeogurt.server %>/styles/main.css.map',
                 includePaths: [
-                    '<%%= yeogurt.dev %>/styles/{,*/}*.scss'
+                    '<%%= yeogurt.dev %>/styles/**/*.scss'
                 ]
             },
             files: {
@@ -26,7 +25,7 @@ module.exports = function(grunt) {
                 outputStyle: 'compressed',
                 sourceMap: '<%%= yeogurt.server %>/styles/print.css.map',
                 includePaths: [
-                    '<%%= yeogurt.dev %>/styles/{,*/}*.scss'
+                    '<%%= yeogurt.dev %>/styles/**/*.scss'
                 ]
             },
             files: {
@@ -39,7 +38,7 @@ module.exports = function(grunt) {
                 outputStyle: 'compressed',
                 sourceMap: '<%%= yeogurt.dist %>/styles/main.css.map',
                 includePaths: [
-                    '<%%= yeogurt.dev %>/styles/{,*/}*.scss'
+                    '<%%= yeogurt.dev %>/styles/**/*.scss'
                 ]
             },
             files: {
@@ -52,7 +51,7 @@ module.exports = function(grunt) {
                 outputStyle: 'compressed',
                 sourceMap: '<%%= yeogurt.server %>/styles/print.css.map',
                 includePaths: [
-                    '<%%= yeogurt.dev %>/styles/{,*/}*.scss'
+                    '<%%= yeogurt.dev %>/styles/**/*.scss'
                 ]
             },
             files: {

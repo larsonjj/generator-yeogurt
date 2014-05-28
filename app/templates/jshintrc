@@ -91,7 +91,8 @@
 
     "maxerr"        : 100,      // Maximum errors before stopping.
     "predef"        : [         // Extra globals.
-        "require",
+        "require",<% if (jsOption === 'RequireJS') { %>
+        "requirejs",<% } %>
         "module",<% if ((/Backbone/i).test(jsFramework)) { %>
         "Backbone",
         "<%= _.classify(projectName) %>",

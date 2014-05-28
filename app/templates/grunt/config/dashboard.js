@@ -1,5 +1,4 @@
 /**
- * dashboard.js
  * Configuration for dashboard task(s)
  */
 'use strict';

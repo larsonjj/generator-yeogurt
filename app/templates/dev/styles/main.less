@@ -1,9 +1,8 @@
-/*
-*   main.<% if (cssOption === 'LESS') { %>less<% } else if (cssOption === 'SCSS') { %>scss<% } %>
-*   Import all desired LESS files here
+/**
+*   Import all desired <% if (cssOption === 'LESS') { %>less<% } else if (cssOption === 'SCSS') { %>scss<% } %> files here
 */
 
-// Base (variables, mixins, etc)<% if (useBorderBox) { %>
+// Import Base Files (variables, mixins, etc)<% if (useBorderBox) { %>
 @import 'base/_box-sizing';<% } %><% if (ieSupport) { %>
 @import 'base/_ie8';<% } %>
 @import 'base/_mixins';
@@ -11,7 +10,7 @@
 @import 'base/_variables';<% if (!ieSupport && !useBootstrap) { %>
 @import 'base/_print';<% } %>
 
-// Third-Party (Vendor)
+// Import Third-Party (Vendor) Files
 <% if (!useBootstrap) { %>
 @import 'vendor/_normalize';<% } %><% if (cssOption === 'SCSS') { %>
 <% if (useBootstrap) { %>@import 'vendor/_bootstrap';
@@ -20,6 +19,6 @@
 <% } %><% if (useLesshat) { %>@import 'vendor/_lesshat';<% } %><% } %><% if (useFontAwesome) { %>
 @import 'vendor/_font-awesome';<% } %>
 
-// Partials
+// Import Partials Files
 @import 'partials/_header';
 @import 'partials/_footer';

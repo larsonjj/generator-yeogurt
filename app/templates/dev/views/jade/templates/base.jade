@@ -87,8 +87,8 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang="en")
         script(src="bower_components/<% if (cssOption === 'SCSS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>transition.js")
         <% } %>// endbuild
 
-        <% if (jsOption ==='RequireJS') { %>script(data-main="scripts/main", src="bower_components/requirejs/require.js")<% } else if (jsOption ==='Browserify') { %>
-        script(src="scripts/main.js")<% } else { %>//- Place all author scripts within the 'build:js' comments below,
+        //- Author Scripts
+        <% if (jsOption ==='RequireJS') { %>script(data-main="scripts/main", src="bower_components/requirejs/require.js")<% } else if (jsOption ==='Browserify') { %>script(src="scripts/main.js")<% } else { %>//- Place all author scripts within the 'build:js' comments below,
             so they will be optimised correctly during a 'grunt build' task
         // build:js(dev) scripts/app.js
         script(src="scripts/app.js")

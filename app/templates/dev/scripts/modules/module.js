@@ -1,32 +1,26 @@
-/*
-*   module.js
-*   This is just an example file showing basic module creation
+/**
+*   Example Module Description
 */
-<% if (jsOption ==='RequireJS') { %>define([
-    // module dependencies
-], function () {
+
+<% if (jsOption ==='RequireJS') { %>define(function (require) {
 
     'use strict';
 
-    // private function
-    var init = function(msg) {
-        var $ele = $('<p></p>');
+    var module = {
+        init: function(msg) {
+            var $ele = $('<p></p>');
 
-        $ele.append('Module loaded! - Message: ' + msg);
-        console.log($ele.text());
-        return $ele.text();
+            $ele.append('Module loaded! - Message: ' + msg);
+            console.log($ele.text());
+            return $ele.text();
+        }
     };
 
-    // Public API
-    return {
-        // run private initialize function
-        init: init
-    };
+    return module;
 
 });
 <% } %><% if (jsOption ==='Browserify') { %>'use strict';
 
-// private function
 var someModule = {
     init: function() {
         var $ele = $('<p></p>');

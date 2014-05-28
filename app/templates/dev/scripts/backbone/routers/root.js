@@ -1,6 +1,7 @@
-/*
-*   root.js
+/**
+*   Root Router Description
 */
+
 <% if (jsOption === 'RequireJS') { %>define(function (require) {
     'use strict';
     <% if (jsFramework === 'Backbone + React') { %>
@@ -16,10 +17,10 @@
 
         default: function() {
             console.log('Starting root (/) router');<% if (jsFramework === 'Backbone + React') { %>
-        React.renderComponent(new RootComponent(), document.body);
-        <% } else if ((/Backbone/i).test(jsFramework)) { %>
-        // Initialize the root view
-        new RootView();<% } %>
+            React.renderComponent(new RootComponent(), document.body);
+            <% } else if ((/Backbone/i).test(jsFramework)) { %>
+            // Initialize the root view
+            new RootView();<% } %>
         }
 
     });

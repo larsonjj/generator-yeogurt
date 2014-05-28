@@ -44,8 +44,8 @@ CollectionGenerator.prototype.files = function files() {
             console.log('Name cannot be empty. Operation aborted.');
             return;
         }
-        this.template('collection.js', 'dev/scripts/collections/' + this._.camelize(this.name) + '.js');
-        this.template('collectionSpec.js', 'test/spec/collections/' + this._.camelize(this.name) + 'Spec.js');
+        this.template('collection.js', 'dev/scripts/collections/' + this._.slugify(this.name) + '.js');
+        this.template('collection-spec.js', 'test/spec/collections/' + this._.slugify(this.name) + '-spec.js');
     }
 
 };

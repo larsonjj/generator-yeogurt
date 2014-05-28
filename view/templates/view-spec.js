@@ -1,6 +1,7 @@
-/*
-*   <%= _.camelize(name) %>Spec.js
+/**
+*   <%= _.classify(name) %> Spec Description
 */
+
 <% if (jsOption === 'RequireJS') { %>'use strict';
 
 define(function(require) {

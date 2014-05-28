@@ -1,5 +1,4 @@
 /**
- * imagemin.js
  * Configuration for imagemin task(s)
  */
 'use strict';

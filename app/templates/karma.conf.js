@@ -12,10 +12,10 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
-            // Add all vendor scripts here
             'dev/bower_components/jquery/dist/jquery.js',<% if ((/Backbone/i).test(jsFramework)) { %>
             'dev/bower_components/underscore/underscore.js',
-            'dev/bower_components/backbone/backbone.js',<% } %><% if (jsTemplate === 'Handlebars') { %>
+            'dev/bower_components/backbone/backbone.js',<% } %><% if (jsFramework === 'Backbone + React') { %>
+            'dev/bower_components/backbone-react-component/lib/component.js',<% } %><% if (jsTemplate === 'Handlebars') { %>
             'dev/bower_components/handlebars/handlebars.runtime.js',<% } else if (jsTemplate === 'Jade') { %>'dev/bower_components/jade/runtime.js',<% } %><% if (jsFramework === 'Backbone') { %>
             '.tmp/templates.js',<% } %><% if (jsOption === 'RequireJS') { %>
             {
@@ -25,15 +25,15 @@ module.exports = function(config) {
                 pattern: 'dev/scripts/**/*.<% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>{js,jsx}<% } else { %>js<% } %>',
                 included: false
             }, {
-                pattern: 'test/**/*Spec.js',
+                pattern: 'test/**/*-spec.js',
                 included: false
             },
             'node_modules/requirejs/require.js',
             'node_modules/karma-requirejs/lib/adapter.js',
             'test/test-main.js',<% } else if (jsOption === 'Browserify') { %>
-            'test/**/*Spec.js'<% } else { %>
+            'test/**/*-spec.js'<% } else { %>
             'dev/scripts/*.js',
-            'test/**/*Spec.js'<% } %>
+            'test/**/*-spec.js'<% } %>
         ],
 
         // list of files to exclude
@@ -83,7 +83,7 @@ module.exports = function(config) {
         },
 
         // Add browserify to preprocessors
-        preprocessors: {'test/**/*Spec.js': ['browserify']},<% } %>
+        preprocessors: {'test/**/*-spec.js': ['browserify']},<% } %>
 
         // If browser does not capture in given timeout [ms], kill it
         captureTimeout: 60000,

@@ -1,5 +1,4 @@
 /**
- * ftpush.js
  * Configuration for ftpush task(s)
  */
 'use strict';

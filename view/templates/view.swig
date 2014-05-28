@@ -36,7 +36,7 @@
     {
         "status": "development",
         "category": "<%= view ? view : 'page' %>",
-        "label": "<%= toTitleCase(name) %>",
+        "label": "<%= _.titleize(name) %>",
         "link": "<% if (view === 'page') { %>../<%= _.slugify(name.toLowerCase()) %>.html<% } else { %>../views/<%= view %>s/<%= _.slugify(name.toLowerCase()) %>.html<% } %>"
     }
     [/dash] #}

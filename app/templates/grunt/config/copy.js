@@ -1,5 +1,4 @@
 /**
- * copy.js
  * Configuration for copy task(s)
  */
 'use strict';
@@ -13,7 +12,7 @@ module.exports = function(grunt) {
                 cwd: '<%%= yeogurt.dev %>/',
                 dest: '<%%= yeogurt.server %>/',
                 src: [
-                    'scripts/{,*/}{,*/}*.<% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>{js,jsx}<% } else { %>js<% } %>'<% if (useDashboard) { %>,
+                    'scripts/**/*.<% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>{js,jsx}<% } else { %>js<% } %>'<% if (useDashboard) { %>,
                     'dashboard/**/*.*'<% } %><% if (jsOption === 'Browserify') { %>,
                     '!scripts/app.js',
                     '!scripts/main.js'<% } %>
@@ -46,7 +45,7 @@ module.exports = function(grunt) {
                 cwd: '<%%= yeogurt.dev %>/',
                 dest: '<%%= yeogurt.server %>/',
                 src: [
-                    'styles/{,*/}{,*/}*.css',
+                    'styles/**/*.css',
                     'bower_components/bootstrap/dist/css/*.{css,map}'
                 ]
             }<% } %>]
@@ -59,7 +58,7 @@ module.exports = function(grunt) {
                 src: [
                     <% if (jsOption === 'RequireJS') { %>'bower_components/requirejs/require.js',<% } %>
                     'bower_components/modernizr/modernizr.js',
-                    'bower_components/{,*/}{,*/}*.{woff,otf,ttf,eot,svg}',<% if (useDashboard) { %>
+                    'bower_components/**/*.{woff,otf,ttf,eot,svg}',<% if (useDashboard) { %>
                     'dashboard/**/*.*',<% } %>
                     'bower_components/jquery/jquery.min.*'
                 ]
@@ -84,8 +83,8 @@ module.exports = function(grunt) {
                 src: [
                     '*.{ico,png,txt,html}',
                     '.htaccess',
-                    'images/{,*/}*.{webp}',
-                    'styles/fonts/{,*/}*.*'
+                    'images/**/*.{webp}',
+                    'styles/fonts/**/*.*'
                 ]
             }]
         }

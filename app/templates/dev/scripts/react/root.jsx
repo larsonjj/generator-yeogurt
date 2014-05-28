@@ -1,11 +1,17 @@
-<% if (jsOption === 'RequireJS') { %>/** @jsx React.DOM */
+/** @jsx React.DOM */
 
-define(function (require) {
+/**
+*   Root Component Description
+*/
+
+<% if (jsOption === 'RequireJS') { %>define(function (require) {
     'use strict';
 
     var React = require('react');
 
     var RootComponent = React.createClass({
+        // Add react backbone plugin
+        mixin: [Backbone.React.Component.mixin],
         render: function() {
             return (
                 <div>
@@ -18,11 +24,11 @@ define(function (require) {
 
     return RootComponent;
 });
-<% } else if (jsOption === 'Browserify') { %>/** @jsx React.DOM */
-
-var React = require('react');
+<% } else if (jsOption === 'Browserify') { %>var React = require('react');
 
 var RootComponent = React.createClass({
+    // Add react backbone plugin
+    mixin: [Backbone.React.Component.mixin],
     render: function() {
         return (
             <div>

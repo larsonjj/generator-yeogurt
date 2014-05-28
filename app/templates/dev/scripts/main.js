@@ -1,6 +1,5 @@
-/*
-*   main.js
-*   This file is where all scripts will be configured and/or imported
+/**
+*   Main Description
 */
 
 'use strict';

@@ -1,5 +1,4 @@
 /**
- * jade.js
  * Configuration for Jade task(s)
  */
 'use strict';

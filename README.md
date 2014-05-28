@@ -38,6 +38,12 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to fron
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and either SCSS or LESS
 - If using regular CSS, [grunt-uncss](https://github.com/addyosmani/grunt-uncss) is used to cleanup unused styles and boost performance.
 
+
+## Options
+
+- `--skip-install`<br>
+Skips the automatic execution of bower and npm after scaffolding has finished.
+
 ## Grunt Tasks
 
 - `grunt serve`<br>

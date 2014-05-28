@@ -1,5 +1,4 @@
 /**
- * serve.js
  * Starts up a development server that watches for local file changes and automatically reloads them to the browser.
  */
 'use strict';

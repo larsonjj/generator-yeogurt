@@ -1,5 +1,4 @@
 /**
- * zip.js
  * Build a production ready version of your site and zip it up
  */
 'use strict';

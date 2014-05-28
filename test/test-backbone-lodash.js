@@ -5,7 +5,7 @@ var path    = require('path');
 var helpers = require('yeoman-generator').test;
 
 
-describe('yeogurt generator html', function () {
+describe('yeogurt generator backbone + lo-dash', function () {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -22,14 +22,22 @@ describe('yeogurt generator html', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'dev/',
+            'dev/scripts/views/root.js',
+            'dev/scripts/templates/root.jst',
+            'dev/scripts/routers/root.js',
+            'dev/scripts/routers',
+            'dev/scripts/templates',
+            'dev/scripts/views',
             'dev/index.html'
         ];
 
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
             versionControl: 'SVN',
-            htmlOption: 'None (Vanilla HTML)',
+            jsFramework: 'Backbone',
+            jsTemplate: 'Lo-dash (Underscore)',
+            structure: 'Single Page Application',
+            jsOption: 'Browserify',
             cssOption: 'SCSS',
             ieSupport: true,
             responsive: true,

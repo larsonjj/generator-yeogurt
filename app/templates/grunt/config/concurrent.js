@@ -1,5 +1,4 @@
 /**
- * concurrent.js
  * Configuration for concurrent task(s)
  */
 'use strict';
@@ -7,8 +6,9 @@
 module.exports = function(grunt) {
 
     grunt.config.set('concurrent', {
-        optimise: [
-            'newer:imagemin:dist',
+        compile: [
+            'newer:imagemin:dist',<% if (useDocker) { %>
+            'docker:dist',<% } %>
             'newer:svgmin:dist',<% if (htmlOption === 'Jade') { %>
             'jade:dist',<% } else if(htmlOption === 'Swig') {  %>
             'swig:dist',<% } %><% if (cssOption === 'LESS') { %>
@@ -22,11 +22,6 @@ module.exports = function(grunt) {
             'dashboard:dist',<% } %><% if (jsOption === 'RequireJS') { %>
             'requirejs'<% } %><% if (jsOption === 'Browserify') { %>
             'browserify:dist'<% } %>
-        ],
-        uglify: ['uglify'],
-        build: [
-            'test',
-            'build'
         ]
     });
 

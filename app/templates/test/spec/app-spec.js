@@ -1,5 +1,5 @@
-/*
-*   appSpec.js
+/**
+*   App Spec Test
 */
 
 <% if (jsOption === 'RequireJS') { %>'use strict';
@@ -43,7 +43,7 @@ describe('just checking', function() {
     it('works for app', function() {
         var msg = 'Welcome to yeogurt!';
 
-        var message = app.init(msg);
+        var message = App.init(msg);
 
         <% if (testFramework === 'Jasmine') { %>
         expect(message).toMatch(/initialized/);<% } else if (testFramework === 'Mocha + Chai') { %>expect(message).to.match(/initialized/);<% } %>

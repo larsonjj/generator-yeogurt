@@ -1,5 +1,4 @@
 /**
- * compress.js
  * Configuration for compress task(s)
  */
 'use strict';
@@ -15,7 +14,7 @@ module.exports = function(grunt) {
             },
             expand: true,
             cwd: '<%%= yeogurt.dist %>/',
-            src: ['**/*', '!*/**.zip', '!*/**.psd', '!**/.git', '!**/.svn']
+            src: ['**/*.*', '!**/*.zip', '!**/*.psd', '!**/.git', '!**/.svn']
         }
     });
 

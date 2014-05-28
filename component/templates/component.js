@@ -1,15 +1,17 @@
-<% if (jsOption === 'RequireJS') { %>/** @jsx React.DOM */
+/** @jsx React.DOM */
 
-/*
-*   <%= _.camelize(name) %>.js
+/**
+*   <%= _.classify(name) %> Component Description
 */
 
-define(function (require) {
+<% if (jsOption === 'RequireJS') { %>define(function (require) {
     'use strict';
 
     var React = require('react');
 
     var <%= _.classify(name) %>Component = React.createClass({
+        // Add react backbone plugin
+        mixin: [Backbone.React.Component.mixin],
         render: function() {
             return (
                 <div>
@@ -20,17 +22,13 @@ define(function (require) {
     });
 
     return <%= _.classify(name) %>Component;
-});<% } else if (jsOption === 'Browserify') { %>/** @jsx React.DOM */
-
-/*
-*   <%= _.camelize(name) %>.js
-*/
-
-'use strict';
+});<% } else if (jsOption === 'Browserify') { %>'use strict';
 
 var React = require('react');
 
 var <%= _.classify(name) %>Component = React.createClass({
+    // Add react backbone plugin
+    mixin: [Backbone.React.Component.mixin],
     render: function() {
         return (
             <div>

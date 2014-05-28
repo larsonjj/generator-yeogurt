@@ -1,6 +1,7 @@
-/*
-*   <%= _.camelize(name) %>.js
+/**
+*   <%= _.classify(name) %> Router Description
 */
+
 <% if (jsOption === 'RequireJS') { %>define(function (require) {
     'use strict';
 

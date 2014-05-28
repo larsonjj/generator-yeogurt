@@ -4,8 +4,9 @@
     "dependencies": {
         "jquery": "1.11.1",<% if ((/Backbone/i).test(jsFramework)) { %>
         "backbone": "1.1.2",
-        "lodash": "2.4.1",<% } %><% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>
-        "jsx-requirejs-plugin": "https://github.com/philix/jsx-requirejs-plugin.git#0.2.1",<% } %><% if ((/Handlebars/i).test(jsTemplate)) { %>
+        "lodash": "2.4.1",<% } %><% if (jsFramework === 'Backbone + React') { %>
+        "backbone-react-component": "0.6.2",<% if (jsOption === 'RequireJS') { %>
+        "jsx-requirejs-plugin": "https://github.com/philix/jsx-requirejs-plugin.git#0.2.1",<% } %><% } %><% if ((/Handlebars/i).test(jsTemplate)) { %>
         "handlebars": "1.3.0",<% } else if ((/Jade/i).test(jsTemplate)) { %>
         "jade": "1.3.1",<% } %>
         "requirejs": "2.1.11"<% if (useModernizr) { %>,

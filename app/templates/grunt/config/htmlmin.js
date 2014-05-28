@@ -1,5 +1,4 @@
 /**
- * htmlmin.js
  * Configuration for HTMLmin task(s)
  */
 'use strict';
@@ -15,7 +14,7 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: '<%%= yeogurt.dist %>',
                 src: [
-                    '*.html', 'views/{,*/}{,*/}*.html'
+                    '*.html', 'views/**/*.html'
                 ],
                 dest: '<%%= yeogurt.dist %>'
             }]

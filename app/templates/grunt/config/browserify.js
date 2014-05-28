@@ -1,5 +1,4 @@
 /**
- * browserify.js
  * Configuration for browserify task(s)
  */
 'use strict';
@@ -10,7 +9,8 @@ module.exports = function(grunt) {
         server: {
             options: {<% if (jsFramework === 'Backbone + React') { %>
                 transform:  [ require('grunt-react').browserify ],
-                <% } %>bundleOptions: {
+                <% } %>
+                bundleOptions: {
                     debug: true
                 }
             },
@@ -21,8 +21,15 @@ module.exports = function(grunt) {
         dist: {
             options: {<% if (jsFramework === 'Backbone + React') { %>
                 transform:  [ require('grunt-react').browserify ],
-                <% } %>bundleOptions: {
+                <% } %>
+                bundleOptions: {
                     debug: true
+                },
+                preBundleCB: function(b) {
+                    return b.plugin('minifyify', {
+                        map: 'main.js.map',
+                        output: 'dist/scripts/main.js.map'
+                    });
                 }
             },
             files: {

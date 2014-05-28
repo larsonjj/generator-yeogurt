@@ -2,7 +2,7 @@
 var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
-var colors = require('colors');
+require('colors');
 
 
 var YeogurtGenerator = module.exports = function YeogurtGenerator(args, options, config) {
@@ -33,30 +33,30 @@ YeogurtGenerator.prototype.askFor = function askFor() {
     console.log(yeogurtLogo);
 
     var prompts = [{
+        type: 'list',
+        name: 'structure',
+        message: 'What ' + 'type of application'.blue + ' will you be creating?',
+        choices: ['Static Site', 'Single Page Application']
+    }, {
         name: 'projectName',
         message: 'What would you like to' + ' name your project'.blue + '?',
         default: 'Sample'
     }, {
         type: 'list',
         name: 'versionControl',
-        message: 'Which version control software are you using (or plan to use)?',
+        message: 'Which ' + 'version control software'.blue + ' are you using (or plan to use)?',
         choices: ['Git', 'SVN', 'None (I like to live on the edge)']
-    }, {
-        type: 'list',
-        name: 'structure',
-        message: 'What type of application will you be creating?',
-        choices: ['Static Site', 'Single Page Application']
     }, {
         when: function(props) { return (/Static Site/i).test(props.structure); },
         type: 'list',
         name: 'htmlOption',
-        message: 'Which HTML preprocessor would you like to use?',
+        message: 'Which ' + 'HTML preprocessor'.blue + ' would you like to use?',
         choices: ['Jade', 'Swig', 'None (Vanilla HTML)']
     }, {
         when: function(props) { return (/Single Page Application/i).test(props.structure); },
         type: 'list',
         name: 'jsFramework',
-        message: 'Which JavaScript Framework and/or Library would you like to use?',
+        message: 'Which ' + 'JavaScript framework and/or library'.blue + ' would you like to use?',
         choices: ['Backbone + React', 'Backbone']
     }, {
         when: function(props) {
@@ -69,68 +69,74 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         },
         type: 'list',
         name: 'jsTemplate',
-        message: 'Which JavaScript Templating Library would you like to use?',
+        message: 'Which ' + 'JavaScript templating library'.blue + ' would you like to use?',
         choices: ['Lo-dash (Underscore)', 'Handlebars', 'Jade']
     }, {
         when: function(props) { return (/Single Page Application/i).test(props.structure);},
         type: 'list',
         name: 'jsOption',
-        message: 'Which JavaScript module library would you like to use?',
+        message: 'Which ' + 'JavaScript module library'.blue + ' would you like to use?',
         choices: ['RequireJS', 'Browserify']
     }, {
         when: function(props) { return (/Static Site/i).test(props.structure); },
         type: 'list',
         name: 'jsOption',
-        message: 'Which JavaScript module library would you like to use?',
+        message: 'Which ' + 'JavaScript module library'.blue + ' would you like to use?',
         choices: ['RequireJS', 'Browserify', 'None (Vanilla JavaScript)']
     }, {
         type: 'list',
         name: 'testFramework',
-        message: 'Which testing framework would you like to use?',
+        message: 'Which ' + 'testing framework'.blue + ' would you like to use?',
         choices: ['Jasmine', 'Mocha + Chai']
     }, {
         type: 'list',
         name: 'cssOption',
-        message: 'Which CSS preprocessor would you like to use?',
+        message: 'Which ' + 'CSS preprocessor'.blue + ' would you like to use?',
         choices: ['SCSS', 'LESS', 'None (Vanilla CSS)']
     }, {
         when: function(props) { return (/SCSS/i).test(props.cssOption); },
         type: 'confirm',
         name: 'useBourbon',
-        message: 'Would you like to use the Bourbon Mixin Library?',
+        message: 'Would you like to use the ' + 'Bourbon Mixin Library'.blue + '?',
         default: true
     }, {
         when: function(props) { return (/LESS/i).test(props.cssOption); },
         type: 'confirm',
         name: 'useLesshat',
-        message: 'Would you like to use the Lesshat Mixin Library?',
+        message: 'Would you like to use the ' + 'Lesshat Mixin Library'.blue + '?',
         default: true
     }, {
         type: 'confirm',
         name: 'ieSupport',
-        message: 'Do you need to support IE8+?',
+        message: 'Do you need to ' + 'support IE8+'.blue + '?',
         default: true
     }, {
         type: 'confirm',
         name: 'responsive',
-        message: 'Will the site be responsive (Use CSS3 media queries)?',
+        message: 'Will the site be ' + 'responsive (Use CSS3 media queries)'.blue + '?',
         default: true
     }, {
         type: 'confirm',
         name: 'useGA',
-        message: 'Will you be using Google Analytics?',
+        message: 'Will you be using ' + 'Google Analytics'.blue + '?',
         default: true
     }, {
         type: 'confirm',
         name: 'useFTP',
-        message: 'Will you be deploying code to an FTP server?',
+        message: 'Will you be deploying code to an ' + 'FTP server'.blue + '?',
         default: true
     }, {
         type: 'confirm',
         name: 'jshint',
-        message: 'Would you like to lint your Javascript with JSHint?',
+        message: 'Would you like to lint your Javascript with ' + 'JSHint'.blue + '?',
         default: true
     }, {
+        type: 'confirm',
+        name: 'useDocker',
+        message: 'Would you like to document your Javascript with ' + 'Docker (Based on Docco)'.blue + '?',
+        default: true
+    }, {
+        when: function(props) { return (/Static Site/i).test(props.structure); },
         type: 'checkbox',
         name: 'extras',
         message: 'Select any extras you would like:',
@@ -159,29 +165,60 @@ YeogurtGenerator.prototype.askFor = function askFor() {
             value: 'useDashboard',
             checked: false
         }]
+    }, {
+        when: function(props) { return (/Single Page Application/i).test(props.structure); },
+        type: 'checkbox',
+        name: 'extras',
+        message: 'Select any extras you would like:',
+        choices: [{
+            name: 'Twitter Bootstrap',
+            value: 'useBootstrap',
+            checked: true
+        }, {
+            name: 'Font Awesome',
+            value: 'useFontAwesome',
+            checked: true
+        },  {
+            name: 'Modernizr',
+            value: 'useModernizr',
+            checked: true
+        }, {
+            name: 'Box Sizing: Border-Box',
+            value: 'useBorderBox',
+            checked: true
+        }, {
+            name: 'HTML5 Boilerplate extras',
+            value: 'htaccess',
+            checked: false
+        }]
     }];
 
     this.prompt(prompts, function(props) {
+
         this.projectName = props.projectName;
         this.versionControl = props.versionControl;
         this.htmlOption = props.htmlOption;
         this.structure = props.structure;
         this.jsFramework = props.jsFramework;
         this.jsTemplate = props.jsTemplate ? props.jsTemplate : 'React';
-        props.jsTemplate = props.jsTemplate ? props.jsTemplate : 'React';
         this.testFramework = props.testFramework;
         this.cssOption = props.cssOption;
         this.jsOption = props.jsOption ? props.jsOption : 'Browserify';
-        props.jsOption = props.jsOption ? props.jsOption : 'Browserify';
         this.ieSupport = props.ieSupport;
         this.responsive = props.responsive;
         this.extras = props.extras;
         this.jshint = props.jshint;
+        this.useDocker = props.useDocker;
         this.useGA = props.useGA;
         this.useFTP = props.useFTP;
         this.useDashboard = props.useDashboard;
         this.useBourbon = props.useBourbon;
         this.useLesshat = props.useLesshat;
+
+        // Default Overwrites
+        props.jsOption = props.jsOption ? props.jsOption : 'Browserify';
+        props.jsTemplate = props.jsTemplate ? props.jsTemplate : 'React';
+
         var extras = this.extras;
 
         function hasFeature(feat) {
@@ -211,6 +248,7 @@ YeogurtGenerator.prototype.app = function app() {
 
     // Create .yo-rc.json file
     this.config.set('config', this.props);
+    this.config.set('version', this.pkg.version);
     this.config.save();
 
     // Create needed Directories
@@ -219,6 +257,7 @@ YeogurtGenerator.prototype.app = function app() {
     this.template('Gruntfile.js', 'Gruntfile.js');
     this.template('_bower.json', 'bower.json');
     this.template('_package.json', 'package.json');
+    this.template('README.md', 'README.md');
 
     this.copy('dev/robots.txt', 'dev/robots.txt');
     this.copy('dev/humans.txt', 'dev/humans.txt');
@@ -250,6 +289,9 @@ YeogurtGenerator.prototype.tasks = function tasks() {
     if (this.jsOption === 'Browserify') {
         this.template('grunt/config/browserify.js', 'grunt/config/browserify.js');
         this.template('grunt/config/exorcise.js', 'grunt/config/exorcise.js');
+    }
+    if (this.useDocker) {
+        this.template('grunt/config/docker.js', 'grunt/config/docker.js');
     }
     this.template('grunt/config/clean.js', 'grunt/config/clean.js');
     this.template('grunt/config/compress.js', 'grunt/config/compress.js');
@@ -311,10 +353,9 @@ YeogurtGenerator.prototype.tasks = function tasks() {
 };
 
 YeogurtGenerator.prototype.views = function views() {
-    // dev/views
-    this.mkdir('dev/views');
 
     if (this.htmlOption === 'Jade') {
+        this.mkdir('dev/views');
         this.mkdir('dev/views/templates');
         this.mkdir('dev/views/components');
         this.template('dev/views/jade/components/header.jade', 'dev/views/components/header.jade');
@@ -324,6 +365,7 @@ YeogurtGenerator.prototype.views = function views() {
         this.template('dev/views/jade/templates/base.jade', 'dev/views/templates/base.jade');
     }
     else if (this.htmlOption === 'Swig') {
+        this.mkdir('dev/views');
         this.mkdir('dev/views/templates');
         this.mkdir('dev/views/components');
         this.template('dev/views/swig/components/header.swig', 'dev/views/components/header.swig');
@@ -476,7 +518,7 @@ YeogurtGenerator.prototype.testing = function testing() {
     if (this.jsOption === 'RequireJS') {
         this.copy('test/test-main.js', 'test/test-main.js');
     }
-    this.template('test/spec/appSpec.js', 'test/spec/appSpec.js');
+    this.template('test/spec/app-spec.js', 'test/spec/app-spec.js');
     this.template('karma.conf.js', 'karma.conf.js');
 };
 
