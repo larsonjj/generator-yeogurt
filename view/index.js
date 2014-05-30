@@ -75,7 +75,25 @@ ViewGenerator.prototype.files = function files() {
         if (this.view === 'page') {
             this.template('view.swig', 'dev/views/' + this._.slugify(this.name.toLowerCase()) + '.swig');
         }
-        else if (this.view === 'component' || this.view === 'template') {
+        else if (this.view === 'component') {
+            this.template('view.swig', 'dev/views/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.swig');
+            // write the component file as an include
+            if(this.import) {
+                try {
+                    generatorUtils.rewriteFile({
+                        file: 'dev/views/templates/base.swig',
+                        needle: '{# end component build #}',
+                        splicable: [
+                            '{% import \'../components/' + this._.slugify(this.name.toLowerCase()) + '.swig\' as ' + this._.slugify(this.name.toLowerCase()) + ' %}'
+                        ]
+                    });
+                    console.log('Added component ' + this._.slugify(this.name.toLowerCase()) + ' to base.jade!');
+                } catch (e) {
+                    console.log('Error adding component ' + this._.slugify(this.name.toLowerCase()) + ' to base.jade!');
+                }
+            }
+        }
+        else if (this.view === 'template') {
             this.template('view.swig', 'dev/views/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.swig');
         }
         else if (!this.name) {
