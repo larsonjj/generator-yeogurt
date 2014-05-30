@@ -10,6 +10,7 @@
 @import 'base/_reset';
 @import 'base/_variables';<% if (!ieSupport && !useBootstrap) { %>
 @import 'base/_print';<% } %>
+// end base build
 
 // Third-Party (Vendor)
 <% if (!useBootstrap) { %>
@@ -19,7 +20,9 @@
 <% if (useBootstrap) { %>@import 'vendor/_bootstrap';
 <% } %><% if (useLesshat) { %>@import 'vendor/_lesshat';<% } %><% } %><% if (useFontAwesome) { %>
 @import 'vendor/_font-awesome';<% } %>
+// end vendor build
 
 // Partials
 @import 'partials/_header';
 @import 'partials/_footer';
+// end partial build
