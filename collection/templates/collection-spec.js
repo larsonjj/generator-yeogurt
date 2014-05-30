@@ -5,7 +5,7 @@
 <% if (jsOption === 'RequireJS') { %>define(function(require) {
     'use strict';
 
-    var <%= _.classify(name) %> = require('collections/<%= _.camelize(name) %>');
+    var <%= _.classify(name) %> = require('collections/<%= _.slugify(name) %>');
 
     describe('<%= _.classify(name) %> Collection', function () {
 
@@ -17,7 +17,7 @@
 
 });<% } else if (jsOption === 'Browserify') { %>'use strict';
 
-var <%= _.classify(name) %> = require('../../dev/scripts/collections/<%= _.camelize(name) %>.js');
+var <%= _.classify(name) %> = require('../../dev/scripts/collections/<%= _.slugify(name) %>.js');
 
 describe('just checking', function() {
 

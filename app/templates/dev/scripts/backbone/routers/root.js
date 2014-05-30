@@ -31,7 +31,7 @@
 var React = require('react');
 var RootComponent = require('../components/root.jsx');
 <% } else if ((/Backbone/i).test(jsFramework)) { %>
-var RootView = require('./views/root');<% } %>
+var RootView = require('../views/root');<% } %>
 
 var RootRouter = Backbone.Router.extend({
     routes: {

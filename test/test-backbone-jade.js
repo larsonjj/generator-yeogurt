@@ -38,7 +38,7 @@ describe('yeogurt generator backbone + lo-dash', function () {
             structure: 'Single Page Application',
             jsTemplate: 'Jade',
             jsOption: 'Browserify',
-            cssOption: 'SCSS',
+            cssOption: 'SASS',
             ieSupport: true,
             responsive: true,
             useGA: true,

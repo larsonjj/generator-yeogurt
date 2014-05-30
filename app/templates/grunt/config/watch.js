@@ -57,7 +57,7 @@ module.exports = function(grunt) {
                 'clean:temp'
             ]
         },
-        <% } %><% if (cssOption === 'SCSS') { %>
+        <% } %><% if (cssOption === 'SASS') { %>
         sass: {
             files: ['<%%= yeogurt.dev %>/styles/**/*.{scss,sass}'],
             tasks: ['sass:server']
@@ -99,7 +99,7 @@ module.exports = function(grunt) {
                 '<%%= yeogurt.dev %>/*.{ico,png,txt,html}'<% if (extras.indexOf(htaccess) !== -1) { %>,
                 '<%%= yeogurt.dev %>/.htaccess'<% } %>,
                 '<%%= yeogurt.server %>/styles/fonts/**/*.*',
-                '<%%= yeogurt.server %>/**/*.html'<% if (cssOption === 'SCSS') { %>,
+                '<%%= yeogurt.server %>/**/*.html'<% if (cssOption === 'SASS') { %>,
                 '<%%= yeogurt.dev %>/styles/**/*.{sass,scss}'<% } else if (cssOption === 'LESS') { %>,
                 '<%%= yeogurt.dev %>/styles/**/*.less'<% } %>,
                 '<%%= yeogurt.server %>/scripts/**/*.js',

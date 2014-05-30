@@ -37,7 +37,7 @@ describe('yeogurt generator Swig', function () {
             projectName: 'testing',
             versionControl: 'SVN',
             htmlOption: 'Swig',
-            cssOption: 'SCSS',
+            cssOption: 'SASS',
             ieSupport: true,
             responsive: true,
             useGA: true,

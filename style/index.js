@@ -27,7 +27,7 @@ StyleGenerator.prototype.files = function files() {
         if (this.cssOption === 'LESS') {
             this.template('style.less', 'dev/styles/' + this.folder + '/' + '_' + this._.slugify(this.name) + '.less');
         }
-        else if (this.cssOption === 'SCSS') {
+        else if (this.cssOption === 'SASS') {
             this.template('style.less', 'dev/styles/' + this.folder + '/' + '_' + this._.slugify(this.name) + '.scss');
         }
         else {
@@ -38,7 +38,7 @@ StyleGenerator.prototype.files = function files() {
         if (this.cssOption === 'LESS') {
             this.template('style.less', 'dev/styles/partials/' + '_' + this._.slugify(this.name) + '.less');
         }
-        else if (this.cssOption === 'SCSS') {
+        else if (this.cssOption === 'SASS') {
             this.template('style.less', 'dev/styles/partials/' + '_' + this._.slugify(this.name) + '.scss');
         }
         else {

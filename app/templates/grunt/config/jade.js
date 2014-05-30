@@ -5,7 +5,7 @@
 
 module.exports = function(grunt) {
 
-    grunt.config.set('jade', {<% if (jsTemplate !== 'Jade') { %>
+    grunt.config.set('jade', {<% if (structure === 'Static Site') { %>
         server: {
             options: {
                 pretty: true,
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
                 }
             },
             files: {
-                '<%%= yeogurt.dist %>/scripts/templates/templates.js': ['<%%= yeogurt.dev %>/scripts/templates/*.jade']
+                '.tmp/scripts/templates/templates.js': ['<%%= yeogurt.dev %>/scripts/templates/*.jade']
             }
         }<% } %><% if (jsFramework === 'Backbone' || jsFramework === 'Backbone + Marionette') { %>,
         test: {

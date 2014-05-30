@@ -5,22 +5,22 @@
 <% if (jsOption === 'RequireJS') { %>define(function (require) {
     'use strict';
 
-    var <%= _.camelize('-' + name.toLowerCase()) %>Router = Backbone.Router.extend({
+    var <%= _.classify(name) %>Router = Backbone.Router.extend({
 
         routes: {
         },
 
     });
 
-    return <%= _.camelize('-' + name.toLowerCase()) %>Router;
+    return <%= _.classify(name) %>Router;
 });<% } else if (jsOption === 'Browserify') { %>'use strict';
 
-var <%= _.camelize('-' + name.toLowerCase()) %>Router = Backbone.Router.extend({
+var <%= _.classify(name) %>Router = Backbone.Router.extend({
 
     routes: {
     },
 
 });
 
-module.exports = <%= _.camelize('-' + name.toLowerCase()) %>Router;
+module.exports = <%= _.classify(name) %>Router;
 <% } %>

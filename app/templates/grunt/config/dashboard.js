@@ -17,7 +17,7 @@ module.exports = function(grunt) {
             },
             files: {
                 '<%%= yeogurt.server %>/dashboard/index.html': [
-                    '<%%= yeogurt.dev %>/views/**/*.<% if (htmlOption === "Jade") { %>jade<% } else if (htmlOption === "Swig") { %>swig<% } else if (htmlOption === "None (Vanilla HTML)") { %>html<% } %>'
+                    '<%%= yeogurt.dev %>/**/*.<% if (htmlOption === "Jade") { %>jade<% } else if (htmlOption === "Swig") { %>swig<% } else if (htmlOption === "None (Vanilla HTML)") { %>html<% } %>'
                 ]
             }
         },
@@ -32,7 +32,7 @@ module.exports = function(grunt) {
             },
             files: {
                 '<%%= yeogurt.dist %>/dashboard/index.html': [
-                    '<%%= yeogurt.dev %>/views/**/*.<% if (htmlOption === "Jade") { %>jade<% } else if (htmlOption === "Swig") { %>swig<% } else if (htmlOption === "None (Vanilla HTML)") { %>html<% } %>'
+                    '<%%= yeogurt.dev %>/**/*.<% if (htmlOption === "Jade") { %>jade<% } else if (htmlOption === "Swig") { %>swig<% } else if (htmlOption === "None (Vanilla HTML)") { %>html<% } %>'
                 ]
             }
         }

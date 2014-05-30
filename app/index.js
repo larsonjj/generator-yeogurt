@@ -33,11 +33,6 @@ YeogurtGenerator.prototype.askFor = function askFor() {
     console.log(yeogurtLogo);
 
     var prompts = [{
-        type: 'list',
-        name: 'structure',
-        message: 'What ' + 'type of application'.blue + ' will you be creating?',
-        choices: ['Static Site', 'Single Page Application']
-    }, {
         name: 'projectName',
         message: 'What would you like to' + ' name your project'.blue + '?',
         default: 'Sample'
@@ -46,6 +41,11 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         name: 'versionControl',
         message: 'Which ' + 'version control software'.blue + ' are you using (or plan to use)?',
         choices: ['Git', 'SVN', 'None (I like to live on the edge)']
+    }, {
+        type: 'list',
+        name: 'structure',
+        message: 'What ' + 'type of application'.blue + ' will you be creating?',
+        choices: ['Static Site', 'Single Page Application']
     }, {
         when: function(props) { return (/Static Site/i).test(props.structure); },
         type: 'list',
@@ -86,15 +86,15 @@ YeogurtGenerator.prototype.askFor = function askFor() {
     }, {
         type: 'list',
         name: 'testFramework',
-        message: 'Which ' + 'testing framework'.blue + ' would you like to use?',
+        message: 'Which JavaScript ' + 'testing framework'.blue + ' would you like to use?',
         choices: ['Jasmine', 'Mocha + Chai']
     }, {
         type: 'list',
         name: 'cssOption',
         message: 'Which ' + 'CSS preprocessor'.blue + ' would you like to use?',
-        choices: ['SCSS', 'LESS', 'None (Vanilla CSS)']
+        choices: ['SASS', 'LESS', 'None (Vanilla CSS)']
     }, {
-        when: function(props) { return (/SCSS/i).test(props.cssOption); },
+        when: function(props) { return (/SASS/i).test(props.cssOption); },
         type: 'confirm',
         name: 'useBourbon',
         message: 'Would you like to use the ' + 'Bourbon Mixin Library'.blue + '?',
@@ -136,16 +136,21 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         message: 'Would you like to document your Javascript with ' + 'Docker (Based on Docco)'.blue + '?',
         default: true
     }, {
+        type: 'confirm',
+        name: 'useKss',
+        message: 'Would you like to generate a styleguide with ' + 'KSS (Knyle Style Sheets)'.blue + '?',
+        default: true
+    }, {
         when: function(props) { return (/Static Site/i).test(props.structure); },
         type: 'checkbox',
         name: 'extras',
         message: 'Select any extras you would like:',
         choices: [{
-            name: 'Twitter Bootstrap 3.x',
+            name: 'Twitter Bootstrap',
             value: 'useBootstrap',
             checked: true
         }, {
-            name: 'Font Awesome 4.x',
+            name: 'Font Awesome',
             value: 'useFontAwesome',
             checked: true
         },  {
@@ -209,6 +214,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.extras = props.extras;
         this.jshint = props.jshint;
         this.useDocker = props.useDocker;
+        this.useKss = props.useKss;
         this.useGA = props.useGA;
         this.useFTP = props.useFTP;
         this.useDashboard = props.useDashboard;
@@ -305,6 +311,9 @@ YeogurtGenerator.prototype.tasks = function tasks() {
     if (this.useFTP) {
         this.template('grunt/config/ftpush.js', 'grunt/config/ftpush.js');
     }
+    if (this.useKss) {
+        this.template('grunt/config/kss.js', 'grunt/config/kss.js');
+    }
     this.template('grunt/config/htmlmin.js', 'grunt/config/htmlmin.js');
     this.template('grunt/config/imagemin.js', 'grunt/config/imagemin.js');
     if (this.htmlOption === 'Jade' || this.jsTemplate === 'Jade') {
@@ -323,7 +332,7 @@ YeogurtGenerator.prototype.tasks = function tasks() {
     if (this.jsOption === 'RequireJS') {
         this.template('grunt/config/requirejs.js', 'grunt/config/requirejs.js');
     }
-    if (this.cssOption === 'SCSS') {
+    if (this.cssOption === 'SASS') {
         this.template('grunt/config/sass.js', 'grunt/config/sass.js');
     }
     if (this.jsTemplate === 'Lo-dash (Underscore)') {
@@ -334,7 +343,7 @@ YeogurtGenerator.prototype.tasks = function tasks() {
     }
     this.template('grunt/config/svgmin.js', 'grunt/config/svgmin.js');
     this.template('grunt/config/uglify.js', 'grunt/config/uglify.js');
-    if (this.cssOption === 'None (Vanilla CSS)') {
+    if (this.cssOption === 'None (Vanilla CSS)' && this.structure === 'Static Site') {
         this.template('grunt/config/uncss.js', 'grunt/config/uncss.js');
         this.template('grunt/config/cssmin.js', 'grunt/config/cssmin.js');
     }
@@ -429,6 +438,10 @@ YeogurtGenerator.prototype.styles = function styles() {
     this.mkdir('dev/styles');
     this.mkdir('dev/styles/fonts');
 
+    if (this.useKss) {
+        this.template('dev/styles/styleguide.md', 'dev/styles/styleguide.md');
+    }
+
     if (this.cssOption !== 'None (Vanilla CSS)') {
         if (this.cssOption === 'LESS') {
             this.mkdir('dev/styles/base');
@@ -463,7 +476,7 @@ YeogurtGenerator.prototype.styles = function styles() {
                 this.template('dev/styles/base/_print.less', 'dev/styles/base/_print.less');
             }
         }
-        if (this.cssOption === 'SCSS') {
+        if (this.cssOption === 'SASS') {
             this.mkdir('dev/styles/base');
             this.template('dev/styles/base/_mixins.less', 'dev/styles/base/_mixins.scss');
             this.template('dev/styles/base/_variables.less', 'dev/styles/base/_variables.scss');

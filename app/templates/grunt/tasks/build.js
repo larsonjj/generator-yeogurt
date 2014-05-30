@@ -7,7 +7,8 @@ module.exports = function(grunt) {
     grunt.registerTask('build', 'Build a production ready version of your site.', [
         'clean:dist',
         'copy:dist',
-        'concurrent:compile',
+        'concurrent:compile',<% if (useKss) { %>
+        'kss:dist',<% } %>
         'useminPrepare',
         'concat:generated',<% if (cssOption === 'None (Vanilla CSS)') { %>
         'cssmin:generated',<% } %>

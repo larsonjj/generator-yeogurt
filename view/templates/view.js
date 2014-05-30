@@ -5,7 +5,7 @@
 <% if (jsOption === 'RequireJS') { %>define(function (require) {
     'use strict';
 
-    var <%= _.camelize('-' + name.toLowerCase()) %>View = Backbone.View.extend({
+    var <%= _.classify(name) %>View = Backbone.View.extend({
 
         tagName: 'div',
 
@@ -31,10 +31,10 @@
 
     });
 
-    return <%= _.camelize('-' + name.toLowerCase()) %>View;
+    return <%= _.classify(name) %>View;
 });<% } else if (jsOption === 'Browserify') { %>'use strict';
 
-var <%= _.camelize('-' + name.toLowerCase()) %>View = Backbone.View.extend({
+var <%= _.classify(name) %>View = Backbone.View.extend({
 
     tagName: 'div',
 
@@ -60,5 +60,5 @@ var <%= _.camelize('-' + name.toLowerCase()) %>View = Backbone.View.extend({
 
 });
 
-module.exports = <%= _.camelize('-' + name.toLowerCase()) %>View;
+module.exports = <%= _.classify(name) %>View;
 <% } %>

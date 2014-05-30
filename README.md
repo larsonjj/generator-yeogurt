@@ -19,7 +19,7 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to fron
 
 - Project/Site naming
 - HTML Templating with [Jade](http://jade-lang.com/) or [Swig](http://paularmstrong.github.io/swig/)
-- CSS Preprocessing with [LESS](http://lesscss.org/) or [SCSS](http://sass-lang.com/) via [node-sass](https://github.com/andrew/node-sass)
+- CSS Preprocessing with [LESS](http://lesscss.org/) or [SASS](http://sass-lang.com/) via [node-sass](https://github.com/andrew/node-sass)
 - Modular JavaScript with [RequireJS](http://requirejs.org/) or [Browserify](http://browserify.org/)
 - IE8+ Support via [HTML5shiv](https://github.com/aFarkas/html5shiv) and [RespondJS](https://github.com/scottjehl/Respond)
 - JavaScript Linting with [JSHint](http://www.jshint.com/)
@@ -35,7 +35,7 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to fron
 - [.editorconfig](http://editorconfig.org/) for consistent coding styles within text editors
 - JavaScript unit testing with [Jasmine](http://jasmine.github.io/) and [Karma](http://karma-runner.github.io/0.10/index.html)
 - Automatic build process that includes concatenation, image optimization, CSS/HTML minification, and JS uglification.
-- [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and either SCSS or LESS
+- [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and either SASS or LESS
 - If using regular CSS, [grunt-uncss](https://github.com/addyosmani/grunt-uncss) is used to cleanup unused styles and boost performance.
 
 

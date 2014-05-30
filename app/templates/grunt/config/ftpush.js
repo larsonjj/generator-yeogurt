@@ -17,7 +17,7 @@ module.exports = function(grunt) {
             },
             src: '<%%= yeogurt.dist %>',
             dest: '<%%= secret.serverPath %>',
-            exclusions: ['*.svn', '.svn/', '.svn', '*.git', '.git/', '.git'],
+            exclusions: ['*.svn', '.svn/', '.svn', '*.git', '.git/', '.git', '.tmp'],
             server_sep: '/'
         }
     });

@@ -30,7 +30,7 @@ describe('yeogurt generator html', function () {
             projectName: 'testing',
             versionControl: 'SVN',
             htmlOption: 'None (Vanilla HTML)',
-            cssOption: 'SCSS',
+            cssOption: 'SASS',
             ieSupport: true,
             responsive: true,
             useGA: true,

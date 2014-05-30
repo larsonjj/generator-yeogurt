@@ -80,7 +80,7 @@ describe('yeogurt generator defaults', function () {
             projectName: 'testing',
             versionControl: 'Git',
             htmlOption: 'Jade',
-            cssOption: 'SCSS',
+            cssOption: 'SASS',
             jsOption: 'RequireJS',
             ieSupport: false,
             responsive: false,

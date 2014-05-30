@@ -4,7 +4,7 @@
 var path    = require('path');
 var helpers = require('yeoman-generator').test;
 
-describe('yeogurt generator SCSS', function () {
+describe('yeogurt generator SASS', function () {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -43,7 +43,7 @@ describe('yeogurt generator SCSS', function () {
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
             versionControl: 'Git',
-            cssOption: 'SCSS',
+            cssOption: 'SASS',
             useBourbon: true,
             ieSupport: true,
             responsive: true,

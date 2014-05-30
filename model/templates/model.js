@@ -5,7 +5,7 @@
 <% if (jsOption === 'RequireJS') { %>define(function (require) {
     'use strict';
 
-    var <%= _.camelize('-' + name.toLowerCase()) %>Model = Backbone.Model.extend({
+    var <%= _.classify(name) %>Model = Backbone.Model.extend({
 
         url: '',
 
@@ -24,10 +24,10 @@
 
     });
 
-    return <%= _.camelize('-' + name.toLowerCase()) %>Model;
+    return <%= _.classify(name) %>Model;
 });<% } else if (jsOption === 'Browserify') { %>'use strict';
 
-var <%= _.camelize('-' + name.toLowerCase()) %>Model = Backbone.Model.extend({
+var <%= _.classify(name) %>Model = Backbone.Model.extend({
 
     url: '',
 
@@ -46,5 +46,5 @@ var <%= _.camelize('-' + name.toLowerCase()) %>Model = Backbone.Model.extend({
 
 });
 
-module.exports = <%= _.camelize('-' + name.toLowerCase()) %>Model;
+module.exports = <%= _.classify(name) %>Model;
 <% } %>

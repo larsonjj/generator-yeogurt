@@ -1,5 +1,5 @@
 /**
-*   Import all desired <% if (cssOption === 'LESS') { %>less<% } else if (cssOption === 'SCSS') { %>scss<% } %> files here
+*   Import all desired <% if (cssOption === 'LESS') { %>less<% } else if (cssOption === 'SASS') { %>scss<% } %> files here
 */
 
 // Import Base Files (variables, mixins, etc)<% if (useBorderBox) { %>
@@ -12,7 +12,7 @@
 
 // Import Third-Party (Vendor) Files
 <% if (!useBootstrap) { %>
-@import 'vendor/_normalize';<% } %><% if (cssOption === 'SCSS') { %>
+@import 'vendor/_normalize';<% } %><% if (cssOption === 'SASS') { %>
 <% if (useBootstrap) { %>@import 'vendor/_bootstrap';
 <% } %><% if (useBourbon) { %>@import 'vendor/_bourbon';<% } %><% } else { %>
 <% if (useBootstrap) { %>@import 'vendor/_bootstrap';

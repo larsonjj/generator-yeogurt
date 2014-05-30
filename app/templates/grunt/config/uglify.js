@@ -29,28 +29,15 @@ module.exports = function(grunt) {
                 'modernizr/modernizr.js'
             ],
             ext: '.js'
-        },<% if (jsOption !== 'None (Vanilla JavaScript)') { %>
-        distJS: {
-            options: {
-                mangle: true,
-                preserveComments: 'some',
-                sourceMap: true,
-                sourceMapIncludeSources: true
-            },
-            expand: true,
-            cwd: '<%%= yeogurt.dev %>/scripts/',
-            dest: '<%%= yeogurt.dist %>/scripts/',
-            src: ['**/*.js', '!*.js'],
-            ext: '.js'
-        }<% } %><% if (structure === 'Single Page Application' && jsFramework !== 'Backbone + React') { %>,
+        }<% if (structure === 'Single Page Application' && jsFramework !== 'Backbone + React') { %>,
         distTemplates: {
             options: {
                 mangle: false,
                 preserveComments: 'some'
             },
             expand: true,
-            cwd: '<%%= yeogurt.dist %>/scripts/templates/',
-            dest: '<%%= yeogurt.dist %>/scripts/templates/',
+            cwd: '.tmp/scripts/templates/',
+            dest: '.tmp/scripts/templates/',
             src: ['templates.js']
         }<% } %>
     });

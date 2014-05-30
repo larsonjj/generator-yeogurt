@@ -28,7 +28,7 @@ describe('yeogurt generator svn', function () {
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
             versionControl: 'SVN',
-            cssOption: 'SCSS',
+            cssOption: 'SASS',
             jsOption: 'RequireJS',
             ieSupport: true,
             responsive: true,

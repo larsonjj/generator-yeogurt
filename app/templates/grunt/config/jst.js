@@ -13,7 +13,7 @@ module.exports = function(grunt) {
         },
         dist: {
             files: {
-                '<%%= yeogurt.dist %>/scripts/templates/templates.js': ['<%%= yeogurt.dev %>/scripts/templates/*.jst']
+                '.tmp/scripts/templates/templates.js': ['<%%= yeogurt.dev %>/scripts/templates/*.jst']
             }
         }<% if (jsFramework === 'Backbone' || jsFramework === 'Backbone + Marionette') { %>,
         test: {

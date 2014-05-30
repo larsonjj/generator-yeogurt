@@ -13,7 +13,7 @@ module.exports = function(grunt) {
             'jade:dist',<% } else if(htmlOption === 'Swig') {  %>
             'swig:dist',<% } %><% if (cssOption === 'LESS') { %>
             'less:dist',<% if (ieSupport) { %>
-            'less:distPrint',<% } %><% } %><% if (cssOption === 'SCSS') { %>
+            'less:distPrint',<% } %><% } %><% if (cssOption === 'SASS') { %>
             'sass:dist',<% if (ieSupport) { %>
             'sass:distPrint',<% } %><% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>
             'jst:dist',<% } else if (jsTemplate === 'Handlebars') { %>

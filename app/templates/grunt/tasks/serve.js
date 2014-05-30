@@ -22,7 +22,7 @@ module.exports = function(grunt) {
             'swig:server',<% } %><% if (useDashboard) { %>
             'dashboard:server',<% } %><% if (cssOption === 'LESS') { %>
             'less:server',<% if (ieSupport) { %>
-            'less:serverPrint',<% } %><% } %><% if (cssOption === 'SCSS') { %>
+            'less:serverPrint',<% } %><% } %><% if (cssOption === 'SASS') { %>
             'sass:server',<% if (ieSupport) { %>
             'sass:serverPrint',<% } %><% } %>
             'clean:temp',

@@ -37,7 +37,7 @@ describe('yeogurt generator Dashboard', function () {
             projectName: 'testing',
             versionControl: 'SVN',
             htmlOption: 'Jade',
-            cssOption: 'SCSS',
+            cssOption: 'SASS',
             ieSupport: true,
             responsive: true,
             useGA: true,

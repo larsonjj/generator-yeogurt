@@ -6,7 +6,7 @@
 
 define(function(require) {
 
-    var <%= _.classify(name) %> = require('views/<%= _.camelize(name) %>');
+    var <%= _.classify(name) %> = require('views/<%= _.slugify(name) %>');
 
     describe('<%= _.classify(name) %> View', function () {
 
@@ -18,7 +18,7 @@ define(function(require) {
 
 });<% } else if (jsOption === 'Browserify') { %>'use strict';
 
-var <%= _.classify(name) %> = require('../../dev/scripts/views/<%= _.camelize(name) %>.js');
+var <%= _.classify(name) %> = require('../../dev/scripts/views/<%= _.slugify(name) %>.js');
 
 describe('just checking', function() {
 

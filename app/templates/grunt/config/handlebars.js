@@ -19,7 +19,7 @@ module.exports = function(grunt) {
                 namespace: 'JST'
             },
             files: {
-                '<%%= yeogurt.dist %>/scripts/templates/templates.js': ['<%%= yeogurt.dev %>/scripts/templates/*.hbs']
+                '.tmp/scripts/templates/templates.js': ['<%%= yeogurt.dev %>/scripts/templates/*.hbs']
             }
         }<% if (jsFramework === 'Backbone' || jsFramework === 'Backbone + Marionette') { %>,
         test: {

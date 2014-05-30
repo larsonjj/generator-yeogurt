@@ -28,7 +28,7 @@ describe('yeogurt generator no IE with scss', function () {
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
             versionControl: 'SVN',
-            cssOption: 'SCSS',
+            cssOption: 'SASS',
             useBourbon: true,
             ieSupport: false,
             responsive: true,

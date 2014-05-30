@@ -5,24 +5,24 @@
 <% if (jsOption === 'RequireJS') { %>define(function (require) {
     'use strict';
 
-    var <%= _.camelize('-' + name.toLowerCase()) %>Model = require('models/<%= _.camelize('-' + name.toLowerCase()) %>Model');
+    var <%= _.classify(name) %>Model = require('models/<%= _.slugify(name) %>');
 
-    var <%= _.camelize('-' + name.toLowerCase()) %>Collection = Backbone.Collection.extend({
+    var <%= _.classify(name) %>Collection = Backbone.Collection.extend({
 
-        model: <%= _.camelize('-' + name.toLowerCase()) %>Model
+        model: <%= _.classify(name) %>Model
 
     });
 
-    return <%= _.camelize('-' + name.toLowerCase()) %>Collection;
+    return <%= _.classify(name) %>Collection;
 });<% } else if (jsOption === 'Browserify') { %>'use strict';
 
-var <%= _.camelize('-' + name.toLowerCase()) %>Model = require('models/<%= _.camelize('-' + name.toLowerCase()) %>Model');
+var <%= _.classify(name) %>Model = require('models/<%= _.slugify(name) %>');
 
-var <%= _.camelize('-' + name.toLowerCase()) %>Collection = Backbone.Collection.extend({
+var <%= _.classify(name) %>Collection = Backbone.Collection.extend({
 
-    model: <%= _.camelize('-' + name.toLowerCase()) %>Model
+    model: <%= _.classify(name) %>Model
 
 });
 
-module.exports = <%= _.camelize('-' + name.toLowerCase()) %>Collection;
+module.exports = <%= _.classify(name) %>Collection;
 <% } %>

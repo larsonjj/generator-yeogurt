@@ -32,7 +32,7 @@ describe('yeogurt generator LESS with no dashbaord', function () {
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
             versionControl: 'Git',
-            cssOption: 'SCSS',
+            cssOption: 'SASS',
             useBourbon: true,
             ieSupport: true,
             responsive: true,

@@ -38,7 +38,7 @@ describe('yeogurt generator backbone + lo-dash', function () {
             jsFramework: 'Backbone',
             jsTemplate: 'Handlebars',
             jsOption: 'Browserify',
-            cssOption: 'SCSS',
+            cssOption: 'SASS',
             ieSupport: true,
             responsive: true,
             useGA: true,

@@ -2,11 +2,11 @@
 *   Print styles
 */<% if (!ieSupport) { %>
 
-/* ==========================================================================
-EXAMPLE Media Queries for Responsive Design.
-These examples override the primary ('mobile first') styles.
-Modify as content requires.
-========================================================================== */
+/*
+*   EXAMPLE Media Queries for Responsive Design.
+*   These examples override the primary ('mobile first') styles.
+*   Modify as content requires.
+*/
 
 @media only screen and (min-width: 35em) {
     /* Style adjustments for viewports that meet the condition */
@@ -16,10 +16,10 @@ Modify as content requires.
     /* Style adjustments for high resolution devices */
 }
 <% } %>
-/* ==========================================================================
-Print styles.
-Inlined to avoid required HTTP connection: h5bp.com/r
-========================================================================== */
+/**
+*   Print styles.
+*   Inlined to avoid required HTTP connection: h5bp.com/r
+*/
 
 <% if (!ieSupport) { %>@media print {
     * {
@@ -41,9 +41,9 @@ Inlined to avoid required HTTP connection: h5bp.com/r
     abbr[title]:after {
         content: " (" attr(title) ")";
     }
-    /*
-     * Don't show links for images, or javascript/internal links
-     */
+    /**
+    *   Don't show links for images, or javascript/internal links
+    */
     .ir a:after {
         content: "";
     }
@@ -99,9 +99,9 @@ abbr[title]:after {
     content: " (" attr(title) ")";
 }
 
-/*
- * Don't show links for images, or javascript/internal links
- */
+/**
+*   Don't show links for images, or javascript/internal links
+*/
 
 a[href^="javascript:"]:after,
 a[href^="#"]:after {

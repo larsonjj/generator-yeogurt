@@ -19,10 +19,8 @@
     };
     return app;
 
-});<% } else if (jsOption === 'Browserify') { %>
-'use strict';
-/* jshint unused:false */
-/* global $:true */<% if ((/Backbone/i).test(jsFramework)) { %>
+});<% } else if (jsOption === 'Browserify') { %>'use strict';
+<% if ((/Backbone/i).test(jsFramework)) { %>
 var RootRouter = require('./routers/root');<% } %>
 var someModule = require('./modules/module');
 var app = {

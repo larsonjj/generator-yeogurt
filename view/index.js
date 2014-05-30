@@ -43,10 +43,10 @@ ViewGenerator.prototype.files = function files() {
 
         if (this.htmlOption === 'Jade') {
             if (this.view === 'page') {
-                this.template('view.jade', 'dev/views/' + this._.camelize(this.name) + '.jade');
+                this.template('view.jade', 'dev/views/' + this._.slugify(this.name) + '.jade');
             }
             else if (this.view === 'component' || this.view === 'template') {
-                this.template('view.jade', 'dev/views/' + this.view +'s/' + this._.camelize(this.name) + '.jade');
+                this.template('view.jade', 'dev/views/' + this.view +'s/' + this._.slugify(this.name) + '.jade');
             }
             else if (!this.name) {
                 console.log('Name cannot be empty. Operation aborted.');
@@ -57,10 +57,10 @@ ViewGenerator.prototype.files = function files() {
         }
         else if (this.htmlOption === 'Swig') {
             if (this.view === 'page') {
-                this.template('view.swig', 'dev/views/' + this._.camelize(this.name) + '.swig');
+                this.template('view.swig', 'dev/views/' + this._.slugify(this.name) + '.swig');
             }
             else if (this.view === 'component' || this.view === 'template') {
-                this.template('view.swig', 'dev/views/' + this.view +'s/' + this._.camelize(this.name) + '.swig');
+                this.template('view.swig', 'dev/views/' + this.view +'s/' + this._.slugify(this.name) + '.swig');
             }
             else if (!this.name) {
                 console.log('Name cannot be empty. Operation aborted.');
@@ -72,7 +72,7 @@ ViewGenerator.prototype.files = function files() {
         else if (this.htmlOption === 'None (Vanilla HTML)') {
             console.log(this.useDashboard);
             if (this.view === 'page') {
-                this.template('view.html', 'dev/views/' + this._.camelize(this.name) + '.html');
+                this.template('view.html', 'dev/views/' + this._.slugify(this.name) + '.html');
             }
             else {
                 console.log('You have chosen to use Vanilla HTML, so only pages can be generated.');
@@ -86,19 +86,19 @@ ViewGenerator.prototype.files = function files() {
             console.log('Name cannot be empty. Operation aborted.');
             return;
         }
-        this.template('view.js', 'dev/scripts/views/' + this._.camelize(this.name) + '.js');
-        this.template('view-spec.js', 'test/spec/views/' + this._.camelize(this.name) + '-spec.js');
+        this.template('view.js', 'dev/scripts/views/' + this._.slugify(this.name) + '.js');
+        this.template('view-spec.js', 'test/spec/views/' + this._.slugify(this.name) + '-spec.js');
         if (this.jsTemplate === 'Lo-dash (Underscore)') {
-            this.template('template.html', 'dev/scripts/templates/' + this._.camelize(this.name) + '.jst');
+            this.template('template.html', 'dev/scripts/templates/' + this._.slugify(this.name) + '.jst');
         }
         else if (this.jsTemplate === 'Handlebars') {
-            this.template('template.html', 'dev/scripts/templates/' + this._.camelize(this.name) + '.hbs');
+            this.template('template.html', 'dev/scripts/templates/' + this._.slugify(this.name) + '.hbs');
         }
         else if (this.jsTemplate === 'Swig') {
-            this.template('template.html', 'dev/scripts/templates/' + this._.camelize(this.name) + '.swig');
+            this.template('template.html', 'dev/scripts/templates/' + this._.slugify(this.name) + '.swig');
         }
         else if (this.jsTemplate === 'Jade') {
-            this.template('template.html', 'dev/scripts/templates/' + this._.camelize(this.name) + '.jade');
+            this.template('template.html', 'dev/scripts/templates/' + this._.slugify(this.name) + '.jade');
         }
     }
 
