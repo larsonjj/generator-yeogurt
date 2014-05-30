@@ -28,6 +28,21 @@ StyleGenerator.prototype.files = function files() {
     if (this.folder) {
         if (this.cssOption === 'LESS') {
             this.template('style.less', 'dev/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.less');
+            // write the component file as an include
+            if(this.import) {
+                try {
+                    generatorUtils.rewriteFile({
+                        file: 'dev/styles/main.less',
+                        needle: '// end ' + this.folder + ' build',
+                        splicable: [
+                            '@import \'' + this.folder + '/_' + this._.slugify(this.name.toLowerCase()) + '\';'
+                        ]
+                    });
+                    console.log('Added partial ' + this._.slugify(this.name.toLowerCase()) + ' to main.less!');
+                } catch (e) {
+                    console.log('Error adding partial ' + this._.slugify(this.name.toLowerCase()) + ' to main.less!');
+                }
+            }
         }
         else if (this.cssOption === 'SCSS') {
             this.template('style.less', 'dev/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
@@ -54,6 +69,21 @@ StyleGenerator.prototype.files = function files() {
     else {
         if (this.cssOption === 'LESS') {
             this.template('style.less', 'dev/styles/partials/' + '_' + this._.slugify(this.name.toLowerCase()) + '.less');
+            // write the component file as an include
+            if(this.import) {
+                try {
+                    generatorUtils.rewriteFile({
+                        file: 'dev/styles/main.less',
+                        needle: '// end partials build',
+                        splicable: [
+                            '@import \'partials/_' + this._.slugify(this.name.toLowerCase()) + '\';'
+                        ]
+                    });
+                    console.log('Added partials ' + this._.slugify(this.name.toLowerCase()) + ' to main.less!');
+                } catch (e) {
+                    console.log('Error adding partials ' + this._.slugify(this.name.toLowerCase()) + ' to main.less!');
+                }
+            }
         }
         else if (this.cssOption === 'SCSS') {
             this.template('style.less', 'dev/styles/partials/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
