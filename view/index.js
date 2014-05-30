@@ -12,6 +12,7 @@ var ViewGenerator = module.exports = function ViewGenerator(args, options, confi
     // options
     this.useDashboard = this.options.dashboard || false;
     this.view = this.options.type || 'page';
+    this.import = this.options.import || false;
     this.useTemplate = this.options.template || false;
     this.useDashboard = fileJSON.extras.indexOf('useDashboard') > -1 ? true : false;
     this.htmlOption = fileJSON.htmlOption;
@@ -45,18 +46,20 @@ ViewGenerator.prototype.files = function files() {
         else if (this.view === 'component') {
             this.template('view.jade', 'dev/views/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.jade');
             // write the component file as an include
-            try {
-        		generatorUtils.rewriteFile({
-        			file: 'dev/views/templates/base.jade',
-        			needle: '//- end component build',
-        			splicable: [
-        				'include ../components/' + this._.slugify(this.name)
-        			]
-        		});
-                console.log('Added component ' + this._.slugify(this.name) + ' to base.jade!');
-        	} catch (e) {
-        		console.log('Error adding component to base.jade!');
-        	}
+            if(this.import) {
+                try {
+                    generatorUtils.rewriteFile({
+                        file: 'dev/views/templates/base.jade',
+                        needle: '//- end component build',
+                        splicable: [
+                            'include ../components/' + this._.slugify(this.name.toLowerCase())
+                        ]
+                    });
+                    console.log('Added component ' + this._.slugify(this.name.toLowerCase()) + ' to base.jade!');
+                } catch (e) {
+                    console.log('Error adding component ' + this._.slugify(this.name.toLowerCase()) + ' to base.jade!');
+                }
+            }
         }
         else if (this.view === 'template') {
             this.template('view.jade', 'dev/views/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.jade');
