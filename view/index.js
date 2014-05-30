@@ -2,6 +2,7 @@
 var util = require('util');
 var yeoman = require('yeoman-generator');
 var fileJSON = require(process.cwd() + '/.yo-rc.json')['generator-yeogurt'].config;
+var generatorUtils = require('./util.js');
 
 var ViewGenerator = module.exports = function ViewGenerator(args, options, config) {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -41,7 +42,23 @@ ViewGenerator.prototype.files = function files() {
         if (this.view === 'page') {
             this.template('view.jade', 'dev/views/' + this._.slugify(this.name.toLowerCase()) + '.jade');
         }
-        else if (this.view === 'component' || this.view === 'template') {
+        else if (this.view === 'component') {
+            this.template('view.jade', 'dev/views/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.jade');
+            // write the component file as an include
+            try {
+        		generatorUtils.rewriteFile({
+        			file: 'dev/views/templates/base.jade',
+        			needle: '//- end component build',
+        			splicable: [
+        				'include ../components/' + this._.slugify(this.name)
+        			]
+        		});
+                console.log('Added component ' + this._.slugify(this.name) + ' to base.jade!');
+        	} catch (e) {
+        		console.log('Error adding component to base.jade!');
+        	}
+        }
+        else if (this.view === 'template') {
             this.template('view.jade', 'dev/views/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.jade');
         }
         else if (!this.name) {
