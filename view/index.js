@@ -50,7 +50,7 @@ ViewGenerator.prototype.files = function files() {
                 try {
                     generatorUtils.rewriteFile({
                         file: 'dev/views/templates/base.jade',
-                        needle: '//- end component build',
+                        needle: '//- [/include:component]',
                         splicable: [
                             'include ../components/' + this._.slugify(this.name.toLowerCase())
                         ]
@@ -82,7 +82,7 @@ ViewGenerator.prototype.files = function files() {
                 try {
                     generatorUtils.rewriteFile({
                         file: 'dev/views/templates/base.swig',
-                        needle: '{# end component build #}',
+                        needle: '{# [/include:component] #}',
                         splicable: [
                             '{% import \'../components/' + this._.slugify(this.name.toLowerCase()) + '.swig\' as ' + this._.slugify(this.name.toLowerCase()) + ' %}'
                         ]

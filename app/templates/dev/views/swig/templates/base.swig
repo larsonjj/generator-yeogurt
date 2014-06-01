@@ -7,7 +7,8 @@
 {% import '../components/header.swig' as header %}
 {% import '../components/footer.swig' as footer %}
 {% import '../components/heading.swig' as heading %}
-{# end component build #}
+{# [include:component] #}
+{# [/include:component] #}
 
 <!DOCTYPE html><% if (ieSupport) { %>
 <!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->

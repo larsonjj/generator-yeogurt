@@ -70,7 +70,7 @@ Available sub-generators:
 **Note: Generators are to be run from the root directory of your app.**
 
 ### View
-Creates jade file within the `dev/views` folder by default or within another folder using the `--type` option. Use the --import flag to include the created file within the base template file (Jade mixins and Swig macros must be included in the file(s) where you want to use them).
+Creates jade file within the `dev/views` folder by default or within another folder using the `--type` option. Use the `--import` flag to include the created file within the base template file (Jade mixins and Swig macros must be included in the file(s) where you want to use them). Note: The `--import` flag is designed to work with `type=component`.
 
 Example:
 ```bash

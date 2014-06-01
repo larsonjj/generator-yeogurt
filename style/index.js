@@ -33,7 +33,7 @@ StyleGenerator.prototype.files = function files() {
                 try {
                     generatorUtils.rewriteFile({
                         file: 'dev/styles/main.less',
-                        needle: '// end ' + this.folder + ' build',
+                        needle: '// [/include:' + this.folder + ']',
                         splicable: [
                             '@import \'' + this.folder + '/_' + this._.slugify(this.name.toLowerCase()) + '\';'
                         ]
@@ -51,7 +51,7 @@ StyleGenerator.prototype.files = function files() {
                 try {
                     generatorUtils.rewriteFile({
                         file: 'dev/styles/main.scss',
-                        needle: '// end ' + this.folder + ' build',
+                        needle: '// [/include:' + this.folder + ']',
                         splicable: [
                             '@import \'' + this.folder + '/_' + this._.slugify(this.name.toLowerCase()) + '\';'
                         ]
@@ -74,7 +74,7 @@ StyleGenerator.prototype.files = function files() {
                 try {
                     generatorUtils.rewriteFile({
                         file: 'dev/styles/main.less',
-                        needle: '// end partials build',
+                        needle: '// [/include:partials]',
                         splicable: [
                             '@import \'partials/_' + this._.slugify(this.name.toLowerCase()) + '\';'
                         ]
@@ -92,7 +92,7 @@ StyleGenerator.prototype.files = function files() {
                 try {
                     generatorUtils.rewriteFile({
                         file: 'dev/styles/main.scss',
-                        needle: '// end partials build',
+                        needle: '// [/include:partials]',
                         splicable: [
                             '@import \'partials/_' + this._.slugify(this.name.toLowerCase()) + '\';'
                         ]
