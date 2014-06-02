@@ -106,14 +106,22 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         message: 'Would you like to use the ' + 'Lesshat Mixin Library'.blue + '?',
         default: true
     }, {
+        when: function(props) { return (/SASS/i).test(props.cssOption) || (/None/i).test(props.cssOption); },
+        type: 'list',
+        name: 'cssFramework',
+        message: 'Which CSS ' + 'framework'.blue + ' would you like to use?',
+        choices: ['Bootstrap', 'Foundation', 'None']
+    }, {
+        when: function(props) { return (/LESS/i).test(props.cssOption); },
+        type: 'confirm',
+        name: 'useBootstrap',
+        message: 'Would you like to use the ' + 'Bootstrap'.blue + ' CSS framework?',
+        default: true
+    }, {
+        when: function(props) { return !(/Foundation/i).test(props.cssFramework); },
         type: 'confirm',
         name: 'ieSupport',
         message: 'Do you need to ' + 'support IE8+'.blue + '?',
-        default: true
-    }, {
-        type: 'confirm',
-        name: 'responsive',
-        message: 'Will the site be ' + 'responsive (Use CSS3 media queries)'.blue + '?',
         default: true
     }, {
         type: 'confirm',
@@ -146,10 +154,6 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         name: 'extras',
         message: 'Select any extras you would like:',
         choices: [{
-            name: 'Twitter Bootstrap',
-            value: 'useBootstrap',
-            checked: true
-        }, {
             name: 'Font Awesome',
             value: 'useFontAwesome',
             checked: true
@@ -161,11 +165,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
             name: 'Box Sizing: Border-Box',
             value: 'useBorderBox',
             checked: true
-        }, {
-            name: 'HTML5 Boilerplate extras (.htaccess, Apple homescreen icon, etc)',
-            value: 'htaccess',
-            checked: false
-        }, {
+        },{
             name: 'Dynamic Dashboard: Generate a dashboard for your site/app',
             value: 'useDashboard',
             checked: false
@@ -176,10 +176,6 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         name: 'extras',
         message: 'Select any extras you would like:',
         choices: [{
-            name: 'Twitter Bootstrap',
-            value: 'useBootstrap',
-            checked: true
-        }, {
             name: 'Font Awesome',
             value: 'useFontAwesome',
             checked: true
@@ -191,9 +187,26 @@ YeogurtGenerator.prototype.askFor = function askFor() {
             name: 'Box Sizing: Border-Box',
             value: 'useBorderBox',
             checked: true
-        }, {
-            name: 'HTML5 Boilerplate extras',
+        }]
+    }, {
+        type: 'checkbox',
+        name: 'html5Addons',
+        message: 'Select any HTML5 Boilerplate addons you would like:',
+        choices: [{
+            name: '.htaccess',
             value: 'htaccess',
+            checked: false
+        }, {
+            name: 'Apple Touch Icon',
+            value: 'appleIcon',
+            checked: false
+        },  {
+            name: 'Flash Cross-domain Rules',
+            value: 'adobeXDomain',
+            checked: false
+        }, {
+            name: 'IE touch icons',
+            value: 'ieIcons',
             checked: false
         }]
     }];
@@ -208,10 +221,10 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.jsTemplate = props.jsTemplate ? props.jsTemplate : 'React';
         this.testFramework = props.testFramework;
         this.cssOption = props.cssOption;
-        this.jsOption = props.jsOption ? props.jsOption : 'Browserify';
+        this.jsOption = props.jsOption;
         this.ieSupport = props.ieSupport;
-        this.responsive = props.responsive;
         this.extras = props.extras;
+        this.html5Addons = props.extras;
         this.jshint = props.jshint;
         this.useDocker = props.useDocker;
         this.useKss = props.useKss;
@@ -220,29 +233,43 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.useDashboard = props.useDashboard;
         this.useBourbon = props.useBourbon;
         this.useLesshat = props.useLesshat;
+        this.cssFramework = props.cssFramework;
 
         // Default Overwrites
-        props.jsOption = props.jsOption ? props.jsOption : 'Browserify';
         props.jsTemplate = props.jsTemplate ? props.jsTemplate : 'React';
 
         var extras = this.extras;
+        var html5Addons = this.html5Addons;
 
-        function hasFeature(feat) {
-            return extras.indexOf(feat) !== -1;
+        function hasFeature(feat, obj) {
+            return obj.indexOf(feat) !== -1;
         }
 
-        this.htaccess = hasFeature('htaccess');
-        this.useBootstrap = hasFeature('useBootstrap');
-        this.useFontAwesome = hasFeature('useFontAwesome');
-        this.useDashboard = hasFeature('useDashboard');
-        this.useBorderBox = hasFeature('useBorderBox');
-        this.useModernizr = hasFeature('useModernizr');
+        // Intially set flags to false
+        this.useBootstrap = props.useBootstrap ? props.useBootstrap : false;
+        this.responsive = false;
+        this.useFoundation = false;
 
-        if (this.htaccess) {
-            this.ieIcons = true;
-            this.adobeXdomain = true;
-            this.appleIcon = true;
+
+        if (this.cssFramework === 'Bootstrap') {
+            this.useBootstrap = true;
+            if (this.ieSupport) {
+                this.responsive = true;
+            }
         }
+        else if (this.cssFramework === 'Foundation') {
+            this.useFoundation = true;
+        }
+
+        this.useFontAwesome = hasFeature('useFontAwesome', extras);
+        this.useDashboard = hasFeature('useDashboard', extras);
+        this.useBorderBox = hasFeature('useBorderBox', extras);
+        this.useModernizr = hasFeature('useModernizr', extras);
+
+        this.htaccess = hasFeature('htaccess', html5Addons);
+        this.ieIcons = hasFeature('ieIcons', html5Addons);
+        this.adobeXDomain = hasFeature('adobeXDomain', html5Addons);
+        this.appleIcon = hasFeature('appleIcon', html5Addons);
 
         this.props = props;
 
@@ -281,8 +308,22 @@ YeogurtGenerator.prototype.app = function app() {
     this.mkdir('dev');
 
     // dev/images
-    this.mkdir('dev/images');
+    this.directory('dev/images', 'dev/images');
 
+};
+
+YeogurtGenerator.prototype.docs = function docs() {
+    if (this.useKss) {
+        this.mkdir('dev/docs');
+        this.mkdir('dev/docs/styleguide');
+        this.template('dev/docs/styleguide/index.html', 'dev/docs/styleguide/index.html');
+        this.template('dev/docs/styleguide/public/kss.js', 'dev/docs/styleguide/public/kss.js');
+        this.template('dev/docs/styleguide/public/kss.less', 'dev/docs/styleguide/public/kss.less');
+        this.template('dev/docs/styleguide/public/less.js', 'dev/docs/styleguide/public/less.js');
+        this.template('dev/docs/styleguide/public/markdown.less', 'dev/docs/styleguide/public/markdown.less');
+        this.copy('dev/docs/styleguide/public/prettify.js', 'dev/docs/styleguide/public/prettify.js');
+        this.copy('dev/images/yeogurt-logo.png', 'dev/docs/styleguide/public/images/yeogurt-logo.png');
+    }
 };
 
 YeogurtGenerator.prototype.tasks = function tasks() {
@@ -316,6 +357,7 @@ YeogurtGenerator.prototype.tasks = function tasks() {
     }
     this.template('grunt/config/htmlmin.js', 'grunt/config/htmlmin.js');
     this.template('grunt/config/imagemin.js', 'grunt/config/imagemin.js');
+    this.template('grunt/config/pngmin.js', 'grunt/config/pngmin.js');
     if (this.htmlOption === 'Jade' || this.jsTemplate === 'Jade') {
         this.template('grunt/config/jade.js', 'grunt/config/jade.js');
     }
@@ -494,6 +536,9 @@ YeogurtGenerator.prototype.styles = function styles() {
             if (this.useBootstrap) {
                 this.template('dev/styles/vendor/_bootstrap.less', 'dev/styles/vendor/_bootstrap.scss');
             }
+            if (this.useFoundation) {
+                this.template('dev/styles/vendor/_foundation.scss', 'dev/styles/vendor/_foundation.scss');
+            }
             if (this.useBourbon) {
                 this.template('dev/styles/vendor/_bourbon.scss', 'dev/styles/vendor/_bourbon.scss');
             }
@@ -521,7 +566,7 @@ YeogurtGenerator.prototype.dashboard = function dashboard() {
     if (this.useDashboard) {
         this.mkdir('dev/dashboard');
         this.mkdir('dev/dashboard/images');
-        this.copy('dev/dashboard/images/yeogurt-logo.png', 'dev/dashboard/images/yeogurt-logo.png');
+        this.copy('dev/images/yeogurt-swirl.png', 'dev/dashboard/images/yeogurt-swirl.png');
     }
 };
 
@@ -543,7 +588,7 @@ YeogurtGenerator.prototype.projectfiles = function projectfiles() {
 };
 
 YeogurtGenerator.prototype.extras = function extras() {
-    if (this.adobeXdomain) {
+    if (this.adobeXDomain) {
         this.copy('dev/crossdomain.xml', 'dev/crossdomain.xml');
     }
 

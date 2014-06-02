@@ -1,20 +1,23 @@
 /**
- * Configuration for imagemin task(s)
+ * Configuration for pngmin task(s)
  */
 'use strict';
 
 module.exports = function(grunt) {
 
-    grunt.config.set('imagemin', {
+    grunt.config.set('pngmin', {
         dist: {
+            options: {
+                ext: '.png'
+            },
             files: [{
                 expand: true,
                 cwd: '<%%= yeogurt.dev %>/images',
-                src: '**/*.{jpg,jpeg,gif}',
+                src: '**/*.png',
                 dest: '<%%= yeogurt.dist %>/images'
             }]
         }
     });
 
-    // grunt.loadNpmTasks('grunt-contrib-imagemin');
+    // grunt.loadNpmTasks('grunt-contrib-pngmin');
 };

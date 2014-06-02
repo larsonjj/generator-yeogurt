@@ -14,6 +14,7 @@
 <% if (!useBootstrap) { %>
 @import 'vendor/_normalize';<% } %><% if (cssOption === 'SASS') { %>
 <% if (useBootstrap) { %>@import 'vendor/_bootstrap';
+<% } %><% if (useFoundation) { %>@import 'vendor/_foundation';
 <% } %><% if (useBourbon) { %>@import 'vendor/_bourbon';<% } %><% } else { %>
 <% if (useBootstrap) { %>@import 'vendor/_bootstrap';
 <% } %><% if (useLesshat) { %>@import 'vendor/_lesshat';<% } %><% } %><% if (useFontAwesome) { %>
@@ -22,3 +23,54 @@
 // Import Partials Files
 @import 'partials/_header';
 @import 'partials/_footer';
+
+.main-container {
+    padding-top: 200px;
+    text-align: center;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.version {
+    font-size: 14px;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.logo {
+    margin-top: 15px;
+    -webkit-animation: 5.0s rotateRight linear infinite;
+       -moz-animation: 5.0s rotateRight linear infinite;
+            animation: 5.0s rotateRight linear infinite;
+}
+
+
+@-webkit-keyframes rotateRight {
+    0% {
+        -webkit-transform:rotate(0deg);
+        -webkit-transform-origin:50% 50%;
+    }
+    100% {
+        -webkit-transform:rotate(360deg);
+    }
+}
+
+@-moz-keyframes rotateRight {
+    0% {
+        -moz-transform:rotate(0deg);
+         -moz-transform-origin:50% 50%; }
+    100% {
+        -moz-transform:rotate(360deg);
+    }
+}
+
+@keyframes rotateRight {
+    0% {
+        transform: rotate(0deg);
+        transform-origin: 50% 50%;
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

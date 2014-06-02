@@ -7,9 +7,10 @@ module.exports = function(grunt) {
 
     grunt.config.set('concurrent', {
         compile: [
-            'newer:imagemin:dist',<% if (useDocker) { %>
+            'pngmin:dist',
+            'imagemin:dist',<% if (useDocker) { %>
             'docker:dist',<% } %>
-            'newer:svgmin:dist',<% if (htmlOption === 'Jade') { %>
+            'svgmin:dist',<% if (htmlOption === 'Jade') { %>
             'jade:dist',<% } else if(htmlOption === 'Swig') {  %>
             'swig:dist',<% } %><% if (cssOption === 'LESS') { %>
             'less:dist',<% if (ieSupport) { %>

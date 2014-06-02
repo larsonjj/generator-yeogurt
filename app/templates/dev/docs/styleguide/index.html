@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <title><%= projectName %> Styleguide</title>
+  <meta name="description" content="">
+  <meta name="generator" content="kss-node" />
+
+  <meta name="viewport" content="width=device-width">
+
+  <link rel="stylesheet" href="public/kss.css">
+  <link rel="stylesheet" href="public/style.css">
+
+</head>
+<body>
+  <div class="container">
+    <div class="image-container">
+      <img class="logo" src="public/images/yeogurt-logo.png" alt="AC Delco logo">
+    </div>
+    <div class="styleguide">
+      <div class="menu-container">
+        <ul class="menu">
+        <li><a href="index.html">0. Overview</a></li>
+        {{#eachRoot}}
+        <li><a href="section-{{reference}}.html">{{reference}}. {{header}} {{rootNumber}}</a></li>
+        {{/eachRoot}}
+        </ul>
+      </div>
+      <div class="content">
+      {{#if overview}}
+        {{html overview}}
+      {{else}}
+        {{#eachSection rootNumber}}
+          <div class="styleguide-example">
+            {{#whenDepth 1}}
+            <h3><span>{{reference}}.0</span> - {{header}}</h3>
+           {{else}}
+            <h3><span>{{reference}}</span> - {{header}}</h3>
+            {{/whenDepth}}
+            <div class="styleguide-description markdown-body">
+              {{#if description}}
+              <p>{{{description}}}</p>
+              {{/if}}
+              {{#if modifiers}}
+              <ul class="styleguide-modifier">
+                {{#eachModifier}}
+                <li><strong>{{name}}</strong> - {{description}}</li>
+                {{/eachModifier}}
+              </ul>
+              {{/if}}
+            </div>
+            {{#if markup}}
+            <div class="styleguide-element">
+              <div class="custom-css">{{modifierMarkup}}</div>
+            </div>
+            {{#eachModifier}}
+            <div class="styleguide-element styleguide-modifier">
+              <span class="styleguide-modifier-name">{{name}}</span>
+              <div class="custom-css">{{modifierMarkup}}</div>
+            </div>
+            {{/eachModifier}}
+            <div class="styleguide-html">
+              <pre class="prettyprint lang-html">{{markup}}</pre>
+            </div>
+            {{/if}}
+          </div>
+        {{/eachSection}}
+      {{/if}}
+      </div>
+    </div>
+  </div>
+
+<!-- SCRIPTS -->
+<script src="public/kss.js"></script>
+<script src="public/prettify.js"></script>
+<script src="public/script.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+
+    // Ensure code blocks are highlighted properly...
+    $('pre>code').addClass('prettyprint');
+    prettyPrint();
+
+  });
+</script>
+</body>
+</html>

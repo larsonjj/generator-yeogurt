@@ -14,5 +14,9 @@ block body
     - var bodyClass = 'homepage';
 
 block content
-    +heading({type:'h1', class:'heading', text: 'Test Heading'})
-    p Example page
+    .main-container
+        +heading({type:'h1', class:'heading', text: 'Welcome to Yeogurt!'})
+        p. Take a look at the <a href="https://github.com/larsonjj/generator-yeogurt#yeogurt-generator---">documentation</a> and start mixing up something awesome.
+        p
+            img.logo(src="images/yeogurt-swirl.png", width="75px")
+    code.version v<%= pkg.version %>

@@ -23,7 +23,9 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang="en")
         <% } %>
         <% if (cssOption === 'None (Vanilla CSS)') { %>// build:css(dev) styles/main.css
         <% if (useBootstrap) { %>link(rel='stylesheet', href='bower_components/bootstrap/dist/css/bootstrap.css', media="screen")
-        <% } %>link(rel='stylesheet', href='styles/main.css', media="screen")
+        <% } %><% if (useFoundation) { %>link(rel='stylesheet', href='bower_components/foundation/css/normalize.css')
+        link(rel='stylesheet', href='bower_components/foundation/css/foundation.css')
+        link(rel='stylesheet', href='styles/main.css', media="screen")<% } %>
         <% if (ieSupport) { %>// endbuild
         // build:css(dev) styles/print.css
         link(rel='stylesheet', href='styles/print.css', media="print")
@@ -88,7 +90,27 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang="en")
         script(src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>tooltip.js")
         script(src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>popover.js")
         script(src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>transition.js")
-        <% } %>// endbuild
+        <% } %><% if (useFoundation) { %>script(src='bower_components/foundation/js/vendor/fastclick.js')
+        script(src='bower_components/foundation/js/vendor/jquery.cookie.js')
+        script(src='bower_components/foundation/js/vendor/placeholder.js')
+        script(src='bower_components/foundation/js/foundation/foundation.js')
+        script(src='bower_components/foundation/js/foundation/foundation.abide.js')
+        script(src='bower_components/foundation/js/foundation/foundation.accordion.js')
+        script(src='bower_components/foundation/js/foundation/foundation.alert.js')
+        script(src='bower_components/foundation/js/foundation/foundation.clearing.js')
+        script(src='bower_components/foundation/js/foundation/foundation.dropdown.js')
+        script(src='bower_components/foundation/js/foundation/foundation.equalizer.js')
+        script(src='bower_components/foundation/js/foundation/foundation.interchange.js')
+        script(src='bower_components/foundation/js/foundation/foundation.joyride.js')
+        script(src='bower_components/foundation/js/foundation/foundation.magellan.js')
+        script(src='bower_components/foundation/js/foundation/foundation.offcanvas.js')
+        script(src='bower_components/foundation/js/foundation/foundation.orbit.js')
+        script(src='bower_components/foundation/js/foundation/foundation.reveal.js')
+        script(src='bower_components/foundation/js/foundation/foundation.slider.js')
+        script(src='bower_components/foundation/js/foundation/foundation.tab.js')
+        script(src='bower_components/foundation/js/foundation/foundation.tooltip.js')
+        script(src='bower_components/foundation/js/foundation/foundation.topbar.js')<% } %>
+        // endbuild
 
         //- Author Scripts
         <% if (jsOption ==='RequireJS') { %>script(data-main="scripts/main", src="bower_components/requirejs/require.js")<% } else if (jsOption ==='Browserify') { %>script(src="scripts/main.js")<% } else { %>//- Place all author scripts within the 'build:js' comments below,

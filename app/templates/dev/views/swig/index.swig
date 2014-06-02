@@ -16,8 +16,14 @@
 {% endblock %}
 
 {% block content %}
-    {{ heading.content({type:'h1', class:'heading', text: 'Test Heading'}) }}
+<div class="main-container">
+    {{ heading.content({type:'h1', class:'heading', text: 'Welcome to Yeogurt!'}) }}
     <p>
-        Example page
+        Take a look at the <a href="https://github.com/larsonjj/generator-yeogurt#yeogurt-generator---">documentation</a> and start mixing up something awesome.
     </p>
+    <p>
+        <img src="images/yeogurt-swirl.png" width="75px" class="logo">
+    </p>
+</div>
+<code class="version">v<%= pkg.version %></code>
 {% endblock %}

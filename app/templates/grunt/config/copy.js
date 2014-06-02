@@ -45,8 +45,9 @@ module.exports = function(grunt) {
                 cwd: '<%%= yeogurt.dev %>/',
                 dest: '<%%= yeogurt.server %>/',
                 src: [
-                    'styles/**/*.css',
-                    'bower_components/bootstrap/dist/css/*.{css,map}'
+                    'styles/**/*.css',<% if (useBootstrap) { %>
+                    'bower_components/bootstrap/dist/css/*.{css,map}'<% } %><% if (useFoundation) { %>
+                    'bower_components/foundation/css/*.css'<% } %>
                 ]
             }<% } %>]
         },

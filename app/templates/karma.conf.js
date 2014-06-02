@@ -16,7 +16,37 @@ module.exports = function(config) {
             'dev/bower_components/underscore/underscore.js',
             'dev/bower_components/backbone/backbone.js',<% } %><% if (jsFramework === 'Backbone + React') { %>
             'dev/bower_components/backbone-react-component/lib/component.js',<% } %><% if (jsTemplate === 'Handlebars') { %>
-            'dev/bower_components/handlebars/handlebars.runtime.js',<% } else if (jsTemplate === 'Jade') { %>'dev/bower_components/jade/runtime.js',<% } %><% if (jsFramework === 'Backbone') { %>
+            'dev/bower_components/handlebars/handlebars.runtime.js',<% } else if (jsTemplate === 'Jade') { %>'dev/bower_components/jade/runtime.js',<% } %><% if (useBootstrap) { %>'dev/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>affix.js',
+            'dev/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>alert.js',
+            'dev/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>button.js',
+            'dev/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>carousel.js',
+            'dev/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>collapse.js',
+            'dev/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>dropdown.js',
+            'dev/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>modal.js',
+            'dev/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>scrollspy.js',
+            'dev/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>tab.js',
+            'dev/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>tooltip.js',
+            'dev/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>popover.js',
+            'dev/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>transition.js',<% } %><% if (useFoundation) { %>'dev/bower_components/foundation/js/vendor/fastclick.js',
+            'dev/bower_components/foundation/js/vendor/jquery.cookie.js',
+            'dev/bower_components/foundation/js/vendor/placeholder.js',
+            'dev/bower_components/foundation/js/foundation/foundation.js',
+            'dev/bower_components/foundation/js/foundation/foundation.abide.js',
+            'dev/bower_components/foundation/js/foundation/foundation.accordion.js',
+            'dev/bower_components/foundation/js/foundation/foundation.alert.js',
+            'dev/bower_components/foundation/js/foundation/foundation.clearing.js',
+            'dev/bower_components/foundation/js/foundation/foundation.dropdown.js',
+            'dev/bower_components/foundation/js/foundation/foundation.equalizer.js',
+            'dev/bower_components/foundation/js/foundation/foundation.interchange.js',
+            'dev/bower_components/foundation/js/foundation/foundation.joyride.js',
+            'dev/bower_components/foundation/js/foundation/foundation.magellan.js',
+            'dev/bower_components/foundation/js/foundation/foundation.offcanvas.js',
+            'dev/bower_components/foundation/js/foundation/foundation.orbit.js',
+            'dev/bower_components/foundation/js/foundation/foundation.reveal.js',
+            'dev/bower_components/foundation/js/foundation/foundation.slider.js',
+            'dev/bower_components/foundation/js/foundation/foundation.tab.js',
+            'dev/bower_components/foundation/js/foundation/foundation.tooltip.js',
+            'dev/bower_components/foundation/js/foundation/foundation.topbar.js',<% } %><% if (jsFramework === 'Backbone') { %>
             '.tmp/templates.js',<% } %><% if (jsOption === 'RequireJS') { %>
             {
                 pattern: 'dev/bower_components/**/*.js',

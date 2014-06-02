@@ -25,7 +25,8 @@
         "grunt-react": "0.8.2",<% } %>
         "grunt-contrib-concat": "0.4.0",<% if (cssOption === 'None (Vanilla CSS)') { %>
         "grunt-contrib-cssmin": "0.9.0",<% } %>
-        "grunt-contrib-imagemin": "0.7.0",<% if (jshint) { %>
+        "grunt-contrib-imagemin": "0.7.0",
+        "grunt-pngmin": "0.6.1",<% if (jshint) { %>
         "grunt-contrib-jshint": "0.10.0",
         "jshint-stylish": "0.2.0",<% } %>
         "grunt-contrib-copy": "0.5.0",
