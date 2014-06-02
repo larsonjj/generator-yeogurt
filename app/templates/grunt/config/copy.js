@@ -47,7 +47,8 @@ module.exports = function(grunt) {
                 src: [
                     'styles/**/*.css',<% if (useBootstrap) { %>
                     'bower_components/bootstrap/dist/css/*.{css,map}'<% } %><% if (useFoundation) { %>
-                    'bower_components/foundation/css/*.css'<% } %>
+                    'bower_components/foundation/css/*.css'<% } %><% if (useFontAwesome) { %>,
+                    'bower_components/font-awesome/css/*.css'<% } %>
                 ]
             }<% } %>]
         },

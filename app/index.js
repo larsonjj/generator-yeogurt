@@ -489,7 +489,7 @@ YeogurtGenerator.prototype.styles = function styles() {
             this.mkdir('dev/styles/base');
             this.mkdir('dev/styles/partials');
             this.mkdir('dev/styles/vendor');
-            if (this.useFontAwesome) {
+            if (this.useFontAwesome && this.cssOption !== 'None (Vanilla CSS)') {
                 this.template('dev/styles/vendor/_font-awesome.less', 'dev/styles/vendor/_font-awesome.less');
             }
             if (this.useBootstrap) {

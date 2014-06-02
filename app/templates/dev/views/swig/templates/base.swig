@@ -24,9 +24,10 @@
         <link href="//www.google-analytics.com" rel="dns-prefetch">
         <% } %>
         <% if (cssOption === 'None (Vanilla CSS)') { %><!-- build:css(dev) styles/main.css -->
-        <% if (useBootstrap) { %><link rel="stylesheet", href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen">
-        <% } %><% if (useFoundation) { %><link rel="stylesheet", href="bower_components/foundation/css/normalize.css"><link rel="stylesheet", href="bower_components/foundation/css/foundation.css">
-        <% } %><link rel="stylesheet" href="styles/main.css" media="screen">
+        <% if (useBootstrap) { %><link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen">
+        <% } %><% if (useFoundation) { %><link rel="stylesheet" href="bower_components/foundation/css/normalize.css"><link rel="stylesheet" href="bower_components/foundation/css/foundation.css">
+        <% } %><% if (useFontAwesome) { %>
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"><% } %><link rel="stylesheet" href="styles/main.css" media="screen">
         <% if (ieSupport) { %><!-- endbuild -->
         <!-- build:css(dev) styles/print.css -->
         <link rel="stylesheet" href="styles/print.css" media="print">
