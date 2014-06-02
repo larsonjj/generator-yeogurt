@@ -1,5 +1,19 @@
-<% if (jsTemplate !== 'Jade') { %><h1>Backbone App</h1>
-<p>Hooray! your Backbone App with <% if (jsTemplate === 'Lo-dash (Underscore)') { %>Lo-dash (Underscore)<% } else if (jsTemplate === 'Handlebars') { %>Handlebars<% } %> templating is now running!</p><% } else { %>
-h1 Backbone App
-p Hooray! your Backbone App with Jade templating is now running!
+<% if (jsTemplate !== 'Jade') { %><div class="main-container">
+            <h1>Welcome to Yeogurt!</h1>
+    <p>
+        Take a look at the <a href="https://github.com/larsonjj/generator-yeogurt#yeogurt-generator---">documentation</a> and start mixing up something awesome.
+    </p>
+    <p>
+        <img src="images/yeogurt-swirl.png" width="75px" class="logo" />
+    </p>
+</div>
+<code class="version">v<%= pkg.version %></code><% } else { %>.main-container
+    h1 Welcome to Yeogurt!
+      p
+        | Take a look at the
+        a(href='https://github.com/larsonjj/generator-yeogurt#yeogurt-generator---') documentation
+        | and start mixing up something awesome.
+      p
+        img.logo(src='images/yeogurt-swirl.png', width='75px')
+    code.version v<%= pkg.version %>
 <% } %>

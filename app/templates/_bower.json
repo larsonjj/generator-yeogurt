@@ -1,7 +1,7 @@
 {
     "name": "<%= _.slugify(projectName) %>",
     "version": "0.0.1",
-    "dependencies": {<% if (useFoundation) { %>
+    "dependencies": {<% if (useFoundation || !ieSupport) { %>
         "jquery": "2.1.0",<% } else { %>
         "jquery": "1.11.1",<% } %><% if ((/Backbone/i).test(jsFramework)) { %>
         "backbone": "1.1.2",
