@@ -48,12 +48,13 @@ describe('yeogurt generator LESS with no dashboard', function () {
             versionControl: 'Git',
             cssOption: 'LESS',
             useLesshat: true,
+            useBootstrap: true,
             ieSupport: true,
             responsive: true,
             useGA: true,
             useFTP: true,
             jshint: true,
-            extras: ['htaccess', 'useBootstrap', 'useBorderBox', 'useFontAwesome']
+            extras: ['htaccess', 'useBorderBox', 'useFontAwesome']
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {

@@ -45,12 +45,13 @@ describe('yeogurt generator SASS', function () {
             versionControl: 'Git',
             cssOption: 'SASS',
             useBourbon: true,
+            cssFramework: 'Bootstrap',
             ieSupport: true,
             responsive: true,
             useGA: true,
             useFTP: true,
             jshint: true,
-            extras: ['htaccess', 'useBootstrap', 'useBorderBox', 'useFontAwesome', 'useDashboard']
+            extras: ['useBorderBox', 'useFontAwesome', 'useDashboard']
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {

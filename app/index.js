@@ -224,7 +224,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.jsOption = props.jsOption;
         this.ieSupport = props.ieSupport;
         this.extras = props.extras;
-        this.html5Addons = props.extras;
+        this.html5Addons = props.html5Addons;
         this.jshint = props.jshint;
         this.useDocker = props.useDocker;
         this.useKss = props.useKss;
@@ -249,6 +249,10 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.useBootstrap = props.useBootstrap ? props.useBootstrap : false;
         this.responsive = false;
         this.useFoundation = false;
+        this.htaccess = false;
+        this.ieIcons = false;
+        this.appleIcon = false;
+        this.adobeXDomain = false;
 
 
         if (this.cssFramework === 'Bootstrap') {
@@ -266,10 +270,12 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.useBorderBox = hasFeature('useBorderBox', extras);
         this.useModernizr = hasFeature('useModernizr', extras);
 
-        this.htaccess = hasFeature('htaccess', html5Addons);
-        this.ieIcons = hasFeature('ieIcons', html5Addons);
-        this.adobeXDomain = hasFeature('adobeXDomain', html5Addons);
-        this.appleIcon = hasFeature('appleIcon', html5Addons);
+        if (html5Addons) {
+            this.htaccess = hasFeature('htaccess', html5Addons);
+            this.ieIcons = hasFeature('ieIcons', html5Addons);
+            this.adobeXDomain = hasFeature('adobeXDomain', html5Addons);
+            this.appleIcon = hasFeature('appleIcon', html5Addons);
+        }
 
         this.props = props;
 
@@ -309,6 +315,7 @@ YeogurtGenerator.prototype.app = function app() {
 
     // dev/images
     this.directory('dev/images', 'dev/images');
+    this.copy('dev/images/yeogurt-swirl.png', 'dev/dashboard/images/yeogurt-swirl.png');
 
 };
 
@@ -566,7 +573,7 @@ YeogurtGenerator.prototype.dashboard = function dashboard() {
     if (this.useDashboard) {
         this.mkdir('dev/dashboard');
         this.mkdir('dev/dashboard/images');
-        this.copy('dev/images/yeogurt-swirl.png', 'dev/dashboard/images/yeogurt-swirl.png');
+        this.copy('dev/images/yeogurt-logo.png', 'dev/dashboard/images/yeogurt-logo.png');
     }
 };
 

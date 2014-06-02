@@ -5,7 +5,7 @@ var path    = require('path');
 var helpers = require('yeoman-generator').test;
 
 
-describe('yeogurt generator Swig', function () {
+describe('yeogurt generator with git', function () {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -22,27 +22,27 @@ describe('yeogurt generator Swig', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'dev/',
-            'dev/views',
-            'dev/views/templates',
-            'dev/views/components',
-            'dev/views/components/header.swig',
-            'dev/views/components/footer.swig',
-            'dev/views/components/heading.swig',
-            'dev/views/index.swig',
-            'dev/views/templates/base.swig'
+            'dev/docs',
+            'dev/docs/styleguide',
+            'dev/docs/styleguide/index.html',
+            'dev/docs/styleguide/public/kss.js',
+            'dev/docs/styleguide/public/kss.less',
+            'dev/docs/styleguide/public/less.js',
+            'dev/docs/styleguide/public/markdown.less',
+            'dev/docs/styleguide/public/prettify.js',
+            'dev/docs/styleguide/public/images/yeogurt-logo.png'
         ];
 
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
-            versionControl: 'SVN',
-            htmlOption: 'Swig',
+            versionControl: 'Git',
             cssOption: 'SASS',
             ieSupport: true,
             responsive: true,
             useGA: true,
             useFTP: true,
             jshint: true,
+            useKss: true,
             extras: ['useFontAwesome', 'useDashboard']
         });
         this.app.options['skip-install'] = true;

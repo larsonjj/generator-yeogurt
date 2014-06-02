@@ -5,7 +5,7 @@ var path    = require('path');
 var helpers = require('yeoman-generator').test;
 
 
-describe('yeogurt generator Swig', function () {
+describe('yeogurt generator with css', function () {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -22,22 +22,16 @@ describe('yeogurt generator Swig', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'dev/',
-            'dev/views',
-            'dev/views/templates',
-            'dev/views/components',
-            'dev/views/components/header.swig',
-            'dev/views/components/footer.swig',
-            'dev/views/components/heading.swig',
-            'dev/views/index.swig',
-            'dev/views/templates/base.swig'
+            'dev/styles/main.css',
+            'dev/styles/print.css'
         ];
 
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
-            versionControl: 'SVN',
-            htmlOption: 'Swig',
-            cssOption: 'SASS',
+            versionControl: 'Git',
+            structure: 'Static Site',
+            cssOption: 'None (Vanilla CSS)',
+            useFoundation: true,
             ieSupport: true,
             responsive: true,
             useGA: true,

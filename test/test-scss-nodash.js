@@ -4,7 +4,7 @@
 var path    = require('path');
 var helpers = require('yeoman-generator').test;
 
-describe('yeogurt generator SASS with no dashbaord', function () {
+describe('yeogurt generator SASS with no dashboard', function () {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -44,12 +44,13 @@ describe('yeogurt generator SASS with no dashbaord', function () {
             versionControl: 'Git',
             cssOption: 'SASS',
             useBourbon: true,
+            cssFramework: 'Bootstrap',
             ieSupport: true,
             responsive: true,
             useGA: true,
             useFTP: true,
             jshint: true,
-            extras: ['htaccess', 'useBootstrap', 'useBorderBox', 'useFontAwesome']
+            extras: ['useBorderBox', 'useFontAwesome']
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {
