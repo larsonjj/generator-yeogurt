@@ -187,6 +187,7 @@ YeogurtGenerator.prototype.app = function app() {
 
     if (this.versionControl === 'SVN') {
         this.copy('svn-init.sh', 'svn-init.sh');
+        this.copy('svn-init.bat', 'svn-init.bat');
     }
 
     // dev/
@@ -268,8 +269,6 @@ YeogurtGenerator.prototype.views = function views() {
     if (this.htmlOption === 'Jade') {
         this.mkdir('dev/views/templates');
         this.mkdir('dev/views/components');
-        this.template('dev/views/jade/components/header.jade', 'dev/views/components/header.jade');
-        this.template('dev/views/jade/components/footer.jade', 'dev/views/components/footer.jade');
         this.template('dev/views/jade/components/heading.jade', 'dev/views/components/heading.jade');
         this.template('dev/views/jade/index.jade', 'dev/views/index.jade');
         this.template('dev/views/jade/templates/base.jade', 'dev/views/templates/base.jade');
@@ -277,8 +276,6 @@ YeogurtGenerator.prototype.views = function views() {
     else if (this.htmlOption === 'Swig') {
         this.mkdir('dev/views/templates');
         this.mkdir('dev/views/components');
-        this.template('dev/views/swig/components/header.swig', 'dev/views/components/header.swig');
-        this.template('dev/views/swig/components/footer.swig', 'dev/views/components/footer.swig');
         this.template('dev/views/swig/components/heading.swig', 'dev/views/components/heading.swig');
         this.template('dev/views/swig/index.swig', 'dev/views/index.swig');
         this.template('dev/views/swig/templates/base.swig', 'dev/views/templates/base.swig');
@@ -310,7 +307,6 @@ YeogurtGenerator.prototype.styles = function styles() {
     if (this.cssOption !== 'None (Vanilla CSS)') {
         if (this.cssOption === 'LESS') {
             this.mkdir('dev/styles/base');
-            this.mkdir('dev/styles/partials');
             this.mkdir('dev/styles/vendor');
             if (this.useFontAwesome) {
                 this.template('dev/styles/vendor/_font-awesome.less', 'dev/styles/vendor/_font-awesome.less');
@@ -330,8 +326,6 @@ YeogurtGenerator.prototype.styles = function styles() {
             if (!this.useBootstrap) {
                 this.template('dev/styles/vendor/_normalize.less', 'dev/styles/vendor/_normalize.less');
             }
-            this.template('dev/styles/partials/_footer.less', 'dev/styles/partials/_footer.less');
-            this.template('dev/styles/partials/_header.less', 'dev/styles/partials/_header.less');
             this.template('dev/styles/main.less', 'dev/styles/main.less');
             if (this.ieSupport) {
                 this.template('dev/styles/base/_print.less', 'dev/styles/print.less');
@@ -349,9 +343,6 @@ YeogurtGenerator.prototype.styles = function styles() {
             if (this.useBorderBox) {
                 this.template('dev/styles/base/_box-sizing.less', 'dev/styles/base/_box-sizing.scss');
             }
-            this.mkdir('dev/styles/partials');
-            this.template('dev/styles/partials/_footer.less', 'dev/styles/partials/_footer.scss');
-            this.template('dev/styles/partials/_header.less', 'dev/styles/partials/_header.scss');
             this.mkdir('dev/styles/vendor');
             if (this.useFontAwesome) {
                 this.template('dev/styles/vendor/_font-awesome.less', 'dev/styles/vendor/_font-awesome.scss');

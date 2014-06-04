@@ -1,12 +1,9 @@
 //- Base template
 //- All other templates will extend from this
 
-//- Include components
-include ../components/header
-include ../components/footer
-include ../components/heading
 //- [include:component]
-//- [/include:component]
+include ../components/heading
+//- [/include]
 
 doctype html<% if (ieSupport) { %>
 <!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->

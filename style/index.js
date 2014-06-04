@@ -2,7 +2,7 @@
 var util = require('util');
 var yeoman = require('yeoman-generator');
 var fileJSON = require(process.cwd() + '/.yo-rc.json')['generator-yeogurt'].config;
-var generatorUtils = require('./util.js');
+var generatorUtils = require('../modules/util.js');
 
 var StyleGenerator = module.exports = function StyleGenerator(args, options, config) {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -33,14 +33,15 @@ StyleGenerator.prototype.files = function files() {
                 try {
                     generatorUtils.rewriteFile({
                         file: 'dev/styles/main.less',
-                        needle: '// [/include:' + this.folder + ']',
+                        needle: '// [include:' + this.folder + ']',
+                        end: '// [/include]',
                         splicable: [
                             '@import \'' + this.folder + '/_' + this._.slugify(this.name.toLowerCase()) + '\';'
                         ]
                     });
-                    console.log('Added partial ' + this._.slugify(this.name.toLowerCase()) + ' to main.less!');
+                    console.log('Added ' + this._.slugify(this.name.toLowerCase()) + ' to main.less!');
                 } catch (e) {
-                    console.log('Error adding partial ' + this._.slugify(this.name.toLowerCase()) + ' to main.less!');
+                    console.log('Error adding ' + this._.slugify(this.name.toLowerCase()) + ' to main.less!');
                 }
             }
         }
@@ -51,14 +52,15 @@ StyleGenerator.prototype.files = function files() {
                 try {
                     generatorUtils.rewriteFile({
                         file: 'dev/styles/main.scss',
-                        needle: '// [/include:' + this.folder + ']',
+                        needle: '// [include:' + this.folder + ']',
+                        end: '// [/include]',
                         splicable: [
                             '@import \'' + this.folder + '/_' + this._.slugify(this.name.toLowerCase()) + '\';'
                         ]
                     });
-                    console.log('Added partial ' + this._.slugify(this.name.toLowerCase()) + ' to main.scss!');
+                    console.log('Added ' + this._.slugify(this.name.toLowerCase()) + ' to main.scss!');
                 } catch (e) {
-                    console.log('Error adding partial ' + this._.slugify(this.name.toLowerCase()) + ' to main.scss!');
+                    console.log('Error adding ' + this._.slugify(this.name.toLowerCase()) + ' to main.scss!');
                 }
             }
         }
@@ -74,7 +76,8 @@ StyleGenerator.prototype.files = function files() {
                 try {
                     generatorUtils.rewriteFile({
                         file: 'dev/styles/main.less',
-                        needle: '// [/include:partials]',
+                        needle: '// [include:partials]',
+                        end: '// [/include]',
                         splicable: [
                             '@import \'partials/_' + this._.slugify(this.name.toLowerCase()) + '\';'
                         ]
@@ -92,7 +95,8 @@ StyleGenerator.prototype.files = function files() {
                 try {
                     generatorUtils.rewriteFile({
                         file: 'dev/styles/main.scss',
-                        needle: '// [/include:partials]',
+                        needle: '// [include:partials]',
+                        end: '// [/include]',
                         splicable: [
                             '@import \'partials/_' + this._.slugify(this.name.toLowerCase()) + '\';'
                         ]

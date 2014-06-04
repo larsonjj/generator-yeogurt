@@ -3,12 +3,9 @@
     All other templates will extend from this
 #}
 
-{# Include components #}
-{% import '../components/header.swig' as header %}
-{% import '../components/footer.swig' as footer %}
-{% import '../components/heading.swig' as heading %}
 {# [include:component] #}
-{# [/include:component] #}
+{% import '../components/heading.swig' as heading %}
+{# [/include] #}
 
 <!DOCTYPE html><% if (ieSupport) { %>
 <!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->

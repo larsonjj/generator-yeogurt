@@ -4,7 +4,8 @@
         "define": true,
         "requirejs": true,
         "require": true,
-        "node": true
+        "node": true,
+        "process": true
     },
     "browser": true,
     "globalstrict": true,
