@@ -1,3 +1,16 @@
+### v0.7.1:
+#### date: 2014-06-04
+##### changes:
+* Fixed [#21](https://github.com/larsonjj/generator-yeogurt/issues/21)
+* Fixed [#24](https://github.com/larsonjj/generator-yeogurt/issues/24)
+
+### v0.7.0:
+#### date: 2014-06-04
+##### changes:
+* Removed header and footer components as they were not used and could cause confusion
+* Added `[include]` comment tags for styles and Jade/Swig components within main.scss/less and base.jade/swig files respectively. This will enable the ability to automatically include all (sub)-generated style and markup files with the subgenerator `--import` flag
+* Added `svn-init.bat` script to setup svn ignores on Windows
+
 ### v0.6.0:
 #### date: 2014-05-14
 ##### changes:

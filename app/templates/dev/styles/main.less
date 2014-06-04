@@ -2,15 +2,16 @@
 *   Import all desired <% if (cssOption === 'LESS') { %>less<% } else if (cssOption === 'SASS') { %>scss<% } %> files here
 */
 
-// Import Base Files (variables, mixins, etc)<% if (useBorderBox) { %>
+// [include:base]<% if (useBorderBox) { %>
 @import 'base/_box-sizing';<% } %><% if (ieSupport) { %>
 @import 'base/_ie8';<% } %>
 @import 'base/_mixins';
 @import 'base/_reset';
 @import 'base/_variables';<% if (!ieSupport && !useBootstrap) { %>
 @import 'base/_print';<% } %>
+// [/include]
 
-// Import Third-Party (Vendor) Files
+// [include:vendor]
 <% if (!useBootstrap) { %>
 @import 'vendor/_normalize';<% } %><% if (cssOption === 'SASS') { %>
 <% if (useBootstrap) { %>@import 'vendor/_bootstrap';
@@ -19,6 +20,19 @@
 <% if (useBootstrap) { %>@import 'vendor/_bootstrap';
 <% } %><% if (useLesshat) { %>@import 'vendor/_lesshat';<% } %><% } %><% if (useFontAwesome) { %>
 @import 'vendor/_font-awesome';<% } %>
+// [/include]
+
+/**
+*   The default folder for the styles subgenerator is `partials`
+*   If you would rather use a different folder, feel free to use the `--folder` flag
+*   and change the comment below to match your new folder.
+*   ex. `yo yeogurt:style myStyle --folder=module`
+*   Comments would be:
+*   // [include:modules]
+*   // [/include]
+*/
+// [include:partials]
+// [/include]
 
 .main-container {
     padding-top: 200px;

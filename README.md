@@ -8,10 +8,13 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to fron
 ## Getting Started
 
 - First off, You will need to have [Node.js](http://nodejs.org/) `>= 0.10` installed. <br>
+- You will need to install Grunt CLI globally: `npm install -g grunt`
 - You will also need [Git](http://git-scm.com/) `>= 1.8.2` installed if you don't already. <br>
 - Be sure to install yeoman of course! `npm install -g yo` <br>
 - Install the generator: `npm install -g generator-yeogurt` <br>
 - Run the generator: `yo yeogurt`
+
+Note For Mac Users: If you haven't already, you will need to install XCode and accept the licensing agreement : `sudo xcodebuild -license`
 
 ## Features
 
@@ -73,7 +76,7 @@ Available sub-generators:
 **Note: Generators are to be run from the root directory of your app.**
 
 ### View
-Creates jade file within the `dev/views` folder by default or within another folder using the `--type` option.
+Creates jade file within the `dev/views` folder by default or within another folder using the `--type` option. Use the `--import` flag to include the created file within the base template file (Jade mixins and Swig macros must be included in the file(s) where you want to use them). Note: The `--import` flag is designed to work with `type=component`.
 
 Example:
 ```bash
@@ -88,6 +91,9 @@ yo yeogurt:view mytemplate --type=template
 
 ## Component
 yo yeogurt:view mycomponent --type=component
+
+## Component with import flag
+yo yeogurt:view mycomponent --type=component --import
 ```
 
 ### Script
@@ -101,7 +107,7 @@ yo yeogurt:script myscript
 ```
 
 ### Style
-If using SASS or LESS, this creates a stylesheet file within the `dev/styles/partials` folder by default. Otherwise, the stylesheet will be created within `dev/styles` folder. You can also specify a folder using the `--folder` option which is relative to the `dev/styles` folder.
+If using SASS or LESS, this creates a stylesheet file within the `dev/styles/partials` folder by default. Otherwise, the stylesheet will be created within `dev/styles` folder. You can also specify a folder using the `--folder` option which is relative to the `dev/styles` folder. Use the --import flag to include the created file within the main template file (SCSS and LESS mixins must be included in the file(s) when you want to use them).
 
 Example:
 ```bash
@@ -110,11 +116,19 @@ yo yeogurt:style mystyle
 
 ## Create mystyle file within dev/styles/base folder
 yo yeogurt:style mystyle --folder=base
+
+## Create mystyle file  with import flag
+yo yeogurt:style mystyle --import
 ```
 
 ## SVN usage
-If using SVN for version control, you will want to runt the generated shell script with the following command: `sh svn-init.sh`
-This Shell script will take all files/folders outlined within the `.svnignore` file and add them to the svn:ignore property of your repository.
+If using SVN for version control, you will want to run the generated `svn-init` script within the root of you project folder.
+### OSX (Mac) / Linux
+Type in the following command into Terminal: `sh svn-init.sh`
+### Windows
+Type the following command into Command Prompt: `svn-init.bat`
+
+This script will take all files/folders outlined within the `.svnignore` file and add them to the svn:ignore property of your repository.
 This will make sure that the files in the `.svnignore` file will not be added to your SVN repository.
 
 ## FTP Deployment

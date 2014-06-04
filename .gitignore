@@ -3,3 +3,4 @@ node_modules
 test/temp
 coverage/
 .coveralls.yml
+.DS_Store

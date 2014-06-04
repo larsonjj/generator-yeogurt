@@ -3,8 +3,9 @@
     All other templates will extend from this
 #}
 
-{# Include components #}
+{# [include:component] #}
 {% import '../components/heading.swig' as heading %}
+{# [/include] #}
 
 <!DOCTYPE html><% if (ieSupport) { %>
 <!--[if IE 8]><html class="ie8<% if (useModernizr) { %> no-js<% } %>" lang="en"><![endif]-->
