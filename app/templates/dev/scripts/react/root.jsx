@@ -41,7 +41,7 @@ var RootComponent = React.createClass({
         return (
             <div>
                 <div className="main-container">
-                            <h1>Welcome to Yeogurt!</h1>
+                    <h1>Welcome to Yeogurt!</h1>
                     <p>
                         Take a look at the <a href="https://github.com/larsonjj/generator-yeogurt#yeogurt-generator---">documentation</a> and start mixing up something awesome.
                     </p>

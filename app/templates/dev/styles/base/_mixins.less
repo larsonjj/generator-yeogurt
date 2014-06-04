@@ -1,7 +1,7 @@
 /**
 *   Author Custom Mixins
 */
-<% if (cssOption === 'LESS') { %><% if (!useBootstrap) { %>
+<% if (cssOption === 'LESS') { %><% if (!useBootstrap && !useFoundation) { %>
 .clearfix() {
     zoom: 1;
     &:before {
@@ -13,7 +13,7 @@
         display: table;
         clear: both;
     }
-}<% } %><% } else if (cssOption === 'SASS') { %><% if (!useBootstrap) { %>
+}<% } %><% } else if (cssOption === 'SASS') { %><% if (!useBootstrap && !useFoundation) { %>
 @mixin clearfix() {
     zoom: 1;
     &:before {

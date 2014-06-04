@@ -4,8 +4,6 @@
 #}
 
 {# Include components #}
-{% import '../components/header.swig' as header %}
-{% import '../components/footer.swig' as footer %}
 {% import '../components/heading.swig' as heading %}
 
 <!DOCTYPE html><% if (ieSupport) { %>
