@@ -8,8 +8,8 @@ module.exports = function(grunt) {
 
     grunt.config.set('concurrent', {
         optimise: [
-            'newer:imagemin:dist',
-            'newer:svgmin:dist',<% if (htmlOption === 'Jade') { %>
+            'imagemin:dist',
+            'svgmin:dist',<% if (htmlOption === 'Jade') { %>
             'jade:dist',<% } else if(htmlOption === 'Swig') {  %>
             'swig:dist',<% } %><% if (cssOption === 'LESS') { %>
             'less:dist',<% if (ieSupport) { %>

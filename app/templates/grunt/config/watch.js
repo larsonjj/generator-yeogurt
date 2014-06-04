@@ -12,25 +12,41 @@ module.exports = function(grunt) {
             livereload: false
         },<% if (htmlOption === 'Jade') { %>
         jade: {
+             files: [
+                '<%%= yeogurt.dev %>/views/*.jade'
+             ],
+             tasks: [
+                'newer:jade:server',
+                <% if (useDashboard) { %>'dashboard:server'<% } %>
+            ]
+        },
+        jadePartials: {
             files: [
-                '<%%= yeogurt.dev %>/views/{,*/}{,*/}*.jade'
+                '<%%= yeogurt.dev %>/views/**/*.jade',
+                '!<%%= yeogurt.dev %>/views/*.jade'
             ],
             tasks: [
-                'newer:copy:server',
                 'newer:jade:server',
-                <% if (useDashboard) { %>'dashboard:server',<% } %>
-                'clean:temp'
-            ]
-        },<% } else if (htmlOption === 'Swig') { %>
+                <% if (useDashboard) { %>'dashboard:server'<% } %>
+             ]
+         },<% } else if (htmlOption === 'Swig') { %>
         swig: {
             files: [
-                '<%%= yeogurt.dev %>/views/{,*/}{,*/}*.swig'
+                '<%%= yeogurt.dev %>/views/*.swig'
             ],
             tasks: [
-                'newer:copy:server',
                 'newer:swig:server',
-                <% if (useDashboard) { %>'dashboard:server',<% } %>
-                'clean:temp'
+                <% if (useDashboard) { %>'dashboard:server'<% } %>
+            ]
+        },
+        swigPartials: {
+            files: [
+                '<%%= yeogurt.dev %>/views/**/*.swig',
+                '!<%%= yeogurt.dev %>/views/*.swig'
+            ],
+            tasks: [
+                'newer:swig:server',
+                <% if (useDashboard) { %>'dashboard:server'<% } %>
             ]
         },<% } else if (htmlOption === 'None (Vanilla HTML)') { %>html: {
             files: [

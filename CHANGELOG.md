@@ -1,3 +1,9 @@
+### v0.7.1:
+#### date: 2014-06-04
+##### changes:
+* Fixed [#21](https://github.com/larsonjj/generator-yeogurt/issues/21)
+* Fixed [#24](https://github.com/larsonjj/generator-yeogurt/issues/24)
+
 ### v0.7.0:
 #### date: 2014-06-04
 ##### changes:
