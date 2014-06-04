@@ -70,7 +70,7 @@ Available sub-generators:
 **Note: Generators are to be run from the root directory of your app.**
 
 ### View
-Creates jade file within the `dev/views` folder by default or within another folder using the `--type` option.
+Creates jade file within the `dev/views` folder by default or within another folder using the `--type` option. Use the `--import` flag to include the created file within the base template file (Jade mixins and Swig macros must be included in the file(s) where you want to use them). Note: The `--import` flag is designed to work with `type=component`.
 
 Example:
 ```bash
@@ -85,6 +85,9 @@ yo yeogurt:view mytemplate --type=template
 
 ## Component
 yo yeogurt:view mycomponent --type=component
+
+## Component with import flag
+yo yeogurt:view mycomponent --type=component --import
 ```
 
 ### Script
@@ -98,7 +101,7 @@ yo yeogurt:script myscript
 ```
 
 ### Style
-If using SASS or LESS, this creates a stylesheet file within the `dev/styles/partials` folder by default. Otherwise, the stylesheet will be created within `dev/styles` folder. You can also specify a folder using the `--folder` option which is relative to the `dev/styles` folder.
+If using SASS or LESS, this creates a stylesheet file within the `dev/styles/partials` folder by default. Otherwise, the stylesheet will be created within `dev/styles` folder. You can also specify a folder using the `--folder` option which is relative to the `dev/styles` folder. Use the --import flag to include the created file within the main template file (SCSS and LESS mixins must be included in the file(s) when you want to use them).
 
 Example:
 ```bash
@@ -107,6 +110,9 @@ yo yeogurt:style mystyle
 
 ## Create mystyle file within dev/styles/base folder
 yo yeogurt:style mystyle --folder=base
+
+## Create mystyle file  with import flag
+yo yeogurt:style mystyle --import
 ```
 
 ## SVN usage

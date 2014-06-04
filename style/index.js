@@ -2,6 +2,7 @@
 var util = require('util');
 var yeoman = require('yeoman-generator');
 var fileJSON = require(process.cwd() + '/.yo-rc.json')['generator-yeogurt'].config;
+var generatorUtils = require('./util.js');
 
 var StyleGenerator = module.exports = function StyleGenerator(args, options, config) {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -11,6 +12,7 @@ var StyleGenerator = module.exports = function StyleGenerator(args, options, con
     // options
     this.useDashboard = this.options.dashboard || false;
     this.folder = this.options.folder || false;
+    this.import = this.options.import || false;
     this.cssOption = fileJSON.cssOption;
 
     console.log('You called the style subgenerator with the argument ' + this.name + '.');
@@ -26,9 +28,39 @@ StyleGenerator.prototype.files = function files() {
     if (this.folder) {
         if (this.cssOption === 'LESS') {
             this.template('style.less', 'dev/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.less');
+            // write the component file as an include
+            if(this.import) {
+                try {
+                    generatorUtils.rewriteFile({
+                        file: 'dev/styles/main.less',
+                        needle: '// [/include:' + this.folder + ']',
+                        splicable: [
+                            '@import \'' + this.folder + '/_' + this._.slugify(this.name.toLowerCase()) + '\';'
+                        ]
+                    });
+                    console.log('Added partial ' + this._.slugify(this.name.toLowerCase()) + ' to main.less!');
+                } catch (e) {
+                    console.log('Error adding partial ' + this._.slugify(this.name.toLowerCase()) + ' to main.less!');
+                }
+            }
         }
         else if (this.cssOption === 'SCSS') {
             this.template('style.less', 'dev/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
+            // write the component file as an include
+            if(this.import) {
+                try {
+                    generatorUtils.rewriteFile({
+                        file: 'dev/styles/main.scss',
+                        needle: '// [/include:' + this.folder + ']',
+                        splicable: [
+                            '@import \'' + this.folder + '/_' + this._.slugify(this.name.toLowerCase()) + '\';'
+                        ]
+                    });
+                    console.log('Added partial ' + this._.slugify(this.name.toLowerCase()) + ' to main.scss!');
+                } catch (e) {
+                    console.log('Error adding partial ' + this._.slugify(this.name.toLowerCase()) + ' to main.scss!');
+                }
+            }
         }
         else {
             this.template('style.less', 'dev/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.css');
@@ -37,9 +69,39 @@ StyleGenerator.prototype.files = function files() {
     else {
         if (this.cssOption === 'LESS') {
             this.template('style.less', 'dev/styles/partials/' + '_' + this._.slugify(this.name.toLowerCase()) + '.less');
+            // write the component file as an include
+            if(this.import) {
+                try {
+                    generatorUtils.rewriteFile({
+                        file: 'dev/styles/main.less',
+                        needle: '// [/include:partials]',
+                        splicable: [
+                            '@import \'partials/_' + this._.slugify(this.name.toLowerCase()) + '\';'
+                        ]
+                    });
+                    console.log('Added partials ' + this._.slugify(this.name.toLowerCase()) + ' to main.less!');
+                } catch (e) {
+                    console.log('Error adding partials ' + this._.slugify(this.name.toLowerCase()) + ' to main.less!');
+                }
+            }
         }
         else if (this.cssOption === 'SCSS') {
             this.template('style.less', 'dev/styles/partials/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
+            // write the component file as an include
+            if(this.import) {
+                try {
+                    generatorUtils.rewriteFile({
+                        file: 'dev/styles/main.scss',
+                        needle: '// [/include:partials]',
+                        splicable: [
+                            '@import \'partials/_' + this._.slugify(this.name.toLowerCase()) + '\';'
+                        ]
+                    });
+                    console.log('Added partials ' + this._.slugify(this.name.toLowerCase()) + ' to main.scss!');
+                } catch (e) {
+                    console.log('Error adding partials ' + this._.slugify(this.name.toLowerCase()) + ' to main.scss!');
+                }
+            }
         }
         else {
             this.template('style.less', 'dev/styles/' + this._.slugify(this.name.toLowerCase()) + '.css');

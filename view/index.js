@@ -2,6 +2,7 @@
 var util = require('util');
 var yeoman = require('yeoman-generator');
 var fileJSON = require(process.cwd() + '/.yo-rc.json')['generator-yeogurt'].config;
+var generatorUtils = require('./util.js');
 
 var ViewGenerator = module.exports = function ViewGenerator(args, options, config) {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -11,6 +12,7 @@ var ViewGenerator = module.exports = function ViewGenerator(args, options, confi
     // options
     this.useDashboard = this.options.dashboard || false;
     this.view = this.options.type || 'page';
+    this.import = this.options.import || false;
     this.useTemplate = this.options.template || false;
     this.useDashboard = fileJSON.extras.indexOf('useDashboard') > -1 ? true : false;
     this.htmlOption = fileJSON.htmlOption;
@@ -41,7 +43,25 @@ ViewGenerator.prototype.files = function files() {
         if (this.view === 'page') {
             this.template('view.jade', 'dev/views/' + this._.slugify(this.name.toLowerCase()) + '.jade');
         }
-        else if (this.view === 'component' || this.view === 'template') {
+        else if (this.view === 'component') {
+            this.template('view.jade', 'dev/views/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.jade');
+            // write the component file as an include
+            if(this.import) {
+                try {
+                    generatorUtils.rewriteFile({
+                        file: 'dev/views/templates/base.jade',
+                        needle: '//- [/include:component]',
+                        splicable: [
+                            'include ../components/' + this._.slugify(this.name.toLowerCase())
+                        ]
+                    });
+                    console.log('Added component ' + this._.slugify(this.name.toLowerCase()) + ' to base.jade!');
+                } catch (e) {
+                    console.log('Error adding component ' + this._.slugify(this.name.toLowerCase()) + ' to base.jade!');
+                }
+            }
+        }
+        else if (this.view === 'template') {
             this.template('view.jade', 'dev/views/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.jade');
         }
         else if (!this.name) {
@@ -55,7 +75,25 @@ ViewGenerator.prototype.files = function files() {
         if (this.view === 'page') {
             this.template('view.swig', 'dev/views/' + this._.slugify(this.name.toLowerCase()) + '.swig');
         }
-        else if (this.view === 'component' || this.view === 'template') {
+        else if (this.view === 'component') {
+            this.template('view.swig', 'dev/views/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.swig');
+            // write the component file as an include
+            if(this.import) {
+                try {
+                    generatorUtils.rewriteFile({
+                        file: 'dev/views/templates/base.swig',
+                        needle: '{# [/include:component] #}',
+                        splicable: [
+                            '{% import \'../components/' + this._.slugify(this.name.toLowerCase()) + '.swig\' as ' + this._.slugify(this.name.toLowerCase()) + ' %}'
+                        ]
+                    });
+                    console.log('Added component ' + this._.slugify(this.name.toLowerCase()) + ' to base.jade!');
+                } catch (e) {
+                    console.log('Error adding component ' + this._.slugify(this.name.toLowerCase()) + ' to base.jade!');
+                }
+            }
+        }
+        else if (this.view === 'template') {
             this.template('view.swig', 'dev/views/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.swig');
         }
         else if (!this.name) {

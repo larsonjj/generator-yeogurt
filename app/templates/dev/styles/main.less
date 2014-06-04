@@ -10,6 +10,8 @@
 @import 'base/_reset';
 @import 'base/_variables';<% if (!ieSupport && !useBootstrap) { %>
 @import 'base/_print';<% } %>
+// [include:base]
+// [/include:base]
 
 // Third-Party (Vendor)
 <% if (!useBootstrap) { %>
@@ -19,7 +21,11 @@
 <% if (useBootstrap) { %>@import 'vendor/_bootstrap';
 <% } %><% if (useLesshat) { %>@import 'vendor/_lesshat';<% } %><% } %><% if (useFontAwesome) { %>
 @import 'vendor/_font-awesome';<% } %>
+// [include:vendor]
+// [/include:vendor]
 
 // Partials
 @import 'partials/_header';
 @import 'partials/_footer';
+// [include:partials]
+// [/include:partials]
