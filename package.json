@@ -1,6 +1,6 @@
 {
   "name": "generator-yeogurt",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "A Yeoman generator for creating a sensible structure to front-end work using your favorite tools.",
   "keywords": [
     "yeoman-generator",
@@ -30,7 +30,8 @@
   },
   "scripts": {
     "test": "istanbul cover _mocha --report lcovonly -- test/*.js --reporter list --timeout 100000 && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "localtest": "istanbul cover _mocha --report html -- test/*.js"
+    "localtest": "mocha test/*.js",
+    "localtest-report": "istanbul cover _mocha --report html -- test/*.js && open coverage/app/index.html"
   },
   "dependencies": {
     "yeoman-generator": "~0.16.0",
