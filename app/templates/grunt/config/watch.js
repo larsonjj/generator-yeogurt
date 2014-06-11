@@ -59,12 +59,18 @@ module.exports = function(grunt) {
         },
         <% } %><% if (cssOption === 'SASS') { %>
         sass: {
-            files: ['<%%= yeogurt.dev %>/styles/**/*.{scss,sass}'],
-            tasks: ['sass:server']
+            files: ['<%%= yeogurt.dev %>/styles/**/*.scss'],
+            tasks: [
+                'sass:server',<% if (useKss) { %>
+                'kss:server'<% } %>
+            ]
         },<% } else if (cssOption === 'LESS') { %>
         less: {
             files: ['<%%= yeogurt.dev %>/styles/**/*.less'],
-            tasks: ['less:server']
+            tasks: [
+                'less:server',<% if (useKss) { %>
+                'kss:server'<% } %>
+            ]
         },<% } %>
         js: {
             files: [
@@ -74,7 +80,8 @@ module.exports = function(grunt) {
             tasks: [<% if (jshint) { %>
                 'newer:jshint',<% } %><% if (jsOption === 'Browserify') { %>
                 'browserify:server',
-                'exorcise:server',<% } %>
+                'exorcise:server',<% } %><% if (useDocker) { %>
+                'docker:server',<% } %>
                 'newer:copy:server'
             ]
         },
@@ -86,7 +93,7 @@ module.exports = function(grunt) {
             files: [
                 '<%%= yeogurt.dev %>/*.{ico,png,txt,html}',<% if (extras.indexOf(htaccess) !== -1) { %>
                 '<%%= yeogurt.dev %>/.htaccess',<% } %>
-                '<%%= yeogurt.dev %>/images/**/*.{webp}',
+                '<%%= yeogurt.dev %>/images/**/*.webp',
                 '<%%= yeogurt.dev %>/styles/fonts/**/*.*'
             ],
             tasks: ['newer:copy:server']
@@ -100,7 +107,7 @@ module.exports = function(grunt) {
                 '<%%= yeogurt.dev %>/.htaccess'<% } %>,
                 '<%%= yeogurt.server %>/styles/fonts/**/*.*',
                 '<%%= yeogurt.server %>/**/*.html'<% if (cssOption === 'SASS') { %>,
-                '<%%= yeogurt.dev %>/styles/**/*.{sass,scss}'<% } else if (cssOption === 'LESS') { %>,
+                '<%%= yeogurt.dev %>/styles/**/*.scss'<% } else if (cssOption === 'LESS') { %>,
                 '<%%= yeogurt.dev %>/styles/**/*.less'<% } %>,
                 '<%%= yeogurt.server %>/scripts/**/*.js',
                 '<%%= yeogurt.server %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'

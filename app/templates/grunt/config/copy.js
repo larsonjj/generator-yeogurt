@@ -12,43 +12,23 @@ module.exports = function(grunt) {
                 cwd: '<%%= yeogurt.dev %>/',
                 dest: '<%%= yeogurt.server %>/',
                 src: [
-                    'scripts/**/*.<% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>{js,jsx}<% } else { %>js<% } %>'<% if (useDashboard) { %>,
-                    'dashboard/**/*.*'<% } %><% if (jsOption === 'Browserify') { %>,
+                    'scripts/**/*.<% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>{js,jsx}<% } else { %>js<% } %>',<% if (useDashboard) { %>
+                    'dashboard/**/*.*',<% } %><% if (jsOption === 'Browserify') { %>
                     '!scripts/app.js',
-                    '!scripts/main.js'<% } %>
-                ]
-            },<% if (htmlOption === 'None (Vanilla HTML)' || (/Backbone/i).test(jsFramework)) { %> {
-                expand: true,
-                cwd: '<%%= yeogurt.dev %>/',
-                dest: '<%%= yeogurt.server %>/',
-                src: [
-                    '*.html'
-                ]
-            }, <% } %>{
-                expand: true,
-                cwd: '<%%= yeogurt.dev %>/',
-                dest: '<%%= yeogurt.server %>/',
-                src: [
-                    'images/**'
-                ]
-            }, {
-                expand: true,
-                cwd: '<%%= yeogurt.dev %>/',
-                dest: '<%%= yeogurt.server %>/',
-                src: [
-                    'bower_components/**/*.js',
-                    'bower_components/**/*.{woff,otf,ttf,eot,svg}',
-                    'bower_components/jquery/*.map'
+                    '!scripts/main.js',<% } %>
+                    'bower_components/**/*.{js,map}',
+                    'bower_components/**/*.{woff,otf,ttf,eot,svg}',<% if (useKss) { %>
+                    'docs/styleguide/public/images',<% } %>
+                    'images/**',<% if (htmlOption === 'None (Vanilla HTML)' || (/Backbone/i).test(jsFramework)) { %>
+                    '*.html'<% } %>
                 ]
             },<% if (cssOption === 'None (Vanilla CSS)') { %> {
                 expand: true,
                 cwd: '<%%= yeogurt.dev %>/',
                 dest: '<%%= yeogurt.server %>/',
                 src: [
-                    'styles/**/*.css',<% if (useBootstrap) { %>
-                    'bower_components/bootstrap/dist/css/*.{css,map}'<% } %><% if (useFoundation) { %>
-                    'bower_components/foundation/css/*.css'<% } %><% if (useFontAwesome) { %>,
-                    'bower_components/font-awesome/css/*.css'<% } %>
+                    'styles/**/*.css',
+                    'bower_components/**/*.{css,map}'
                 ]
             }<% } %>]
         },
@@ -62,27 +42,11 @@ module.exports = function(grunt) {
                     'bower_components/modernizr/modernizr.js',
                     'bower_components/**/*.{woff,otf,ttf,eot,svg}',<% if (useDashboard) { %>
                     'dashboard/**/*.*',<% } %>
-                    'bower_components/jquery/jquery.min.*'
-                ]
-            },<% if (htmlOption === 'None (Vanilla HTML)' || (/Backbone/i).test(jsFramework)) { %> {
-                expand: true,
-                cwd: '<%%= yeogurt.dev %>/',
-                dest: '<%%= yeogurt.dist %>/',
-                src: [
-                    '*.html'
-                ]
-            }, <% } %>{
-                expand: true,
-                cwd: '<%%= yeogurt.dev %>/scripts',
-                dest: '<%%= yeogurt.dist %>/scripts',
-                src: [
-                    'scripts/modules/inline-*.*', '!*.js'
-                ]
-            }, {
-                expand: true,
-                cwd: '<%%= yeogurt.dev %>/',
-                dest: '<%%= yeogurt.dist %>/',
-                src: [
+                    'bower_components/jquery/jquery.min.*',<% if (htmlOption === 'None (Vanilla HTML)' || (/Backbone/i).test(jsFramework)) { %>
+                    '*.html',<% } %>
+                    'scripts/modules/inline-*.*',<% if (useKss) { %>
+                    'docs/styleguide/public/images',<% } %>
+                    '!*.js',
                     '*.{ico,png,txt,html}',
                     '.htaccess',
                     'images/**/*.{webp}',

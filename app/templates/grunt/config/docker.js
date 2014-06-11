@@ -6,6 +6,15 @@
 module.exports = function(grunt) {
 
     grunt.config.set('docker', {
+        server : {
+            src: ['<%%= yeogurt.dev %>/scripts/**/*', '*.md'],
+            dest: '<%%= yeogurt.server %>/docs/api',
+            options: {
+                colourScheme: 'manni',
+                lineNums: true,
+                ignoreHidden: true
+            }
+        },
         dist : {
             src: ['<%%= yeogurt.dev %>/scripts/**/*', '*.md'],
             dest: '<%%= yeogurt.dist %>/docs/api',

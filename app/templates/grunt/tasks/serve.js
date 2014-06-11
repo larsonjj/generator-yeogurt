@@ -20,7 +20,9 @@ module.exports = function(grunt) {
             'jade:server',<% } %><% if (htmlOption === 'Jade') { %>
             'jade:server',<% } else if(htmlOption === 'Swig') {  %>
             'swig:server',<% } %><% if (useDashboard) { %>
-            'dashboard:server',<% } %><% if (cssOption === 'LESS') { %>
+            'dashboard:server',<% } %><% if (useKss) { %>
+            'kss:server',<% } %><% if (useDocker) { %>
+            'docker:server',<% } %><% if (cssOption === 'LESS') { %>
             'less:server',<% if (ieSupport) { %>
             'less:serverPrint',<% } %><% } %><% if (cssOption === 'SASS') { %>
             'sass:server',<% if (ieSupport) { %>

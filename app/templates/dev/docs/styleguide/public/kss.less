@@ -1,368 +1,372 @@
 @import 'markdown';
 
-.custom-css {
-  position: relative !important;
-  max-width: 590px;
+.styleguide-wrapper {
+    .custom-css {
+        position: relative !important;
+        max-width: 590px;
 
-  &:hover {
-    z-index: 2;
-  }
-}
-
-.markdown-body {
-  font-size: 15px;
-  line-height: 1.7;
-  overflow: hidden;
-  word-wrap: break-word;
-
-  p {
-    margin: 15px 0;
-  }
-
-  code {
-    margin: 0;
-    border: 1px solid #ddd;
-    background-color: #f8f8f8;
-    border-radius: 3px;
-    padding: 0;
-  }
-
-  ul {
-    padding-left: 30px;
-  }
-}
-
-.container {
-  width: 960px;
-  margin-top: 30px;
-  margin-right: auto;
-  margin-left: auto;
-
-  .image-container {
-    width: 100%;
-    text-align: center;
-  }
-
-  img.logo {
-    margin-bottom: 10px;
-    width: 250px;
-  }
-
-  .styleguide {
-    &:before, &:after {
-      content: " ";
-      display: table;
+        &:hover {
+            z-index: 2;
+        }
     }
 
-    .menu-container {
-      float: left;
-      width: 200px;
+    .markdown-body {
+        font-size: 15px;
+        line-height: 1.7;
+        overflow: hidden;
+        word-wrap: break-word;
 
-      .menu {
-        background: #fafafb;
-        border-radius: 2px;
-        border: 1px solid #d8d8d8;
-        list-style: none;
-        margin-left: 0;
-        padding: 0;
+        p {
+            margin: 15px 0;
+        }
 
-        li {
-          border-bottom: 1px solid #eee;
-          border-top: 1px solid #fff;
+        code {
+            margin: 0;
+            border: 1px solid #ddd;
+            background-color: #f8f8f8;
+            border-radius: 3px;
+            padding: 0;
+        }
 
-          &:first-child {
-            border-top: none;
-          }
+        ul {
+            padding-left: 30px;
+        }
+    }
 
-          a {
-            display: block;
-            padding: 8px 10px 8px 8px;
-            text-shadow: 0 1px 0 #fff;
-            border-left: 2px solid #fafafb;
+    .styleguide-container {
+        width: 960px;
+        margin-top: 30px;
+        margin-right: auto;
+        margin-left: auto;
 
-            &.selected {
-              background: #fff;
-              border-left: 2px solid #d26911;
-              font-weight: bold;
-              color: #222;
-              cursor: default;
-              box-shadow: inset 0 0px 1px rgba(0,0,0,0.1);
+        .image-container {
+            width: 100%;
+            text-align: center;
+        }
+
+        img.styleguide-logo {
+            margin-bottom: 10px;
+            width: 250px;
+        }
+
+        .styleguide {
+            &:before, &:after {
+                content: " ";
+                display: table;
             }
-          }
-        }
-      }
-    }
 
-    >.content {
-      float: left;
-      width: 740px;
-      padding-left: 20px;
-      font-size: 14px;
+            .menu-container {
+                float: left;
+                width: 200px;
 
-      .styleguide-example {
-        margin: 15px auto;
-        background: rgba(255,255,255,0.5);
-        border: 1px solid #ddd;
-        box-shadow: 0 0 5px rgba(0,0,0,0.1);
+                .menu {
+                    background: #fafafb;
+                    border-radius: 2px;
+                    border: 1px solid #d8d8d8;
+                    list-style: none;
+                    margin-left: 0;
+                    padding: 0;
 
-        &:first-child {
-          margin-top: 0;
-        }
+                    li {
+                        border-bottom: 1px solid #eee;
+                        border-top: 1px solid #fff;
 
-        >h3 {
-          margin: -1px -1px 0;
-          padding: 10px;
-          color: #fff;
-          font-size: 12px;
-          text-transform: uppercase;
-          background: #333;
-          border-top: 1px solid #000;
-        }
+                        &:first-child {
+                            border-top: none;
+                        }
 
-        .styleguide-description {
-          padding: 1px 10px;
-          background: #f1f1f1;
-          border-bottom: 1px solid #ddd;
+                        a {
+                            display: block;
+                            padding: 8px 10px 8px 8px;
+                            text-shadow: 0 1px 0 #fff;
+                            border-left: 2px solid #fafafb;
 
-          dl {
-            dt {
-              float: left;
-              width: 180px;
-              clear: left;
-              text-align: right;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: nowrap;
-              font-weight: bold;
+                            &.selected {
+                                background: #fff;
+                                border-left: 2px solid #d26911;
+                                font-weight: bold;
+                                color: #222;
+                                cursor: default;
+                                box-shadow: inset 0 0px 1px rgba(0,0,0,0.1);
+                            }
+                        }
+                    }
+                }
             }
-            dd {
-              margin-left: 200px;
+
+            >.content {
+                float: left;
+                width: 740px;
+                padding-left: 20px;
+                font-size: 14px;
+
+                .styleguide-example {
+                    margin: 15px auto;
+                    background: rgba(255,255,255,0.5);
+                    border: 1px solid #ddd;
+                    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+
+                    &:first-child {
+                        margin-top: 0;
+                    }
+
+                    >h3 {
+                        margin: -1px -1px 0;
+                        padding: 10px;
+                        color: #fff;
+                        font-size: 12px;
+                        text-transform: uppercase;
+                        background: #333;
+                        border-top: 1px solid #000;
+                    }
+
+                    .styleguide-description {
+                        padding: 1px 10px;
+                        background: #f1f1f1;
+                        border-bottom: 1px solid #ddd;
+
+                        dl {
+                            dt {
+                                float: left;
+                                width: 180px;
+                                clear: left;
+                                text-align: right;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                font-weight: bold;
+                            }
+                            dd {
+                                margin-left: 200px;
+                            }
+                        }
+                    }
+
+                    .styleguide-element {
+                        position: relative;
+                        padding: 10px;
+
+                        &+.styleguide-element {
+                            margin-top: -5px;
+                            padding-top: 15px;
+                            border-top: 1px solid #eee;
+                        }
+
+                        .styleguide-modifier-name {
+                            display: block;
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            padding: 5px 15px;
+                            font-size: 11px;
+                            color: #999;
+                            background: #f9f9f9;
+                            border: 1px solid #eee;
+                            border-top: none;
+                            z-index: 1;
+                        }
+                    }
+
+                    .styleguide-html {
+                        padding: 15px 15px;
+                        background: #edf6f8;
+                        border-top: 1px solid #dde7ea;
+                        overflow: auto;
+                    }
+                }
             }
-          }
+
+            .markdown-body>:last-child {
+                margin-bottom: 15px !important;
+            }
+        }
+    }
+
+    // ------------------------------------------------------------------------------
+    //   @group prettyprint.js styling
+    // ------------------------------------------------------------------------------
+    /* Pretty printing styles. Used with prettify.js. */
+
+    /* GitHub Theme */
+    .prettyprint {
+        font-family: Menlo, 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Consolas, monospace;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .pln {
+        color: #333333;
+    }
+
+    @media screen {
+        .str {
+            color: #dd1144;
         }
 
-        .styleguide-element {
-          position: relative;
-          padding: 10px;
-
-          &+.styleguide-element {
-            margin-top: -5px;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-          }
-
-          .styleguide-modifier-name {
-            display: block;
-            position: absolute;
-            top: 0;
-            right: 0;
-            padding: 5px 15px;
-            font-size: 11px;
-            color: #999;
-            background: #f9f9f9;
-            border: 1px solid #eee;
-            border-top: none;
-            z-index: 1;
-          }
+        .kwd {
+            color: #333333;
         }
 
-        .styleguide-html {
-          padding: 15px 15px;
-          background: #edf6f8;
-          border-top: 1px solid #dde7ea;
-          overflow: auto;
+        .com {
+            color: #999988;
         }
-      }
+
+        .typ {
+            color: #445588;
+        }
+
+        .lit {
+            color: #445588;
+        }
+
+        .pun {
+            color: #333333;
+        }
+
+        .opn {
+            color: #333333;
+        }
+
+        .clo {
+            color: #333333;
+        }
+
+        .tag {
+            color: navy;
+        }
+
+        .atn {
+            color: teal;
+        }
+
+        .atv {
+            color: #dd1144;
+        }
+
+        .dec {
+            color: #333333;
+        }
+
+        .var {
+            color: teal;
+        }
+
+        .fun {
+            color: #990000;
+        }
+    }
+    @media print, projection {
+        .str {
+            color: #006600;
+        }
+
+        .kwd {
+            color: #006;
+            font-weight: bold;
+        }
+
+        .com {
+            color: #600;
+            font-style: italic;
+        }
+
+        .typ {
+            color: #404;
+            font-weight: bold;
+        }
+
+        .lit {
+            color: #004444;
+        }
+
+        .pun, .opn, .clo {
+            color: #444400;
+        }
+
+        .tag {
+            color: #006;
+            font-weight: bold;
+        }
+
+        .atn {
+            color: #440044;
+        }
+
+        .atv {
+            color: #006600;
+        }
+    }
+    /* Specify class=linenums on a pre to get line numbering */
+    ol.linenums {
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
-    .markdown-body>:last-child {
-      margin-bottom: 15px !important;
-    }
-  }
-}
-
-// ------------------------------------------------------------------------------
-//   @group prettyprint.js styling
-// ------------------------------------------------------------------------------
-/* Pretty printing styles. Used with prettify.js. */
-
-/* GitHub Theme */
-.prettyprint {
-  font-family: Menlo, 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Consolas, monospace;
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-.pln {
-  color: #333333;
-}
-
-@media screen {
-  .str {
-    color: #dd1144;
-  }
-
-  .kwd {
-    color: #333333;
-  }
-
-  .com {
-    color: #999988;
-  }
-
-  .typ {
-    color: #445588;
-  }
-
-  .lit {
-    color: #445588;
-  }
-
-  .pun {
-    color: #333333;
-  }
-
-  .opn {
-    color: #333333;
-  }
-
-  .clo {
-    color: #333333;
-  }
-
-  .tag {
-    color: navy;
-  }
-
-  .atn {
-    color: teal;
-  }
-
-  .atv {
-    color: #dd1144;
-  }
-
-  .dec {
-    color: #333333;
-  }
-
-  .var {
-    color: teal;
-  }
-
-  .fun {
-    color: #990000;
-  }
-}
-@media print, projection {
-  .str {
-    color: #006600;
-  }
-
-  .kwd {
-    color: #006;
-    font-weight: bold;
-  }
-
-  .com {
-    color: #600;
-    font-style: italic;
-  }
-
-  .typ {
-    color: #404;
-    font-weight: bold;
-  }
-
-  .lit {
-    color: #004444;
-  }
-
-  .pun, .opn, .clo {
-    color: #444400;
-  }
-
-  .tag {
-    color: #006;
-    font-weight: bold;
-  }
-
-  .atn {
-    color: #440044;
-  }
-
-  .atv {
-    color: #006600;
-  }
-}
-/* Specify class=linenums on a pre to get line numbering */
-ol.linenums {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-/* IE indents via margin-left */
-li.L0,
-li.L1,
-li.L2,
-li.L3,
-li.L4,
-li.L5,
-li.L6,
-li.L7,
-li.L8,
-li.L9 {
-  /* */
-}
-
-/* Alternate shading for lines */
-li.L1,
-li.L3,
-li.L5,
-li.L7,
-li.L9 {
-  /* */
-}
-
-// ------------------------------------------------------------------------------
-//   @group Mobile Styling
-// ------------------------------------------------------------------------------
-
-@media screen and (max-width: 768px) {
-  .container {
-    width: 100%;
-    margin-top: 15px;
-
-    img.logo {
-      margin: 0 auto;
-      display: block;
-      margin-bottom: 10px;
+    /* IE indents via margin-left */
+    li.L0,
+    li.L1,
+    li.L2,
+    li.L3,
+    li.L4,
+    li.L5,
+    li.L6,
+    li.L7,
+    li.L8,
+    li.L9 {
+        /* */
     }
 
-    .styleguide {
-      .menu-container {
-        float: none;
-        width: 100%;
-        box-sizing: border-box;
-      }
+    /* Alternate shading for lines */
+    li.L1,
+    li.L3,
+    li.L5,
+    li.L7,
+    li.L9 {
+        /* */
+    }
 
-      &>.content {
-        width: 100%;
-        margin: 10px 0 0 0;
-        padding: 0 5px;
-        box-sizing: border-box;
-      }
+    // ------------------------------------------------------------------------------
+    //   @group Mobile Styling
+    // ------------------------------------------------------------------------------
+
+    @media screen and (max-width: 768px) {
+        .styleguide-container {
+            width: 100%;
+            margin-top: 15px;
+            padding: 0 15px;
+
+            img.styleguide-logo {
+                margin: 0 auto;
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            .styleguide {
+                .menu-container {
+                    float: none;
+                    width: 100%;
+                    box-sizing: border-box;
+                }
+
+                &>.content {
+                    width: 100%;
+                    margin: 10px 0 0 0;
+                    padding: 0 5px;
+                    box-sizing: border-box;
+                }
+            }
+        }
     }
-  }
-}
-@media screen and (min-width: 768px) and (max-width: 960px) {
-  .container {
-    width: 768px;
-    .styleguide {
-      &>.content {
-        width: 548px;
-      }
+    @media screen and (min-width: 768px) and (max-width: 960px) {
+        .styleguide-container {
+            width: 768px;
+            .styleguide {
+                &>.content {
+                    width: 548px;
+                }
+            }
+        }
     }
-  }
 }
+
 // @end

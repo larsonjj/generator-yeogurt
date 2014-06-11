@@ -23,7 +23,12 @@
     </p>
     <p>
         <img src="images/yeogurt-swirl.png" width="75px" class="logo" />
-    </p>
+    </p><% if (useDashboard || useDocker || useKss) { %>
+    <p class="links">
+        <% if (useDashboard) { %><a href="dashboard/index.html">Dashboard</a><% } %><% if (useKss) { %>
+        <a href="docs/styleguide/index.html">Styleguide</a><% } %><% if (useDocker) { %>
+        <a href="docs/api/README.md.html">API</a><% } %>
+    </p><% } %>
 </div>
 <code class="version">v<%= pkg.version %></code>
 {% endblock %}
