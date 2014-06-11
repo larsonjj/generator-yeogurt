@@ -9,7 +9,6 @@ module.exports = function(grunt) {
     grunt.config.set('dashboard', {
         server: {
             options: {
-                debug: true,
                 logo: 'images/yeogurt-logo.png',
                 generatedDir: '<%%= yeogurt.server %>/dashboard/generated',
                 assets: [<% if (htmlOption !== "None (Vanilla HTML)") { %>
@@ -24,7 +23,6 @@ module.exports = function(grunt) {
         },
         dist: {
             options: {
-                debug: false,
                 logo: 'images/yeogurt-logo.png',
                 generatedDir: '<%%= yeogurt.dist %>/dashboard/generated',
                 assets: [<% if (htmlOption !== "None (Vanilla HTML)") { %>
