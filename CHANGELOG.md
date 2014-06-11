@@ -1,3 +1,10 @@
+### v0.7.2:
+#### date: 2014-06-11
+##### changes:
+* Fixed issue where HTML file dashboard comments were being removed when running 'grunt build'
+* Added 'localtest' script that will run mocha unit tests for the project (can be run with 'npm run localtest' command)
+* Added 'localtest-report' script that will run mocha unit tests with a istanbul coverage report. It will also open your default browser to the coverage report (can be run with 'npm run localtest-report' command)
+
 ### v0.7.1:
 #### date: 2014-06-04
 ##### changes:
