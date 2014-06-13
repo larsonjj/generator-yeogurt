@@ -2,8 +2,7 @@
 
 # Yeogurt Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-yeogurt.png?branch=master)](https://travis-ci.org/larsonjj/generator-yeogurt) [![NPM version](https://badge.fury.io/js/generator-yeogurt.png)](http://badge.fury.io/js/generator-yeogurt) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-yeogurt/badge.png)](https://coveralls.io/r/larsonjj/generator-yeogurt)
 
-A [Yeoman](http://yeoman.io) generator for creating a sensible structure to front-end work using your favorite tools.
-
+A [Yeoman](http://yeoman.io) generator that creates a sensible structure for static sites and single page applications by using your favorite tools.
 
 ## Getting Started
 
@@ -16,18 +15,27 @@ A [Yeoman](http://yeoman.io) generator for creating a sensible structure to fron
 
 Note For Mac Users: You will need to install XCode and accept the licensing agreement : `sudo xcodebuild -license`
 
+## What's New with v0.8.0?
+
+You now have the ability to create single page applications (SPA) with Backbone!
+Pick from Handlebars, Jade, or Lo-dash (Underscore) template libraries or even start using Facebook's React.
+New subgenerators are also included to accelerate your SPA development.
+No matter what you choose, you will still be able to use Browserify or RequireJS with sourcemaps. (CommonJS and AMD fan's rejoice!)
+
+There are a ton of updates in this release, so be sure to check out the [Changelog](https://github.com/larsonjj/generator-yeogurt/blob/master/CHANGELOG.md) to view them all.
+
 ## Features
 
 **Available Scaffolding Options:**
 
-### Static Sites
+### Static Site Specific
 - HTML Templating with [Jade](http://jade-lang.com/) or [Swig](http://paularmstrong.github.io/swig/)
 
-### Single Page Applications
+### Single Page Application Specific
 - Backbone + Facebook's [React](http://facebook.github.io/react/) view framework
 - Vanilla Backbone with [Jade](http://jade-lang.com/), [Handlebars](http://handlebarsjs.com/), or [Lo-dash (Underscore)](http://lodash.com/) Templating
 
-### Both Static Sites and Single Page Applications
+### Available for both Static Sites and Single Page Applications
 
 - Project/Site naming
 - CSS Preprocessing with [LESS](http://lesscss.org/) or [SASS](http://sass-lang.com/) via [node-sass](https://github.com/andrew/node-sass)
@@ -92,7 +100,7 @@ Available sub-generators:
 
 ### View
 
-#### Static Sites
+#### Static Site Specific
 Creates  a jade file within the `dev/views` folder by default or within another folder using the `--type` option. Use the `--import` flag to include the created file within the base template file (Jade mixins and Swig macros must be included in the file(s) where you want to use them). Note: The `--import` flag is designed to work with `type=component`.
 
 Example:
@@ -113,7 +121,7 @@ yo yeogurt:view mycomponent --type=component
 yo yeogurt:view mycomponent --type=component --import
 ```
 
-#### Single Page Application
+#### Single Page Application Specific
 Creates 3 files: a new template file (Jade, Handlebars, or Lo-dash (Underscore) depending on which you chose) within the `dev/scripts/templates` folder, a new Backbone view file within the `dev/scripts/views` folder, and a unit test spec file within the `test/spec` folder.
 
 Example:
@@ -168,7 +176,7 @@ Example:
 yo yeogurt:model mycollection
 ```
 
-### Component
+### Component (Can only be used when using Backbone + React)
 Creates a new JSX React component within the `dev/scripts/components` as well as a unit test spec file within the `test/spec` folder
 
 Example:
