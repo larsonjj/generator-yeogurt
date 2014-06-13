@@ -17,10 +17,10 @@ Note For Mac Users: You will need to install XCode and accept the licensing agre
 
 ## What's New with v0.8.0?
 
-You now have the ability to create single page applications (SPA) with Backbone!
-Pick from Handlebars, Jade, or Lo-dash (Underscore) template libraries or even start using Facebook's React.
-New subgenerators are also included to accelerate your SPA development.
-No matter what you choose, you will still be able to use Browserify or RequireJS with sourcemaps. (CommonJS and AMD fan's rejoice!)
+- You now have the ability to create single page applications (SPA) with Backbone!
+- Pick from Handlebars, Jade, or Lo-dash (Underscore) template libraries or even start using Facebook's React.
+- New subgenerators are also included to accelerate your SPA development.
+- No matter what you choose, you will still be able to use Browserify or RequireJS with sourcemaps. (CommonJS and AMD fan's rejoice!)
 
 There are a ton of updates in this release, so be sure to check out the [Changelog](https://github.com/larsonjj/generator-yeogurt/blob/master/CHANGELOG.md) to view them all.
 
