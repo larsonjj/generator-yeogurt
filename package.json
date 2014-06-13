@@ -1,6 +1,6 @@
 {
   "name": "generator-yeogurt",
-  "version": "0.7.2",
+  "version": "0.8.0",
   "description": "A Yeoman generator for creating a sensible structure to front-end work using your favorite tools.",
   "keywords": [
     "yeoman-generator",
@@ -14,7 +14,15 @@
     "less",
     "requirejs",
     "browserify",
-    "dashboard"
+    "dashboard",
+    "backbone",
+    "react",
+    "jsx",
+    "kss",
+    "styleguide",
+    "api",
+    "handlebars",
+    "lodash"
   ],
   "homepage": "https://github.com/larsonjj/generator-yeogurt",
   "bugs": "https://github.com/larsonjj/generator-yeogurt/issues",
