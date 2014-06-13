@@ -176,7 +176,9 @@ Example:
 yo yeogurt:model mycollection
 ```
 
-### Component (Can only be used when using Backbone + React)
+### Component
+***Note: (Can only be used with Backbone + React)***
+
 Creates a new JSX React component within the `dev/scripts/components` as well as a unit test spec file within the `test/spec` folder
 
 Example:
