@@ -1,3 +1,8 @@
+### v0.8.2:
+#### date: 2014-06-14
+##### changes:
+* Updated README to better reflect new features in `v0.8.*`
+
 ### v0.8.1:
 #### date: 2014-06-14
 ##### changes:
