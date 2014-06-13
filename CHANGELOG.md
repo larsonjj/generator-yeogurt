@@ -1,3 +1,8 @@
+### v0.8.1:
+#### date: 2014-06-14
+##### changes:
+* Fixed [#28](https://github.com/larsonjj/generator-yeogurt/issues/28): Fonts were not being copied to `.server` folder when running 'grunt serve'
+
 ### v0.8.0:
 #### date: 2014-06-13
 ##### changes:
