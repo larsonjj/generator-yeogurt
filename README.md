@@ -15,12 +15,19 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 
 Note For Mac Users: You will need to install XCode and accept the licensing agreement : `sudo xcodebuild -license`
 
-## What's New with v0.8.0?
+## What's New with v0.8.*?
+
+***Single Page Applications***
 
 - You now have the ability to create single page applications (SPA) with Backbone!
 - Pick from Handlebars, Jade, or Lo-dash (Underscore) template libraries or even start using Facebook's React.
 - New subgenerators are also included to accelerate your SPA development.
 - No matter what you choose, you will still be able to use Browserify or RequireJS with sourcemaps. (CommonJS and AMD fan's rejoice!)
+
+***Automated Documentation***
+
+- You now have the option to auto-generate a styleguide via [Knyle Style Sheets](http://warpspire.com/posts/kss/) with SASS, LESS, or CSS
+- Another new option has been added to allow a JavaScript API to be generated from your scripts via [Docker](https://github.com/jbt/docker).
 
 There are a ton of updates in this release, so be sure to check out the [Changelog](https://github.com/larsonjj/generator-yeogurt/blob/master/CHANGELOG.md) to view them all.
 
@@ -46,6 +53,8 @@ There are a ton of updates in this release, so be sure to check out the [Changel
 - Default ignores for [Git](http://git-scm.com/) or [SVN](http://subversion.apache.org/)
 - Build deployment to FTP server
 - Dynamic Dashboard - auto-generated dashboard for your site with [grunt-dashboard](https://github.com/larsonjj/grunt-dashboard)
+- Dynamic Styleguide - auto-generated styleguide for your stylesheets (SASS, LESS, or CSS) with [Knyle Style Sheets](http://warpspire.com/posts/kss/)
+- Dynamic JavaScript Documentation - auto-generated API for your scripts with [Docker](https://github.com/jbt/docker)
 - [HTML5 Boilerplate](http://html5boilerplate.com/) extras: .htaccess, apple touch icon, ie11 app icons, and flash content permissions.
 
 **Included by default:**
