@@ -325,7 +325,11 @@ YeogurtGenerator.prototype.docs = function docs() {
         this.mkdir('dev/docs');
         this.mkdir('dev/docs/styleguide');
         this.template('dev/docs/styleguide/index.html', 'dev/docs/styleguide/index.html');
-        this.template('dev/docs/styleguide/styleguide.less', 'dev/docs/styleguide/styleguide.less');
+        if (this.cssOption === 'SASS') {
+            this.template('dev/docs/styleguide/styleguide.less', 'dev/docs/styleguide/styleguide.scss');
+        } else {
+            this.template('dev/docs/styleguide/styleguide.less', 'dev/docs/styleguide/styleguide.less');
+        }
         this.template('dev/docs/styleguide/public/kss.js', 'dev/docs/styleguide/public/kss.js');
         this.template('dev/docs/styleguide/public/kss.less', 'dev/docs/styleguide/public/kss.less');
         this.template('dev/docs/styleguide/public/less.js', 'dev/docs/styleguide/public/less.js');
