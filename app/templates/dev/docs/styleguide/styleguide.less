@@ -1,13 +1,10 @@
-<% if (!useBootstrap) { %>
-@import 'vendor/_normalize';<% } %>
-<% if (cssOption === 'SASS') { %>
+<% if (!useBootstrap) { %>@import 'vendor/_normalize';<% } %><% if (cssOption === 'SASS') { %>
 <% if (useBootstrap) { %>@import 'vendor/_bootstrap';
 <% } %><% if (useFoundation) { %>@import 'vendor/_foundation';
 <% } %><% if (useBourbon) { %>@import 'vendor/_bourbon';<% } %><% } else { %>
 <% if (useBootstrap) { %>@import 'vendor/_bootstrap';
 <% } %><% if (useLesshat) { %>@import 'vendor/_lesshat';<% } %><% } %><% if (useFontAwesome) { %>
-@import 'vendor/_font-awesome';<% } %>
-<% if (cssOption !== 'None (Vanilla CSS)') { %>
+@import 'vendor/_font-awesome';<% } %><% if (cssOption !== 'None (Vanilla CSS)') { %>
 @import 'fonts/_fonts';
 <% } %>
 
