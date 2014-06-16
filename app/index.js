@@ -509,6 +509,7 @@ YeogurtGenerator.prototype.styles = function styles() {
             this.template('dev/styles/base/_mixins.less', 'dev/styles/base/_mixins.less');
             this.template('dev/styles/base/_variables.less', 'dev/styles/base/_variables.less');
             this.template('dev/styles/base/_reset.less', 'dev/styles/base/_reset.less');
+            this.template('dev/styles/fonts/_fonts.less', 'dev/styles/fonts/_fonts.less');
             if (this.useLesshat) {
                 this.template('dev/styles/vendor/_lesshat.less', 'dev/styles/vendor/_lesshat.less');
             }
@@ -529,6 +530,7 @@ YeogurtGenerator.prototype.styles = function styles() {
             this.template('dev/styles/base/_mixins.less', 'dev/styles/base/_mixins.scss');
             this.template('dev/styles/base/_variables.less', 'dev/styles/base/_variables.scss');
             this.template('dev/styles/base/_reset.less', 'dev/styles/base/_reset.scss');
+            this.template('dev/styles/fonts/_fonts.less', 'dev/styles/fonts/_fonts.scss');
             if (this.useBorderBox) {
                 this.template('dev/styles/base/_box-sizing.less', 'dev/styles/base/_box-sizing.scss');
             }
@@ -561,6 +563,7 @@ YeogurtGenerator.prototype.styles = function styles() {
     else {
         this.template('dev/styles/main.css', 'dev/styles/main.css');
         this.template('dev/styles/print.css', 'dev/styles/print.css');
+        this.template('dev/styles/fonts/_fonts.less', 'dev/styles/fonts/_fonts.scss');
     }
 
 };
