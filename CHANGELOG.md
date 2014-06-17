@@ -1,3 +1,8 @@
+### v0.8.3:
+#### date: 2014-06-16
+##### changes:
+* Fixed [#31](https://github.com/larsonjj/generator-yeogurt/issues/28): Jade plugin was not being downloaded
+
 ### v0.8.2:
 #### date: 2014-06-13
 ##### changes:
