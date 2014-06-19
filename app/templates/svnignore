@@ -2,6 +2,7 @@ node_modules
 *.log
 dist
 .ftppass
-dev/bower_components
-dev/.server
+bower_components
+.grunt
+.server
 .tmp
