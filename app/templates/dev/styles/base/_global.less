@@ -1,4 +1,9 @@
 /**
+*   Global partial styles:
+*   Place all custom author global styles here
+*/
+<% if (useBorderBox && !useBootstrap) { %>
+/**
 *   Box sizing partial styles:
 *   Apply a natural box layout model to all elements
 */
@@ -10,3 +15,4 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+<% } %>
