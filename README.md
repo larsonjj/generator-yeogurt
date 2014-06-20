@@ -15,7 +15,7 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 
 Note For Mac Users: You will need to install XCode and accept the licensing agreement : `sudo xcodebuild -license`
 
-## What's New with v0.8.*?
+## What's New with v0.8+?
 
 ***Single Page Applications***
 
@@ -27,7 +27,7 @@ Note For Mac Users: You will need to install XCode and accept the licensing agre
 ***Automated Documentation***
 
 - You now have the option to auto-generate a styleguide via [Knyle Style Sheets](http://warpspire.com/posts/kss/) with SASS, LESS, or CSS
-- Another new option has been added to allow a JavaScript API to be generated from your scripts via [Docker](https://github.com/jbt/docker).
+- Another new option has been added to allow a JavaScript API to be generated from your scripts via [JSDoc](http://usejsdoc.org/).
 
 There are a ton of updates in this release, so be sure to check out the [Changelog](https://github.com/larsonjj/generator-yeogurt/blob/master/CHANGELOG.md) to view them all.
 
@@ -54,7 +54,7 @@ There are a ton of updates in this release, so be sure to check out the [Changel
 - Build deployment to FTP server
 - Dynamic Dashboard - auto-generated dashboard for your site with [grunt-dashboard](https://github.com/larsonjj/grunt-dashboard)
 - Dynamic Styleguide - auto-generated styleguide for your stylesheets (SASS, LESS, or CSS) with [Knyle Style Sheets](http://warpspire.com/posts/kss/)
-- Dynamic JavaScript Documentation - auto-generated API for your scripts with [Docker](https://github.com/jbt/docker)
+- Dynamic JavaScript Documentation - auto-generated API for your scripts with [JSDoc](http://usejsdoc.org/)
 - [HTML5 Boilerplate](http://html5boilerplate.com/) extras: .htaccess, apple touch icon, ie11 app icons, and flash content permissions.
 
 **Included by default:**
@@ -178,7 +178,7 @@ yo yeogurt:model mymodel
 ```
 
 ### Collection
-Creates a new Backbone collection file within `dev/scripts/collections` as well as a unit test spec file within the `test/spec` folder
+Creates a new Backbone collection file within `dev/scripts/collections` as well as a unit test spec file within the `test/spec` folder. This will also create a new model file within `dev/scripts/models` and a unit test spec file within the `test/spec` folder.
 
 Example:
 ```bash
@@ -186,7 +186,7 @@ Example:
 yo yeogurt:model mycollection
 ```
 
-### Collection
+### Router
 Creates a new Backbone router file within `dev/scripts/routers` as well as a unit test spec file within the `test/spec` folder
 
 Example:
@@ -242,9 +242,9 @@ Please refer to the plugin [documentation](https://github.com/larsonjj/grunt-das
 For documentation on the old v0.4.x dashboard, please refer to [here](https://github.com/larsonjj/generator-yeogurt/tree/master/docs/old-dashboard.md)
 
 ## Dynamic JavaScript API
-If you answered `Y (Yes)` to the `Docker (Based on Docco)` option in the generator, a JavaScript API will be automatically generated and can be accessed at `http://127.0.0.1:9010/.server/docs/api/index.html` when using the `grunt serve` task or `http://127.0.0.1:9010/docs/api/index.html` when running `grunt serve:dist`.
+If you answered `Y (Yes)` to the `JSDoc` option in the generator, a JavaScript API will be automatically generated and can be accessed at `http://127.0.0.1:9010/.server/docs/api/index.html` when using the `grunt serve` task or `http://127.0.0.1:9010/docs/api/index.html` when running `grunt serve:dist`.
 
-The library used to generate the API documentation is [Docker](https://github.com/jbt/docker). This creates a nice three column interface with a folder explorer to browse all JavaScript files and view comments/[markdown](http://daringfireball.net/projects/markdown/)/[JSDoc](http://usejsdoc.org/). You can view an example [here](http://jbt.github.io/docker/src/docker.js.html).
+The library used to generate the API documentation is [JSDoc](http://usejsdoc.org/). You can view an example [here](http://yeoman.github.io/generator/).
 
 ## Dynamic Styleguide
 If you answered `Y (Yes)` to the `KSS (Knyle Style Sheets)` option in the generator, a Stylguide will be automatically generated and can be accessed at `http://127.0.0.1:9010/.server/docs/styleguide/index.html` when using the `grunt serve` task or `http://127.0.0.1:9010/docs/styleguide/index.html` when running `grunt serve:dist`.

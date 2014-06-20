@@ -1,3 +1,22 @@
+### v0.9.0:
+#### date: 2014-06-20
+##### changes:
+* Added `styleguide` stylesheet within the `dev/docs/styleguide` folder. This new stylesheet acts as a wrapper for all other styles in the `main` stylesheet so as to not interfere with KSS default styles.
+* Removed `fonts` folder as it was empty and seemed to enforce un-needed opinion.
+* Added global style file and removed box-sizing style file
+* Replaced Docker with JSDoc
+* Updated templates for API, Styleguide, and Dashboard to be consistant and responsive.
+* Added classlist shim to be able to use the classList property with IE9
+* Updated tests to correctly pass with JSDoc
+* Replaced heading component with h1 component to provide a simpler example
+* Updated all this._.camelize to be this._.slugify to keep all sub generators consistant.
+* Added logic to make sure all names passed into subgenerators are converted to lower case to make sure spec files are run correctly.
+* Added a check and abort statement for 'view' subgenerator when using Backbone + React
+* Added model and model spec file generation to 'collection' subgenerator
+* Added max-width to content list items for dashboard, so they don't get strectched too much.
+* Added a full 'margin: 0' to sidebar menu on styleguide to remove Foundation UL tag margins
+* Fixed issue where multiple yeogurt logos were being copied to dev/images and not needed
+
 ### v0.8.3:
 #### date: 2014-06-16
 ##### changes:
