@@ -47,8 +47,8 @@ ComponentGenerator.prototype.files = function files() {
             console.log('Name cannot be empty. Operation aborted.');
             return;
         }
-        this.template('component.js', 'dev/scripts/components/' + this._.slugify(this.name) + '.jsx');
-        this.template('component-spec.js', 'test/spec/components/' + this._.slugify(this.name) + '-spec.js');
+        this.template('component.js', 'dev/scripts/components/' + this._.slugify(this.name.toLowerCase()) + '.jsx');
+        this.template('component-spec.js', 'test/spec/components/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
     }
 
 };

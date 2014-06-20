@@ -44,8 +44,8 @@ ModelGenerator.prototype.files = function files() {
             console.log('Name cannot be empty. Operation aborted.');
             return;
         }
-        this.template('model.js', 'dev/scripts/models/' + this._.slugify(this.name) + '.js');
-        this.template('model-spec.js', 'test/spec/models/' + this._.slugify(this.name) + '-spec.js');
+        this.template('model.js', 'dev/scripts/models/' + this._.slugify(this.name.toLowerCase()) + '.js');
+        this.template('model-spec.js', 'test/spec/models/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
     }
 
 };

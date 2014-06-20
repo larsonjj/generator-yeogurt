@@ -44,8 +44,8 @@ RouterGenerator.prototype.files = function files() {
             console.log('Name cannot be empty. Operation aborted.');
             return;
         }
-        this.template('router.js', 'dev/scripts/routers/' + this._.slugify(this.name) + '.js');
-        this.template('router-spec.js', 'test/spec/routers/' + this._.slugify(this.name) + '-spec.js');
+        this.template('router.js', 'dev/scripts/routers/' + this._.slugify(this.name.toLowerCase()) + '.js');
+        this.template('router-spec.js', 'test/spec/routers/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
     }
 
 };
