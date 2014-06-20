@@ -1,8 +1,6 @@
 ### v0.9.0:
 #### date: 2014-06-20
 ##### changes:
-* Added `styleguide` stylesheet within the `dev/docs/styleguide` folder. This new stylesheet acts as a wrapper for all other styles in the `main` stylesheet so as to not interfere with KSS default styles.
-* Removed `fonts` folder as it was empty and seemed to enforce un-needed opinion.
 * Added global style file and removed box-sizing style file
 * Replaced Docker with JSDoc
 * Updated templates for API, Styleguide, and Dashboard to be consistant and responsive.
