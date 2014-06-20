@@ -27,7 +27,7 @@ describe('yeogurt generator LESS', function () {
             'dev/styles/base',
             'dev/styles/base/_mixins.less',
             'dev/styles/base/_variables.less',
-            'dev/styles/base/_box-sizing.less',
+            'dev/styles/base/_global.less',
             'dev/styles/base/_reset.less',
             'dev/styles/base/_ie8.less',
             'dev/styles/vendor',

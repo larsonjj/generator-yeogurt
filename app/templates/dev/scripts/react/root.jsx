@@ -22,10 +22,10 @@
                         </p>
                         <p>
                             <img src="images/yeogurt-swirl.png" width="75px" className="logo" />
-                        </p><% if (useDocker || useKss) { %>
+                        </p><% if (useJsdoc || useKss) { %>
                         <p className="links"><% if (useKss) { %>
-                            <a href="docs/styleguide/index.html">Styleguide</a><% } %><% if (useDocker) { %>
-                            <a href="docs/api/README.md.html">API</a><% } %>
+                            <a href="docs/styleguide/index.html">Styleguide</a><% } %><% if (useJsdoc) { %>
+                            <a href="docs/api/index.html">API</a><% } %>
                         </p><% } %>
                     </div>
                     <code className="version">v<%= pkg.version %></code>
@@ -51,10 +51,10 @@ var RootComponent = React.createClass({
                     </p>
                     <p>
                         <img src="images/yeogurt-swirl.png" width="75px" className="logo" />
-                    </p><% if (useDocker || useKss) { %>
+                    </p><% if (useJsdoc || useKss) { %>
                     <p className="links"><% if (useKss) { %>
-                        <a href="docs/styleguide/index.html">Styleguide</a><% } %><% if (useDocker) { %>
-                        <a href="docs/api/README.md.html">API</a><% } %>
+                        <a href="docs/styleguide/index.html">Styleguide</a><% } %><% if (useJsdoc) { %>
+                        <a href="docs/api/index.html">API</a><% } %>
                     </p><% } %>
                 </div>
                 <code className="version">v<%= pkg.version %></code>

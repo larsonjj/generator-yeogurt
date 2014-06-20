@@ -1,4 +1,4 @@
-/**
+<% if (useBorderBox) { %>/**
 *   Box sizing styles:
 *   Apply a natural box layout model to all elements
 */
@@ -11,7 +11,7 @@
     box-sizing: border-box;
 }
 
-/**
+<% } %>/**
 *   Author Custom Styles
 */
 

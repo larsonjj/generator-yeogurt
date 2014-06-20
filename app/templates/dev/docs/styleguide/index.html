@@ -16,23 +16,31 @@
     <link rel="stylesheet" href="public/style.css">
 
 </head>
-<body class="styleguide-wrapper">
-    <div class="styleguide-container">
-        <div class="image-container">
-            <img class="styleguide-logo" src="public/images/yeogurt-logo.png" alt="Yeogurt logo">
-        </div>
-        <div class="styleguide">
-            <div class="menu-container">
-                <ul class="menu">
-                <li><a href="index.html">0. Overview</a></li>
-                {{#eachRoot}}
-                <li><a href="section-{{reference}}.html">{{reference}}. {{header}} {{rootNumber}}</a></li>
-                {{/eachRoot}}
-                </ul>
+<body class="styleguide-body-wrapper">
+    <div class="styleguide-wrapper styleguide-cf">
+        <div class="styleguide-container">
+            <div class="styleguide-mobile-bar"></div>
+            <div class="styleguide-menu-container">
+                <div class="styleguide-button-wrapper">
+                    <a class="styleguide-nav-toggle" href="#">
+                        <span></span>
+                    </a>
+                </div>
+                <div class="scroll-wrapper">
+                    <ul class="styleguide-menu">
+                        <li class="styleguide-menu-title">Table of Contents</li>
+                        <li><a href="index.html">0. Overview</a></li>
+                        {{#eachRoot}}
+                        <li><a href="section-{{reference}}.html">{{reference}}. {{header}} {{rootNumber}}</a></li>
+                        {{/eachRoot}}
+                    </ul>
+                </div>
             </div>
-            <div class="content">
+            <div class="styleguide-content">
             {{#if overview}}
-                {{html overview}}
+                <div class="styleguide-markdown">
+                    {{html overview}}
+                </div>
             {{else}}
                 {{#eachSection rootNumber}}
                     <div class="styleguide-example">
@@ -41,7 +49,7 @@
                      {{else}}
                         <h3><span>{{reference}}</span> - {{header}}</h3>
                         {{/whenDepth}}
-                        <div class="styleguide-description markdown-body">
+                        <div class="styleguide-description styleguide-markdown">
                             {{#if description}}
                             <p>{{{description}}}</p>
                             {{/if}}
@@ -55,12 +63,16 @@
                         </div>
                         {{#if markup}}
                         <div class="styleguide-element">
-                            <div class="custom-css">{{modifierMarkup}}</div>
+                            <div class="styleguide-css">
+                                <div class="styleguide-css">
+                                    {{modifierMarkup}}
+                                </div>
+                            </div>
                         </div>
                         {{#eachModifier}}
                         <div class="styleguide-element styleguide-modifier">
                             <span class="styleguide-modifier-name">{{name}}</span>
-                            <div class="custom-css">{{modifierMarkup}}</div>
+                            <div class="styleguide-css">{{modifierMarkup}}</div>
                         </div>
                         {{/eachModifier}}
                         <div class="styleguide-html">
@@ -77,6 +89,7 @@
 <!-- SCRIPTS -->
 <script src="public/kss.js"></script>
 <script src="public/prettify.js"></script>
+<script src="public/classlist-shim.js"></script>
 <script>
 window.onload = function() {
     'use strict';
@@ -89,6 +102,14 @@ window.onload = function() {
         }
     }
     prettyPrint();
+    var button = document.querySelector( '.styleguide-nav-toggle' );
+    if (button.addEventListener) {
+        button.addEventListener( 'click', function() {
+            this.classList.toggle( 'active' );
+            document.querySelector(' .styleguide-menu-container ').classList.toggle('styleguide-drawer-open');
+        });
+    }
+
 };
 </script>
 </body>

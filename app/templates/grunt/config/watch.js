@@ -80,8 +80,8 @@ module.exports = function(grunt) {
             tasks: [<% if (jshint) { %>
                 'newer:jshint',<% } %><% if (jsOption === 'Browserify') { %>
                 'browserify:server',
-                'exorcise:server',<% } %><% if (useDocker) { %>
-                'docker:server',<% } %>
+                'exorcise:server',<% } %><% if (useJsdoc) { %>
+                'jsdoc:server',<% } %>
                 'newer:copy:server'
             ]
         },

@@ -5,7 +5,7 @@
 <% if (jsOption === 'RequireJS') { %>define(function(require) {
     'use strict';
 
-    var <%= _.classify(name) %> = ('modules/<%= _.slugify(name) %>');
+    var <%= _.classify(name) %> = require('modules/<%= _.slugify(name) %>');
 
     describe('just checking', function() {
 

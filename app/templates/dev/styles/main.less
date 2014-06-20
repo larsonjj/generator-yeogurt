@@ -2,17 +2,16 @@
 *   Import all desired <% if (cssOption === 'LESS') { %>less<% } else if (cssOption === 'SASS') { %>scss<% } %> files here
 */
 
-// [include:base]<% if (useBorderBox) { %>
-@import 'base/_box-sizing';<% } %><% if (ieSupport) { %>
-@import 'base/_ie8';<% } %>
+// [include:base]
+@import 'base/_variables';
 @import 'base/_mixins';
-@import 'base/_reset';
-@import 'base/_variables';<% if (!ieSupport && !useBootstrap) { %>
+@import 'base/_global';<% if (ieSupport) { %>
+@import 'base/_ie8';<% } %>
+@import 'base/_reset';<% if (!ieSupport && !useBootstrap) { %>
 @import 'base/_print';<% } %>
 // [/include]
 
-// [include:vendor]
-<% if (!useBootstrap) { %>
+// [include:vendor]<% if (!useBootstrap) { %>
 @import 'vendor/_normalize';<% } %><% if (cssOption === 'SASS') { %>
 <% if (useBootstrap) { %>@import 'vendor/_bootstrap';
 <% } %><% if (useFoundation) { %>@import 'vendor/_foundation';
@@ -28,8 +27,8 @@
 *   and change the comment below to match your new folder.
 *   ex. `yo yeogurt:style myStyle --folder=module`
 *   Comments would be:
-*   // [include:modules]
-*   // [/include]
+*   [include:modules]
+*   [/include]
 */
 // [include:partials]
 // [/include]

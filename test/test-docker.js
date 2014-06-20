@@ -32,7 +32,7 @@ describe('yeogurt generator with docker', function () {
             ieSupport: true,
             responsive: true,
             useGA: true,
-            useDocker: true,
+            useJsdoc: true,
             useFTP: true,
             jshint: true,
             extras: ['useFontAwesome', 'useDashboard']

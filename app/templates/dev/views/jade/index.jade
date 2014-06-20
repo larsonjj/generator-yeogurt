@@ -15,12 +15,12 @@ block body
 
 block content
     .main-container
-        +heading({type:'h1', class:'heading', text: 'Welcome to Yeogurt!'})
+        +h1({text:'Welcome to Yeogurt!'})
         p. Take a look at the <a href="https://github.com/larsonjj/generator-yeogurt#yeogurt-generator---">documentation</a> and start mixing up something awesome.
         p
-            img.logo(src="images/yeogurt-swirl.png", width="75px")<% if (useDashboard || useDocker || useKss) { %>
+            img.logo(src="images/yeogurt-swirl.png", width="75px")<% if (useDashboard || useJsdoc || useKss) { %>
         p.links
             <% if (useDashboard) { %>a(href="dashboard/index.html") Dashboard<% } %><% if (useKss) { %>
-            a(href="docs/styleguide/index.html") Styleguide<% } %><% if (useDocker) { %>
-            a(href="docs/api/README.md.html") API<% } %><% } %>
+            a(href="docs/styleguide/index.html") Styleguide<% } %><% if (useJsdoc) { %>
+            a(href="docs/api/index.html") API<% } %><% } %>
     code.version v<%= pkg.version %>

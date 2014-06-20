@@ -26,7 +26,7 @@ describe('yeogurt generator SASS', function () {
             'dev/styles/base',
             'dev/styles/base/_mixins.scss',
             'dev/styles/base/_variables.scss',
-            'dev/styles/base/_box-sizing.scss',
+            'dev/styles/base/_global.scss',
             'dev/styles/base/_reset.scss',
             'dev/styles/base/_ie8.scss',
             'dev/styles/vendor',

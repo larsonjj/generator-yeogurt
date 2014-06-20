@@ -1,0 +1,655 @@
+<!DOCTYPE html><!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->
+<!--[if IE 9]><html lang="en" class="ie9 no-js"><![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="no-js"><!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Dashboard</title>
+        <meta name="description" content="A Simple Dashboard">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            html,
+            body {
+                padding: 0;
+                margin: 0;
+                height: 100%;
+                width: 100%;
+                font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+            }
+
+            /* Box Sizing */
+            *,
+            *:before,
+            *:after {
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+            /* Clearfix */
+            .cf:before,
+            .cf:after {
+                content: " "; /* 1 */
+                display: table; /* 2 */
+            }
+
+            .cf:after {
+                clear: both;
+            }
+
+            ul {
+                -moz-padding-start: 0;
+                -webkit-padding-start: 0;
+                -khtml-padding-start: 0;
+                -o-padding-start: 0;
+                -webkit-margin-before: 0;
+                -moz-margin-before: 0;
+                -khtml-margin-before: 0;
+                -o-margin-before: 0;
+                -webkit-margin-after: 0;
+                -moz-margin-after: 0;
+                -khtml-margin-after: 0;
+                -o-margin-after: 0;
+            }
+            /* End Reset */
+
+            .hide {
+                display: none
+            }
+
+            .scroll-wrapper {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 250px;
+                left: 0;
+                overflow: auto;
+            }
+
+            .container {
+                margin-left: auto;
+                margin-right: auto;
+                width: 100%;
+            }
+            .main-title {
+                padding: 15px;
+                text-align: center;
+            }
+            .item-list, .sidebar-list {
+                list-style-type: none;
+            }
+            .content {
+                position: fixed;
+                left: 250px;
+                padding: 20px;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                overflow: auto;
+            }
+            .sidebar {
+                width: 250px;
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 1;
+                background: #fafafb;
+                border-right: 1px solid #dbdbdb;
+            }
+            .sidebar-title {
+                background: #eee;
+                text-align: left;
+                padding-left: 10px;
+                line-height: 34px;
+                font-size: 18px;
+                margin: 0;
+                font-weight: normal;
+            }
+            .sidebar-list {
+                list-style: none;
+                margin-left: 0;
+                padding: 0;
+            }
+            .sidebar-list li {
+                border-bottom: 1px solid #dbdbdb;
+                border-top: 1px solid #fff;
+                margin: 0;
+                display: block;
+                padding: 4px;
+                text-shadow: 0 1px 0 #fff;
+                border-left: 2px solid #fafafb;
+                position: relative;
+            }
+            .sidebar-list li:after {
+              content: '✓';
+              position: absolute;
+              display: none;
+              right: 10px;
+              top: 0;
+              line-height: 32px;
+            }
+            .sidebar-list li.active:after {
+              display: block
+            }
+            .sidebar-list li button {
+                border: none;
+                background: none;
+                width: 100%;
+                text-align: left;
+                font-size: 0.8em;
+            }
+            .sidebar-list li button:focus {
+              outline: none;
+            }
+            .item-list li {
+                border: none;
+                background: #f7f7f7;
+                border-radius: 5px;
+                padding: 7px;
+                margin-bottom: 5px;
+            }
+            .item-list li a {
+                border: none;
+                background: none;
+                width: 100%;
+                text-align: left;
+                color: inherit;
+                font-size: 0.8em;
+                text-decoration: none;
+            }
+
+            .font-white {
+                color: #fff;
+            }
+            .font-black {
+                color: #333;
+            }
+
+            .section-wrapper {
+              position: relative;
+            }
+            .filter-clear {
+                position: absolute;
+                top: 0;
+                right: 0;
+                background: #FFFFFF;
+                border: none;
+                border-radius: 3px;
+                margin: 16px 5px;
+                line-height: 14px;
+                display: none;
+            }
+            .menu-icon {
+                display: none;
+                position: absolute;
+                top: 10px;
+                right: -50px;
+                width: 50px;
+                height: 50px;
+                background: #acacac;
+            }
+            .menu-bar-list {
+                margin-top: 9px;
+                margin-left: -1px;
+                list-style-type: none;
+            }
+            .menu-bar-list li {
+                border-bottom: 4px solid #fff;
+                height: 9px;
+                margin: 0 13px;
+            }
+
+            /* Status Styles */
+            li.development {
+                background: #94caeb;
+                color: #fff;
+            }
+            li.qa {
+                background: #eb9494;
+                color: #fff;
+            }
+            li.blocked {
+                background: #e74c3c;
+                color: #fff;
+            }
+            li.queued {
+                background: #c9c9c9;
+                color: #fff;
+            }
+            li.review {
+                background: #8fbc23;
+                color: #fff;
+            }
+            li.live {
+                background: #2a4a67;
+                color: #fff;
+            }
+            /* End Status Styles */
+
+            /* Animated Navigation Menu */
+            .dash-button-wrapper {
+                position: absolute;
+                right: -50px;
+                top: 0;
+                width: 50px;
+                height: 50px;
+                background: transparent;
+            }
+            .dash-nav-toggle {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin-left: -15px;
+                cursor: pointer;
+                padding: 10px 35px 16px 0;
+                margin-top: -12px;
+            }
+            .dash-nav-toggle span:before {
+                top: -10px;
+            }
+            .dash-nav-toggle span:after {
+                bottom: -10px;
+            }
+            .dash-nav-toggle span, .dash-nav-toggle span:before, .dash-nav-toggle span:after {
+                cursor: pointer;
+                border-radius: 1px;
+                height: 5px;
+                width: 35px;
+                background: #e96556;
+                position: absolute;
+                display: block;
+                content: '';
+                transition: all 300ms ease-in-out;
+            }
+            .sidebar.open span {
+                background-color: transparent;
+            }
+            .sidebar.open span:before {
+                -webkit-transform: rotate(45deg);
+                -moz-transform: rotate(45deg);
+                -o-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+            .sidebar.open span:after {
+                -webkit-transform: rotate(-45deg);
+                -moz-transform: rotate(-45deg);
+                -o-transform: rotate(-45deg);
+                -ms-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+            }
+            .sidebar.open span:before, .sidebar.open span:after {
+                top: 0;
+            }
+            .dash-mobile-bar {
+                display: none;
+            }
+            .dash-button-wrapper {
+                display: none;
+            }
+            /* Media Queries */
+            @media screen and (max-width: 768px) {
+                .content {
+                    margin-top: 30px;
+                }
+                .dash-button-wrapper {
+                    display: block;
+                    z-index: 1;
+                }
+                .dash-mobile-bar {
+                    position: fixed;
+                    height: 50px;
+                    width: 100%;
+                    background: #fafafa;
+                    border-bottom: 1px solid #dbdbdb;
+                    opacity: 0.95;
+                    top: 0;
+                    left: 0;
+                    display: block;
+                }
+                .sidebar {
+                    animation: drawerClose 0.8s;
+                    -moz-animation: drawerClose 0.8s; /* Firefox */
+                    -webkit-animation: drawerClose 0.8s; /* Safari and Chrome */
+                    left: -250px;
+                    box-shadow: 1px 0 15px #ccc;
+                    z-index: 1;
+                }
+                .sidebar.open {
+                    animation: drawerOpen 0.8s;
+                    -moz-animation: drawerOpen 0.8s; /* Firefox */
+                    -webkit-animation: drawerOpen 0.8s; /* Safari and Chrome */
+                    left: 0;
+                    z-index: 1;
+                }
+                .menu-icon {
+                    display: block;
+                }
+                .container {
+                    width: 100%;
+                }
+                .content {
+                    width: 100%;
+                    animation: contentExpand 0.8s;
+                    -moz-animation: contentExpand 0.8s; /* Firefox */
+                    -webkit-animation: contentExpand 0.8s; /* Safari and Chrome */
+                    left: 0;
+                }
+            }
+            @media screen and (min-width: 769px) {
+                .sidebar {
+                    animation: drawerOpen 0.8s;
+                    -moz-animation: drawerOpen 0.8s; /* Firefox */
+                    -webkit-animation: drawerOpen 0.8s; /* Safari and Chrome */
+                }
+
+                .content {
+                    animation: contentCollapse 0.8s;
+                    -moz-animation: contentCollapse 0.8s; /* Firefox */
+                    -webkit-animation: contentCollapse 0.8s; /* Safari and Chrome */
+                }
+            }
+            @-webkit-keyframes contentExpand {
+                0% {
+                    left: 250px;
+                }
+                100% {
+                    left: 0;
+                }
+            }
+
+            @-moz-keyframes contentExpand {
+                0% {
+                    left: 250px;
+                }
+                100% {
+                    left: 0;
+                }
+            }
+
+            @keyframes contentExpand {
+                0% {
+                    left: 250px;
+                }
+                100% {
+                    left: 0;
+                }
+            }
+
+            @-webkit-keyframes contentCollapse {
+                0% {
+                    left: 0;
+                }
+                100% {
+                    left: 250px;
+                }
+            }
+
+            @-moz-keyframes contentCollapse {
+                0% {
+                    left: 0;
+                }
+                100% {
+                    left: 250px;
+                }
+            }
+
+            @keyframes contentCollapse {
+                0% {
+                    left: 0;
+                }
+                100% {
+                    left: 250px;
+                }
+            }
+
+            @-webkit-keyframes drawerClose {
+                0% {
+                    left: 0;
+                }
+                100% {
+                    left: -250px;
+                }
+            }
+
+            @-moz-keyframes drawerClose {
+                0% {
+                    left: 0;
+                }
+                100% {
+                    left: -250px;
+                }
+            }
+
+            @keyframes drawerClose {
+                0% {
+                    left: 0;
+                }
+                100% {
+                    left: -250px;
+                }
+            }
+
+            @-webkit-keyframes drawerOpen {
+                0% {
+                    left: -250px;
+                }
+                100% {
+                    left: 0;
+                }
+            }
+
+            @-moz-keyframes drawerOpen {
+                0% {
+                    left: -250px;
+                }
+                100% {
+                    left: 0;
+                }
+            }
+
+            @keyframes drawerOpen {
+                0% {
+                    left: -250px;
+                }
+                100% {
+                    left: 0;
+                }
+            }
+            /* End Media Queries */
+        </style><!--[if IE 8]>
+        <script>
+            // Protect window.console method calls, e.g. console is not defined on IE
+            (function() {
+                if (!window.console) {
+                    window.console = {};
+                }
+                // union of Chrome, FF, IE, and Safari console methods
+                var m = [
+                    "log", "info", "warn", "error", "debug", "trace", "dir", "group",
+                    "groupCollapsed", "groupEnd", "time", "timeEnd", "profile", "profileEnd",
+                    "dirxml", "assert", "count", "markTimeline", "timeStamp", "clear"
+                ];
+                // define undefined methods as noops to prevent errors
+                for (var i = 0; i < m.length; i++) {
+                    if (!window.console[m[i]]) {
+                        window.console[m[i]] = function() {};
+                    }
+                }
+            })();
+        </script><![endif]-->
+    </head>
+    <body class="dashboard-body">
+        <div class="container cf">
+            <div class="dash-mobile-bar"></div>
+            <div class="sidebar">
+                <div class="dash-button-wrapper">
+                    <a class="dash-nav-toggle" href="#">
+                        <span></span>
+                    </a>
+                </div>
+                <div class="scroll-wrapper">
+                    <div class="section-wrapper">
+                        <h2 class="sidebar-title">Categories</h2>
+                        <ul class="sidebar-list category">
+                        {{#each categories}}
+                            {{#ifvalue class value='page'}}
+                            <li class="{{class}} active">
+                                <button type="button" class="font-black">{{name}}</button>
+                            </li>
+                            {{else}}
+                            <li class="{{class}}">
+                                <button type="button" class="font-black">{{name}}</button>
+                            </li>
+                            {{/ifvalue}}
+                        {{/each}}
+                        </ul>
+                    </div>
+                    <div class="section-wrapper">
+                        <h2 class="sidebar-title">Legend</h2>
+                        <button class="filter-clear" type="button">Clear</button>
+                        <ul class="sidebar-list legend">
+                        {{#each statuses}}
+                            <li class="{{class}}">
+                                <button type="button" class="font-white">{{name}}</button>
+                            </li>
+                        {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="main-title">
+                    {{#if logo}}
+                    <img alt="Logo" width="200" src="{{logo}}" />
+                    {{else}}
+                    <h3>Logo</h3>
+                    {{/if}}
+                </div>
+                <ul class="item-list">
+                {{#each data}}
+                    {{#ifvalue category value='page'}}
+                    <li class="{{category}} {{status}}">
+                        <a href="{{link}}">{{label}}</a>
+                    </li>
+                    {{else}}
+                    <li class="{{category}} {{status}} hide">
+                        <a href="{{link}}">{{label}}</a>
+                    </li>
+                    {{/ifvalue}}
+                {{/each}}
+                </ul>
+            </div>
+        </div>
+        <script>
+            /*jshint browser: true*/
+            'use strict';
+            (function() {
+
+
+                var itemList = document.querySelector('.item-list');
+                var categoryList = document.querySelector('.category');
+                var legendList = document.querySelector('.legend');
+
+                var categoryItems = categoryList.getElementsByTagName('li');
+                var itemItems = itemList.getElementsByTagName('li');
+                var legendItems = legendList.getElementsByTagName('li');
+
+                var clearButtons = document.querySelectorAll('.filter-clear');
+
+                var sidebar = document.querySelector('.sidebar');
+                var menuButton = document.querySelector('.dash-button-wrapper');
+                var isOpen = false;
+
+                var changeActiveItem = function(items, theClass, context) {
+                  var regex = new RegExp(' active', 'g');
+                  for (var j = 0; j < items.length; j += 1) {
+                      items[j].className = items[j].className.replace(regex, '');
+                  }
+                  context.className += ' active';
+                };
+
+                var clearFilters = function(context) {
+                  context.style.display = 'none';
+                  var listItems = context.parentNode.getElementsByTagName('li');
+                  for (var i = 0; i < listItems.length; i += 1) {
+                    listItems[i].className = listItems[i].className.replace(/ active/, '').replace(/active /, '').replace(/active/, '')
+                  }
+                };
+
+                var showClearButton = function(context) {
+                  context.parentNode.parentNode.querySelector('.filter-clear').style.display = 'block';
+                };
+
+                var filterItems = function() {
+                  var activeSidebarItems = document.querySelector('.sidebar').querySelectorAll('.active');
+                  var filters = [];
+                  for (var i = 0; i < activeSidebarItems.length; i += 1) {
+                    filters.push(activeSidebarItems[i].className.split(' ')[0]);
+                  }
+                  for (var j = 0; j < itemItems.length; j += 1) {
+                    var classes = itemItems[j].className.split(' ');
+                    var show = true;
+                    for (i = 0; i < filters.length; i += 1) {
+                      if (classes.indexOf(filters[i]) > -1) {
+                      }
+                      else {
+                        show = false;
+                      }
+                    }
+                    if (show) {
+                      itemItems[j].className = itemItems[j].className.replace(/ hide/, '').replace(/hide /, '').replace(/hide/, '');
+                    }
+                    else if (itemItems[j].className.indexOf('hide') === -1) {
+                      itemItems[j].className = itemItems[j].className.concat(' hide');
+                    }
+                  }
+                };
+
+                var catItemsClick = function() {
+                    changeActiveItem(categoryItems, 'active', this);
+                    filterItems();
+                };
+
+                var legendItemsClick = function() {
+                    changeActiveItem(legendItems, 'active', this);
+                    showClearButton(this);
+                    filterItems();
+                };
+
+                var clearButtonsClick = function() {
+                    clearFilters(this);
+                    filterItems();
+                };
+
+                var menuButtonClick = function() {
+                    if (!isOpen) {
+                        isOpen = true;
+                        sidebar.className += ' open';
+                    }
+                    else {
+                        isOpen = false;
+                        sidebar.className = sidebar.className.replace(' open', '').replace('open', '');
+                    }
+                };
+
+                for (var i = 0; i < categoryItems.length; i += 1) {
+                    categoryItems[i].addEventListener('click', catItemsClick);
+                }
+
+                for (i = 0; i < legendItems.length; i += 1) {
+                    legendItems[i].addEventListener('click', legendItemsClick);
+                }
+
+                for (i = 0; i < clearButtons.length; i += 1) {
+                    clearButtons[i].addEventListener('click', clearButtonsClick);
+                }
+
+                menuButton.addEventListener('click', menuButtonClick);
+
+            })();
+        </script>
+    </body>
+</html>

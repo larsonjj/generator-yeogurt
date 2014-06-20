@@ -28,7 +28,7 @@ describe('yeogurt generator defaults', function () {
             'dev/views',
             'dev/views/templates',
             'dev/views/components',
-            'dev/views/components/heading.jade',
+            'dev/views/components/h1.jade',
             'dev/views/index.jade',
             'dev/views/templates/base.jade',
             'dev/styles',
