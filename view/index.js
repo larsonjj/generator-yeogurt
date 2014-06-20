@@ -122,23 +122,32 @@ ViewGenerator.prototype.files = function files() {
         }
     }
     else if (this.structure === 'Single Page Application') {
-        if (!this.name) {
-            console.log('Name cannot be empty. Operation aborted.');
-            return;
+        if (this.jsTemplate !== 'React') {
+
+            if (!this.name) {
+                console.log('Name cannot be empty. Operation aborted.');
+                return;
+            }
+            this.template('view.js', 'dev/scripts/views/' + this._.slugify(this.name.toLowerCase()) + '.js');
+            this.template('view-spec.js', 'test/spec/views/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+            if (this.jsTemplate === 'Lo-dash (Underscore)') {
+                this.template('template.html', 'dev/scripts/templates/' + this._.slugify(this.name.toLowerCase()) + '.jst');
+            }
+            else if (this.jsTemplate === 'Handlebars') {
+                this.template('template.html', 'dev/scripts/templates/' + this._.slugify(this.name.toLowerCase()) + '.hbs');
+            }
+            else if (this.jsTemplate === 'Swig') {
+                this.template('template.html', 'dev/scripts/templates/' + this._.slugify(this.name.toLowerCase()) + '.swig');
+            }
+            else if (this.jsTemplate === 'Jade') {
+                this.template('template.html', 'dev/scripts/templates/' + this._.slugify(this.name.toLowerCase()) + '.jade');
+            }
+
         }
-        this.template('view.js', 'dev/scripts/views/' + this._.slugify(this.name.toLowerCase()) + '.js');
-        this.template('view-spec.js', 'test/spec/views/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
-        if (this.jsTemplate === 'Lo-dash (Underscore)') {
-            this.template('template.html', 'dev/scripts/templates/' + this._.slugify(this.name.toLowerCase()) + '.jst');
-        }
-        else if (this.jsTemplate === 'Handlebars') {
-            this.template('template.html', 'dev/scripts/templates/' + this._.slugify(this.name.toLowerCase()) + '.hbs');
-        }
-        else if (this.jsTemplate === 'Swig') {
-            this.template('template.html', 'dev/scripts/templates/' + this._.slugify(this.name.toLowerCase()) + '.swig');
-        }
-        else if (this.jsTemplate === 'Jade') {
-            this.template('template.html', 'dev/scripts/templates/' + this._.slugify(this.name.toLowerCase()) + '.jade');
+        else {
+            console.log('You have chosen to use Backbone + React, so this subgenerator is not available to use.');
+            console.log('Try the following to generate a new view/component: yo yeogurt:component mycomponent');
+            console.log('Operation aborted');
         }
     }
 };

@@ -46,6 +46,8 @@ CollectionGenerator.prototype.files = function files() {
         }
         this.template('collection.js', 'dev/scripts/collections/' + this._.slugify(this.name.toLowerCase()) + '.js');
         this.template('collection-spec.js', 'test/spec/collections/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+        this.template('model.js', 'dev/scripts/models/' + this._.slugify(this.name.toLowerCase()) + '.js');
+        this.template('model-spec.js', 'test/spec/models/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
     }
 
 };
