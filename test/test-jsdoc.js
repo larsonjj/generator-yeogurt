@@ -22,7 +22,7 @@ describe('yeogurt generator with docker', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'grunt/config/docker.js'
+            'grunt/config/jsdoc.js'
         ];
 
         helpers.mockPrompt(this.app, {
