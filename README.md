@@ -103,6 +103,7 @@ Available sub-generators:
 * [yeogurt:style](#style)
 * [yeogurt:model](#model)
 * [yeogurt:collection](#collection)
+* [yeogurt:router](#router)
 * [yeogurt:component](#component)
 
 **Note: Generators are to be run from the root directory of your app.**
@@ -185,6 +186,15 @@ Example:
 yo yeogurt:model mycollection
 ```
 
+### Collection
+Creates a new Backbone router file within `dev/scripts/routers` as well as a unit test spec file within the `test/spec` folder
+
+Example:
+```bash
+## Router
+yo yeogurt:router myrouter
+```
+
 ### Component
 ***Note: (Can only be used with Backbone + React)***
 
@@ -232,7 +242,7 @@ Please refer to the plugin [documentation](https://github.com/larsonjj/grunt-das
 For documentation on the old v0.4.x dashboard, please refer to [here](https://github.com/larsonjj/generator-yeogurt/tree/master/docs/old-dashboard.md)
 
 ## Dynamic JavaScript API
-If you answered `Y (Yes)` to the `Docker (Based on Docco)` option in the generator, a JavaScript API will be automatically generated and can be accessed at `http://127.0.0.1:9010/.server/docs/api/README.md.html` when using the `grunt serve` task or `http://127.0.0.1:9010/docs/api/README.md.html` when running `grunt serve:dist`.
+If you answered `Y (Yes)` to the `Docker (Based on Docco)` option in the generator, a JavaScript API will be automatically generated and can be accessed at `http://127.0.0.1:9010/.server/docs/api/index.html` when using the `grunt serve` task or `http://127.0.0.1:9010/docs/api/index.html` when running `grunt serve:dist`.
 
 The library used to generate the API documentation is [Docker](https://github.com/jbt/docker). This creates a nice three column interface with a folder explorer to browse all JavaScript files and view comments/[markdown](http://daringfireball.net/projects/markdown/)/[JSDoc](http://usejsdoc.org/). You can view an example [here](http://jbt.github.io/docker/src/docker.js.html).
 
