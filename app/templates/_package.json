@@ -16,8 +16,8 @@
         "minifyify": "3.0.6",
         "grunt-browserify": "2.0.8",
         "grunt-exorcise": "0.1.0",<% } %>
-        "grunt-usemin": "2.1.1",<% if (useDocker) { %>
-        "grunt-docker": "0.0.8",<% } %>
+        "grunt-usemin": "2.1.1",<% if (useJsdoc) { %>
+        "grunt-jsdoc": "0.5.6",<% } %>
         "grunt-concurrent": "0.5.0",<% if (jsTemplate === 'Lo-dash (Underscore)') { %>
         "grunt-contrib-jst": "0.5.1",<% } else if (jsTemplate === 'Handlebars') { %>
         "grunt-contrib-handlebars": "0.8.0",<% } else if (jsFramework === 'Backbone + React') { %>
