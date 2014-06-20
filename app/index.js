@@ -315,8 +315,7 @@ YeogurtGenerator.prototype.app = function app() {
     this.mkdir('dev');
 
     // dev/images
-    this.directory('dev/images', 'dev/images');
-    this.copy('dev/images/yeogurt-swirl.png', 'dev/dashboard/images/yeogurt-swirl.png');
+    this.copy('dev/images/yeogurt-swirl.png', 'dev/images/yeogurt-swirl.png');
 
 };
 
@@ -447,7 +446,9 @@ YeogurtGenerator.prototype.scripts = function scripts() {
     // dev/scripts
     this.mkdir('dev/scripts');
     this.mkdir('dev/scripts/vendor');
-    this.mkdir('dev/scripts/modules');
+    if (this.jsOption !== 'None (Vanilla JavaScript)') {
+        this.mkdir('dev/scripts/modules');
+    }
 
     this.template('dev/scripts/app.js', 'dev/scripts/app.js');
 
