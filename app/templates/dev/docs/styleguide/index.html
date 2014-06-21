@@ -54,11 +54,11 @@
                             <p>{{{description}}}</p>
                             {{/if}}
                             {{#if modifiers}}
-                            <ul class="styleguide-modifier">
+                            <div class="styleguide-modifier">
                                 {{#eachModifier}}
-                                <li><strong>{{name}}</strong>: {{description}}</li>
+                                <div class="styleguide-modifier-item"><strong>{{name}}</strong> - {{{description}}}</div>
                                 {{/eachModifier}}
-                            </ul>
+                            </div>
                             {{/if}}
                         </div>
                         {{#if markup}}
