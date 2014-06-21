@@ -7,13 +7,14 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 ## Getting Started
 
 - First off, You will need to have [Node.js](http://nodejs.org/) `>= 0.10` installed. <br>
-- You will need to install Grunt CLI globally: `npm install -g grunt-cli`
+- Then will need to install Grunt CLI globally: `npm install -g grunt-cli`
 - You will also need [Git](http://git-scm.com/) installed if you don't already. <br>
-- Be sure to install yeoman of course! `npm install -g yo` <br>
+- Be sure to install yeoman and bower as well `npm install -g yo bower` <br>
 - Install the generator: `npm install -g generator-yeogurt` <br>
+- If you are using JSDoc for documentation, you will also need the [Java Runtime](https://www.java.com/en/download/)
 - Run the generator: `yo yeogurt`
 
-Note For Mac Users: You will need to install XCode and accept the licensing agreement : `sudo xcodebuild -license`
+Note For Mac Users: You will need to install XCode, install command-line tools, and accept the licensing agreement.
 
 ## What's New with v0.8+?
 

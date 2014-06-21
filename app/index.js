@@ -503,9 +503,7 @@ YeogurtGenerator.prototype.styles = function styles() {
             if (this.useBootstrap) {
                 this.template('dev/styles/vendor/_bootstrap.less', 'dev/styles/vendor/_bootstrap.less');
             }
-            if (this.useBorderBox) {
-                this.template('dev/styles/base/_global.less', 'dev/styles/base/_global.less');
-            }
+            this.template('dev/styles/base/_global.less', 'dev/styles/base/_global.less');
             this.template('dev/styles/base/_mixins.less', 'dev/styles/base/_mixins.less');
             this.template('dev/styles/base/_variables.less', 'dev/styles/base/_variables.less');
             this.template('dev/styles/base/_reset.less', 'dev/styles/base/_reset.less');
@@ -529,9 +527,9 @@ YeogurtGenerator.prototype.styles = function styles() {
             this.template('dev/styles/base/_mixins.less', 'dev/styles/base/_mixins.scss');
             this.template('dev/styles/base/_variables.less', 'dev/styles/base/_variables.scss');
             this.template('dev/styles/base/_reset.less', 'dev/styles/base/_reset.scss');
-            if (this.useBorderBox) {
-                this.template('dev/styles/base/_global.less', 'dev/styles/base/_global.scss');
-            }
+
+            this.template('dev/styles/base/_global.less', 'dev/styles/base/_global.scss');
+
             this.mkdir('dev/styles/vendor');
             if (this.useFontAwesome) {
                 this.template('dev/styles/vendor/_font-awesome.less', 'dev/styles/vendor/_font-awesome.scss');

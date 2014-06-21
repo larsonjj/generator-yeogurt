@@ -1,3 +1,11 @@
+### v0.9.1:
+#### date: 2014-06-21
+##### changes:
+* Fixed issue where HTML tag would not be loaded in Internet Explorer when IE8+ support was not selected as an option.
+* Fixed [#32](https://github.com/larsonjj/generator-yeogurt/issues/32)
+* Fixed styling issues for default fonts within the Styleguide.
+* Updated markup for styleguide so modifiers look better.
+
 ### v0.9.0:
 #### date: 2014-06-20
 ##### changes:
