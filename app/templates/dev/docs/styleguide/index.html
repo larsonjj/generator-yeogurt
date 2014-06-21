@@ -46,7 +46,7 @@
                     <div class="styleguide-example">
                         {{#whenDepth 1}}
                         <h3><span>{{reference}}.0</span> - {{header}}</h3>
-                     {{else}}
+                        {{else}}
                         <h3><span>{{reference}}</span> - {{header}}</h3>
                         {{/whenDepth}}
                         <div class="styleguide-description styleguide-markdown">
@@ -56,7 +56,7 @@
                             {{#if modifiers}}
                             <ul class="styleguide-modifier">
                                 {{#eachModifier}}
-                                <li><strong>{{name}}</strong> - {{description}}</li>
+                                <li><strong>{{name}}</strong>: {{description}}</li>
                                 {{/eachModifier}}
                             </ul>
                             {{/if}}
