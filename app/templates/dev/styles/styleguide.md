@@ -1,4 +1,3 @@
-<br>
 <p align="center">
     <img src="public/images/yeogurt-logo.png" alt="Yeogurt Logo" width="200">
 </p>

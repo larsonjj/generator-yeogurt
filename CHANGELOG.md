@@ -1,3 +1,9 @@
+### v0.9.2:
+#### date: 2014-06-21
+##### changes:
+* Added extra margin for mobile breakpoint on styleguide to make sure content is under the navigation bar.
+* Removed `<br>` from styleguide.md as it is unecessary
+
 ### v0.9.1:
 #### date: 2014-06-21
 ##### changes:
