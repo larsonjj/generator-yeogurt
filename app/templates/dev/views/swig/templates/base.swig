@@ -9,10 +9,10 @@
 
 <!DOCTYPE html><% if (ieSupport) { %>
 <!--[if IE 8]><html class="ie8<% if (useModernizr) { %> no-js<% } %>" lang="en"><![endif]-->
-<!--[if IE 9]><html lang="en" class="ie9<% if (useModernizr) { %> no-js<% } %>"><![endif]--><% } %>
-<!--[if !IE]><!-->
-<html<% if (useModernizr) { %> class="no-js"<% } %> lang="en">
-    <!--<![endif]-->
+<!--[if IE 9]><html lang="en" class="ie9<% if (useModernizr) { %> no-js<% } %>"><![endif]-->
+<!--[if !IE]><!--><% } %>
+<html<% if (useModernizr) { %> class="no-js"<% } %> lang="en"><% if (ieSupport) { %>
+    <!--<![endif]--><% } %>
     <head>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
