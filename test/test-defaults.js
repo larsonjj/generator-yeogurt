@@ -42,7 +42,6 @@ describe('yeogurt generator defaults', function () {
             'test',
             'karma.conf.js',
             'dev/images',
-            'dev/styles/fonts',
             '.editorconfig',
             'Gruntfile.js',
             'bower.json',
