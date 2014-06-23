@@ -31,9 +31,6 @@
 }
 .logo {
     margin-top: 15px;
-    -webkit-animation: 5.0s rotateRight linear infinite;
-       -moz-animation: 5.0s rotateRight linear infinite;
-            animation: 5.0s rotateRight linear infinite;
 }
 
 .links a {
@@ -50,40 +47,7 @@
     vertical-align: baseline;
     text-align: center;
     cursor: pointer;
-    -webkit-user-drag: none;
-    -webkit-user-select: none;
     font-size: 100%;
     padding: .5em 1em;
-    border: 1px solid #999;
-    border: 0 rgba(0,0,0,0);
     text-decoration: none;
-}
-
-@-webkit-keyframes rotateRight {
-    0% {
-        -webkit-transform:rotate(0deg);
-        -webkit-transform-origin:50% 50%;
-    }
-    100% {
-        -webkit-transform:rotate(360deg);
-    }
-}
-
-@-moz-keyframes rotateRight {
-    0% {
-        -moz-transform:rotate(0deg);
-         -moz-transform-origin:50% 50%; }
-    100% {
-        -moz-transform:rotate(360deg);
-    }
-}
-
-@keyframes rotateRight {
-    0% {
-        transform: rotate(0deg);
-        transform-origin: 50% 50%;
-    }
-    100% {
-        transform: rotate(360deg);
-    }
 }

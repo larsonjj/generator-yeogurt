@@ -113,7 +113,7 @@
             }
             .sidebar-list {
                 list-style: none;
-                margin-left: 0;
+                margin: 0;
                 padding: 0;
             }
             .sidebar-list li {
@@ -127,7 +127,7 @@
                 position: relative;
             }
             .sidebar-list li:after {
-              content: '✓';
+              content: '';
               position: absolute;
               display: none;
               right: 10px;
@@ -135,7 +135,8 @@
               line-height: 32px;
             }
             .sidebar-list li.active:after {
-              display: block
+              display: block;
+              content: '✓';
             }
             .sidebar-list li button {
                 border: none;
@@ -181,7 +182,7 @@
                 background: #FFFFFF;
                 border: none;
                 border-radius: 3px;
-                margin: 16px 5px;
+                margin: 9px 5px;
                 line-height: 14px;
                 display: none;
             }
@@ -552,6 +553,16 @@
             'use strict';
             (function() {
 
+                // Array indexOf shim
+                if (!Array.prototype.indexOf) {
+                    Array.prototype.indexOf = function(obj, start) {
+                         for (var i = (start || 0), j = this.length; i < j; i++) {
+                             if (this[i] === obj) { return i; }
+                         }
+                         return -1;
+                    }
+                }
+
 
                 var itemList = document.querySelector('.item-list');
                 var categoryList = document.querySelector('.category');
@@ -573,6 +584,7 @@
                       items[j].className = items[j].className.replace(regex, '');
                   }
                   context.className += ' active';
+                  console.log(context);
                 };
 
                 var clearFilters = function(context) {
@@ -612,23 +624,72 @@
                   }
                 };
 
-                var catItemsClick = function() {
-                    changeActiveItem(categoryItems, 'active', this);
+                var catItemsClick = function(event) {
+                    var caller;
+                    if (!window.addEventListener) {
+                        var targetElement = window.event.srcElement;
+                        if (targetElement.nodeName.toLowerCase() == 'li'){
+                            caller = targetElement;
+                        }
+                        else if (targetElement.parentNode.nodeName.toLowerCase() == 'li') {
+                            caller = targetElement.parentNode;
+                        }
+                        else {
+                            caller = targetElement;
+                        }
+                    }
+                    else {
+                        caller = this;
+                    }
+                    console.log(caller);
+                    changeActiveItem(categoryItems, 'active', caller);
                     filterItems();
                 };
 
-                var legendItemsClick = function() {
-                    changeActiveItem(legendItems, 'active', this);
-                    showClearButton(this);
+                var legendItemsClick = function(event) {
+                    var caller;
+                    if (!window.addEventListener) {
+                        var targetElement = window.event.srcElement;
+                        if (targetElement.nodeName.toLowerCase() == 'li'){
+                            caller = targetElement;
+                        }
+                        else if (targetElement.parentNode.nodeName.toLowerCase() == 'li') {
+                            caller = targetElement.parentNode;
+                        }
+                        else {
+                            caller = targetElement;
+                        }
+                    }
+                    else {
+                        caller = this;
+                    }
+                    changeActiveItem(legendItems, 'active', caller);
+                    showClearButton(caller);
                     filterItems();
                 };
 
-                var clearButtonsClick = function() {
-                    clearFilters(this);
+                var clearButtonsClick = function(event) {
+                    var caller;
+                    if (!window.addEventListener) {
+                        var targetElement = window.event.srcElement;
+                        if (targetElement.nodeName.toLowerCase() == 'li'){
+                            caller = targetElement;
+                        }
+                        else if (targetElement.parentNode.nodeName.toLowerCase() == 'li') {
+                            caller = targetElement.parentNode;
+                        }
+                        else {
+                            caller = targetElement;
+                        }
+                    }
+                    else {
+                        caller = this;
+                    }
+                    clearFilters(caller);
                     filterItems();
                 };
 
-                var menuButtonClick = function() {
+                var menuButtonClick = function(event) {
                     if (!isOpen) {
                         isOpen = true;
                         sidebar.className += ' open';
@@ -640,18 +701,38 @@
                 };
 
                 for (var i = 0; i < categoryItems.length; i += 1) {
-                    categoryItems[i].addEventListener('click', catItemsClick);
+                    if (window.addEventListener) {
+                        categoryItems[i].addEventListener('click', catItemsClick);
+                    }
+                    else {
+                        categoryItems[i].attachEvent('onclick', catItemsClick);
+                    }
                 }
 
                 for (i = 0; i < legendItems.length; i += 1) {
-                    legendItems[i].addEventListener('click', legendItemsClick);
+                    if (window.addEventListener) {
+                        legendItems[i].addEventListener('click', legendItemsClick);
+                    }
+                    else {
+                        legendItems[i].attachEvent('onclick', legendItemsClick);
+                    }
                 }
 
                 for (i = 0; i < clearButtons.length; i += 1) {
-                    clearButtons[i].addEventListener('click', clearButtonsClick);
+                    if (window.addEventListener) {
+                        clearButtons[i].addEventListener('click', clearButtonsClick);
+                    }
+                    else {
+                        clearButtons[i].attachEvent('onclick', clearButtonsClick);
+                    }
                 }
 
-                menuButton.addEventListener('click', menuButtonClick);
+                if (window.addEventListener) {
+                    menuButton.addEventListener('click', menuButtonClick);
+                }
+                else {
+                    menuButton.attachEvent('onclick', menuButtonClick);
+                }
 
             })();
         </script>
