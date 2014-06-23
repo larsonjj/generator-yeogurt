@@ -487,7 +487,6 @@ YeogurtGenerator.prototype.scripts = function scripts() {
 YeogurtGenerator.prototype.styles = function styles() {
     // dev/styles
     this.mkdir('dev/styles');
-    this.mkdir('dev/styles/fonts');
 
     if (this.useKss) {
         this.template('dev/styles/styleguide.md', 'dev/styles/styleguide.md');
