@@ -59,14 +59,14 @@ module.exports = function(grunt) {
         },
         <% } %><% if (cssOption === 'SASS') { %>
         sass: {
-            files: ['<%%= yeogurt.dev %>/styles/**/*.scss'],
+            files: ['<%%= yeogurt.dev %>/styles/**/*.<% if (useKss) { %>{scss,md}<% } else { %>scss<% } %>'],
             tasks: [
                 'sass:server',<% if (useKss) { %>
                 'kss:server'<% } %>
             ]
         },<% } else if (cssOption === 'LESS') { %>
         less: {
-            files: ['<%%= yeogurt.dev %>/styles/**/*.less'],
+            files: ['<%%= yeogurt.dev %>/styles/**/*.<% if (useKss) { %>{less,md}<% } else { %>less<% } %>'],
             tasks: [
                 'less:server',<% if (useKss) { %>
                 'kss:server'<% } %>
@@ -75,7 +75,8 @@ module.exports = function(grunt) {
         js: {
             files: [
                 '<%%= yeogurt.dev %>/scripts/**/*.js',
-                '<%%= yeogurt.dev %>/bower_components/**/*.js'
+                '<%%= yeogurt.dev %>/bower_components/**/*.js'<% if (useJsdoc) { %>,
+                'README.md'<% } %>
             ],
             tasks: [<% if (jshint) { %>
                 'newer:jshint',<% } %><% if (jsOption === 'Browserify') { %>
@@ -84,7 +85,26 @@ module.exports = function(grunt) {
                 'jsdoc:server',<% } %>
                 'newer:copy:server'
             ]
-        },
+        },<% if (useJsdoc) { %>
+        jsdoc: {
+            files: [
+                'README.md',
+                '<%%= yeogurt.dev %>/docs/api/**/*.*'
+            ],
+            tasks: ['jsdoc:server']
+        },<% } %><% if (useKss) { %>
+        kss: {
+            files: [
+                '<%%= yeogurt.dev %>/docs/styleguide/**/*.*'
+            ],
+            tasks: ['kss:server']
+        },<% } %><% if (useDashboard) { %>
+        dashboard: {
+            files: [
+                '<%%= yeogurt.dev %>/dashboard/**/*.*'
+            ],
+            tasks: ['dashboard:server']
+        },<% } %>
         images: {
             files: ['<%%= yeogurt.dev %>/images/**/*.{png,jpg,gif}'],
             tasks: ['newer:copy:server']
