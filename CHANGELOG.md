@@ -1,3 +1,11 @@
+### v0.9.3:
+#### date: 2014-06-22
+##### changes:
+* Fixed/added watch tasks to correctly recompile KSS and JSDoc documentation
+* Removed the `styles/fonts` folder as it is always empty and is potentially un-needed for some projects
+*Removed spinning animation from splash screen to avoid looking like something is 'loading'
+* Updated styles and JS logic for dynamic dashboard so it works with IE8.
+
 ### v0.9.2:
 #### date: 2014-06-21
 ##### changes:
