@@ -57,7 +57,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         type: 'list',
         name: 'dbOption',
         message: 'What ' + 'Database type'.blue + ' would you like to use ?',
-        choices: ['MongoDB', 'MySQL', 'PostgreSQL', 'None']
+        choices: ['MongoDB', 'MySQL', 'None']
     }, {
         when: function(props) { return (/Static Site/i).test(props.structure); },
         type: 'list',
@@ -319,9 +319,6 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         }
         else if (this.dbOption === 'MySQL') {
             this.dbURL = process.env.MYSQL || 'mysql://localhost:3306';
-        }
-        else if (this.dbOption === 'PostgreSQL') {
-            this.dbURL = process.env.MYSQL || 'postgres://user@localhost:5432';
         }
         else {
             this.dbURL = '';
@@ -657,9 +654,6 @@ YeogurtGenerator.prototype.server = function server() {
         this.template('server/lib/controllers/home.js', 'lib/controllers/home.js');
         this.template('server/lib/routes/home.js', 'lib/routes/home.js');
 
-        if (this.dbOption.indexOf('MySQL PostgreSQL SQLite MariaDB')) {
-            this.template('server/lib/modules/sequelize.js', 'lib/modules/sequelize.js');
-        }
     }
 };
 

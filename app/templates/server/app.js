@@ -13,11 +13,11 @@ require('colors');
 var db = require('./lib/config/database');
 
 // Connect to Database
-db.connect('<%= dbOption.toLowerCase() %>');<% } %>
+<% if ('MySQL'.indexOf(dbOption) > -1) { %>var sequelize = <% } %>db.connect();<% } %>
 
 // Create Express server.
 var app = express();
-require('./lib/config/express')(app, passport, express, path);
+require('./lib/config/express')(app, passport, express,<% if ('MySQL'.indexOf(dbOption) > -1) { %> sequelize,<% } %> path);
 
 // Load all routes
 require('fs').readdirSync('./lib/routes').forEach(function(file) {

@@ -12,8 +12,7 @@
         "express": "^4.0.0",
         "express-flash": "^0.0.2",
         "express-session": "^1.0.2",
-        "express-validator": "^2.1.1",<% if (dbOption && dbOption !== 'None') { %>
-        "sequelize": "1.7.9",<% } %>
+        "express-validator": "^2.1.1",
         "lusca": "^1.0.0",<% if (dbOption === 'MongoDB') { %>
         "mongoose": "^3.8.8",
         "connect-mongo": "^0.4.0",<% } %>
@@ -25,10 +24,10 @@
         "passport-google-oauth": "^0.1.5",
         "passport-local": "^1.0.0",
         "passport-oauth": "^1.0.0",
-        "passport-twitter": "^1.0.2",<% if ('MySQL PostgreSQL SQLite'.indexOf(dbOption) > -1) { %>
+        "passport-twitter": "^1.0.2",<% if ('MySQL'.indexOf(dbOption) > -1) { %>
         "mysql": "2.3.2",
-        "pg": "3.3.0",
-        "sqlite3": "2.2.3",<% } %>
+        "connect-session-sequelize": "1.0.0",
+        "sequelize": "1.7.9",<% } %>
         "request": "^2.34.0",
         "twit": "^1.1.13",
         "uglify-js": "^2.4.12",

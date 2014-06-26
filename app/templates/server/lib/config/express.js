@@ -12,14 +12,15 @@ var session = require('express-session');
 var logger = require('morgan');<% if (dbOption === 'MongoDB') { %>
 var MongoStore = require('connect-mongo')({
     session: session
-});<% } %>
+});<% } %><% if ('MySQL'.indexOf(dbOption) > -1) { %>
+var SequelizeStore = require('connect-session-sequelize')(session.Store);<% } %>
 
 // Configuration files
 var secrets = require('./secrets');
 var settings = require('./settings');
 var security = require('./security');
 
-module.exports = function(app, passport, express, path) {
+module.exports = function(app, passport, express,<% if ('MySQL'.indexOf(dbOption) > -1) { %> sequelize,<% } %> path) {
 
     var hour = 3600000;
     var day = hour * 24;
@@ -36,44 +37,6 @@ module.exports = function(app, passport, express, path) {
 
     // Remove x-powered-by header (doesn't let clients know we are using Express)
     app.disable('x-powered-by');
-
-    // Returns middleware that parses both json and urlencoded.
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: true }));
-
-    // Setup server-side validation
-    app.use(expressValidator());
-
-    // Parse Cookie header and populate req.cookies with an object keyed by the cookie names
-    app.use(cookieParser(secrets.cookieSecret));
-
-    app.use(session({
-        secret: secrets.sessionSecret,<% if (dbOption === 'MongoDB') { %>
-        store: new MongoStore({
-            url: settings.database.url,
-            auto_reconnect: true,
-        }),<% } %>
-        cookie: {
-            httpOnly: true /*, secure: true*/
-        }
-    }));
-
-    // Passport authentication
-    app.use(passport.initialize());
-    app.use(passport.session());
-
-    // Initialize Lusca Security
-    app.use(function(req, res, next) {
-        security(req, res, next);
-    });
-
-    app.use(function(req, res, next) {
-        res.locals.user = req.user;
-        next();
-    });
-
-    // define a flash message and render it without redirecting the request.
-    app.use(flash());
 
     if ('development' === env) {
         app.use(require('connect-livereload')());
@@ -105,5 +68,47 @@ module.exports = function(app, passport, express, path) {
         // Setup path where all server templates will reside
         app.set('views', path.join(settings.root, 'dev'));
     }
+
+    // Returns middleware that parses both json and urlencoded.
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: true }));
+
+    // Setup server-side validation
+    app.use(expressValidator());
+
+    // Parse Cookie header and populate req.cookies with an object keyed by the cookie names
+    app.use(cookieParser(secrets.cookieSecret));
+
+    app.use(session({
+        secret: secrets.sessionSecret,<% if (dbOption === 'MongoDB') { %>
+        store: new MongoStore({
+            url: settings.database.url,
+            auto_reconnect: true,
+        }),<% } %><% if ('MySQL'.indexOf(dbOption) > -1) { %>
+        store: new SequelizeStore({
+            db: sequelize
+        }),<% } %>
+        cookie: {
+            httpOnly: true, /*, secure: true for HTTPS*/
+            maxAge: day
+        }
+    }));
+
+    // Passport authentication
+    app.use(passport.initialize());
+    app.use(passport.session());
+
+    // Initialize Lusca Security
+    app.use(function(req, res, next) {
+        security(req, res, next);
+    });
+
+    app.use(function(req, res, next) {
+        res.locals.user = req.user;
+        next();
+    });
+
+    // define a flash message and render it without redirecting the request.
+    app.use(flash());
 
 };
