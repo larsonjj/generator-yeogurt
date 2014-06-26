@@ -8,14 +8,14 @@ module.exports = function(grunt) {
     grunt.config.set('swig', {
         server: {
             expand: true,
-            cwd: '<%%= yeogurt.dev %>/views/',
+            cwd: '<%%= yeogurt.dev %>/templates/',
             dest: '<%%= yeogurt.server %>/',
             src: ['*.swig'],
             ext: '.html'
         },
         dist: {
             expand: true,
-            cwd: '<%%= yeogurt.dev %>/views/',
+            cwd: '<%%= yeogurt.dev %>/templates/',
             dest: '<%%= yeogurt.dist %>/',
             src: ['*.swig'],
             ext: '.html'

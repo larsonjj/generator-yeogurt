@@ -4,14 +4,14 @@
 
 <% if (jsOption === 'RequireJS') { %>define(function (require) {
     'use strict';<% if ((/Backbone/i).test(jsFramework)) { %>
-    var RootRouter = require('routers/root');<% } %>
+    var HomeRouter = require('routes/home');<% } %>
     var someModule = require('./modules/module');
     var app = {
         init: function(msg) {
             someModule.init('Module loaded from app.js');
             console.log(msg);<% if ((/Backbone/i).test(jsFramework)) { %>
             // Initialize routing and start Backbone.history()
-            new RootRouter();
+            new HomeRouter();
             Backbone.history.start();
             <% } %>
             return 'app initialized';
@@ -21,14 +21,14 @@
 
 });<% } else if (jsOption === 'Browserify') { %>'use strict';
 <% if ((/Backbone/i).test(jsFramework)) { %>
-var RootRouter = require('./routers/root');<% } %>
+var HomeRouter = require('./routes/home');<% } %>
 var someModule = require('./modules/module');
 var app = {
     init: function(msg) {
         someModule.init('Module called from app.js');
         console.log(msg);<% if ((/Backbone/i).test(jsFramework)) { %>
         // Initialize routing and start Backbone.history()
-        new RootRouter();
+        new HomeRouter();
         Backbone.history.start();
         <% } %>
         return 'app initialized';

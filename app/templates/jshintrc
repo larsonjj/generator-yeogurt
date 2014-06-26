@@ -92,13 +92,13 @@
     "maxerr"        : 100,      // Maximum errors before stopping.
     "predef"        : [         // Extra globals.
         "require",<% if (jsOption === 'RequireJS') { %>
-        "requirejs",<% } %>
-        "module",<% if ((/Backbone/i).test(jsFramework)) { %>
+        "requirejs",<% } %><% if ((/Backbone/i).test(jsFramework)) { %>
         "Backbone",
         "<%= _.classify(projectName) %>",
         "_",<% } %><% if ((/Underscore/i).test(jsTemplate) || (/Handlebars/i).test(jsTemplate) || (/Jade/i).test(jsTemplate) || (/React/i).test(jsFramework)) { %>
         "JST",<% } %><% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>
-        "React",<% } %>
+        "React",<% } %><% if (useServer) { %>
+        "__dirname",<% } %>
         "define",
         "afterEach",
         "beforeEach",

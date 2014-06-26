@@ -3,7 +3,7 @@ var util = require('util');
 var yeoman = require('yeoman-generator');
 var fileJSON = require(process.cwd() + '/.yo-rc.json')['generator-yeogurt'].config;
 
-var RouterGenerator = module.exports = function RouterGenerator(args, options, config) {
+var RouteGenerator = module.exports = function RouteGenerator(args, options, config) {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
     // as `this.name`.
     yeoman.generators.NamedBase.apply(this, arguments);
@@ -25,16 +25,13 @@ var RouterGenerator = module.exports = function RouterGenerator(args, options, c
     this.ieSupport = fileJSON.ieSupport;
     this.responsive = fileJSON.responsive;
 
-    this.toTitleCase = function(str) {
-        return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-    };
 
-    console.log('You called the router subgenerator with the argument ' + this.name + '.');
+    console.log('You called the route subgenerator with the argument ' + this.name + '.');
 };
 
-util.inherits(RouterGenerator, yeoman.generators.NamedBase);
+util.inherits(RouteGenerator, yeoman.generators.NamedBase);
 
-RouterGenerator.prototype.files = function files() {
+RouteGenerator.prototype.files = function files() {
     if (this.structure === 'Static Site') {
         console.log('This subgenerator is not available for Static Sites. Please choose another.');
         return;
@@ -44,8 +41,8 @@ RouterGenerator.prototype.files = function files() {
             console.log('Name cannot be empty. Operation aborted.');
             return;
         }
-        this.template('router.js', 'dev/scripts/routers/' + this._.slugify(this.name.toLowerCase()) + '.js');
-        this.template('router-spec.js', 'test/spec/routers/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+        this.template('route.js', 'dev/scripts/routes/' + this._.slugify(this.name.toLowerCase()) + '.js');
+        this.template('route-spec.js', 'test/spec/routes/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
     }
 
 };

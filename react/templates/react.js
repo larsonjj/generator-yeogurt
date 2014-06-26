@@ -25,10 +25,11 @@
 });<% } else if (jsOption === 'Browserify') { %>'use strict';
 
 var React = require('react');
+var backboneMixin = require('backbone-react-component');
 
 var <%= _.classify(name) %>Component = React.createClass({
     // Add react backbone plugin
-    mixin: [Backbone.React.Component.mixin],
+    mixin: [backboneMixin.mixin],
     render: function() {
         return (
             <div>

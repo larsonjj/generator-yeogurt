@@ -8,12 +8,12 @@ module.exports = function(grunt) {
     grunt.config.set('jst', {
         server: {
             files: {
-                '<%%= yeogurt.server %>/scripts/templates/templates.js': ['<%%= yeogurt.dev %>/scripts/templates/*.jst']
+                '<%%= yeogurt.server %>/templates/templates.js': ['<%%= yeogurt.dev %>/templates/*.jst']
             }
         },
         dist: {
             files: {
-                '.tmp/scripts/templates/templates.js': ['<%%= yeogurt.dev %>/scripts/templates/*.jst']
+                '.tmp/templates/templates.js': ['<%%= yeogurt.dev %>/templates/*.jst']
             }
         }<% if (jsFramework === 'Backbone' || jsFramework === 'Backbone + Marionette') { %>,
         test: {
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
                 namespace: 'JST'
             },
             files: {
-                '.tmp/templates.js': ['<%%= yeogurt.dev %>/scripts/templates/*.jst']
+                '.tmp/templates.js': ['<%%= yeogurt.dev %>/templates/*.jst']
             }
         }<% } %>
     });

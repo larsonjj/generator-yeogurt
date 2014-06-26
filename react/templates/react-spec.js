@@ -10,7 +10,7 @@
 <% if (jsOption === 'RequireJS') { %>define(function(require) {
     'use strict';
 
-    var <%= _.classify(name) %> = require('jsx!components/<%= _.slugify(name) %>');
+    var <%= _.classify(name) %> = require('jsx!views/<%= _.slugify(name) %>');
     var ReactTestUtils = require('react').addons.TestUtils;
 
     var reactRender;
@@ -33,7 +33,7 @@
 
 });<% } else if (jsOption === 'Browserify') { %>'use strict';
 
-var <%= _.classify(name) %> = require('../../../dev/scripts/components/<%= _.slugify(name) %>.jsx');
+var <%= _.classify(name) %> = require('../../../dev/scripts/views/<%= _.slugify(name) %>.jsx');
 
 var ReactTestUtils;
 var reactRender;

@@ -28,9 +28,6 @@ var ViewGenerator = module.exports = function ViewGenerator(args, options, confi
     this.ieSupport = fileJSON.ieSupport;
     this.responsive = fileJSON.responsive;
 
-    this.toTitleCase = function(str) {
-        return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-    };
 
     console.log('You called the view subgenerator with the argument ' + this.name + '.');
 };
@@ -131,22 +128,19 @@ ViewGenerator.prototype.files = function files() {
             this.template('view.js', 'dev/scripts/views/' + this._.slugify(this.name.toLowerCase()) + '.js');
             this.template('view-spec.js', 'test/spec/views/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
             if (this.jsTemplate === 'Lo-dash (Underscore)') {
-                this.template('template.html', 'dev/scripts/templates/' + this._.slugify(this.name.toLowerCase()) + '.jst');
+                this.template('template.html', 'dev/templates/' + this._.slugify(this.name.toLowerCase()) + '.jst');
             }
             else if (this.jsTemplate === 'Handlebars') {
-                this.template('template.html', 'dev/scripts/templates/' + this._.slugify(this.name.toLowerCase()) + '.hbs');
-            }
-            else if (this.jsTemplate === 'Swig') {
-                this.template('template.html', 'dev/scripts/templates/' + this._.slugify(this.name.toLowerCase()) + '.swig');
+                this.template('template.html', 'dev/templates/' + this._.slugify(this.name.toLowerCase()) + '.hbs');
             }
             else if (this.jsTemplate === 'Jade') {
-                this.template('template.html', 'dev/scripts/templates/' + this._.slugify(this.name.toLowerCase()) + '.jade');
+                this.template('template.html', 'dev/templates/' + this._.slugify(this.name.toLowerCase()) + '.jade');
             }
 
         }
         else {
             console.log('You have chosen to use Backbone + React, so this subgenerator is not available to use.');
-            console.log('Try the following to generate a new view/component: yo yeogurt:component mycomponent');
+            console.log('Try the following to generate a new view/component: yo yeogurt:react myreact');
             console.log('Operation aborted');
         }
     }

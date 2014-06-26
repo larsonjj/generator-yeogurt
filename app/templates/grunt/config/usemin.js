@@ -6,7 +6,7 @@
 module.exports = function(grunt) {
 
     grunt.config.set('useminPrepare', {
-        html: '<%%= yeogurt.dist %>/index.html',
+        html: <% if (!useServer) { %>'<%%= yeogurt.dist %>/index.html'<% } else { %>'.tmp/index.html'<% } %>,
         options: {
             root: '<%%= yeogurt.dev %>',
             dest: '<%%= yeogurt.dist %>'
@@ -14,7 +14,7 @@ module.exports = function(grunt) {
     });
 
     grunt.config.set('usemin', {
-        html: '<%%= yeogurt.dist %>/index.html',<% if (cssOption === 'None (Vanilla CSS)') { %>
+        html: <% if (!useServer) { %>'<%%= yeogurt.dist %>/index.html'<% } else { %>'.tmp/index.html'<% } %>,<% if (cssOption === 'None (Vanilla CSS)') { %>
         css: ['<%%= yeogurt.dist %>/styles/**/*.css'],<% } %>
         options: {
             assetsDirs: ['<%%= yeogurt.dev %>', '<%%= yeogurt.dev %>/images']

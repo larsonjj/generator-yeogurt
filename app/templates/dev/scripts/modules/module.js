@@ -6,7 +6,7 @@
 
     'use strict';
 
-    var module = {
+    var someModule = {
         init: function(msg) {
             var $ele = $('<p></p>');
 
@@ -16,7 +16,7 @@
         }
     };
 
-    return module;
+    return someModule;
 
 });
 <% } %><% if (jsOption ==='Browserify') { %>'use strict';

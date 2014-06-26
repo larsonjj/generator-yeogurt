@@ -21,8 +21,11 @@ module.exports = function(grunt) {
 
     // Load all grunt tasks with JIT (Makes task loading super fast!)
     require('jit-grunt')(grunt, {
-        useminPrepare: 'grunt-usemin',  // translate useminPrepare to use the 'grunt-usemin' plugin
-        swig: 'grunt-swig-templates'    // translate swig to use the 'grunt-wobble-swig' plugin
+        // translate useminPrepare to use the 'grunt-usemin' plugin
+        useminPrepare: 'grunt-usemin',
+        // translate swig to use the 'grunt-wobble-swig' plugin
+        swig: 'grunt-swig-templates'<% if (useServer) { %>,
+        express: 'grunt-express-server'<% } %>
     });
 
     // Load the include-all library in order to require all of our grunt

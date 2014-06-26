@@ -46,6 +46,18 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         name: 'structure',
         message: 'What ' + 'type of application'.blue + ' will you be creating?',
         choices: ['Static Site', 'Single Page Application']
+    },  {
+        when: function(props) { return (/Single Page Application/i).test(props.structure); },
+        type: 'confirm',
+        name: 'useServer',
+        message: 'Would you like to use a ' + 'Node + Express Server'.blue + '?',
+        default: true
+    }, {
+        when: function(props) { return props.useServer; },
+        type: 'list',
+        name: 'dbOption',
+        message: 'What ' + 'Database type'.blue + ' would you like to use ?',
+        choices: ['MongoDB', 'MySQL', 'PostgreSQL', 'None']
     }, {
         when: function(props) { return (/Static Site/i).test(props.structure); },
         type: 'list',
@@ -60,7 +72,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         choices: ['Backbone + React', 'Backbone']
     }, {
         when: function(props) {
-            if (props.jsFramework === 'Backbone + Marionette' || props.jsFramework === 'Backbone') {
+            if (props.jsFramework === 'Backbone' && !props.useServer) {
                 return true;
             }
             else {
@@ -72,7 +84,27 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         message: 'Which ' + 'JavaScript templating library'.blue + ' would you like to use?',
         choices: ['Lo-dash (Underscore)', 'Handlebars', 'Jade']
     }, {
-        when: function(props) { return (/Single Page Application/i).test(props.structure);},
+        when: function(props) {
+            if (props.jsFramework === 'Backbone' && props.useServer) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        },
+        type: 'list',
+        name: 'jsTemplate',
+        message: 'Which ' + 'JavaScript templating library'.blue + ' would you like to use?',
+        choices: ['Handlebars', 'Jade']
+    }, {
+        when: function(props) {
+            if ((/Single Page Application/i).test(props.structure) && props.useServer && props.jsFramework !== 'Backbone + React' || (/Single Page Application/i).test(props.structure) && !props.useServer) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        },
         type: 'list',
         name: 'jsOption',
         message: 'Which ' + 'JavaScript module library'.blue + ' would you like to use?',
@@ -129,6 +161,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         message: 'Will you be using ' + 'Google Analytics'.blue + '?',
         default: true
     }, {
+        when: function(props) { return !props.useServer; },
         type: 'confirm',
         name: 'useFTP',
         message: 'Will you be deploying code to an ' + 'FTP server'.blue + '?',
@@ -222,11 +255,13 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.testFramework = props.testFramework;
         this.cssOption = props.cssOption;
         this.jsOption = props.jsOption;
+        this.useServer = props.useServer;
         this.ieSupport = props.ieSupport;
         this.extras = props.extras;
         this.html5Addons = props.html5Addons;
         this.jshint = props.jshint;
         this.useJsdoc = props.useJsdoc;
+        this.dbOption = props.dbOption ? props.dbOption : 'None';
         this.useKss = props.useKss;
         this.useGA = props.useGA;
         this.useFTP = props.useFTP;
@@ -236,7 +271,8 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.cssFramework = props.cssFramework;
 
         // Default Overwrites
-        props.jsTemplate = props.jsTemplate ? props.jsTemplate : 'React';
+        this.jsTemplate = props.jsTemplate = props.jsTemplate ? props.jsTemplate : 'React';
+        this. jsOption = props.jsOption = props.jsOption ? props.jsOption : 'Browserify';
 
         var extras = this.extras;
         var html5Addons = this.html5Addons;
@@ -275,6 +311,20 @@ YeogurtGenerator.prototype.askFor = function askFor() {
             this.ieIcons = hasFeature('ieIcons', html5Addons);
             this.adobeXDomain = hasFeature('adobeXDomain', html5Addons);
             this.appleIcon = hasFeature('appleIcon', html5Addons);
+        }
+
+        // Setup Database URLs
+        if (this.dbOption === 'MongoDB') {
+            this.dbURL = process.env.MONGODB || 'mongodb://localhost:27017';
+        }
+        else if (this.dbOption === 'MySQL') {
+            this.dbURL = process.env.MYSQL || 'mysql://localhost:3306';
+        }
+        else if (this.dbOption === 'PostgreSQL') {
+            this.dbURL = process.env.MYSQL || 'postgres://user@localhost:5432';
+        }
+        else {
+            this.dbURL = '';
         }
 
         this.props = props;
@@ -353,7 +403,12 @@ YeogurtGenerator.prototype.tasks = function tasks() {
     }
     this.template('grunt/config/clean.js', 'grunt/config/clean.js');
     this.template('grunt/config/compress.js', 'grunt/config/compress.js');
-    this.template('grunt/config/connect.js', 'grunt/config/connect.js');
+    if (!this.useServer) {
+        this.template('grunt/config/connect.js', 'grunt/config/connect.js');
+    }
+    else {
+        this.template('grunt/config/open.js', 'grunt/config/open.js');
+    }
     this.template('grunt/config/concurrent.js', 'grunt/config/concurrent.js');
     this.template('grunt/config/copy.js', 'grunt/config/copy.js');
     this.template('grunt/config/concat.js', 'grunt/config/concat.js');
@@ -402,6 +457,9 @@ YeogurtGenerator.prototype.tasks = function tasks() {
     }
     this.template('grunt/config/usemin.js', 'grunt/config/usemin.js');
     this.template('grunt/config/watch.js', 'grunt/config/watch.js');
+    if (this.useServer) {
+        this.template('grunt/config/express.js', 'grunt/config/express.js');
+    }
 
     // Tasks
     this.template('grunt/tasks/build.js', 'grunt/tasks/build.js');
@@ -412,32 +470,36 @@ YeogurtGenerator.prototype.tasks = function tasks() {
     this.template('grunt/tasks/serve.js', 'grunt/tasks/serve.js');
     this.template('grunt/tasks/test.js', 'grunt/tasks/test.js');
     this.template('grunt/tasks/zip.js', 'grunt/tasks/zip.js');
+    if (this.useServer) {
+        this.template('grunt/tasks/keepalive.js', 'grunt/tasks/keepalive.js');
+        this.template('grunt/tasks/wait.js', 'grunt/tasks/wait.js');
+    }
 };
 
 YeogurtGenerator.prototype.views = function views() {
 
     if (this.htmlOption === 'Jade') {
-        this.mkdir('dev/views');
-        this.mkdir('dev/views/templates');
-        this.mkdir('dev/views/components');
-        this.template('dev/views/jade/components/h1.jade', 'dev/views/components/h1.jade');
-        this.template('dev/views/jade/index.jade', 'dev/views/index.jade');
-        this.template('dev/views/jade/templates/base.jade', 'dev/views/templates/base.jade');
+        this.mkdir('dev/templates');
+        this.mkdir('dev/templates/layouts');
+        this.mkdir('dev/templates/components');
+        this.template('dev/templates/jade/components/h1.jade', 'dev/templates/components/h1.jade');
+        this.template('dev/templates/jade/index.jade', 'dev/templates/index.jade');
+        this.template('dev/templates/jade/layouts/base.jade', 'dev/templates/layouts/base.jade');
     }
     else if (this.htmlOption === 'Swig') {
-        this.mkdir('dev/views');
-        this.mkdir('dev/views/templates');
-        this.mkdir('dev/views/components');
-        this.template('dev/views/swig/components/h1.swig', 'dev/views/components/h1.swig');
-        this.template('dev/views/swig/index.swig', 'dev/views/index.swig');
-        this.template('dev/views/swig/templates/base.swig', 'dev/views/templates/base.swig');
+        this.mkdir('dev/templates');
+        this.mkdir('dev/templates/layouts');
+        this.mkdir('dev/templates/components');
+        this.template('dev/templates/swig/components/h1.swig', 'dev/templates/components/h1.swig');
+        this.template('dev/templates/swig/index.swig', 'dev/templates/index.swig');
+        this.template('dev/templates/swig/layouts/base.swig', 'dev/templates/layouts/base.swig');
     }
     else if (this.htmlOption === 'None (Vanilla HTML)') {
-        this.template('dev/views/html/index.html', 'dev/index.html');
+        this.template('dev/templates/html/index.html', 'dev/index.html');
     }
 
     if (this.structure === 'Single Page Application') {
-        this.template('dev/views/html/index.html', 'dev/index.html');
+        this.template('dev/templates/html/index.html', 'dev/index.html');
     }
 
 };
@@ -458,29 +520,29 @@ YeogurtGenerator.prototype.scripts = function scripts() {
     }
 
     if (this.jsFramework === 'Backbone') {
-        this.mkdir('dev/scripts/routers');
-        this.mkdir('dev/scripts/templates');
+        this.mkdir('dev/scripts/routes');
+        this.mkdir('dev/templates');
         this.mkdir('dev/scripts/views');
 
-        this.template('dev/scripts/backbone/routers/root.js', 'dev/scripts/routers/root.js');
+        this.template('dev/scripts/backbone/routes/home.js', 'dev/scripts/routes/home.js');
         if (this.jsTemplate === 'Lo-dash (Underscore)') {
-            this.template('dev/scripts/backbone/templates/root.html', 'dev/scripts/templates/root.jst');
+            this.template('dev/scripts/backbone/templates/home.html', 'dev/templates/home.jst');
         }
         else if (this.jsTemplate === 'Handlebars') {
-            this.template('dev/scripts/backbone/templates/root.html', 'dev/scripts/templates/root.hbs');
+            this.template('dev/scripts/backbone/templates/home.html', 'dev/templates/home.hbs');
         }
         else if (this.jsTemplate === 'Jade') {
-            this.template('dev/scripts/backbone/templates/root.html', 'dev/scripts/templates/root.jade');
+            this.template('dev/scripts/backbone/templates/home.html', 'dev/templates/home.jade');
         }
 
-        this.template('dev/scripts/backbone/views/root.js', 'dev/scripts/views/root.js');
+        this.template('dev/scripts/backbone/views/home.js', 'dev/scripts/views/home.js');
     }
     else if (this.jsFramework === 'Backbone + React') {
-        this.mkdir('dev/scripts/routers');
-        this.mkdir('dev/scripts/components');
+        this.mkdir('dev/scripts/routes');
+        this.mkdir('dev/scripts/views');
 
-        this.template('dev/scripts/backbone/routers/root.js', 'dev/scripts/routers/root.js');
-        this.template('dev/scripts/react/root.jsx', 'dev/scripts/components/root.jsx');
+        this.template('dev/scripts/backbone/routes/home.js', 'dev/scripts/routes/home.js');
+        this.template('dev/scripts/react/home.jsx', 'dev/scripts/views/home.jsx');
     }
 };
 
@@ -560,6 +622,45 @@ YeogurtGenerator.prototype.styles = function styles() {
         this.template('dev/styles/print.css', 'dev/styles/print.css');
     }
 
+};
+
+YeogurtGenerator.prototype.server = function server() {
+    if (this.useServer) {
+        this.mkdir('lib');
+        this.mkdir('lib/controllers');
+        // this.mkdir('lib/models');
+        this.mkdir('lib/routes');
+        if (this.useServer) {
+            this.mkdir('lib/modules');
+        }
+        if (this.jsTemplate === 'React') {
+            this.template('server/lib/modules/reactRender.js','lib/modules/reactRender.js');
+        }
+        else if (this.jsTemplate === 'Jade') {
+            this.template('server/lib/modules/jadeRender.js','lib/modules/jadeRender.js');
+        }
+        else if (this.jsTemplate === 'Handlebars') {
+            this.template('server/lib/modules/hbsRender.js','lib/modules/hbsRender.js');
+        }
+
+        if (this.dbOption !== 'None') {
+            this.template('server/lib/config/database.js', 'lib/config/database.js');
+        }
+
+        this.template('server/lib/config/express.js', 'lib/config/express.js');
+        this.template('server/lib/config/passport.js', 'lib/config/passport.js');
+        this.template('server/lib/config/secrets.js', 'lib/config/secrets.js');
+        this.template('server/lib/config/security.js', 'lib/config/security.js');
+        this.template('server/lib/config/settings.js', 'lib/config/settings.js');
+
+        this.template('server/app.js', 'app.js');
+        this.template('server/lib/controllers/home.js', 'lib/controllers/home.js');
+        this.template('server/lib/routes/home.js', 'lib/routes/home.js');
+
+        if (this.dbOption.indexOf('MySQL PostgreSQL SQLite MariaDB')) {
+            this.template('server/lib/modules/sequelize.js', 'lib/modules/sequelize.js');
+        }
+    }
 };
 
 YeogurtGenerator.prototype.dashboard = function dashboard() {

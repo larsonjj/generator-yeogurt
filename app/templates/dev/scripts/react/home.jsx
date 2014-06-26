@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 /**
-*   Root Component Description
+*   Home Component Description
 */
 
 <% if (jsOption === 'RequireJS') { %>define(function (require) {
@@ -9,14 +9,14 @@
 
     var React = require('react');
 
-    var RootComponent = React.createClass({
+    var HomeComponent = React.createClass({
         // Add react backbone plugin
         mixin: [Backbone.React.Component.mixin],
         render: function() {
             return (
                 <div>
                     <div className="main-container">
-                                <h1>Welcome to Yeogurt!</h1>
+                        <h1>Welcome to Yeogurt!</h1>
                         <p>
                             Take a look at the <a href="https://github.com/larsonjj/generator-yeogurt#yeogurt-generator---">documentation</a> and start mixing up something awesome.
                         </p>
@@ -34,13 +34,14 @@
         }
     });
 
-    return RootComponent;
+    return HomeComponent;
 });
 <% } else if (jsOption === 'Browserify') { %>var React = require('react');
+var backboneMixin = require('backbone-react-component');
 
-var RootComponent = React.createClass({
+var HomeComponent = React.createClass({
     // Add react backbone plugin
-    mixin: [Backbone.React.Component.mixin],
+    mixin: [backboneMixin.mixin],
     render: function() {
         return (
             <div>
@@ -63,4 +64,4 @@ var RootComponent = React.createClass({
     }
 });
 
-module.exports = RootComponent;<% } %>
+module.exports = HomeComponent;<% } %>

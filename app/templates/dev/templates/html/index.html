@@ -18,7 +18,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
         <title><%= projectName %></title>
         <meta name="description" content=""/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="author" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/><% if (useServer) { %>
+        <meta name="csrf-token" content=<%%= _csrf %> /><% } %>
         <% if (useGA) { %>
         <link href="//www.google-analytics.com" rel="dns-prefetch">
         <% } %>
@@ -79,7 +81,10 @@
                 <a href="docs/api/index.html">API</a><% } %>
             </p><% } %>
         </div>
-        <code class="version">v<%= pkg.version %></code><% } %>
+        <code class="version">v<%= pkg.version %></code><% } else if (structure === 'Single Page Application') { %>
+        <div id="app-wrapper"><% if (useServer) { %>
+            <%%- body %>
+        <% } %></div><% } %>
 
         <% if (useGA) { %><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
@@ -90,15 +95,15 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');
         </script><% } %>
-
+        <% if (useServer) { %><%% if (env === 'development') { %><% } %>
         <!-- build:js({dev,.tmp}) scripts/vendor.js -->
         <script src="bower_components/jquery/dist/jquery.js"></script><% if ((/Backbone/i).test(jsFramework)) { %>
         <script src="bower_components/lodash/dist/lodash.underscore.js"></script>
-        <script src="bower_components/backbone/backbone.js"></script><% } %><% if (jsFramework === 'Backbone + React') { %>
+        <script src="bower_components/backbone/backbone.js"></script><% } %><% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>
         <script src="bower_components/backbone-react-component/lib/component.js"></script><% } %><% if ((/Handlebars/i).test(jsTemplate)) { %>
         <script src="bower_components/handlebars/handlebars.runtime.js"></script>
         <% } else if ((/Jade/i).test(jsTemplate)) { %><script src="bower_components/jade/runtime.js"></script><% } %><% if (structure === 'Single Page Application' && jsFramework !== 'Backbone + React') { %>
-        <script src="scripts/templates/templates.js"></script><% } %>
+        <script src="templates/templates.js"></script><% } %>
         <% if (useBootstrap) { %><script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>affix.js"></script>
         <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>alert.js"></script>
         <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>button.js"></script>
@@ -132,7 +137,9 @@
         <script src="bower_components/foundation/js/foundation/foundation.tooltip.js"></script>
         <script src="bower_components/foundation/js/foundation/foundation.topbar.js"></script>
         <% } %><!-- endbuild -->
-
+        <% if (useServer) { %><%% } else { %>
+        <script src="scripts/vendor.js"></script>
+        <%% } %><% } %>
         <% if (jsOption ==='RequireJS') { %><script data-main="scripts/main", src="bower_components/requirejs/require.js"></script><% } else if (jsOption ==='Browserify') { %><script src="scripts/main.js"></script><% } else { %><!-- build:js(dev) scripts/app.js -->
         <script src="scripts/app.js"></script>
         <!-- endbuild --><% } %>

@@ -23,12 +23,12 @@ describe('yeogurt generator Swig', function () {
         var expected = [
             // add files and folders you expect to exist here.
             'dev/',
-            'dev/views',
-            'dev/views/templates',
-            'dev/views/components',
-            'dev/views/components/h1.swig',
-            'dev/views/index.swig',
-            'dev/views/templates/base.swig'
+            'dev/templates',
+            'dev/templates/layouts',
+            'dev/templates/components',
+            'dev/templates/components/h1.swig',
+            'dev/templates/index.swig',
+            'dev/templates/layouts/base.swig'
         ];
 
         helpers.mockPrompt(this.app, {

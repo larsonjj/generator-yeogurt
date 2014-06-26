@@ -21,7 +21,7 @@
 
 });<% } else if (jsOption === 'Browserify') { %>'use strict';
 
-var <%= _.classify(name) %> = require('../../dev/scripts/modules/<%= _.slugify(name) %>.js');
+var <%= _.classify(name) %> = require('../../../dev/scripts/modules/<%= _.slugify(name) %>.js');
 
 describe('just checking', function() {
 

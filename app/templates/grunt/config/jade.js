@@ -15,7 +15,7 @@ module.exports = function(grunt) {
                 }
             },
             expand: true,
-            cwd: '<%%= yeogurt.dev %>/views/',
+            cwd: '<%%= yeogurt.dev %>/templates/',
             dest: '<%%= yeogurt.server %>/',
             src: ['*.jade'],
             ext: '.html'
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
                 }
             },
             expand: true,
-            cwd: '<%%= yeogurt.dev %>/views/',
+            cwd: '<%%= yeogurt.dev %>/templates/',
             dest: '<%%= yeogurt.dist %>/',
             src: ['*.jade'],
             ext: '.html'
@@ -43,7 +43,7 @@ module.exports = function(grunt) {
                 }
             },
             files: {
-                '<%%= yeogurt.server %>/scripts/templates/templates.js': ['<%%= yeogurt.dev %>/scripts/templates/*.jade']
+                '<%%= yeogurt.server %>/templates/templates.js': ['<%%= yeogurt.dev %>/templates/*.jade']
             }
         },
         dist: {
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
                 }
             },
             files: {
-                '.tmp/scripts/templates/templates.js': ['<%%= yeogurt.dev %>/scripts/templates/*.jade']
+                '.tmp/templates/templates.js': ['<%%= yeogurt.dev %>/templates/*.jade']
             }
         }<% } %><% if (jsFramework === 'Backbone' || jsFramework === 'Backbone + Marionette') { %>,
         test: {
@@ -67,7 +67,7 @@ module.exports = function(grunt) {
                 }
             },
             files: {
-                '.tmp/templates.js': ['<%%= yeogurt.dev %>/scripts/templates/*.jade']
+                '.tmp/templates.js': ['<%%= yeogurt.dev %>/templates/*.jade']
             }
         }<% } %>
     });

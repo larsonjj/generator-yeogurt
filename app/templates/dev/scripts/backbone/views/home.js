@@ -4,15 +4,15 @@
 <% if (jsOption === 'RequireJS') { %>define(function (require) {
     'use strict';
 
-    // Our overall **RootView** is the top-level piece of UI.
-    var RootView = Backbone.View.extend({
+    // Our overall **HomeView** is the top-level piece of UI.
+    var HomeView = Backbone.View.extend({
 
         // Instead of generating a new element, bind to the existing skeleton of
         // the App already present in the HTML.
-        el: 'body',
+        el: '#app-wrapper',
 
         // Compile our stats template
-        template: JST['dev/scripts/templates/root<% if (jsTemplate === 'Lo-dash (Underscore)') { %>.jst<% } else if (jsTemplate === 'Handlebars') { %>.hbs<% } else if (jsTemplate === 'Jade') { %><% } %>'],
+        template: JST['dev/templates/home<% if (jsTemplate === 'Lo-dash (Underscore)') { %>.jst<% } else if (jsTemplate === 'Handlebars') { %>.hbs<% } else if (jsTemplate === 'Jade') { %><% } %>'],
 
         // Delegated events
         events: {},
@@ -29,18 +29,18 @@
 
     });
 
-    return RootView;
+    return HomeView;
 });<% } else if (jsOption === 'Browserify') { %>'use strict';
 
-// Our overall **RootView** is the top-level piece of UI.
-var RootView = Backbone.View.extend({
+// Our overall **HomeView** is the top-level piece of UI.
+var HomeView = Backbone.View.extend({
 
     // Instead of generating a new element, bind to the existing skeleton of
     // the App already present in the HTML.
-    el: 'body',
+    el: '#app-wrapper',
 
     // Load up JST template
-    template: JST['dev/scripts/templates/root<% if (jsTemplate === 'Lo-dash (Underscore)') { %>.jst<% } else if (jsTemplate === 'Handlebars') { %>.hbs<% } else if (jsTemplate === 'Jade') { %><% } %>'],
+    template: JST['dev/templates/home<% if (jsTemplate === 'Lo-dash (Underscore)') { %>.jst<% } else if (jsTemplate === 'Handlebars') { %>.hbs<% } else if (jsTemplate === 'Jade') { %><% } %>'],
 
     // Delegated events
     events: {},
@@ -57,5 +57,5 @@ var RootView = Backbone.View.extend({
 
 });
 
-module.exports = RootView;
+module.exports = HomeView;
 <% } %>

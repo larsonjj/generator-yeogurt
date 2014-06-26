@@ -14,7 +14,7 @@ module.exports = function(config) {
         files: [
             'dev/bower_components/jquery/dist/jquery.js',<% if ((/Backbone/i).test(jsFramework)) { %>
             'dev/bower_components/underscore/underscore.js',
-            'dev/bower_components/backbone/backbone.js',<% } %><% if (jsFramework === 'Backbone + React') { %>
+            'dev/bower_components/backbone/backbone.js',<% } %><% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>
             'dev/bower_components/backbone-react-component/lib/component.js',<% } %><% if (jsTemplate === 'Handlebars') { %>
             'dev/bower_components/handlebars/handlebars.runtime.js',<% } else if (jsTemplate === 'Jade') { %>'dev/bower_components/jade/runtime.js',<% } %><% if (useBootstrap) { %>'dev/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>affix.js',
             'dev/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>alert.js',

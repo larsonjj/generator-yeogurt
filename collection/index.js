@@ -25,9 +25,6 @@ var CollectionGenerator = module.exports = function CollectionGenerator(args, op
     this.ieSupport = fileJSON.ieSupport;
     this.responsive = fileJSON.responsive;
 
-    this.toTitleCase = function(str) {
-        return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-    };
 
     console.log('You called the collection subgenerator with the argument ' + this.name + '.');
 };

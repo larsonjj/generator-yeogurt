@@ -7,7 +7,7 @@
     }
     [/dash] #}
 <% } %>{# Homepage Markup #}
-{% extends './templates/base.swig' %}
+{% extends './layouts/base.swig' %}
 
 {# use the 'block body' if you need to set a page-level class on the <body> tag #}
 {% block body %}

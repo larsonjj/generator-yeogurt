@@ -11,7 +11,7 @@ module.exports = function(grunt) {
             livereload: 35729,
             hostname: '127.0.0.1'
         },
-        livereload: {
+        server: {
             options: {
                 open: 'http://127.0.0.1:9010/.server/index.html',
                 base: '<%%= yeogurt.dev %>'

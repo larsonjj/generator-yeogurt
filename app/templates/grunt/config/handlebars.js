@@ -11,7 +11,7 @@ module.exports = function(grunt) {
                 namespace: 'JST'
             },
             files: {
-                '<%%= yeogurt.server %>/scripts/templates/templates.js': ['<%%= yeogurt.dev %>/scripts/templates/*.hbs']
+                '<%%= yeogurt.server %>/templates/templates.js': ['<%%= yeogurt.dev %>/templates/*.hbs']
             }
         },
         dist: {
@@ -19,7 +19,7 @@ module.exports = function(grunt) {
                 namespace: 'JST'
             },
             files: {
-                '.tmp/scripts/templates/templates.js': ['<%%= yeogurt.dev %>/scripts/templates/*.hbs']
+                '.tmp/templates/templates.js': ['<%%= yeogurt.dev %>/templates/*.hbs']
             }
         }<% if (jsFramework === 'Backbone' || jsFramework === 'Backbone + Marionette') { %>,
         test: {
@@ -27,7 +27,7 @@ module.exports = function(grunt) {
                 namespace: 'JST'
             },
             files: {
-                '.tmp/templates.js': ['<%%= yeogurt.dev %>/scripts/templates/*.hbs']
+                '.tmp/templates.js': ['<%%= yeogurt.dev %>/templates/*.hbs']
             }
         }<% } %>
     });

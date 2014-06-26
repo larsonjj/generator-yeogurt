@@ -20,10 +20,10 @@ module.exports = function(grunt) {
                     'bower_components/**/*.{woff,otf,ttf,eot,svg}',<% if (useKss) { %>
                     'docs/styleguide/public/images',<% } %>
                     'images/**',
-                    'styles/fonts/**/*.{woff,otf,ttf,eot,svg}',<% if (htmlOption === 'None (Vanilla HTML)' || (/Backbone/i).test(jsFramework)) { %>
+                    'styles/fonts/**/*.{woff,otf,ttf,eot,svg}',<% if (htmlOption === 'None (Vanilla HTML)' || (/Backbone/i).test(jsFramework) && !useServer) { %>
                     '*.html'<% } %>
                 ]
-            },<% if (cssOption === 'None (Vanilla CSS)') { %> {
+            }<% if (cssOption === 'None (Vanilla CSS)') { %>, {
                 expand: true,
                 cwd: '<%%= yeogurt.dev %>/',
                 dest: '<%%= yeogurt.server %>/',
@@ -43,17 +43,24 @@ module.exports = function(grunt) {
                     'bower_components/modernizr/modernizr.js',
                     'bower_components/**/*.{woff,otf,ttf,eot,svg}',<% if (useDashboard) { %>
                     'dashboard/**/*.*',<% } %>
-                    'bower_components/jquery/jquery.min.*',<% if (htmlOption === 'None (Vanilla HTML)' || (/Backbone/i).test(jsFramework)) { %>
+                    'bower_components/jquery/jquery.min.*',<% if (htmlOption === 'None (Vanilla HTML)' || (/Backbone/i).test(jsFramework) && !useServer) { %>
                     '*.html',<% } %>
                     'scripts/modules/inline-*.*',<% if (useKss) { %>
                     'docs/styleguide/public/images',<% } %>
                     '!*.js',
-                    '*.{ico,png,txt,html}',
+                    '*.{ico,png,txt}',
                     '.htaccess',
                     'images/**/*.{webp}',
                     'styles/fonts/**/*.{woff,otf,ttf,eot,svg}'
                 ]
-            }]
+            }<% if (useServer) { %>, {
+                expand: true,
+                cwd: '<%%= yeogurt.dev %>/',
+                dest: '.tmp',
+                src: [
+                    'index.html'
+                ]
+            }<% } %>]
         }
     });
 

@@ -3,7 +3,7 @@ var util = require('util');
 var yeoman = require('yeoman-generator');
 var fileJSON = require(process.cwd() + '/.yo-rc.json')['generator-yeogurt'].config;
 
-var ComponentGenerator = module.exports = function ComponentGenerator(args, options, config) {
+var ReactGenerator = module.exports = function ReactGenerator(args, options, config) {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
     // as `this.name`.
     yeoman.generators.NamedBase.apply(this, arguments);
@@ -28,18 +28,15 @@ var ComponentGenerator = module.exports = function ComponentGenerator(args, opti
     this.ieSupport = fileJSON.ieSupport;
     this.responsive = fileJSON.responsive;
 
-    this.toTitleCase = function(str) {
-        return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-    };
 
-    console.log('You called the component subgenerator with the argument ' + this.name + '.');
+    console.log('You called the react subgenerator with the argument ' + this.name + '.');
 };
 
-util.inherits(ComponentGenerator, yeoman.generators.NamedBase);
+util.inherits(ReactGenerator, yeoman.generators.NamedBase);
 
-ComponentGenerator.prototype.files = function files() {
+ReactGenerator.prototype.files = function files() {
     if (this.jsFramework !== 'Backbone + React') {
-        console.log('This subgenerator is only used for React components. It seems as though you are not using React');
+        console.log('This subgenerator is only used for React JSX. It seems as though you are not using React');
         console.log('Operation aborted');
     }
     else {
@@ -47,8 +44,8 @@ ComponentGenerator.prototype.files = function files() {
             console.log('Name cannot be empty. Operation aborted.');
             return;
         }
-        this.template('component.js', 'dev/scripts/components/' + this._.slugify(this.name.toLowerCase()) + '.jsx');
-        this.template('component-spec.js', 'test/spec/components/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+        this.template('react.js', 'dev/scripts/views/' + this._.slugify(this.name.toLowerCase()) + '.jsx');
+        this.template('react-spec.js', 'test/spec/views/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
     }
 
 };

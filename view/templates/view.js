@@ -14,7 +14,7 @@
         className: '',
 
         // Compile our stats template
-        template: JST['dev/scripts/templates/<%= _.camelize(name) %>.<% if (jsTemplate === 'Lo-dash (Underscore)') { %>jst<% } else if (jsTemplate === 'Handlebars') { %>hbs<% } else if (jsTemplate === 'Jade') { %>jade<% } else if (jsTemplate === 'Swig') { %>swig<% } %>'],
+        template: JST['dev/templates/<%= _.camelize(name) %>.<% if (jsTemplate === 'Lo-dash (Underscore)') { %>jst<% } else if (jsTemplate === 'Handlebars') { %>hbs<% } else if (jsTemplate === 'Jade') { %>jade<% } else if (jsTemplate === 'Swig') { %>swig<% } %>'],
 
         // Delegated events
         events: {},
@@ -43,7 +43,7 @@ var <%= _.classify(name) %>View = Backbone.View.extend({
     className: '',
 
     // Compile our stats template
-    template: JST['dev/scripts/templates/<%= _.camelize(name) %>.<% if (jsTemplate === 'Lo-dash (Underscore)') { %>jst<% } else if (jsTemplate === 'Handlebars') { %>hbs<% } else if (jsTemplate === 'Jade') { %>jade<% } else if (jsTemplate === 'Swig') { %>swig<% } %>'],
+    template: JST['dev/templates/<%= _.camelize(name) %>.<% if (jsTemplate === 'Lo-dash (Underscore)') { %>jst<% } else if (jsTemplate === 'Handlebars') { %>hbs<% } else if (jsTemplate === 'Jade') { %>jade<% } else if (jsTemplate === 'Swig') { %>swig<% } %>'],
 
     // Delegated events
     events: {},

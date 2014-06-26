@@ -105,7 +105,7 @@ Available sub-generators:
 * [yeogurt:model](#model)
 * [yeogurt:collection](#collection)
 * [yeogurt:router](#router)
-* [yeogurt:component](#component)
+* [yeogurt:react](#react)
 
 **Note: Generators are to be run from the root directory of your app.**
 
@@ -196,15 +196,15 @@ Example:
 yo yeogurt:router myrouter
 ```
 
-### Component
+### React
 ***Note: (Can only be used with Backbone + React)***
 
-Creates a new JSX React component within the `dev/scripts/components` as well as a unit test spec file within the `test/spec` folder
+Creates a new JSX React file within the `dev/scripts/views` as well as a unit test spec file within the `test/spec` folder
 
 Example:
 ```bash
-## Component
-yo yeogurt:model mycomponent
+## React
+yo yeogurt:react myreact
 ```
 
 ## SVN usage

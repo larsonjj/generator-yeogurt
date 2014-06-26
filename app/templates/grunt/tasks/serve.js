@@ -6,7 +6,8 @@
 module.exports = function(grunt) {
     grunt.registerTask('serve', 'Open a development server within your browser', function (target) {
         if (target === 'dist') {
-            return grunt.task.run(['build', 'connect:dist:keepalive']);
+            return grunt.task.run(['build',<% if (useServer) { %>
+            'express:dist', 'open', 'keepalive'<% } else { %> 'connect:dist:keepalive'<% } %>]);
         }
 
         grunt.task.run([
@@ -27,9 +28,17 @@ module.exports = function(grunt) {
             'less:serverPrint',<% } %><% } %><% if (cssOption === 'SASS') { %>
             'sass:server',<% if (ieSupport) { %>
             'sass:serverPrint',<% } %><% } %>
-            'clean:temp',
-            'connect:livereload',
-            'watch'
+            'clean:temp',<% if (useServer) { %>
+            'express:server',
+            'open',<% } else { %>
+            'connect:server'<% } %>
         ]);
+        <% if (useKss || useJsdoc) { %>
+        if (target === 'docs') {
+            return grunt.task.run(['watch:docs'])
+        }
+        <% } %>
+        return grunt.task.run(['watch'])
+
     });
 };
