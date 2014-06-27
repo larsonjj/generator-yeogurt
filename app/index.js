@@ -56,8 +56,37 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         when: function(props) { return props.useServer; },
         type: 'list',
         name: 'dbOption',
-        message: 'What ' + 'Database type'.blue + ' would you like to use ?',
+        message: 'What ' + 'database type'.blue + ' would you like to use ?',
         choices: ['MongoDB', 'MySQL', 'None']
+    }, {
+        when: function(props) { return props.dbOption; },
+        name: 'dbHost',
+        message: 'What is your ' + 'database host/url'.blue + '?',
+        default: 'localhost'
+    }, {
+        when: function(props) { return props.dbOption === 'MySQL'; },
+        name: 'dbPort',
+        message: 'What ' + 'port'.blue + ' is your database running on?',
+        default: '3306'
+    }, {
+        when: function(props) { return props.dbOption === 'MongoDB'; },
+        name: 'dbPort',
+        message: 'What ' + 'port'.blue + ' is your Database running on?',
+        default: '27017'
+    }, {
+        when: function(props) { return props.dbOption; },
+        name: 'dbName',
+        message: 'What is the ' + 'name'.blue + ' of your database?',
+        default: 'yeogurt_db'
+    }, {
+        when: function(props) { return props.dbOption; },
+        name: 'dbUser',
+        message: 'What is your ' + 'username'.blue + ' for this database?',
+        default: 'root'
+    }, {
+        when: function(props) { return props.dbOption; },
+        name: 'dbPass',
+        message: 'What is your ' + 'password'.blue + ' for this database?'
     }, {
         when: function(props) { return (/Static Site/i).test(props.structure); },
         type: 'list',
@@ -314,11 +343,27 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         }
 
         // Setup Database URLs
+        var username = props.dbUser;
+        var password = props.dbPass ? ':' + props.dbPass : '';
+        var port = props.dbPort;
+        var host = props.dbUser ? '@' + props.dbHost : props.dbHost;
+        var name = props.dbName ? props.dbName : '';
+
         if (this.dbOption === 'MongoDB') {
-            this.dbURL = process.env.MONGODB || 'mongodb://localhost:27017';
+            this.dbURL = process.env.MONGODB || 'mongodb://' +
+            username +
+            password +
+            host + ':' +
+            port + '/' +
+            name;
         }
         else if (this.dbOption === 'MySQL') {
-            this.dbURL = process.env.MYSQL || 'mysql://localhost:3306';
+            this.dbURL = process.env.MYSQL || 'mysql://' +
+            username +
+            password +
+            host + ':' +
+            port + '/' +
+            name;
         }
         else {
             this.dbURL = '';

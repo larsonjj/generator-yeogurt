@@ -18,8 +18,8 @@ var settings = {
             host: 'localhost'
         },
         database: {
-            name: 'yeogurt',
-            url: '<%= dbURL %>/dev',
+            name: 'dev',
+            url: '<%= dbURL %>',
             reconnect: {
                 attempts: 5, // 0 = infinite
                 timeBetweenAttempts: 5 // seconds
@@ -55,8 +55,8 @@ var settings = {
             host: 'localhost'
         },
         database: {
-            name: 'yeogurt',
-            url: '<%= dbURL %>/test',
+            name: 'test',
+            url: '<%= dbURL %>',
             reconnect: {
                 attempts: 5, // 0 = infinite
                 timeBetweenAttempts: 5 // seconds
@@ -92,8 +92,8 @@ var settings = {
             host: process.env.HOSTNAME || '127.0.0.1'
         },
         database: {
-            name: 'yeogurt',
-            url: '<%= dbURL %>/prod',
+            name: 'prod',
+            url: '<%= dbURL %>',
             reconnect: {
                 attempts: 0,
                 timeBetweenAttempts: 3 // seconds
