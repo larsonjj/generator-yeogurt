@@ -14,9 +14,9 @@ module.exports = {
         res.format({
             // If content-type being requested is HTML, then render out the template
             html: function(){<% if (jsTemplate === 'React') { %>
-                var html = reactRender(res, {}, 'home.jsx');<% } %><% if (jsTemplate === 'Jade') { %>
-                var html = jadeRender(res, {}, 'home.jade');<% } %><% if (jsTemplate === 'Handlebars') { %>
-                var html = hbsRender(res, {}, 'home.hbs');<% } %>
+                var html = reactRender({}, 'home.jsx');<% } %><% if (jsTemplate === 'Jade') { %>
+                var html = jadeRender({}, 'home.jade');<% } %><% if (jsTemplate === 'Handlebars') { %>
+                var html = hbsRender({}, 'home.hbs');<% } %>
                 res.render('index', {
                     env: process.env.NODE_ENV || 'development',
                     body: html || ''

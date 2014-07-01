@@ -18,7 +18,7 @@ var settings = {
             host: 'localhost'
         },
         database: {
-            name: 'dev',
+            name: 'Yeogurt dev',
             url: '<%= dbURL %>',
             reconnect: {
                 attempts: 5, // 0 = infinite
@@ -26,43 +26,7 @@ var settings = {
             }
         },
         root: rootPath,
-        security: {
-            whitelists: {
-                csrfWhitelist: [],
-                cspWhitelist: [],
-                xframeWhitelist: [],
-                p3pWhitelist: [],
-                hstsWhitelist: [],
-                xssProtectionWhitelist: []
-            },
-            config: {
-                csrf: true,
-                csp: false,
-                xframe: 'SAMEORIGIN',
-                p3p: false,
-                hsts: false,
-                xssProtection: true
-            }
-        }
-    },
-    // Test
-    test: {
-        app: {
-            name: 'Yeogurt Test'
-        },
-        server: {
-            port: process.env.PORT || 3000,
-            host: 'localhost'
-        },
-        database: {
-            name: 'test',
-            url: '<%= dbURL %>',
-            reconnect: {
-                attempts: 5, // 0 = infinite
-                timeBetweenAttempts: 5 // seconds
-            }
-        },
-        root: rootPath,
+        staticAssets: 'dev/.server',
         security: {
             whitelists: {
                 csrfWhitelist: [],
@@ -100,6 +64,7 @@ var settings = {
             }
         },
         root: rootPath,
+        staticAssets: 'dist',
         security: {
             whitelists: {
                 csrfWhitelist: [],

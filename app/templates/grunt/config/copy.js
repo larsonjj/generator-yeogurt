@@ -55,7 +55,7 @@ module.exports = function(grunt) {
                 ]
             }<% if (useServer) { %>, {
                 expand: true,
-                cwd: '<%%= yeogurt.dev %>/',
+                cwd: 'lib/views/',
                 dest: '.tmp',
                 src: [
                     'index.html'

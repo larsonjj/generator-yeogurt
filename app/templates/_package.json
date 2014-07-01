@@ -3,6 +3,7 @@
     "version": "0.0.1",
     "dependencies": {<% if (jsTemplate === 'React') { %>
         "backbone-react-component": "0.6.2",<% } %><% if (useServer) { %>
+        "colors": "^0.6.2",
         "async": "^0.7.0",
         "bcrypt-nodejs": "^0.0.3",
         "body-parser": "^1.0.2",
@@ -91,8 +92,7 @@
         "grunt-ftpush": "0.3.3",<% } %>
         "jit-grunt": "0.6.0"<% if (useServer) { %>,
         "connect-livereload": "~0.3.0",
-        "grunt-express-server": "~0.4.5",
-        "colors": "^0.6.2"<% } %>
+        "grunt-express-server": "~0.4.5"<% } %>
     },
     "scripts": {<% if (useServer) { %>
         "start": "grunt build && NODE_ENV=production node app.js"<% } %>

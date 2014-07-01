@@ -7,9 +7,9 @@ var settings = require('../config/settings');
 require('node-jsx').install();
 
 // helper function for rendering a view with React on the Server-side
-module.exports = function(res, data, template) {
+module.exports = function(data, template) {
     var JSX = require(path.join(settings.root, 'dev/scripts/views/') + template);
-    var component = new JSX(data);
+    var cleanedData = JSON.parse(JSON.stringify(data));
 
-    return React.renderComponentToString(component);
+    return React.renderComponentToString(JSX(cleanedData));
 };

@@ -541,7 +541,9 @@ YeogurtGenerator.prototype.views = function views() {
     }
 
     if (this.structure === 'Single Page Application') {
-        this.template('dev/templates/html/index.html', 'dev/index.html');
+        if (!this.useServer) {
+            this.template('dev/templates/html/index.html', 'dev/index.html');
+        }
     }
 
 };
@@ -670,6 +672,7 @@ YeogurtGenerator.prototype.server = function server() {
     if (this.useServer) {
         this.mkdir('lib');
         this.mkdir('lib/controllers');
+        this.mkdir('lib/views');
         // this.mkdir('lib/models');
         this.mkdir('lib/routes');
         if (this.useServer) {
@@ -688,6 +691,8 @@ YeogurtGenerator.prototype.server = function server() {
         if (this.dbOption !== 'None') {
             this.template('server/lib/config/database.js', 'lib/config/database.js');
         }
+
+        this.template('dev/templates/html/index.html', 'lib/views/index.html');
 
         this.template('server/lib/config/express.js', 'lib/config/express.js');
         this.template('server/lib/config/passport.js', 'lib/config/passport.js');

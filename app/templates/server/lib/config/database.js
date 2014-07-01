@@ -14,7 +14,10 @@ require('colors');
 /**
  * Database Connection.
  */
-module.exports.connect = function() {
+module.exports.connect = function(app) {
+
+    var env = app.get('env');
+
     <% if (dbOption === 'MongoDB') { %>
     var connect = function() {
         var options = {
@@ -29,6 +32,10 @@ module.exports.connect = function() {
         mongoose.connect(settings.database.url, options);
     };
     connect();
+
+    if ('development' === env) {
+        mongoose.set('debug', true);
+    }
 
     // Success handler
     mongoose.connection.on('connected', function() {

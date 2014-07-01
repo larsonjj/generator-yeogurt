@@ -5,11 +5,13 @@ var path = require('path');
 var settings = require('../config/settings');
 
 // helper function for rendering a view with Jade on the Server-side
-module.exports = function(res, data, template) {
+module.exports = function(data, template) {
+
+    var cleanedData = JSON.parse(JSON.stringify(data));
 
     // Setup data to be passed to template
     var options = {
-        globals: data
+        globals: cleanedData
     };
 
     // Setup nicely formatted HTML if in development, otherwise compress it

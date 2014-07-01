@@ -35,10 +35,12 @@ module.exports = function(grunt) {
         ]);
         <% if (useKss || useJsdoc) { %>
         if (target === 'docs') {
-            return grunt.task.run(['watch:docs'])
+            return grunt.task.run(['listen']);
         }
-        <% } %>
-        return grunt.task.run(['watch'])
 
+        return grunt.task.run(['watch']);
+        <% } else { %>
+        return grunt.task.run(['listen']);
+        <% } %>
     });
 };

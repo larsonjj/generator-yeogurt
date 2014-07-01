@@ -5,7 +5,7 @@
 
 module.exports = function(grunt) {
 
-    grunt.registerTask('watch<% if (useKss || useJsdoc) { %>:docs<% } %>', function() {
+    grunt.registerTask('listen<% if (useKss || useJsdoc) { %>:docs<% } %>', function() {
         var config = {<% if (htmlOption === 'Jade') { %>
             jade: {
                 files: [
@@ -258,7 +258,8 @@ module.exports = function(grunt) {
         express: {
             files: [
                 'app.js',
-                'lib/**/*.{js,json}'
+                'lib/**/*.{js,json}',
+                '<%%= yeogurt.dev %>/scripts/views/*.<% if (jsTemplate === 'React') {%>jsx<% } %><% if (jsTemplate === 'Handlebars') { %>hbs<% } %><% if (jsTemplate === 'Jade') { %>jade<% } %>'
             ],
             tasks: ['express:server', 'wait'],
             options: {

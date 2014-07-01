@@ -8,6 +8,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var flash = require('express-flash');
 var expressValidator = require('express-validator');
+var errorHandler = require('errorhandler');
 var session = require('express-session');
 var logger = require('morgan');<% if (dbOption === 'MongoDB') { %>
 var MongoStore = require('connect-mongo')({
@@ -54,20 +55,19 @@ module.exports = function(app, passport, express,<% if ('MySQL'.indexOf(dbOption
             next();
         });
 
-        app.use(express.static(path.join(settings.root, 'dev/.server')));
-        // Setup path where all server templates will reside
-        app.set('views', path.join(settings.root, 'dev'));
+        app.use(express.static(path.join(settings.root, settings.staticAssets), {maxAge: week}));
     }
 
     if ('production' === env || 'test' === env) {
         app.use(compress());
         // Mount public/ folder for static assets and set cache via maxAge
-        app.use(express.static(path.join(settings.root, 'dist'), {
+        app.use(express.static(path.join(settings.root, settings.staticAssets), {
             maxAge: week
         }));
-        // Setup path where all server templates will reside
-        app.set('views', path.join(settings.root, 'dev'));
     }
+
+    // Setup path where all server templates will reside
+    app.set('views', path.join(settings.root, 'lib/views'));
 
     // Returns middleware that parses both json and urlencoded.
     app.use(bodyParser.json());
@@ -80,14 +80,13 @@ module.exports = function(app, passport, express,<% if ('MySQL'.indexOf(dbOption
     app.use(cookieParser(secrets.cookieSecret));
 
     app.use(session({
-        secret: secrets.sessionSecret,<% if (dbOption === 'MongoDB') { %>
+        secret: secrets.sessionSecret,
+        saveUninitialized: true,
+        resave: true,
         store: new MongoStore({
             url: settings.database.url,
             auto_reconnect: true,
-        }),<% } %><% if ('MySQL'.indexOf(dbOption) > -1) { %>
-        store: new SequelizeStore({
-            db: sequelize
-        }),<% } %>
+        }),
         cookie: {
             httpOnly: true, /*, secure: true for HTTPS*/
             maxAge: day
@@ -97,6 +96,9 @@ module.exports = function(app, passport, express,<% if ('MySQL'.indexOf(dbOption
     // Passport authentication
     app.use(passport.initialize());
     app.use(passport.session());
+
+    // define a flash message and render it without redirecting the request.
+    app.use(flash());
 
     // Initialize Lusca Security
     app.use(function(req, res, next) {
@@ -108,7 +110,29 @@ module.exports = function(app, passport, express,<% if ('MySQL'.indexOf(dbOption
         next();
     });
 
-    // define a flash message and render it without redirecting the request.
-    app.use(flash());
+    app.use(function(req, res, next) {
+        // Keep track of previous URL to redirect back to
+        // original destination after a successful login.
+        if (req.method !== 'GET') {
+            return next();
+        }
+        var path = req.path.split('/')[1];
+        if (/(auth|login|logout|signup)$/i.test(path)) {
+            return next();
+        }
+        req.session.returnTo = req.path;
+        next();
+    });
+
+    // Load all routes
+    require('fs').readdirSync(path.join(settings.root, './lib/routes/')).forEach(function(file) {
+        require(path.join(settings.root, './lib/routes/') + file)(app, passport);
+    });
+
+    /**
+     * 500 Error Handler.
+     * As of Express 4.0 it must be placed at the end of all routes.
+     */
+    app.use(errorHandler());
 
 };
