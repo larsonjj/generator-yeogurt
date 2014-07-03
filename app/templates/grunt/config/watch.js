@@ -72,7 +72,7 @@ module.exports = function(grunt) {
             },<% } %>
             js: {
                 files: [
-                    '<%%= yeogurt.dev %>/scripts/**/*.<% if (jsTemplate !== 'React') { %>js<% } else { %>{js,jsx}<% } %>',
+                    '<%%= yeogurt.dev %>/scripts/**/*.js',
                     '<%%= yeogurt.dev %>/bower_components/**/*.js'<% if (useJsdoc) { %>,
                     'README.md'<% } %>
                 ],
@@ -83,7 +83,16 @@ module.exports = function(grunt) {
                     'jsdoc:server',<% } %>
                     'newer:copy:server'
                 ]
-            },<% if (jsTemplate === 'Handlebars') { %>
+            },<% if (jsTemplate === 'React') { %>
+            jsx: {
+                files: ['<%%= yeogurt.dev %>/scripts/views/**/*.jsx'],
+                tasks: [<% if (jsOption === 'RequireJS') { %>
+                    'newer:copy:server',<% } %><% if (jsOption === 'Browserify') { %>
+                    'browserify:server',
+                    'exorcise:server'<% } %><% if (useServer) { %>,
+                    'express:server'<% } %>
+                ]
+            },<% } %><% if (jsTemplate === 'Handlebars') { %>
             handlebars: {
                 files: ['<%%= yeogurt.dev %>/templates/**/*.hbs'],
                 tasks: [
@@ -148,7 +157,8 @@ module.exports = function(grunt) {
                     '<%%= yeogurt.dev %>/styles/**/*.scss'<% } else if (cssOption === 'LESS') { %>,
                     '<%%= yeogurt.dev %>/styles/**/*.less'<% } %>,
                     '<%%= yeogurt.server %>/scripts/**/*.js',<% if (structure === 'Single Page Application' && jsTemplate !== 'React') { %>
-                    '<%%= yeogurt.server %>/templates/**/*.js',<% } %>
+                    '<%%= yeogurt.server %>/templates/**/*.js',<% } %><% if (jsTemplate === 'React') { %>
+                    '<%%= yeogurt.server %>/scripts/**/*.jsx',<% } %>
                     '<%%= yeogurt.server %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
             }<% if (useServer) { %>,
@@ -232,7 +242,7 @@ module.exports = function(grunt) {
         },<% } %>
         js: {
             files: [
-                '<%%= yeogurt.dev %>/scripts/**/*.<% if (jsTemplate !== 'React') { %>js<% } else { %>{js,jsx}<% } %>',
+                '<%%= yeogurt.dev %>/scripts/**/*.js',
                 '<%%= yeogurt.dev %>/bower_components/**/*.js'<% if (useJsdoc) { %>,
                 'README.md'<% } %>
             ],
@@ -242,7 +252,16 @@ module.exports = function(grunt) {
                 'exorcise:server',<% } %>
                 'newer:copy:server'
             ]
-        },<% if (jsTemplate === 'Handlebars') { %>
+        },<% if (jsTemplate === 'React') { %>
+        jsx: {
+            files: ['<%%= yeogurt.dev %>/scripts/views/**/*.jsx'],
+            tasks: [<% if (jsOption === 'RequireJS') { %>
+                'newer:copy:server',<% } %><% if (jsOption === 'Browserify') { %>
+                'browserify:server',
+                'exorcise:server'<% } %><% if (useServer) { %>,
+                'express:server'<% } %>
+            ]
+        },<% } %><% if (jsTemplate === 'Handlebars') { %>
         handlebars: {
             files: ['<%%= yeogurt.dev %>/templates/**/*.hbs'],
             tasks: [
@@ -295,7 +314,8 @@ module.exports = function(grunt) {
                 '<%%= yeogurt.dev %>/styles/**/*.scss'<% } else if (cssOption === 'LESS') { %>,
                 '<%%= yeogurt.dev %>/styles/**/*.less'<% } %>,
                 '<%%= yeogurt.server %>/scripts/**/*.js',<% if (structure === 'Single Page Application' && jsTemplate !== 'React') { %>
-                '<%%= yeogurt.server %>/templates/**/*.js',<% } %>
+                '<%%= yeogurt.server %>/templates/**/*.js',<% } %><% if (jsTemplate === 'React') { %>
+                '<%%= yeogurt.server %>/scripts/**/*.jsx',<% } %>
                 '<%%= yeogurt.server %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
             ]
         }<% if (useServer) { %>,

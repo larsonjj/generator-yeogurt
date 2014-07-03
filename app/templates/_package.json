@@ -2,7 +2,7 @@
     "name": "<%= _.slugify(projectName) %>",
     "version": "0.0.1",
     "dependencies": {<% if (jsTemplate === 'React') { %>
-        "backbone-react-component": "0.6.2",<% } %><% if (useServer) { %>
+        "backbone-react-component": "0.6.2"<% if (useServer) { %>,<% } %><% } %><% if (useServer) { %>
         "colors": "^0.6.2",
         "async": "^0.7.0",
         "bcrypt-nodejs": "^0.0.3",
