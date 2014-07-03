@@ -1,3 +1,10 @@
+### v0.10.0:
+#### date: 2014-07-02
+##### changes:
+* Removed example modules folder and module.js as it can easily be created with the script subgenerator
+* Fixed jadePartials watch task to not use the `newer:` prefix as it caused changes to components and templates to not be re-compiled
+* Fixed React components property `mixins`. (previously was `mixin`)
+
 ### v0.9.4:
 #### date: 2014-06-22
 ##### changes:

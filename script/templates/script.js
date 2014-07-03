@@ -8,11 +8,7 @@
 
     var <%= _.classify(name) %> = {
         init: function(msg) {
-            var $ele = $('<p></p>');
 
-            $ele.append('<%= name %> loaded! - Message: ' + msg);
-            console.log($ele.text());
-            return $ele.text() + 'initialized';
         }
     };
 
@@ -23,22 +19,14 @@
 
 var <%= _.classify(name) %> = {
     init: function(msg) {
-        var $ele = $('<p></p>');
 
-        $ele.append('<%= name %> loaded! - Message: ' + msg);
-        console.log($ele.text());
-        return $ele.text() + 'initialized';
     }
 };
 
 module.exports = <%= _.classify(name) %>;<% } else { %>'use strict';
 var <%= _.classify(name) %> = {
     init: function(msg) {
-        var $ele = $('<p></p>');
 
-        $ele.append('<%= name %> loaded! - Message: ' + msg);
-        console.log($ele.text());
-        return $ele.text() + 'initialized';
     }
 };
 <% } %>

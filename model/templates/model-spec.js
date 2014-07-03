@@ -13,21 +13,24 @@
             this.<%= _.classify(name) %>Model = new <%= _.classify(name) %>();
         });
 
+        it('Should run a few assertions', function(){
+
+        });
+
     });
 
 });<% } else if (jsOption === 'Browserify') { %>'use strict';
 
 var <%= _.classify(name) %> = require('../../dev/scripts/models/<%= _.slugify(name) %>.js');
 
-describe('just checking', function() {
+describe('<%= _.classify(name) %> Model', function () {
 
-    describe('<%= _.classify(name) %> Model', function () {
+    beforeEach(function () {
+        this.<%= _.classify(name) %>Model = new <%= _.classify(name) %>();
+    });
 
-        beforeEach(function () {
-            this.<%= _.classify(name) %>Model = new <%= _.classify(name) %>();
-        });
+    it('Should run a few assertions', function(){
 
     });
 
-});
-<% } %>
+});<% } %>

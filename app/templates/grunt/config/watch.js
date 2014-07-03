@@ -22,7 +22,7 @@ module.exports = function(grunt) {
                     '!<%%= yeogurt.dev %>/views/*.jade'
                 ],
                 tasks: [
-                    'newer:jade:server',
+                    'jade:server',
                     <% if (useDashboard) { %>'dashboard:server'<% } %>
                 ]
             },<% } else if (htmlOption === 'Swig') { %>

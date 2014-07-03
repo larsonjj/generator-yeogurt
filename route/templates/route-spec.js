@@ -13,7 +13,7 @@
             this.<%= _.classify(name) %>Router = new <%= _.camelize(name) %>();
         });
 
-        it('index route', function(){
+        it('Should run a few assertions', function(){
 
         });
 
@@ -23,19 +23,14 @@
 
 var <%= _.camelize(name) %> = require('../../dev/scripts/routers/<%= _.slugify(name) %>-spec.js');
 
-describe('just checking', function() {
+describe('<%= _.classify(name) %> Router', function () {
 
-    describe('<%= _.classify(name) %> Router', function () {
+    beforeEach(function () {
+        this.<%= _.classify(name) %>Router = new <%= _.camelize(name) %>();
+    });
 
-        beforeEach(function () {
-            this.<%= _.classify(name) %>Router = new <%= _.camelize(name) %>();
-        });
-
-        it('index route', function(){
-
-        });
+    it('Should run a few assertions', function(){
 
     });
 
-});
-<% } %>
+});<% } %>

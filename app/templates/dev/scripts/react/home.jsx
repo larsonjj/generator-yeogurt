@@ -11,7 +11,7 @@
 
     var HomeComponent = React.createClass({
         // Add react backbone plugin
-        mixin: [Backbone.React.Component.mixin],
+        mixins: [Backbone.React.Component.mixin],
         render: function() {
             return (
                 <div>

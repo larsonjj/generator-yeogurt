@@ -552,15 +552,11 @@ YeogurtGenerator.prototype.scripts = function scripts() {
     // dev/scripts
     this.mkdir('dev/scripts');
     this.mkdir('dev/scripts/vendor');
-    if (this.jsOption !== 'None (Vanilla JavaScript)') {
-        this.mkdir('dev/scripts/modules');
-    }
 
     this.template('dev/scripts/app.js', 'dev/scripts/app.js');
 
     if (this.jsOption === 'Browserify' || this.jsOption === 'RequireJS') {
         this.template('dev/scripts/main.js', 'dev/scripts/main.js');
-        this.template('dev/scripts/modules/module.js', 'dev/scripts/modules/module.js');
     }
 
     if (this.jsFramework === 'Backbone') {

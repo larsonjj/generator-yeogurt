@@ -20,14 +20,8 @@
     });
 
     describe('Testing React Component', function() {
-        it('Check Text Assignment', function() {
-            var app;
-            app = new <%= _.classify(name) %>();
-            reactRender(app);
-            <% if (testFramework === 'Mocha + Chai') { %>
-            expect(app.refs.p).to.exist;
-            return expect(app.refs.p.getDOMNode().innerHTML).to.equal('<%= name.toLowerCase() %> component');<% } else if (testFramework === 'Jasmine') { %>expect(app.refs.p).toBeDefined();
-            return expect(app.refs.p.getDOMNode().innerHTML).toEqual('<%= name.toLowerCase() %> component');<% } %>
+        it('Should run a few assertions', function() {
+
         });
     });
 
@@ -44,14 +38,7 @@ beforeEach(function() {
 });
 
 describe('Testing React Component', function() {
-    it('Check Text Assignment', function() {
-        var app;
-        app = new <%= _.classify(name) %>();
-        reactRender(app);
-        <% if (testFramework === 'Mocha + Chai') { %>
-        expect(app.refs.p).to.exist;
-        return expect(app.refs.p.getDOMNode().innerHTML).to.equal('<%= name.toLowerCase() %> component');<% } else if (testFramework === 'Jasmine') { %>expect(app.refs.p).toBeDefined();
-        return expect(app.refs.p.getDOMNode().innerHTML).toEqual('<%= name.toLowerCase() %> component');<% } %>
+    it('Should run a few assertions', function() {
+
     });
-});
-<% } %>
+});<% } %>

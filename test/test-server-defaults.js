@@ -26,7 +26,8 @@ describe('yeogurt generator server defaults', function () {
             'grunt/config/express.js',
             'lib/views/index.html',
             'lib/modules',
-            'lib/modules/reactRender.js'
+            'lib/modules/reactRender.js',
+            'lib/config/database.js'
         ];
 
         helpers.mockPrompt(this.app, {
@@ -37,6 +38,7 @@ describe('yeogurt generator server defaults', function () {
             cssOption: 'SASS',
             jsOption: 'RequireJS',
             jsTemplate: 'React',
+            dbOption: 'MongoDB',
             useServer: true,
             ieSupport: false,
             responsive: false,
