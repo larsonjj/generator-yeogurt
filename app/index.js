@@ -280,7 +280,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.htmlOption = props.htmlOption;
         this.structure = props.structure;
         this.jsFramework = props.jsFramework;
-        this.jsTemplate = props.jsTemplate ? props.jsTemplate : 'React';
+        this.jsTemplate = props.jsTemplate;
         this.testFramework = props.testFramework;
         this.cssOption = props.cssOption;
         this.jsOption = props.jsOption;
@@ -300,7 +300,10 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.cssFramework = props.cssFramework;
 
         // Default Overwrites
-        this.jsTemplate = props.jsTemplate = props.jsTemplate ? props.jsTemplate : 'React';
+        if (this.jsFramework === 'Backbone + React') {
+            this.jsTemplate = props.jsTemplate = 'React';
+        }
+
         this. jsOption = props.jsOption = props.jsOption ? props.jsOption : 'Browserify';
 
         var extras = this.extras;
