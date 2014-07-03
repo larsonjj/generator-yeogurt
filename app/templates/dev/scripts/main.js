@@ -18,12 +18,10 @@
 
 require(['app'], function (app) {
     app.init('Welcome to Yeogurt!');
-    console.log('Running jQuery %s', $().jquery);
 });<% } %>
 <% if (jsOption === 'Browserify') { %>var app = require('./app');
 
 app.init('Welcome to Yeogurt!');
-console.log('Running jQuery %s', $().jquery);
 <% if (jsFramework === 'Backbone + React') { %>
 // Enable React dev tools
 window.React = require('react');<% } %>

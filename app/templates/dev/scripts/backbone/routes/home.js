@@ -11,12 +11,10 @@
 
     var HomeRouter = Backbone.Router.extend({
         routes: {
-            '*notFound' : 'default',
             '': 'default'
         },
 
-        default: function() {
-            console.log('Starting home (/) router');<% if (jsFramework === 'Backbone + React') { %>
+        default: function() {<% if (jsFramework === 'Backbone + React') { %>
             React.renderComponent(new HomeComponent(), document.getElementById('app-wrapper'));
             <% } else if ((/Backbone/i).test(jsFramework)) { %>
             // Initialize the home view
@@ -35,12 +33,10 @@ var HomeView = require('../views/home');<% } %>
 
 var HomeRouter = Backbone.Router.extend({
     routes: {
-        '*notFound' : 'default',
         '': 'default'
     },
 
-    default: function() {
-        console.log('Starting home (/) router');<% if (jsFramework === 'Backbone + React') { %>
+    default: function() {<% if (jsFramework === 'Backbone + React') { %>
         React.renderComponent(new HomeComponent(), document.getElementById('app-wrapper'));
         <% } else if ((/Backbone/i).test(jsFramework)) { %>
         // Initialize the home view

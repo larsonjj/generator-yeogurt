@@ -58,7 +58,7 @@ module.exports = function(app, passport, express,<% if ('MySQL'.indexOf(dbOption
         app.use(express.static(path.join(settings.root, settings.staticAssets), {maxAge: week}));
     }
 
-    if ('production' === env || 'test' === env) {
+    if ('production' === env) {
         app.use(compress());
         // Mount public/ folder for static assets and set cache via maxAge
         app.use(express.static(path.join(settings.root, settings.staticAssets), {
@@ -82,11 +82,14 @@ module.exports = function(app, passport, express,<% if ('MySQL'.indexOf(dbOption
     app.use(session({
         secret: secrets.sessionSecret,
         saveUninitialized: true,
-        resave: true,
+        resave: true,<% if (dbOption === 'MongoDB') { %>
         store: new MongoStore({
             url: settings.database.url,
             auto_reconnect: true,
-        }),
+        }),<% } %><% if (dbOption === 'MySQL') { %>
+        store: new SequelizeStore({
+            db: sequelize
+        }),<% } %>
         cookie: {
             httpOnly: true, /*, secure: true for HTTPS*/
             maxAge: day

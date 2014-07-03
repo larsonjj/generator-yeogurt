@@ -83,7 +83,28 @@ module.exports = function(grunt) {
                     'jsdoc:server',<% } %>
                     'newer:copy:server'
                 ]
-            },<% if (useJsdoc) { %>
+            },<% if (jsTemplate === 'Handlebars') { %>
+            handlebars: {
+                files: ['<%%= yeogurt.dev %>/templates/**/*.hbs'],
+                tasks: [
+                    'handlebars:server'<% if (useServer) { %>,
+                    'express:server'<% } %>
+                ]
+            },<% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>
+            jst: {
+                files: ['<%%= yeogurt.dev %>/templates/**/*.jst'],
+                tasks: [
+                    'jst:server'<% if (useServer) { %>,
+                    'express:server'<% } %>
+                ]
+            },<% } %><% if (jsTemplate === 'Jade') { %>
+            jade: {
+                files: ['<%%= yeogurt.dev %>/templates/**/*.jade'],
+                tasks: [
+                    'jade:server'<% if (useServer) { %>,
+                    'express:server'<% } %>
+                ]
+            },<% } %><% if (useJsdoc) { %>
             jsdoc: {
                 files: [
                     'README.md'
@@ -126,7 +147,8 @@ module.exports = function(grunt) {
                     '<%%= yeogurt.server %>/**/*.html'<% if (cssOption === 'SASS') { %>,
                     '<%%= yeogurt.dev %>/styles/**/*.scss'<% } else if (cssOption === 'LESS') { %>,
                     '<%%= yeogurt.dev %>/styles/**/*.less'<% } %>,
-                    '<%%= yeogurt.server %>/scripts/**/*.js',
+                    '<%%= yeogurt.server %>/scripts/**/*.js',<% if (structure === 'Single Page Application' && jsTemplate !== 'React') { %>
+                    '<%%= yeogurt.server %>/templates/**/*.js',<% } %>
                     '<%%= yeogurt.server %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
             }<% if (useServer) { %>,
@@ -220,7 +242,28 @@ module.exports = function(grunt) {
                 'exorcise:server',<% } %>
                 'newer:copy:server'
             ]
-        },<% if (useDashboard) { %>
+        },<% if (jsTemplate === 'Handlebars') { %>
+        handlebars: {
+            files: ['<%%= yeogurt.dev %>/templates/**/*.hbs'],
+            tasks: [
+                'handlebars:server'<% if (useServer) { %>,
+                'express:server'<% } %>
+            ]
+        },<% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>
+        jst: {
+            files: ['<%%= yeogurt.dev %>/templates/**/*.jst'],
+            tasks: [
+                'jst:server'<% if (useServer) { %>,
+                'express:server'<% } %>
+            ]
+        },<% } %><% if (jsTemplate === 'Jade') { %>
+        jade: {
+            files: ['<%%= yeogurt.dev %>/templates/**/*.jade'],
+            tasks: [
+                'jade:server'<% if (useServer) { %>,
+                'express:server'<% } %>
+            ]
+        },<% } %><% if (useDashboard) { %>
         dashboard: {
             files: [
                 '<%%= yeogurt.dev %>/dashboard/**/*.*'
@@ -251,15 +294,15 @@ module.exports = function(grunt) {
                 '<%%= yeogurt.server %>/**/*.html'<% if (cssOption === 'SASS') { %>,
                 '<%%= yeogurt.dev %>/styles/**/*.scss'<% } else if (cssOption === 'LESS') { %>,
                 '<%%= yeogurt.dev %>/styles/**/*.less'<% } %>,
-                '<%%= yeogurt.server %>/scripts/**/*.js',
+                '<%%= yeogurt.server %>/scripts/**/*.js',<% if (structure === 'Single Page Application' && jsTemplate !== 'React') { %>
+                '<%%= yeogurt.server %>/templates/**/*.js',<% } %>
                 '<%%= yeogurt.server %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
             ]
         }<% if (useServer) { %>,
         express: {
             files: [
                 'app.js',
-                'lib/**/*.{js,json}',
-                '<%%= yeogurt.dev %>/scripts/views/*.<% if (jsTemplate === 'React') {%>jsx<% } %><% if (jsTemplate === 'Handlebars') { %>hbs<% } %><% if (jsTemplate === 'Jade') { %>jade<% } %>'
+                'lib/**/*.{js,json}'
             ],
             tasks: ['express:server', 'wait'],
             options: {

@@ -59,7 +59,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         message: 'What ' + 'database type'.blue + ' would you like to use ?',
         choices: ['MongoDB', 'MySQL', 'None']
     }, {
-        when: function(props) { return props.dbOption; },
+        when: function(props) { return props.dbOption !== 'None'; },
         name: 'dbHost',
         message: 'What is your ' + 'database host/url'.blue + '?',
         default: 'localhost'
@@ -74,17 +74,17 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         message: 'What ' + 'port'.blue + ' is your Database running on?',
         default: '27017'
     }, {
-        when: function(props) { return props.dbOption; },
+        when: function(props) { return props.dbOption !== 'None'; },
         name: 'dbName',
         message: 'What is the ' + 'name'.blue + ' of your database?',
         default: 'yeogurt_db'
     }, {
-        when: function(props) { return props.dbOption; },
+        when: function(props) { return props.dbOption !== 'None'; },
         name: 'dbUser',
         message: 'What is your ' + 'username'.blue + ' for this database?',
         default: 'root'
     }, {
-        when: function(props) { return props.dbOption; },
+        when: function(props) { return props.dbOption !== 'None'; },
         name: 'dbPass',
         message: 'What is your ' + 'password'.blue + ' for this database?'
     }, {
