@@ -4,7 +4,6 @@
 var express = require('express');
 var errorHandler = require('errorhandler');
 var path = require('path');
-var passport = require('passport');
 
 // Add coloring for console output
 require('colors');
@@ -18,7 +17,7 @@ var db = require('./lib/config/database');
 // Connect to Database
 <% if ('MySQL'.indexOf(dbOption) > -1) { %>var sequelize = <% } %>db.connect(app);<% } %>
 
-require('./lib/config/express')(app, passport, express,<% if ('MySQL'.indexOf(dbOption) > -1) { %> sequelize,<% } %> path);
+require('./lib/config/express')(app, express,<% if ('MySQL'.indexOf(dbOption) > -1) { %> sequelize,<% } %> path);
 
 /**
  * Start Express server.

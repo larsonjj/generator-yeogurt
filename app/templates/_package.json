@@ -11,26 +11,16 @@
         "cookie-parser": "^1.0.1",
         "errorhandler": "^1.0.0",
         "express": "^4.0.0",
-        "express-flash": "^0.0.2",
         "express-session": "^1.0.2",
-        "express-validator": "^2.1.1",
         "lusca": "^1.0.0",<% if (dbOption === 'MongoDB') { %>
         "mongoose": "^3.8.8",
         "connect-mongo": "^0.4.0",<% } %>
         "morgan": "^1.0.0",
         "nodemailer": "^0.6.2",
-        "passport": "^0.2.0",
-        "ejs": "~0.8.4",
-        "passport-facebook": "^1.0.3",
-        "passport-google-oauth": "^0.1.5",
-        "passport-local": "^1.0.0",
-        "passport-oauth": "^1.0.0",
-        "passport-twitter": "^1.0.2",<% if ('MySQL'.indexOf(dbOption) > -1) { %>
+        "ejs": "~0.8.4",<% if ('MySQL'.indexOf(dbOption) > -1) { %>
         "mysql": "2.3.2",
         "connect-session-sequelize": "1.0.0",
         "sequelize": "1.7.9",<% } %>
-        "request": "^2.34.0",
-        "twit": "^1.1.13",
         "uglify-js": "^2.4.12",
         "validator": "^3.9.0",
         "underscore": "~1.6.0"<% if (jsTemplate === 'React') { %>,

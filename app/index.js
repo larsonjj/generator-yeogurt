@@ -610,7 +610,6 @@ YeogurtGenerator.prototype.server = function server() {
         this.mkdir('lib');
         this.mkdir('lib/controllers');
         this.mkdir('lib/views');
-        // this.mkdir('lib/models');
         this.mkdir('lib/routes');
         if (this.useServer) {
             this.mkdir('lib/modules');
@@ -632,7 +631,6 @@ YeogurtGenerator.prototype.server = function server() {
         this.template('dev/templates/html/index.html', 'lib/views/index.html');
 
         this.template('server/lib/config/express.js', 'lib/config/express.js');
-        this.template('server/lib/config/passport.js', 'lib/config/passport.js');
         this.template('server/lib/config/secrets.js', 'lib/config/secrets.js');
         this.template('server/lib/config/security.js', 'lib/config/security.js');
         this.template('server/lib/config/settings.js', 'lib/config/settings.js');

@@ -6,8 +6,6 @@
 var compress = require('compression');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var flash = require('express-flash');
-var expressValidator = require('express-validator');
 var errorHandler = require('errorhandler');
 var session = require('express-session');
 var logger = require('morgan');<% if (dbOption === 'MongoDB') { %>
@@ -21,7 +19,7 @@ var secrets = require('./secrets');
 var settings = require('./settings');
 var security = require('./security');
 
-module.exports = function(app, passport, express,<% if ('MySQL'.indexOf(dbOption) > -1) { %> sequelize,<% } %> path) {
+module.exports = function(app, express,<% if ('MySQL'.indexOf(dbOption) > -1) { %> sequelize,<% } %> path) {
 
     var hour = 3600000;
     var day = hour * 24;
@@ -73,9 +71,6 @@ module.exports = function(app, passport, express,<% if ('MySQL'.indexOf(dbOption
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
 
-    // Setup server-side validation
-    app.use(expressValidator());
-
     // Parse Cookie header and populate req.cookies with an object keyed by the cookie names
     app.use(cookieParser(secrets.cookieSecret));
 
@@ -95,13 +90,6 @@ module.exports = function(app, passport, express,<% if ('MySQL'.indexOf(dbOption
             maxAge: day
         }
     }));
-
-    // Passport authentication
-    app.use(passport.initialize());
-    app.use(passport.session());
-
-    // define a flash message and render it without redirecting the request.
-    app.use(flash());
 
     // Initialize Lusca Security
     app.use(function(req, res, next) {
@@ -129,7 +117,7 @@ module.exports = function(app, passport, express,<% if ('MySQL'.indexOf(dbOption
 
     // Load all routes
     require('fs').readdirSync(path.join(settings.root, './lib/routes/')).forEach(function(file) {
-        require(path.join(settings.root, './lib/routes/') + file)(app, passport);
+        require(path.join(settings.root, './lib/routes/') + file)(app);
     });
 
     /**
