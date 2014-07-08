@@ -112,7 +112,7 @@ Available sub-generators:
 ### View
 
 #### Static Site Specific
-Creates  a jade file within the `dev/views` folder by default or within another folder using the `--type` option. Use the `--import` flag to include the created file within the base template file (Jade mixins and Swig macros must be included in the file(s) where you want to use them). Note: The `--import` flag is designed to work with `type=component`.
+Creates  a jade file within the `dev/views` folder by default or within another folder using the `--type` option. Automatically, the created file's path will be included within the base template file (Jade mixins and Swig macros must be included in the file(s) where you want to use them). If you wish to not have the generated file imported into the base template file, pass the `--noImport` flag. Note: Importing is only designed to work with `type=component`.
 
 Example:
 ```bash
@@ -128,8 +128,8 @@ yo yeogurt:view mytemplate --type=template
 ## Component
 yo yeogurt:view mycomponent --type=component
 
-## Component with import flag
-yo yeogurt:view mycomponent --type=component --import
+## Component with noImport flag
+yo yeogurt:view mycomponent --type=component --noImport
 ```
 
 #### Single Page Application Specific
@@ -153,7 +153,7 @@ yo yeogurt:script myscript
 ```
 
 ### Style
-If using SASS or LESS, this creates a stylesheet file within the `dev/styles/partials` folder by default. Otherwise, the stylesheet will be created within `dev/styles` folder. You can also specify a folder using the `--folder` option which is relative to the `dev/styles` folder. Use the --import flag to include the created file within the main template file (SCSS and LESS mixins must be included in the file(s) when you want to use them).
+If using SASS or LESS, this creates a stylesheet file within the `dev/styles/partials` folder by default. Otherwise, the stylesheet will be created within `dev/styles` folder. You can also specify a folder using the `--folder` option which is relative to the `dev/styles` folder. Automatically, the generated file will be included within the main template file (SCSS and LESS mixins must be included in the file(s) when you want to use them). If you do not want the generated file to imported, pass the `--noImport` flag.
 
 Example:
 ```bash
@@ -163,8 +163,8 @@ yo yeogurt:style mystyle
 ## Create file within dev/styles/base folder
 yo yeogurt:style mystyle --folder=base
 
-## Create file with import flag
-yo yeogurt:style mystyle --import
+## Create file with noImport flag
+yo yeogurt:style mystyle --noImport
 ```
 
 ## Single Page Application Specific Sub-Generators

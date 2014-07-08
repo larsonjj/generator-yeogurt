@@ -12,7 +12,7 @@ var StyleGenerator = module.exports = function StyleGenerator(args, options, con
     // options
     this.useDashboard = this.options.dashboard || false;
     this.folder = this.options.folder || false;
-    this.import = this.options.import || false;
+    this.noImport = this.options.noImport || false;
     this.cssOption = fileJSON.cssOption;
 
     console.log('You called the style subgenerator with the argument ' + this.name + '.');
@@ -29,7 +29,7 @@ StyleGenerator.prototype.files = function files() {
         if (this.cssOption === 'LESS') {
             this.template('style.less', 'dev/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.less');
             // write the component file as an include
-            if(this.import) {
+            if(!this.noImport) {
                 try {
                     generatorUtils.rewriteFile({
                         file: 'dev/styles/main.less',
@@ -48,7 +48,7 @@ StyleGenerator.prototype.files = function files() {
         else if (this.cssOption === 'SASS') {
             this.template('style.less', 'dev/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
             // write the component file as an include
-            if(this.import) {
+            if(!this.noImport) {
                 try {
                     generatorUtils.rewriteFile({
                         file: 'dev/styles/main.scss',
@@ -72,7 +72,7 @@ StyleGenerator.prototype.files = function files() {
         if (this.cssOption === 'LESS') {
             this.template('style.less', 'dev/styles/partials/' + '_' + this._.slugify(this.name.toLowerCase()) + '.less');
             // write the component file as an include
-            if(this.import) {
+            if(!this.noImport) {
                 try {
                     generatorUtils.rewriteFile({
                         file: 'dev/styles/main.less',
@@ -91,7 +91,7 @@ StyleGenerator.prototype.files = function files() {
         else if (this.cssOption === 'SASS') {
             this.template('style.less', 'dev/styles/partials/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
             // write the component file as an include
-            if(this.import) {
+            if(!this.noImport) {
                 try {
                     generatorUtils.rewriteFile({
                         file: 'dev/styles/main.scss',

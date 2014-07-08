@@ -12,7 +12,7 @@ var ViewGenerator = module.exports = function ViewGenerator(args, options, confi
     // options
     this.useDashboard = this.options.dashboard || false;
     this.view = this.options.type || 'page';
-    this.import = this.options.import || false;
+    this.noImport = this.options.noImport || false;
     this.useTemplate = this.options.template || false;
     this.useDashboard = fileJSON.extras.indexOf('useDashboard') > -1 ? true : false;
     this.structure = fileJSON.structure;
@@ -47,7 +47,7 @@ ViewGenerator.prototype.files = function files() {
             else if (this.view === 'component') {
                 this.template('view.jade', 'dev/views/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.jade');
                 // write the component file as an include
-                if(this.import) {
+                if(!this.noImport) {
                     try {
                         generatorUtils.rewriteFile({
                             file: 'dev/views/templates/base.jade',
@@ -80,7 +80,7 @@ ViewGenerator.prototype.files = function files() {
             else if (this.view === 'component') {
                 this.template('view.swig', 'dev/views/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.swig');
                 // write the component file as an include
-                if(this.import) {
+                if(!this.noImport) {
                     try {
                         generatorUtils.rewriteFile({
                             file: 'dev/views/templates/base.swig',
