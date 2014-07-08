@@ -24,10 +24,8 @@ module.exports = function(grunt) {
             'dashboard:server',<% } %><% if (useKss) { %>
             'kss:server',<% } %><% if (useJsdoc) { %>
             'jsdoc:server',<% } %><% if (cssOption === 'LESS') { %>
-            'less:server',<% if (ieSupport) { %>
-            'less:serverPrint',<% } %><% } %><% if (cssOption === 'SASS') { %>
-            'sass:server',<% if (ieSupport) { %>
-            'sass:serverPrint',<% } %><% } %>
+            'less:server',<% } %><% if (cssOption === 'SASS') { %>
+            'sass:server',<% } %>
             'clean:temp',<% if (useServer) { %>
             'express:server',
             'open',<% } else { %>

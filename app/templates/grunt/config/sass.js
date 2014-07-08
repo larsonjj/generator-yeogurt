@@ -18,20 +18,7 @@ module.exports = function(grunt) {
             files: {
                 '<%%= yeogurt.server %>/styles/main.css': '<%%= yeogurt.dev %>/styles/main.scss'
             }
-        },<% if (ieSupport) { %>
-        serverPrint: {
-            options: {
-                sourceComments: 'map',
-                outputStyle: 'nested',
-                sourceMap: '<%%= yeogurt.server %>/styles/print.css.map',
-                includePaths: [
-                    '<%%= yeogurt.dev %>/styles/**/*.scss'
-                ]
-            },
-            files: {
-                '<%%= yeogurt.server %>/styles/print.css': '<%%= yeogurt.dev %>/styles/print.scss'
-            }
-        },<% } %>
+        },
         dist: {
             options: {
                 sourceComments: 'map',
@@ -44,20 +31,7 @@ module.exports = function(grunt) {
             files: {
                 '<%%= yeogurt.dist %>/styles/main.css': '<%%= yeogurt.dev %>/styles/main.scss'
             }
-        },<% if (ieSupport) { %>
-        distPrint: {
-            options: {
-                sourceComments: 'map',
-                outputStyle: 'compressed',
-                sourceMap: '<%%= yeogurt.server %>/styles/print.css.map',
-                includePaths: [
-                    '<%%= yeogurt.dev %>/styles/**/*.scss'
-                ]
-            },
-            files: {
-                '<%%= yeogurt.dist %>/styles/print.css': '<%%= yeogurt.dev %>/styles/print.scss'
-            }
-        },<% } %>
+        }
     });
 
     // grunt.loadNpmTasks('grunt-sass');

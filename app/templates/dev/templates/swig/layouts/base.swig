@@ -25,15 +25,9 @@
         <% if (useBootstrap) { %><link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen">
         <% } %><% if (useFoundation) { %><link rel="stylesheet" href="bower_components/foundation/css/normalize.css"><link rel="stylesheet" href="bower_components/foundation/css/foundation.css">
         <% } %><% if (useFontAwesome) { %>
-        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"><% } %><link rel="stylesheet" href="styles/main.css" media="screen">
-        <% if (ieSupport) { %><!-- endbuild -->
-        <!-- build:css(dev) styles/print.css -->
-        <link rel="stylesheet" href="styles/print.css" media="print">
-        <!-- endbuild --><% } else { %>
-        <link rel="stylesheet" href="styles/print.css">
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"><% } %>
         <!-- endbuild --><% } %>
-        <% } else { %><link rel="stylesheet" href="styles/main.css"<% if (ieSupport) { %>  media="screen"<% } %>><% if (ieSupport) { %>
-        <link rel="stylesheet" href="styles/print.css" media="print"><% } %><% } %><% if (useModernizr) { %>
+        <link rel="stylesheet" href="styles/main.css"><% if (useModernizr) { %>
         <script src="bower_components/modernizr/modernizr.js"></script><% } %><% if (ieSupport) { %>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if IE 8]>

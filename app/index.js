@@ -564,43 +564,14 @@ YeogurtGenerator.prototype.styles = function styles() {
 
     if (this.cssOption !== 'None (Vanilla CSS)') {
         if (this.cssOption === 'LESS') {
-            this.mkdir('dev/styles/base');
-
-            this.template('dev/styles/base/_global.less', 'dev/styles/base/_global.less');
-            this.template('dev/styles/base/_mixins.less', 'dev/styles/base/_mixins.less');
-            this.template('dev/styles/base/_variables.less', 'dev/styles/base/_variables.less');
-            this.template('dev/styles/base/_reset.less', 'dev/styles/base/_reset.less');
-
             this.template('dev/styles/main.less', 'dev/styles/main.less');
-            if (this.ieSupport) {
-                this.template('dev/styles/base/_print.less', 'dev/styles/print.less');
-                this.template('dev/styles/base/_ie8.less', 'dev/styles/base/_ie8.less');
-            }
-            else if (!this.useBootstrap) {
-                this.template('dev/styles/base/_print.less', 'dev/styles/base/_print.less');
-            }
         }
         if (this.cssOption === 'SASS') {
-            this.mkdir('dev/styles/base');
-            this.template('dev/styles/base/_mixins.less', 'dev/styles/base/_mixins.scss');
-            this.template('dev/styles/base/_variables.less', 'dev/styles/base/_variables.scss');
-            this.template('dev/styles/base/_reset.less', 'dev/styles/base/_reset.scss');
-
-            this.template('dev/styles/base/_global.less', 'dev/styles/base/_global.scss');
-
-            if (this.ieSupport) {
-                this.template('dev/styles/base/_print.less', 'dev/styles/print.scss');
-                this.template('dev/styles/base/_ie8.less', 'dev/styles/base/_ie8.scss');
-            }
-            else if (!this.useBootstrap) {
-                this.template('dev/styles/base/_print.less', 'dev/styles/base/_print.scss');
-            }
             this.template('dev/styles/main.less', 'dev/styles/main.scss');
         }
     }
     else {
         this.template('dev/styles/main.css', 'dev/styles/main.css');
-        this.template('dev/styles/print.css', 'dev/styles/print.css');
     }
 
 };

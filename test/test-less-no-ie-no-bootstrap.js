@@ -22,7 +22,6 @@ describe('yeogurt generator no IE with less', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'dev/styles/base/_print.less',
             'grunt/',
             'grunt/config',
             'grunt/config/less.js'

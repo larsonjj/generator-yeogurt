@@ -1,17 +1,4 @@
-/**
-*   Import all desired <% if (cssOption === 'LESS') { %>less<% } else if (cssOption === 'SASS') { %>scss<% } %> files here
-*/
-
-// [include:base]
-@import 'base/_variables';
-@import 'base/_mixins';
-@import 'base/_global';<% if (ieSupport) { %>
-@import 'base/_ie8';<% } %>
-@import 'base/_reset';<% if (!ieSupport && !useBootstrap) { %>
-@import 'base/_print';<% } %>
-// [/include]
-<% if (useBourbon) { %>
-/**
+<% if (useBourbon) { %>/**
 *   Import Bourbon Mixins
 */
 @import '../bower_components/bourbon/dist/_bourbon';<% } %><% if (useLesshat) { %>
@@ -29,6 +16,20 @@
 @import '../bower_components/normalize-scss/normalize';<% } %><% if (cssOption === 'LESS') { %>
 // Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
 @import (less) '../bower_components/normalize.css/normalize.css';<% } %><% } %>
+<% if (useBorderBox && !useBootstrap) { %>
+/**
+*   Box sizing partial styles:
+*   Apply a natural box layout model to all elements
+*/
+
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+<% } %>
 <% if (cssOption === 'LESS') { %><% if (useFontAwesome) { %>
 /**
 *   Import Font Awesome Library
@@ -54,8 +55,8 @@ $fa-font-path: '../bower_components/font-awesome/fonts';
 @import "../bower_components/bootstrap/less/mixins.less";
 
 // Reset
-@import "../bower_components/bootstrap/less/normalize.less";<% if (!ieSupport) { %>
-@import "../bower_components/bootstrap/less/print.less";<% } %>
+@import "../bower_components/bootstrap/less/normalize.less";
+@import "../bower_components/bootstrap/less/print.less";
 
 // Core CSS
 @import "../bower_components/bootstrap/less/scaffolding.less";
@@ -106,8 +107,8 @@ $fa-font-path: '../bower_components/font-awesome/fonts';
 @import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/mixins";
 
 // Reset
-@import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/normalize";<% if (!ieSupport) { %>
-@import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/print";<% } %>
+@import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/normalize";
+@import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/print";
 
 // Core CSS
 @import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/scaffolding";

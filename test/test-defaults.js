@@ -30,7 +30,6 @@ describe('yeogurt generator defaults', function () {
             'dev/templates/index.jade',
             'dev/templates/layouts/base.jade',
             'dev/styles',
-            'dev/styles/base',
             'dev/scripts',
             'dev/scripts/main.js',
             'dev/scripts/app.js',

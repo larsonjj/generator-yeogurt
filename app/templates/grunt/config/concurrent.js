@@ -13,10 +13,8 @@ module.exports = function(grunt) {
             'svgmin:dist',<% if (htmlOption === 'Jade') { %>
             'jade:dist',<% } else if(htmlOption === 'Swig') {  %>
             'swig:dist',<% } %><% if (cssOption === 'LESS') { %>
-            'less:dist',<% if (ieSupport) { %>
-            'less:distPrint',<% } %><% } %><% if (cssOption === 'SASS') { %>
-            'sass:dist',<% if (ieSupport) { %>
-            'sass:distPrint',<% } %><% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>
+            'less:dist',<% } %><% if (cssOption === 'SASS') { %>
+            'sass:dist',<% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>
             'jst:dist',<% } else if (jsTemplate === 'Handlebars') { %>
             'handlebars:dist',<% } else if (jsTemplate === 'Jade') { %>
             'jade:dist',<% } %><% if (useDashboard) { %>

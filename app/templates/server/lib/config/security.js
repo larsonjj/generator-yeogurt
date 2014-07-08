@@ -11,11 +11,7 @@ var settings = require('./settings');
 
 /**
  * Takes in express req, res, and next parameters and sets up
- * CSRF (Cross-Site Request Forgery) Token protection
- * @param  {object}   req  Standard express request object
- * @param  {object}   res  Standard express response object
- * @param  {Function} next Callback to inform server to move onto next operation
- * @return {Function}      Execute  passed Paypal lusca protection module
+ * Paypal lusca module with whitelabel routes
  */
 module.exports = function(req, res, next) {
 
