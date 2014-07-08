@@ -8,11 +8,11 @@ module.exports = function(grunt) {
     grunt.config.set('browserify', {
         server: {
             options: {<% if (jsFramework === 'Backbone + React') { %>
-                transform:  [ require('grunt-react').browserify ],
-                <% } %>
+                transform:  [ require('grunt-react').browserify ],<% } %>
                 bundleOptions: {
                     debug: true
-                }
+                },
+                watch: true
             },
             files: {
                 '<%%= yeogurt.server %>/scripts/main.js': ['<%%= yeogurt.dev %>/scripts/main.js']
@@ -20,8 +20,7 @@ module.exports = function(grunt) {
         },
         dist: {
             options: {<% if (jsFramework === 'Backbone + React') { %>
-                transform:  [ require('grunt-react').browserify ],
-                <% } %>
+                transform:  [ require('grunt-react').browserify ],<% } %>
                 bundleOptions: {
                     debug: true
                 },

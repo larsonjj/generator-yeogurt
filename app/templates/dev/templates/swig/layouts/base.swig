@@ -4,7 +4,6 @@
 #}
 
 {# [include:component] #}
-{% import '../components/h1.swig' as h1 %}
 {# [/include] #}
 
 <!DOCTYPE html><% if (ieSupport) { %>

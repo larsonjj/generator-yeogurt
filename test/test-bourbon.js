@@ -23,10 +23,7 @@ describe('yeogurt generator LESS with no dashbaord', function () {
         var expected = [
             // add files and folders you expect to exist here.
             'dev/',
-            'dev/styles',
-            'dev/styles/vendor',
-            'dev/styles/vendor/_bourbon.scss',
-
+            'dev/styles'
         ];
 
         helpers.mockPrompt(this.app, {

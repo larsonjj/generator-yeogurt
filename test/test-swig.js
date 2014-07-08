@@ -25,8 +25,6 @@ describe('yeogurt generator Swig', function () {
             'dev/',
             'dev/templates',
             'dev/templates/layouts',
-            'dev/templates/components',
-            'dev/templates/components/h1.swig',
             'dev/templates/index.swig',
             'dev/templates/layouts/base.swig'
         ];

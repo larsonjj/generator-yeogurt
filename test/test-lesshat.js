@@ -24,8 +24,6 @@ describe('yeogurt generator LESS with no dashbaord', function () {
             // add files and folders you expect to exist here.
             'dev/',
             'dev/styles',
-            'dev/styles/vendor',
-            'dev/styles/vendor/_lesshat.less',
             'grunt/',
             'grunt/config',
             'grunt/config/less.js'

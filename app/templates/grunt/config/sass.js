@@ -22,7 +22,7 @@ module.exports = function(grunt) {
         serverPrint: {
             options: {
                 sourceComments: 'map',
-                outputStyle: 'compressed',
+                outputStyle: 'nested',
                 sourceMap: '<%%= yeogurt.server %>/styles/print.css.map',
                 includePaths: [
                     '<%%= yeogurt.dev %>/styles/**/*.scss'

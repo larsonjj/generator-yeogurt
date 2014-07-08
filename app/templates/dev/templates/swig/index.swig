@@ -17,7 +17,7 @@
 
 {% block content %}
 <div class="main-container">
-    {{ h1.content({text:'Welcome to Yeogurt!'}) }}
+    <h1>Welcome to Yeogurt!</h1>
     <p>
         Take a look at the <a href="https://github.com/larsonjj/generator-yeogurt#yeogurt-generator---">documentation</a> and start mixing up something awesome.
     </p>

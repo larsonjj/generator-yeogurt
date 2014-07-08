@@ -7,10 +7,9 @@
 define(function(require) {
     var app = require('app');
 
-    describe('just checking', function() {
+    describe('app', function() {
 
-        it('works for app', function() {
-            var msg = 'Welcome to yeogurt!';
+        it('Should run a few assertions', function() {
             <% if (jsTemplate === 'React') { %>
             // Insert <div id="app-wrapper"> within the <body> as the first child
             // This will ensure correct testing of the home.jsx React component
@@ -18,9 +17,6 @@ define(function(require) {
             appWrapper.id = 'app-wrapper';
             document.body.insertBefore(appWrapper, document.body.firstChild);
             <% } %>
-            var message = app.init(msg);
-            <% if (testFramework === 'Jasmine') { %>
-            expect(message).toMatch(/initialized/);<% } else if (testFramework === 'Mocha + Chai') { %>expect(message).to.match(/initialized/);<% } %>
         });
 
     });
@@ -30,10 +26,9 @@ define(function(require) {
 
 var app = require('../../dev/scripts/app');
 
-describe('just checking', function() {
+describe('app', function() {
 
-    it('works for app', function() {
-        var msg = 'Welcome to yeogurt!';
+    it('Should run a few assertions', function() {
         <% if (jsTemplate === 'React') { %>
         // Insert <div id="app-wrapper"> within the <body> as the first child
         // This will ensure correct testing of the home.jsx React component
@@ -41,19 +36,14 @@ describe('just checking', function() {
         appWrapper.id = 'app-wrapper';
         document.body.insertBefore(appWrapper, document.body.firstChild);
         <% } %>
-        var message = app.init(msg);
-
-        <% if (testFramework === 'Jasmine') { %>
-        expect(message).toMatch(/initialized/);<% } else if (testFramework === 'Mocha + Chai') { %>expect(message).to.match(/initialized/);<% } %>
     });
 
 });
 <% } else { %>'use strict';
 
-describe('just checking', function() {
+describe('app', function() {
 
-    it('works for app', function() {
-        var msg = 'Welcome to yeogurt!';
+    it('Should run a few assertions', function() {
         <% if (jsTemplate === 'React') { %>
         // Insert <div id="app-wrapper"> within the <body> as the first child
         // This will ensure correct testing of the home.jsx React component
@@ -61,10 +51,6 @@ describe('just checking', function() {
         appWrapper.id = 'app-wrapper';
         document.body.insertBefore(appWrapper, document.body.firstChild);
         <% } %>
-        var message = app.init(msg);
-
-        <% if (testFramework === 'Jasmine') { %>
-        expect(message).toMatch(/initialized/);<% } else if (testFramework === 'Mocha + Chai') { %>expect(message).to.match(/initialized/);<% } %>
     });
 
 });

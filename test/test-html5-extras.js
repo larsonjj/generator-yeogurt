@@ -22,11 +22,6 @@ describe('yeogurt generator with html5 boilerplate extras', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'dev/crossdomain.xml',
-            'dev/browserconfig.xml',
-            'dev/tile.png',
-            'dev/tile-wide.png',
-            'dev/apple-touch-icon-precomposed.png',
             'dev/.htaccess'
         ];
 
@@ -42,8 +37,7 @@ describe('yeogurt generator with html5 boilerplate extras', function () {
             useGA: true,
             useFTP: true,
             jshint: true,
-            extras: ['useFontAwesome', 'useDashboard'],
-            html5Addons: ['adobeXDomain', 'appleIcon', 'ieIcons', 'htaccess']
+            extras: ['useFontAwesome', 'useDashboard', 'htaccess']
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {

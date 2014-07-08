@@ -29,9 +29,6 @@ describe('yeogurt generator SASS with no dashboard', function () {
             'dev/styles/base/_global.scss',
             'dev/styles/base/_reset.scss',
             'dev/styles/base/_ie8.scss',
-            'dev/styles/vendor',
-            'dev/styles/vendor/_font-awesome.scss',
-            'dev/styles/vendor/_bootstrap.scss',
             'dev/styles/print.scss',
             'dev/styles/main.scss'
         ];

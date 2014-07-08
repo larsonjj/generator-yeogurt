@@ -249,26 +249,9 @@ YeogurtGenerator.prototype.askFor = function askFor() {
             name: 'Box Sizing: Border-Box',
             value: 'useBorderBox',
             checked: true
-        }]
-    }, {
-        type: 'checkbox',
-        name: 'html5Addons',
-        message: 'Select any HTML5 Boilerplate addons you would like:',
-        choices: [{
+        }, {
             name: '.htaccess',
             value: 'htaccess',
-            checked: false
-        }, {
-            name: 'Apple Touch Icon',
-            value: 'appleIcon',
-            checked: false
-        },  {
-            name: 'Flash Cross-domain Rules',
-            value: 'adobeXDomain',
-            checked: false
-        }, {
-            name: 'IE touch icons',
-            value: 'ieIcons',
             checked: false
         }]
     }];
@@ -318,9 +301,6 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.responsive = false;
         this.useFoundation = false;
         this.htaccess = false;
-        this.ieIcons = false;
-        this.appleIcon = false;
-        this.adobeXDomain = false;
 
 
         if (this.cssFramework === 'Bootstrap') {
@@ -337,13 +317,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.useDashboard = hasFeature('useDashboard', extras);
         this.useBorderBox = hasFeature('useBorderBox', extras);
         this.useModernizr = hasFeature('useModernizr', extras);
-
-        if (html5Addons) {
-            this.htaccess = hasFeature('htaccess', html5Addons);
-            this.ieIcons = hasFeature('ieIcons', html5Addons);
-            this.adobeXDomain = hasFeature('adobeXDomain', html5Addons);
-            this.appleIcon = hasFeature('appleIcon', html5Addons);
-        }
+        this.htaccess = hasFeature('htaccess', extras);
 
         // Setup Database URLs
         var username = props.dbUser;
@@ -392,10 +366,6 @@ YeogurtGenerator.prototype.app = function app() {
     this.template('_bower.json', 'bower.json');
     this.template('_package.json', 'package.json');
     this.template('README.md', 'README.md');
-
-    this.copy('dev/robots.txt', 'dev/robots.txt');
-    this.copy('dev/humans.txt', 'dev/humans.txt');
-    this.copy('dev/favicon.ico', 'dev/favicon.ico');
 
     if (this.useFTP) {
         this.copy('.ftppass', '.ftppass');
@@ -526,16 +496,12 @@ YeogurtGenerator.prototype.views = function views() {
     if (this.htmlOption === 'Jade') {
         this.mkdir('dev/templates');
         this.mkdir('dev/templates/layouts');
-        this.mkdir('dev/templates/components');
-        this.template('dev/templates/jade/components/h1.jade', 'dev/templates/components/h1.jade');
         this.template('dev/templates/jade/index.jade', 'dev/templates/index.jade');
         this.template('dev/templates/jade/layouts/base.jade', 'dev/templates/layouts/base.jade');
     }
     else if (this.htmlOption === 'Swig') {
         this.mkdir('dev/templates');
         this.mkdir('dev/templates/layouts');
-        this.mkdir('dev/templates/components');
-        this.template('dev/templates/swig/components/h1.swig', 'dev/templates/components/h1.swig');
         this.template('dev/templates/swig/index.swig', 'dev/templates/index.swig');
         this.template('dev/templates/swig/layouts/base.swig', 'dev/templates/layouts/base.swig');
     }
@@ -554,7 +520,6 @@ YeogurtGenerator.prototype.views = function views() {
 YeogurtGenerator.prototype.scripts = function scripts() {
     // dev/scripts
     this.mkdir('dev/scripts');
-    this.mkdir('dev/scripts/vendor');
 
     this.template('dev/scripts/app.js', 'dev/scripts/app.js');
 
@@ -600,23 +565,12 @@ YeogurtGenerator.prototype.styles = function styles() {
     if (this.cssOption !== 'None (Vanilla CSS)') {
         if (this.cssOption === 'LESS') {
             this.mkdir('dev/styles/base');
-            this.mkdir('dev/styles/vendor');
-            if (this.useFontAwesome && this.cssOption !== 'None (Vanilla CSS)') {
-                this.template('dev/styles/vendor/_font-awesome.less', 'dev/styles/vendor/_font-awesome.less');
-            }
-            if (this.useBootstrap) {
-                this.template('dev/styles/vendor/_bootstrap.less', 'dev/styles/vendor/_bootstrap.less');
-            }
+
             this.template('dev/styles/base/_global.less', 'dev/styles/base/_global.less');
             this.template('dev/styles/base/_mixins.less', 'dev/styles/base/_mixins.less');
             this.template('dev/styles/base/_variables.less', 'dev/styles/base/_variables.less');
             this.template('dev/styles/base/_reset.less', 'dev/styles/base/_reset.less');
-            if (this.useLesshat) {
-                this.template('dev/styles/vendor/_lesshat.less', 'dev/styles/vendor/_lesshat.less');
-            }
-            if (!this.useBootstrap) {
-                this.template('dev/styles/vendor/_normalize.less', 'dev/styles/vendor/_normalize.less');
-            }
+
             this.template('dev/styles/main.less', 'dev/styles/main.less');
             if (this.ieSupport) {
                 this.template('dev/styles/base/_print.less', 'dev/styles/print.less');
@@ -634,22 +588,6 @@ YeogurtGenerator.prototype.styles = function styles() {
 
             this.template('dev/styles/base/_global.less', 'dev/styles/base/_global.scss');
 
-            this.mkdir('dev/styles/vendor');
-            if (this.useFontAwesome) {
-                this.template('dev/styles/vendor/_font-awesome.less', 'dev/styles/vendor/_font-awesome.scss');
-            }
-            if (this.useBootstrap) {
-                this.template('dev/styles/vendor/_bootstrap.less', 'dev/styles/vendor/_bootstrap.scss');
-            }
-            if (this.useFoundation) {
-                this.template('dev/styles/vendor/_foundation.scss', 'dev/styles/vendor/_foundation.scss');
-            }
-            if (this.useBourbon) {
-                this.template('dev/styles/vendor/_bourbon.scss', 'dev/styles/vendor/_bourbon.scss');
-            }
-            if (!this.useBootstrap) {
-                this.template('dev/styles/vendor/_normalize.less', 'dev/styles/vendor/_normalize.scss');
-            }
             if (this.ieSupport) {
                 this.template('dev/styles/base/_print.less', 'dev/styles/print.scss');
                 this.template('dev/styles/base/_ie8.less', 'dev/styles/base/_ie8.scss');
@@ -733,23 +671,15 @@ YeogurtGenerator.prototype.projectfiles = function projectfiles() {
 };
 
 YeogurtGenerator.prototype.extras = function extras() {
-    if (this.adobeXDomain) {
-        this.copy('dev/crossdomain.xml', 'dev/crossdomain.xml');
-    }
-
-    if (this.ieIcons) {
-        this.copy('dev/browserconfig.xml', 'dev/browserconfig.xml');
-        this.copy('dev/tile.png', 'dev/tile.png');
-        this.copy('dev/tile-wide.png', 'dev/tile-wide.png');
-    }
 
     if (this.htaccess) {
         this.copy('dev/.htaccess', 'dev/.htaccess');
     }
 
-    if (this.appleIcon) {
-        this.copy('dev/apple-touch-icon-precomposed.png', 'dev/apple-touch-icon-precomposed.png');
-    }
+    this.copy('dev/robots.txt', 'dev/robots.txt');
+    this.copy('dev/humans.txt', 'dev/humans.txt');
+    this.copy('dev/favicon.ico', 'dev/favicon.ico');
+
 };
 
 YeogurtGenerator.prototype.runtime = function runtime() {
