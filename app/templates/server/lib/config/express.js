@@ -101,20 +101,6 @@ module.exports = function(app, express,<% if ('MySQL'.indexOf(dbOption) > -1) { 
         next();
     });
 
-    app.use(function(req, res, next) {
-        // Keep track of previous URL to redirect back to
-        // original destination after a successful login.
-        if (req.method !== 'GET') {
-            return next();
-        }
-        var path = req.path.split('/')[1];
-        if (/(auth|login|logout|signup)$/i.test(path)) {
-            return next();
-        }
-        req.session.returnTo = req.path;
-        next();
-    });
-
     // Load all routes
     require('fs').readdirSync(path.join(settings.root, './lib/routes/')).forEach(function(file) {
         require(path.join(settings.root, './lib/routes/') + file)(app);
