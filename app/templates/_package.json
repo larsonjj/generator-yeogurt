@@ -63,8 +63,7 @@
         "grunt-open": "0.2.3",
         "grunt-svgmin": "0.4.0",
         "grunt-karma": "0.8.0",
-        "grunt-newer": "0.6.1",<% if (cssOption === 'None (Vanilla CSS)') { %>
-        "grunt-uncss": "0.3.2",<% } %>
+        "grunt-newer": "0.6.1",
         "include-all": "0.1.6",<% if (jsOption === 'Browserify') { %>
         "karma-browserify": "0.0.6",<% } else if (jsOption === 'RequireJS') { %>
         "karma-requirejs": "0.2.1",<% } %>

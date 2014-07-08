@@ -467,7 +467,6 @@ YeogurtGenerator.prototype.tasks = function tasks() {
     this.template('grunt/config/svgmin.js', 'grunt/config/svgmin.js');
     this.template('grunt/config/uglify.js', 'grunt/config/uglify.js');
     if (this.cssOption === 'None (Vanilla CSS)' && this.structure === 'Static Site') {
-        this.template('grunt/config/uncss.js', 'grunt/config/uncss.js');
         this.template('grunt/config/cssmin.js', 'grunt/config/cssmin.js');
     }
     this.template('grunt/config/usemin.js', 'grunt/config/usemin.js');

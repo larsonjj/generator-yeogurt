@@ -30,8 +30,9 @@
         <link rel="stylesheet" href="bower_components/foundation/css/foundation.css">
         <% } %><% if (useFontAwesome) { %>
         <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"><% } %>
-        <!-- endbuild --><% } %>
-        <link rel="stylesheet" href="styles/main.css"><% if (useModernizr) { %>
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+        <% } else { %><link rel="stylesheet" href="styles/main.css"><% } %><% if (useModernizr) { %>
         <script src="bower_components/modernizr/modernizr.js"></script><% } %><% if (ieSupport) { %>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if IE 8]>

@@ -4,6 +4,7 @@
 * Removed example modules folder and module.js as it can easily be created with the script subgenerator
 * Fixed jadePartials watch task to not use the `newer:` prefix as it caused changes to components and templates to not be re-compiled
 * Fixed React components property `mixins`. (previously was `mixin`)
+* Removed grunt-uncss as it wasn't consistantly keeping the correct styles
 
 ### v0.9.4:
 #### date: 2014-06-22

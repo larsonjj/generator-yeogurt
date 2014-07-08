@@ -6,8 +6,8 @@
 *   Import Lesshat Library
 */
 
-@import '../bower_components/lesshat/build/lesshat';<% } %>
-<% if (!useBootstrap && !useFoundation) { %>
+@import '../bower_components/lesshat/build/lesshat';
+<% } %><% if (!useBootstrap && !useFoundation) { %>
 /**
 *   Import Normalize Library
 */
@@ -15,8 +15,8 @@
 <% if (cssOption === 'SASS') { %>// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
 @import '../bower_components/normalize-scss/normalize';<% } %><% if (cssOption === 'LESS') { %>
 // Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
-@import (less) '../bower_components/normalize.css/normalize.css';<% } %><% } %>
-<% if (useBorderBox && !useBootstrap) { %>
+@import (less) '../bower_components/normalize.css/normalize.css';<% } %>
+<% } %><% if (useBorderBox && !useBootstrap) { %>
 /**
 *   Box sizing partial styles:
 *   Apply a natural box layout model to all elements
@@ -29,23 +29,21 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-<% } %>
-<% if (cssOption === 'LESS') { %><% if (useFontAwesome) { %>
+<% } %><% if (cssOption === 'LESS') { %><% if (useFontAwesome) { %>
 /**
 *   Import Font Awesome Library
 */
 
 @import '../bower_components/font-awesome/less/font-awesome';
-@fa-font-path: '../bower_components/font-awesome/fonts';<% } %><% } %>
-<% if (cssOption === 'SASS') { %><% if (useFontAwesome) { %>
+@fa-font-path: '../bower_components/font-awesome/fonts';<% } %>
+<% } %><% if (cssOption === 'SASS') { %><% if (useFontAwesome) { %>
 /**
 *   Import Font Awesome Library
 */
 
 $fa-font-path: '../bower_components/font-awesome/fonts';
-@import '../bower_components/font-awesome/scss/font-awesome';<% } %><% } %>
-
-<% if (cssOption === 'LESS' && useBootstrap) { %>
+@import '../bower_components/font-awesome/scss/font-awesome';<% } %>
+<% } %><% if (cssOption === 'LESS' && useBootstrap) { %>
 /**
 *   Import All Bootstrap Styles
 */

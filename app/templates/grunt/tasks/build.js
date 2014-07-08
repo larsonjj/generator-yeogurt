@@ -13,8 +13,7 @@ module.exports = function(grunt) {
         'concat:generated',<% if (cssOption === 'None (Vanilla CSS)') { %>
         'cssmin:generated',<% } %>
         'usemin',
-        'htmlmin:dist',<% if (cssOption === 'None (Vanilla CSS)') { %>
-        'uncss',<% } %>
+        'htmlmin:dist',
         'uglify',
         'clean:temp'
     ]);
