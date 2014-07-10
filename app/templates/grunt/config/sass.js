@@ -8,9 +8,9 @@ module.exports = function(grunt) {
     grunt.config.set('sass', {
         server: {
             options: {
-                sourceComments: 'map',
+                precision: 10,
                 outputStyle: 'nested',
-                sourceMap: '<%%= yeogurt.server %>/styles/main.css.map',
+                sourceMap: 'main.css.map',
                 includePaths: [
                     '<%%= yeogurt.dev %>/styles/**/*.scss'
                 ]
@@ -21,9 +21,9 @@ module.exports = function(grunt) {
         },
         dist: {
             options: {
-                sourceComments: 'map',
+                precision: 10,
                 outputStyle: 'compressed',
-                sourceMap: '<%%= yeogurt.dist %>/styles/main.css.map',
+                sourceMap: 'main.css.map',
                 includePaths: [
                     '<%%= yeogurt.dev %>/styles/**/*.scss'
                 ]

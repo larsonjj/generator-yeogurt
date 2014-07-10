@@ -7,11 +7,25 @@
     var HomeRouter = require('routes/home');<% } %>
     var app = {
         init: function(msg) {
-            console.log(msg);<% if ((/Backbone/i).test(jsFramework)) { %>
+            <% if ((/Backbone/i).test(jsFramework)) { %>
+            $.ajaxPrefilter(function( options ) {
+            options.dataType = 'json';
+        });
             // Initialize routing and start Backbone.history()
-            new HomeRouter();
+            new HomeRouter();<% if (ieSupport) { %>
+            // Enable pushState for compatible browsers
+            var enablePushState = true;
+
+            // Disable for older browsers (IE8, IE9 etc)
+            var pushState = !!(enablePushState && window.history && window.history.pushState);
+
+            Backbone.history.start({ pushState : pushState, root : '/' });
+
+            if (!pushState && window.location.pathname !== '/') {
+                window.location.replace('/#' + window.location.pathname);
+            }<% } else { %>
             Backbone.history.start();
-            <% } %>
+            <% } %><% } %>
         }
     };
     return app;
@@ -21,11 +35,25 @@
 var HomeRouter = require('./routes/home');<% } %>
 var app = {
     init: function(msg) {
-        console.log(msg);<% if ((/Backbone/i).test(jsFramework)) { %>
+        <% if ((/Backbone/i).test(jsFramework)) { %>
+        $.ajaxPrefilter(function( options ) {
+            options.dataType = 'json';
+        });
         // Initialize routing and start Backbone.history()
-        new HomeRouter();
+        new HomeRouter();<% if (ieSupport) { %>
+        // Enable pushState for compatible browsers
+        var enablePushState = true;
+
+        // Disable for older browsers (IE8, IE9 etc)
+        var pushState = !!(enablePushState && window.history && window.history.pushState);
+
+        Backbone.history.start({ pushState : pushState, root : '/' });
+
+        if (!pushState && window.location.pathname !== '/') {
+            window.location.replace('/#' + window.location.pathname);
+        }<% } else { %>
         Backbone.history.start();
-        <% } %>
+        <% } %><% } %>
     }
 };
 

@@ -258,29 +258,25 @@ module.exports = function(grunt) {
             tasks: [<% if (jsOption === 'RequireJS') { %>
                 'newer:copy:server',<% } %><% if (jsOption === 'Browserify') { %>
                 'browserify:server',
-                'exorcise:server'<% } %><% if (useServer) { %>,
-                'express:server'<% } %>
+                'exorcise:server'<% } %>
             ]
         },<% } %><% if (jsTemplate === 'Handlebars') { %>
         handlebars: {
             files: ['<%%= yeogurt.dev %>/templates/**/*.hbs'],
             tasks: [
-                'handlebars:server'<% if (useServer) { %>,
-                'express:server'<% } %>
+                'handlebars:server'
             ]
         },<% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>
         jst: {
             files: ['<%%= yeogurt.dev %>/templates/**/*.jst'],
             tasks: [
-                'jst:server'<% if (useServer) { %>,
-                'express:server'<% } %>
+                'jst:server'
             ]
         },<% } %><% if (jsTemplate === 'Jade') { %>
         jade: {
             files: ['<%%= yeogurt.dev %>/templates/**/*.jade'],
             tasks: [
-                'jade:server'<% if (useServer) { %>,
-                'express:server'<% } %>
+                'jade:server'
             ]
         },<% } %><% if (useDashboard) { %>
         dashboard: {
@@ -322,7 +318,11 @@ module.exports = function(grunt) {
         express: {
             files: [
                 'app.js',
-                'lib/**/*.{js,json}'
+                'lib/**/*.{js,json,html}'<% if (jsTemplate === 'React') { %>,
+                '<%%= yeogurt.dev %>/scripts/views/*.jsx'<% } %><<% if (jsTemplate === 'Handlebars') { %>
+                '<%%= yeogurt.dev %>/templates/**/*.hbs'<% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>
+                '<%%= yeogurt.dev %>/templates/**/*.jst'<% } %><% if (jsTemplate === 'Jade') { %>
+                '<%%= yeogurt.dev %>/templates/**/*.jade'<% } %>
             ],
             tasks: ['express:server', 'wait'],
             options: {
