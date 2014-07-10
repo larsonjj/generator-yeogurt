@@ -58,7 +58,7 @@
         "jshint-stylish": "0.2.0",<% } %>
         "grunt-contrib-copy": "0.5.0",
         "grunt-contrib-uglify": "0.4.0",<% if (cssOption === 'SASS') { %>
-        "grunt-sass": "0.12.1",<% } %><% if (cssOption === 'LESS') { %>
+        "grunt-sass": "0.14.0",<% } %><% if (cssOption === 'LESS') { %>
         "grunt-contrib-less": "0.11.0",<% } %>
         "grunt-open": "0.2.3",
         "grunt-svgmin": "0.4.0",

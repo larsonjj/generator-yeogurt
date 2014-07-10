@@ -9,6 +9,7 @@ var CollectionGenerator = module.exports = function CollectionGenerator(args, op
     yeoman.generators.NamedBase.apply(this, arguments);
 
     // options
+    this.useModel = this.options.model || false;
     this.useDashboard = this.options.dashboard || false;
     this.view = this.options.type || 'page';
     this.useTemplate = this.options.template || false;
@@ -25,7 +26,7 @@ var CollectionGenerator = module.exports = function CollectionGenerator(args, op
     this.ieSupport = fileJSON.ieSupport;
     this.responsive = fileJSON.responsive;
 
-
+    console.log(this.useModel);
     console.log('You called the collection subgenerator with the argument ' + this.name + '.');
 };
 
@@ -43,8 +44,6 @@ CollectionGenerator.prototype.files = function files() {
         }
         this.template('collection.js', 'dev/scripts/collections/' + this._.slugify(this.name.toLowerCase()) + '.js');
         this.template('collection-spec.js', 'test/spec/collections/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
-        this.template('model.js', 'dev/scripts/models/' + this._.slugify(this.name.toLowerCase()) + '.js');
-        this.template('model-spec.js', 'test/spec/models/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
     }
 
 };
