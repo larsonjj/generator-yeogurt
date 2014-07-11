@@ -18,8 +18,8 @@ module.exports = function(grunt) {
             'exorcise:server',<% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>
             'jst:server',<% } else if (jsTemplate === 'Handlebars') { %>
             'handlebars:server',<% } else if (jsTemplate === 'Jade') { %>
-            'jade:server',<% } %><% if (htmlOption === 'Jade') { %>
-            'jade:server',<% } else if(htmlOption === 'Swig') {  %>
+            'jade:server',<% } %><% if (htmlOption === 'Jade' && !useServer ) { %>
+            'jade:server',<% } else if (htmlOption === 'Swig' && !useServer ) {  %>
             'swig:server',<% } %><% if (useDashboard) { %>
             'dashboard:server',<% } %><% if (useKss) { %>
             'kss:server',<% } %><% if (useJsdoc) { %>

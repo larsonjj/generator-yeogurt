@@ -319,7 +319,7 @@ module.exports = function(grunt) {
             files: [
                 'app.js',
                 'lib/**/*.{js,json,html}'<% if (jsTemplate === 'React') { %>,
-                '<%%= yeogurt.dev %>/scripts/views/*.jsx'<% } %><<% if (jsTemplate === 'Handlebars') { %>
+                '<%%= yeogurt.dev %>/scripts/views/*.jsx'<% } %><% if (jsTemplate === 'Handlebars') { %>
                 '<%%= yeogurt.dev %>/templates/**/*.hbs'<% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>
                 '<%%= yeogurt.dev %>/templates/**/*.jst'<% } %><% if (jsTemplate === 'Jade') { %>
                 '<%%= yeogurt.dev %>/templates/**/*.jade'<% } %>

@@ -5,7 +5,7 @@
 <% if (jsOption === 'RequireJS') { %>define(function(require) {
     'use strict';
 
-    var <%= _.camelize(name) %> = require('routers/<%= _.slugify(name) %>-spec');
+    var <%= _.camelize(name) %> = require('routers/<%= _.slugify(name) %>');
 
     describe('<%= _.classify(name) %> Router', function () {
 
@@ -21,7 +21,7 @@
 
 });<% } else if (jsOption === 'Browserify') { %>'use strict';
 
-var <%= _.camelize(name) %> = require('../../dev/scripts/routers/<%= _.slugify(name) %>-spec.js');
+var <%= _.camelize(name) %> = require('../../../dev/scripts/routers/<%= _.slugify(name) %>.js');
 
 describe('<%= _.classify(name) %> Router', function () {
 

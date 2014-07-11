@@ -47,7 +47,6 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         message: 'What ' + 'type of application'.blue + ' will you be creating?',
         choices: ['Static Site', 'Single Page Application']
     },  {
-        when: function(props) { return (/Single Page Application/i).test(props.structure); },
         type: 'confirm',
         name: 'useServer',
         message: 'Would you like to use a ' + 'Node + Express Server'.blue + '?',
@@ -88,11 +87,17 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         name: 'dbPass',
         message: 'What is your ' + 'password'.blue + ' for this database?'
     }, {
-        when: function(props) { return (/Static Site/i).test(props.structure); },
+        when: function(props) { return (/Static Site/i).test(props.structure) && !props.useServer; },
         type: 'list',
         name: 'htmlOption',
         message: 'Which ' + 'HTML preprocessor'.blue + ' would you like to use?',
         choices: ['Jade', 'Swig', 'None (Vanilla HTML)']
+    }, {
+        when: function(props) { return (/Static Site/i).test(props.structure) && props.useServer; },
+        type: 'list',
+        name: 'htmlOption',
+        message: 'Which ' + 'HTML preprocessor'.blue + ' would you like to use?',
+        choices: ['Jade', 'Swig']
     }, {
         when: function(props) { return (/Single Page Application/i).test(props.structure); },
         type: 'list',
@@ -439,10 +444,10 @@ YeogurtGenerator.prototype.tasks = function tasks() {
     this.template('grunt/config/htmlmin.js', 'grunt/config/htmlmin.js');
     this.template('grunt/config/imagemin.js', 'grunt/config/imagemin.js');
     this.template('grunt/config/pngmin.js', 'grunt/config/pngmin.js');
-    if (this.htmlOption === 'Jade' || this.jsTemplate === 'Jade') {
+    if (this.htmlOption === 'Jade' && !this.useServer || this.jsTemplate === 'Jade') {
         this.template('grunt/config/jade.js', 'grunt/config/jade.js');
     }
-    else if (this.htmlOption === 'Swig') {
+    else if (this.htmlOption === 'Swig' && !this.useServer ) {
         this.template('grunt/config/swig.js', 'grunt/config/swig.js');
     }
     if (this.jshint) {
@@ -581,24 +586,25 @@ YeogurtGenerator.prototype.server = function server() {
         this.mkdir('lib/controllers');
         this.mkdir('lib/views');
         this.mkdir('lib/routes');
-        if (this.useServer) {
+        if (this.useServer && this.structure === 'Single Page Application') {
             this.mkdir('lib/modules');
         }
-        if (this.jsTemplate === 'React') {
-            this.template('server/lib/modules/reactRender.js','lib/modules/reactRender.js');
-        }
-        else if (this.jsTemplate === 'Jade') {
-            this.template('server/lib/modules/jadeRender.js','lib/modules/jadeRender.js');
-        }
-        else if (this.jsTemplate === 'Handlebars') {
-            this.template('server/lib/modules/hbsRender.js','lib/modules/hbsRender.js');
+        if (this.structure === 'Single Page Application') {
+            if (this.jsTemplate === 'React') {
+                this.template('server/lib/modules/reactRender.js','lib/modules/reactRender.js');
+            }
+            else if (this.jsTemplate === 'Jade') {
+                this.template('server/lib/modules/jadeRender.js','lib/modules/jadeRender.js');
+            }
+            else if (this.jsTemplate === 'Handlebars') {
+                this.template('server/lib/modules/hbsRender.js','lib/modules/hbsRender.js');
+            }
+            this.template('dev/templates/html/index.html', 'lib/views/index.html');
         }
 
         if (this.dbOption !== 'None') {
             this.template('server/lib/config/database.js', 'lib/config/database.js');
         }
-
-        this.template('dev/templates/html/index.html', 'lib/views/index.html');
 
         this.template('server/lib/config/express.js', 'lib/config/express.js');
         this.template('server/lib/config/secrets.js', 'lib/config/secrets.js');

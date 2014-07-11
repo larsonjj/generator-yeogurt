@@ -21,7 +21,7 @@
 
 });<% } else if (jsOption === 'Browserify') { %>'use strict';
 
-var <%= _.classify(name) %> = require('../../dev/scripts/models/<%= _.slugify(name) %>.js');
+var <%= _.classify(name) %> = require('../../../dev/scripts/models/<%= _.slugify(name) %>.js');
 
 describe('<%= _.classify(name) %> Model', function () {
 

@@ -3,14 +3,14 @@
  * Home page.
  */
 
-'use strict';
+'use strict';<% if (structure === 'Single Page Application') { %>
 <% if (jsTemplate === 'React') { %>
 var reactRender = require('../modules/reactRender');<% } %><% if (jsTemplate === 'Jade') { %>
 var jadeRender = require('../modules/jadeRender');<% } %><% if (jsTemplate === 'Handlebars') { %>
-var hbsRender = require('../modules/hbsRender');<% } %>
+var hbsRender = require('../modules/hbsRender');<% } %><% } %>
 
 module.exports = {
-    index: function(req, res) {
+    index: function(req, res) {<% if (structure === 'Single Page Application') { %>
         res.format({
             // If content-type being requested is HTML, then render out the template
             html: function(){<% if (jsTemplate === 'React') { %>
@@ -26,6 +26,7 @@ module.exports = {
             json: function(){
                 res.send(JSON.stringify({}));
             }
-        });
+        });<% } %><% if (structure === 'Static Site') { %>
+        res.render('index', {})<% } %>
     }
 };
