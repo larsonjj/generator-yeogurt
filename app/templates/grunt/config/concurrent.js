@@ -10,8 +10,8 @@ module.exports = function(grunt) {
             'pngmin:dist',
             'imagemin:dist',<% if (useJsdoc) { %>
             'jsdoc:dist',<% } %>
-            'svgmin:dist',<% if (htmlOption === 'Jade' && !useServer ) { %>
-            'jade:dist',<% } else if(htmlOption === 'Swig' && !useServer) {  %>
+            'svgmin:dist',<% if (htmlOption === 'Jade' ) { %>
+            'jade:dist',<% } else if(htmlOption === 'Swig') {  %>
             'swig:dist',<% } %><% if (cssOption === 'LESS') { %>
             'less:dist',<% } %><% if (cssOption === 'SASS') { %>
             'sass:dist',<% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>

@@ -444,10 +444,10 @@ YeogurtGenerator.prototype.tasks = function tasks() {
     this.template('grunt/config/htmlmin.js', 'grunt/config/htmlmin.js');
     this.template('grunt/config/imagemin.js', 'grunt/config/imagemin.js');
     this.template('grunt/config/pngmin.js', 'grunt/config/pngmin.js');
-    if (this.htmlOption === 'Jade' && !this.useServer || this.jsTemplate === 'Jade') {
+    if (this.htmlOption === 'Jade' || this.jsTemplate === 'Jade') {
         this.template('grunt/config/jade.js', 'grunt/config/jade.js');
     }
-    else if (this.htmlOption === 'Swig' && !this.useServer ) {
+    else if (this.htmlOption === 'Swig' ) {
         this.template('grunt/config/swig.js', 'grunt/config/swig.js');
     }
     if (this.jshint) {
@@ -584,9 +584,9 @@ YeogurtGenerator.prototype.server = function server() {
     if (this.useServer) {
         this.mkdir('lib');
         this.mkdir('lib/controllers');
-        this.mkdir('lib/views');
         this.mkdir('lib/routes');
         if (this.useServer && this.structure === 'Single Page Application') {
+            this.mkdir('lib/views');
             this.mkdir('lib/modules');
         }
         if (this.structure === 'Single Page Application') {

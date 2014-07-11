@@ -38,14 +38,13 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: '<%%= yeogurt.dev %>/',
                 dest: '<%%= yeogurt.dist %>/',
-                src: [
-                    <% if (jsOption === 'RequireJS') { %>'bower_components/requirejs/require.js',<% } %>
+                src: [<% if (jsOption === 'RequireJS') { %>
+                    'bower_components/requirejs/require.js',<% } %>
                     'bower_components/modernizr/modernizr.js',
                     'bower_components/**/*.{woff,otf,ttf,eot,svg}',<% if (useDashboard) { %>
                     'dashboard/**/*.*',<% } %>
                     'bower_components/jquery/jquery.min.*',<% if (htmlOption === 'None (Vanilla HTML)' || (/Backbone/i).test(jsFramework) && !useServer) { %>
-                    '*.html',<% } %>
-                    'scripts/modules/inline-*.*',<% if (useKss) { %>
+                    '*.html',<% } %><% if (useKss) { %>
                     'docs/styleguide/public/images',<% } %>
                     '!*.js',
                     '*.{ico,png,txt}',
@@ -53,7 +52,7 @@ module.exports = function(grunt) {
                     'images/**/*.{webp}',
                     'styles/fonts/**/*.{woff,otf,ttf,eot,svg}'
                 ]
-            }<% if (useServer) { %>, {
+            }<% if (useServer && structure === 'Single Page Application') { %>, {
                 expand: true,
                 cwd: 'lib/views/',
                 dest: '.tmp',

@@ -7,7 +7,7 @@
     var HomeRouter = require('routes/home');<% } %>
     var app = {
         init: function(msg) {
-            <% if ((/Backbone/i).test(jsFramework)) { %>
+            console.log(msg);<% if ((/Backbone/i).test(jsFramework)) { %>
             $.ajaxPrefilter(function( options ) {
             options.dataType = 'json';
         });
@@ -35,7 +35,7 @@
 var HomeRouter = require('./routes/home');<% } %>
 var app = {
     init: function(msg) {
-        <% if ((/Backbone/i).test(jsFramework)) { %>
+        console.log(msg);<% if ((/Backbone/i).test(jsFramework)) { %>
         $.ajaxPrefilter(function( options ) {
             options.dataType = 'json';
         });

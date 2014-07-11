@@ -5,7 +5,7 @@
 
 module.exports = function(grunt) {
 
-    grunt.config.set('jade', {<% if (structure === 'Static Site') { %>
+    grunt.config.set('jade', {<% if (structure === 'Static Site') { %><% if (!useServer) { %>
         server: {
             options: {
                 pretty: true,
@@ -19,18 +19,20 @@ module.exports = function(grunt) {
             dest: '<%%= yeogurt.server %>/',
             src: ['*.jade'],
             ext: '.html'
-        },
+        },<% } %>
         dist: {
             options: {
                 pretty: true,
                 client: false,
                 data: {
-                    debug: false
+                    debug: false<% if (useServer) { %>,
+                    env: 'development'<% } %>
                 }
             },
             expand: true,
-            cwd: '<%%= yeogurt.dev %>/templates/',
-            dest: '<%%= yeogurt.dist %>/',
+            cwd: '<%%= yeogurt.dev %>/templates/',<% if (!useServer) { %>
+            dest: '<%%= yeogurt.dist %>/',<% } %><% if (useServer) { %>
+            dest: '.tmp/',<% } %>
             src: ['*.jade'],
             ext: '.html'
         }<% } else if (jsTemplate === 'Jade') { %>
@@ -57,7 +59,7 @@ module.exports = function(grunt) {
             files: {
                 '.tmp/templates/templates.js': ['<%%= yeogurt.dev %>/templates/*.jade']
             }
-        }<% } %><% if (jsFramework === 'Backbone' || jsFramework === 'Backbone + Marionette') { %>,
+        }<% } %><% if (jsFramework === 'Backbone') { %>,
         test: {
             options: {
                 pretty: true,

@@ -17,7 +17,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
         <title><%= projectName %></title>
         <meta name="description" content=""/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/><% if (useServer) { %>
+        <meta name="csrf-token" content="{{_csrf}}" /><% } %>
         <% if (useGA) { %>
         <link href="//www.google-analytics.com" rel="dns-prefetch">
         <% } %>
@@ -80,24 +81,21 @@
             ga('create','UA-XXXXX-X');ga('send','pageview');
         </script><% } %>
 
-        {#
-            Place all vendor library/plugin/framework scripts within the 'build:js' comments below,
-            so they will be optimised correctly during a 'grunt build' task
-        #}
+        <% if (useServer) { %>{% if env == 'development' %}<% } %>
         <!-- build:js(dev) scripts/vendor.js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
-        <% if  (useBootstrap) { %><script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>affix.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>alert.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>button.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>carousel.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>collapse.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>dropdown.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>modal.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>scrollspy.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>tab.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>tooltip.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>popover.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/vendor/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>transition.js"></script>
+        <% if  (useBootstrap) { %><script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>affix.js"></script>
+        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>alert.js"></script>
+        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>button.js"></script>
+        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>carousel.js"></script>
+        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>collapse.js"></script>
+        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>dropdown.js"></script>
+        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>modal.js"></script>
+        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>scrollspy.js"></script>
+        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>tab.js"></script>
+        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>tooltip.js"></script>
+        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>popover.js"></script>
+        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>transition.js"></script>
         <% } %><% if (useFoundation) { %><script src="bower_components/foundation/js/vendor/fastclick.js"></script>
         <script src="bower_components/foundation/js/vendor/jquery.cookie.js"></script>
         <script src="bower_components/foundation/js/vendor/placeholder.js"></script>
@@ -119,6 +117,9 @@
         <script src="bower_components/foundation/js/foundation/foundation.tooltip.js"></script>
         <script src="bower_components/foundation/js/foundation/foundation.topbar.js"></script>
         <% } %><!-- endbuild -->
+        <% if (useServer) { %>{% else %}
+        <script src="scripts/vendor.js"></script>
+        {% endif %}<% } %>
 
         {#
             Author Scripts

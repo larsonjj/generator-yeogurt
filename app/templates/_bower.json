@@ -15,7 +15,7 @@
         "requirejs": "2.1.11"<% if (useModernizr) { %>,
         "modernizr": "2.8.1"<% } %><% if (cssOption === 'LESS' && useBootstrap || cssOption === 'None (Vanilla CSS)' && useBootstrap || jsOption === 'None (Vanilla JavaScript)' && cssOption !== 'SASS' && useBootstrap) { %>,
         "bootstrap": "3.1.1"<% } else if (cssOption === 'SASS' && useBootstrap) { %>,
-        "bootstrap-sass-official": "3.1.1"<% } %><% if (cssOption === 'LESS') { %><% if (!useBootstrap) { %>,
+        "bootstrap-sass-official": "3.2.0"<% } %><% if (cssOption === 'LESS') { %><% if (!useBootstrap) { %>,
         "normalize.css": "~3.0.1"<% } %><% if (useLesshat) { %>,
         "lesshat": "3.0.0"<% } %><% } %><% if (cssOption === 'SASS') { %><% if (!useBootstrap) { %>,
         "normalize-scss": "~3.0.1"<% } %><% if (useBourbon) { %>,

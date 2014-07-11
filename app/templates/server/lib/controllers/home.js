@@ -27,6 +27,8 @@ module.exports = {
                 res.send(JSON.stringify({}));
             }
         });<% } %><% if (structure === 'Static Site') { %>
-        res.render('index', {})<% } %>
+        res.render('index', {
+            env: process.env.NODE_ENV || 'development'
+        });<% } %>
     }
 };
