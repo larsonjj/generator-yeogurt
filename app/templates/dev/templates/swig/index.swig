@@ -22,12 +22,12 @@
         Take a look at the <a href="https://github.com/larsonjj/generator-yeogurt#yeogurt-generator---">documentation</a> and start mixing up something awesome.
     </p>
     <p>
-        <img src="images/yeogurt-swirl.png" width="75px" class="logo" />
+        <img src="/images/yeogurt-swirl.png" width="75px" class="logo" />
     </p><% if (useDashboard || useJsdoc || useKss) { %>
     <p class="links">
-        <% if (useDashboard) { %><a href="dashboard/index.html">Dashboard</a><% } %><% if (useKss) { %>
-        <a href="docs/styleguide/index.html">Styleguide</a><% } %><% if (useJsdoc) { %>
-        <a href="docs/api/index.html">API</a><% } %>
+        <% if (useDashboard) { %><a href="/dashboard/index.html">Dashboard</a><% } %><% if (useKss) { %>
+        <a href="/docs/styleguide/index.html">Styleguide</a><% } %><% if (useJsdoc) { %>
+        <a href="/docs/api/index.html">API</a><% } %>
     </p><% } %>
 </div>
 <code class="version">v<%= pkg.version %></code>
