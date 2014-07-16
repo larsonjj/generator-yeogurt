@@ -40,6 +40,7 @@ module.exports = function(app, express,<% if ('MySQL'.indexOf(dbOption) > -1) { 
     app.disable('x-powered-by');
 
     if ('development' === env) {
+        // Load livereload script
         app.use(require('connect-livereload')());
 
         // Setup log level for server console output

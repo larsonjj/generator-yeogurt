@@ -23,21 +23,21 @@
         <link href="//www.google-analytics.com" rel="dns-prefetch">
         <% } %>
         <% if (cssOption === 'None (Vanilla CSS)') { %><!-- build:css(dev) styles/main.css -->
-        <% if (useBootstrap) { %><link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen">
-        <% } %><% if (useFoundation) { %><link rel="stylesheet" href="bower_components/foundation/css/normalize.css"><link rel="stylesheet" href="bower_components/foundation/css/foundation.css">
+        <% if (useBootstrap) { %><link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" media="screen">
+        <% } %><% if (useFoundation) { %><link rel="stylesheet" href="/bower_components/foundation/css/normalize.css"><link rel="stylesheet" href="/bower_components/foundation/css/foundation.css">
         <% } %><% if (useFontAwesome) { %>
-        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"><% } %>
-        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css"><% } %>
+        <link rel="stylesheet" href="/styles/main.css">
         <!-- endbuild -->
-        <% } else { %><link rel="stylesheet" href="styles/main.css"><% } %><% if (useModernizr) { %>
-        <script src="bower_components/modernizr/modernizr.js"></script><% } %><% if (ieSupport) { %>
+        <% } else { %><link rel="stylesheet" href="/styles/main.css"><% } %><% if (useModernizr) { %>
+        <script src="/bower_components/modernizr/modernizr.js"></script><% } %><% if (ieSupport) { %>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if IE 8]>
         <% if (responsive) { %>
-        <script src="bower_components/respond/respond.min.js"></script><% } %>
-        <script src="bower_components/html5shiv/dist/html5shiv-printshiv.js"></script><% if (jsTemplate === 'React') { %>
-        <script src="bower_components/es5-shim/es5-shim.js"></script>
-        <script src="bower_components/es5-shim/es5-sham.js"></script><% } %>
+        <script src="/bower_components/respond/respond.min.js"></script><% } %>
+        <script src="/bower_components/html5shiv/dist/html5shiv-printshiv.js"></script><% if (jsTemplate === 'React') { %>
+        <script src="/bower_components/es5-shim/es5-shim.js"></script>
+        <script src="/bower_components/es5-shim/es5-sham.js"></script><% } %>
         <script>
             // Protect window.console method calls, e.g. console is not defined on IE
             (function() {
@@ -83,53 +83,53 @@
 
         <% if (useServer) { %>{% if env == 'development' %}<% } %>
         <!-- build:js(dev) scripts/vendor.js -->
-        <script src="bower_components/jquery/dist/jquery.js"></script>
-        <% if  (useBootstrap) { %><script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>affix.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>alert.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>button.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>carousel.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>collapse.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>dropdown.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>modal.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>scrollspy.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>tab.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>tooltip.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>popover.js"></script>
-        <script src="bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>transition.js"></script>
-        <% } %><% if (useFoundation) { %><script src="bower_components/foundation/js/vendor/fastclick.js"></script>
-        <script src="bower_components/foundation/js/vendor/jquery.cookie.js"></script>
-        <script src="bower_components/foundation/js/vendor/placeholder.js"></script>
-        <script src="bower_components/foundation/js/foundation/foundation.js"></script>
-        <script src="bower_components/foundation/js/foundation/foundation.abide.js"></script>
-        <script src="bower_components/foundation/js/foundation/foundation.accordion.js"></script>
-        <script src="bower_components/foundation/js/foundation/foundation.alert.js"></script>
-        <script src="bower_components/foundation/js/foundation/foundation.clearing.js"></script>
-        <script src="bower_components/foundation/js/foundation/foundation.dropdown.js"></script>
-        <script src="bower_components/foundation/js/foundation/foundation.equalizer.js"></script>
-        <script src="bower_components/foundation/js/foundation/foundation.interchange.js"></script>
-        <script src="bower_components/foundation/js/foundation/foundation.joyride.js"></script>
-        <script src="bower_components/foundation/js/foundation/foundation.magellan.js"></script>
-        <script src="bower_components/foundation/js/foundation/foundation.offcanvas.js"></script>
-        <script src="bower_components/foundation/js/foundation/foundation.orbit.js"></script>
-        <script src="bower_components/foundation/js/foundation/foundation.reveal.js"></script>
-        <script src="bower_components/foundation/js/foundation/foundation.slider.js"></script>
-        <script src="bower_components/foundation/js/foundation/foundation.tab.js"></script>
-        <script src="bower_components/foundation/js/foundation/foundation.tooltip.js"></script>
-        <script src="bower_components/foundation/js/foundation/foundation.topbar.js"></script>
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+        <% if  (useBootstrap) { %><script src="/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>affix.js"></script>
+        <script src="/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>alert.js"></script>
+        <script src="/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>button.js"></script>
+        <script src="/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>carousel.js"></script>
+        <script src="/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>collapse.js"></script>
+        <script src="/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>dropdown.js"></script>
+        <script src="/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>modal.js"></script>
+        <script src="/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>scrollspy.js"></script>
+        <script src="/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>tab.js"></script>
+        <script src="/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>tooltip.js"></script>
+        <script src="/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>popover.js"></script>
+        <script src="/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>transition.js"></script>
+        <% } %><% if (useFoundation) { %><script src="/bower_components/foundation/js/vendor/fastclick.js"></script>
+        <script src="/bower_components/foundation/js/vendor/jquery.cookie.js"></script>
+        <script src="/bower_components/foundation/js/vendor/placeholder.js"></script>
+        <script src="/bower_components/foundation/js/foundation/foundation.js"></script>
+        <script src="/bower_components/foundation/js/foundation/foundation.abide.js"></script>
+        <script src="/bower_components/foundation/js/foundation/foundation.accordion.js"></script>
+        <script src="/bower_components/foundation/js/foundation/foundation.alert.js"></script>
+        <script src="/bower_components/foundation/js/foundation/foundation.clearing.js"></script>
+        <script src="/bower_components/foundation/js/foundation/foundation.dropdown.js"></script>
+        <script src="/bower_components/foundation/js/foundation/foundation.equalizer.js"></script>
+        <script src="/bower_components/foundation/js/foundation/foundation.interchange.js"></script>
+        <script src="/bower_components/foundation/js/foundation/foundation.joyride.js"></script>
+        <script src="/bower_components/foundation/js/foundation/foundation.magellan.js"></script>
+        <script src="/bower_components/foundation/js/foundation/foundation.offcanvas.js"></script>
+        <script src="/bower_components/foundation/js/foundation/foundation.orbit.js"></script>
+        <script src="/bower_components/foundation/js/foundation/foundation.reveal.js"></script>
+        <script src="/bower_components/foundation/js/foundation/foundation.slider.js"></script>
+        <script src="/bower_components/foundation/js/foundation/foundation.tab.js"></script>
+        <script src="/bower_components/foundation/js/foundation/foundation.tooltip.js"></script>
+        <script src="/bower_components/foundation/js/foundation/foundation.topbar.js"></script>
         <% } %><!-- endbuild -->
         <% if (useServer) { %>{% else %}
-        <script src="scripts/vendor.js"></script>
+        <script src="/scripts/vendor.js"></script>
         {% endif %}<% } %>
 
         {#
             Author Scripts
         #}
-        <% if  (jsOption ==='RequireJS') { %><script data-main="scripts/main", src="bower_components/requirejs/require.js"></script><% } else if (jsOption ==='Browserify') { %><script src="scripts/main.js"></script><% } else { %>{#
+        <% if  (jsOption ==='RequireJS') { %><script data-main="scripts/main", src="bower_components/requirejs/require.js"></script><% } else if (jsOption ==='Browserify') { %><script src="/scripts/main.js"></script><% } else { %>{#
             Place all author scripts within the 'build:js' comments below,
             so they will be optimised correctly during a 'grunt build' task
         #}
         <!-- build:js(dev) scripts/app.js -->
-        <script src="scripts/app.js"></script>
+        <script src="/scripts/app.js"></script>
         <!-- endbuild --><% } %>
     </body>
 </html>
