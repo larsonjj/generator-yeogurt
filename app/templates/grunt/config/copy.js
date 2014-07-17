@@ -20,6 +20,8 @@ module.exports = function(grunt) {
                     'bower_components/**/*.{woff,otf,ttf,eot,svg}',<% if (useKss) { %>
                     'docs/styleguide/public/images',<% } %>
                     'images/**',
+                    '*.{ico,png,txt}',<% if (htaccess) { %>
+                    '.htaccess',<% } %>
                     'styles/fonts/**/*.{woff,otf,ttf,eot,svg}',<% if (htmlOption === 'None (Vanilla HTML)' || (/Backbone/i).test(jsFramework) && !useServer) { %>
                     '*.html'<% } %>
                 ]
@@ -47,8 +49,8 @@ module.exports = function(grunt) {
                     '*.html',<% } %><% if (useKss) { %>
                     'docs/styleguide/public/images',<% } %>
                     '!*.js',
-                    '*.{ico,png,txt}',
-                    '.htaccess',
+                    '*.{ico,png,txt}',<% if (htaccess) { %>
+                    '.htaccess',<% } %>
                     'images/**/*.{webp}',
                     'styles/fonts/**/*.{woff,otf,ttf,eot,svg}'
                 ]

@@ -14,7 +14,7 @@ var settings = {
             name: 'Yeogurt Dev'
         },
         server: {
-            port: process.env.PORT || 3000,
+            port: process.env.PORT || 9010,
             host: 'localhost'
         },
         database: {
@@ -52,7 +52,7 @@ var settings = {
             name: 'Yeogurt Prod'
         },
         server: {
-            port: process.env.PORT || 3000,
+            port: process.env.PORT || 9010,
             host: process.env.HOSTNAME || '127.0.0.1'
         },
         database: {

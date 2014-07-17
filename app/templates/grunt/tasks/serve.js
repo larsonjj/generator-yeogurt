@@ -28,8 +28,8 @@ module.exports = function(grunt) {
             'sass:server',<% } %>
             'clean:temp',<% if (useServer) { %>
             'express:server',
-            'open',
-            'wait',<% } else { %>
+            'wait',
+            'open'<% } else { %>
             'connect:server'<% } %>
         ]);
         <% if (useKss || useJsdoc) { %>

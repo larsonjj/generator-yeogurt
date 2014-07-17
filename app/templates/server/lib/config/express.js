@@ -4,7 +4,7 @@
 'use strict';
 
 var compress = require('compression');
-var cookieParser = require('cookie-parser');
+var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var errorHandler = require('errorhandler');
 var session = require('express-session');
@@ -39,45 +39,19 @@ module.exports = function(app, express,<% if ('MySQL'.indexOf(dbOption) > -1) { 
     // Remove x-powered-by header (doesn't let clients know we are using Express)
     app.disable('x-powered-by');
 
-    if ('development' === env) {
-        // Load livereload script
-        app.use(require('connect-livereload')());
-
-        // Setup log level for server console output
-        app.use(logger('dev'));
-
-        // Disable caching of scripts for easier testing
-        app.use(function noCache(req, res, next) {
-            if (req.url.indexOf('/scripts/') === 0) {
-                res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
-                res.header('Pragma', 'no-cache');
-                res.header('Expires', 0);
-            }
-            next();
-        });
-
-        app.use(express.static(path.join(settings.root, settings.staticAssets), {maxAge: week}));
-    }
-
-    if ('production' === env) {
-        app.use(compress());
-        // Mount public/ folder for static assets and set cache via maxAge
-        app.use(express.static(path.join(settings.root, settings.staticAssets), {
-            maxAge: week
-        }));
-    }
-
     // Setup path where all server templates will reside<% if (structure === 'Single Page Application') { %>
     app.set('views', path.join(settings.root, 'lib/views'));<% } %><% if (structure === 'Static Site') { %>
     app.set('views', path.join(settings.root, 'dev/templates'));
     <% } %>
 
+    // Load favicon
+    app.use(favicon((settings.root + '/' + settings.staticAssets + '/favicon.ico')));
+
+    app.use(express.static(path.join(settings.root, settings.staticAssets), {maxAge: week}));
+
     // Returns middleware that parses both json and urlencoded.
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
-
-    // Parse Cookie header and populate req.cookies with an object keyed by the cookie names
-    app.use(cookieParser(secrets.cookieSecret));
 
     app.use(session({
         secret: secrets.sessionSecret,
@@ -95,6 +69,25 @@ module.exports = function(app, express,<% if ('MySQL'.indexOf(dbOption) > -1) { 
             maxAge: day
         }
     }));
+
+    if ('development' === env) {
+        app.use(require('connect-livereload')());
+
+        // Setup log level for server console output
+        app.use(logger('dev'));
+
+        // Disable caching for easier testing
+        app.use(function noCache(req, res, next) {
+            res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
+            res.header('Pragma', 'no-cache');
+            res.header('Expires', 0);
+            next();
+        });
+    }
+
+    if ('production' === env || 'test' === env) {
+        app.use(compress());
+    }
 
     // Initialize Lusca Security
     app.use(function(req, res, next) {
