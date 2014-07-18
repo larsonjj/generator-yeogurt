@@ -7,25 +7,7 @@
 *   <%= _.classify(name) %> Spec Description
 */
 
-<% if (jsOption === 'RequireJS') { %>define(function(require) {
-    'use strict';
-
-    var <%= _.classify(name) %> = require('jsx!views/<%= _.slugify(name) %>');
-    var ReactTestUtils = require('react').addons.TestUtils;
-
-    var reactRender;
-
-    beforeEach(function() {
-        reactRender = ReactTestUtils.renderIntoDocument;
-    });
-
-    describe('Testing React Component', function() {
-        it('Should run a few assertions', function() {
-
-        });
-    });
-
-});<% } else if (jsOption === 'Browserify') { %>'use strict';
+'use strict';
 
 var <%= _.classify(name) %> = require('../../../dev/scripts/views/<%= _.slugify(name) %>.jsx');
 
@@ -41,4 +23,4 @@ describe('Testing React Component', function() {
     it('Should run a few assertions', function() {
 
     });
-});<% } %>
+});

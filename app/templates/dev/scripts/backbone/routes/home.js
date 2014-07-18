@@ -4,21 +4,17 @@
 
 <% if (jsOption === 'RequireJS') { %>define(function (require) {
     'use strict';
-    <% if (jsFramework === 'Backbone + React') { %>
-    var React = require('react');
-    var HomeComponent = require('jsx!views/home');<% } else if ((/Backbone/i).test(jsFramework)) { %>
-    var HomeView = require('views/home');<% } %>
+
+    var HomeView = require('views/home');
 
     var HomeRouter = Backbone.Router.extend({
         routes: {
             '': 'default'
         },
 
-        default: function() {<% if (jsFramework === 'Backbone + React') { %>
-            React.renderComponent(new HomeComponent(), document.getElementById('app-wrapper'));
-            <% } else if ((/Backbone/i).test(jsFramework)) { %>
+        default: function() {
             // Initialize the home view
-            new HomeView();<% } %>
+            new HomeView();
         }
 
     });

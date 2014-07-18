@@ -22,8 +22,8 @@
         "sequelize": "1.7.9",<% } %>
         "uglify-js": "^2.4.12",
         "underscore": "~1.6.0"<% if (jsTemplate === 'React') { %>,
-        "node-jsx": "0.10.0",
-        "react": "0.10.0"<% } %><% if (htmlOption === 'Swig') { %>,
+        "node-jsx": "0.11.0",
+        "react": "0.11.0"<% } %><% if (htmlOption === 'Swig') { %>,
         "swig": "1.4.1"<% } %><% if (jsTemplate === 'Jade' || htmlOption === 'Jade') { %>,
         "jade": "1.3.1"<% } %><% if (jsTemplate === 'Handlebars') { %>,
         "handlebars": "1.3.0"<% } %><% } %>

@@ -26,6 +26,7 @@ describe('yeogurt generator backbone + react', function () {
             'dev/scripts/views',
             'dev/scripts/routes/home.js',
             'dev/scripts/views/home.jsx',
+            'test/helpers/phantomjs-shims.js',
             'dev/index.html'
         ];
 

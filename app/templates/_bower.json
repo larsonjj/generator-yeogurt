@@ -6,9 +6,7 @@
         "jquery": "1.11.1",<% } %><% if ((/Backbone/i).test(jsFramework)) { %>
         "backbone": "1.1.2",
         "lodash": "2.4.1",<% } %><% if (jsTemplate === 'React') { %>
-        "es5-shim": "3.4.0",<% } %><% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>
-        "backbone-react-component": "0.6.2",
-        "jsx-requirejs-plugin": "https://github.com/philix/jsx-requirejs-plugin.git#0.2.1",<% } %><% if ((/Handlebars/i).test(jsTemplate)) { %>
+        "es5-shim": "3.4.0",<% } %><% if ((/Handlebars/i).test(jsTemplate)) { %>
         "handlebars": "1.3.0",<% } else if ((/Jade/i).test(jsTemplate)) { %>
         "jade": "1.3.1",<% } %><% if (useFoundation) { %>
         "foundation": "5.2.3",<% } %>

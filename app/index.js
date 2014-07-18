@@ -131,19 +131,6 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         message: 'Which ' + 'JavaScript templating library'.blue + ' would you like to use?',
         choices: ['Handlebars', 'Jade']
     }, {
-        when: function(props) {
-            if ((/Single Page Application/i).test(props.structure) && props.useServer && props.jsFramework !== 'Backbone + React' || (/Single Page Application/i).test(props.structure) && !props.useServer) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        },
-        type: 'list',
-        name: 'jsOption',
-        message: 'Which ' + 'JavaScript module library'.blue + ' would you like to use?',
-        choices: ['RequireJS', 'Browserify']
-    }, {
         when: function(props) { return (/Static Site/i).test(props.structure); },
         type: 'list',
         name: 'jsOption',
@@ -275,7 +262,6 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this.useServer = props.useServer;
         this.ieSupport = props.ieSupport;
         this.extras = props.extras;
-        this.html5Addons = props.html5Addons;
         this.jshint = props.jshint;
         this.useJsdoc = props.useJsdoc;
         this.dbOption = props.dbOption ? props.dbOption : 'None';
@@ -295,7 +281,6 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         this. jsOption = props.jsOption = props.jsOption ? props.jsOption : 'Browserify';
 
         var extras = this.extras;
-        var html5Addons = this.html5Addons;
 
         function hasFeature(feat, obj) {
             return obj.indexOf(feat) !== -1;
@@ -555,6 +540,7 @@ YeogurtGenerator.prototype.scripts = function scripts() {
 
         this.template('dev/scripts/backbone/routes/home.js', 'dev/scripts/routes/home.js');
         this.template('dev/scripts/react/home.jsx', 'dev/scripts/views/home.jsx');
+        this.template('test/helpers/phantomjs-shims.js', 'test/helpers/phantomjs-shims.js');
     }
 };
 

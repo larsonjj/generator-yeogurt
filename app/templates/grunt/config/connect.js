@@ -13,22 +13,13 @@ module.exports = function(grunt) {
         },
         server: {
             options: {
-                open: 'http://127.0.0.1:9010/.server/index.html',
-                base: '<%%= yeogurt.dev %>'
-            }
-        },
-        test: {
-            options: {
-                port: 9011,
-                base: [
-                    'test',
-                    '<%%= yeogurt.dev %>'
-                ]
+                open: 'http://127.0.0.1:9010/',
+                base: '<%%= yeogurt.dev %>/.server'
             }
         },
         dist: {
             options: {
-                open: 'http://127.0.0.1:9010/index.html',
+                open: 'http://127.0.0.1:9010/',
                 base: '<%%= yeogurt.dist %>',
                 livereload: false
             }
