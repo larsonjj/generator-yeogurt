@@ -3,7 +3,7 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
 
     grunt.config.set('svgmin', {
         dist: {
@@ -16,5 +16,6 @@ module.exports = function(grunt) {
         }
     });
 
-    // grunt.loadNpmTasks('grunt-svgmin');
 };
+
+module.exports = taskConfig;

@@ -3,7 +3,7 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
 
     grunt.config.set('express', {
         options: {
@@ -11,17 +11,19 @@ module.exports = function(grunt) {
         },
         server: {
             options: {
-                script: 'app.js',
+                script: 'server.js',
+                node_env: 'development',
                 debug: true
             }
         },
         dist: {
             options: {
-                script: 'app.js',
+                script: 'server.js',
                 node_env: 'production'
             }
         }
     });
 
-    // grunt.loadNpmTasks('grunt-express');
 };
+
+module.exports = taskConfig;

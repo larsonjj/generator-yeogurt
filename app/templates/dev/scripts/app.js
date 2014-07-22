@@ -1,70 +1,77 @@
 /**
 *   App Description
 */
+<% if (jsOption === 'RequireJS') { %>
+define(function (require) {
+    'use strict';
+    <% if ((/Backbone/i).test(jsFramework)) { %>
+    var Router = require('routes');<% } %>
 
-<% if (jsOption === 'RequireJS') { %>define(function (require) {
-    'use strict';<% if ((/Backbone/i).test(jsFramework)) { %>
-    var HomeRouter = require('routes/home');<% } %>
-    var app = {
-        init: function(msg) {
-            console.log(msg);<% if ((/Backbone/i).test(jsFramework)) { %>
-            $.ajaxPrefilter(function( options ) {
-            options.dataType = 'json';
-        });
-            // Initialize routing and start Backbone.history()
-            new HomeRouter();<% if (ieSupport) { %>
-            // Enable pushState for compatible browsers
-            var enablePushState = true;
-
-            // Disable for older browsers (IE8, IE9 etc)
-            var pushState = !!(enablePushState && window.history && window.history.pushState);
-
-            Backbone.history.start({ pushState : pushState, root : '/' });
-
-            if (!pushState && window.location.pathname !== '/') {
-                window.location.replace('/#' + window.location.pathname);
-            }<% } else { %>
-            Backbone.history.start();
-            <% } %><% } %>
-        }
-    };
-    return app;
-
-});<% } else if (jsOption === 'Browserify') { %>'use strict';
-<% if ((/Backbone/i).test(jsFramework)) { %>
-var HomeRouter = require('./routes/home');<% } %>
-var app = {
-    init: function(msg) {
-        console.log(msg);<% if ((/Backbone/i).test(jsFramework)) { %>
-        $.ajaxPrefilter(function( options ) {
-            options.dataType = 'json';
-        });
-        // Initialize routing and start Backbone.history()
-        new HomeRouter();<% if (ieSupport) { %>
+    var init = function(msg) {
+        <% if ((/Backbone/i).test(jsFramework)) { %>
+        // Initialize route(s)
+        new Router();<% if (ieSupport) { %>
         // Enable pushState for compatible browsers
         var enablePushState = true;
 
         // Disable for older browsers (IE8, IE9 etc)
         var pushState = !!(enablePushState && window.history && window.history.pushState);
 
+        // Start route handling
         Backbone.history.start({ pushState : pushState, root : '/' });
 
         if (!pushState && window.location.pathname !== '/') {
             window.location.replace('/#' + window.location.pathname);
         }<% } else { %>
         Backbone.history.start();
+
+        console.log('Welcome to Yeogurt');
         <% } %><% } %>
-    }
-};
+    };
 
-module.exports = app;<% } else if (jsOption === 'None (Vanilla JavaScript)') { %>
+    return {
+        init: init
+    };
+});<% } else if (jsOption === 'Browserify') { %>
 'use strict';
+<% if ((/Backbone/i).test(jsFramework)) { %>
+var Router = require('./routes');
 
-var app = {
-    init: function(msg) {
-        console.log(msg);
+// Initialize route(s)
+new Router();
+<% if (ieSupport) { %>
+// Enable pushState for compatible browsers
+var enablePushState = true;
+
+// Disable for older browsers (IE8, IE9 etc)
+var pushState = !!(enablePushState && window.history && window.history.pushState);
+
+// Start route handling
+Backbone.history.start({ pushState : pushState, root : '/' });
+
+// Handle pushState for incompatibl browsers
+if (!pushState && window.location.pathname !== '/') {
+    window.location.replace('/#' + window.location.pathname);
+}<% } else { %>
+Backbone.history.start();
+
+console.log('Welcome to Yeogurt');<% } %>
+<% if (jsFramework === 'Backbone + React') { %>
+// Enable React dev tools
+window.React = require('react');<% } %>
+<% } %><% } else if (jsOption === 'None (Vanilla JavaScript)') { %>
+'use strict';<% if (jsFramework === 'Backbone') { %>
+
+// Create global namespaces for Models, Collections, and Views
+window.<%= _.classify(projectName) %> = {
+    init: function () {
+        console.log('Welcome to Yeogurt');
     }
 };
 
-app.init('Welcome to Yeogurt!');
-<% } %>
+$(document).ready(function () {
+    <%= _.classify(projectName) %>.init();
+});
+<% } else { %>
+
+console.log('Welcome to Yeogurt');<% } %><% } %>

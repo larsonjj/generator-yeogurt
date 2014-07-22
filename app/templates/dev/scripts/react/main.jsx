@@ -1,14 +1,16 @@
 /** @jsx React.DOM */
 
 /**
-*   Home Component Description
+*   Main Component Description
 */
+
+'use strict';
 
 var React = require('react');
 var backboneMixin = require('backbone-react-component');
 
-var HomeComponent = React.createClass({
-    // Add react backbone plugin
+var MainComponent = React.createClass({
+    // Add react backbone mixin
     mixin: [backboneMixin.mixin],
     render: function() {
         return (
@@ -32,4 +34,4 @@ var HomeComponent = React.createClass({
     }
 });
 
-module.exports = HomeComponent;
+module.exports = MainComponent;

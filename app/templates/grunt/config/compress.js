@@ -3,7 +3,7 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
 
     grunt.config.set('compress', {
         main: {
@@ -18,5 +18,6 @@ module.exports = function(grunt) {
         }
     });
 
-    // grunt.loadNpmTasks('grunt-contrib-compress');
 };
+
+module.exports = taskConfig;

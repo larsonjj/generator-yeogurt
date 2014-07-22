@@ -3,9 +3,10 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
 
     grunt.config.set('cssmin', {});
 
-    // grunt.loadNpmTasks('grunt-contrib-cssmin');
 };
+
+module.exports = taskConfig;

@@ -3,10 +3,10 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
 
     grunt.config.set('useminPrepare', {
-        html: <% if (!useServer) { %>'<%%= yeogurt.dist %>/index.html'<% } else { %>'.tmp/index.html'<% } %>,
+        html: <% if (!useServer) { %>'<%%= yeogurt.dist %>/*.html'<% } else { %>'.tmp/*.html'<% } %>,
         options: {
             root: '<%%= yeogurt.dev %>',
             dest: '<%%= yeogurt.dist %>'
@@ -14,12 +14,13 @@ module.exports = function(grunt) {
     });
 
     grunt.config.set('usemin', {
-        html: <% if (!useServer) { %>'<%%= yeogurt.dist %>/index.html'<% } else { %>'.tmp/index.html'<% } %>,<% if (cssOption === 'None (Vanilla CSS)') { %>
+        html: <% if (!useServer) { %>'<%%= yeogurt.dist %>/*.html'<% } else { %>'.tmp/index.html'<% } %>,<% if (cssOption === 'None (Vanilla CSS)') { %>
         css: ['<%%= yeogurt.dist %>/styles/**/*.css'],<% } %>
         options: {
             assetsDirs: ['<%%= yeogurt.dev %>', '<%%= yeogurt.dev %>/images']
         }
     });
 
-    // grunt.loadNpmTasks('grunt-usemin');
 };
+
+module.exports = taskConfig;

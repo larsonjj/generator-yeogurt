@@ -3,7 +3,7 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
 
     grunt.config.set('pngmin', {
         dist: {
@@ -19,5 +19,6 @@ module.exports = function(grunt) {
         }
     });
 
-    // grunt.loadNpmTasks('grunt-contrib-pngmin');
 };
+
+module.exports = taskConfig;

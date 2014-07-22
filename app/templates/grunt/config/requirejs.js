@@ -3,7 +3,7 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
 
     grunt.config.set('requirejs', {
         dist: {
@@ -22,5 +22,6 @@ module.exports = function(grunt) {
         }
     });
 
-    // grunt.loadNpmTasks('grunt-contrib-requirejs');
 };
+
+module.exports = taskConfig;

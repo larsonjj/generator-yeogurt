@@ -12,7 +12,7 @@ define(function(require) {
         it('Should run a few assertions', function() {
             <% if (jsTemplate === 'React') { %>
             // Insert <div id="app-wrapper"> within the <body> as the first child
-            // This will ensure correct testing of the home.jsx React component
+            // This will ensure correct testing of the main.jsx React component
             var appWrapper = document.createElement('div');
             appWrapper.id = 'app-wrapper';
             document.body.insertBefore(appWrapper, document.body.firstChild);
@@ -31,7 +31,7 @@ describe('app', function() {
     it('Should run a few assertions', function() {
         <% if (jsTemplate === 'React') { %>
         // Insert <div id="app-wrapper"> within the <body> as the first child
-        // This will ensure correct testing of the home.jsx React component
+        // This will ensure correct testing of the main.jsx React component
         var appWrapper = document.createElement('div');
         appWrapper.id = 'app-wrapper';
         document.body.insertBefore(appWrapper, document.body.firstChild);
@@ -46,7 +46,7 @@ describe('app', function() {
     it('Should run a few assertions', function() {
         <% if (jsTemplate === 'React') { %>
         // Insert <div id="app-wrapper"> within the <body> as the first child
-        // This will ensure correct testing of the home.jsx React component
+        // This will ensure correct testing of the main.jsx React component
         var appWrapper = document.createElement('div');
         appWrapper.id = 'app-wrapper';
         document.body.insertBefore(appWrapper, document.body.firstChild);

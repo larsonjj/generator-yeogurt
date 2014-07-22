@@ -1,8 +1,8 @@
 /**
 *   <%= _.classify(name) %> View Description
 */
-
-<% if (jsOption === 'RequireJS') { %>define(function (require) {
+<% if (jsOption === 'RequireJS') { %>
+define(function (require) {
     'use strict';
 
     var <%= _.classify(name) %>View = Backbone.View.extend({
@@ -32,7 +32,8 @@
     });
 
     return <%= _.classify(name) %>View;
-});<% } else if (jsOption === 'Browserify') { %>'use strict';
+});<% } else if (jsOption === 'Browserify') { %>
+'use strict';
 
 var <%= _.classify(name) %>View = Backbone.View.extend({
 

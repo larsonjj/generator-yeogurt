@@ -16,10 +16,10 @@ var SequelizeStore = require('connect-session-sequelize')(session.Store);<% } %>
 
 // Configuration files
 var secrets = require('./secrets');
-var settings = require('./settings');
+var settings = require('./env/default');
 var security = require('./security');
 
-module.exports = function(app, express,<% if ('MySQL'.indexOf(dbOption) > -1) { %> sequelize,<% } %> path) {
+var expressConfig = function(app, express,<% if ('MySQL'.indexOf(dbOption) > -1) { %> sequelize,<% } %> path) {
 
     var hour = 3600000;
     var day = hour * 24;
@@ -39,8 +39,13 @@ module.exports = function(app, express,<% if ('MySQL'.indexOf(dbOption) > -1) { 
     // Remove x-powered-by header (doesn't let clients know we are using Express)
     app.disable('x-powered-by');
 
+    if ('production' === env) {
+        // Enable GZip compression for all static assets
+        app.use(compress());
+    }
+
     // Setup path where all server templates will reside<% if (structure === 'Single Page Application') { %>
-    app.set('views', path.join(settings.root, 'lib/views'));<% } %><% if (structure === 'Static Site') { %>
+    app.set('views', path.join(settings.root, 'server/views'));<% } %><% if (structure === 'Static Site') { %>
     app.set('views', path.join(settings.root, 'dev/templates'));
     <% } %>
 
@@ -53,6 +58,8 @@ module.exports = function(app, express,<% if ('MySQL'.indexOf(dbOption) > -1) { 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
 
+    // Create cookie that keeps track of user sessions
+    // And store it in the Database
     app.use(session({
         secret: secrets.sessionSecret,
         saveUninitialized: true,
@@ -71,6 +78,7 @@ module.exports = function(app, express,<% if ('MySQL'.indexOf(dbOption) > -1) { 
     }));
 
     if ('development' === env) {
+        // Include livereload script
         app.use(require('connect-livereload')());
 
         // Setup log level for server console output
@@ -85,24 +93,19 @@ module.exports = function(app, express,<% if ('MySQL'.indexOf(dbOption) > -1) { 
         });
     }
 
-    if ('production' === env || 'test' === env) {
-        app.use(compress());
-    }
-
     // Initialize Lusca Security
     app.use(function(req, res, next) {
         security(req, res, next);
     });
 
+    // Make it easier to read user data within templates
     app.use(function(req, res, next) {
         res.locals.user = req.user;
         next();
     });
 
-    // Load all routes
-    require('fs').readdirSync(path.join(settings.root, './lib/routes/')).forEach(function(file) {
-        require(path.join(settings.root, './lib/routes/') + file)(app);
-    });
+    // Load routes
+    require('../routes')(app);
 
     /**
      * 500 Error Handler.
@@ -111,3 +114,5 @@ module.exports = function(app, express,<% if ('MySQL'.indexOf(dbOption) > -1) { 
     app.use(errorHandler());
 
 };
+
+module.exports = expressConfig;

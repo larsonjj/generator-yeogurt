@@ -22,7 +22,7 @@ describe('yeogurt generator server defaults', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'lib/modules/hbsRender.js'
+            'server/modules/hbsRender.js'
         ];
 
         helpers.mockPrompt(this.app, {

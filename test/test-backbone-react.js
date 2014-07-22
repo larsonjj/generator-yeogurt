@@ -22,10 +22,9 @@ describe('yeogurt generator backbone + react', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'dev/scripts/routes',
             'dev/scripts/views',
-            'dev/scripts/routes/home.js',
-            'dev/scripts/views/home.jsx',
+            'dev/scripts/routes.js',
+            'dev/scripts/views/main.jsx',
             'test/helpers/phantomjs-shims.js',
             'dev/index.html'
         ];

@@ -3,22 +3,23 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
 
     grunt.config.set('exorcise', {
         server: {
             options: {},
             files: {
-                '<%%= yeogurt.server %>/scripts/main.js.map': ['<%%= yeogurt.server %>/scripts/main.js'],
+                '<%%= yeogurt.server %>/scripts/app.js.map': ['<%%= yeogurt.server %>/scripts/app.js'],
             }
         },
         dist: {
             options: {},
             files: {
-                '<%%= yeogurt.dist %>/scripts/main.js.map': ['<%%= yeogurt.dist %>/scripts/main.js'],
+                '<%%= yeogurt.dist %>/scripts/app.js.map': ['<%%= yeogurt.dist %>/scripts/app.js'],
             }
         }
     });
 
-    // grunt.loadNpmTasks('grunt-exorcise');
 };
+
+module.exports = taskConfig;

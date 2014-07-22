@@ -3,8 +3,8 @@
     All other templates will extend from this
 #}
 
-{# [include:component] #}
-{# [/include] #}
+{# [injector:swig] #}
+{# [endinjector] #}
 
 <!DOCTYPE html><% if (ieSupport) { %>
 <!--[if IE 8]><html class="ie8<% if (useModernizr) { %> no-js<% } %>" lang="en"><![endif]-->
@@ -28,8 +28,14 @@
         <% } %><% if (useFontAwesome) { %>
         <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css"><% } %>
         <link rel="stylesheet" href="/styles/main.css">
+            <!-- [injector:css] -->
+            <!-- [endinjector] -->
         <!-- endbuild -->
-        <% } else { %><link rel="stylesheet" href="/styles/main.css"><% } %><% if (useModernizr) { %>
+        <% } else { %><!-- build:css(dev) styles/main.css -->
+        <link rel="stylesheet" href="/styles/main.css">
+            <!-- [injector:css] -->
+            <!-- [endinjector] -->
+        <!-- endbuild --><% } %><% if (useModernizr) { %>
         <script src="/bower_components/modernizr/modernizr.js"></script><% } %><% if (ieSupport) { %>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if IE 8]>
@@ -68,6 +74,9 @@
         <body>
         {% endif %}
     {% endblock %}
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
 
     {% block content %}{% endblock %}
 
@@ -82,7 +91,7 @@
         </script><% } %>
 
         <% if (useServer) { %>{% if env == 'development' %}<% } %>
-        <!-- build:js(dev) scripts/vendor.js -->
+        <!-- build:js(dev) scripts/globals.js -->
         <script src="/bower_components/jquery/dist/jquery.js"></script>
         <% if  (useBootstrap) { %><script src="/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>affix.js"></script>
         <script src="/bower_components/<% if (cssOption === 'SASS') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'LESS' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>alert.js"></script>
@@ -118,18 +127,22 @@
         <script src="/bower_components/foundation/js/foundation/foundation.topbar.js"></script>
         <% } %><!-- endbuild -->
         <% if (useServer) { %>{% else %}
-        <script src="/scripts/vendor.js"></script>
+        <script src="/scripts/globals.js"></script>
         {% endif %}<% } %>
 
         {#
             Author Scripts
         #}
-        <% if  (jsOption ==='RequireJS') { %><script data-main="scripts/main", src="bower_components/requirejs/require.js"></script><% } else if (jsOption ==='Browserify') { %><script src="/scripts/main.js"></script><% } else { %>{#
+        <% if  (jsOption ==='RequireJS') { %><script data-main="scripts/main", src="bower_components/requirejs/require.js"></script><% } else if (jsOption ==='Browserify') { %><script src="/scripts/app.js"></script><% } else { %>{#
             Place all author scripts within the 'build:js' comments below,
             so they will be optimised correctly during a 'grunt build' task
         #}
-        <!-- build:js(dev) scripts/app.js -->
-        <script src="/scripts/app.js"></script>
+        <!-- build:js(dev) scripts/app.js --><% if (jsFramework !== 'Backbone') { %>
+        <script src="/scripts/app.js"></script><% } %>
+            <!-- [injector:js] -->
+            <!-- [endinjector] --><% if (jsFramework === 'Backbone') { %>
+        <script src="/scripts/routes.js"></script>
+        <script src="/scripts/app.js"></script><% } %>
         <!-- endbuild --><% } %>
     </body>
 </html>

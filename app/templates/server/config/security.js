@@ -5,15 +5,15 @@
 
 'use strict';
 
-var _ = require('underscore');
+var _ = require('lodash');
 var lusca = require('lusca');
-var settings = require('./settings');
+var settings = require('./env/default');
 
 /**
  * Takes in express req, res, and next parameters and sets up
  * Paypal lusca module with whitelabel routes
  */
-module.exports = function(req, res, next) {
+var securityConfig = function(req, res, next) {
 
     for (var prop in settings.security.whitelists) {
         // Conditional whitelisted URLs.
@@ -27,3 +27,5 @@ module.exports = function(req, res, next) {
 
     return init(req, res, next);
 };
+
+module.exports = securityConfig;

@@ -22,10 +22,9 @@ describe('yeogurt generator backbone + lo-dash', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'dev/scripts/views/home.js',
-            'dev/templates/home.jade',
-            'dev/scripts/routes/home.js',
-            'dev/scripts/routes',
+            'dev/scripts/views/main.js',
+            'dev/templates/main.jade',
+            'dev/scripts/routes.js',
             'dev/templates',
             'dev/scripts/views',
             'dev/index.html'

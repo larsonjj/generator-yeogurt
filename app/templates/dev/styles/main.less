@@ -192,17 +192,8 @@ $fa-font-path: '../bower_components/font-awesome/fonts';
 @import "../bower_components/foundation/scss/foundation/components/offcanvas";
 @import "../bower_components/foundation/scss/foundation/components/visibility";<% } %>
 
-/**
-*   The default folder for the styles subgenerator is `partials`
-*   If you would rather use a different folder, feel free to use the `--folder` flag
-*   and change the comment below to match your new folder.
-*   ex. `yo yeogurt:style myStyle --folder=module`
-*   Comments would be:
-*   [include:modules]
-*   [/include]
-*/
-// [include:partials]
-// [/include]
+// [injector]
+// [endinjector]
 
 .main-container {
     padding-top: 200px;
@@ -239,4 +230,12 @@ $fa-font-path: '../bower_components/font-awesome/fonts';
     font-size: 100%;
     padding: .5em 1em;
     text-decoration: none;
+}
+
+// Styling on warning for users on IE7 or below
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
 }

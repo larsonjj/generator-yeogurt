@@ -3,7 +3,7 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
 
     grunt.config.set('copy', {
         server: {
@@ -56,7 +56,7 @@ module.exports = function(grunt) {
                 ]
             }<% if (useServer && structure === 'Single Page Application') { %>, {
                 expand: true,
-                cwd: 'lib/views/',
+                cwd: 'server/views/',
                 dest: '.tmp',
                 src: [
                     'index.html'
@@ -65,5 +65,6 @@ module.exports = function(grunt) {
         }
     });
 
-    // grunt.loadNpmTasks('grunt-contrib-copy');
 };
+
+module.exports = taskConfig;

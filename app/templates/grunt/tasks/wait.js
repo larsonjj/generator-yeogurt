@@ -3,7 +3,7 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
     grunt.registerTask('wait', 'Helper task that allows a set amount of time to wait for the server to reload', function() {
         grunt.log.ok('Waiting for server...');
 
@@ -15,3 +15,5 @@ module.exports = function(grunt) {
         }, 500);
     });
 };
+
+module.exports = taskConfig;

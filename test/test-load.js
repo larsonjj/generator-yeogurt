@@ -5,7 +5,14 @@ var assert  = require('assert');
 
 describe('yeogurt generator', function () {
     it('can be imported without blowing up', function () {
-        var app = require('../app');
-        assert(app !== undefined);
+        assert(require('../app') !== undefined);
+        // Todo: unit test sub-generators
+        // assert(require('../style') !== undefined);
+        // assert(require('../script') !== undefined);
+        // assert(require('../react') !== undefined);
+        // assert(require('../route') !== undefined);
+        // assert(require('../view') !== undefined);
+        // assert(require('../model') !== undefined);
+        // assert(require('../collection') !== undefined);
     });
 });

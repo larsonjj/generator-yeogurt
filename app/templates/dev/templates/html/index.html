@@ -31,15 +31,19 @@
         <% } %><% if (useFontAwesome) { %>
         <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css"><% } %>
         <link rel="stylesheet" href="styles/main.css">
+            <!-- [injector:css] -->
+            <!-- [endinjector] -->
         <!-- endbuild -->
-        <% } else { %><link rel="stylesheet" href="styles/main.css"><% } %><% if (useModernizr) { %>
+        <% } else { %><!-- build:css(dev) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+            <!-- [injector:css] -->
+            <!-- [endinjector] -->
+        <!-- endbuild --><% } %><% if (useModernizr) { %>
         <script src="/bower_components/modernizr/modernizr.js"></script><% } %><% if (ieSupport) { %>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if IE 8]>
+        <!--[if lt IE 9]>
         <% if (responsive) { %><script src="/bower_components/respond/respond.min.js"></script><% } %>
-        <script src="/bower_components/html5shiv/dist/html5shiv-printshiv.js"></script><% if (jsTemplate === 'React') { %>
-        <script src="/bower_components/es5-shim/es5-shim.js"></script>
-        <script src="/bower_components/es5-shim/es5-sham.js"></script><% } %>
+        <script src="/bower_components/html5shiv/dist/html5shiv-printshiv.js"></script>
         <script>
             // Protect window.console method calls, e.g. console is not defined on IE
             (function() {
@@ -63,6 +67,9 @@
         <![endif]--><% } %>
     </head>
     <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
         <% if (structure === 'Static Site') { %>
         <div class="main-container">
             <h1>Welcome to Yeogurt!</h1>
@@ -92,8 +99,14 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');
         </script><% } %>
+        <% if (jsTemplate === 'React') { %>
+        <!--[if lt IE 9]>
+        <script src="/bower_components/es5-shim/es5-shim.js"></script>
+        <script src="/bower_components/es5-shim/es5-sham.js"></script>
+        <![endif]--><% } %>
+
         <% if (useServer) { %><%% if (env === 'development') { %><% } %>
-        <!-- build:js({dev,.tmp}) scripts/vendor.js -->
+        <!-- build:js({dev,.tmp}) scripts/global.js -->
         <script src="/bower_components/jquery/dist/jquery.js"></script><% if ((/Backbone/i).test(jsFramework)) { %>
         <script src="/bower_components/lodash/dist/lodash.underscore.js"></script>
         <script src="/bower_components/backbone/backbone.js"></script><% } %><% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>
@@ -135,10 +148,14 @@
         <script src="/bower_components/foundation/js/foundation/foundation.topbar.js"></script>
         <% } %><!-- endbuild -->
         <% if (useServer) { %><%% } else { %>
-        <script src="/scripts/vendor.js"></script>
+        <script src="/scripts/global.js"></script>
         <%% } %><% } %>
-        <% if (jsOption ==='RequireJS') { %><script data-main="/scripts/main", src="/bower_components/requirejs/require.js"></script><% } else if (jsOption ==='Browserify') { %><script src="/scripts/main.js"></script><% } else { %><!-- build:js(dev) scripts/app.js -->
-        <script src="/scripts/app.js"></script>
+        <% if (jsOption ==='RequireJS') { %><script data-main="/scripts/main", src="/bower_components/requirejs/require.js"></script><% } else if (jsOption ==='Browserify') { %><script src="/scripts/app.js"></script><% } else { %><!-- build:js(dev) scripts/app.js --><% if (jsFramework !== 'Backbone') { %>
+        <script src="/scripts/app.js"></script><% } %>
+            <!-- [injector:js] -->
+            <!-- [endinjector] --><% if (jsFramework === 'Backbone') { %>
+        <script src="/scripts/routes.js"></script>
+        <script src="/scripts/app.js"></script><% } %>
         <!-- endbuild --><% } %>
 
     </body>

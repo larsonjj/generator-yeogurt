@@ -91,14 +91,7 @@
 
     "maxerr"        : 100,      // Maximum errors before stopping.
     "predef"        : [         // Extra globals.
-        "require",<% if (jsOption === 'RequireJS') { %>
-        "requirejs",<% } %><% if ((/Backbone/i).test(jsFramework)) { %>
-        "Backbone",
-        "<%= _.classify(projectName) %>",
-        "_",<% } %><% if ((/Underscore/i).test(jsTemplate) || (/Handlebars/i).test(jsTemplate) || (/Jade/i).test(jsTemplate) || (/React/i).test(jsFramework)) { %>
-        "JST",<% } %><% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>
-        "React",<% } %><% if (useServer) { %>
-        "__dirname",<% } %>
+        "require",
         "define",
         "afterEach",
         "beforeEach",
@@ -117,5 +110,15 @@
         "waitsFor",
         "xdescribe"
     ],
+    "globals": {<% if (jsOption === 'RequireJS') { %>
+        "requirejs": true,<% } %><% if ((/Backbone/i).test(jsFramework)) { %>
+        "Backbone": true,
+        "<%= _.classify(projectName) %>": true,
+        "_": true,<% } %><% if ((/Underscore/i).test(jsTemplate) || (/Handlebars/i).test(jsTemplate) || (/Jade/i).test(jsTemplate) || (/React/i).test(jsFramework)) { %>
+        "JST": true,<% } %><% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>
+        "React": true,<% } %><% if (useServer) { %>
+        "__dirname": true,<% } %><% if (useModernizr) { %>
+        "Modernizr": true<% } %>
+    },
     "indent"        : 4         // Specify indentation spacing
 }

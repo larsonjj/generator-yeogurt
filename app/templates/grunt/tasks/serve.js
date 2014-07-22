@@ -3,17 +3,18 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
     grunt.registerTask('serve', 'Open a development server within your browser', function (target) {
         if (target === 'dist') {
             return grunt.task.run(['build',<% if (useServer) { %>
-            'express:dist', 'open', 'keepalive'<% } else { %> 'connect:dist:keepalive'<% } %>]);
+            'env:all', 'env:prod', 'express:dist', 'open', 'keepalive'<% } else { %> 'connect:dist:keepalive'<% } %>]);
         }
 
         grunt.task.run([
-            'clean:server',
-            'copy:server',<% if (jshint) { %>
-            'jshint:test',<% } %><% if (jsOption === 'Browserify') { %>
+            'clean:server',<% if (useServer) { %>
+            'env:all',<% } %>
+            'injector',
+            'copy:server',<% if (jsOption === 'Browserify') { %>
             'browserify:server',
             'exorcise:server',<% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>
             'jst:server',<% } else if (jsTemplate === 'Handlebars') { %>
@@ -43,3 +44,5 @@ module.exports = function(grunt) {
         <% } %>
     });
 };
+
+module.exports = taskConfig;

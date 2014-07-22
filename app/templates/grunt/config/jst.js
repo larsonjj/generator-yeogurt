@@ -3,7 +3,7 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
 
     grunt.config.set('jst', {
         server: {
@@ -15,7 +15,7 @@ module.exports = function(grunt) {
             files: {
                 '.tmp/templates/templates.js': ['<%%= yeogurt.dev %>/templates/*.jst']
             }
-        }<% if (jsFramework === 'Backbone' || jsFramework === 'Backbone + Marionette') { %>,
+        }<% if (jsFramework === 'Backbone') { %>,
         test: {
             options: {
                 namespace: 'JST'
@@ -26,5 +26,6 @@ module.exports = function(grunt) {
         }<% } %>
     });
 
-    // grunt.loadNpmTasks('grunt-contrib-jst');
 };
+
+module.exports = taskConfig;

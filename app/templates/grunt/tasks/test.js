@@ -3,7 +3,7 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
     grunt.registerTask('test', 'Peform tests on JavaScript', [
         <% if (jshint) { %>'jshint:test',
         <% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>'jst:test',<% } else if (jsTemplate === 'Handlebars') { %>'handlebars:test',<% } else if (jsTemplate === 'Jade') { %>
@@ -12,3 +12,5 @@ module.exports = function(grunt) {
         'clean:temp'
     ]);
 };
+
+module.exports = taskConfig;

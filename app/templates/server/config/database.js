@@ -5,7 +5,7 @@
 'use strict';
 <% if (dbOption === 'MongoDB') { %>
 var mongoose = require('mongoose');<% } %>
-var settings = require('./settings');<% if ('MySQL'.indexOf(dbOption) > -1) { %>
+var settings = require('./env/default');<% if ('MySQL'.indexOf(dbOption) > -1) { %>
 var Sequelize = require('sequelize');<% } %>
 
 // Add coloring for console output
@@ -14,7 +14,7 @@ require('colors');
 /**
  * Database Connection.
  */
-module.exports.connect = function(app) {
+var databaseConfig = function(app) {
 
     var env = app.get('env');
 
@@ -113,3 +113,5 @@ module.exports.connect = function(app) {
     return sequelize;
     <% } %>
 };
+
+module.exports = databaseConfig;

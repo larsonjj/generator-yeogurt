@@ -3,7 +3,7 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
 
     grunt.config.set('swig', {<% if (useServer) { %>
         options: {
@@ -28,5 +28,6 @@ module.exports = function(grunt) {
         }
     });
 
-    // grunt.loadNpmTasks('grunt-swig-templates');
 };
+
+module.exports = taskConfig;

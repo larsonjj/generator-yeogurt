@@ -3,7 +3,7 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
 
     grunt.config.set('jade', {<% if (structure === 'Static Site') { %><% if (!useServer) { %>
         server: {
@@ -74,5 +74,6 @@ module.exports = function(grunt) {
         }<% } %>
     });
 
-    // grunt.loadNpmTasks('grunt-contrib-jade');
 };
+
+module.exports = taskConfig;

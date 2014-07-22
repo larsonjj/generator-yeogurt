@@ -3,9 +3,10 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
 
     grunt.config.set('concat', {});
 
-    // grunt.loadNpmTasks('grunt-contrib-concat');
 };
+
+module.exports = taskConfig;

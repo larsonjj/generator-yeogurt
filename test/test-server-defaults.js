@@ -24,10 +24,12 @@ describe('yeogurt generator server defaults', function () {
             // add files and folders you expect to exist here.
             'grunt/config/open.js',
             'grunt/config/express.js',
-            'lib/views/index.html',
-            'lib/modules',
-            'lib/modules/reactRender.js',
-            'lib/config/database.js'
+            'server/views/index.html',
+            'server/modules',
+            'server/modules/reactRender.js',
+            'server/config/database.js',
+            'server/routes.js',
+            'server.js'
         ];
 
         helpers.mockPrompt(this.app, {

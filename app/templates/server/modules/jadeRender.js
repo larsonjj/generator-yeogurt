@@ -2,11 +2,12 @@
 
 var jade = require('jade');
 var path = require('path');
-var settings = require('../config/settings');
+var settings = require('../config/env/default');
 
 // helper function for rendering a view with Jade on the Server-side
-module.exports = function(data, template) {
+var jadeHelper = function(data, template) {
 
+    // Convert data to workable JavaScript object
     var cleanedData = JSON.parse(JSON.stringify(data));
 
     // Setup data to be passed to template
@@ -22,6 +23,7 @@ module.exports = function(data, template) {
         options.pretty = false;
     }
 
+    // Compile from Jade to HTML String
     return jade.renderFile(path.join(settings.root, 'dev/templates/') + template, options, function (err, html) {
         if (err) {
             throw err;
@@ -29,3 +31,5 @@ module.exports = function(data, template) {
         return html;
     });
 };
+
+module.exports = jadeHelper;

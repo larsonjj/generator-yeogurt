@@ -1,10 +1,9 @@
 /**
 *   <%= _.classify(name) %> Spec Description
 */
-
-<% if (jsOption === 'RequireJS') { %>'use strict';
-
+<% if (jsOption === 'RequireJS') { %>
 define(function(require) {
+    'use strict';
 
     var <%= _.classify(name) %> = require('views/<%= _.slugify(name) %>');
 
@@ -20,7 +19,8 @@ define(function(require) {
 
     });
 
-});<% } else if (jsOption === 'Browserify') { %>'use strict';
+});<% } else if (jsOption === 'Browserify') { %>
+'use strict';
 
 var <%= _.classify(name) %> = require('../../dev/scripts/views/<%= _.slugify(name) %>.js');
 

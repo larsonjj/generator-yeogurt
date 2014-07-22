@@ -6,3 +6,4 @@ dev/bower_components
 dev/.server
 .tmp
 .grunt
+server/config/secrets.js

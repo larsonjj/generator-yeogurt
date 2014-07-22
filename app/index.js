@@ -105,33 +105,19 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         message: 'Which ' + 'JavaScript framework and/or library'.blue + ' would you like to use?',
         choices: ['Backbone + React', 'Backbone']
     }, {
-        when: function(props) {
-            if (props.jsFramework === 'Backbone' && !props.useServer) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        },
+        when: function(props) {return props.jsFramework === 'Backbone' && !props.useServer || false;},
         type: 'list',
         name: 'jsTemplate',
         message: 'Which ' + 'JavaScript templating library'.blue + ' would you like to use?',
         choices: ['Lo-dash (Underscore)', 'Handlebars', 'Jade']
     }, {
-        when: function(props) {
-            if (props.jsFramework === 'Backbone' && props.useServer) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        },
+        when: function(props) {return props.jsFramework === 'Backbone' && props.useServer || false;},
         type: 'list',
         name: 'jsTemplate',
         message: 'Which ' + 'JavaScript templating library'.blue + ' would you like to use?',
         choices: ['Handlebars', 'Jade']
     }, {
-        when: function(props) { return (/Static Site/i).test(props.structure); },
+        when: function(props) { return !(/React/i).test(props.jsFramework); },
         type: 'list',
         name: 'jsOption',
         message: 'Which ' + 'JavaScript module library'.blue + ' would you like to use?',
@@ -463,7 +449,9 @@ YeogurtGenerator.prototype.tasks = function tasks() {
     this.template('grunt/config/watch.js', 'grunt/config/watch.js');
     if (this.useServer) {
         this.template('grunt/config/express.js', 'grunt/config/express.js');
+        this.template('grunt/config/env.js', 'grunt/config/env.js');
     }
+    this.template('grunt/config/injector.js', 'grunt/config/injector.js');
 
     // Tasks
     this.template('grunt/tasks/build.js', 'grunt/tasks/build.js');
@@ -512,34 +500,32 @@ YeogurtGenerator.prototype.scripts = function scripts() {
 
     this.template('dev/scripts/app.js', 'dev/scripts/app.js');
 
-    if (this.jsOption === 'Browserify' || this.jsOption === 'RequireJS') {
+    if (this.jsOption === 'RequireJS') {
         this.template('dev/scripts/main.js', 'dev/scripts/main.js');
     }
 
     if (this.jsFramework === 'Backbone') {
-        this.mkdir('dev/scripts/routes');
         this.mkdir('dev/templates');
         this.mkdir('dev/scripts/views');
 
-        this.template('dev/scripts/backbone/routes/home.js', 'dev/scripts/routes/home.js');
+        this.template('dev/scripts/backbone/routes.js', 'dev/scripts/routes.js');
         if (this.jsTemplate === 'Lo-dash (Underscore)') {
-            this.template('dev/scripts/backbone/templates/home.html', 'dev/templates/home.jst');
+            this.template('dev/scripts/backbone/templates/main.html', 'dev/templates/main.jst');
         }
         else if (this.jsTemplate === 'Handlebars') {
-            this.template('dev/scripts/backbone/templates/home.html', 'dev/templates/home.hbs');
+            this.template('dev/scripts/backbone/templates/main.html', 'dev/templates/main.hbs');
         }
         else if (this.jsTemplate === 'Jade') {
-            this.template('dev/scripts/backbone/templates/home.html', 'dev/templates/home.jade');
+            this.template('dev/scripts/backbone/templates/main.html', 'dev/templates/main.jade');
         }
 
-        this.template('dev/scripts/backbone/views/home.js', 'dev/scripts/views/home.js');
+        this.template('dev/scripts/backbone/views/main.js', 'dev/scripts/views/main.js');
     }
     else if (this.jsFramework === 'Backbone + React') {
-        this.mkdir('dev/scripts/routes');
         this.mkdir('dev/scripts/views');
 
-        this.template('dev/scripts/backbone/routes/home.js', 'dev/scripts/routes/home.js');
-        this.template('dev/scripts/react/home.jsx', 'dev/scripts/views/home.jsx');
+        this.template('dev/scripts/backbone/routes.js', 'dev/scripts/routes.js');
+        this.template('dev/scripts/react/main.jsx', 'dev/scripts/views/main.jsx');
         this.template('test/helpers/phantomjs-shims.js', 'test/helpers/phantomjs-shims.js');
     }
 };
@@ -568,38 +554,42 @@ YeogurtGenerator.prototype.styles = function styles() {
 
 YeogurtGenerator.prototype.server = function server() {
     if (this.useServer) {
-        this.mkdir('lib');
-        this.mkdir('lib/controllers');
-        this.mkdir('lib/routes');
+        this.mkdir('server');
+        this.mkdir('server/controllers');
+        this.mkdir('server/config');
+        this.mkdir('server/config/env');
         if (this.useServer && this.structure === 'Single Page Application') {
-            this.mkdir('lib/views');
-            this.mkdir('lib/modules');
+            this.mkdir('server/views');
+            this.mkdir('server/modules');
         }
         if (this.structure === 'Single Page Application') {
             if (this.jsTemplate === 'React') {
-                this.template('server/lib/modules/reactRender.js','lib/modules/reactRender.js');
+                this.template('server/modules/reactRender.js','server/modules/reactRender.js');
             }
             else if (this.jsTemplate === 'Jade') {
-                this.template('server/lib/modules/jadeRender.js','lib/modules/jadeRender.js');
+                this.template('server/modules/jadeRender.js','server/modules/jadeRender.js');
             }
             else if (this.jsTemplate === 'Handlebars') {
-                this.template('server/lib/modules/hbsRender.js','lib/modules/hbsRender.js');
+                this.template('server/modules/hbsRender.js','server/modules/hbsRender.js');
             }
-            this.template('dev/templates/html/index.html', 'lib/views/index.html');
+            this.template('dev/templates/html/index.html', 'server/views/index.html');
         }
 
         if (this.dbOption !== 'None') {
-            this.template('server/lib/config/database.js', 'lib/config/database.js');
+            this.template('server/config/database.js', 'server/config/database.js');
         }
 
-        this.template('server/lib/config/express.js', 'lib/config/express.js');
-        this.template('server/lib/config/secrets.js', 'lib/config/secrets.js');
-        this.template('server/lib/config/security.js', 'lib/config/security.js');
-        this.template('server/lib/config/settings.js', 'lib/config/settings.js');
+        this.template('server/config/express.js', 'server/config/express.js');
+        this.template('server/config/secrets.js', 'server/config/secrets.js');
+        this.template('server/config/security.js', 'server/config/security.js');
 
-        this.template('server/app.js', 'app.js');
-        this.template('server/lib/controllers/home.js', 'lib/controllers/home.js');
-        this.template('server/lib/routes/home.js', 'lib/routes/home.js');
+        this.template('server/config/env/default.js', 'server/config/env/default.js');
+        this.template('server/config/env/development.js', 'server/config/env/development.js');
+        this.template('server/config/env/production.js', 'server/config/env/production.js');
+
+        this.template('server/server.js', 'server.js');
+        this.template('server/controllers/main.js', 'server/controllers/main.js');
+        this.template('server/routes.js', 'server/routes.js');
 
     }
 };

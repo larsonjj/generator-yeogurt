@@ -3,7 +3,7 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
 
     grunt.config.set('concurrent', {
         compile: [
@@ -24,5 +24,6 @@ module.exports = function(grunt) {
         ]
     });
 
-    // grunt.loadNpmTasks('grunt-concurrent');
 };
+
+module.exports = taskConfig;

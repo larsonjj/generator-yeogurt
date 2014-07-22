@@ -3,7 +3,7 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
 
     grunt.config.set('uglify', {
         generated: {
@@ -42,5 +42,6 @@ module.exports = function(grunt) {
         }<% } %>
     });
 
-    // grunt.loadNpmTasks('grunt-contrib-uglify');
 };
+
+module.exports = taskConfig;

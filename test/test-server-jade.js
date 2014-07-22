@@ -22,7 +22,7 @@ describe('yeogurt generator server defaults', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'lib/modules/jadeRender.js'
+            'server/modules/jadeRender.js'
         ];
 
         helpers.mockPrompt(this.app, {

@@ -3,7 +3,7 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
 
     grunt.config.set('browserify', {
         server: {
@@ -15,7 +15,7 @@ module.exports = function(grunt) {
                 watch: true
             },
             files: {
-                '<%%= yeogurt.server %>/scripts/main.js': ['<%%= yeogurt.dev %>/scripts/main.js']
+                '<%%= yeogurt.server %>/scripts/app.js': ['<%%= yeogurt.dev %>/scripts/app.js']
             }
         },
         dist: {
@@ -25,17 +25,19 @@ module.exports = function(grunt) {
                     debug: true
                 },
                 preBundleCB: function(b) {
+                    // Minify code
                     return b.plugin('minifyify', {
-                        map: 'main.js.map',
-                        output: 'dist/scripts/main.js.map'
+                        map: 'app.js.map',
+                        output: 'dist/scripts/app.js.map'
                     });
                 }
             },
             files: {
-                '<%%= yeogurt.dist %>/scripts/main.js': ['<%%= yeogurt.dev %>/scripts/main.js']
+                '<%%= yeogurt.dist %>/scripts/app.js': ['<%%= yeogurt.dev %>/scripts/app.js']
             }
         }
     });
 
-    // grunt.loadNpmTasks('grunt-browserify');
 };
+
+module.exports = taskConfig;

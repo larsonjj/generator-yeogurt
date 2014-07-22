@@ -1,8 +1,8 @@
 /**
 *   <%= _.classify(name) %> Model Description
 */
-
-<% if (jsOption === 'RequireJS') { %>define(function (require) {
+<% if (jsOption === 'RequireJS') { %>
+define(function (require) {
     'use strict';
 
     var <%= _.classify(name) %>Model = Backbone.Model.extend({
@@ -25,7 +25,8 @@
     });
 
     return <%= _.classify(name) %>Model;
-});<% } else if (jsOption === 'Browserify') { %>'use strict';
+});<% } else if (jsOption === 'Browserify') { %>
+'use strict';
 
 var <%= _.classify(name) %>Model = Backbone.Model.extend({
 

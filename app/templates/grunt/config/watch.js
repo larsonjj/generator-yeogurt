@@ -3,7 +3,7 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
 
     grunt.registerTask('listen<% if (useKss || useJsdoc) { %>:docs<% } %>', function() {
         var config = {<% if (htmlOption === 'Jade') { %>
@@ -317,11 +317,11 @@ module.exports = function(grunt) {
         }<% if (useServer) { %>,
         express: {
             files: [
-                'app.js',
-                'lib/**/*.{js,json,html}'<% if (jsTemplate === 'React') { %>,
-                '<%%= yeogurt.dev %>/scripts/views/*.jsx'<% } %><% if (jsTemplate === 'Handlebars') { %>
-                '<%%= yeogurt.dev %>/templates/**/*.hbs'<% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>
-                '<%%= yeogurt.dev %>/templates/**/*.jst'<% } %><% if (jsTemplate === 'Jade') { %>
+                'server.js',
+                'server/**/*.{js,json,html}'<% if (jsTemplate === 'React') { %>,
+                '<%%= yeogurt.dev %>/scripts/views/*.jsx'<% } %><% if (jsTemplate === 'Handlebars') { %>,
+                '<%%= yeogurt.dev %>/templates/**/*.hbs'<% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>,
+                '<%%= yeogurt.dev %>/templates/**/*.jst'<% } %><% if (jsTemplate === 'Jade') { %>,
                 '<%%= yeogurt.dev %>/templates/**/*.jade'<% } %>
             ],
             tasks: ['express:server', 'wait'],
@@ -332,5 +332,6 @@ module.exports = function(grunt) {
         }<% } %>
     });<% } %>
 
-    // grunt.loadNpmTasks('grunt-contrib-watch');
 };
+
+module.exports = taskConfig;

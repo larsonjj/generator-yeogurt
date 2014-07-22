@@ -12,12 +12,12 @@ require('colors');
 var app = express();
 <% if (dbOption !== 'None') { %>
 // Database Configuration
-var db = require('./lib/config/database');
+var db = require('./server/config/database');
 
 // Connect to Database
-<% if ('MySQL'.indexOf(dbOption) > -1) { %>var sequelize = <% } %>db.connect(app);<% } %>
+<% if ('MySQL'.indexOf(dbOption) > -1) { %>var sequelize = <% } %>db(app);<% } %>
 
-require('./lib/config/express')(app, express,<% if ('MySQL'.indexOf(dbOption) > -1) { %> sequelize,<% } %> path);
+require('./server/config/express')(app, express,<% if ('MySQL'.indexOf(dbOption) > -1) { %> sequelize,<% } %> path);
 
 /**
  * Start Express server.
