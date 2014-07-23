@@ -25,6 +25,13 @@ var taskConfig = function(grunt) {
                     'jade:server',
                     <% if (useDashboard) { %>'dashboard:server'<% } %>
                 ]
+            },
+            injectJade: {
+                files: [
+                    '<%%= yeogurt.dev %>/views/**/*.jade',
+                    '!<%%= yeogurt.dev %>/views/*.jade'
+                ],
+                tasks: ['injector:jade']
             },<% } else if (htmlOption === 'Swig') { %>
             swig: {
                 files: [
@@ -44,6 +51,13 @@ var taskConfig = function(grunt) {
                     'newer:swig:server',
                     <% if (useDashboard) { %>'dashboard:server'<% } %>
                 ]
+            },
+            injectSwig: {
+                files: [
+                    '<%%= yeogurt.dev %>/views/**/*.swig',
+                    '!<%%= yeogurt.dev %>/views/*.swig'
+                ],
+                tasks: ['injector:swig']
             },<% } else if (htmlOption === 'None (Vanilla HTML)' || (/Backbone/i).test(jsFramework)) { %>
             html: {
                 files: [
@@ -62,6 +76,13 @@ var taskConfig = function(grunt) {
                     'sass:server',<% if (useKss) { %>
                     'kss:server'<% } %>
                 ]
+            },
+            injectSass: {
+                files: [
+                    '<%%= yeogurt.dev %>/styles/**/*.scss',
+                    '!<%%= yeogurt.dev %>/styles/main.scss'
+                ],
+                tasks: ['injector:sass']
             },<% } else if (cssOption === 'LESS') { %>
             less: {
                 files: ['<%%= yeogurt.dev %>/styles/**/*.<% if (useKss) { %>{less,md}<% } else { %>less<% } %>'],
@@ -69,7 +90,20 @@ var taskConfig = function(grunt) {
                     'less:server',<% if (useKss) { %>
                     'kss:server'<% } %>
                 ]
+            },
+            injectLess: {
+                files: [
+                    '<%%= yeogurt.dev %>/styles/**/*.less',
+                    '!<%%= yeogurt.dev %>/styles/main.less'
+                ],
+                tasks: ['injector:less']
             },<% } %>
+            injectCss: {
+                files: [
+                    '<%%= yeogurt.dev %>/styles/**/*.css'
+                ],
+                tasks: ['injector:css']
+            },
             js: {
                 files: [
                     '<%%= yeogurt.dev %>/scripts/**/*.js',
@@ -83,6 +117,14 @@ var taskConfig = function(grunt) {
                     'jsdoc:server',<% } %>
                     'newer:copy:server'
                 ]
+            },
+            injectJs: {
+                files: [
+                    '<%%= yeogurt.dev %>/scripts/**/*.js',
+                    '!<%%= yeogurt.dev %>/scripts/app.js'<% if (jsFramework === 'Backbone') { %>,
+                    '!<%%= yeogurt.dev %>/scripts/routes.js'<% } %>
+                ],
+                tasks: ['injector:scripts']
             },<% if (jsTemplate === 'React') { %>
             jsx: {
                 files: ['<%%= yeogurt.dev %>/scripts/views/**/*.jsx'],
@@ -197,6 +239,13 @@ var taskConfig = function(grunt) {
                 'newer:jade:server',
                 <% if (useDashboard) { %>'dashboard:server'<% } %>
             ]
+        },
+        injectJade: {
+            files: [
+                '<%%= yeogurt.dev %>/views/**/*.jade',
+                '!<%%= yeogurt.dev %>/views/*.jade'
+            ],
+            tasks: ['injector:jade']
         },<% } else if (htmlOption === 'Swig') { %>
         swig: {
             files: [
@@ -216,6 +265,13 @@ var taskConfig = function(grunt) {
                 'newer:swig:server',
                 <% if (useDashboard) { %>'dashboard:server'<% } %>
             ]
+        },
+        injectSwig: {
+            files: [
+                '<%%= yeogurt.dev %>/views/**/*.swig',
+                '!<%%= yeogurt.dev %>/views/*.swig'
+            ],
+            tasks: ['injector:swig']
         },<% } else if (htmlOption === 'None (Vanilla HTML)' || (/Backbone/i).test(jsFramework)) { %>
         html: {
             files: [
@@ -233,13 +289,33 @@ var taskConfig = function(grunt) {
             tasks: [
                 'sass:server',
             ]
+        },
+        injectSass: {
+            files: [
+                '<%%= yeogurt.dev %>/styles/**/*.scss',
+                '!<%%= yeogurt.dev %>/styles/main.scss'
+            ],
+            tasks: ['injector:sass']
         },<% } else if (cssOption === 'LESS') { %>
         less: {
             files: ['<%%= yeogurt.dev %>/styles/**/*.<% if (useKss) { %>{less,md}<% } else { %>less<% } %>'],
             tasks: [
                 'less:server',
             ]
+        },
+        injectLess: {
+            files: [
+                '<%%= yeogurt.dev %>/styles/**/*.less',
+                '!<%%= yeogurt.dev %>/styles/main.less'
+            ],
+            tasks: ['injector:less']
         },<% } %>
+        injectCss: {
+            files: [
+                '<%%= yeogurt.dev %>/styles/**/*.css'
+            ],
+            tasks: ['injector:css']
+        },
         js: {
             files: [
                 '<%%= yeogurt.dev %>/scripts/**/*.js',
@@ -252,6 +328,14 @@ var taskConfig = function(grunt) {
                 'exorcise:server',<% } %>
                 'newer:copy:server'
             ]
+        },
+        injectJs: {
+            files: [
+                '<%%= yeogurt.dev %>/scripts/**/*.js',
+                '!<%%= yeogurt.dev %>/scripts/app.js'<% if (jsFramework === 'Backbone') { %>,
+                '!<%%= yeogurt.dev %>/scripts/routes.js'<% } %>
+            ],
+            tasks: ['injector:scripts']
         },<% if (jsTemplate === 'React') { %>
         jsx: {
             files: ['<%%= yeogurt.dev %>/scripts/views/**/*.jsx'],
