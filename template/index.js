@@ -4,7 +4,7 @@ var yeoman = require('yeoman-generator');
 var fileJSON = require(process.cwd() + '/.yo-rc.json')['generator-yeogurt'].config;
 // var generatorUtils = require('../modules/util.js');
 
-var ViewGenerator = module.exports = function ViewGenerator(args, options, config) {
+var TemplateGenerator = module.exports = function TemplateGenerator(args, options, config) {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
     // as `this.name`.
     yeoman.generators.NamedBase.apply(this, arguments);
@@ -32,9 +32,9 @@ var ViewGenerator = module.exports = function ViewGenerator(args, options, confi
     console.log('You called the view subgenerator with the argument ' + this.name + '.');
 };
 
-util.inherits(ViewGenerator, yeoman.generators.NamedBase);
+util.inherits(TemplateGenerator, yeoman.generators.NamedBase);
 
-ViewGenerator.prototype.files = function files() {
+TemplateGenerator.prototype.files = function files() {
     var rootPath;
     if (this.structure !== 'Single Page Application') {
         rootPath = this.useServer ? 'server' : rootPath +'';
