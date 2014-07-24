@@ -148,7 +148,7 @@ If you're using the `kss-node` module or CLI, make sure not to include any doubl
 
 # Preprocessor Helper Documentation
 
-If you use a CSS preprocessor like SCSS or LESS, you should document all helper functions (sometimes called mixins).
+If you use a CSS preprocessor like SCSS or Less, you should document all helper functions (sometimes called mixins).
 
 ```less
 // Creates a linear gradient background, from top to bottom.

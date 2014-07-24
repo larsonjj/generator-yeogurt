@@ -5,7 +5,7 @@ var path    = require('path');
 var helpers = require('yeoman-generator').test;
 
 
-describe('yeogurt generator LESS', function () {
+describe('yeogurt generator Less', function () {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -22,9 +22,9 @@ describe('yeogurt generator LESS', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'dev/',
-            'dev/styles',
-            'dev/styles/main.less',
+            'client/',
+            'client/styles',
+            'client/styles/main.less',
             'grunt/',
             'grunt/config',
             'grunt/config/less.js'
@@ -33,7 +33,7 @@ describe('yeogurt generator LESS', function () {
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
             versionControl: 'Git',
-            cssOption: 'LESS',
+            cssOption: 'Less',
             useLesshat: true,
             useBootstrap: true,
             ieSupport: true,

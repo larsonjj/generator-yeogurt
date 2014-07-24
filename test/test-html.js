@@ -22,15 +22,15 @@ describe('yeogurt generator html', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'dev/',
-            'dev/index.html'
+            'client/',
+            'client/index.html'
         ];
 
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
             versionControl: 'SVN',
             htmlOption: 'None (Vanilla HTML)',
-            cssOption: 'SASS',
+            cssOption: 'Sass',
             ieSupport: true,
             responsive: true,
             useGA: true,

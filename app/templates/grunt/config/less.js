@@ -1,5 +1,5 @@
 /**
- * Configuration for LESS task(s)
+ * Configuration for Less task(s)
  */
 'use strict';
 
@@ -8,7 +8,7 @@ var taskConfig = function(grunt) {
     grunt.config.set('less', {
         server: {
             options: {
-                paths: ['<%%= yeogurt.dev %>/'],
+                paths: ['<%%= yeogurt.client %>/'],
                 sourceMap: true,
                 sourceMapFilename: '<%%= yeogurt.staticServer %>/styles/main.css.map',
                 sourceMapBasepath: '<%%= yeogurt.staticServer %>/styles/',
@@ -17,7 +17,7 @@ var taskConfig = function(grunt) {
                 outputSourceFiles: true
             },
             expand: true,
-            cwd: '<%%= yeogurt.dev %>/',
+            cwd: '<%%= yeogurt.client %>/',
             dest: '<%%= yeogurt.staticServer %>/',
             src: [
                 'styles/main.less'
@@ -26,7 +26,7 @@ var taskConfig = function(grunt) {
         },
         dist: {
             options: {
-                paths: ['<%%= yeogurt.dev %>/'],
+                paths: ['<%%= yeogurt.client %>/'],
                 sourceMap: true,
                 sourceMapFilename: '<%%= yeogurt.dist %>/styles/main.css.map',
                 sourceMapBasepath: '<%%= yeogurt.dist %>/styles/',
@@ -35,7 +35,7 @@ var taskConfig = function(grunt) {
                 outputSourceFiles: true
             },
             expand: true,
-            cwd: '<%%= yeogurt.dev %>/',
+            cwd: '<%%= yeogurt.client %>/',
             dest: '<%%= yeogurt.dist %>/',
             src: [
                 'styles/main.less'

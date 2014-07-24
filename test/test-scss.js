@@ -4,7 +4,7 @@
 var path    = require('path');
 var helpers = require('yeoman-generator').test;
 
-describe('yeogurt generator SASS', function () {
+describe('yeogurt generator Sass', function () {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -21,15 +21,15 @@ describe('yeogurt generator SASS', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'dev/',
-            'dev/styles',
-            'dev/styles/main.scss'
+            'client/',
+            'client/styles',
+            'client/styles/main.scss'
         ];
 
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
             versionControl: 'Git',
-            cssOption: 'SASS',
+            cssOption: 'Sass',
             useBourbon: true,
             cssFramework: 'Bootstrap',
             ieSupport: true,

@@ -9,7 +9,7 @@ var taskConfig = function(grunt) {
         dist: {
             files: [{
                 expand: true,
-                cwd: '<%%= yeogurt.dev %>/images',
+                cwd: '<%%= yeogurt.client %>/images',
                 src: '**/*.{jpg,jpeg,gif}',
                 dest: '<%%= yeogurt.dist %>/images'
             }]

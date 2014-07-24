@@ -27,17 +27,17 @@ describe('yeogurt generator Dashboard', function () {
             'grunt/config/dashboard.js',
             'grunt/config/ftpush.js',
             'grunt/tasks/deploy.js',
-            'dev/',
-            'dev/dashboard/',
-            'dev/dashboard/images/',
-            'dev/dashboard/images/yeogurt-logo.png'
+            'client/',
+            'client/dashboard/',
+            'client/dashboard/images/',
+            'client/dashboard/images/yeogurt-logo.png'
         ];
 
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
             versionControl: 'SVN',
             htmlOption: 'Jade',
-            cssOption: 'SASS',
+            cssOption: 'Sass',
             ieSupport: true,
             responsive: true,
             useGA: true,

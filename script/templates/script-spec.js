@@ -18,7 +18,7 @@ define(function(require) {
 });<% } else if (jsOption === 'Browserify') { %>
 'use strict';
 
-var <%= _.classify(name) %> = require('../../../dev/scripts/modules/<%= _.slugify(name) %>.js');
+var <%= _.classify(name) %> = require('../../../client/scripts/modules/<%= _.slugify(name) %>.js');
 
 describe('Give it some context', function() {
 

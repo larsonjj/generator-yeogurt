@@ -8,7 +8,7 @@ var taskConfig = function(grunt) {
     grunt.config.set('useminPrepare', {
         html: <% if (!useServer) { %>'<%%= yeogurt.dist %>/*.html'<% } else { %>'.tmp/*.html'<% } %>,
         options: {
-            root: '<%%= yeogurt.dev %>',
+            root: '<%%= yeogurt.client %>',
             dest: '<%%= yeogurt.dist %>'
         }
     });
@@ -17,7 +17,7 @@ var taskConfig = function(grunt) {
         html: <% if (!useServer) { %>'<%%= yeogurt.dist %>/*.html'<% } else { %>'.tmp/index.html'<% } %>,<% if (cssOption === 'None (Vanilla CSS)') { %>
         css: ['<%%= yeogurt.dist %>/styles/**/*.css'],<% } %>
         options: {
-            assetsDirs: ['<%%= yeogurt.dev %>', '<%%= yeogurt.dev %>/images']
+            assetsDirs: ['<%%= yeogurt.client %>', '<%%= yeogurt.client %>/images']
         }
     });
 

@@ -24,7 +24,7 @@ define(function(require) {
 });<% } else if (jsOption === 'Browserify') { %>
 'use strict';
 
-var app = require('../../dev/scripts/app');
+var app = require('../../client/scripts/app');
 
 describe('app', function() {
 

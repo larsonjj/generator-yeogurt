@@ -1,5 +1,5 @@
 /**
- * Configuration for SASS task(s)
+ * Configuration for Sass task(s)
  */
 'use strict';
 
@@ -12,11 +12,11 @@ var taskConfig = function(grunt) {
                 outputStyle: 'nested',
                 sourceMap: 'main.css.map',
                 includePaths: [
-                    '<%%= yeogurt.dev %>/styles/**/*.scss'
+                    '<%%= yeogurt.client %>/styles/**/*.scss'
                 ]
             },
             files: {
-                '<%%= yeogurt.staticServer %>/styles/main.css': '<%%= yeogurt.dev %>/styles/main.scss'
+                '<%%= yeogurt.staticServer %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.scss'
             }
         },
         dist: {
@@ -25,11 +25,11 @@ var taskConfig = function(grunt) {
                 outputStyle: 'compressed',
                 sourceMap: 'main.css.map',
                 includePaths: [
-                    '<%%= yeogurt.dev %>/styles/**/*.scss'
+                    '<%%= yeogurt.client %>/styles/**/*.scss'
                 ]
             },
             files: {
-                '<%%= yeogurt.dist %>/styles/main.css': '<%%= yeogurt.dev %>/styles/main.scss'
+                '<%%= yeogurt.dist %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.scss'
             }
         }
     });

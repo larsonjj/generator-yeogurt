@@ -30,7 +30,7 @@ describe('yeogurt generator no IE with less', function () {
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
             versionControl: 'SVN',
-            cssOption: 'LESS',
+            cssOption: 'Less',
             useLesshat: true,
             ieSupport: false,
             responsive: true,

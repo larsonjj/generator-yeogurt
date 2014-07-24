@@ -22,7 +22,7 @@
         <% if (useGA) { %>
         <link href="//www.google-analytics.com" rel="dns-prefetch">
         <% } %>
-        <% if (cssOption === 'None (Vanilla CSS)') { %><!-- build:css(dev) styles/main.css -->
+        <% if (cssOption === 'None (Vanilla CSS)') { %><!-- build:css(client) styles/main.css -->
         <% if (useBootstrap) { %><link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" media="screen">
         <% } %><% if (useFoundation) { %><link rel="stylesheet" href="/bower_components/foundation/css/normalize.css"><link rel="stylesheet" href="/bower_components/foundation/css/foundation.css">
         <% } %><% if (useFontAwesome) { %>
@@ -31,7 +31,7 @@
             <!-- [injector:css] -->
             <!-- [endinjector] -->
         <!-- endbuild -->
-        <% } else { %><!-- build:css(dev) styles/main.css -->
+        <% } else { %><!-- build:css(client) styles/main.css -->
         <link rel="stylesheet" href="/styles/main.css">
             <!-- [injector:css] -->
             <!-- [endinjector] -->
@@ -75,7 +75,7 @@
         {% endif %}
     {% endblock %}
         <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
     {% block content %}{% endblock %}
@@ -91,7 +91,7 @@
         </script><% } %>
 
         <% if (useServer) { %>{% if env == 'development' %}<% } %>
-        <!-- build:js(dev) scripts/globals.js -->
+        <!-- build:js(client) scripts/globals.js -->
         <script src="/bower_components/jquery/dist/jquery.js"></script>
         <% if  (useBootstrap) { %><script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>affix.js"></script>
         <script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>alert.js"></script>
@@ -137,7 +137,7 @@
             Place all author scripts within the 'build:js' comments below,
             so they will be optimised correctly during a 'grunt build' task
         #}
-        <!-- build:js(dev) scripts/app.js --><% if (jsFramework !== 'Backbone') { %>
+        <!-- build:js(client) scripts/app.js --><% if (jsFramework !== 'Backbone') { %>
         <script src="/scripts/app.js"></script><% } %>
             <!-- [injector:js] -->
             <!-- [endinjector] --><% if (jsFramework === 'Backbone') { %>

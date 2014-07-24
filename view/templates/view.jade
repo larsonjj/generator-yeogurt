@@ -1,4 +1,4 @@
-//- <%= name %> <%= view %><% if (view === 'component' || view === 'helper') { %>
+//- <%= name %> <%= view %><% if (view === 'module') { %>
 <% if (useDashboard) { %>//- [dash:data]
     {
         "status": "development",
@@ -13,21 +13,15 @@
 
 <% } %>mixin <%= name || 'example' %>()
     div.<%= _.slugify(name.toLowerCase()) %>
-        p This is an example paragraph<% } else if (view === 'template') { %>
+        p This is an example paragraph<% } else if (view === 'layout') { %>
 extend base
 
-block template
-    //- Define header block from base template
-    block header
-        +header()
+block layout
 
-    //- Provides template level styling
-    #template-wrapper.template-wrapper<% if (name) { %>(class="<%= _.slugify(name.toLowerCase()) %>")<% } %>
+    //- Provides layout level markup
+    .layout-wrapper<% if (name) { %>(class="<%= _.slugify(name.toLowerCase()) %>")<% } %>
         block content
 
-    //- Define footer block from base template
-    block footer
-        +footer()
 <% } else if (view === 'page') { %><% if (useDashboard) { %>
 //- [dash:data]
     {
@@ -37,7 +31,7 @@ block template
         "link": "<% if (view === 'page') { %>../<%= _.slugify(name.toLowerCase()) %>.html<% } else { %>../views/<%= view %>s/<%= _.slugify(name.toLowerCase()) %>.html<% } %>"
     }
     [/dash]
-<% } %><% if (!useTemplate) { %>extend ./templates/base<% } else { %>extend ./templates/<%= useTemplate %><% } %>
+<% } %><% if (!useTemplate) { %>extend ./layouts/base<% } else { %>extend ./layouts/<%= useTemplate %><% } %>
 
 //- use the 'block body' if you need to set a page-level class on the <body> tag
 block body

@@ -28,7 +28,7 @@ describe('yeogurt generator with docker', function () {
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
             versionControl: 'Git',
-            cssOption: 'SASS',
+            cssOption: 'Sass',
             ieSupport: true,
             responsive: true,
             useGA: true,

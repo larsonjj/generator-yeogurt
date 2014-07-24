@@ -22,14 +22,14 @@ describe('yeogurt generator with html5 boilerplate extras', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'dev/.htaccess'
+            'client/.htaccess'
         ];
 
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
             versionControl: 'Git',
             structure: 'Static Site',
-            cssOption: 'SASS',
+            cssOption: 'Sass',
             cssFramework: 'Foundation',
             useFoundation: true,
             ieSupport: true,

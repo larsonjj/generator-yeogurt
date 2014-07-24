@@ -8,31 +8,31 @@ var taskConfig = function(grunt) {
     grunt.config.set('dashboard', {
         server: {
             options: {
-                dashTemplate: '<%%= yeogurt.dev %>/dashboard/template.hbs',
+                dashTemplate: '<%%= yeogurt.client %>/dashboard/template.hbs',
                 logo: 'images/yeogurt-logo.png',
                 generatedDir: '<%%= yeogurt.staticServer %>/dashboard/generated',
                 assets: [<% if (htmlOption !== "None (Vanilla HTML)") { %>
-                    '<%%= yeogurt.dev %>/views/components/*.<% if (htmlOption === "Jade") { %>jade<% } else if (htmlOption === "Swig") { %>swig<% } %>'
+                    '<%%= yeogurt.client %>/views/components/*.<% if (htmlOption === "Jade") { %>jade<% } else if (htmlOption === "Swig") { %>swig<% } %>'
                 <% } %>]
             },
             files: {
                 '<%%= yeogurt.staticServer %>/dashboard/index.html': [
-                    '<%%= yeogurt.dev %>/**/*.<% if (htmlOption === "Jade") { %>jade<% } else if (htmlOption === "Swig") { %>swig<% } else if (htmlOption === "None (Vanilla HTML)") { %>html<% } %>'
+                    '<%%= yeogurt.client %>/**/*.<% if (htmlOption === "Jade") { %>jade<% } else if (htmlOption === "Swig") { %>swig<% } else if (htmlOption === "None (Vanilla HTML)") { %>html<% } %>'
                 ]
             }
         },
         dist: {
             options: {
-                dashTemplate: '<%%= yeogurt.dev %>/dashboard/template.hbs',
+                dashTemplate: '<%%= yeogurt.client %>/dashboard/template.hbs',
                 logo: 'images/yeogurt-logo.png',
                 generatedDir: '<%%= yeogurt.dist %>/dashboard/generated',
                 assets: [<% if (htmlOption !== "None (Vanilla HTML)") { %>
-                    '<%%= yeogurt.dev %>/views/components/*.<% if (htmlOption === "Jade") { %>jade<% } else if (htmlOption === "Swig") { %>swig<% } %>'
+                    '<%%= yeogurt.client %>/views/components/*.<% if (htmlOption === "Jade") { %>jade<% } else if (htmlOption === "Swig") { %>swig<% } %>'
                 <% } %>]
             },
             files: {
                 '<%%= yeogurt.dist %>/dashboard/index.html': [
-                    '<%%= yeogurt.dev %>/**/*.<% if (htmlOption === "Jade") { %>jade<% } else if (htmlOption === "Swig") { %>swig<% } else if (htmlOption === "None (Vanilla HTML)") { %>html<% } %>'
+                    '<%%= yeogurt.client %>/**/*.<% if (htmlOption === "Jade") { %>jade<% } else if (htmlOption === "Swig") { %>swig<% } else if (htmlOption === "None (Vanilla HTML)") { %>html<% } %>'
                 ]
             }
         }

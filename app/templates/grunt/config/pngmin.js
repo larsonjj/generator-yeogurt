@@ -12,7 +12,7 @@ var taskConfig = function(grunt) {
             },
             files: [{
                 expand: true,
-                cwd: '<%%= yeogurt.dev %>/images',
+                cwd: '<%%= yeogurt.client %>/images',
                 src: '**/*.png',
                 dest: '<%%= yeogurt.dist %>/images'
             }]

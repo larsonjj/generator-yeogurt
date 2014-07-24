@@ -22,18 +22,18 @@ describe('yeogurt generator Swig', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'dev/',
-            'dev/templates',
-            'dev/templates/layouts',
-            'dev/templates/index.swig',
-            'dev/templates/layouts/base.swig'
+            'client/',
+            'client/templates',
+            'client/templates/layouts',
+            'client/templates/index.swig',
+            'client/templates/layouts/base.swig'
         ];
 
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
             versionControl: 'SVN',
             htmlOption: 'Swig',
-            cssOption: 'SASS',
+            cssOption: 'Sass',
             ieSupport: true,
             responsive: true,
             useGA: true,

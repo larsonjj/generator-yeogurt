@@ -7,7 +7,7 @@ var settings = require('../config/env/default');
 
 // helper function for rendering a view with Handlebars on the Server-side
 var hbsHelper = function(data, template) {
-    var templateStr = fs.readFileSync( path.join(settings.root, 'dev/templates/') + template, 'utf8' );
+    var templateStr = fs.readFileSync( path.join(settings.root, 'client/templates/') + template, 'utf8' );
 
     // Compile from Handlebars to JavaScript template
     var compiledSrc = Handlebars.compile(templateStr);

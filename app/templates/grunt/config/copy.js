@@ -9,7 +9,7 @@ var taskConfig = function(grunt) {
         server: {
             files: [{
                 expand: true,
-                cwd: '<%%= yeogurt.dev %>/',
+                cwd: '<%%= yeogurt.client %>/',
                 dest: '<%%= yeogurt.staticServer %>/',
                 src: [
                     'scripts/**/*.<% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>{js,jsx}<% } else { %>js<% } %>',<% if (useDashboard) { %>
@@ -27,7 +27,7 @@ var taskConfig = function(grunt) {
                 ]
             }<% if (cssOption === 'None (Vanilla CSS)') { %>, {
                 expand: true,
-                cwd: '<%%= yeogurt.dev %>/',
+                cwd: '<%%= yeogurt.client %>/',
                 dest: '<%%= yeogurt.staticServer %>/',
                 src: [
                     'styles/**/*.css',
@@ -38,7 +38,7 @@ var taskConfig = function(grunt) {
         dist: {
             files: [{
                 expand: true,
-                cwd: '<%%= yeogurt.dev %>/',
+                cwd: '<%%= yeogurt.client %>/',
                 dest: '<%%= yeogurt.dist %>/',
                 src: [<% if (jsOption === 'RequireJS') { %>
                     'bower_components/requirejs/require.js',<% } %>

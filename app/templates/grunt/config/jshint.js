@@ -12,8 +12,8 @@ var taskConfig = function(grunt) {
         },
         test: [
             'Gruntfile.js',
-            '<%%= yeogurt.dev %>/scripts/**/*.js',
-            '!<%%= yeogurt.dev %>/scripts/vendor/**/*.*'
+            '<%%= yeogurt.client %>/scripts/**/*.js',
+            '!<%%= yeogurt.client %>/scripts/vendor/**/*.*'
         ]
     });
 

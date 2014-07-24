@@ -9,7 +9,7 @@
 
 'use strict';
 
-var <%= _.classify(name) %> = require('../../../dev/scripts/views/<%= _.slugify(name) %>.jsx');
+var <%= _.classify(name) %> = require('../../../client/scripts/views/<%= _.slugify(name) %>.jsx');
 
 var ReactTestUtils;
 var reactRender;

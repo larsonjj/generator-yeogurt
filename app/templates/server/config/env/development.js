@@ -2,7 +2,7 @@
 
 // Development specific configuration
 var devConfig = {
-    staticAssets: 'dev/.serve'
+    staticAssets: 'client/.serve'
 };
 
 module.exports = devConfig;

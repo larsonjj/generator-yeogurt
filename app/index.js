@@ -352,29 +352,29 @@ YeogurtGenerator.prototype.app = function app() {
         this.copy('svn-init.bat', 'svn-init.bat');
     }
 
-    // dev/
-    this.mkdir('dev');
+    // client/
+    this.mkdir('client');
 
-    // dev/images
-    this.copy('dev/images/yeogurt-swirl.png', 'dev/images/yeogurt-swirl.png');
+    // client/images
+    this.copy('client/images/yeogurt-swirl.png', 'client/images/yeogurt-swirl.png');
 
 };
 
 YeogurtGenerator.prototype.docs = function docs() {
     if (this.useKss) {
-        this.mkdir('dev/docs');
-        this.mkdir('dev/docs/styleguide');
-        this.template('dev/docs/styleguide/index.html', 'dev/docs/styleguide/index.html');
-        this.template('dev/docs/styleguide/public/kss.js', 'dev/docs/styleguide/public/kss.js');
-        this.template('dev/docs/styleguide/public/kss.less', 'dev/docs/styleguide/public/kss.less');
-        this.template('dev/docs/styleguide/public/less.js', 'dev/docs/styleguide/public/less.js');
-        this.template('dev/docs/styleguide/public/markdown.less', 'dev/docs/styleguide/public/markdown.less');
-        this.copy('dev/docs/styleguide/public/prettify.js', 'dev/docs/styleguide/public/prettify.js');
-        this.copy('dev/docs/styleguide/public/classlist-shim.js', 'dev/docs/styleguide/public/classlist-shim.js');
-        this.copy('dev/images/yeogurt-logo.png', 'dev/docs/styleguide/public/images/yeogurt-logo.png');
+        this.mkdir('client/docs');
+        this.mkdir('client/docs/styleguide');
+        this.template('client/docs/styleguide/index.html', 'client/docs/styleguide/index.html');
+        this.template('client/docs/styleguide/public/kss.js', 'client/docs/styleguide/public/kss.js');
+        this.template('client/docs/styleguide/public/kss.less', 'client/docs/styleguide/public/kss.less');
+        this.template('client/docs/styleguide/public/less.js', 'client/docs/styleguide/public/less.js');
+        this.template('client/docs/styleguide/public/markdown.less', 'client/docs/styleguide/public/markdown.less');
+        this.copy('client/docs/styleguide/public/prettify.js', 'client/docs/styleguide/public/prettify.js');
+        this.copy('client/docs/styleguide/public/classlist-shim.js', 'client/docs/styleguide/public/classlist-shim.js');
+        this.copy('client/images/yeogurt-logo.png', 'client/docs/styleguide/public/images/yeogurt-logo.png');
     }
     if (this.useJsdoc) {
-        this.directory('dev/docs/api', 'dev/docs/api');
+        this.directory('client/docs/api', 'client/docs/api');
     }
 };
 
@@ -469,86 +469,86 @@ YeogurtGenerator.prototype.tasks = function tasks() {
 };
 
 YeogurtGenerator.prototype.views = function views() {
-    var viewRoot = this.useServer ? 'server/' : 'dev/';
+    var viewRoot = this.useServer ? 'server/' : 'client/';
 
     if (this.htmlOption === 'Jade') {
         this.mkdir(viewRoot + 'templates');
         this.mkdir(viewRoot + 'templates/layouts');
-        this.template('dev/templates/jade/index.jade', viewRoot + 'templates/index.jade');
-        this.template('dev/templates/jade/layouts/base.jade', viewRoot + 'templates/layouts/base.jade');
+        this.template('client/templates/jade/index.jade', viewRoot + 'templates/index.jade');
+        this.template('client/templates/jade/layouts/base.jade', viewRoot + 'templates/layouts/base.jade');
     }
     else if (this.htmlOption === 'Swig') {
         this.mkdir(viewRoot + 'templates');
         this.mkdir(viewRoot + 'templates/layouts');
-        this.template('dev/templates/swig/index.swig', viewRoot + 'templates/index.swig');
-        this.template('dev/templates/swig/layouts/base.swig', viewRoot + 'templates/layouts/base.swig');
+        this.template('client/templates/swig/index.swig', viewRoot + 'templates/index.swig');
+        this.template('client/templates/swig/layouts/base.swig', viewRoot + 'templates/layouts/base.swig');
     }
     else if (this.htmlOption === 'None (Vanilla HTML)') {
-        this.template('dev/templates/html/index.html', 'dev/index.html');
+        this.template('client/templates/html/index.html', 'client/index.html');
     }
 
     if (this.structure === 'Single Page Application') {
         if (!this.useServer) {
-            this.template('dev/templates/html/index.html', 'dev/index.html');
+            this.template('client/templates/html/index.html', 'client/index.html');
         }
     }
 
 };
 
 YeogurtGenerator.prototype.scripts = function scripts() {
-    // dev/scripts
-    this.mkdir('dev/scripts');
+    // client/scripts
+    this.mkdir('client/scripts');
 
-    this.template('dev/scripts/app.js', 'dev/scripts/app.js');
+    this.template('client/scripts/app.js', 'client/scripts/app.js');
 
     if (this.jsOption === 'RequireJS') {
-        this.template('dev/scripts/main.js', 'dev/scripts/main.js');
+        this.template('client/scripts/main.js', 'client/scripts/main.js');
     }
 
     if (this.jsFramework === 'Backbone') {
-        this.mkdir('dev/templates');
-        this.mkdir('dev/scripts/views');
+        this.mkdir('client/templates');
+        this.mkdir('client/scripts/views');
 
-        this.template('dev/scripts/backbone/routes.js', 'dev/scripts/routes.js');
+        this.template('client/scripts/backbone/routes.js', 'client/scripts/routes.js');
         if (this.jsTemplate === 'Lo-dash (Underscore)') {
-            this.template('dev/scripts/backbone/templates/main.html', 'dev/templates/main.jst');
+            this.template('client/scripts/backbone/templates/main.html', 'client/templates/main.jst');
         }
         else if (this.jsTemplate === 'Handlebars') {
-            this.template('dev/scripts/backbone/templates/main.html', 'dev/templates/main.hbs');
+            this.template('client/scripts/backbone/templates/main.html', 'client/templates/main.hbs');
         }
         else if (this.jsTemplate === 'Jade') {
-            this.template('dev/scripts/backbone/templates/main.html', 'dev/templates/main.jade');
+            this.template('client/scripts/backbone/templates/main.html', 'client/templates/main.jade');
         }
 
-        this.template('dev/scripts/backbone/views/main.js', 'dev/scripts/views/main.js');
+        this.template('client/scripts/backbone/views/main.js', 'client/scripts/views/main.js');
     }
     else if (this.jsFramework === 'Backbone + React') {
-        this.mkdir('dev/scripts/views');
+        this.mkdir('client/scripts/views');
 
-        this.template('dev/scripts/backbone/routes.js', 'dev/scripts/routes.js');
-        this.template('dev/scripts/react/main.jsx', 'dev/scripts/views/main.jsx');
+        this.template('client/scripts/backbone/routes.js', 'client/scripts/routes.js');
+        this.template('client/scripts/react/main.jsx', 'client/scripts/views/main.jsx');
         this.template('test/helpers/phantomjs-shims.js', 'test/helpers/phantomjs-shims.js');
     }
 };
 
 YeogurtGenerator.prototype.styles = function styles() {
-    // dev/styles
-    this.mkdir('dev/styles');
+    // client/styles
+    this.mkdir('client/styles');
 
     if (this.useKss) {
-        this.template('dev/styles/styleguide.md', 'dev/styles/styleguide.md');
+        this.template('client/styles/styleguide.md', 'client/styles/styleguide.md');
     }
 
     if (this.cssOption !== 'None (Vanilla CSS)') {
         if (this.cssOption === 'Less') {
-            this.template('dev/styles/main.less', 'dev/styles/main.less');
+            this.template('client/styles/main.less', 'client/styles/main.less');
         }
         if (this.cssOption === 'Sass') {
-            this.template('dev/styles/main.less', 'dev/styles/main.scss');
+            this.template('client/styles/main.less', 'client/styles/main.scss');
         }
     }
     else {
-        this.template('dev/styles/main.css', 'dev/styles/main.css');
+        this.template('client/styles/main.css', 'client/styles/main.css');
     }
 
 };
@@ -574,7 +574,7 @@ YeogurtGenerator.prototype.server = function server() {
             else if (this.jsTemplate === 'Handlebars') {
                 this.template('server/modules/hbsRender.js','server/modules/hbsRender.js');
             }
-            this.template('dev/templates/html/index.html', 'server/templates/index.html');
+            this.template('client/templates/html/index.html', 'server/templates/index.html');
         }
 
         if (this.dbOption !== 'None') {
@@ -598,10 +598,10 @@ YeogurtGenerator.prototype.server = function server() {
 
 YeogurtGenerator.prototype.dashboard = function dashboard() {
     if (this.useDashboard) {
-        this.mkdir('dev/dashboard');
-        this.mkdir('dev/dashboard/images');
-        this.copy('dev/images/yeogurt-logo.png', 'dev/dashboard/images/yeogurt-logo.png');
-        this.copy('dev/dashboard/template.hbs', 'dev/dashboard/template.hbs');
+        this.mkdir('client/dashboard');
+        this.mkdir('client/dashboard/images');
+        this.copy('client/images/yeogurt-logo.png', 'client/dashboard/images/yeogurt-logo.png');
+        this.copy('client/dashboard/template.hbs', 'client/dashboard/template.hbs');
     }
 };
 
@@ -625,12 +625,12 @@ YeogurtGenerator.prototype.projectfiles = function projectfiles() {
 YeogurtGenerator.prototype.extras = function extras() {
 
     if (this.htaccess) {
-        this.copy('dev/.htaccess', 'dev/.htaccess');
+        this.copy('client/.htaccess', 'client/.htaccess');
     }
 
-    this.copy('dev/robots.txt', 'dev/robots.txt');
-    this.copy('dev/humans.txt', 'dev/humans.txt');
-    this.copy('dev/favicon.ico', 'dev/favicon.ico');
+    this.copy('client/robots.txt', 'client/robots.txt');
+    this.copy('client/humans.txt', 'client/humans.txt');
+    this.copy('client/favicon.ico', 'client/favicon.ico');
 
 };
 

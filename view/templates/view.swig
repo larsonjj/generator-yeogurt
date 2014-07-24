@@ -1,4 +1,4 @@
-{# <%= name %> <%= view %> #}<% if (view === 'component') { %>
+{# <%= name %> <%= view %> #}<% if (view === 'module') { %>
 <% if (useDashboard) { %>{# [dash:data]
     {
         "status": "development",
@@ -13,23 +13,15 @@
 
 <% } %>mixin <%= name || 'example' %>()
     <div class="<%= _.slugify(name.toLowerCase()) %>"></div>
-        <p>This is an example paragraph</p><% } else if (view === 'template') { %>
+        <p>This is an example paragraph</p><% } else if (view === 'layout') { %>
 {% extends 'base.swig' %}
 
-{% block template %}
-    {# Define header block from base template #}
-    {% block header %}
-        {{ header.content() }}
-    {% endblock %}
+{% block layout %}
 
-    {# Provides template level styling #}
-    <div id="template-wrapper" class="template-wrapper"><% if (name) { %>(class="<%= _.slugify(name.toLowerCase()) %>")<% } %></div>
+    {# Provides layout level markup #}
+    <div class="layout-wrapper"><% if (name) { %>(class="<%= _.slugify(name.toLowerCase()) %>")<% } %></div>
         {% block content %}{% endblock %}
 
-    {# Define footer block from base template #}
-    {% block footer %}
-        {{ footer.content() }}
-    {% endblock %}
 {% endblock %}
 <% } else if (view === 'page') { %><% if (useDashboard) { %>
 {# [dash:data]
@@ -40,7 +32,7 @@
         "link": "<% if (view === 'page') { %>../<%= _.slugify(name.toLowerCase()) %>.html<% } else { %>../views/<%= view %>s/<%= _.slugify(name.toLowerCase()) %>.html<% } %>"
     }
     [/dash] #}
-<% } %><% if (!useTemplate) { %>{% extends './templates/base.swig' %}<% } else { %>{% extends './templates/<%= useTemplate %>.swig' %}<% } %>
+<% } %><% if (!useTemplate) { %>{% extends './layouts/base.swig' %}<% } else { %>{% extends './layouts/<%= useTemplate %>.swig' %}<% } %>
 
 {# use the 'block body' if you need to set a page-level class on the <body> tag #}
 {% block body %}

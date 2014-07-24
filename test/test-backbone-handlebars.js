@@ -22,12 +22,12 @@ describe('yeogurt generator backbone + lo-dash', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'dev/scripts/views/main.js',
-            'dev/templates/main.hbs',
-            'dev/scripts/routes.js',
-            'dev/templates',
-            'dev/scripts/views',
-            'dev/index.html'
+            'client/scripts/views/main.js',
+            'client/templates/main.hbs',
+            'client/scripts/routes.js',
+            'client/templates',
+            'client/scripts/views',
+            'client/index.html'
         ];
 
         helpers.mockPrompt(this.app, {
@@ -37,7 +37,7 @@ describe('yeogurt generator backbone + lo-dash', function () {
             jsFramework: 'Backbone',
             jsTemplate: 'Handlebars',
             jsOption: 'Browserify',
-            cssOption: 'SASS',
+            cssOption: 'Sass',
             ieSupport: true,
             responsive: true,
             useGA: true,

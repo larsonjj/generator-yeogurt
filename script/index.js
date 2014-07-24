@@ -23,11 +23,11 @@ ScriptGenerator.prototype.files = function files() {
         return;
     }
     if (this.jsOption !== 'None (Vanilla JavaScript)') {
-        this.template('script.js', 'dev/scripts/modules/' + this._.slugify(this.name.toLowerCase()) + '.js');
+        this.template('script.js', 'client/scripts/modules/' + this._.slugify(this.name.toLowerCase()) + '.js');
         this.template('script-spec.js', 'test/spec/modules/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
     }
     else {
-        this.template('script.js', 'dev/scripts/' + this._.slugify(this.name.toLowerCase()) + '.js');
+        this.template('script.js', 'client/scripts/' + this._.slugify(this.name.toLowerCase()) + '.js');
         this.template('script-spec.js', 'test/spec/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
     }
 

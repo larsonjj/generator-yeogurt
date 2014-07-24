@@ -15,7 +15,7 @@ var taskConfig = function(grunt) {
                 watch: true
             },
             files: {
-                '<%%= yeogurt.staticServer %>/scripts/app.js': ['<%%= yeogurt.dev %>/scripts/app.js']
+                '<%%= yeogurt.staticServer %>/scripts/app.js': ['<%%= yeogurt.client %>/scripts/app.js']
             }
         },
         dist: {
@@ -33,7 +33,7 @@ var taskConfig = function(grunt) {
                 }
             },
             files: {
-                '<%%= yeogurt.dist %>/scripts/app.js': ['<%%= yeogurt.dev %>/scripts/app.js']
+                '<%%= yeogurt.dist %>/scripts/app.js': ['<%%= yeogurt.client %>/scripts/app.js']
             }
         }
     });

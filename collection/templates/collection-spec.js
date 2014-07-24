@@ -22,7 +22,7 @@ define(function(require) {
 });<% } else if (jsOption === 'Browserify') { %>
 'use strict';
 
-var <%= _.classify(name) %> = require('../../dev/scripts/collections/<%= _.slugify(name) %>.js');
+var <%= _.classify(name) %> = require('../../client/scripts/collections/<%= _.slugify(name) %>.js');
 
 describe('<%= _.classify(name) %> Collection', function () {
 

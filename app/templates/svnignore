@@ -6,3 +6,4 @@ bower_components
 .grunt
 .serve
 .tmp
+secrets.js

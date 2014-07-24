@@ -24,7 +24,7 @@ var jadeHelper = function(data, template) {
     }
 
     // Compile from Jade to HTML String
-    return jade.renderFile(path.join(settings.root, 'dev/templates/') + template, options, function (err, html) {
+    return jade.renderFile(path.join(settings.root, 'client/templates/') + template, options, function (err, html) {
         if (err) {
             throw err;
         }

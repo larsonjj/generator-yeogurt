@@ -35,7 +35,7 @@ describe('yeogurt generator server defaults', function () {
             versionControl: 'Git',
             structure: 'Single Page Application',
             htmlOption: 'Jade',
-            cssOption: 'SASS',
+            cssOption: 'Sass',
             jsOption: 'RequireJS',
             jsTemplate: 'React',
             dbOption: 'MySQL',

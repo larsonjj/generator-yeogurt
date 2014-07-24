@@ -22,7 +22,7 @@ describe('yeogurt generator with css', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'dev/styles/main.css'
+            'client/styles/main.css'
         ];
 
         helpers.mockPrompt(this.app, {

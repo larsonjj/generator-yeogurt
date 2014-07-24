@@ -13,14 +13,14 @@ var taskConfig = function(grunt) {
         },<% } %><% if (!useServer) { %>
         server: {
             expand: true,
-            cwd: '<%%= yeogurt.dev %>/templates/',
+            cwd: '<%%= yeogurt.client %>/templates/',
             dest: '<%%= yeogurt.staticServer %>/',
             src: ['*.swig'],
             ext: '.html'
         },<% } %>
         dist: {
             expand: true,
-            cwd: '<%%= yeogurt.dev %>/templates/',<% if (!useServer) { %>
+            cwd: '<%%= yeogurt.client %>/templates/',<% if (!useServer) { %>
             dest: '<%%= yeogurt.dist %>/',<% } %><% if (useServer) { %>
             dest: '.tmp/',<% } %>
             src: ['*.swig'],

@@ -22,21 +22,21 @@ describe('yeogurt generator with git', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'dev/docs',
-            'dev/docs/styleguide',
-            'dev/docs/styleguide/index.html',
-            'dev/docs/styleguide/public/kss.js',
-            'dev/docs/styleguide/public/kss.less',
-            'dev/docs/styleguide/public/less.js',
-            'dev/docs/styleguide/public/markdown.less',
-            'dev/docs/styleguide/public/prettify.js',
-            'dev/docs/styleguide/public/images/yeogurt-logo.png'
+            'client/docs',
+            'client/docs/styleguide',
+            'client/docs/styleguide/index.html',
+            'client/docs/styleguide/public/kss.js',
+            'client/docs/styleguide/public/kss.less',
+            'client/docs/styleguide/public/less.js',
+            'client/docs/styleguide/public/markdown.less',
+            'client/docs/styleguide/public/prettify.js',
+            'client/docs/styleguide/public/images/yeogurt-logo.png'
         ];
 
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
             versionControl: 'Git',
-            cssOption: 'SASS',
+            cssOption: 'Sass',
             ieSupport: true,
             responsive: true,
             useGA: true,

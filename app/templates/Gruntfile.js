@@ -6,8 +6,8 @@
 // - server (location for files created when running 'grunt serve')
 // - dist (location for files created when running 'grunt' or 'grunt build')
 var config = {
-    dev: 'dev',
-    staticServer: 'dev/.serve',
+    client: 'client',
+    staticServer: 'client/.serve',
     dist: 'dist',
     server: 'server'
 };

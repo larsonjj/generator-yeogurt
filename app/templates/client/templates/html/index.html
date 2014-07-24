@@ -24,7 +24,7 @@
         <% if (useGA) { %>
         <link href="//www.google-analytics.com" rel="dns-prefetch">
         <% } %>
-        <% if (cssOption === 'None (Vanilla CSS)') { %><!-- build:css(dev) styles/main.css -->
+        <% if (cssOption === 'None (Vanilla CSS)') { %><!-- build:css(client) styles/main.css -->
         <% if (useBootstrap) { %><link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
         <% } %><% if (useFoundation) { %><link rel="stylesheet" href="/bower_components/foundation/css/normalize.css">
         <link rel="stylesheet" href="/bower_components/foundation/css/foundation.css">
@@ -34,7 +34,7 @@
             <!-- [injector:css] -->
             <!-- [endinjector] -->
         <!-- endbuild -->
-        <% } else { %><!-- build:css(dev) styles/main.css -->
+        <% } else { %><!-- build:css(client) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
             <!-- [injector:css] -->
             <!-- [endinjector] -->
@@ -68,7 +68,7 @@
     </head>
     <body>
         <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <% if (structure === 'Static Site') { %>
         <div class="main-container">
@@ -150,7 +150,7 @@
         <% if (useServer) { %><%% } else { %>
         <script src="/scripts/global.js"></script>
         <%% } %><% } %>
-        <% if (jsOption ==='RequireJS') { %><script data-main="/scripts/main", src="/bower_components/requirejs/require.js"></script><% } else if (jsOption ==='Browserify') { %><script src="/scripts/app.js"></script><% } else { %><!-- build:js(dev) scripts/app.js --><% if (jsFramework !== 'Backbone') { %>
+        <% if (jsOption ==='RequireJS') { %><script data-main="/scripts/main", src="/bower_components/requirejs/require.js"></script><% } else if (jsOption ==='Browserify') { %><script src="/scripts/app.js"></script><% } else { %><!-- build:js(client) scripts/app.js --><% if (jsFramework !== 'Backbone') { %>
         <script src="/scripts/app.js"></script><% } %>
             <!-- [injector:js] -->
             <!-- [endinjector] --><% if (jsFramework === 'Backbone') { %>

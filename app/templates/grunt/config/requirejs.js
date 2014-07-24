@@ -9,8 +9,8 @@ var taskConfig = function(grunt) {
         dist: {
             options: {
                 name: 'main',
-                baseUrl: '<%%= yeogurt.dev %>/scripts/',
-                mainConfigFile: '<%%= yeogurt.dev %>/scripts/main.js',
+                baseUrl: '<%%= yeogurt.client %>/scripts/',
+                mainConfigFile: '<%%= yeogurt.client %>/scripts/main.js',
                 out: '<%%= yeogurt.dist %>/scripts/main.js',
                 optimize: 'uglify2',<% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>
                 generateSourceMaps: false,<% } else { %>generateSourceMaps: true,<% } %>

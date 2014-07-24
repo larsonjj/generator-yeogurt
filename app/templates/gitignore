@@ -2,8 +2,8 @@ node_modules
 *.log
 dist
 .ftppass
-dev/bower_components
-dev/.serve
+client/bower_components
+client/.serve
 .tmp
 .grunt
 server/config/secrets.js
