@@ -10,7 +10,7 @@ var taskConfig = function(grunt) {
             files: [{
                 expand: true,
                 cwd: '<%%= yeogurt.dev %>/',
-                dest: '<%%= yeogurt.server %>/',
+                dest: '<%%= yeogurt.staticServer %>/',
                 src: [
                     'scripts/**/*.<% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>{js,jsx}<% } else { %>js<% } %>',<% if (useDashboard) { %>
                     'dashboard/**/*.*',<% } %><% if (jsOption === 'Browserify') { %>
@@ -28,7 +28,7 @@ var taskConfig = function(grunt) {
             }<% if (cssOption === 'None (Vanilla CSS)') { %>, {
                 expand: true,
                 cwd: '<%%= yeogurt.dev %>/',
-                dest: '<%%= yeogurt.server %>/',
+                dest: '<%%= yeogurt.staticServer %>/',
                 src: [
                     'styles/**/*.css',
                     'bower_components/**/*.{css,map}'

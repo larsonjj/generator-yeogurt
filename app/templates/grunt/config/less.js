@@ -10,15 +10,15 @@ var taskConfig = function(grunt) {
             options: {
                 paths: ['<%%= yeogurt.dev %>/'],
                 sourceMap: true,
-                sourceMapFilename: '<%%= yeogurt.server %>/styles/main.css.map',
-                sourceMapBasepath: '<%%= yeogurt.server %>/styles/',
+                sourceMapFilename: '<%%= yeogurt.staticServer %>/styles/main.css.map',
+                sourceMapBasepath: '<%%= yeogurt.staticServer %>/styles/',
                 sourceMapRootpath: '',
                 dumpLineNumbers: 'comments',
                 outputSourceFiles: true
             },
             expand: true,
             cwd: '<%%= yeogurt.dev %>/',
-            dest: '<%%= yeogurt.server %>/',
+            dest: '<%%= yeogurt.staticServer %>/',
             src: [
                 'styles/main.less'
             ],

@@ -131,27 +131,27 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         type: 'list',
         name: 'cssOption',
         message: 'Which ' + 'CSS preprocessor'.blue + ' would you like to use?',
-        choices: ['SASS', 'LESS', 'None (Vanilla CSS)']
+        choices: ['Sass', 'Less', 'None (Vanilla CSS)']
     }, {
-        when: function(props) { return (/SASS/i).test(props.cssOption); },
+        when: function(props) { return (/Sass/i).test(props.cssOption); },
         type: 'confirm',
         name: 'useBourbon',
         message: 'Would you like to use the ' + 'Bourbon Mixin Library'.blue + '?',
         default: true
     }, {
-        when: function(props) { return (/LESS/i).test(props.cssOption); },
+        when: function(props) { return (/Less/i).test(props.cssOption); },
         type: 'confirm',
         name: 'useLesshat',
         message: 'Would you like to use the ' + 'Lesshat Mixin Library'.blue + '?',
         default: true
     }, {
-        when: function(props) { return (/SASS/i).test(props.cssOption) || (/None/i).test(props.cssOption); },
+        when: function(props) { return (/Sass/i).test(props.cssOption) || (/None/i).test(props.cssOption); },
         type: 'list',
         name: 'cssFramework',
         message: 'Which CSS ' + 'framework'.blue + ' would you like to use?',
         choices: ['Bootstrap', 'Foundation', 'None']
     }, {
-        when: function(props) { return (/LESS/i).test(props.cssOption); },
+        when: function(props) { return (/Less/i).test(props.cssOption); },
         type: 'confirm',
         name: 'useBootstrap',
         message: 'Would you like to use the ' + 'Bootstrap'.blue + ' CSS framework?',
@@ -425,13 +425,13 @@ YeogurtGenerator.prototype.tasks = function tasks() {
         this.template('grunt/config/jshint.js', 'grunt/config/jshint.js');
     }
     this.template('grunt/config/karma.js', 'grunt/config/karma.js');
-    if (this.cssOption === 'LESS') {
+    if (this.cssOption === 'Less') {
         this.template('grunt/config/less.js', 'grunt/config/less.js');
     }
     if (this.jsOption === 'RequireJS') {
         this.template('grunt/config/requirejs.js', 'grunt/config/requirejs.js');
     }
-    if (this.cssOption === 'SASS') {
+    if (this.cssOption === 'Sass') {
         this.template('grunt/config/sass.js', 'grunt/config/sass.js');
     }
     if (this.jsTemplate === 'Lo-dash (Underscore)') {
@@ -469,18 +469,19 @@ YeogurtGenerator.prototype.tasks = function tasks() {
 };
 
 YeogurtGenerator.prototype.views = function views() {
+    var viewRoot = this.useServer ? 'server/' : 'dev/';
 
     if (this.htmlOption === 'Jade') {
-        this.mkdir('dev/templates');
-        this.mkdir('dev/templates/layouts');
-        this.template('dev/templates/jade/index.jade', 'dev/templates/index.jade');
-        this.template('dev/templates/jade/layouts/base.jade', 'dev/templates/layouts/base.jade');
+        this.mkdir(viewRoot + 'templates');
+        this.mkdir(viewRoot + 'templates/layouts');
+        this.template('dev/templates/jade/index.jade', viewRoot + 'templates/index.jade');
+        this.template('dev/templates/jade/layouts/base.jade', viewRoot + 'templates/layouts/base.jade');
     }
     else if (this.htmlOption === 'Swig') {
-        this.mkdir('dev/templates');
-        this.mkdir('dev/templates/layouts');
-        this.template('dev/templates/swig/index.swig', 'dev/templates/index.swig');
-        this.template('dev/templates/swig/layouts/base.swig', 'dev/templates/layouts/base.swig');
+        this.mkdir(viewRoot + 'templates');
+        this.mkdir(viewRoot + 'templates/layouts');
+        this.template('dev/templates/swig/index.swig', viewRoot + 'templates/index.swig');
+        this.template('dev/templates/swig/layouts/base.swig', viewRoot + 'templates/layouts/base.swig');
     }
     else if (this.htmlOption === 'None (Vanilla HTML)') {
         this.template('dev/templates/html/index.html', 'dev/index.html');
@@ -539,10 +540,10 @@ YeogurtGenerator.prototype.styles = function styles() {
     }
 
     if (this.cssOption !== 'None (Vanilla CSS)') {
-        if (this.cssOption === 'LESS') {
+        if (this.cssOption === 'Less') {
             this.template('dev/styles/main.less', 'dev/styles/main.less');
         }
-        if (this.cssOption === 'SASS') {
+        if (this.cssOption === 'Sass') {
             this.template('dev/styles/main.less', 'dev/styles/main.scss');
         }
     }
@@ -559,7 +560,8 @@ YeogurtGenerator.prototype.server = function server() {
         this.mkdir('server/config');
         this.mkdir('server/config/env');
         if (this.useServer && this.structure === 'Single Page Application') {
-            this.mkdir('server/views');
+            this.mkdir('server/templates');
+            this.mkdir('server/layouts');
             this.mkdir('server/modules');
         }
         if (this.structure === 'Single Page Application') {
@@ -572,7 +574,7 @@ YeogurtGenerator.prototype.server = function server() {
             else if (this.jsTemplate === 'Handlebars') {
                 this.template('server/modules/hbsRender.js','server/modules/hbsRender.js');
             }
-            this.template('dev/templates/html/index.html', 'server/views/index.html');
+            this.template('dev/templates/html/index.html', 'server/templates/index.html');
         }
 
         if (this.dbOption !== 'None') {

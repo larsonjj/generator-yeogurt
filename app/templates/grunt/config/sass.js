@@ -16,7 +16,7 @@ var taskConfig = function(grunt) {
                 ]
             },
             files: {
-                '<%%= yeogurt.server %>/styles/main.css': '<%%= yeogurt.dev %>/styles/main.scss'
+                '<%%= yeogurt.staticServer %>/styles/main.css': '<%%= yeogurt.dev %>/styles/main.scss'
             }
         },
         dist: {

@@ -7,8 +7,9 @@
 // - dist (location for files created when running 'grunt' or 'grunt build')
 var config = {
     dev: 'dev',
-    server: 'dev/.server',
-    dist: 'dist'
+    staticServer: 'dev/.serve',
+    dist: 'dist',
+    server: 'server'
 };
 
 module.exports = function(grunt) {

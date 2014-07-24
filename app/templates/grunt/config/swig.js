@@ -14,7 +14,7 @@ var taskConfig = function(grunt) {
         server: {
             expand: true,
             cwd: '<%%= yeogurt.dev %>/templates/',
-            dest: '<%%= yeogurt.server %>/',
+            dest: '<%%= yeogurt.staticServer %>/',
             src: ['*.swig'],
             ext: '.html'
         },<% } %>

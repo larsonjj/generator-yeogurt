@@ -14,7 +14,7 @@ var defaults = {
         url: '<%= dbURL %>'
     },
     root: path.normalize(__dirname + '/../../..'),
-    staticAssets: 'dev/.server',
+    staticAssets: 'dev/.serve',
     security: {
         whitelists: {
             csrfWhitelist: [],

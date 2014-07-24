@@ -12,8 +12,8 @@ var taskConfig = function(grunt) {
             'jsdoc:dist',<% } %>
             'svgmin:dist',<% if (htmlOption === 'Jade' ) { %>
             'jade:dist',<% } else if(htmlOption === 'Swig') {  %>
-            'swig:dist',<% } %><% if (cssOption === 'LESS') { %>
-            'less:dist',<% } %><% if (cssOption === 'SASS') { %>
+            'swig:dist',<% } %><% if (cssOption === 'Less') { %>
+            'less:dist',<% } %><% if (cssOption === 'Sass') { %>
             'sass:dist',<% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>
             'jst:dist',<% } else if (jsTemplate === 'Handlebars') { %>
             'handlebars:dist',<% } else if (jsTemplate === 'Jade') { %>

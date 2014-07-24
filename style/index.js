@@ -26,7 +26,7 @@ StyleGenerator.prototype.files = function files() {
         return;
     }
     if (this.folder) {
-        if (this.cssOption === 'LESS') {
+        if (this.cssOption === 'Less') {
             this.template('style.less', 'dev/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.less');
             // write the component file as an include
             if(!this.noImport) {
@@ -45,7 +45,7 @@ StyleGenerator.prototype.files = function files() {
                 }
             }
         }
-        else if (this.cssOption === 'SASS') {
+        else if (this.cssOption === 'Sass') {
             this.template('style.less', 'dev/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
             // write the component file as an include
             if(!this.noImport) {
@@ -69,7 +69,7 @@ StyleGenerator.prototype.files = function files() {
         }
     }
     else {
-        if (this.cssOption === 'LESS') {
+        if (this.cssOption === 'Less') {
             this.template('style.less', 'dev/styles/partials/' + '_' + this._.slugify(this.name.toLowerCase()) + '.less');
             // write the component file as an include
             if(!this.noImport) {
@@ -88,7 +88,7 @@ StyleGenerator.prototype.files = function files() {
                 }
             }
         }
-        else if (this.cssOption === 'SASS') {
+        else if (this.cssOption === 'Sass') {
             this.template('style.less', 'dev/styles/partials/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
             // write the component file as an include
             if(!this.noImport) {

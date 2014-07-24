@@ -3,7 +3,7 @@ node_modules
 dist
 .ftppass
 dev/bower_components
-dev/.server
+dev/.serve
 .tmp
 .grunt
 server/config/secrets.js

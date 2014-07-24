@@ -12,8 +12,8 @@
 *   Import Normalize Library
 */
 
-<% if (cssOption === 'SASS') { %>// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
-@import '../bower_components/normalize-scss/normalize';<% } %><% if (cssOption === 'LESS') { %>
+<% if (cssOption === 'Sass') { %>// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
+@import '../bower_components/normalize-scss/normalize';<% } %><% if (cssOption === 'Less') { %>
 // Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
 @import (less) '../bower_components/normalize.css/normalize.css';<% } %>
 <% } %><% if (useBorderBox && !useBootstrap) { %>
@@ -29,21 +29,21 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-<% } %><% if (cssOption === 'LESS') { %><% if (useFontAwesome) { %>
+<% } %><% if (cssOption === 'Less') { %><% if (useFontAwesome) { %>
 /**
 *   Import Font Awesome Library
 */
 
 @import '../bower_components/font-awesome/less/font-awesome';
 @fa-font-path: '../bower_components/font-awesome/fonts';<% } %>
-<% } %><% if (cssOption === 'SASS') { %><% if (useFontAwesome) { %>
+<% } %><% if (cssOption === 'Sass') { %><% if (useFontAwesome) { %>
 /**
 *   Import Font Awesome Library
 */
 
 $fa-font-path: '../bower_components/font-awesome/fonts';
 @import '../bower_components/font-awesome/scss/font-awesome';<% } %>
-<% } %><% if (cssOption === 'LESS' && useBootstrap) { %>
+<% } %><% if (cssOption === 'Less' && useBootstrap) { %>
 /**
 *   Import All Bootstrap Styles
 */
@@ -96,7 +96,7 @@ $fa-font-path: '../bower_components/font-awesome/fonts';
 
 // Utility classes
 @import "../bower_components/bootstrap/less/utilities.less";
-@import "../bower_components/bootstrap/less/responsive-utilities.less";<% } %><% if (cssOption === 'SASS' && useBootstrap) { %>
+@import "../bower_components/bootstrap/less/responsive-utilities.less";<% } %><% if (cssOption === 'Sass' && useBootstrap) { %>
 /**
 *   Import All Bootstrap Styles
 */

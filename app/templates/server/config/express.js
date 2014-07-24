@@ -44,10 +44,8 @@ var expressConfig = function(app, express,<% if ('MySQL'.indexOf(dbOption) > -1)
         app.use(compress());
     }
 
-    // Setup path where all server templates will reside<% if (structure === 'Single Page Application') { %>
-    app.set('views', path.join(settings.root, 'server/views'));<% } %><% if (structure === 'Static Site') { %>
-    app.set('views', path.join(settings.root, 'dev/templates'));
-    <% } %>
+    // Setup path where all server templates will reside
+    app.set('views', path.join(settings.root, 'server/templates'));
 
     // Load favicon
     app.use(favicon((settings.root + '/' + settings.staticAssets + '/favicon.ico')));

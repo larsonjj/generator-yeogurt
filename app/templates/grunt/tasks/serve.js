@@ -24,8 +24,8 @@ var taskConfig = function(grunt) {
             'swig:server',<% } %><% if (useDashboard) { %>
             'dashboard:server',<% } %><% if (useKss) { %>
             'kss:server',<% } %><% if (useJsdoc) { %>
-            'jsdoc:server',<% } %><% if (cssOption === 'LESS') { %>
-            'less:server',<% } %><% if (cssOption === 'SASS') { %>
+            'jsdoc:server',<% } %><% if (cssOption === 'Less') { %>
+            'less:server',<% } %><% if (cssOption === 'Sass') { %>
             'sass:server',<% } %>
             'clean:temp',<% if (useServer) { %>
             'express:server',

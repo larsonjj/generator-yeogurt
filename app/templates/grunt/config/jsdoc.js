@@ -8,7 +8,7 @@ var taskConfig = function(grunt) {
     grunt.config.set('jsdoc', {
         server : {
             src: ['<%%= yeogurt.dev %>/scripts/**/*', '*.md'],
-            dest: '<%%= yeogurt.server %>/docs/api',
+            dest: '<%%= yeogurt.staticServer %>/docs/api',
             options: {
                 template : '<%%= yeogurt.dev %>/docs/api/theme'
             }
