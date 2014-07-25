@@ -31,7 +31,9 @@ block layout
         "link": "<% if (view === 'page') { %>../<%= _.slugify(name.toLowerCase()) %>.html<% } else { %>../views/<%= view %>s/<%= _.slugify(name.toLowerCase()) %>.html<% } %>"
     }
     [/dash]
-<% } %><% if (!useTemplate) { %>extend ./layouts/base<% } else { %>extend ./layouts/<%= useTemplate %><% } %>
+<% } %><% if (!useTemplate) { %>
+extend ./layouts/base<% } else { %>
+extend ./layouts/<%= useTemplate %><% } %>
 
 //- use the 'block body' if you need to set a page-level class on the <body> tag
 block body

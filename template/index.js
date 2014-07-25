@@ -21,6 +21,7 @@ var TemplateGenerator = module.exports = function TemplateGenerator(args, option
     this.htmlOption = fileJSON.htmlOption;
     this.useBootstrap = fileJSON.extras.indexOf('useBootstrap') > -1 ? true : false;
     this.cssOption = fileJSON.cssOption;
+    this.useServer = fileJSON.useServer;
     this.jsOption = fileJSON.jsOption;
     this.useGA = fileJSON.useGA;
     this.ieSupport = fileJSON.ieSupport;
@@ -52,7 +53,7 @@ TemplateGenerator.prototype.files = function files() {
             if (this.view === 'page') {
                 this.template('view.jade', rootPath + '/templates/' + this._.slugify(this.name.toLowerCase()) + '.jade');
             }
-            else if (this.view === 'component') {
+            else if (this.view === 'module') {
                 this.template('view.jade', rootPath +'/templates/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.jade');
             }
             else if (this.view === 'template') {
@@ -62,14 +63,14 @@ TemplateGenerator.prototype.files = function files() {
                 console.log('Name cannot be empty. Operation aborted.');
             }
             else {
-                console.log('Must use a supported type: page, template, component. Operation aborted');
+                console.log('Must use a supported type: page, template, module. Operation aborted');
             }
         }
         else if (this.htmlOption === 'Swig') {
             if (this.view === 'page') {
                 this.template('view.swig', rootPath +'/templates/' + this._.slugify(this.name.toLowerCase()) + '.swig');
             }
-            else if (this.view === 'component') {
+            else if (this.view === 'module') {
                 this.template('view.swig', rootPath +'/templates/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.swig');
             }
             else if (this.view === 'template') {
@@ -79,7 +80,7 @@ TemplateGenerator.prototype.files = function files() {
                 console.log('Name cannot be empty. Operation aborted.');
             }
             else {
-                console.log('Must use a supported type: page, template, component. Operation aborted');
+                console.log('Must use a supported type: page, template, module. Operation aborted');
             }
         }
         else if (this.htmlOption === 'None (Vanilla HTML)') {
@@ -116,7 +117,7 @@ TemplateGenerator.prototype.files = function files() {
         }
         else {
             console.log('You have chosen to use Backbone + React, so this subgenerator is not available to use.');
-            console.log('Try the following to generate a new view/component: yo yeogurt:react myreact');
+            console.log('Try the following to generate a new view/module: yo yeogurt:react myreact');
             console.log('Operation aborted');
         }
     }

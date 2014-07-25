@@ -32,7 +32,9 @@
         "link": "<% if (view === 'page') { %>../<%= _.slugify(name.toLowerCase()) %>.html<% } else { %>../views/<%= view %>s/<%= _.slugify(name.toLowerCase()) %>.html<% } %>"
     }
     [/dash] #}
-<% } %><% if (!useTemplate) { %>{% extends './layouts/base.swig' %}<% } else { %>{% extends './layouts/<%= useTemplate %>.swig' %}<% } %>
+<% } %><% if (!useTemplate) { %>
+{% extends './layouts/base.swig' %}<% } else { %>
+{% extends './layouts/<%= useTemplate %>.swig' %}<% } %>
 
 {# use the 'block body' if you need to set a page-level class on the <body> tag #}
 {% block body %}
@@ -42,5 +44,5 @@
 
 {% block content %}
     {{ heading.content({type:'h1', class:'heading', text: 'Sample Heading'}) }}
-    <p><%= name || 'empty' %> page<% } %></p>
-{% endblock %}
+    <p><%= name || 'empty' %> page</p>
+{% endblock %}<% } %>
