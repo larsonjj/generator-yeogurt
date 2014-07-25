@@ -24,7 +24,7 @@ describe('yeogurt generator server defaults', function () {
             // add files and folders you expect to exist here.
             'grunt/config/open.js',
             'grunt/config/express.js',
-            'server/views/index.html',
+            'server/templates/index.html',
             'server/modules',
             'server/modules/reactRender.js',
             'server/config/database.js',
