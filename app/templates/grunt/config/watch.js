@@ -11,7 +11,7 @@ var taskConfig = function(grunt) {
     var config = {<% if (htmlOption === 'Jade' && !useServer) { %>
         jade: {
             files: [
-                '<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/*.jade'
+                '<%%= yeogurt.client %>/templates/*.jade'
             ],
             tasks: [
                 'newer:jade:server'
@@ -19,8 +19,8 @@ var taskConfig = function(grunt) {
         },
         jadePartials: {
             files: [
-                '<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/**/*.jade',
-                '!<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/*.jade'
+                '<%%= yeogurt.client %>/templates/**/*.jade',
+                '!<%%= yeogurt.client %>/templates/*.jade'
             ],
             tasks: [
                 'injector:jade',
@@ -29,7 +29,7 @@ var taskConfig = function(grunt) {
         },<% } %><% if (htmlOption === 'Swig' && !useServer) { %>
         swig: {
             files: [
-                '<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/*.swig'
+                '<%%= yeogurt.client %>/templates/*.swig'
             ],
             tasks: [
                 'newer:swig:server'
@@ -37,8 +37,8 @@ var taskConfig = function(grunt) {
         },
         swigPartials: {
             files: [
-                '<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/**/*.swig',
-                '!<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/*.swig'
+                '<%%= yeogurt.client %>/templates/**/*.swig',
+                '!<%%= yeogurt.client %>/templates/*.swig'
             ],
             tasks: [
                 'injector:swig',
@@ -53,32 +53,19 @@ var taskConfig = function(grunt) {
                 'newer:copy:server',
                 'clean:temp'
             ]
-        },
-        <% } %><% if (cssOption === 'Sass') { %>
-        injectSass: {
-            files: [
-                '<%%= yeogurt.client %>/styles/**/*.scss',
-                '!<%%= yeogurt.client %>/styles/main.scss'
-            ],
-            tasks: ['injector:sass']
-        },
+        },<% } %><% if (cssOption === 'Sass') { %>
         sass: {
             files: ['<%%= yeogurt.client %>/styles/**/*.<% if (useKss) { %>{scss,md}<% } else { %>scss<% } %>'],
             tasks: [
-                'sass:server',
+                'injector:sass',
+                'sass:server'
             ]
         },<% } %><% if (cssOption === 'Less') { %>
-        injectLess: {
-            files: [
-                '<%%= yeogurt.client %>/styles/**/*.less',
-                '!<%%= yeogurt.client %>/styles/main.less'
-            ],
-            tasks: ['injector:less']
-        },
         less: {
             files: ['<%%= yeogurt.client %>/styles/**/*.<% if (useKss) { %>{less,md}<% } else { %>less<% } %>'],
             tasks: [
-                'less:server',
+                'injector:less',
+                'less:server'
             ]
         },<% } %>
         injectCss: {
@@ -175,7 +162,12 @@ var taskConfig = function(grunt) {
                 '<%%= yeogurt.server %>/templates/**/*.swig'<% } %><% if (htmlOption === 'Jade') { %>,
                 '<%%= yeogurt.server %>/templates/**/*.jade'<% } %>
             ],
-            tasks: ['express:server', 'wait'],
+            tasks: [<% if (htmlOption === 'Swig') { %>
+                'injector:swig',<% } %><% if (htmlOption === 'Jade') { %>
+                'injector:jade',<% } %>
+                'express:server',
+                'wait'
+            ],
             options: {
                 livereload: true,
                 nospawn: true //Without this option specified express won't be reloaded

@@ -8,12 +8,13 @@
     }
     [/dash] #}
 {# [dash:swig]
-    +<%= name || 'example' %>()
+    {% <%= name || 'example' %>.content() %}
     [/dash] #}
 
-<% } %>mixin <%= name || 'example' %>()
+<% } %>{% macro content() %}
     <div class="<%= _.slugify(name.toLowerCase()) %>"></div>
-        <p>This is an example paragraph</p><% } else if (view === 'layout') { %>
+        <p>This is an example paragraph</p>
+{% endmacro %}<% } else if (view === 'layout') { %>
 {% extends 'base.swig' %}
 
 {% block layout %}

@@ -12,9 +12,11 @@ var taskConfig = function(grunt) {
         // Inject application script files into index.html (doesn't include bower)
         jade: {
             options: {
-                transform: function(filePath) {
-                    filePath = filePath.replace('/client/', '');
-                    return 'import ' + filePath;
+                transform: function(filePath) {<% if (useServer) { %>
+                    filePath = filePath.replace('/server/templates/', '../');
+                    <% } else { %>
+                    filePath = filePath.replace('/client/', '');<% } %>
+                    return 'include ' + filePath;
                 },
                 starttag: '//- [injector:jade]',
                 endtag: '//- [endinjector]'
@@ -23,7 +25,7 @@ var taskConfig = function(grunt) {
                 '<%%= yeogurt.server %>/templates/layouts/base.jade'<% } else { %>
                 '<%%= yeogurt.client %>/index.html'<% } %>: [
                     '<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/**/*.jade',
-                    '!<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/index.jade',
+                    '!<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/*.jade',
                     '!<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/layouts/**/*.jade',
                 ]
             }
@@ -31,10 +33,12 @@ var taskConfig = function(grunt) {
         // Inject application script files into index.html (doesn't include bower)
         swig: {
             options: {
-                transform: function(filePath) {
-                    filePath = filePath.replace('/client/', '');
-                    var fileName = url.substring(filePath.lastIndexOf('/')+1);
-                    return '{% import "' + filePath + '" as' + fileName + ' %}';
+                transform: function(filePath) {<% if (useServer) { %>
+                    filePath = filePath.replace('/server/templates/', '../');
+                    <% } else { %>
+                    filePath = filePath.replace('/client/', '');<% } %>
+                    var fileName = filePath.substring(filePath.lastIndexOf('/')+1).slice(0, -5);
+                    return '{% import "' + filePath + '" as ' + fileName + ' %}';
                 },
                 starttag: '{# [injector:swig] #}',
                 endtag: '{# [endinjector] #}'
@@ -43,7 +47,7 @@ var taskConfig = function(grunt) {
                 '<%%= yeogurt.server %>/templates/layouts/base.swig'<% } else { %>
                 '<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/index.html'<% } %>: [
                     '<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/**/*.swig',
-                    '!<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/index.swig',
+                    '!<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/*.swig',
                     '!<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/layouts/**/*.swig',
                 ]
             }
@@ -54,9 +58,11 @@ var taskConfig = function(grunt) {
                 transform: function(filePath) {
                     filePath = filePath.replace('/client/', '');
                     return '<script src="' + filePath + '"></script>';
-                },
+                },<% if (htmlOption === 'Jade') { %>
+                starttag: '// [injector:js]',
+                endtag: '// [endinjector]'<% } else { %>
                 starttag: '<!-- [injector:js] -->',
-                endtag: '<!-- [endinjector] -->'
+                endtag: '<!-- [endinjector] -->'<% } %>
             },
             files: {<% if (useServer) { %>
                 '<%%= yeogurt.server %>/templates/layouts/<% if (htmlOption === 'Jade') { %>base.jade<% } else if (htmlOption === 'Swig') { %>base.swig<% } else { %>index.html<% } %>'<% } else { %>
@@ -107,9 +113,11 @@ var taskConfig = function(grunt) {
                 transform: function(filePath) {
                     filePath = filePath.replace('/client/', '');
                     return '<link rel="stylesheet" href="' + filePath + '">';
-                },
+                },<% if (htmlOption === 'Jade') { %>
+                starttag: '// [injector:css]',
+                endtag: '// [endinjector]'<% } else { %>
                 starttag: '<!-- [injector:css] -->',
-                endtag: '<!-- [endinjector] -->'
+                endtag: '<!-- [endinjector] -->'<% } %>
             },
             files: {<% if (useServer) { %>
                 '<%%= yeogurt.server %>/templates/layouts/<% if (htmlOption === 'Jade') { %>base.jade<% } else if (htmlOption === 'Swig') { %>base.swig<% } else { %>index.html<% } %>'<% } else { %>
