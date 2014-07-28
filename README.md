@@ -16,7 +16,7 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 
 Note For Mac Users: You will need to install XCode, install command-line tools, and accept the licensing agreement.
 
-## What's New with v0.8+?
+## What's New with v0.10+?
 
 ***Single Page Applications***
 
@@ -27,7 +27,7 @@ Note For Mac Users: You will need to install XCode, install command-line tools, 
 
 ***Automated Documentation***
 
-- You now have the option to auto-generate a styleguide via [Knyle Style Sheets](http://warpspire.com/posts/kss/) with SASS, LESS, or CSS
+- You now have the option to auto-generate a styleguide via [Knyle Style Sheets](http://warpspire.com/posts/kss/) with Sass, Less, or CSS
 - Another new option has been added to allow a JavaScript API to be generated from your scripts via [JSDoc](http://usejsdoc.org/).
 
 There are a ton of updates in this release, so be sure to check out the [Changelog](https://github.com/larsonjj/generator-yeogurt/blob/master/CHANGELOG.md) to view them all.
@@ -46,7 +46,7 @@ There are a ton of updates in this release, so be sure to check out the [Changel
 ### Available for both Static Sites and Single Page Applications
 
 - Project/Site naming
-- CSS Preprocessing with [LESS](http://lesscss.org/) or [SASS](http://sass-lang.com/) via [node-sass](https://github.com/andrew/node-sass)
+- CSS Preprocessing with [Less](http://lesscss.org/) or [Sass](http://sass-lang.com/) via [node-sass](https://github.com/andrew/node-sass)
 - Modular JavaScript with [RequireJS](http://requirejs.org/) or [Browserify](http://browserify.org/)
 - IE8+ Support via [HTML5shiv](https://github.com/aFarkas/html5shiv) and [RespondJS](https://github.com/scottjehl/Respond)
 - JavaScript Linting with [JSHint](http://www.jshint.com/)
@@ -54,7 +54,7 @@ There are a ton of updates in this release, so be sure to check out the [Changel
 - Default ignores for [Git](http://git-scm.com/) or [SVN](http://subversion.apache.org/)
 - Build deployment to FTP server
 - Dynamic Dashboard - auto-generated dashboard for your site with [grunt-dashboard](https://github.com/larsonjj/grunt-dashboard)
-- Dynamic Styleguide - auto-generated styleguide for your stylesheets (SASS, LESS, or CSS) with [Knyle Style Sheets](http://warpspire.com/posts/kss/)
+- Dynamic Styleguide - auto-generated styleguide for your stylesheets (Sass, Less, or CSS) with [Knyle Style Sheets](http://warpspire.com/posts/kss/)
 - Dynamic JavaScript Documentation - auto-generated API for your scripts with [JSDoc](http://usejsdoc.org/)
 - [HTML5 Boilerplate](http://html5boilerplate.com/) extras: .htaccess, apple touch icon, ie11 app icons, and flash content permissions.
 
@@ -65,7 +65,7 @@ There are a ton of updates in this release, so be sure to check out the [Changel
 - JavaScript unit testing with [Jasmine](http://jasmine.github.io/) or [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/)
 - Test running with [Karma](http://karma-runner.github.io/0.12/index.html)
 - Automatic build process that includes concatenation, image optimization, CSS/HTML minification, and JS uglification.
-- [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and either SASS or LESS
+- [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and either Sass or Less
 - If using regular CSS, [grunt-uncss](https://github.com/addyosmani/grunt-uncss) is used to cleanup unused styles and boost performance.
 
 
@@ -99,51 +99,50 @@ Runs `grunt zip` and pushes both production-ready files and zip file to a specif
 
 Available sub-generators:
 
-* [yeogurt:view](#views)
+* [yeogurt:template](#template)
 * [yeogurt:script](#script)
 * [yeogurt:style](#style)
 * [yeogurt:model](#model)
 * [yeogurt:collection](#collection)
-* [yeogurt:router](#router)
 * [yeogurt:react](#react)
 
 **Note: Generators are to be run from the root directory of your app.**
 
-### View
+### Template
 
 #### Static Site Specific
-Creates  a jade file within the `dev/views` folder by default or within another folder using the `--type` option. Automatically, the created file's path will be included within the base template file (Jade mixins and Swig macros must be included in the file(s) where you want to use them). If you wish to not have the generated file imported into the base template file, pass the `--noImport` flag. Note: Importing is only designed to work with `type=component`.
+Creates  a jade file within the `client/templates` folder by default or within another folder using the `--type` option. Automatically, the created file's path will be included within the base layout file (Jade mixins and Swig macros must be included in the file(s) where you want to use them). If you wish to not have the generated file imported into the base layout file, pass the `--noImport` flag. Note: Importing is only designed to work with `type=module`.
 
 Example:
 ```bash
 ## Page
-yo yeogurt:view mypage
+yo yeogurt:template mypage
 
 ## Page using specific Template
-yo yeogurt:view mypage --template=one-column
+yo yeogurt:template mypage --layout=one-column
 
 ## Template
-yo yeogurt:view mytemplate --type=template
+yo yeogurt:template mylayout --type=layout
 
-## Component
-yo yeogurt:view mycomponent --type=component
+## Module
+yo yeogurt:template mymodule --type=module
 
-## Component with noImport flag
-yo yeogurt:view mycomponent --type=component --noImport
+## Module with noImport flag
+yo yeogurt:template mymodule --type=module --noImport
 ```
 
 #### Single Page Application Specific
-Creates 3 files: a new template file (Jade, Handlebars, or Lo-dash (Underscore) depending on which you chose) within the `dev/scripts/templates` folder, a new Backbone view file within the `dev/scripts/views` folder, and a unit test spec file within the `test/spec` folder.
+Creates 3 files: a new template file (Jade, Handlebars, or Lo-dash (Underscore) depending on which you chose) within the `client/scripts/templates` folder, a new Backbone view file within the `client/scripts/templates` folder, and a unit test spec file within the `test/spec` folder.
 
 Example:
 ```bash
-## View
-yo yeogurt:view myview
+## Template
+yo yeogurt:template mytemplate
 ```
 
 
 ### Script
-If using Browserify or RequireJS, this creates module script within the `dev/scripts/modules` folder by default. Otherwise, the script will be created within `dev/scripts`.
+If using Browserify or RequireJS, this creates module script within the `client/scripts/modules` folder by default. Otherwise, the script will be created within `client/scripts`.
 This sub-generator will also create a unit test *Spec file within the `test/spec` folder (enter `grunt test` command to run your tests)
 
 Example:
@@ -153,14 +152,14 @@ yo yeogurt:script myscript
 ```
 
 ### Style
-If using SASS or LESS, this creates a stylesheet file within the `dev/styles/partials` folder by default. Otherwise, the stylesheet will be created within `dev/styles` folder. You can also specify a folder using the `--folder` option which is relative to the `dev/styles` folder. Automatically, the generated file will be included within the main template file (SCSS and LESS mixins must be included in the file(s) when you want to use them). If you do not want the generated file to imported, pass the `--noImport` flag.
+If using Sass or Less, this creates a stylesheet file within the `client/styles/partials` folder by default. Otherwise, the stylesheet will be created within `client/styles` folder. You can also specify a folder using the `--folder` option which is relative to the `client/styles` folder. Automatically, the generated file will be included within the main template file (SCSS and Less mixins must be included in the file(s) when you want to use them). If you do not want the generated file to imported, pass the `--noImport` flag.
 
 Example:
 ```bash
-## Create file within dev/styles/partials folder (SASS or LESS) or dev/styles folder (CSS)
+## Create file within client/styles/partials folder (Sass or Less) or client/styles folder (CSS)
 yo yeogurt:style mystyle
 
-## Create file within dev/styles/base folder
+## Create file within client/styles/base folder
 yo yeogurt:style mystyle --folder=base
 
 ## Create file with noImport flag
@@ -170,7 +169,7 @@ yo yeogurt:style mystyle --noImport
 ## Single Page Application Specific Sub-Generators
 
 ### Model
-Creates a new Backbone model file within `dev/scripts/models` as well as a unit test spec file within the `test/spec` folder
+Creates a new Backbone model file within `client/scripts/models` as well as a unit test spec file within the `test/spec` folder
 
 Example:
 ```bash
@@ -179,27 +178,21 @@ yo yeogurt:model mymodel
 ```
 
 ### Collection
-Creates a new Backbone collection file within `dev/scripts/collections` as well as a unit test spec file within the `test/spec` folder. This will also create a new model file within `dev/scripts/models` and a unit test spec file within the `test/spec` folder.
+Creates a new Backbone collection file within `client/scripts/collections` as well as a unit test spec file within the `test/spec` folder. If you pass the `--model` option, you can specify which model to use with the collection.
 
 Example:
 ```bash
 ## Collection
 yo yeogurt:model mycollection
-```
 
-### Router
-Creates a new Backbone router file within `dev/scripts/routers` as well as a unit test spec file within the `test/spec` folder
-
-Example:
-```bash
-## Router
-yo yeogurt:router myrouter
+## Collection with specified model
+yo yeogurt:model mycollection --model=mymodel
 ```
 
 ### React
 ***Note: (Can only be used with Backbone + React)***
 
-Creates a new JSX React file within the `dev/scripts/views` as well as a unit test spec file within the `test/spec` folder
+Creates a new JSX React file within the `client/scripts/templates` as well as a unit test spec file within the `test/spec` folder
 
 Example:
 ```bash
@@ -207,7 +200,7 @@ Example:
 yo yeogurt:react myreact
 ```
 
-## SVN usage
+## SVN usage (v1.7+)
 If using SVN for version control, you will want to run the generated `svn-init` script within the root of you project folder.
 ### OSX (Mac) / Linux
 Type in the following command into Terminal: `sh svn-init.sh`
@@ -235,7 +228,7 @@ Be sure to fill out the pertinent FTP information and test to see if it is worki
 For more info on setting up the .ftppass file, refer to the [grunt-ftpush](https://github.com/inossidabile/grunt-ftpush) documentation
 
 ## Dynamic Dashboard
-If you chose the `Dynamic Dashboard` option in the generator, a dashboard will be automatically generated and can be accessed at `http://127.0.0.1:9010/.server/dashboard/index.html` when using the `grunt serve` task or `http://127.0.0.1:9010/dashboard/index.html` when running `grunt serve:dist`.
+If you chose the `Dynamic Dashboard` option in the generator, a dashboard will be automatically generated and can be accessed at `http://127.0.0.1:9010/.serve/dashboard/index.html` when using the `grunt serve` task or `http://127.0.0.1:9010/dashboard/index.html` when running `grunt serve:dist`.
 
 The dashboard has been completely overhauled from v0.4.x and moved into it's own plugin: `grunt-dashboard`.
 Please refer to the plugin [documentation](https://github.com/larsonjj/grunt-dashboard) for example usage.
@@ -243,12 +236,12 @@ Please refer to the plugin [documentation](https://github.com/larsonjj/grunt-das
 For documentation on the old v0.4.x dashboard, please refer to [here](https://github.com/larsonjj/generator-yeogurt/tree/master/docs/old-dashboard.md)
 
 ## Dynamic JavaScript API
-If you answered `Y (Yes)` to the `JSDoc` option in the generator, a JavaScript API will be automatically generated and can be accessed at `http://127.0.0.1:9010/.server/docs/api/index.html` when using the `grunt serve` task or `http://127.0.0.1:9010/docs/api/index.html` when running `grunt serve:dist`.
+If you answered `Y (Yes)` to the `JSDoc` option in the generator, a JavaScript API will be automatically generated and can be accessed at `http://127.0.0.1:9010/.serve/docs/api/index.html` when using the `grunt serve` task or `http://127.0.0.1:9010/docs/api/index.html` when running `grunt serve:dist`.
 
 The library used to generate the API documentation is [JSDoc](http://usejsdoc.org/). You can view an example [here](http://yeoman.github.io/generator/).
 
 ## Dynamic Styleguide
-If you answered `Y (Yes)` to the `KSS (Knyle Style Sheets)` option in the generator, a Stylguide will be automatically generated and can be accessed at `http://127.0.0.1:9010/.server/docs/styleguide/index.html` when using the `grunt serve` task or `http://127.0.0.1:9010/docs/styleguide/index.html` when running `grunt serve:dist`.
+If you answered `Y (Yes)` to the `KSS (Knyle Style Sheets)` option in the generator, a Stylguide will be automatically generated and can be accessed at `http://127.0.0.1:9010/.serve/docs/styleguide/index.html` when using the `grunt serve` task or `http://127.0.0.1:9010/docs/styleguide/index.html` when running `grunt serve:dist`.
 
 Knyle Style Sheets (KSS) is used at Github to create their [styleguide](https://github.com/styleguide) and is used in this generator via [kss-node](https://github.com/hughsk/kss-node). Be sure to look up [documentation](http://warpspire.com/posts/kss/) to see how to write KSS comments in your stylesheets.
 

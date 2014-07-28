@@ -1,6 +1,6 @@
 {
   "name": "generator-yeogurt",
-  "version": "0.9.4",
+  "version": "0.10.0",
   "description": "A Yeoman generator that creates a sensible structure for static sites and single page applications by using your favorite tools.",
   "keywords": [
     "yeoman-generator",

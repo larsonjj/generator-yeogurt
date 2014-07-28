@@ -1,10 +1,30 @@
 ### v0.10.0:
-#### date: 2014-07-02
+#### date: 2014-07-18
 ##### changes:
 * Removed example modules folder and module.js as it can easily be created with the script subgenerator
 * Fixed jadePartials watch task to not use the `newer:` prefix as it caused changes to components and templates to not be re-compiled
 * Fixed React components property `mixins`. (previously was `mixin`)
 * Removed grunt-uncss as it wasn't consistantly keeping the correct styles
+* Add new options to generate a Node + express server
+* Add new options to work with either MySQL (via [Sequelize](https://github.com/sequelize/sequelize)) or MongoDB (via [Mongoose](https://github.com/LearnBoost/mongoose)) with an express server
+* Added Database information options: host, port, username, password, etc if you choose to use a database
+* Updated React to v0.11.0
+* Removed ability to use React with RequireJS (too many custom configurations to get react to work with r.js optimizer)
+* Added shim to get react working with phantomJS when running unit tests
+* Removed `this.toTitleCase()` function from sub-generators as it is no longer used
+* Added seperate `grunt serve:docs` task to update documentation when files are changed. This means that by default `grunt serve` will not recompile KSS, JSDoc, or the dashbaord. This allows for much faster rebuilds by default.
+* Fixed reloading of Lo-dash, handlebars, and jade client-side templates when running `grunt serve`
+* Updated bootstrap to 4.3.x and updated all corresponding links to adhere to new bower_components structure
+* Removed all H5BP extras (adobe xdomain, IE11 icons, and apple touch icon) except for the htaccess file as they were a bit superfluous for most projects.
+* Added ES5 shims to properly support IE8 when using React
+* Removed logic to create extra print.css stylesheet for IE8 as the respond.js shim correctly translates @media print.
+* Changed style and view subgenerators to import files automatically to main.{scss,less} or index.{jade,swig} for Static Sites (use `--noImport` if you don't want you're file imported)
+* Updated grunt-sass to 0.14.x and added a 10 decimal precision option, so as to correctly compile large decimal numbers. (fixes many css issues with bootstrap and foundation)
+* Added `process.env.NODE_ENV = 'production'` to `grunt build` task to help remove dev comments from react npm module
+* Changed `connect:server` to serve up the `dev/.serve` folder as root so backbone pushState will work
+* Added `*.ico` files to `grunt-copy` task to make sure `favicon.ico` is loaded up correctly
+* `index.html` moved from `dev/` to `lib/views` when using express server. In all previous configurations, a `index.html` was always found int he `dev/` folder. This is still true except when using an express server. When using the generated express server, the `index.html` is used as a layout, so it is included within the server `lib/` folder under `views/`. Since the client should never have to touch this file, this configuration seems to make the most sense.
+* Added Modernizr to predef array in `.jshintrc`
 
 ### v0.9.4:
 #### date: 2014-06-22
@@ -63,7 +83,7 @@
 ### v0.8.1:
 #### date: 2014-06-13
 ##### changes:
-* Fixed [#28](https://github.com/larsonjj/generator-yeogurt/issues/28): Fonts were not being copied to `.server` folder when running 'grunt serve'
+* Fixed [#28](https://github.com/larsonjj/generator-yeogurt/issues/28): Fonts were not being copied to `.serve` folder when running 'grunt serve'
 
 ### v0.8.0:
 #### date: 2014-06-13
@@ -80,7 +100,7 @@
 * Added [backbone react mixin plugin](https://www.npmjs.org/package/backbone-react-component) for better reactjs integration with backbone
 * Implemented [jsx-require-plugin](https://github.com/philix/jsx-requirejs-plugin) to handle JSX templates for react
 * Added [Knyle Style Sheet](http://warpspire.com/posts/kss/) generation option to generator with grunt-kss
-* Changed `SCSS` to `SASS` to avoid confusion in the generator
+* Changed `SCSS` to `Sass` to avoid confusion in the generator
 * Added dns prefetch for google analytics
 * Added [Docker](https://github.com/jbt/docker) generator option to generate JavaScript API documentation
 * Removed unneeded grunt distJS task for uglify
@@ -172,7 +192,7 @@
 * Added new option to use Vanilla JavaScript
 * Moved Author and Vendor JavaScript right before `</body>` ([Reasoning](http://developer.yahoo.com/performance/rules.html))
 * Updated Script subgenerator to no longer create inline scripts
-* Switched to use official Bootstrap SASS Library
+* Switched to use official Bootstrap Sass Library
 * Fixed Browserify Livereload issue (browserify script changes didn't trigger a rebuild)
 * Removed karma and jshint tests from 'build task' and added to the 'default' task
 * Defined the console object within the dynamic dashboard for IE
@@ -185,7 +205,7 @@
 * Updated istanbul, mocha, karma, grunt-karma, and bower dependencies
 * Changed serve and test ports to 9010 and 9011 repectively to avoid conflicts
 * Fixed some typos within JS module comments
-* Added bootstrap stylesheet that include each of it's modules for either LESS or SASS
+* Added bootstrap stylesheet that include each of it's modules for either Less or Sass
 
 ### v0.3.4:
 #### date: 2014-03-10
@@ -217,7 +237,7 @@
 * Fixed location of Contribute.md (moved to root)
 * Updated Readme.md to correct some errors and typos
 * Added back svn-init.sh in order to help setup ignores for SVN repositories
-* Fixed font awesome pathing for LESS and SASS
+* Fixed font awesome pathing for Less and Sass
 * Fixed print styles (IE8 Support)
 * Removed unneeded less copy task for sourcemaps
 * Solidified dependency versions
