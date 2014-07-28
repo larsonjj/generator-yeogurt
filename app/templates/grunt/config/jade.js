@@ -30,7 +30,7 @@ var taskConfig = function(grunt) {
                 }
             },
             expand: true,
-            cwd: '<%%= yeogurt.server %>/templates/',<% if (!useServer) { %>
+            cwd: '<% if (useServer) { %><%%= yeogurt.server %><% } %><% if (!useServer) { %><%%= yeogurt.client %><% } %>/templates/',<% if (!useServer) { %>
             dest: '<%%= yeogurt.dist %>/',<% } %><% if (useServer) { %>
             dest: '.tmp/',<% } %>
             src: ['*.jade'],

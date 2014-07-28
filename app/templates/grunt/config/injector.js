@@ -111,8 +111,9 @@ var taskConfig = function(grunt) {
         css: {
             options: {
                 transform: function(filePath) {
-                    filePath = filePath.replace('/client/', '');
-                    return '<link rel="stylesheet" href="' + filePath + '">';
+                    filePath = filePath.replace('/client/', '');<% if (htmlOption === 'Jade') { %>
+                    return '<link rel="stylesheet" href="' + filePath + '">';<% } else { %>
+                    return 'link(rel=\'stylesheet\', href=\'' + filePath + '\')';<% } %>
                 },<% if (htmlOption === 'Jade') { %>
                 starttag: '// [injector:css]',
                 endtag: '// [endinjector]'<% } else { %>
@@ -122,7 +123,8 @@ var taskConfig = function(grunt) {
             files: {<% if (useServer) { %>
                 '<%%= yeogurt.server %>/templates/layouts/<% if (htmlOption === 'Jade') { %>base.jade<% } else if (htmlOption === 'Swig') { %>base.swig<% } else { %>index.html<% } %>'<% } else { %>
                 '<%%= yeogurt.client %>/index.html'<% } %>: [
-                    '<%%= yeogurt.client %>/styles/**/*.css'
+                    '<%%= yeogurt.client %>/styles/**/*.css',
+                    '!<%%= yeogurt.client %>/styles/main.css'
                 ]
             }
         }

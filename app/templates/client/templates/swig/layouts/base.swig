@@ -22,7 +22,8 @@
         <% if (useGA) { %>
         <link href="//www.google-analytics.com" rel="dns-prefetch">
         <% } %>
-        <% if (cssOption === 'None (Vanilla CSS)') { %><!-- build:css(client) styles/main.css -->
+        <% if (cssOption === 'None (Vanilla CSS)') { %><% if (useServer) { %>{% if env == 'development' %}<% } %>
+        <!-- build:css(client) styles/main.css -->
         <% if (useBootstrap) { %><link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" media="screen">
         <% } %><% if (useFoundation) { %><link rel="stylesheet" href="/bower_components/foundation/css/normalize.css"><link rel="stylesheet" href="/bower_components/foundation/css/foundation.css">
         <% } %><% if (useFontAwesome) { %>
@@ -31,11 +32,18 @@
             <!-- [injector:css] -->
             <!-- [endinjector] -->
         <!-- endbuild -->
-        <% } else { %><!-- build:css(client) styles/main.css -->
+        <% if (useServer) { %>{% else %}
+        <link rel="stylesheet" href="/styles/main.css">
+        {% endif %}<% } %>
+        <% } else { %><% if (useServer) { %>{% if env == 'development' %}<% } %>
+        <!-- build:css(client) styles/main.css -->
         <link rel="stylesheet" href="/styles/main.css">
             <!-- [injector:css] -->
             <!-- [endinjector] -->
-        <!-- endbuild --><% } %><% if (useModernizr) { %>
+        <!-- endbuild -->
+        <% if (useServer) { %>{% else %}
+        <link rel="stylesheet" href="/styles/main.css">
+        {% endif %}<% } %><% } %><% if (useModernizr) { %>
         <script src="/bower_components/modernizr/modernizr.js"></script><% } %><% if (ieSupport) { %>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if IE 8]>
@@ -65,20 +73,20 @@
             })();
         </script>
         <![endif]--><% } %>
-    {# Blocking off body tag so pages have the ability change the body's class #}
-    {% set bodyClass = false %}
-    {% block body %}
-        {% if bodyClass %}
-        <body class="{{bodyClass}}">
-        {% else %}
-        <body>
-        {% endif %}
-    {% endblock %}
-        <!--[if lt IE 7]>
-        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+        {# Blocking off body tag so pages have the ability change the body's class #}
+        {% set bodyClass = false %}
+        {% block body %}
+            {% if bodyClass %}
+            <body class="{{bodyClass}}">
+            {% else %}
+            <body>
+            {% endif %}
+        {% endblock %}
+            <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
 
-    {% block content %}{% endblock %}
+        {% block content %}{% endblock %}
 
         <% if (useGA) { %><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
