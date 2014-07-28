@@ -22,7 +22,7 @@ ScriptGenerator.prototype.files = function files() {
         console.log('Name cannot be empty. Operation aborted.');
         return;
     }
-    if (this.jsOption !== 'None (Vanilla JavaScript)') {
+    if (this.jsOption !== 'None') {
         this.template('script.js', 'client/scripts/modules/' + this._.slugify(this.name.toLowerCase()) + '.js');
         this.template('script-spec.js', 'test/spec/modules/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
     }

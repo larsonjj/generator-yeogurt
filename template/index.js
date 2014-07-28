@@ -83,7 +83,7 @@ TemplateGenerator.prototype.files = function files() {
                 console.log('Must use a supported type: page, template, module. Operation aborted');
             }
         }
-        else if (this.htmlOption === 'None (Vanilla HTML)') {
+        else if (this.htmlOption === 'HTML') {
             console.log(this.useDashboard);
             if (this.view === 'page') {
                 this.template('view.html', rootPath +'/templates/' + this._.slugify(this.name.toLowerCase()) + '.html');

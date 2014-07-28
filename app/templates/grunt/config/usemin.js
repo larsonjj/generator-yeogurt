@@ -14,7 +14,7 @@ var taskConfig = function(grunt) {
     });
 
     grunt.config.set('usemin', {
-        html: <% if (!useServer) { %>'<%%= yeogurt.dist %>/*.html'<% } else { %>'.tmp/index.html'<% } %>,<% if (cssOption === 'None (Vanilla CSS)') { %>
+        html: <% if (!useServer) { %>'<%%= yeogurt.dist %>/*.html'<% } else { %>'.tmp/index.html'<% } %>,<% if (cssOption === 'CSS') { %>
         css: ['<%%= yeogurt.dist %>/styles/**/*.css'],<% } %>
         options: {
             assetsDirs: ['<%%= yeogurt.client %>', '<%%= yeogurt.client %>/images']

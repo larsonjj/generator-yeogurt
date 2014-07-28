@@ -40,7 +40,7 @@ var MainRouter = Backbone.Router.extend({
 });
 
 module.exports = MainRouter;
-<% } %><% if (jsOption === 'None (Vanilla JavaScript)') { %>
+<% } %><% if (jsOption === 'None') { %>
 'use strict';
 
 var <%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};

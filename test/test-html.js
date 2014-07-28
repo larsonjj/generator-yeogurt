@@ -29,7 +29,7 @@ describe('yeogurt generator html', function () {
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
             versionControl: 'SVN',
-            htmlOption: 'None (Vanilla HTML)',
+            htmlOption: 'HTML',
             cssOption: 'Sass',
             ieSupport: true,
             responsive: true,

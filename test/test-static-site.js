@@ -29,7 +29,7 @@ describe('yeogurt generator with static site', function () {
             projectName: 'testing',
             versionControl: 'Git',
             structure: 'Static Site',
-            cssOption: 'None (Vanilla CSS)',
+            cssOption: 'CSS',
             ieSupport: true,
             responsive: true,
             useGA: true,

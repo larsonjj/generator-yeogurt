@@ -115,8 +115,8 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         when: function(props) { return (/Static Site/i).test(props.structure) && !props.useServer; },
         type: 'list',
         name: 'htmlOption',
-        message: 'Which ' + 'HTML preprocessor'.blue + ' would you like to use?',
-        choices: ['Jade', 'Swig', 'None (Vanilla HTML)']
+        message: 'What would you like to use to' + 'write markup'.blue + '?',
+        choices: ['Jade', 'Swig', 'HTML']
     }, {
         when: function(props) { return (/Static Site/i).test(props.structure) && props.useServer; },
         type: 'list',
@@ -146,7 +146,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         type: 'list',
         name: 'jsOption',
         message: 'Which ' + 'JavaScript module library'.blue + ' would you like to use?',
-        choices: ['RequireJS', 'Browserify', 'None (Vanilla JavaScript)']
+        choices: ['RequireJS', 'Browserify', 'None']
     }, {
         type: 'list',
         name: 'testFramework',
@@ -155,8 +155,8 @@ YeogurtGenerator.prototype.askFor = function askFor() {
     }, {
         type: 'list',
         name: 'cssOption',
-        message: 'Which ' + 'CSS preprocessor'.blue + ' would you like to use?',
-        choices: ['Sass', 'Less', 'None (Vanilla CSS)']
+        message: 'What would you like to use to' + 'write styles'.blue + '?',
+        choices: ['Sass', 'Less', 'CSS']
     }, {
         when: function(props) { return (/Sass/i).test(props.cssOption); },
         type: 'confirm',
@@ -486,7 +486,7 @@ YeogurtGenerator.prototype.tasks = function tasks() {
     }
     this.template('grunt/config/svgmin.js', 'grunt/config/svgmin.js');
     this.template('grunt/config/uglify.js', 'grunt/config/uglify.js');
-    if (this.cssOption === 'None (Vanilla CSS)' && this.structure === 'Static Site') {
+    if (this.cssOption === 'CSS' && this.structure === 'Static Site') {
         this.template('grunt/config/cssmin.js', 'grunt/config/cssmin.js');
     }
     this.template('grunt/config/usemin.js', 'grunt/config/usemin.js');
@@ -527,7 +527,7 @@ YeogurtGenerator.prototype.views = function views() {
         this.template('client/templates/swig/index.swig', viewRoot + 'templates/index.swig');
         this.template('client/templates/swig/layouts/base.swig', viewRoot + 'templates/layouts/base.swig');
     }
-    else if (this.htmlOption === 'None (Vanilla HTML)') {
+    else if (this.htmlOption === 'HTML') {
         this.template('client/templates/html/index.html', 'client/index.html');
     }
 
@@ -583,7 +583,7 @@ YeogurtGenerator.prototype.styles = function styles() {
         this.template('client/styles/styleguide.md', 'client/styles/styleguide.md');
     }
 
-    if (this.cssOption !== 'None (Vanilla CSS)') {
+    if (this.cssOption !== 'CSS') {
         if (this.cssOption === 'Less') {
             this.template('client/styles/main.less', 'client/styles/main.less');
         }

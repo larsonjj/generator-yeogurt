@@ -62,7 +62,7 @@ var MainView = Backbone.View.extend({
 });
 
 module.exports = MainView;
-<% } %><% if (jsOption === 'None (Vanilla JavaScript)') { %>
+<% } %><% if (jsOption === 'None') { %>
 'use strict';
 
 var <%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};

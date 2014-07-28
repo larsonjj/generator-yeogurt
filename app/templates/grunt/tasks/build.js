@@ -12,7 +12,7 @@ var taskConfig = function(grunt) {
         'concurrent:compile',<% if (useKss) { %>
         'kss:dist',<% } %>
         'useminPrepare',
-        'concat:generated',<% if (cssOption === 'None (Vanilla CSS)') { %>
+        'concat:generated',<% if (cssOption === 'CSS') { %>
         'cssmin:generated',<% } %>
         'usemin',
         'htmlmin:dist',

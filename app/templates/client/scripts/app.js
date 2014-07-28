@@ -59,7 +59,7 @@ console.log('Welcome to Yeogurt');<% } %>
 <% if (jsFramework === 'Backbone + React') { %>
 // Enable React dev tools
 window.React = require('react');<% } %>
-<% } %><% } else if (jsOption === 'None (Vanilla JavaScript)') { %>
+<% } %><% } else if (jsOption === 'None') { %>
 'use strict';<% if (jsFramework === 'Backbone') { %>
 
 // Create global namespaces for Models, Collections, and Views

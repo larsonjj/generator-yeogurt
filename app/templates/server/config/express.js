@@ -30,10 +30,10 @@ var expressConfig = function(app, express,<% if ('MySQL'.indexOf(dbOption) > -1)
     // Setup port for server to run on
     app.set('port', settings.server.port);
 
-     // Setup view engine for server side templating<% if (structure === 'Single Page Application' || htmlOption === 'None (Vanilla HTML)') { %>
+     // Setup view engine for server side templating<% if (structure === 'Single Page Application' || htmlOption === 'HTML') { %>
     app.engine('.html', require('ejs').__express);
-    app.set('view engine', 'html');<% } %><% if (structure === 'Static Site' && htmlOption !== 'None (Vanilla HTML)') { %>
-    app.engine('<%= htmlOption === 'Jade' ? 'jade' : '' %><%= htmlOption === 'Swig' ? 'swig' : '' %><%= htmlOption === 'None (Vanilla HTML)' ? 'html' : '' %>', require('<%= htmlOption.toLowerCase() %>').renderFile);
+    app.set('view engine', 'html');<% } %><% if (structure === 'Static Site' && htmlOption !== 'HTML') { %>
+    app.engine('<%= htmlOption === 'Jade' ? 'jade' : '' %><%= htmlOption === 'Swig' ? 'swig' : '' %><%= htmlOption === 'HTML' ? 'html' : '' %>', require('<%= htmlOption.toLowerCase() %>').renderFile);
     app.set('view engine', '<%= htmlOption === 'Jade' ? 'jade' : '' %><%= htmlOption === 'Swig' ? 'swig' : '' %>');<% } %>
 
     // Remove x-powered-by header (doesn't let clients know we are using Express)

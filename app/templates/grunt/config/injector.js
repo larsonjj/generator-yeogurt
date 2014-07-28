@@ -51,7 +51,7 @@ var taskConfig = function(grunt) {
                     '!<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/layouts/**/*.swig',
                 ]
             }
-        },<% } %><% if (jsOption === 'None (Vanilla JavaScript)') { %>
+        },<% } %><% if (jsOption === 'None') { %>
         // Inject application script files into index.html (doesn't include bower)
         scripts: {
             options: {

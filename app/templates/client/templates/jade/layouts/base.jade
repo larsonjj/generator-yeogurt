@@ -21,7 +21,7 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
         link(href='//www.google-analytics.com', rel='dns-prefetch')
         <% } %>
         <% if (useServer) { %>if (env == 'development')<% } %>
-        <% if (useServer) { %>    <% } %><% if (cssOption === 'None (Vanilla CSS)') { %>// build:css(client) styles/main.css
+        <% if (useServer) { %>    <% } %><% if (cssOption === 'CSS') { %>// build:css(client) styles/main.css
         <% if (useFontAwesome) { %><% if (useServer) { %>    <% } %>link(rel='stylesheet', href='/bower_components/font-awesome/css/font-awesome.css')
         <% } %><% if (useBootstrap) { %><% if (useServer) { %>    <% } %>link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.css')
         <% } %><% if (useFoundation) { %><% if (useServer) { %>    <% } %>link(rel='stylesheet', href='/bower_components/foundation/css/normalize.css')
@@ -89,18 +89,18 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
         <% if (useServer) { %>if (env == 'development')<% } %>
         <% if (useServer) { %>    <% } %>// build:js(client) scripts/global.js
         <% if (useServer) { %>    <% } %>script(src='/bower_components/jquery/dist/jquery.js')
-        <% if (useServer) { %>    <% } %><% if (useBootstrap) { %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>affix.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>alert.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>button.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>carousel.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>collapse.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>dropdown.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>modal.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>scrollspy.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>tab.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>tooltip.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>popover.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'None (Vanilla CSS)') { %>bootstrap/js/<% } %>transition.js')
+        <% if (useServer) { %>    <% } %><% if (useBootstrap) { %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>affix.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>alert.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>button.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>carousel.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>collapse.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>dropdown.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>modal.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>scrollspy.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>tab.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>tooltip.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>popover.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>transition.js')
         <% } %><% if (useServer) { %>    <% } %><% if (useFoundation) { %>script(src='/bower_components/foundation/js/vendor/fastclick.js')
         <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/vendor/jquery.cookie.js')
         <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/vendor/placeholder.js')

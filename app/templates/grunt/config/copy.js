@@ -22,10 +22,10 @@ var taskConfig = function(grunt) {
                     'images/**',
                     '*.{ico,png,txt}',<% if (htaccess) { %>
                     '.htaccess',<% } %>
-                    'styles/fonts/**/*.{woff,otf,ttf,eot,svg}',<% if (htmlOption === 'None (Vanilla HTML)' || (/Backbone/i).test(jsFramework) && !useServer) { %>
+                    'styles/fonts/**/*.{woff,otf,ttf,eot,svg}',<% if (htmlOption === 'HTML' || (/Backbone/i).test(jsFramework) && !useServer) { %>
                     '*.html'<% } %>
                 ]
-            }<% if (cssOption === 'None (Vanilla CSS)') { %>, {
+            }<% if (cssOption === 'CSS') { %>, {
                 expand: true,
                 cwd: '<%%= yeogurt.client %>/',
                 dest: '<%%= yeogurt.staticServer %>/',
@@ -45,7 +45,7 @@ var taskConfig = function(grunt) {
                     'bower_components/modernizr/modernizr.js',
                     'bower_components/**/*.{woff,otf,ttf,eot,svg}',<% if (useDashboard) { %>
                     'dashboard/**/*.*',<% } %>
-                    'bower_components/jquery/jquery.min.*',<% if (htmlOption === 'None (Vanilla HTML)' || (/Backbone/i).test(jsFramework) && !useServer) { %>
+                    'bower_components/jquery/jquery.min.*',<% if (htmlOption === 'HTML' || (/Backbone/i).test(jsFramework) && !useServer) { %>
                     '*.html',<% } %><% if (useKss) { %>
                     'docs/styleguide/public/images',<% } %>
                     '!*.js',
