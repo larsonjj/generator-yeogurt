@@ -15,9 +15,7 @@ var YeogurtGenerator = module.exports = function YeogurtGenerator(args, options,
 
 util.inherits(YeogurtGenerator, yeoman.generators.Base);
 
-YeogurtGenerator.prototype.askFor = function askFor() {
-    var cb = this.async();
-
+YeogurtGenerator.prototype.logo = function() {
     var yeogurtLogo = '' +
         '                                    _   \n'.red +
         '                  ' + 'Welcome to'.green + '       | |  \n'.red +
@@ -31,6 +29,33 @@ YeogurtGenerator.prototype.askFor = function askFor() {
 
     // have Yeogurt greet the user.
     console.log(yeogurtLogo);
+};
+
+YeogurtGenerator.prototype.checkForConfig = function() {
+    var cb = this.async();
+
+    if (this.config.get('config')) {
+        this.prompt([{
+            type: 'confirm',
+            name: 'skipConfig',
+            message: 'Existing .yo-rc configuration found, would you like to use it?',
+            default: true,
+        }], function(answers) {
+            this.skipConfig = answers.skipConfig;
+            cb();
+        }.bind(this));
+    } else {
+        cb();
+    }
+};
+
+YeogurtGenerator.prototype.askFor = function askFor() {
+
+    if (this.skipConfig) {
+        return;
+    }
+
+    var cb = this.async();
 
     var prompts = [{
         name: 'projectName',
@@ -236,104 +261,123 @@ YeogurtGenerator.prototype.askFor = function askFor() {
 
     this.prompt(prompts, function(props) {
 
-        this.projectName = props.projectName;
-        this.versionControl = props.versionControl;
-        this.htmlOption = props.htmlOption;
-        this.structure = props.structure;
-        this.jsFramework = props.jsFramework;
-        this.jsTemplate = props.jsTemplate;
-        this.testFramework = props.testFramework;
-        this.cssOption = props.cssOption;
-        this.jsOption = props.jsOption;
-        this.useServer = props.useServer;
-        this.ieSupport = props.ieSupport;
-        this.extras = props.extras;
-        this.jshint = props.jshint;
-        this.useJsdoc = props.useJsdoc;
-        this.dbOption = props.dbOption ? props.dbOption : 'None';
-        this.useKss = props.useKss;
-        this.useGA = props.useGA;
-        this.useFTP = props.useFTP;
-        this.useDashboard = props.useDashboard;
-        this.useBourbon = props.useBourbon;
-        this.useLesshat = props.useLesshat;
-        this.cssFramework = props.cssFramework;
-
-        // Default Overwrites
-        if (this.jsFramework === 'Backbone + React') {
-            this.jsTemplate = props.jsTemplate = 'React';
-        }
-
-        this. jsOption = props.jsOption = props.jsOption ? props.jsOption : 'Browserify';
-
-        var extras = this.extras;
-
-        function hasFeature(feat, obj) {
-            return obj.indexOf(feat) !== -1;
-        }
-
-        // Intially set flags to false
-        this.useBootstrap = props.useBootstrap ? props.useBootstrap : false;
-        this.responsive = false;
-        this.useFoundation = false;
-        this.htaccess = false;
-
-
-        if (this.cssFramework === 'Bootstrap') {
-            this.useBootstrap = true;
-            if (this.ieSupport) {
-                this.responsive = true;
-            }
-        }
-        else if (this.cssFramework === 'Foundation') {
-            this.useFoundation = true;
-        }
-
-        this.useFontAwesome = hasFeature('useFontAwesome', extras);
-        this.useDashboard = hasFeature('useDashboard', extras);
-        this.useBorderBox = hasFeature('useBorderBox', extras);
-        this.useModernizr = hasFeature('useModernizr', extras);
-        this.htaccess = hasFeature('htaccess', extras);
-
-        // Setup Database URLs
-        var username = props.dbUser;
-        var password = props.dbPass ? ':' + props.dbPass : '';
-        var port = props.dbPort;
-        var host = props.dbUser ? '@' + props.dbHost : props.dbHost;
-        var name = props.dbName ? props.dbName : '';
-
-        if (this.dbOption === 'MongoDB') {
-            this.dbURL = process.env.MONGODB || 'mongodb://' +
-            username +
-            password +
-            host + ':' +
-            port + '/' +
-            name;
-        }
-        else if (this.dbOption === 'MySQL') {
-            this.dbURL = process.env.MYSQL || 'mysql://' +
-            username +
-            password +
-            host + ':' +
-            port + '/' +
-            name;
-        }
-        else {
-            this.dbURL = '';
-        }
-
         this.props = props;
 
         cb();
+
     }.bind(this));
 };
 
-YeogurtGenerator.prototype.app = function app() {
+YeogurtGenerator.prototype.handleConfig = function() {
+    var props = this.props;
+
+    // If user chooses to use exsiting yo-rc file, then skip prompts
+    if (this.skipConfig) {
+        props = this.config.get('config');
+    }
+
+    this.projectName = props.projectName;
+    this.versionControl = props.versionControl;
+    this.htmlOption = props.htmlOption;
+    this.structure = props.structure;
+    this.jsFramework = props.jsFramework;
+    this.jsTemplate = props.jsTemplate;
+    this.testFramework = props.testFramework;
+    this.cssOption = props.cssOption;
+    this.jsOption = props.jsOption;
+    this.useServer = props.useServer;
+    this.ieSupport = props.ieSupport;
+    this.extras = props.extras;
+    this.jshint = props.jshint;
+    this.useJsdoc = props.useJsdoc;
+    this.dbOption = props.dbOption ? props.dbOption : 'None';
+    this.useKss = props.useKss;
+    this.useGA = props.useGA;
+    this.useFTP = props.useFTP;
+    this.useDashboard = props.useDashboard;
+    this.useBourbon = props.useBourbon;
+    this.useLesshat = props.useLesshat;
+    this.cssFramework = props.cssFramework;
+
+    // Default Overwrites
+    if (this.jsFramework === 'Backbone + React') {
+        this.jsTemplate = props.jsTemplate = 'React';
+    }
+
+    this. jsOption = props.jsOption = props.jsOption ? props.jsOption : 'Browserify';
+
+    var extras = this.extras;
+
+    function hasFeature(feat, obj) {
+        return obj.indexOf(feat) !== -1;
+    }
+
+    // Intially set flags to false
+    this.useBootstrap = props.useBootstrap ? props.useBootstrap : false;
+    this.responsive = false;
+    this.useFoundation = false;
+    this.htaccess = false;
+
+
+    if (this.cssFramework === 'Bootstrap') {
+        this.useBootstrap = true;
+        if (this.ieSupport) {
+            this.responsive = true;
+        }
+    }
+    else if (this.cssFramework === 'Foundation') {
+        this.useFoundation = true;
+    }
+
+    this.useFontAwesome = hasFeature('useFontAwesome', extras);
+    this.useDashboard = hasFeature('useDashboard', extras);
+    this.useBorderBox = hasFeature('useBorderBox', extras);
+    this.useModernizr = hasFeature('useModernizr', extras);
+    this.htaccess = hasFeature('htaccess', extras);
+
+    // Setup Database URLs
+    var username = props.dbUser;
+    var password = props.dbPass ? ':' + props.dbPass : '';
+    var port = props.dbPort;
+    var host = props.dbUser ? '@' + props.dbHost : props.dbHost;
+    var name = props.dbName ? props.dbName : '';
+
+    if (this.dbOption === 'MongoDB') {
+        this.dbURL = process.env.MONGODB || 'mongodb://' +
+        username +
+        password +
+        host + ':' +
+        port + '/' +
+        name;
+    }
+    else if (this.dbOption === 'MySQL') {
+        this.dbURL = process.env.MYSQL || 'mysql://' +
+        username +
+        password +
+        host + ':' +
+        port + '/' +
+        name;
+    }
+    else {
+        this.dbURL = '';
+    }
+
+    // cb();
+};
+
+YeogurtGenerator.prototype.saveConfig = function() {
+    // If user chooses to use exsiting yo-rc file, then skip prompts
+    if (this.skipConfig) {
+        return;
+    }
 
     // Create .yo-rc.json file
     this.config.set('config', this.props);
     this.config.set('version', this.pkg.version);
-    this.config.save();
+    this.config.forceSave();
+};
+
+YeogurtGenerator.prototype.app = function app() {
 
     // Create needed Directories
 
