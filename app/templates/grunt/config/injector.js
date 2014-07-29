@@ -23,7 +23,7 @@ var taskConfig = function(grunt) {
             },
             files: {<% if (useServer) { %>
                 '<%%= yeogurt.server %>/templates/layouts/base.jade'<% } else { %>
-                '<%%= yeogurt.client %>/index.html'<% } %>: [
+                '<%%= yeogurt.client %>/templates/layouts/base.jade'<% } %>: [
                     '<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/**/*.jade',
                     '!<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/*.jade',
                     '!<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/layouts/**/*.jade',
@@ -45,7 +45,7 @@ var taskConfig = function(grunt) {
             },
             files: {<% if (useServer) { %>
                 '<%%= yeogurt.server %>/templates/layouts/base.swig'<% } else { %>
-                '<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/index.html'<% } %>: [
+                '<%%= yeogurt.client %>/templates/layouts/base.swig'<% } %>: [
                     '<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/**/*.swig',
                     '!<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/*.swig',
                     '!<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/layouts/**/*.swig',
@@ -65,10 +65,10 @@ var taskConfig = function(grunt) {
                 endtag: '<!-- [endinjector] -->'<% } %>
             },
             files: {<% if (useServer) { %>
-                '<%%= yeogurt.server %>/templates/layouts/<% if (htmlOption === 'Jade') { %>base.jade<% } else if (htmlOption === 'Swig') { %>base.swig<% } else { %>index.html<% } %>'<% } else { %>
-                '<%%= yeogurt.client %>/index.html'<% } %>: [
+                '<%%= yeogurt.server %>/templates/<% if (htmlOption === 'Jade') { %>layouts/base.jade<% } else if (htmlOption === 'Swig') { %>layouts/base.swig<% } else { %>index.html<% } %>'<% } else { %>
+                '<%%= yeogurt.client %>/<% if (htmlOption === 'Jade') { %>templates/layouts/base.jade<% } else if (htmlOption === 'Swig') { %>templates/layouts/base.swig<% } else { %>index.html<% } %>'<% } %>: [
                     '<%%= yeogurt.client %>/scripts/**/*.js',
-                    '!<%%= yeogurt.client %>/scripts/app.js'<% if (structure === 'Single Page Application') { %>,
+                    '!<%%= yeogurt.client %>/scripts/app.js'<% if (singlePageApplication) { %>,
                     '!<%%= yeogurt.client %>/scripts/routes.js'<% } %>
                 ]
             }
@@ -112,8 +112,8 @@ var taskConfig = function(grunt) {
             options: {
                 transform: function(filePath) {
                     filePath = filePath.replace('/client/', '');<% if (htmlOption === 'Jade') { %>
-                    return '<link rel="stylesheet" href="' + filePath + '">';<% } else { %>
-                    return 'link(rel=\'stylesheet\', href=\'' + filePath + '\')';<% } %>
+                    return 'link(rel=\'stylesheet\', href=\'' + filePath + '\')';<% } else { %>
+                    return '<link rel="stylesheet" href="' + filePath + '">';<% } %>
                 },<% if (htmlOption === 'Jade') { %>
                 starttag: '// [injector:css]',
                 endtag: '// [endinjector]'<% } else { %>
@@ -121,8 +121,8 @@ var taskConfig = function(grunt) {
                 endtag: '<!-- [endinjector] -->'<% } %>
             },
             files: {<% if (useServer) { %>
-                '<%%= yeogurt.server %>/templates/layouts/<% if (htmlOption === 'Jade') { %>base.jade<% } else if (htmlOption === 'Swig') { %>base.swig<% } else { %>index.html<% } %>'<% } else { %>
-                '<%%= yeogurt.client %>/index.html'<% } %>: [
+                '<%%= yeogurt.server %>/templates/<% if (htmlOption === 'Jade') { %>layouts/base.jade<% } else if (htmlOption === 'Swig') { %>layouts/base.swig<% } else { %>index.html<% } %>'<% } else { %>
+                '<%%= yeogurt.client %>/<% if (htmlOption === 'Jade') { %>templates/layouts/base.jade<% } else if (htmlOption === 'Swig') { %>templates//layouts/base.swig<% } else { %>index.html<% } %>'<% } %>: [
                     '<%%= yeogurt.client %>/styles/**/*.css',
                     '!<%%= yeogurt.client %>/styles/main.css'
                 ]

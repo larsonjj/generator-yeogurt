@@ -40,7 +40,7 @@ var taskConfig = function(grunt) {
 
         return grunt.task.run(['watch']);
         <% } else { %>
-        return grunt.task.run(['listen']);
+        return grunt.task.run(['watch']);
         <% } %>
     });
 };

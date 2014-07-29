@@ -5,7 +5,7 @@
 
 var taskConfig = function(grunt) {
 
-    grunt.config.set('jade', {<% if (structure === 'Static Site') { %><% if (!useServer) { %>
+    grunt.config.set('jade', {<% if (!useServer && jsTemplate !== 'Jade') { %>
         server: {
             options: {
                 pretty: true,
@@ -19,7 +19,7 @@ var taskConfig = function(grunt) {
             dest: '<%%= yeogurt.staticServer %>/',
             src: ['*.jade'],
             ext: '.html'
-        },<% } %>
+        },<% } %><% if (jsTemplate !== 'Jade') { %>
         dist: {
             options: {
                 pretty: true,
@@ -35,7 +35,7 @@ var taskConfig = function(grunt) {
             dest: '.tmp/',<% } %>
             src: ['*.jade'],
             ext: '.html'
-        }<% } else if (jsTemplate === 'Jade') { %>
+        },<% } %><% if (jsTemplate === 'Jade') { %>
         server: {
             options: {
                 pretty: true,

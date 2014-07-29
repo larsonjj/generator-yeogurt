@@ -44,7 +44,7 @@ TemplateGenerator.prototype.files = function files() {
         rootPath = 'client';
     }
 
-    if (this.structure === 'Static Site') {
+    if (!this.singlePageApplication) {
         if (this.useTemplate && this.view !== 'page') {
             console.log('The template option will be ignored as the type is not "page"');
         }
@@ -95,7 +95,7 @@ TemplateGenerator.prototype.files = function files() {
             }
         }
     }
-    else if (this.structure === 'Single Page Application') {
+    else if (this.singlePageApplication) {
         if (this.jsTemplate !== 'React') {
 
             if (!this.name) {

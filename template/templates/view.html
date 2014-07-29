@@ -101,7 +101,7 @@
         <script src="/bower_components/backbone/backbone.js"></script><% } %><% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>
         <script src="/bower_components/backbone-react-component/lib/component.js"></script><% } %><% if ((/Handlebars/i).test(jsTemplate)) { %>
         <script src="/bower_components/handlebars/handlebars.runtime.js"></script>
-        <% } else if ((/Jade/i).test(jsTemplate)) { %><script src="/bower_components/jade/runtime.js"></script><% } %><% if (structure === 'Single Page Application' && jsFramework !== 'Backbone + React') { %>
+        <% } else if ((/Jade/i).test(jsTemplate)) { %><script src="/bower_components/jade/runtime.js"></script><% } %><% if (singlePageApplication && jsFramework !== 'Backbone + React') { %>
         <script src="/templates/templates.js"></script><% } %>
         <% if (useBootstrap) { %><script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>affix.js"></script>
         <script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>alert.js"></script>

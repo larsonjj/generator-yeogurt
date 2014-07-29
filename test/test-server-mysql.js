@@ -33,7 +33,7 @@ describe('yeogurt generator server defaults', function () {
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
             versionControl: 'Git',
-            structure: 'Single Page Application',
+            singlePageApplication: true,
             htmlOption: 'Jade',
             cssOption: 'Sass',
             jsOption: 'RequireJS',

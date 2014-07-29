@@ -1,6 +1,6 @@
 {#
     Base template
-    All other templates will extend from this
+    All other templates should extend from this
 #}
 
 {# [injector:swig] #}
@@ -18,30 +18,30 @@
         <title><%= projectName %></title>
         <meta name="description" content=""/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/><% if (useServer) { %>
-        <meta name="csrf-token" content="{{_csrf}}" /><% } %>
-        <% if (useGA) { %>
-        <link href="//www.google-analytics.com" rel="dns-prefetch">
-        <% } %>
-        <% if (cssOption === 'CSS') { %><% if (useServer) { %>{% if env == 'development' %}<% } %>
-        <!-- build:css(client) styles/main.css -->
-        <% if (useBootstrap) { %><link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" media="screen">
-        <% } %><% if (useFoundation) { %><link rel="stylesheet" href="/bower_components/foundation/css/normalize.css"><link rel="stylesheet" href="/bower_components/foundation/css/foundation.css">
+        <meta name="csrf-token" content="{{_csrf}}" /><% } %><% if (useGA) { %>
+        <link href="//www.google-analytics.com" rel="dns-prefetch"><% } %>
+<% if (cssOption === 'CSS') { %><% if (useServer) { %>
+        {% if env == 'development' %}<% } %>
+        <!-- build:css(client) styles/main.css --><% if (useBootstrap) { %>
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+        <% } %><% if (useFoundation) { %><link rel="stylesheet" href="/bower_components/foundation/css/normalize.css">
+        <link rel="stylesheet" href="/bower_components/foundation/css/foundation.css">
         <% } %><% if (useFontAwesome) { %>
         <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css"><% } %>
         <link rel="stylesheet" href="/styles/main.css">
             <!-- [injector:css] -->
             <!-- [endinjector] -->
-        <!-- endbuild -->
-        <% if (useServer) { %>{% else %}
+        <!-- endbuild --><% if (useServer) { %>
+        {% else %}
         <link rel="stylesheet" href="/styles/main.css">
-        {% endif %}<% } %>
-        <% } else { %><% if (useServer) { %>{% if env == 'development' %}<% } %>
+        {% endif %}<% } %><% } else { %><% if (useServer) { %>
+        {% if env == 'development' %}<% } %>
         <!-- build:css(client) styles/main.css -->
         <link rel="stylesheet" href="/styles/main.css">
             <!-- [injector:css] -->
             <!-- [endinjector] -->
-        <!-- endbuild -->
-        <% if (useServer) { %>{% else %}
+        <!-- endbuild --><% if (useServer) { %>
+        {% else %}
         <link rel="stylesheet" href="/styles/main.css">
         {% endif %}<% } %><% } %><% if (useModernizr) { %>
         <script src="/bower_components/modernizr/modernizr.js"></script><% } %><% if (ieSupport) { %>
@@ -96,12 +96,11 @@
             e.src='//www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script><% } %>
-
-        <% if (useServer) { %>{% if env == 'development' %}<% } %>
+        </script><% } %><% if (useServer) { %>
+        {% if env == 'development' %}<% } %>
         <!-- build:js(client) scripts/globals.js -->
-        <script src="/bower_components/jquery/dist/jquery.js"></script>
-        <% if  (useBootstrap) { %><script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>affix.js"></script>
+        <script src="/bower_components/jquery/dist/jquery.js"></script><% if  (useBootstrap) { %>
+        <script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>affix.js"></script>
         <script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>alert.js"></script>
         <script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>button.js"></script>
         <script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>carousel.js"></script>
@@ -133,15 +132,14 @@
         <script src="/bower_components/foundation/js/foundation/foundation.tab.js"></script>
         <script src="/bower_components/foundation/js/foundation/foundation.tooltip.js"></script>
         <script src="/bower_components/foundation/js/foundation/foundation.topbar.js"></script>
-        <% } %><!-- endbuild -->
-        <% if (useServer) { %>{% else %}
+        <% } %><!-- endbuild --><% if (useServer) { %>
+        {% else %}
         <script src="/scripts/globals.js"></script>
         {% endif %}<% } %>
 
+<% if  (jsOption ==='RequireJS') { %>
+        <script data-main="scripts/main", src="bower_components/requirejs/require.js"></script><% } else if (jsOption ==='Browserify') { %><script src="/scripts/app.js"></script><% } else { %>
         {#
-            Author Scripts
-        #}
-        <% if  (jsOption ==='RequireJS') { %><script data-main="scripts/main", src="bower_components/requirejs/require.js"></script><% } else if (jsOption ==='Browserify') { %><script src="/scripts/app.js"></script><% } else { %>{#
             Place all author scripts within the 'build:js' comments below,
             so they will be optimised correctly during a 'grunt build' task
         #}

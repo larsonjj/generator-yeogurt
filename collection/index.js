@@ -33,11 +33,11 @@ var CollectionGenerator = module.exports = function CollectionGenerator(args, op
 util.inherits(CollectionGenerator, yeoman.generators.NamedBase);
 
 CollectionGenerator.prototype.files = function files() {
-    if (this.structure === 'Static Site') {
+    if (!this.singlePageApplication) {
         console.log('This subgenerator is not available for Static Sites. Please choose another.');
         return;
     }
-    else if (this.structure === 'Single Page Application') {
+    else if (this.singlePageApplication) {
         if (!this.name) {
             console.log('Name cannot be empty. Operation aborted.');
             return;

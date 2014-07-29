@@ -54,7 +54,7 @@ var taskConfig = function(grunt) {
                     'images/**/*.{webp}',
                     'styles/fonts/**/*.{woff,otf,ttf,eot,svg}'
                 ]
-            }<% if (useServer && structure === 'Single Page Application') { %>, {
+            }<% if (useServer && singlePageApplication) { %>, {
                 expand: true,
                 cwd: 'server/views/',
                 dest: '.tmp',

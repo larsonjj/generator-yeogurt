@@ -2,6 +2,7 @@
 var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
+var _ = require('lodash');
 require('colors');
 
 
@@ -15,23 +16,23 @@ var YeogurtGenerator = module.exports = function YeogurtGenerator(args, options,
 
 util.inherits(YeogurtGenerator, yeoman.generators.Base);
 
-YeogurtGenerator.prototype.logo = function() {
+YeogurtGenerator.prototype.logo = function logo() {
     var yeogurtLogo = '' +
         '                                    _   \n'.red +
-        '                  ' + 'Welcome to'.green + '       | |  \n'.red +
+        '  ' + 'Welcome to'.green + '                       | |  \n'.red +
         '  _   _  ___  ___   __ _ _   _ _ __| |_ \n'.red +
         ' | | | |/ _ \\\/ _ \\ \/ _` | | | | \'__| __|\n'.red +
         ' | |_| |  __/ (_) | (_| | |_| | |  | |_ \n'.red +
         '  \\__, |\\___|\\___/ \\__, |\\__,_|_|   \\__|\n'.red +
-        '   __/ |            __/ |               \n'.red +
-        '  |___/            |___/     \n'.red +
-        '                                      ';
+        '   __/ |            __/ |\n'.red +
+        '  |___/            |___/  '.red +
+        '                           \n';
 
     // have Yeogurt greet the user.
-    console.log(yeogurtLogo);
+    this.log(yeogurtLogo);
 };
 
-YeogurtGenerator.prototype.checkForConfig = function() {
+YeogurtGenerator.prototype.checkForConfig = function checkForConfig() {
     var cb = this.async();
 
     if (this.config.get('config')) {
@@ -49,15 +50,16 @@ YeogurtGenerator.prototype.checkForConfig = function() {
     }
 };
 
-YeogurtGenerator.prototype.askFor = function askFor() {
-
+YeogurtGenerator.prototype.projectInfo = function projectInfo() {
     if (this.skipConfig) {
         return;
     }
 
     var cb = this.async();
 
-    var prompts = [{
+    this.log('\n---- ' + 'Project Info'.red.underline + ' ----\n');
+
+    this.prompt([{
         name: 'projectName',
         message: 'What would you like to' + ' name your project'.blue + '?',
         default: 'Sample'
@@ -66,83 +68,119 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         name: 'versionControl',
         message: 'Which ' + 'version control software'.blue + ' are you using (or plan to use)?',
         choices: ['Git', 'SVN', 'None (I like to live on the edge)']
-    }, {
-        type: 'list',
-        name: 'structure',
-        message: 'What ' + 'type of application'.blue + ' will you be creating?',
-        choices: ['Static Site', 'Single Page Application']
-    },  {
+    }], function(answers) {
+        this.projectInfo = answers;
+
+        cb();
+    }.bind(this));
+
+};
+
+YeogurtGenerator.prototype.serverInfo = function serverInfo() {
+    if (this.skipConfig) {
+        return;
+    }
+
+    var cb = this.async();
+
+    this.log('\n---- ' + 'Server'.red.underline + ' ----\n');
+
+    this.prompt([{
         type: 'confirm',
         name: 'useServer',
         message: 'Would you like to use a ' + 'Node + Express Server'.blue + '?',
         default: true
     }, {
-        when: function(props) { return props.useServer; },
+        when: function(answers) { return answers.useServer; },
         type: 'list',
         name: 'dbOption',
         message: 'What ' + 'database type'.blue + ' would you like to use ?',
         choices: ['MongoDB', 'MySQL', 'None']
     }, {
-        when: function(props) { return props.dbOption !== 'None' && props.useServer; },
+        when: function(answers) { return answers.dbOption !== 'None' && answers.useServer; },
         name: 'dbHost',
         message: 'What is your ' + 'database host/url'.blue + '?',
         default: 'localhost'
     }, {
-        when: function(props) { return props.dbOption === 'MySQL'; },
+        when: function(answers) { return answers.dbOption === 'MySQL'; },
         name: 'dbPort',
         message: 'What ' + 'port'.blue + ' is your database running on?',
         default: '3306'
     }, {
-        when: function(props) { return props.dbOption === 'MongoDB'; },
+        when: function(answers) { return answers.dbOption === 'MongoDB'; },
         name: 'dbPort',
         message: 'What ' + 'port'.blue + ' is your Database running on?',
         default: '27017'
     }, {
-        when: function(props) { return props.dbOption !== 'None' && props.useServer; },
+        when: function(answers) { return answers.dbOption !== 'None' && answers.useServer; },
         name: 'dbName',
         message: 'What is the ' + 'name'.blue + ' of your database?',
         default: 'yeogurt_db'
     }, {
-        when: function(props) { return props.dbOption !== 'None' && props.useServer; },
+        when: function(answers) { return answers.dbOption !== 'None' && answers.useServer; },
         name: 'dbUser',
         message: 'What is your ' + 'username'.blue + ' for this database?',
         default: 'root'
     }, {
-        when: function(props) { return props.dbOption !== 'None' && props.useServer; },
+        when: function(answers) { return answers.dbOption !== 'None' && answers.useServer; },
         name: 'dbPass',
         message: 'What is your ' + 'password'.blue + ' for this database?'
+    }], function(answers) {
+        this.serverInfo = answers;
+
+        cb();
+    }.bind(this));
+
+};
+
+YeogurtGenerator.prototype.clientInfo = function clientInfo() {
+
+    if (this.skipConfig) {
+        return;
+    }
+
+    var cb = this.async();
+    var self = this;
+
+    this.log('\n---- ' + 'Client'.red.underline + ' ----\n');
+
+    this.prompt([{
+        type: 'confirm',
+        name: 'singlePageApplication',
+        message: 'Will this be a ' + 'Backbone Application'.blue + '?',
+        default: true
     }, {
-        when: function(props) { return (/Static Site/i).test(props.structure) && !props.useServer; },
+        when: function(answers) { return !answers.singlePageApplication && !self.serverInfo.useServer; },
         type: 'list',
         name: 'htmlOption',
-        message: 'What would you like to use to' + 'write markup'.blue + '?',
+        message: 'What would you like to use to ' + 'write markup'.blue + '?',
         choices: ['Jade', 'Swig', 'HTML']
     }, {
-        when: function(props) { return (/Static Site/i).test(props.structure) && props.useServer; },
+        when: function(answers) { return !answers.singlePageApplication && self.serverInfo.useServer; },
         type: 'list',
         name: 'htmlOption',
         message: 'Which ' + 'HTML preprocessor'.blue + ' would you like to use?',
         choices: ['Jade', 'Swig']
     }, {
-        when: function(props) { return (/Single Page Application/i).test(props.structure); },
+        when: function(answers) { return answers.singlePageApplication; },
         type: 'list',
         name: 'jsFramework',
         message: 'Which ' + 'JavaScript framework and/or library'.blue + ' would you like to use?',
         choices: ['Backbone + React', 'Backbone']
     }, {
-        when: function(props) {return props.jsFramework === 'Backbone' && !props.useServer || false;},
+        when: function(answers) {return answers.jsFramework === 'Backbone' && !self.serverInfo.useServer || false;},
         type: 'list',
         name: 'jsTemplate',
         message: 'Which ' + 'JavaScript templating library'.blue + ' would you like to use?',
         choices: ['Lo-dash (Underscore)', 'Handlebars', 'Jade']
     }, {
-        when: function(props) {return props.jsFramework === 'Backbone' && props.useServer || false;},
+        when: function(answers) {return answers.jsFramework === 'Backbone' && self.serverInfo.useServer || false;},
         type: 'list',
         name: 'jsTemplate',
         message: 'Which ' + 'JavaScript templating library'.blue + ' would you like to use?',
         choices: ['Handlebars', 'Jade']
     }, {
-        when: function(props) { return !(/React/i).test(props.jsFramework); },
+        when: function(answers) { return !(/React/i).test(answers.jsFramework); },
         type: 'list',
         name: 'jsOption',
         message: 'Which ' + 'JavaScript module library'.blue + ' would you like to use?',
@@ -155,34 +193,34 @@ YeogurtGenerator.prototype.askFor = function askFor() {
     }, {
         type: 'list',
         name: 'cssOption',
-        message: 'What would you like to use to' + 'write styles'.blue + '?',
+        message: 'What would you like to use to ' + 'write styles'.blue + '?',
         choices: ['Sass', 'Less', 'CSS']
     }, {
-        when: function(props) { return (/Sass/i).test(props.cssOption); },
+        when: function(answers) { return (/Sass/i).test(answers.cssOption); },
         type: 'confirm',
         name: 'useBourbon',
         message: 'Would you like to use the ' + 'Bourbon Mixin Library'.blue + '?',
         default: true
     }, {
-        when: function(props) { return (/Less/i).test(props.cssOption); },
+        when: function(answers) { return (/Less/i).test(answers.cssOption); },
         type: 'confirm',
         name: 'useLesshat',
         message: 'Would you like to use the ' + 'Lesshat Mixin Library'.blue + '?',
         default: true
     }, {
-        when: function(props) { return (/Sass/i).test(props.cssOption) || (/None/i).test(props.cssOption); },
+        when: function(answers) { return (/Sass/i).test(answers.cssOption) || (/None/i).test(answers.cssOption); },
         type: 'list',
         name: 'cssFramework',
         message: 'Which CSS ' + 'framework'.blue + ' would you like to use?',
         choices: ['Bootstrap', 'Foundation', 'None']
     }, {
-        when: function(props) { return (/Less/i).test(props.cssOption); },
+        when: function(answers) { return (/Less/i).test(answers.cssOption); },
         type: 'confirm',
         name: 'useBootstrap',
         message: 'Would you like to use the ' + 'Bootstrap'.blue + ' CSS framework?',
         default: true
     }, {
-        when: function(props) { return !(/Foundation/i).test(props.cssFramework); },
+        when: function(answers) { return !(/Foundation/i).test(answers.cssFramework); },
         type: 'confirm',
         name: 'ieSupport',
         message: 'Do you need to ' + 'support IE8+'.blue + '?',
@@ -193,7 +231,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         message: 'Will you be using ' + 'Google Analytics'.blue + '?',
         default: true
     }, {
-        when: function(props) { return !props.useServer; },
+        when: function() { return !self.serverInfo.useServer; },
         type: 'confirm',
         name: 'useFTP',
         message: 'Will you be deploying code to an ' + 'FTP server'.blue + '?',
@@ -204,17 +242,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
         message: 'Would you like to lint your Javascript with ' + 'JSHint'.blue + '?',
         default: true
     }, {
-        type: 'confirm',
-        name: 'useJsdoc',
-        message: 'Would you like to document your Javascript with ' + 'JSDoc'.blue + '?',
-        default: true
-    }, {
-        type: 'confirm',
-        name: 'useKss',
-        message: 'Would you like to generate a styleguide with ' + 'KSS (Knyle Style Sheets)'.blue + '?',
-        default: true
-    }, {
-        when: function(props) { return (/Static Site/i).test(props.structure); },
+        when: function(answers) { return !answers.singlePageApplication; },
         type: 'checkbox',
         name: 'extras',
         message: 'Select any extras you would like:',
@@ -236,7 +264,7 @@ YeogurtGenerator.prototype.askFor = function askFor() {
             checked: false
         }]
     }, {
-        when: function(props) { return (/Single Page Application/i).test(props.structure); },
+        when: function(answers) { return answers.singlePageApplication; },
         type: 'checkbox',
         name: 'extras',
         message: 'Select any extras you would like:',
@@ -257,54 +285,81 @@ YeogurtGenerator.prototype.askFor = function askFor() {
             value: 'htaccess',
             checked: false
         }]
-    }];
-
-    this.prompt(prompts, function(props) {
-
-        this.props = props;
+    }], function(answers) {
+        this.clientInfo = answers;
 
         cb();
-
     }.bind(this));
+
+};
+
+YeogurtGenerator.prototype.documentation = function documentation() {
+    if (this.skipConfig) {
+        return;
+    }
+
+    var cb = this.async();
+
+    this.log('\n---- ' + 'Documentation'.red.underline + ' ----\n');
+
+    this.prompt([{
+        type: 'confirm',
+        name: 'useJsdoc',
+        message: 'Would you like to document your Javascript with ' + 'JSDoc'.blue + '?',
+        default: true
+    }, {
+        type: 'confirm',
+        name: 'useKss',
+        message: 'Would you like to generate a styleguide with ' + 'KSS (Knyle Style Sheets)'.blue + '?',
+        default: true
+    },], function(answers) {
+        this.documentation = answers;
+
+        cb();
+    }.bind(this));
+
 };
 
 YeogurtGenerator.prototype.handleConfig = function() {
-    var props = this.props;
+    var answers;
 
     // If user chooses to use exsiting yo-rc file, then skip prompts
     if (this.skipConfig) {
-        props = this.config.get('config');
+        this.answers = answers = this.config.get('config');
+    }
+    else {
+        this.answers = answers = _.merge(this.projectInfo, this.serverInfo, this.clientInfo, this.documentation);
     }
 
-    this.projectName = props.projectName;
-    this.versionControl = props.versionControl;
-    this.htmlOption = props.htmlOption;
-    this.structure = props.structure;
-    this.jsFramework = props.jsFramework;
-    this.jsTemplate = props.jsTemplate;
-    this.testFramework = props.testFramework;
-    this.cssOption = props.cssOption;
-    this.jsOption = props.jsOption;
-    this.useServer = props.useServer;
-    this.ieSupport = props.ieSupport;
-    this.extras = props.extras;
-    this.jshint = props.jshint;
-    this.useJsdoc = props.useJsdoc;
-    this.dbOption = props.dbOption ? props.dbOption : 'None';
-    this.useKss = props.useKss;
-    this.useGA = props.useGA;
-    this.useFTP = props.useFTP;
-    this.useDashboard = props.useDashboard;
-    this.useBourbon = props.useBourbon;
-    this.useLesshat = props.useLesshat;
-    this.cssFramework = props.cssFramework;
+    this.projectName = answers.projectName;
+    this.versionControl = answers.versionControl;
+    this.htmlOption = answers.htmlOption;
+    this.singlePageApplication = answers.singlePageApplication;
+    this.jsFramework = answers.jsFramework;
+    this.jsTemplate = answers.jsTemplate;
+    this.testFramework = answers.testFramework;
+    this.cssOption = answers.cssOption;
+    this.jsOption = answers.jsOption;
+    this.useServer = answers.useServer;
+    this.ieSupport = answers.ieSupport;
+    this.extras = answers.extras;
+    this.jshint = answers.jshint;
+    this.useJsdoc = answers.useJsdoc;
+    this.dbOption = answers.dbOption ? answers.dbOption : 'None';
+    this.useKss = answers.useKss;
+    this.useGA = answers.useGA;
+    this.useFTP = answers.useFTP;
+    this.useDashboard = answers.useDashboard;
+    this.useBourbon = answers.useBourbon;
+    this.useLesshat = answers.useLesshat;
+    this.cssFramework = answers.cssFramework;
 
     // Default Overwrites
     if (this.jsFramework === 'Backbone + React') {
-        this.jsTemplate = props.jsTemplate = 'React';
+        this.jsTemplate = answers.jsTemplate = 'React';
     }
 
-    this. jsOption = props.jsOption = props.jsOption ? props.jsOption : 'Browserify';
+    this.jsOption = answers.jsOption = answers.jsOption ? answers.jsOption : 'Browserify';
 
     var extras = this.extras;
 
@@ -313,7 +368,7 @@ YeogurtGenerator.prototype.handleConfig = function() {
     }
 
     // Intially set flags to false
-    this.useBootstrap = props.useBootstrap ? props.useBootstrap : false;
+    this.useBootstrap = answers.useBootstrap ? answers.useBootstrap : false;
     this.responsive = false;
     this.useFoundation = false;
     this.htaccess = false;
@@ -336,11 +391,11 @@ YeogurtGenerator.prototype.handleConfig = function() {
     this.htaccess = hasFeature('htaccess', extras);
 
     // Setup Database URLs
-    var username = props.dbUser;
-    var password = props.dbPass ? ':' + props.dbPass : '';
-    var port = props.dbPort;
-    var host = props.dbUser ? '@' + props.dbHost : props.dbHost;
-    var name = props.dbName ? props.dbName : '';
+    var username = answers.dbUser;
+    var password = answers.dbPass ? ':' + answers.dbPass : '';
+    var port = answers.dbPort;
+    var host = answers.dbUser ? '@' + answers.dbHost : answers.dbHost;
+    var name = answers.dbName ? answers.dbName : '';
 
     if (this.dbOption === 'MongoDB') {
         this.dbURL = process.env.MONGODB || 'mongodb://' +
@@ -362,17 +417,17 @@ YeogurtGenerator.prototype.handleConfig = function() {
         this.dbURL = '';
     }
 
-    // cb();
 };
 
 YeogurtGenerator.prototype.saveConfig = function() {
+
     // If user chooses to use exsiting yo-rc file, then skip prompts
     if (this.skipConfig) {
         return;
     }
 
     // Create .yo-rc.json file
-    this.config.set('config', this.props);
+    this.config.set('config', this.answers);
     this.config.set('version', this.pkg.version);
     this.config.forceSave();
 };
@@ -486,7 +541,7 @@ YeogurtGenerator.prototype.tasks = function tasks() {
     }
     this.template('grunt/config/svgmin.js', 'grunt/config/svgmin.js');
     this.template('grunt/config/uglify.js', 'grunt/config/uglify.js');
-    if (this.cssOption === 'CSS' && this.structure === 'Static Site') {
+    if (this.cssOption === 'CSS' && !this.singlePageApplication) {
         this.template('grunt/config/cssmin.js', 'grunt/config/cssmin.js');
     }
     this.template('grunt/config/usemin.js', 'grunt/config/usemin.js');
@@ -531,7 +586,7 @@ YeogurtGenerator.prototype.views = function views() {
         this.template('client/templates/html/index.html', 'client/index.html');
     }
 
-    if (this.structure === 'Single Page Application') {
+    if (this.singlePageApplication) {
         if (!this.useServer) {
             this.template('client/templates/html/index.html', 'client/index.html');
         }
@@ -603,12 +658,12 @@ YeogurtGenerator.prototype.server = function server() {
         this.mkdir('server/controllers');
         this.mkdir('server/config');
         this.mkdir('server/config/env');
-        if (this.useServer && this.structure === 'Single Page Application') {
+        if (this.useServer && this.singlePageApplication) {
             this.mkdir('server/templates');
             this.mkdir('server/layouts');
             this.mkdir('server/modules');
         }
-        if (this.structure === 'Single Page Application') {
+        if (this.singlePageApplication) {
             if (this.jsTemplate === 'React') {
                 this.template('server/modules/reactRender.js','server/modules/reactRender.js');
             }

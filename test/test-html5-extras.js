@@ -28,7 +28,7 @@ describe('yeogurt generator with html5 boilerplate extras', function () {
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
             versionControl: 'Git',
-            structure: 'Static Site',
+            singlePageApplication: false,
             cssOption: 'Sass',
             cssFramework: 'Foundation',
             useFoundation: true,

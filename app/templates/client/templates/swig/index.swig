@@ -24,8 +24,8 @@
     <p>
         <img src="/images/yeogurt-swirl.png" width="75px" class="logo" />
     </p><% if (useDashboard || useJsdoc || useKss) { %>
-    <p class="links">
-        <% if (useDashboard) { %><a href="/dashboard/index.html">Dashboard</a><% } %><% if (useKss) { %>
+    <p class="links"><% if (useDashboard) { %>
+        <a href="/dashboard/index.html">Dashboard</a><% } %><% if (useKss) { %>
         <a href="/docs/styleguide/index.html">Styleguide</a><% } %><% if (useJsdoc) { %>
         <a href="/docs/api/index.html">API</a><% } %>
     </p><% } %>

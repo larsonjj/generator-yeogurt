@@ -1,7 +1,6 @@
-<% if (useBorderBox && !useBootstrap) { %>/**
-*   Box sizing styles:
-*   Apply a natural box layout model to all elements
-*/
+<% if (useBorderBox && !useBootstrap) { %>
+/* Box sizing styles: Apply a natural box layout model to all elements */
+
 
 *,
 *:before,
@@ -11,9 +10,7 @@
     box-sizing: border-box;
 }
 
-<% } %>/**
-*   Author Custom Styles
-*/
+<% } %>/* Author Custom Styles */
 
 .main-container {
     padding-top: 200px;

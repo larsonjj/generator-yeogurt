@@ -1,26 +1,21 @@
-<% if (useBourbon) { %>/**
-*   Import Bourbon Mixins
-*/
-@import '../bower_components/bourbon/dist/_bourbon';<% } %><% if (useLesshat) { %>
 /**
-*   Import Lesshat Library
-*/
+ * Main Stylesheet
+ */
+
+<% if (useBourbon) { %>// Import Bourbon Mixins
+@import '../bower_components/bourbon/dist/_bourbon';<% } %><% if (useLesshat) { %>// Import Lesshat Library
 
 @import '../bower_components/lesshat/build/lesshat';
 <% } %><% if (!useBootstrap && !useFoundation) { %>
-/**
-*   Import Normalize Library
-*/
+// Import Normalize Library
 
 <% if (cssOption === 'Sass') { %>// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
 @import '../bower_components/normalize-scss/normalize';<% } %><% if (cssOption === 'Less') { %>
 // Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
 @import (less) '../bower_components/normalize.css/normalize.css';<% } %>
 <% } %><% if (useBorderBox && !useBootstrap) { %>
-/**
-*   Box sizing partial styles:
-*   Apply a natural box layout model to all elements
-*/
+// Box sizing partial styles:
+// Apply a natural box layout model to all elements
 
 *,
 *:before,
@@ -30,23 +25,17 @@
     box-sizing: border-box;
 }
 <% } %><% if (cssOption === 'Less') { %><% if (useFontAwesome) { %>
-/**
-*   Import Font Awesome Library
-*/
+// Import Font Awesome Library
 
 @import '../bower_components/font-awesome/less/font-awesome';
 @fa-font-path: '../bower_components/font-awesome/fonts';<% } %>
 <% } %><% if (cssOption === 'Sass') { %><% if (useFontAwesome) { %>
-/**
-*   Import Font Awesome Library
-*/
 
+//  Import Font Awesome Library
 $fa-font-path: '../bower_components/font-awesome/fonts';
 @import '../bower_components/font-awesome/scss/font-awesome';<% } %>
 <% } %><% if (cssOption === 'Less' && useBootstrap) { %>
-/**
-*   Import All Bootstrap Styles
-*/
+// Import All Bootstrap Styles
 
 // Core variables and mixins
 @import "../bower_components/bootstrap/less/variables.less";
@@ -97,10 +86,9 @@ $fa-font-path: '../bower_components/font-awesome/fonts';
 // Utility classes
 @import "../bower_components/bootstrap/less/utilities.less";
 @import "../bower_components/bootstrap/less/responsive-utilities.less";<% } %><% if (cssOption === 'Sass' && useBootstrap) { %>
-/**
-*   Import All Bootstrap Styles
-*/
+// Import All Bootstrap Styles
 
+// Core variables and mixins
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
 
@@ -149,9 +137,8 @@ $fa-font-path: '../bower_components/font-awesome/fonts';
 // Utility classes
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/utilities";
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/responsive-utilities";<% } %><% if (useFoundation) { %>
-/**
-*   Import All Foundation Styles
-*/
+
+// Import All Foundation Styles
 
 @import "../bower_components/foundation/scss/normalize";
 

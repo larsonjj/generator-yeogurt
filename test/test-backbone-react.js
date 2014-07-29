@@ -34,7 +34,7 @@ describe('yeogurt generator backbone + react', function () {
             versionControl: 'SVN',
             jsFramework: 'Backbone + React',
             jsOption: 'Browserify',
-            structure: 'Single Page Application',
+            singlePageApplication: true,
             cssOption: 'Sass',
             ieSupport: true,
             responsive: true,

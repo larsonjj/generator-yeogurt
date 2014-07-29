@@ -28,7 +28,7 @@ describe('yeogurt generator with static site', function () {
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
             versionControl: 'Git',
-            structure: 'Static Site',
+            singlePageApplication: false,
             cssOption: 'CSS',
             ieSupport: true,
             responsive: true,

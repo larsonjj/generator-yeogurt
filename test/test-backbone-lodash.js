@@ -35,7 +35,7 @@ describe('yeogurt generator backbone + lo-dash', function () {
             versionControl: 'SVN',
             jsFramework: 'Backbone',
             jsTemplate: 'Lo-dash (Underscore)',
-            structure: 'Single Page Application',
+            singlePageApplication: true,
             jsOption: 'Browserify',
             cssOption: 'Sass',
             ieSupport: true,

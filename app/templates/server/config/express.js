@@ -30,9 +30,9 @@ var expressConfig = function(app, express,<% if ('MySQL'.indexOf(dbOption) > -1)
     // Setup port for server to run on
     app.set('port', settings.server.port);
 
-     // Setup view engine for server side templating<% if (structure === 'Single Page Application' || htmlOption === 'HTML') { %>
+     // Setup view engine for server side templating<% if (singlePageApplication || htmlOption === 'HTML') { %>
     app.engine('.html', require('ejs').__express);
-    app.set('view engine', 'html');<% } %><% if (structure === 'Static Site' && htmlOption !== 'HTML') { %>
+    app.set('view engine', 'html');<% } %><% if (!singlePageApplication && htmlOption !== 'HTML') { %>
     app.engine('<%= htmlOption === 'Jade' ? 'jade' : '' %><%= htmlOption === 'Swig' ? 'swig' : '' %><%= htmlOption === 'HTML' ? 'html' : '' %>', require('<%= htmlOption.toLowerCase() %>').renderFile);
     app.set('view engine', '<%= htmlOption === 'Jade' ? 'jade' : '' %><%= htmlOption === 'Swig' ? 'swig' : '' %>');<% } %>
 
