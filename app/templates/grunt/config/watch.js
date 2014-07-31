@@ -84,8 +84,7 @@ var taskConfig = function(grunt) {
         },
         js: {
             files: [
-                '<%%= yeogurt.client %>/scripts/**/*.js',
-                '<%%= yeogurt.client %>/bower_components/**/*.js'
+                '<%%= yeogurt.client %>/scripts/**/*.js'
             ],
             tasks: [<% if (jshint) { %>
                 'newer:jshint',<% } %><% if (jsOption === 'Browserify') { %>
