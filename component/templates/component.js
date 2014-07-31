@@ -11,7 +11,7 @@
 
     var <%= _.classify(name) %>Component = React.createClass({
         // Add react backbone plugin
-        mixin: [Backbone.React.Component.mixin],
+        mixins: [Backbone.React.Component.mixin],
         render: function() {
             return (
                 <div>
@@ -28,7 +28,7 @@ var React = require('react');
 
 var <%= _.classify(name) %>Component = React.createClass({
     // Add react backbone plugin
-    mixin: [Backbone.React.Component.mixin],
+    mixins: [Backbone.React.Component.mixin],
     render: function() {
         return (
             <div>
