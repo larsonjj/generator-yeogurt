@@ -1,3 +1,8 @@
+### v0.9.6:
+#### date: 2014-07-31
+##### changes:
+* Fixed issue where react components were using `mixin` as a property when it should be `mixins`
+
 ### v0.9.5:
 #### date: 2014-07-31
 ##### changes:
