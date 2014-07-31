@@ -1,3 +1,10 @@
+### v0.9.5:
+#### date: 2014-07-31
+##### changes:
+* Fixed issue where jade partials/modules were not updating pages due to the `newer:` in the watch task
+* Removed bower_components from JS watch task as it could cause EMFILE issues
+* Updated usemin task to update all html files instead of just index.html
+
 ### v0.9.4:
 #### date: 2014-06-22
 ##### changes:
