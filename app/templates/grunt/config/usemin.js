@@ -14,7 +14,7 @@ module.exports = function(grunt) {
     });
 
     grunt.config.set('usemin', {
-        html: '<%%= yeogurt.dist %>/index.html',<% if (cssOption === 'None (Vanilla CSS)') { %>
+        html: '<%%= yeogurt.dist %>/*.html',<% if (cssOption === 'None (Vanilla CSS)') { %>
         css: ['<%%= yeogurt.dist %>/styles/**/*.css'],<% } %>
         options: {
             assetsDirs: ['<%%= yeogurt.dev %>', '<%%= yeogurt.dev %>/images']

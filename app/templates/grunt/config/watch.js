@@ -25,7 +25,7 @@ module.exports = function(grunt) {
                 '!<%%= yeogurt.dev %>/views/*.jade'
             ],
             tasks: [
-                'newer:jade:server',
+                'jade:server',
                 <% if (useDashboard) { %>'dashboard:server'<% } %>
             ]
         },<% } else if (htmlOption === 'Swig') { %>
@@ -44,7 +44,7 @@ module.exports = function(grunt) {
                 '!<%%= yeogurt.dev %>/views/*.swig'
             ],
             tasks: [
-                'newer:swig:server',
+                'swig:server',
                 <% if (useDashboard) { %>'dashboard:server'<% } %>
             ]
         },<% } else if (htmlOption === 'None (Vanilla HTML)' || (/Backbone/i).test(jsFramework)) { %>html: {
@@ -74,8 +74,7 @@ module.exports = function(grunt) {
         },<% } %>
         js: {
             files: [
-                '<%%= yeogurt.dev %>/scripts/**/*.js',
-                '<%%= yeogurt.dev %>/bower_components/**/*.js'<% if (useJsdoc) { %>,
+                '<%%= yeogurt.dev %>/scripts/**/*.js'<% if (useJsdoc) { %>,
                 'README.md'<% } %>
             ],
             tasks: [<% if (jshint) { %>
