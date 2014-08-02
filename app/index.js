@@ -1,8 +1,9 @@
 'use strict';
-var fs = require('fs');
+
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var _ = require('lodash');
+var grabFiles = require('./modules/grabFiles');
 require('colors');
 
 // Order to load and run generator config files based on their name
@@ -36,17 +37,12 @@ var config = [];
 // Create object that will hold all of the code needed to pass to the YeogurtGenerator
 var tasks = {};
 
-// dynamically include generator configuration files and store them in the config object
-fs.readdirSync(path.join(__dirname, './generator')).forEach(function (file) {
-    var filename = file.substring(file.lastIndexOf('/')+1).split('.');
-    if(file.substr(-3) === '.js') {
-        config.push({
-            name: filename[0],
-            index: order.indexOf(filename[0]) > -1 ? order.indexOf(filename[0]) : order.length,
-            code: require(path.join(__dirname, './generator/') + file)
-        });
-    }
-});
+// Grab all needed generator config files
+config = grabFiles([
+    path.join(__dirname + '/generator/prompts'),
+    path.join(__dirname + '/generator/config'),
+    path.join(__dirname + '/generator/files')
+], order);
 
 // Sort config files based on their index ascending (ex. 3, 1, 2 -> 1, 2, 3)
 config.sort(function(a, b) {

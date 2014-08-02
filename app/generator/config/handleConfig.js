@@ -66,8 +66,6 @@ var handleConfig = function handleConfig() {
     this.useGA                 = this.answers.useGA;
     this.useFTP                = this.answers.useFTP;
     this.jshint                = this.answers.jshint;
-
-    this.useDashboard          = this.answers.useDashboard;
     this.extras                = this.answers.extras;
 
     // Testing
@@ -76,7 +74,7 @@ var handleConfig = function handleConfig() {
     // Documentation
     this.useJsdoc              = this.answers.useJsdoc;
     this.useKss                = this.answers.useKss;
-
+    this.useDashboard          = this.answers.useDashboard;
 
     // Default Overwrites
     if (this.jsFramework === 'Backbone + React') {
@@ -110,7 +108,6 @@ var handleConfig = function handleConfig() {
     }
 
     this.useFontAwesome = hasFeature('useFontAwesome', this.extras);
-    this.useDashboard = hasFeature('useDashboard', this.extras);
     this.useModernizr = hasFeature('useModernizr', this.extras);
 
 };

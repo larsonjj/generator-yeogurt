@@ -112,25 +112,6 @@ var clientInfo = function clientInfo() {
         message: 'Would you like to lint your Javascript with ' + 'JSHint'.blue + '?',
         default: true
     }, {
-        when: function(answers) { return !answers.singlePageApplication; },
-        type: 'checkbox',
-        name: 'extras',
-        message: 'Select any extras you would like:',
-        choices: [{
-            name: 'Font Awesome',
-            value: 'useFontAwesome',
-            checked: true
-        },  {
-            name: 'Modernizr',
-            value: 'useModernizr',
-            checked: true
-        }, {
-            name: 'Dynamic Dashboard: Generate a dashboard for your site/app',
-            value: 'useDashboard',
-            checked: false
-        }]
-    }, {
-        when: function(answers) { return answers.singlePageApplication; },
         type: 'checkbox',
         name: 'extras',
         message: 'Select any extras you would like:',

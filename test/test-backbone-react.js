@@ -41,7 +41,8 @@ describe('yeogurt generator backbone + react', function () {
             useGA: true,
             useFTP: true,
             jshint: true,
-            extras: ['useFontAwesome', 'useDashboard']
+            useDashboard: true,
+            extras: ['useFontAwesome']
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {

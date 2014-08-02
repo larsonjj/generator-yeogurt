@@ -23,7 +23,12 @@ var documentationInfo = function documentationInfo() {
         name: 'useKss',
         message: 'Would you like to generate a styleguide with ' + 'KSS (Knyle Style Sheets)'.blue + '?',
         default: true
-    },], function(answers) {
+    }, {
+        type: 'confirm',
+        name: 'Would you like to ' + 'generate a dashboard'.blue + ' for your site/app',
+        value: 'useDashboard',
+        default: false
+    }], function(answers) {
         this.documentation = answers;
 
         cb();
