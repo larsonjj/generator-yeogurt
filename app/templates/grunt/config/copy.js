@@ -20,8 +20,7 @@ var taskConfig = function(grunt) {
                     'bower_components/**/*.{woff,otf,ttf,eot,svg}',<% if (useKss) { %>
                     'docs/styleguide/public/images',<% } %>
                     'images/**',
-                    '*.{ico,png,txt}',<% if (htaccess) { %>
-                    '.htaccess',<% } %>
+                    '*.{ico,png,txt}',
                     'styles/fonts/**/*.{woff,otf,ttf,eot,svg}',<% if (htmlOption === 'HTML' || (/Backbone/i).test(jsFramework) && !useServer) { %>
                     '*.html'<% } %>
                 ]
@@ -49,8 +48,7 @@ var taskConfig = function(grunt) {
                     '*.html',<% } %><% if (useKss) { %>
                     'docs/styleguide/public/images',<% } %>
                     '!*.js',
-                    '*.{ico,png,txt}',<% if (htaccess) { %>
-                    '.htaccess',<% } %>
+                    '*.{ico,png,txt}',
                     'images/**/*.{webp}',
                     'styles/fonts/**/*.{woff,otf,ttf,eot,svg}'
                 ]

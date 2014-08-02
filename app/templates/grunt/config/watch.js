@@ -126,8 +126,7 @@ var taskConfig = function(grunt) {
         },
         root: {
             files: [
-                '<%%= yeogurt.client %>/*.{ico,png,txt,html}',<% if (extras.indexOf(htaccess) !== -1) { %>
-                '<%%= yeogurt.client %>/.htaccess',<% } %>
+                '<%%= yeogurt.client %>/*.{ico,png,txt,html}',
                 '<%%= yeogurt.client %>/images/**/*.webp',
                 '<%%= yeogurt.client %>/styles/fonts/**/*.*'
             ],
@@ -138,8 +137,7 @@ var taskConfig = function(grunt) {
                 livereload: <% if (!useServer) { %>'<%%= connect.options.livereload %>'<% } else { %>true<% } %>
             },
             files: [
-                '<%%= yeogurt.client %>/*.{ico,png,txt,html}'<% if (extras.indexOf(htaccess) !== -1) { %>,
-                '<%%= yeogurt.client %>/.htaccess'<% } %>,
+                '<%%= yeogurt.client %>/*.{ico,png,txt,html}',
                 '<%%= yeogurt.staticServer %>/styles/fonts/**/*.*',
                 '<%%= yeogurt.staticServer %>/**/*.html'<% if (cssOption === 'Sass') { %>,
                 '<%%= yeogurt.client %>/styles/**/*.scss'<% } %><% if (cssOption === 'Less') { %>,

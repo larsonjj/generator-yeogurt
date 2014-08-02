@@ -13,7 +13,7 @@
 @import '../bower_components/normalize-scss/normalize';<% } %><% if (cssOption === 'Less') { %>
 // Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
 @import (less) '../bower_components/normalize.css/normalize.css';<% } %>
-<% } %><% if (useBorderBox && !useBootstrap) { %>
+<% } %><% if (!useBootstrap) { %>
 // Box sizing partial styles:
 // Apply a natural box layout model to all elements
 

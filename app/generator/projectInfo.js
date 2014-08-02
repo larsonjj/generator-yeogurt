@@ -1,0 +1,32 @@
+/**
+ * Generate Yeogurt Logo
+ */
+
+'use strict';
+
+var projectInfo = function projectInfo() {
+    if (this.skipConfig) {
+        return;
+    }
+
+    var cb = this.async();
+
+    this.log('\n---- ' + 'Project Info'.red.underline + ' ----\n');
+
+    this.prompt([{
+        name: 'projectName',
+        message: 'What would you like to' + ' name your project'.blue + '?',
+        default: 'Sample'
+    }, {
+        type: 'list',
+        name: 'versionControl',
+        message: 'Which ' + 'version control software'.blue + ' are you using (or plan to use)?',
+        choices: ['Git', 'SVN', 'None (I like to live on the edge)']
+    }], function(answers) {
+        this.projectInfo = answers;
+
+        cb();
+    }.bind(this));
+};
+
+module.exports = projectInfo;

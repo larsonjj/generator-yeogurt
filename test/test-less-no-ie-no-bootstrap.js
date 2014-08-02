@@ -37,7 +37,7 @@ describe('yeogurt generator no IE with less', function () {
             useGA: true,
             useFTP: true,
             jshint: true,
-            extras: ['htaccess', 'useFontAwesome', 'useDashboard']
+            extras: ['useFontAwesome', 'useDashboard']
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {

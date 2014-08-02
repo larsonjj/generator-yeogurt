@@ -37,7 +37,7 @@ describe('yeogurt generator Sass', function () {
             useGA: true,
             useFTP: true,
             jshint: true,
-            extras: ['useBorderBox', 'useFontAwesome', 'useDashboard']
+            extras: ['useFontAwesome', 'useDashboard']
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {
