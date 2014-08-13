@@ -111,7 +111,7 @@ Available sub-generators:
 ### Template
 
 #### Static Site Specific
-Creates  a jade file within the `client/templates` folder by default or within another folder using the `--type` option. Automatically, the created file's path will be included within the base layout file (Jade mixins and Swig macros must be included in the file(s) where you want to use them). If you wish to not have the generated file imported into the base layout file, pass the `--noImport` flag. Note: Importing is only designed to work with `type=module`.
+Creates  a jade file within the `client/templates` folder by default or within another folder using the `--type` option. Automatically, the created file's path will be included within the base layout file (Jade mixins and Swig macros must be included in the file(s) where you want to use them). If you wish to not have the generated file imported into the base layout file, pass the `--noImport` flag. Note: Importing is only designed to work with `type=module`. You can also specify a folder using the `--folder` option which is relative to the `client/templates` folder
 
 Example:
 ```bash
@@ -132,7 +132,7 @@ yo yeogurt:template mymodule --type=module --noImport
 ```
 
 #### Single Page Application Specific
-Creates 3 files: a new template file (Jade, Handlebars, or Lo-dash depending on which you chose) within the `client/scripts/templates` folder, a new Backbone view file within the `client/scripts/templates` folder, and a unit test spec file within the `test/spec` folder.
+Creates 3 files: a new template file (Jade, Handlebars, or Lo-dash depending on which you chose) within the `client/scripts/templates` folder, a new Backbone view file within the `client/scripts/templates` folder, and a unit test spec file within the `test/spec` folder. You can also specify a folder using the `--folder` option which is relative to the `client/scripts/templates` folder
 
 Example:
 ```bash
@@ -142,7 +142,7 @@ yo yeogurt:template mytemplate
 
 
 ### Script
-If using Browserify or RequireJS, this creates module script within the `client/scripts/modules` folder by default. Otherwise, the script will be created within `client/scripts`.
+If using Browserify or RequireJS, this creates module script within the `client/scripts/` folder. You can also specify a folder using the `--folder` option which is relative to the `client/scripts` folder.
 This sub-generator will also create a unit test *Spec file within the `test/spec` folder (enter `grunt test` command to run your tests)
 
 Example:
@@ -178,7 +178,7 @@ yo yeogurt:model mymodel
 ```
 
 ### Collection
-Creates a new Backbone collection file within `client/scripts/collections` as well as a unit test spec file within the `test/spec` folder. If you pass the `--model` option, you can specify which model to use with the collection.
+Creates a new Backbone collection file within `client/scripts/collections` as well as a unit test spec file within the `test/spec` folder. If you pass the `--model` option, you can specify which model to use with the collection. You can also specify a folder using the `--folder` option which is relative to the `client/scripts/collections` folder.
 
 Example:
 ```bash
@@ -192,7 +192,7 @@ yo yeogurt:model mycollection --model=mymodel
 ### React
 ***Note: (Can only be used with React)***
 
-Creates a new JSX React file within the `client/scripts/templates` as well as a unit test spec file within the `test/spec` folder
+Creates a new JSX React file within the `client/scripts/templates` as well as a unit test spec file within the `test/spec` folder. You can also specify a folder using the `--folder` option which is relative to the `client/scripts/components` folder.
 
 Example:
 ```bash
