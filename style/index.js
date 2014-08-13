@@ -11,8 +11,7 @@ var StyleGenerator = module.exports = function StyleGenerator(args, options, con
 
     // options
     this.useDashboard = this.options.dashboard || false;
-    this.folder = this.options.folder || false;
-    this.noImport = this.options.noImport || false;
+    this.folder = this.options.folder || '';
     this.cssOption = fileJSON.cssOption;
 
     console.log('You called the style subgenerator with the argument ' + this.name + '.');
@@ -25,26 +24,13 @@ StyleGenerator.prototype.files = function files() {
         console.log('Name cannot be empty. Operation aborted.');
         return;
     }
-    if (this.folder) {
-        if (this.cssOption === 'Less') {
-            this.template('style.less', 'client/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.less');
-        }
-        else if (this.cssOption === 'Sass') {
-            this.template('style.less', 'client/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
-        }
-        else {
-            this.template('style.less', 'client/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.css');
-        }
+    if (this.cssOption === 'Less') {
+        this.template('style.less', 'client/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.less');
+    }
+    else if (this.cssOption === 'Sass') {
+        this.template('style.less', 'client/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
     }
     else {
-        if (this.cssOption === 'Less') {
-            this.template('style.less', 'client/styles/partials/' + '_' + this._.slugify(this.name.toLowerCase()) + '.less');
-        }
-        else if (this.cssOption === 'Sass') {
-            this.template('style.less', 'client/styles/partials/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
-        }
-        else {
-            this.template('style.less', 'client/styles/' + this._.slugify(this.name.toLowerCase()) + '.css');
-        }
+        this.template('style.less', 'client/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.css');
     }
 };

@@ -106,7 +106,7 @@ var taskConfig = function(grunt) {
             tasks: [
                 'handlebars:server'
             ]
-        },<% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>
+        },<% } %><% if (jsTemplate === 'Lo-dash') { %>
         jst: {
             files: ['<%%= yeogurt.client %>/templates/**/*.jst'],
             tasks: [
@@ -153,7 +153,7 @@ var taskConfig = function(grunt) {
                 'server.js',
                 'server/**/*.{js,json,html}'<% if (jsTemplate === 'React') { %>,
                 '<%%= yeogurt.client %>/scripts/views/*.jsx'<% } %><% if (jsTemplate === 'Handlebars') { %>,
-                '<%%= yeogurt.client %>/templates/**/*.hbs'<% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>,
+                '<%%= yeogurt.client %>/templates/**/*.hbs'<% } %><% if (jsTemplate === 'Lo-dash') { %>,
                 '<%%= yeogurt.client %>/templates/**/*.jst'<% } %><% if (jsTemplate === 'Jade') { %>,
                 '<%%= yeogurt.client %>/templates/**/*.jade'<% } %><% if (htmlOption === 'Swig') { %>,
                 '<%%= yeogurt.server %>/templates/**/*.swig'<% } %><% if (htmlOption === 'Jade') { %>,

@@ -1,5 +1,6 @@
 /**
- * Generate Yeogurt Logo
+ * Handle prompt choices and setup template values
+ * For file creation
  */
 
 'use strict';
@@ -19,18 +20,18 @@ var handleConfig = function handleConfig() {
     // Assign each answer property to `this` context to give the generator access to it
 
     // Project Info
-    this.projectName           = this.answers.projectName;
-    this.versionControl        = this.answers.versionControl;
+    this.projectName    = this.answers.projectName;
+    this.versionControl = this.answers.versionControl;
 
     // Server Info
-    this.useServer             = this.answers.useServer;
-    this.dbOption              = this.answers.dbOption;
+    this.useServer      = this.answers.useServer;
+    this.dbOption       = this.answers.dbOption;
     // Setup Database URLs
     var username = this.answers.dbUser;
     var password = this.answers.dbPass ? ':' + this.answers.dbPass : '';
-    var port = this.answers.dbPort;
-    var host = this.answers.dbUser ? '@' + this.answers.dbHost : this.answers.dbHost;
-    var name = this.answers.dbName ? this.answers.dbName : '';
+    var port     = this.answers.dbPort;
+    var host     = this.answers.dbUser ? '@' + this.answers.dbHost : this.answers.dbHost;
+    var name     = this.answers.dbName ? this.answers.dbName : '';
 
     if (this.dbOption === 'MongoDB') {
         this.dbURL = process.env.MONGODB || 'mongodb://' +
@@ -77,7 +78,7 @@ var handleConfig = function handleConfig() {
     this.useDashboard          = this.answers.useDashboard;
 
     // Default Overwrites
-    if (this.jsFramework === 'Backbone + React') {
+    if (this.jsFramework === 'React') {
         this.jsTemplate = this.answers.jsTemplate = 'React';
     }
     if (!this.dbOption) {

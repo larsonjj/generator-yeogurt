@@ -1,5 +1,5 @@
 /**
- * Generate Yeogurt Logo
+ * Generate files specific to the needed project configuration
  */
 
 'use strict';

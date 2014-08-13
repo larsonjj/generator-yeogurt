@@ -22,9 +22,9 @@ describe('yeogurt generator backbone + react', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'client/scripts/views',
+            'client/scripts/components',
             'client/scripts/routes.js',
-            'client/scripts/views/main.jsx',
+            'client/scripts/components/main.jsx',
             'test/helpers/phantomjs-shims.js',
             'client/index.html'
         ];
@@ -32,7 +32,7 @@ describe('yeogurt generator backbone + react', function () {
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
             versionControl: 'SVN',
-            jsFramework: 'Backbone + React',
+            jsFramework: 'React',
             jsOption: 'Browserify',
             singlePageApplication: true,
             cssOption: 'Sass',

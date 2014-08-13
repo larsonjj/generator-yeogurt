@@ -1,5 +1,5 @@
 /**
- * Generate Yeogurt Logo
+ * Generate files specific to the scripts folder
  */
 
 'use strict';
@@ -19,7 +19,7 @@ var scriptFiles = function scriptFiles() {
         this.mkdir('client/scripts/views');
 
         this.template('client/scripts/backbone/routes.js', 'client/scripts/routes.js');
-        if (this.jsTemplate === 'Lo-dash (Underscore)') {
+        if (this.jsTemplate === 'Lo-dash') {
             this.template('client/scripts/backbone/templates/main.html', 'client/templates/main.jst');
         }
         else if (this.jsTemplate === 'Handlebars') {
@@ -31,11 +31,11 @@ var scriptFiles = function scriptFiles() {
 
         this.template('client/scripts/backbone/views/main.js', 'client/scripts/views/main.js');
     }
-    else if (this.jsFramework === 'Backbone + React') {
-        this.mkdir('client/scripts/views');
+    else if (this.jsFramework === 'React') {
+        this.mkdir('client/scripts/components');
 
         this.template('client/scripts/backbone/routes.js', 'client/scripts/routes.js');
-        this.template('client/scripts/react/main.jsx', 'client/scripts/views/main.jsx');
+        this.template('client/scripts/react/main.jsx', 'client/scripts/components/main.jsx');
         this.template('test/helpers/phantomjs-shims.js', 'test/helpers/phantomjs-shims.js');
     }
 };

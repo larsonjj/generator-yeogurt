@@ -13,7 +13,7 @@ module.exports = function(config) {
         // list of files / patterns to load in the browser
         files: [
             'client/bower_components/jquery/dist/jquery.js',<% if ((/Backbone/i).test(jsFramework)) { %>
-            'client/bower_components/underscore/underscore.js',
+            'client/bower_components/lodash/lodash.js',
             'client/bower_components/backbone/backbone.js',<% if (jsTemplate === 'React') { %>
             'test/helpers/phantomjs-shims.js',<% } %><% } %><% if (jsTemplate === 'Handlebars') { %>
             'client/bower_components/handlebars/handlebars.runtime.js',<% } else if (jsTemplate === 'Jade') { %>'client/bower_components/jade/runtime.js',<% } %><% if (useBootstrap) { %>'client/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>affix.js',
@@ -105,7 +105,7 @@ module.exports = function(config) {
         browserify: {
             // extensions: ['.coffee'],
             // ignore: [],
-            // transform: ['browserify-shim'],<% if (jsFramework === 'Backbone + React') { %>
+            // transform: ['browserify-shim'],<% if (jsFramework === 'React') { %>
             transform: [require('grunt-react').browserify],<% } %>
             // debug: true,
             // noParse: ['jquery'],

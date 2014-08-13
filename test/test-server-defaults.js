@@ -29,6 +29,7 @@ describe('yeogurt generator server defaults', function () {
             'server/modules/reactRender.js',
             'server/config/database.js',
             'server/routes.js',
+            'server/modules/serverCheck.js',
             'server.js'
         ];
 

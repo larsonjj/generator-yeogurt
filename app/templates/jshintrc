@@ -111,13 +111,12 @@
         "xdescribe"
     ],
     "globals": {<% if (jsOption === 'RequireJS') { %>
-        "requirejs": true,<% } %><% if ((/Backbone/i).test(jsFramework)) { %>
+        "requirejs": true,<% } %><% if ((/Backbone/i).test(jsFramework) || (/React/i).test(jsFramework)) { %>
         "Backbone": true,
         "<%= _.classify(projectName) %>": true,
-        "_": true,<% } %><% if ((/Underscore/i).test(jsTemplate) || (/Handlebars/i).test(jsTemplate) || (/Jade/i).test(jsTemplate) || (/React/i).test(jsFramework)) { %>
-        "JST": true,<% } %><% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>
-        "React": true,<% } %><% if (useServer) { %>
-        "__dirname": true,<% } %><% if (useModernizr) { %>
+        "_": true,<% } %><% if ((/Lo-dash/i).test(jsTemplate) || (/Handlebars/i).test(jsTemplate) || (/Jade/i).test(jsTemplate)) { %>
+        "JST": true,<% } %><% if (useServer) { %>
+        "__dirname": true<% } %><% if (useModernizr) { %>,
         "Modernizr": true<% } %>
     },
     "indent"        : 4         // Specify indentation spacing

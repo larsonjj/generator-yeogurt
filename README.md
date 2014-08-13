@@ -21,7 +21,7 @@ Note For Mac Users: You will need to install XCode, install command-line tools, 
 ***Single Page Applications***
 
 - You now have the ability to create single page applications (SPA) with Backbone!
-- Pick from Handlebars, Jade, or Lo-dash (Underscore) template libraries or even start using Facebook's React.
+- Pick from Handlebars, Jade, or Lo-dash template libraries or even start using Facebook's React.
 - New subgenerators are also included to accelerate your SPA development.
 - No matter what you choose, you will still be able to use Browserify or RequireJS with sourcemaps. (CommonJS and AMD fan's rejoice!)
 
@@ -41,7 +41,7 @@ There are a ton of updates in this release, so be sure to check out the [Changel
 
 ### Single Page Application Specific
 - Backbone + Facebook's [React](http://facebook.github.io/react/) view framework
-- Vanilla Backbone with [Jade](http://jade-lang.com/), [Handlebars](http://handlebarsjs.com/), or [Lo-dash (Underscore)](http://lodash.com/) Templating
+- Vanilla Backbone with [Jade](http://jade-lang.com/), [Handlebars](http://handlebarsjs.com/), or [Lo-dash](http://lodash.com/) Templating
 
 ### Available for both Static Sites and Single Page Applications
 
@@ -132,7 +132,7 @@ yo yeogurt:template mymodule --type=module --noImport
 ```
 
 #### Single Page Application Specific
-Creates 3 files: a new template file (Jade, Handlebars, or Lo-dash (Underscore) depending on which you chose) within the `client/scripts/templates` folder, a new Backbone view file within the `client/scripts/templates` folder, and a unit test spec file within the `test/spec` folder.
+Creates 3 files: a new template file (Jade, Handlebars, or Lo-dash depending on which you chose) within the `client/scripts/templates` folder, a new Backbone view file within the `client/scripts/templates` folder, and a unit test spec file within the `test/spec` folder.
 
 Example:
 ```bash
@@ -190,7 +190,7 @@ yo yeogurt:model mycollection --model=mymodel
 ```
 
 ### React
-***Note: (Can only be used with Backbone + React)***
+***Note: (Can only be used with React)***
 
 Creates a new JSX React file within the `client/scripts/templates` as well as a unit test spec file within the `test/spec` folder
 

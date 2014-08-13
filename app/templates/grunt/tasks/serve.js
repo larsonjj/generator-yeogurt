@@ -16,7 +16,7 @@ var taskConfig = function(grunt) {
             'injector',
             'copy:server',<% if (jsOption === 'Browserify') { %>
             'browserify:server',
-            'exorcise:server',<% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>
+            'exorcise:server',<% } %><% if (jsTemplate === 'Lo-dash') { %>
             'jst:server',<% } else if (jsTemplate === 'Handlebars') { %>
             'handlebars:server',<% } else if (jsTemplate === 'Jade') { %>
             'jade:server',<% } %><% if (htmlOption === 'Jade' && !useServer ) { %>

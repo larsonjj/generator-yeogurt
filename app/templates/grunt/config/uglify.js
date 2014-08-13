@@ -29,7 +29,7 @@ var taskConfig = function(grunt) {
                 'modernizr/modernizr.js'
             ],
             ext: '.js'
-        }<% if (singlePageApplication && jsFramework !== 'Backbone + React') { %>,
+        }<% if (singlePageApplication && jsFramework !== 'React') { %>,
         distTemplates: {
             options: {
                 mangle: false,

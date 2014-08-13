@@ -21,9 +21,9 @@ define(function (require) {
     return MainRouter;
 });<% } else if (jsOption === 'Browserify') { %>
 'use strict';
-<% if (jsFramework === 'Backbone + React') { %>
+<% if (jsFramework === 'React') { %>
 var React = require('react');
-var MainComponent = require('./views/main.jsx');
+var MainComponent = require('./components/main.jsx');
 <% } else if ((/Backbone/i).test(jsFramework)) { %>
 var MainView = require('./views/main');<% } %>
 
@@ -32,7 +32,7 @@ var MainRouter = Backbone.Router.extend({
         '': 'default'
     },
 
-    default: function() {<% if (jsFramework === 'Backbone + React') { %>
+    default: function() {<% if (jsFramework === 'React') { %>
         React.renderComponent(new MainComponent(), document.getElementById('app-wrapper'));<% } else if ((/Backbone/i).test(jsFramework)) { %>
         // Initialize the main view
         new MainView();<% } %>

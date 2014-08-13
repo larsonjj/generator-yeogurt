@@ -39,7 +39,7 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
             link(rel='stylesheet', href='/styles/main.css')<% } %><% } %><% if (useModernizr) { %>
         script(src='/bower_components/modernizr/modernizr.js')<% } %><% if (ieSupport) { %>
         // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
-        <!--[if IE 8]><% if (responsive) { %>
+        <!--[if lt IE 9]><% if (responsive) { %>
         script(src='/bower_components/respond/respond.min.js')<% } %>
         script(src='/bower_components/html5shiv/dist/html5shiv-printshiv.js')<% if (jsTemplate === 'React') { %>
         script(src='/bower_components/es5-shim/es5-shim.js')
@@ -67,7 +67,7 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
     -var bodyClass
     block body
     body(class=(bodyClass ? bodyClass : false))
-        <!--[if lt IE 7]>
+        <!--[if lte IE 7]>
         <p class='browsehappy'>You are using an <strong>outdated</strong> browser. Please <a href='http://browsehappy.com/''>upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         block content<% if (useGA) { %>
@@ -79,6 +79,11 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
             e.src='//www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');<% } %>
+        <% if (jsTemplate === 'React') { %>
+        <!--[if lt IE 9]>
+        script(src='/bower_components/es5-shim/es5-shim.js')
+        script src='/bower_components/es5-shim/es5-sham.js')
+        <![endif]--><% } %>
         <% if (useServer) { %>
         if (env == 'development')<% } %><% if (useServer) { %>
             <% } %>// build:js(client) scripts/global.js
@@ -124,6 +129,6 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
         script(src='/scripts/app.js')<% } %>
         // [injector:js]
         // [endinjector]<% if (jsFramework === 'Backbone') { %>
-        script(src="/scripts/routes.js")
-        script(src="/scripts/app.js")<% } %>
+        script(src='/scripts/routes.js')
+        script(src='/scripts/app.js')<% } %>
         // endbuild<% } %>

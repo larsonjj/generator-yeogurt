@@ -1,5 +1,5 @@
 /**
- * Generate Yeogurt Logo
+ * Generate Initial project information prompts
  */
 
 'use strict';
@@ -14,6 +14,7 @@ var projectInfo = function projectInfo() {
     this.log('\n---- ' + 'Project Info'.red.underline + ' ----\n');
 
     this.prompt([{
+        type: 'input',
         name: 'projectName',
         message: 'What would you like to' + ' name your project'.blue + '?',
         default: 'Sample'

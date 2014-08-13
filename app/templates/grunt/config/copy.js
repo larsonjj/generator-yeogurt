@@ -12,7 +12,7 @@ var taskConfig = function(grunt) {
                 cwd: '<%%= yeogurt.client %>/',
                 dest: '<%%= yeogurt.staticServer %>/',
                 src: [
-                    'scripts/**/*.<% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>{js,jsx}<% } else { %>js<% } %>',<% if (useDashboard) { %>
+                    'scripts/**/*.<% if (jsFramework === 'React' && jsOption === 'RequireJS') { %>{js,jsx}<% } else { %>js<% } %>',<% if (useDashboard) { %>
                     'dashboard/**/*.*',<% } %><% if (jsOption === 'Browserify') { %>
                     '!scripts/app.js',
                     '!scripts/main.js',<% } %>

@@ -7,11 +7,8 @@
 'use strict';
 
 var React = require('react');
-var backboneMixin = require('backbone-react-component');
 
 var MainComponent = React.createClass({
-    // Add react backbone mixin
-    mixin: [backboneMixin.mixin],
     render: function() {
         return (
             <div>

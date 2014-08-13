@@ -1,5 +1,5 @@
 /**
- * Generate Yeogurt Logo
+ * Generate files specific to the grunt folder
  */
 
 'use strict';
@@ -60,7 +60,7 @@ var taskFiles = function taskFiles() {
     if (this.cssOption === 'Sass') {
         this.template('grunt/config/sass.js', 'grunt/config/sass.js');
     }
-    if (this.jsTemplate === 'Lo-dash (Underscore)') {
+    if (this.jsTemplate === 'Lo-dash') {
         this.template('grunt/config/jst.js', 'grunt/config/jst.js');
     }
     else if (this.jsTemplate === 'Handlebars') {

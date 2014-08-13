@@ -9,7 +9,7 @@ require('colors');
 // Order to load and run generator config files based on their name
 var order = [
     'logo',
-    'configCheck',
+    'checkConfig',
     'projectInfo',
     'serverInfo',
     'clientInfo',

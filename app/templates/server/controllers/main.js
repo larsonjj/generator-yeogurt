@@ -7,7 +7,8 @@
 <% if (jsTemplate === 'React') { %>
 var reactRender = require('../modules/reactRender');<% } %><% if (jsTemplate === 'Jade') { %>
 var jadeRender = require('../modules/jadeRender');<% } %><% if (jsTemplate === 'Handlebars') { %>
-var hbsRender = require('../modules/hbsRender');<% } %><% } %>
+var hbsRender = require('../modules/hbsRender');<% } %><% if (jsTemplate === 'Lo-dash') { %>
+var lodashRender = require('../modules/lodashRender');<% } %><% } %>
 
 var mainController = function(req, res) {<% if (singlePageApplication) { %>
     res.format({
@@ -15,7 +16,8 @@ var mainController = function(req, res) {<% if (singlePageApplication) { %>
         html: function(){<% if (jsTemplate === 'React') { %>
             var html = reactRender({}, 'main.jsx');<% } %><% if (jsTemplate === 'Jade') { %>
             var html = jadeRender({}, 'main.jade');<% } %><% if (jsTemplate === 'Handlebars') { %>
-            var html = hbsRender({}, 'main.hbs');<% } %>
+            var html = hbsRender({}, 'main.hbs');<% } %><% if (jsTemplate === 'Lo-dash') { %>
+            var html = lodashRender({}, 'main.jst');<% } %>
             res.render('index', {
                 env: process.env.NODE_ENV || 'development',
                 body: html || ''

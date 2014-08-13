@@ -71,7 +71,7 @@ var databaseConfig = function(app) {
         //   sequelize.define(name, attributes, { timestamps: false })
         // so defining the timestamps for each model will be not necessary
         define: {
-            underscored: false,
+            lodashd: false,
             freezeTableName: false,
             charset: 'utf8',
             collate: 'utf8_general_ci',

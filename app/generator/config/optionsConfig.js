@@ -1,5 +1,5 @@
 /**
- * Generate Yeogurt Logo
+ * Setup extra generator options
  */
 
 'use strict';

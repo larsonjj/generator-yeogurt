@@ -76,7 +76,7 @@
 * Replaced heading component with h1 component to provide a simpler example
 * Updated all this._.camelize to be this._.slugify to keep all sub generators consistant.
 * Added logic to make sure all names passed into subgenerators are converted to lower case to make sure spec files are run correctly.
-* Added a check and abort statement for 'view' subgenerator when using Backbone + React
+* Added a check and abort statement for 'view' subgenerator when using React
 * Added model and model spec file generation to 'collection' subgenerator
 * Added max-width to content list items for dashboard, so they don't get strectched too much.
 * Added a full 'margin: 0' to sidebar menu on styleguide to remove Foundation UL tag margins
@@ -100,7 +100,7 @@
 ### v0.8.0:
 #### date: 2014-06-13
 ##### changes:
-* Added Single Page Application option in generator that allows user to scaffold out a project using Backbone in combination with: Facebook's React, Handlebars, Lo-dash (Underscore), or Jade views/templating.
+* Added Single Page Application option in generator that allows user to scaffold out a project using Backbone in combination with: Facebook's React, Handlebars, Lo-dash, or Jade views/templating.
 * Updated imagemin plugin to only handle `.jpg` and `.gif` files and added pngmin plugin to handle `.png` files. (This fixes iamgemin freezing on PNG files)
 * Added new router, model, collection, and view subgenerators that mimic those of the official [generator-backbone](https://github.com/yeoman/generator-backbone)
 * Added another subgenerator specifically for React components

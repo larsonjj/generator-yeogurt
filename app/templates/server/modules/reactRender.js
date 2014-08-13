@@ -10,7 +10,7 @@ require('node-jsx').install();
 var reactHelper = function(data, template) {
 
     // Retrieve specified JSX file
-    var JSX = require(path.join(settings.root, 'client/scripts/views/') + template);
+    var JSX = require(path.join(settings.root, 'client/scripts/components/') + template);
 
     // Convert data to workable JavaScript object
     var cleanedData = JSON.parse(JSON.stringify(data));

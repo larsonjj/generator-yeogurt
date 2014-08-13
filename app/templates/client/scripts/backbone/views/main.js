@@ -13,7 +13,7 @@ define(function (require) {
         el: '#app-wrapper',
 
         // Compile our stats template
-        template: JST['client/templates/main<% if (jsTemplate === 'Lo-dash (Underscore)') { %>.jst<% } else if (jsTemplate === 'Handlebars') { %>.hbs<% } else if (jsTemplate === 'Jade') { %><% } %>'],
+        template: JST['client/templates/main<% if (jsTemplate === 'Lo-dash') { %>.jst<% } else if (jsTemplate === 'Handlebars') { %>.hbs<% } else if (jsTemplate === 'Jade') { %><% } %>'],
 
         // Delegated events
         events: {},
@@ -43,7 +43,7 @@ var MainView = Backbone.View.extend({
     el: '#app-wrapper',
 
     // Load up JST template
-    template: JST['client/templates/main<% if (jsTemplate === 'Lo-dash (Underscore)') { %>.jst<% } else if (jsTemplate === 'Handlebars') { %>.hbs<% } else if (jsTemplate === 'Jade') { %><% } %>'],
+    template: JST['client/templates/main<% if (jsTemplate === 'Lo-dash') { %>.jst<% } else if (jsTemplate === 'Handlebars') { %>.hbs<% } else if (jsTemplate === 'Jade') { %><% } %>'],
 
     // Delegated events
     events: {},
@@ -75,7 +75,7 @@ var <%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
         el: '#app-wrapper',
 
         // Load up JST template
-        template: JST['client/templates/main<% if (jsTemplate === 'Lo-dash (Underscore)') { %>.jst<% } else if (jsTemplate === 'Handlebars') { %>.hbs<% } else if (jsTemplate === 'Jade') { %><% } %>'],
+        template: JST['client/templates/main<% if (jsTemplate === 'Lo-dash') { %>.jst<% } else if (jsTemplate === 'Handlebars') { %>.hbs<% } else if (jsTemplate === 'Jade') { %><% } %>'],
 
         // Delegated events
         events: {},

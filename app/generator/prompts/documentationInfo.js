@@ -1,5 +1,5 @@
 /**
- * Generate Yeogurt Logo
+ * Generate prompts for automated documentation info
  */
 
 'use strict';
@@ -10,6 +10,7 @@ var documentationInfo = function documentationInfo() {
     }
 
     var cb = this.async();
+    var self = this;
 
     this.log('\n---- ' + 'Documentation'.red.underline + ' ----\n');
 
@@ -24,9 +25,10 @@ var documentationInfo = function documentationInfo() {
         message: 'Would you like to generate a styleguide with ' + 'KSS (Knyle Style Sheets)'.blue + '?',
         default: true
     }, {
+        when: function() {return !self.serverInfo.useServer;},
         type: 'confirm',
-        name: 'Would you like to ' + 'generate a dashboard'.blue + ' for your site/app',
-        value: 'useDashboard',
+        name: 'useDashboard',
+        message: 'Would you like to ' + 'generate a dashboard'.blue + ' for your site/app',
         default: false
     }], function(answers) {
         this.documentation = answers;

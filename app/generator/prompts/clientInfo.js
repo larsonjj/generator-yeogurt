@@ -1,5 +1,5 @@
 /**
- * Generate Yeogurt Logo
+ * Create prompts for client info
  */
 
 'use strict';
@@ -17,7 +17,7 @@ var clientInfo = function clientInfo() {
     this.prompt([{
         type: 'confirm',
         name: 'singlePageApplication',
-        message: 'Will this be a ' + 'Backbone Application'.blue + '?',
+        message: 'Will this be a ' + 'Single Page Application'.blue + '?',
         default: true
     }, {
         when: function(answers) { return !answers.singlePageApplication && !self.serverInfo.useServer; },
@@ -36,19 +36,13 @@ var clientInfo = function clientInfo() {
         type: 'list',
         name: 'jsFramework',
         message: 'Which ' + 'JavaScript framework and/or library'.blue + ' would you like to use?',
-        choices: ['Backbone + React', 'Backbone']
+        choices: ['React', 'Backbone']
     }, {
-        when: function(answers) {return answers.jsFramework === 'Backbone' && !self.serverInfo.useServer || false;},
+        when: function(answers) {return answers.jsFramework === 'Backbone' || false;},
         type: 'list',
         name: 'jsTemplate',
         message: 'Which ' + 'JavaScript templating library'.blue + ' would you like to use?',
-        choices: ['Lo-dash (Underscore)', 'Handlebars', 'Jade']
-    }, {
-        when: function(answers) {return answers.jsFramework === 'Backbone' && self.serverInfo.useServer || false;},
-        type: 'list',
-        name: 'jsTemplate',
-        message: 'Which ' + 'JavaScript templating library'.blue + ' would you like to use?',
-        choices: ['Handlebars', 'Jade']
+        choices: ['Lo-dash', 'Handlebars', 'Jade']
     }, {
         when: function(answers) { return !(/React/i).test(answers.jsFramework); },
         type: 'list',

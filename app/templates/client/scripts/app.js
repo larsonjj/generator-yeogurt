@@ -31,7 +31,7 @@ define(function (require) {
     };
 });<% } else if (jsOption === 'Browserify') { %>
 'use strict';
-<% if ((/Backbone/i).test(jsFramework)) { %>
+<% if ((/Backbone/i).test(jsFramework) || (/React/i).test(jsFramework)) { %>
 var Router = require('./routes');
 
 // Initialize route(s)
@@ -50,7 +50,7 @@ Backbone.history.start({ pushState : pushState, root : '/' });
 if (!pushState && window.location.pathname !== '/') {
     window.location.replace('/#' + window.location.pathname);
 }<% } else { %>
-Backbone.history.start();<% } %><% if (jsFramework === 'Backbone + React') { %>
+Backbone.history.start();<% } %><% if (jsFramework === 'React') { %>
 
 // Enable React dev tools
 window.React = require('react');<% } %>

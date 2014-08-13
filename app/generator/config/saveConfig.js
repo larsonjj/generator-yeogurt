@@ -1,5 +1,5 @@
 /**
- * Generate Yeogurt Logo
+ * Save configuration to yo-rc.json file
  */
 
 'use strict';

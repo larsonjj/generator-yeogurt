@@ -1,5 +1,5 @@
 /**
- * Generate Yeogurt Logo
+ * Generate files specific to the server folder
  */
 
 'use strict';
@@ -12,8 +12,8 @@ var serverFiles = function serverFiles() {
         this.mkdir('server/config/env');
         if (this.useServer && this.singlePageApplication) {
             this.mkdir('server/templates');
-            this.mkdir('server/layouts');
             this.mkdir('server/modules');
+            this.copy('server/modules/serverCheck.js', 'server/modules/serverCheck.js');
         }
         if (this.singlePageApplication) {
             if (this.jsTemplate === 'React') {
@@ -24,6 +24,9 @@ var serverFiles = function serverFiles() {
             }
             else if (this.jsTemplate === 'Handlebars') {
                 this.template('server/modules/hbsRender.js','server/modules/hbsRender.js');
+            }
+            else if (this.jsTemplate === 'Lo-dash') {
+                this.template('server/modules/lodashRender.js','server/modules/lodashRender.js');
             }
             this.template('client/templates/html/index.html', 'server/templates/index.html');
         }

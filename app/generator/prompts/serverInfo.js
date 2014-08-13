@@ -1,5 +1,5 @@
 /**
- * Generate Yeogurt Logo
+ * Generate prompts for server information
  */
 
 'use strict';

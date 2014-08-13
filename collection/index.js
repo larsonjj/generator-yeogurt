@@ -10,9 +10,7 @@ var CollectionGenerator = module.exports = function CollectionGenerator(args, op
 
     // options
     this.useModel = this.options.model || false;
-    this.useDashboard = this.options.dashboard || false;
-    this.view = this.options.type || 'page';
-    this.useTemplate = this.options.template || false;
+    this.folder = this.options.folder || '';
     this.useDashboard = fileJSON.extras.indexOf('useDashboard') > -1 ? true : false;
     this.structure = fileJSON.structure;
     this.jsTemplate = fileJSON.jsTemplate;
@@ -42,7 +40,7 @@ CollectionGenerator.prototype.files = function files() {
             console.log('Name cannot be empty. Operation aborted.');
             return;
         }
-        this.template('collection.js', 'client/scripts/collections/' + this._.slugify(this.name.toLowerCase()) + '.js');
+        this.template('collection.js', 'client/scripts/collections/' + this.folder + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
         this.template('collection-spec.js', 'test/spec/collections/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
     }
 

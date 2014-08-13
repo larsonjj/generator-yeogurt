@@ -46,7 +46,7 @@
         {% endif %}<% } %><% } %><% if (useModernizr) { %>
         <script src="/bower_components/modernizr/modernizr.js"></script><% } %><% if (ieSupport) { %>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if IE 8]>
+        <!--[if lt IE 9]>
         <% if (responsive) { %>
         <script src="/bower_components/respond/respond.min.js"></script><% } %>
         <script src="/bower_components/html5shiv/dist/html5shiv-printshiv.js"></script><% if (jsTemplate === 'React') { %>
@@ -82,7 +82,7 @@
             <body>
             {% endif %}
         {% endblock %}
-            <!--[if lt IE 7]>
+            <!--[if lte IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]-->
 
@@ -96,7 +96,12 @@
             e.src='//www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script><% } %><% if (useServer) { %>
+        </script><% } %>
+        <% if (jsTemplate === 'React') { %>
+        <!--[if lt IE 9]>
+        <script src="/bower_components/es5-shim/es5-shim.js"></script>
+        <script src="/bower_components/es5-shim/es5-sham.js"></script>
+        <![endif]--><% } %><% if (useServer) { %>
         {% if env == 'development' %}<% } %>
         <!-- build:js(client) scripts/globals.js -->
         <script src="/bower_components/jquery/dist/jquery.js"></script><% if  (useBootstrap) { %>

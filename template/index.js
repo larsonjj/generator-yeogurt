@@ -14,6 +14,7 @@ var TemplateGenerator = module.exports = function TemplateGenerator(args, option
     this.view = this.options.type || 'page';
     this.noImport = this.options.noImport || false;
     this.useTemplate = this.options.template || false;
+    this.folder = this.options.folder || '';
     this.useDashboard = fileJSON.extras.indexOf('useDashboard') > -1 ? true : false;
     this.structure = fileJSON.structure;
     this.projectName = fileJSON.projectName;
@@ -84,15 +85,9 @@ TemplateGenerator.prototype.files = function files() {
             }
         }
         else if (this.htmlOption === 'HTML') {
-            console.log(this.useDashboard);
-            if (this.view === 'page') {
-                this.template('view.html', rootPath +'/templates/' + this._.slugify(this.name.toLowerCase()) + '.html');
-            }
-            else {
-                console.log('You have chosen to use Vanilla HTML, so only pages can be generated.');
-                console.log('Try the following to generate a page: yo yeogurt:view mypage');
-                console.log('Operation aborted');
-            }
+            console.log('You have chosen to use HTML, so you cannot use this sub-generator.');
+            console.log('If you would like to create a new page. Just duplicate your index.html');
+            console.log('Operation aborted');
         }
     }
     else if (this.singlePageApplication) {
@@ -102,9 +97,9 @@ TemplateGenerator.prototype.files = function files() {
                 console.log('Name cannot be empty. Operation aborted.');
                 return;
             }
-            this.template('view.js', rootPath +'/scripts/templates/' + this._.slugify(this.name.toLowerCase()) + '.js');
-            this.template('view-spec.js', 'test/spec/templates/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
-            if (this.jsTemplate === 'Lo-dash (Underscore)') {
+            this.template('view.js', rootPath +'/scripts/views/' + this._.slugify(this.name.toLowerCase()) + '.js');
+            this.template('view-spec.js', 'test/spec/views/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+            if (this.jsTemplate === 'Lo-dash') {
                 this.template('template.html', rootPath +'/templates/' + this._.slugify(this.name.toLowerCase()) + '.jst');
             }
             else if (this.jsTemplate === 'Handlebars') {
@@ -116,8 +111,8 @@ TemplateGenerator.prototype.files = function files() {
 
         }
         else {
-            console.log('You have chosen to use Backbone + React, so this subgenerator is not available to use.');
-            console.log('Try the following to generate a new view/module: yo yeogurt:react myreact');
+            console.log('You have chosen to use React, so this subgenerator is not available to use.');
+            console.log('Try the following to generate a new react component: yo yeogurt:react myreact');
             console.log('Operation aborted');
         }
     }

@@ -1,8 +1,7 @@
 {
     "name": "<%= _.slugify(projectName) %>",
     "version": "0.0.1",
-    "dependencies": {<% if (jsTemplate === 'React') { %>
-        "backbone-react-component": "~0.7.0"<% if (useServer) { %>,<% } %><% } %><% if (useServer) { %>
+    "dependencies": {<% if (useServer) { %>
         "colors": "^0.6.2",
         "async": "^0.7.0",
         "bcrypt-nodejs": "^0.0.3",
@@ -20,10 +19,11 @@
         "mysql": "2.3.2",
         "connect-session-sequelize": "1.0.0",
         "sequelize": "1.7.9",<% } %>
-        "uglify-js": "^2.4.12",
-        "lodash": "~2.4.1"<% if (jsTemplate === 'React') { %>,
+        "uglify-js": "^2.4.12"<% if (jsTemplate === 'React') { %>,
         "node-jsx": "0.11.0",
-        "react": "0.11.0"<% } %><% if (htmlOption === 'Swig') { %>,
+        "react": "0.11.1",
+        "backbone": "~1.1.2",
+        "lodash": "~2.4.1"<% } %><% if (htmlOption === 'Swig') { %>,
         "swig": "1.4.1"<% } %><% if (jsTemplate === 'Jade' || htmlOption === 'Jade') { %>,
         "jade": "1.3.1"<% } %><% if (jsTemplate === 'Handlebars') { %>,
         "handlebars": "1.3.0"<% } %><% } %>
@@ -40,14 +40,14 @@
         "grunt-swig-templates": "~0.1.1",<% } %>
         "grunt-contrib-htmlmin": "0.3.0",<% if (jsOption ==='RequireJS') { %>
         "grunt-contrib-requirejs": "0.4.4",<% } else if (jsOption ==='Browserify') { %>
-        "minifyify": "3.0.11",
+        "minifyify": "4.0.3",
         "grunt-browserify": "2.1.4",
         "grunt-exorcise": "0.1.0",<% } %>
         "grunt-usemin": "2.1.1",<% if (useJsdoc) { %>
         "grunt-jsdoc": "0.5.6",<% } %>
-        "grunt-concurrent": "0.5.0",<% if (jsTemplate === 'Lo-dash (Underscore)') { %>
+        "grunt-concurrent": "0.5.0",<% if (jsTemplate === 'Lo-dash') { %>
         "grunt-contrib-jst": "0.5.1",<% } else if (jsTemplate === 'Handlebars') { %>
-        "grunt-contrib-handlebars": "0.8.0",<% } else if (jsFramework === 'Backbone + React') { %>
+        "grunt-contrib-handlebars": "0.8.0",<% } else if (jsFramework === 'React') { %>
         "grunt-react": "~0.9.0",<% } %>
         "grunt-contrib-concat": "0.4.0",<% if (cssOption === 'CSS') { %>
         "grunt-contrib-cssmin": "0.9.0",<% } %>

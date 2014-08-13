@@ -9,10 +9,7 @@ var ReactGenerator = module.exports = function ReactGenerator(args, options, con
     yeoman.generators.NamedBase.apply(this, arguments);
 
     // options
-    this.useDashboard = this.options.dashboard || false;
-    this.view = this.options.type || 'page';
-    this.useTemplate = this.options.template || false;
-    this.useDashboard = fileJSON.extras.indexOf('useDashboard') > -1 ? true : false;
+    this.folder = this.options.folder || '';
     this.structure = fileJSON.structure;
     this.projectName = fileJSON.projectName;
     this.jsTemplate = fileJSON.jsTemplate;
@@ -35,8 +32,8 @@ var ReactGenerator = module.exports = function ReactGenerator(args, options, con
 util.inherits(ReactGenerator, yeoman.generators.NamedBase);
 
 ReactGenerator.prototype.files = function files() {
-    if (this.jsFramework !== 'Backbone + React') {
-        console.log('This subgenerator is only used for React JSX. It seems as though you are not using React');
+    if (this.jsFramework !== 'React') {
+        console.log('This subgenerator is only used for React Applications. It seems as though you are not using React');
         console.log('Operation aborted');
     }
     else {
@@ -44,8 +41,8 @@ ReactGenerator.prototype.files = function files() {
             console.log('Name cannot be empty. Operation aborted.');
             return;
         }
-        this.template('react.js', 'client/scripts/views/' + this._.slugify(this.name.toLowerCase()) + '.jsx');
-        this.template('react-spec.js', 'test/spec/views/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+        this.template('react.js', 'client/scripts/components/' + this.folder + '/' + this._.slugify(this.name.toLowerCase()) + '.jsx');
+        this.template('react-spec.js', 'test/spec/components/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
     }
 
 };

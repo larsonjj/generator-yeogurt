@@ -72,7 +72,7 @@
         <![endif]--><% } %>
     </head>
     <body>
-        <!--[if lt IE 7]>
+        <!--[if lte IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]--><% if (!singlePageApplication) { %>
         <div class="main-container">
@@ -108,12 +108,11 @@
         <![endif]--><% } %><% if (useServer) { %>
         <%% if (env === 'development') { %><% } %>
         <!-- build:js({client,.tmp}) scripts/global.js -->
-        <script src="/bower_components/jquery/dist/jquery.js"></script><% if ((/Backbone/i).test(jsFramework)) { %>
-        <script src="/bower_components/lodash/dist/lodash.underscore.js"></script>
-        <script src="/bower_components/backbone/backbone.js"></script><% } %><% if (jsFramework === 'Backbone + React' && jsOption === 'RequireJS') { %>
-        <script src="/bower_components/backbone-react-component/lib/component.js"></script><% } %><% if ((/Handlebars/i).test(jsTemplate)) { %>
+        <script src="/bower_components/jquery/dist/jquery.js"></script><% if ((/Backbone/i).test(jsFramework) || (/React/i).test(jsFramework)) { %>
+        <script src="/bower_components/lodash/dist/lodash.js"></script>
+        <script src="/bower_components/backbone/backbone.js"></script><% } %><% if ((/Handlebars/i).test(jsTemplate)) { %>
         <script src="/bower_components/handlebars/handlebars.runtime.js"></script>
-        <% } else if ((/Jade/i).test(jsTemplate)) { %><script src="/bower_components/jade/runtime.js"></script><% } %><% if (singlePageApplication && jsFramework !== 'Backbone + React') { %>
+        <% } else if ((/Jade/i).test(jsTemplate)) { %><script src="/bower_components/jade/runtime.js"></script><% } %><% if (singlePageApplication && jsFramework !== 'React') { %>
         <script src="/templates/templates.js"></script><% } %><% if (useBootstrap) { %>
         <script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>affix.js"></script>
         <script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>alert.js"></script>
