@@ -16,17 +16,25 @@ define(function(require) {
 <% } else if (jsOption ==='Browserify') { %>
 'use strict';
 
-var init = function() {
-    // Intialize module
-};
+var <%= _.classify(name) %> = function() {
 
-module.exports = init;
-<% } else { %>'use strict';
-var <%= _.classify(name) %> = (function() {
     var init = function() {
          // Intialize module
     };
 
     return init;
+
+};
+
+module.exports = <%= _.classify(name) %>;
+<% } else { %>'use strict';
+var <%= _.classify(name) %> = (function() {
+
+    var init = function() {
+         // Intialize module
+    };
+
+    return init;
+
 }());
 <% } %>

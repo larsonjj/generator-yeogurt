@@ -21,7 +21,7 @@ var taskConfig = function(grunt) {
                     'docs/styleguide/public/images',<% } %>
                     'images/**',
                     '*.{ico,png,txt}',
-                    'styles/fonts/**/*.{woff,otf,ttf,eot,svg}',<% if (htmlOption === 'HTML' || (/Backbone/i).test(jsFramework) && !useServer) { %>
+                    'styles/fonts/**/*.{woff,otf,ttf,eot,svg}',<% if (htmlOption === 'HTML' || (/Backbone/i).test(jsFramework) && !useServer || (/React/i).test(jsFramework) && !useServer) { %>
                     '*.html'<% } %>
                 ]
             }<% if (cssOption === 'CSS') { %>, {
@@ -44,7 +44,7 @@ var taskConfig = function(grunt) {
                     'bower_components/modernizr/modernizr.js',
                     'bower_components/**/*.{woff,otf,ttf,eot,svg}',<% if (useDashboard) { %>
                     'dashboard/**/*.*',<% } %>
-                    'bower_components/jquery/jquery.min.*',<% if (htmlOption === 'HTML' || (/Backbone/i).test(jsFramework) && !useServer) { %>
+                    'bower_components/jquery/jquery.min.*',<% if (htmlOption === 'HTML' || (/Backbone/i).test(jsFramework) && !useServer || (/React/i).test(jsFramework) && !useServer) { %>
                     '*.html',<% } %><% if (useKss) { %>
                     'docs/styleguide/public/images',<% } %>
                     '!*.js',

@@ -14,6 +14,18 @@ var StyleGenerator = module.exports = function StyleGenerator(args, options, con
     this.folder = this.options.folder || '';
     this.cssOption = fileJSON.cssOption;
 
+    // Remove all leading and trailing slashes in folder path
+    this.cleanFolderPath = function(folder) {
+        var tempArray = [];
+        var cleanedStr = folder.replace(/^\/+|\/+$/g, '');
+        cleanedStr.split('/').forEach(function(item) {
+            if (item) {
+                tempArray.push(item);
+            }
+        });
+        return tempArray.join('/');
+    };
+
     console.log('You called the style subgenerator with the argument ' + this.name + '.');
 };
 
@@ -25,12 +37,12 @@ StyleGenerator.prototype.files = function files() {
         return;
     }
     if (this.cssOption === 'Less') {
-        this.template('style.less', 'client/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.less');
+        this.template('style.less', 'client/styles/' + this.cleanFolderPath(this.folder) + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.less');
     }
     else if (this.cssOption === 'Sass') {
-        this.template('style.less', 'client/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
+        this.template('style.less', 'client/styles/' + this.cleanFolderPath(this.folder) + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
     }
     else {
-        this.template('style.less', 'client/styles/' + this.folder + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.css');
+        this.template('style.less', 'client/styles/' + this.cleanFolderPath(this.folder) + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.css');
     }
 };

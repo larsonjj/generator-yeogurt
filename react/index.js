@@ -25,6 +25,25 @@ var ReactGenerator = module.exports = function ReactGenerator(args, options, con
     this.ieSupport = fileJSON.ieSupport;
     this.responsive = fileJSON.responsive;
 
+    var getNumberOfPaths = [];
+    this.folder.split('/').forEach(function(item) {
+        if (item) {
+            getNumberOfPaths.push('../');
+        }
+    });
+    this.folderCount = getNumberOfPaths.join('');
+
+    // Remove all leading and trailing slashes in folder path
+    this.cleanFolderPath = function(folder) {
+        var tempArray = [];
+        var cleanedStr = folder.replace(/^\/+|\/+$/g, '');
+        cleanedStr.split('/').forEach(function(item) {
+            if (item) {
+                tempArray.push(item);
+            }
+        });
+        return tempArray.join('/');
+    };
 
     console.log('You called the react subgenerator with the argument ' + this.name + '.');
 };
@@ -41,8 +60,8 @@ ReactGenerator.prototype.files = function files() {
             console.log('Name cannot be empty. Operation aborted.');
             return;
         }
-        this.template('react.js', 'client/scripts/components/' + this.folder + '/' + this._.slugify(this.name.toLowerCase()) + '.jsx');
-        this.template('react-spec.js', 'test/spec/components/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+        this.template('react.js', 'client/scripts/components/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.jsx');
+        this.template('react-spec.js', 'test/spec/components/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
     }
 
 };

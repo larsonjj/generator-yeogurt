@@ -80,6 +80,7 @@ var handleConfig = function handleConfig() {
     // Default Overwrites
     if (this.jsFramework === 'React') {
         this.jsTemplate = this.answers.jsTemplate = 'React';
+        this.jsOption = this.answers.jsOption = 'Browserify';
     }
     if (!this.dbOption) {
         this.dbOption = this.answers.dbOption = 'None';

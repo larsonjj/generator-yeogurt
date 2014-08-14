@@ -12,9 +12,9 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'client/bower_components/jquery/dist/jquery.js',<% if ((/Backbone/i).test(jsFramework)) { %>
-            'client/bower_components/lodash/lodash.js',
-            'client/bower_components/backbone/backbone.js',<% if (jsTemplate === 'React') { %>
+            'client/bower_components/jquery/dist/jquery.js',<% if ((/Backbone/i).test(jsFramework) || (/React/i).test(jsFramework)) { %>
+            'client/bower_components/lodash/dist/lodash.js',
+            'client/bower_components/backbone/backbone.js',<% if (jsFramework === 'React') { %>
             'test/helpers/phantomjs-shims.js',<% } %><% } %><% if (jsTemplate === 'Handlebars') { %>
             'client/bower_components/handlebars/handlebars.runtime.js',<% } else if (jsTemplate === 'Jade') { %>'client/bower_components/jade/runtime.js',<% } %><% if (useBootstrap) { %>'client/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>affix.js',
             'client/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>alert.js',
@@ -104,12 +104,11 @@ module.exports = function(config) {
         // Browserify config (all optional)
         browserify: {
             // extensions: ['.coffee'],
-            // ignore: [],
-            // transform: ['browserify-shim'],<% if (jsFramework === 'React') { %>
+            // ignore: [],<% if (jsFramework === 'React') { %>
             transform: [require('grunt-react').browserify],<% } %>
             // debug: true,
             // noParse: ['jquery'],
-            watch: true,
+            watch: false,
         },
 
         // Add browserify to preprocessors
@@ -117,6 +116,9 @@ module.exports = function(config) {
 
         // If browser does not capture in given timeout [ms], kill it
         captureTimeout: 60000,
+
+        // If browser does not have any activity for given timeout [ms], kill it
+        browserNoActivityTimeout: 100000,
 
         // Continuous Integration mode
         // if true, it capture browsers, run tests and exit

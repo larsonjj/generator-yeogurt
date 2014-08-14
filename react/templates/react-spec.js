@@ -9,7 +9,7 @@
 
 'use strict';
 
-var <%= _.classify(name) %> = require('../../../client/scripts/views/<%= _.slugify(name) %>.jsx');
+var <%= _.classify(name) %> = require('<%= folder ? folderCount : ''%>../../../client/scripts/components/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= _.slugify(name) %>.jsx');
 
 var ReactTestUtils;
 var reactRender;
@@ -19,7 +19,7 @@ beforeEach(function() {
     reactRender = ReactTestUtils.renderIntoDocument;
 });
 
-describe('Testing React Component', function() {
+describe('Testing React Component: <%= _.classify(name) %>', function() {
     it('Should run a few assertions', function() {
 
     });

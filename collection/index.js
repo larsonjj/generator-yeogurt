@@ -24,7 +24,26 @@ var CollectionGenerator = module.exports = function CollectionGenerator(args, op
     this.ieSupport = fileJSON.ieSupport;
     this.responsive = fileJSON.responsive;
 
-    console.log(this.useModel);
+    var getNumberOfPaths = [];
+    this.folder.split('/').forEach(function(item) {
+        if (item) {
+            getNumberOfPaths.push('../');
+        }
+    });
+    this.folderCount = getNumberOfPaths.join('');
+
+    // Remove all leading and trailing slashes in folder path
+    this.cleanFolderPath = function(folder) {
+        var tempArray = [];
+        var cleanedStr = folder.replace(/^\/+|\/+$/g, '');
+        cleanedStr.split('/').forEach(function(item) {
+            if (item) {
+                tempArray.push(item);
+            }
+        });
+        return tempArray.join('/');
+    };
+
     console.log('You called the collection subgenerator with the argument ' + this.name + '.');
 };
 
@@ -40,8 +59,8 @@ CollectionGenerator.prototype.files = function files() {
             console.log('Name cannot be empty. Operation aborted.');
             return;
         }
-        this.template('collection.js', 'client/scripts/collections/' + this.folder + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
-        this.template('collection-spec.js', 'test/spec/collections/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+        this.template('collection.js', 'client/scripts/collections/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
+        this.template('collection-spec.js', 'test/spec/collections/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
     }
 
 };

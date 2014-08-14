@@ -30,6 +30,25 @@ var TemplateGenerator = module.exports = function TemplateGenerator(args, option
     this.ieSupport = fileJSON.ieSupport;
     this.responsive = fileJSON.responsive;
 
+    var getNumberOfPaths = [];
+    this.folder.split('/').forEach(function(item) {
+        if (item) {
+            getNumberOfPaths.push('../');
+        }
+    });
+    this.folderCount = getNumberOfPaths.join('');
+
+    // Remove all leading and trailing slashes in folder path
+    this.cleanFolderPath = function(folder) {
+        var tempArray = [];
+        var cleanedStr = folder.replace(/^\/+|\/+$/g, '');
+        cleanedStr.split('/').forEach(function(item) {
+            if (item) {
+                tempArray.push(item);
+            }
+        });
+        return tempArray.join('/');
+    };
 
     console.log('You called the view subgenerator with the argument ' + this.name + '.');
 };
@@ -52,7 +71,7 @@ TemplateGenerator.prototype.files = function files() {
 
         if (this.htmlOption === 'Jade') {
             if (this.view === 'page') {
-                this.template('view.jade', rootPath + '/templates/' + this.folder + '/' + this._.slugify(this.name.toLowerCase()) + '.jade');
+                this.template('view.jade', rootPath + '/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.jade');
             }
             else if (this.view === 'module') {
                 this.template('view.jade', rootPath +'/templates/' + this.folder +'/' + this._.slugify(this.name.toLowerCase()) + '.jade');
@@ -69,13 +88,13 @@ TemplateGenerator.prototype.files = function files() {
         }
         else if (this.htmlOption === 'Swig') {
             if (this.view === 'page') {
-                this.template('view.swig', rootPath +'/templates/' + this.folder + '/' + this._.slugify(this.name.toLowerCase()) + '.swig');
+                this.template('view.swig', rootPath +'/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.swig');
             }
             else if (this.view === 'module') {
-                this.template('view.swig', rootPath +'/templates/' + this.folder + '/' + this._.slugify(this.name.toLowerCase()) + '.swig');
+                this.template('view.swig', rootPath +'/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.swig');
             }
             else if (this.view === 'template') {
-                this.template('view.swig', rootPath +'/templates/' + this.folder + '/' + this._.slugify(this.name.toLowerCase()) + '.swig');
+                this.template('view.swig', rootPath +'/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.swig');
             }
             else if (!this.name) {
                 console.log('Name cannot be empty. Operation aborted.');
@@ -97,16 +116,16 @@ TemplateGenerator.prototype.files = function files() {
                 console.log('Name cannot be empty. Operation aborted.');
                 return;
             }
-            this.template('view.js', rootPath +'/scripts/views/' + this.folder + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
-            this.template('view-spec.js', 'test/spec/views/' + this.folder + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+            this.template('view.js', rootPath +'/scripts/views/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
+            this.template('view-spec.js', 'test/spec/views/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
             if (this.jsTemplate === 'Lo-dash') {
-                this.template('template.html', rootPath +'/templates/' + this.folder + '/' + this._.slugify(this.name.toLowerCase()) + '.jst');
+                this.template('template.html', rootPath +'/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.jst');
             }
             else if (this.jsTemplate === 'Handlebars') {
-                this.template('template.html', rootPath +'/templates/' + this.folder + '/' + this._.slugify(this.name.toLowerCase()) + '.hbs');
+                this.template('template.html', rootPath +'/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.hbs');
             }
             else if (this.jsTemplate === 'Jade') {
-                this.template('template.html', rootPath +'/templates/' + this.folder + '/' + this._.slugify(this.name.toLowerCase()) + '.jade');
+                this.template('template.html', rootPath +'/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.jade');
             }
 
         }

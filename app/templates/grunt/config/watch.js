@@ -73,7 +73,7 @@ var taskConfig = function(grunt) {
                 '<%%= yeogurt.client %>/styles/**/*.css'
             ],
             tasks: ['injector:css']
-        },
+        },<% if (jsOption === 'None') { %>
         injectJs: {
             files: [
                 '<%%= yeogurt.client %>/scripts/**/*.js',
@@ -81,7 +81,7 @@ var taskConfig = function(grunt) {
                 '!<%%= yeogurt.client %>/scripts/routes.js'<% } %>
             ],
             tasks: ['injector:scripts']
-        },
+        },<% } %>
         js: {
             files: [
                 '<%%= yeogurt.client %>/scripts/**/*.js'

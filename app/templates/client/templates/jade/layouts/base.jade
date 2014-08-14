@@ -123,7 +123,8 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
         <% if (useServer) { %>    <% } %>// endbuild<% if (useServer) { %>
         else
         <% if (useServer) { %>    <% } %>script(src='/scripts/global.js')<% } %><% if (jsOption ==='RequireJS') { %>
-        script(data-main='/scripts/main', src='/bower_components/requirejs/require.js')<% } else if (jsOption ==='Browserify') { %>script(src='/scripts/app.js')<% } else { %>//- Place all author scripts within the 'build:js' comments below,
+        script(data-main='/scripts/main', src='/bower_components/requirejs/require.js')<% } else if (jsOption ==='Browserify') { %>script(src='/scripts/app.js')<% } else { %>
+        //- Place all author scripts within the 'build:js' comments below,
             so they will be optimised correctly during a 'grunt build' task
         // build:js(client) scripts/app.js<% if (jsFramework !== 'Backbone') { %>
         script(src='/scripts/app.js')<% } %>

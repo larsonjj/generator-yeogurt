@@ -66,6 +66,7 @@
         "grunt-karma": "0.8.0",
         "grunt-newer": "0.6.1",
         "include-all": "0.1.6",<% if (jsOption === 'Browserify') { %>
+        "browserify" : "^4.0.0",
         "karma-browserify": "0.0.6",<% } else if (jsOption === 'RequireJS') { %>
         "karma-requirejs": "0.2.1",<% } %>
         "karma-phantomjs-launcher": "0.1.2",
@@ -74,7 +75,7 @@
         "karma-chai": "0.1.0",
         "karma-mocha": "0.1.3",<% } %>
         "karma-jasmine": "0.1.5",
-        "karma": "0.12.0",
+        "karma": "0.12.21",
         "lodash": "2.4.1",
         "time-grunt": "0.2.10",<% if (useDashboard) { %>
         "grunt-dashboard": "~0.1.2",<% } %>

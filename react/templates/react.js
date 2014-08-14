@@ -8,7 +8,7 @@
 
 var React = require('react');
 
-var <%= _.classify(name) %>Component = React.createClass({
+var <%= _.classify(name) %> = React.createClass({
     render: function() {
         return (
             <div>
@@ -18,4 +18,4 @@ var <%= _.classify(name) %>Component = React.createClass({
     }
 });
 
-module.exports = <%= _.classify(name) %>Component;
+module.exports = <%= _.classify(name) %>;

@@ -25,7 +25,7 @@ var documentationInfo = function documentationInfo() {
         message: 'Would you like to generate a styleguide with ' + 'KSS (Knyle Style Sheets)'.blue + '?',
         default: true
     }, {
-        when: function() {return !self.serverInfo.useServer;},
+        when: function() {return !self.serverInfo.useServer && !self.clientInfo.singlePageApplication;},
         type: 'confirm',
         name: 'useDashboard',
         message: 'Would you like to ' + 'generate a dashboard'.blue + ' for your site/app',

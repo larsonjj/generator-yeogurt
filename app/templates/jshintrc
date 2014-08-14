@@ -114,8 +114,8 @@
         "requirejs": true,<% } %><% if ((/Backbone/i).test(jsFramework) || (/React/i).test(jsFramework)) { %>
         "Backbone": true,
         "<%= _.classify(projectName) %>": true,
-        "_": true,<% } %><% if ((/Lo-dash/i).test(jsTemplate) || (/Handlebars/i).test(jsTemplate) || (/Jade/i).test(jsTemplate)) { %>
-        "JST": true,<% } %><% if (useServer) { %>
+        "_": true<% } %><% if ((/Lo-dash/i).test(jsTemplate) || (/Handlebars/i).test(jsTemplate) || (/Jade/i).test(jsTemplate)) { %>,
+        "JST": true<% } %><% if (useServer) { %>,
         "__dirname": true<% } %><% if (useModernizr) { %>,
         "Modernizr": true<% } %>
     },

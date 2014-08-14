@@ -2,9 +2,9 @@
 <!-- [dash:data]
     {
         "status": "development",
-        "category": "page",
-        "label": "Home",
-        "link": "../index.html"
+        "category": "<%= view ? view : 'page' %>",
+        "label": "<%= _.titleize(name) %>",
+        "link": "<% if (view === 'page') { %>../<%= _.slugify(name.toLowerCase()) %>.html<% } else { %>../views/<%= view %>s/<%= _.slugify(name.toLowerCase()) %>.html<% } %>"
     }
     [/dash] -->
 <% } %><% if (ieSupport) { %>
@@ -16,38 +16,33 @@
     <head>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-        <title><%= projectName %></title>
+        <title><%= _.titleize(name) %></title>
         <meta name="description" content=""/>
         <meta name="author" content=""/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/><% if (useServer) { %>
-        <meta name="csrf-token" content=<%%= _csrf %> /><% } %><% if (useGA) { %>
-        <link href="//www.google-analytics.com" rel="dns-prefetch"><% } %><% if (cssOption === 'CSS') { %><% if (useServer) { %>
-        <%% if (env === 'development') { %><% } %>
-        <!-- build:css(client) styles/main.css -->
+        <meta name="csrf-token" content=<%%= _csrf %> /><% } %>
+        <% if (useGA) { %>
+        <link href="//www.google-analytics.com" rel="dns-prefetch">
+        <% } %>
+        <% if (cssOption === 'CSS') { %><!-- build:css(client) styles/main.css -->
         <% if (useBootstrap) { %><link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
         <% } %><% if (useFoundation) { %><link rel="stylesheet" href="/bower_components/foundation/css/normalize.css">
-        <link rel="stylesheet" href="/bower_components/foundation/css/foundation.css"><% } %><% if (useFontAwesome) { %>
+        <link rel="stylesheet" href="/bower_components/foundation/css/foundation.css">
+        <% } %><% if (useFontAwesome) { %>
         <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css"><% } %>
         <link rel="stylesheet" href="styles/main.css">
             <!-- [injector:css] -->
             <!-- [endinjector] -->
-        <!-- endbuild --><% if (useServer) { %>
-        <%% } else { %>
-        <link rel="stylesheet" href="styles/main.css">
-        <%% } %><% } %>
-        <% } else { %><% if (useServer) { %><%% if (env === 'development') { %><% } %>
-        <!-- build:css(client) styles/main.css -->
+        <!-- endbuild -->
+        <% } else { %><!-- build:css(client) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
             <!-- [injector:css] -->
             <!-- [endinjector] -->
-        <!-- endbuild --><% if (useServer) { %>
-        <%% } else { %>
-        <link rel="stylesheet" href="styles/main.css">
-        <%% } %><% } %><% } %><% if (useModernizr) { %>
+        <!-- endbuild --><% } %><% if (useModernizr) { %>
         <script src="/bower_components/modernizr/modernizr.js"></script><% } %><% if (ieSupport) { %>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]><% if (responsive) { %>
-        <script src="/bower_components/respond/respond.min.js"></script><% } %>
+        <!--[if lt IE 9]>
+        <% if (responsive) { %><script src="/bower_components/respond/respond.min.js"></script><% } %>
         <script src="/bower_components/html5shiv/dist/html5shiv-printshiv.js"></script>
         <script>
             // Protect window.console method calls, e.g. console is not defined on IE
@@ -72,28 +67,18 @@
         <![endif]--><% } %>
     </head>
     <body>
-        <!--[if lte IE 7]>
+        <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]--><% if (!singlePageApplication) { %>
-        <div class="main-container">
-            <h1>Welcome to Yeogurt!</h1>
-            <p>
-                Take a look at the <a href="https://github.com/larsonjj/generator-yeogurt#yeogurt-generator---">documentation</a> and start mixing up something awesome.
-            </p>
-            <p>
-                <img src="/images/yeogurt-swirl.png" width="75px" class="logo" />
-            </p><% if (useDashboard || useJsdoc || useKss) { %>
-            <p class="links">
-                <% if (useDashboard) { %><a href="/dashboard/index.html">Dashboard</a><% } %><% if (useKss) { %>
-                <a href="/docs/styleguide/index.html">Styleguide</a><% } %><% if (useJsdoc) { %>
-                <a href="/docs/api/index.html">API</a><% } %>
-            </p><% } %>
-        </div>
-        <code class="version">v<%= pkg.version %></code><% } else if (singlePageApplication) { %>
-        <div id="app-wrapper"><% if (useServer) { %>
-            <%%- body %>
-        <% } %></div><% } %><% if (useGA) { %>
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <![endif]-->
+        <h1 class="heading">
+            <%= _.titleize(name) %>
+        </h1>
+
+        <p>
+            Generated page
+        </p>
+
+        <% if (useGA) { %><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
             function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
@@ -101,20 +86,24 @@
             e.src='//www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script><% } %><% if (jsTemplate === 'React') { %>
+        </script><% } %>
+
+        <% if (jsTemplate === 'React') { %>
         <!--[if lt IE 9]>
         <script src="/bower_components/es5-shim/es5-shim.js"></script>
         <script src="/bower_components/es5-shim/es5-sham.js"></script>
-        <![endif]--><% } %><% if (useServer) { %>
-        <%% if (env === 'development') { %><% } %>
-        <!-- build:js({client,.tmp}) scripts/global.js -->
-        <script src="/bower_components/jquery/dist/jquery.js"></script><% if ((/Backbone/i).test(jsFramework) || (/React/i).test(jsFramework)) { %>
-        <script src="/bower_components/lodash/dist/lodash.js"></script>
-        <script src="/bower_components/backbone/backbone.js"></script><% } %><% if ((/Handlebars/i).test(jsTemplate)) { %>
+        <![endif]--><% } %>
+
+        <% if (useServer) { %><%% if (env === 'development') { %><% } %>
+        <!-- build:js({dev,.tmp}) scripts/global.js -->
+        <script src="/bower_components/jquery/dist/jquery.js"></script><% if ((/Backbone/i).test(jsFramework)) { %>
+        <script src="/bower_components/lodash/dist/lodash.lodash.js"></script>
+        <script src="/bower_components/backbone/backbone.js"></script><% } %><% if (jsFramework === 'React' && jsOption === 'RequireJS') { %>
+        <script src="/bower_components/backbone-react-component/lib/component.js"></script><% } %><% if ((/Handlebars/i).test(jsTemplate)) { %>
         <script src="/bower_components/handlebars/handlebars.runtime.js"></script>
         <% } else if ((/Jade/i).test(jsTemplate)) { %><script src="/bower_components/jade/runtime.js"></script><% } %><% if (singlePageApplication && jsFramework !== 'React') { %>
-        <script src="/templates/templates.js"></script><% } %><% if (useBootstrap) { %>
-        <script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>affix.js"></script>
+        <script src="/templates/templates.js"></script><% } %>
+        <% if (useBootstrap) { %><script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>affix.js"></script>
         <script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>alert.js"></script>
         <script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>button.js"></script>
         <script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>carousel.js"></script>
@@ -125,8 +114,8 @@
         <script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>tab.js"></script>
         <script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>tooltip.js"></script>
         <script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>popover.js"></script>
-        <script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>transition.js"></script><% } %><% if (useFoundation) { %>
-        <script src="/bower_components/foundation/js/vendor/fastclick.js"></script>
+        <script src="/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>transition.js"></script>
+        <% } %><% if (useFoundation) { %><script src="/bower_components/foundation/js/vendor/fastclick.js"></script>
         <script src="/bower_components/foundation/js/vendor/jquery.cookie.js"></script>
         <script src="/bower_components/foundation/js/vendor/placeholder.js"></script>
         <script src="/bower_components/foundation/js/foundation/foundation.js"></script>
@@ -145,19 +134,18 @@
         <script src="/bower_components/foundation/js/foundation/foundation.slider.js"></script>
         <script src="/bower_components/foundation/js/foundation/foundation.tab.js"></script>
         <script src="/bower_components/foundation/js/foundation/foundation.tooltip.js"></script>
-        <script src="/bower_components/foundation/js/foundation/foundation.topbar.js"></script><% } %>
-        <!-- endbuild --><% if (useServer) { %>
-        <%% } else { %>
+        <script src="/bower_components/foundation/js/foundation/foundation.topbar.js"></script>
+        <% } %><!-- endbuild -->
+        <% if (useServer) { %><%% } else { %>
         <script src="/scripts/global.js"></script>
-        <%% } %><% } %><% if (jsOption ==='RequireJS') { %>
-        <script data-main="/scripts/main", src="/bower_components/requirejs/require.js"></script><% } else if (jsOption ==='Browserify') { %>
-        <script src="/scripts/app.js"></script><% } else { %>
-        <!-- build:js(client) scripts/app.js --><% if (jsFramework !== 'Backbone') { %>
+        <%% } %><% } %>
+        <% if (jsOption ==='RequireJS') { %><script data-main="/scripts/main", src="/bower_components/requirejs/require.js"></script><% } else if (jsOption ==='Browserify') { %><script src="/scripts/app.js"></script><% } else { %><!-- build:js(client) scripts/app.js --><% if (jsFramework !== 'Backbone') { %>
         <script src="/scripts/app.js"></script><% } %>
             <!-- [injector:js] -->
             <!-- [endinjector] --><% if (jsFramework === 'Backbone') { %>
         <script src="/scripts/routes.js"></script>
         <script src="/scripts/app.js"></script><% } %>
         <!-- endbuild --><% } %>
+
     </body>
 </html>

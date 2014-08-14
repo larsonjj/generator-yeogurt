@@ -5,7 +5,7 @@
 define(function(require) {
     'use strict';
 
-    var <%= _.classify(name) %> = require('collections/<%= _.slugify(name) %>');
+    var <%= _.classify(name) %> = require('collections/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= _.slugify(name) %>');
 
     describe('<%= _.classify(name) %> Collection', function () {
 
@@ -22,7 +22,7 @@ define(function(require) {
 });<% } else if (jsOption === 'Browserify') { %>
 'use strict';
 
-var <%= _.classify(name) %> = require('../../client/scripts/collections/<%= _.slugify(name) %>.js');
+var <%= _.classify(name) %> = require('<%= folder ? folderCount : ''%>../../client/scripts/collections/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= _.slugify(name) %>.js');
 
 describe('<%= _.classify(name) %> Collection', function () {
 
