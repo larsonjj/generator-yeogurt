@@ -47,7 +47,7 @@ module.exports = function(config) {
             'client/bower_components/foundation/js/foundation/foundation.tab.js',
             'client/bower_components/foundation/js/foundation/foundation.tooltip.js',
             'client/bower_components/foundation/js/foundation/foundation.topbar.js',<% } %><% if (jsFramework === 'Backbone') { %>
-            '.tmp/templates.js',<% } %><% if (jsOption === 'RequireJS') { %>
+            'test/scripts/templates.js',<% } %><% if (jsOption === 'RequireJS') { %>
             {
                 pattern: 'client/bower_components/**/*.js',
                 included: false
