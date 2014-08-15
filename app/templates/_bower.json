@@ -5,7 +5,7 @@
         "jquery": "~2.1.0",<% } else { %>
         "jquery": "~1.11.1",<% } %><% if ((/Backbone/i).test(jsFramework) || (/React/i).test(jsFramework)) { %>
         "backbone": "~1.1.2",
-        "lodash": "~2.4.1",<% } %><% if (jsTemplate === 'React') { %>
+        "lodash": "~2.4.1",<% } %><% if (jsFramework === 'React') { %>
         "es5-shim": "~3.4.0",<% } %><% if ((/Handlebars/i).test(jsTemplate)) { %>
         "handlebars": "~1.3.0",<% } else if ((/Jade/i).test(jsTemplate)) { %>
         "jade": "~1.5.0",<% } %><% if (useFoundation) { %>

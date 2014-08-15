@@ -41,7 +41,7 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
         // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
         <!--[if lt IE 9]><% if (responsive) { %>
         script(src='/bower_components/respond/respond.min.js')<% } %>
-        script(src='/bower_components/html5shiv/dist/html5shiv-printshiv.js')<% if (jsTemplate === 'React') { %>
+        script(src='/bower_components/html5shiv/dist/html5shiv-printshiv.js')<% if (jsFramework === 'React') { %>
         script(src='/bower_components/es5-shim/es5-shim.js')
         script(src='/bower_components/es5-shim/es5-sham.js')<% } %>
         script.
@@ -79,7 +79,7 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
             e.src='//www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');<% } %>
-        <% if (jsTemplate === 'React') { %>
+        <% if (jsFramework === 'React') { %>
         <!--[if lt IE 9]>
         script(src='/bower_components/es5-shim/es5-shim.js')
         script src='/bower_components/es5-shim/es5-sham.js')

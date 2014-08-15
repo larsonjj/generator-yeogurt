@@ -69,7 +69,7 @@ var taskConfig = function(grunt) {
                 }
             },
             files: {
-                '.tmp/templates.js': ['<%%= yeogurt.client %>/templates/*.jade']
+                'test/scripts/templates.js': ['<%%= yeogurt.client %>/templates/*.jade']
             }
         }<% } %>
     });

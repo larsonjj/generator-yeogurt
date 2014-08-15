@@ -10,7 +10,7 @@ define(function(require) {
     describe('app', function() {
 
         it('Should run a few assertions', function() {
-            <% if (jsTemplate === 'React') { %>
+            <% if (jsFramework === 'React') { %>
             // Insert <div id="app-wrapper"> within the <body> as the first child
             // This will ensure correct testing of the main.jsx React component
             var appWrapper = document.createElement('div');
@@ -29,7 +29,7 @@ var app = require('../../client/scripts/app');
 describe('app', function() {
 
     it('Should run a few assertions', function() {
-        <% if (jsTemplate === 'React') { %>
+        <% if (jsFramework === 'React') { %>
         // Insert <div id="app-wrapper"> within the <body> as the first child
         // This will ensure correct testing of the main.jsx React component
         var appWrapper = document.createElement('div');
@@ -44,7 +44,7 @@ describe('app', function() {
 describe('app', function() {
 
     it('Should run a few assertions', function() {
-        <% if (jsTemplate === 'React') { %>
+        <% if (jsFramework === 'React') { %>
         // Insert <div id="app-wrapper"> within the <body> as the first child
         // This will ensure correct testing of the main.jsx React component
         var appWrapper = document.createElement('div');

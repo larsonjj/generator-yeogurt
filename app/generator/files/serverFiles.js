@@ -16,7 +16,7 @@ var serverFiles = function serverFiles() {
             this.copy('server/modules/serverCheck.js', 'server/modules/serverCheck.js');
         }
         if (this.singlePageApplication) {
-            if (this.jsTemplate === 'React') {
+            if (this.jsFramework === 'React') {
                 this.template('server/modules/reactRender.js','server/modules/reactRender.js');
             }
             else if (this.jsTemplate === 'Jade') {

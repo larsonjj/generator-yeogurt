@@ -21,7 +21,7 @@ var taskConfig = function(grunt) {
                 namespace: 'JST'
             },
             files: {
-                '.tmp/templates.js': ['<%%= yeogurt.client %>/templates/*.jst']
+                'test/scripts/templates.js': ['<%%= yeogurt.client %>/templates/*.jst']
             }
         }<% } %>
     });

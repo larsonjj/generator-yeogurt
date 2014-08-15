@@ -8,7 +8,7 @@ module.exports = function(config) {
         basePath: '',
 
         // testing framework to use (jasmine/mocha/qunit/...)
-        frameworks: [<% if (testFramework === 'Jasmine') { %>'jasmine'<% } else if (testFramework === 'Mocha + Chai') { %>'mocha', 'chai'<% } %><% if (jsOption === 'Browserify') { %>,'browserify'<% } %>],
+        frameworks: [<% if (testFramework === 'Jasmine') { %>'jasmine'<% } else if (testFramework === 'Mocha') { %>'mocha', 'chai'<% } %>],
 
         // list of files / patterns to load in the browser
         files: [
@@ -61,7 +61,7 @@ module.exports = function(config) {
             'node_modules/requirejs/require.js',
             'node_modules/karma-requirejs/lib/adapter.js',
             'test/test-main.js',<% } else if (jsOption === 'Browserify') { %>
-            'test/**/*-spec.js'<% } else { %>
+            'test/scripts/bundle.js'<% } else { %>
             'client/scripts/*.js',
             'test/**/*-spec.js'<% } %>
         ],

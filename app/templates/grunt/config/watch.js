@@ -92,7 +92,7 @@ var taskConfig = function(grunt) {
                 'exorcise:server',<% } %>
                 'newer:copy:server'
             ]
-        },<% if (jsTemplate === 'React') { %>
+        },<% if (jsFramework === 'React') { %>
         jsx: {
             files: ['<%%= yeogurt.client %>/scripts/views/**/*.jsx'],
             tasks: [<% if (jsOption === 'RequireJS') { %>
@@ -143,7 +143,7 @@ var taskConfig = function(grunt) {
                 '<%%= yeogurt.client %>/styles/**/*.scss'<% } %><% if (cssOption === 'Less') { %>,
                 '<%%= yeogurt.client %>/styles/**/*.less'<% } %>,
                 '<%%= yeogurt.staticServer %>/scripts/**/*.js',<% if (singlePageApplication && jsTemplate !== 'React') { %>
-                '<%%= yeogurt.staticServer %>/templates/**/*.js',<% } %><% if (jsTemplate === 'React') { %>
+                '<%%= yeogurt.staticServer %>/templates/**/*.js',<% } %><% if (jsFramework === 'React') { %>
                 '<%%= yeogurt.staticServer %>/scripts/**/*.jsx',<% } %>
                 '<%%= yeogurt.staticServer %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
             ]
@@ -151,7 +151,7 @@ var taskConfig = function(grunt) {
         express: {
             files: [
                 'server.js',
-                'server/**/*.{js,json,html}'<% if (jsTemplate === 'React') { %>,
+                'server/**/*.{js,json,html}'<% if (jsFramework === 'React') { %>,
                 '<%%= yeogurt.client %>/scripts/views/*.jsx'<% } %><% if (jsTemplate === 'Handlebars') { %>,
                 '<%%= yeogurt.client %>/templates/**/*.hbs'<% } %><% if (jsTemplate === 'Lo-dash') { %>,
                 '<%%= yeogurt.client %>/templates/**/*.jst'<% } %><% if (jsTemplate === 'Jade') { %>,
@@ -236,7 +236,7 @@ var taskConfig = function(grunt) {
             tasks: [
                 'jsdoc:server'
             ]
-        },<% } %><% if (jsTemplate === 'React' && useJsdoc) { %>
+        },<% } %><% if (jsFramework === 'React' && useJsdoc) { %>
         jsxDocs: {
             files: ['<%%= yeogurt.client %>/scripts/views/**/*.jsx'],
             tasks: [

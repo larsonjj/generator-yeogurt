@@ -49,7 +49,7 @@
         <!--[if lt IE 9]>
         <% if (responsive) { %>
         <script src="/bower_components/respond/respond.min.js"></script><% } %>
-        <script src="/bower_components/html5shiv/dist/html5shiv-printshiv.js"></script><% if (jsTemplate === 'React') { %>
+        <script src="/bower_components/html5shiv/dist/html5shiv-printshiv.js"></script><% if (jsFramework === 'React') { %>
         <script src="/bower_components/es5-shim/es5-shim.js"></script>
         <script src="/bower_components/es5-shim/es5-sham.js"></script><% } %>
         <script>
@@ -97,7 +97,7 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');
         </script><% } %>
-        <% if (jsTemplate === 'React') { %>
+        <% if (jsFramework === 'React') { %>
         <!--[if lt IE 9]>
         <script src="/bower_components/es5-shim/es5-shim.js"></script>
         <script src="/bower_components/es5-shim/es5-sham.js"></script>

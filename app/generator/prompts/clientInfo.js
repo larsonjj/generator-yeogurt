@@ -53,7 +53,7 @@ var clientInfo = function clientInfo() {
         type: 'list',
         name: 'testFramework',
         message: 'Which JavaScript ' + 'testing framework'.blue + ' would you like to use?',
-        choices: ['Jasmine', 'Mocha + Chai']
+        choices: ['Jasmine', 'Mocha']
     }, {
         type: 'list',
         name: 'cssOption',

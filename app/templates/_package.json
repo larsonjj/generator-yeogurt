@@ -1,7 +1,9 @@
 {
     "name": "<%= _.slugify(projectName) %>",
     "version": "0.0.1",
-    "dependencies": {<% if (useServer) { %>
+    "dependencies": {<% if (jsFramework === 'React') { %>
+        "node-jsx": "0.11.0",
+        "react": "0.11.1"<% } %><% if (useServer) { %><% if (jsFramework === 'React') { %>,<% } %>
         "colors": "^0.6.2",
         "async": "^0.7.0",
         "bcrypt-nodejs": "^0.0.3",
@@ -19,11 +21,7 @@
         "mysql": "2.3.2",
         "connect-session-sequelize": "1.0.0",
         "sequelize": "1.7.9",<% } %>
-        "uglify-js": "^2.4.12"<% if (jsTemplate === 'React') { %>,
-        "node-jsx": "0.11.0",
-        "react": "0.11.1",
-        "backbone": "~1.1.2",
-        "lodash": "~2.4.1"<% } %><% if (htmlOption === 'Swig') { %>,
+        "uglify-js": "^2.4.12"<% if (htmlOption === 'Swig') { %>,
         "swig": "1.4.1"<% } %><% if (jsTemplate === 'Jade' || htmlOption === 'Jade') { %>,
         "jade": "1.3.1"<% } %><% if (jsTemplate === 'Handlebars') { %>,
         "handlebars": "1.3.0"<% } %><% } %>
@@ -66,12 +64,11 @@
         "grunt-karma": "0.8.0",
         "grunt-newer": "0.6.1",
         "include-all": "0.1.6",<% if (jsOption === 'Browserify') { %>
-        "browserify" : "^4.0.0",
-        "karma-browserify": "0.0.6",<% } else if (jsOption === 'RequireJS') { %>
+        "browserify" : "~4.2.0",<% } else if (jsOption === 'RequireJS') { %>
         "karma-requirejs": "0.2.1",<% } %>
         "karma-phantomjs-launcher": "0.1.2",
         "karma-chrome-launcher": "0.1.2",<% if (testFramework === 'Jasmine') { %>
-        "karma-jasmine": "0.1.5",<% } else if (testFramework === 'Mocha + Chai') { %>
+        "karma-jasmine": "0.1.5",<% } else if (testFramework === 'Mocha') { %>
         "karma-chai": "0.1.0",
         "karma-mocha": "0.1.3",<% } %>
         "karma-jasmine": "0.1.5",
