@@ -12,7 +12,7 @@ var styleFiles = function styleFiles() {
         this.template('client/styles/styleguide.md', 'client/styles/styleguide.md');
     }
 
-    if (this.cssOption !== 'CSS') {
+    if (this.cssOption !== 'css') {
         if (this.cssOption === 'less') {
             this.template('client/styles/main.less', 'client/styles/main.less');
         }

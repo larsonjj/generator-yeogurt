@@ -83,7 +83,7 @@ var handleConfig = function handleConfig() {
         this.jsOption = this.answers.jsOption = 'Browserify';
     }
     if (!this.dbOption) {
-        this.dbOption = this.answers.dbOption = 'None';
+        this.dbOption = this.answers.dbOption = 'none';
     }
 
     // Default jsOption to Browserify

@@ -31,7 +31,7 @@ var serverFiles = function serverFiles() {
             this.template('client/templates/html/index.html', 'server/templates/index.html');
         }
 
-        if (this.dbOption !== 'None') {
+        if (this.dbOption !== 'none') {
             this.template('server/config/database.js', 'server/config/database.js');
         }
 
