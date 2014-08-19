@@ -7,7 +7,7 @@ var taskConfig = function(grunt) {
 
     grunt.config.set('browserify', {
         server: {
-            options: {<% if (jsFramework === 'React') { %>
+            options: {<% if (jsFramework === 'react') { %>
                 transform:  [ require('grunt-react').browserify ],<% } %>
                 bundleOptions: {
                     debug: true
@@ -19,7 +19,7 @@ var taskConfig = function(grunt) {
             }
         },
         dist: {
-            options: {<% if (jsFramework === 'React') { %>
+            options: {<% if (jsFramework === 'react') { %>
                 transform:  [ require('grunt-react').browserify ],<% } %>
                 bundleOptions: {
                     debug: true
@@ -37,7 +37,7 @@ var taskConfig = function(grunt) {
             }
         },
         test: {
-            options: {<% if (jsFramework === 'React') { %>
+            options: {<% if (jsFramework === 'react') { %>
                 transform:  [ require('grunt-react').browserify ],<% } %>
                 bundleOptions: {
                     debug: true

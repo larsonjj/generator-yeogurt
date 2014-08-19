@@ -22,7 +22,16 @@ var projectInfo = function projectInfo() {
         type: 'list',
         name: 'versionControl',
         message: 'Which ' + 'version control software'.blue + ' are you using (or plan to use)?',
-        choices: ['Git', 'SVN', 'None (I like to live on the edge)']
+        choices: ['Git', 'SVN', 'None (I like to live on the edge)'],
+        filter: function(val) {
+            var filterMap = {
+                'Git': 'git',
+                'SVN': 'svn',
+                'None (I like to live on the edge)': 'none'
+            };
+
+            return filterMap[val];
+        }
     }], function(answers) {
         this.projectInfo = answers;
 

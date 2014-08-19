@@ -3,9 +3,9 @@
  */
 
 'use strict';
-<% if (dbOption === 'MongoDB') { %>
+<% if (dbOption === 'mongodb') { %>
 var mongoose = require('mongoose');<% } %>
-var settings = require('./env/default');<% if ('MySQL'.indexOf(dbOption) > -1) { %>
+var settings = require('./env/default');<% if (dbOption === 'mysql') { %>
 var Sequelize = require('sequelize');<% } %>
 
 // Add coloring for console output
@@ -18,7 +18,7 @@ var databaseConfig = function(app) {
 
     var env = app.get('env');
 
-    <% if (dbOption === 'MongoDB') { %>
+    <% if (dbOption === 'mongodb') { %>
     var connect = function() {
         var options = {
             server: {
@@ -47,7 +47,7 @@ var databaseConfig = function(app) {
         console.error('✗ MongoDB Connection Error. Please make sure MongoDB is running.'.red);
     });
 
-    <% } %><% if ('MySQL'.indexOf(dbOption) > -1) { %>
+    <% } %><% if (dbOption === 'mysql') { %>
     var options = {
         // Database Type
         dialect: 'mysql',

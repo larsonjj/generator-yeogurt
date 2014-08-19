@@ -33,7 +33,7 @@ var handleConfig = function handleConfig() {
     var host     = this.answers.dbUser ? '@' + this.answers.dbHost : this.answers.dbHost;
     var name     = this.answers.dbName ? this.answers.dbName : '';
 
-    if (this.dbOption === 'MongoDB') {
+    if (this.dbOption === 'mongodb') {
         this.dbURL = process.env.MONGODB || 'mongodb://' +
         username +
         password +
@@ -41,7 +41,7 @@ var handleConfig = function handleConfig() {
         port + '/' +
         name;
     }
-    else if (this.dbOption === 'MySQL') {
+    else if (this.dbOption === 'mysql') {
         this.dbURL = process.env.MYSQL || 'mysql://' +
         username +
         password +
@@ -78,7 +78,7 @@ var handleConfig = function handleConfig() {
     this.useDashboard          = this.answers.useDashboard;
 
     // Default Overwrites
-    if (this.jsFramework === 'React') {
+    if (this.jsFramework === 'react') {
         this.jsTemplate = this.answers.jsTemplate = 'React';
         this.jsOption = this.answers.jsOption = 'Browserify';
     }
@@ -99,13 +99,13 @@ var handleConfig = function handleConfig() {
     this.responsive = false;
     this.useFoundation = false;
 
-    if (this.cssFramework === 'Bootstrap') {
+    if (this.cssFramework === 'bootstrap') {
         this.useBootstrap = true;
         if (this.ieSupport) {
             this.responsive = true;
         }
     }
-    else if (this.cssFramework === 'Foundation') {
+    else if (this.cssFramework === 'foundation') {
         this.useFoundation = true;
     }
 

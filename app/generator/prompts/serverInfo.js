@@ -23,19 +23,28 @@ var serverInfo = function serverInfo() {
         type: 'list',
         name: 'dbOption',
         message: 'What ' + 'database type'.blue + ' would you like to use ?',
-        choices: ['MongoDB', 'MySQL', 'None']
+        choices: ['MongoDB', 'MySQL', 'None'],
+        filter: function(val) {
+            var filterMap = {
+                'MongoDB': 'mongodb',
+                'MySQL': 'mysql',
+                'None': 'none'
+            };
+
+            return filterMap[val];
+        }
     }, {
         when: function(answers) { return answers.dbOption !== 'None' && answers.useServer; },
         name: 'dbHost',
         message: 'What is your ' + 'database host/url'.blue + '?',
         default: 'localhost'
     }, {
-        when: function(answers) { return answers.dbOption === 'MySQL'; },
+        when: function(answers) { return answers.dbOption === 'mysql'; },
         name: 'dbPort',
         message: 'What ' + 'port'.blue + ' is your database running on?',
         default: '3306'
     }, {
-        when: function(answers) { return answers.dbOption === 'MongoDB'; },
+        when: function(answers) { return answers.dbOption === 'mongodb'; },
         name: 'dbPort',
         message: 'What ' + 'port'.blue + ' is your Database running on?',
         default: '27017'

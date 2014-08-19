@@ -1,12 +1,12 @@
 /**
 *   App Description
 */
-<% if (jsOption === 'RequireJS') { %>
+<% if (jsOption === 'requirejs') { %>
 define(function (require) {
-    'use strict';<% if ((/Backbone/i).test(jsFramework)) { %>
+    'use strict';<% if (jsFramework === 'backbone') { %>
     var Router = require('routes');<% } %>
 
-    var init = function(msg) {<% if ((/Backbone/i).test(jsFramework)) { %>
+    var init = function(msg) {<% if (jsFramework === 'backbone') { %>
         // Initialize route(s)
         new Router();<% if (ieSupport) { %>
         // Enable pushState for compatible browsers
@@ -29,9 +29,9 @@ define(function (require) {
     return {
         init: init
     };
-});<% } else if (jsOption === 'Browserify') { %>
+});<% } else if (jsOption === 'browserify') { %>
 'use strict';
-<% if ((/Backbone/i).test(jsFramework) || (/React/i).test(jsFramework)) { %>
+<% if (jsFramework === 'backbone' || jsFramework === 'react') { %>
 var Router = require('./routes');
 
 // Initialize route(s)
@@ -50,13 +50,13 @@ Backbone.history.start({ pushState : pushState, root : '/' });
 if (!pushState && window.location.pathname !== '/') {
     window.location.replace('/#' + window.location.pathname);
 }<% } else { %>
-Backbone.history.start();<% } %><% if (jsFramework === 'React') { %>
+Backbone.history.start();<% } %><% if (jsFramework === 'react') { %>
 
 // Enable React dev tools
 window.React = require('react');<% } %>
 <% } %>
-console.log('Welcome to Yeogurt');<% } else if (jsOption === 'None') { %>
-'use strict';<% if (jsFramework === 'Backbone') { %>
+console.log('Welcome to Yeogurt');<% } else if (jsOption === 'none') { %>
+'use strict';<% if (jsFramework === 'backbone') { %>
 
 // Create global namespaces for Models, Collections, and Views
 window.<%= _.classify(projectName) %> = {

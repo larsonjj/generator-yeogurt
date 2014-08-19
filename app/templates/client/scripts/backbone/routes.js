@@ -1,7 +1,7 @@
 /**
 *   Main Router Description
 */
-<% if (jsOption === 'RequireJS') { %>
+<% if (jsOption === 'requirejs') { %>
 define(function (require) {
     'use strict';
 
@@ -19,12 +19,12 @@ define(function (require) {
     });
 
     return MainRouter;
-});<% } else if (jsOption === 'Browserify') { %>
+});<% } else if (jsOption === 'browserify') { %>
 'use strict';
-<% if (jsFramework === 'React') { %>
+<% if (jsFramework === 'react') { %>
 var React = require('react');
 var MainComponent = require('./components/main.jsx');
-<% } else if ((/Backbone/i).test(jsFramework)) { %>
+<% } else if (jsFramework === 'backbone') { %>
 var MainView = require('./views/main');<% } %>
 
 var MainRouter = Backbone.Router.extend({
@@ -32,15 +32,15 @@ var MainRouter = Backbone.Router.extend({
         '': 'default'
     },
 
-    default: function() {<% if (jsFramework === 'React') { %>
-        React.renderComponent(new MainComponent(), document.getElementById('app-wrapper'));<% } else if ((/Backbone/i).test(jsFramework)) { %>
+    default: function() {<% if (jsFramework === 'react') { %>
+        React.renderComponent(new MainComponent(), document.getElementById('app-wrapper'));<% } else if (jsFramework === 'backbone') { %>
         // Initialize the main view
         new MainView();<% } %>
     }
 });
 
 module.exports = MainRouter;
-<% } %><% if (jsOption === 'None') { %>
+<% } %><% if (jsOption === 'none') { %>
 'use strict';
 
 var <%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};

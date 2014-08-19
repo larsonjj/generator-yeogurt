@@ -5,7 +5,7 @@
 
 var taskConfig = function(grunt) {
 
-    grunt.config.set('jade', {<% if (!useServer && jsTemplate !== 'Jade') { %>
+    grunt.config.set('jade', {<% if (!useServer && jsTemplate !== 'jade') { %>
         server: {
             options: {
                 pretty: true,
@@ -19,7 +19,7 @@ var taskConfig = function(grunt) {
             dest: '<%%= yeogurt.staticServer %>/',
             src: ['*.jade'],
             ext: '.html'
-        },<% } %><% if (jsTemplate !== 'Jade') { %>
+        },<% } %><% if (jsTemplate !== 'jade') { %>
         dist: {
             options: {
                 pretty: true,
@@ -35,7 +35,7 @@ var taskConfig = function(grunt) {
             dest: '.tmp/',<% } %>
             src: ['*.jade'],
             ext: '.html'
-        },<% } %><% if (jsTemplate === 'Jade') { %>
+        },<% } %><% if (jsTemplate === 'jade') { %>
         server: {
             options: {
                 pretty: true,
@@ -59,7 +59,7 @@ var taskConfig = function(grunt) {
             files: {
                 '.tmp/templates/templates.js': ['<%%= yeogurt.client %>/templates/*.jade']
             }
-        }<% } %><% if (jsFramework === 'Backbone') { %>,
+        }<% } %><% if (jsFramework === 'backbone') { %>,
         test: {
             options: {
                 pretty: true,

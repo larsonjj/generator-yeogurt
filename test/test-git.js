@@ -28,8 +28,8 @@ describe('yeogurt generator with git', function () {
 
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
-            versionControl: 'Git',
-            cssOption: 'Sass',
+            versionControl: 'git',
+            cssOption: 'sass',
             ieSupport: true,
             responsive: true,
             useGA: true,

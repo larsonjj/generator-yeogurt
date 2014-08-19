@@ -18,7 +18,7 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
         meta(name='viewport', content='width=device-width, initial-scale=1.0')<% if (useServer) { %>
         meta(name='csrf-token', content=_csrf)<% } %><% if (useGA) { %>
         link(href='//www.google-analytics.com', rel='dns-prefetch')<% } %><% if (useServer) { %>
-        if (env == 'development')<% } %><% if (useServer) { %>    <% } %><% if (cssOption === 'CSS') { %>
+        if (env == 'development')<% } %><% if (useServer) { %>    <% } %><% if (cssOption === 'css') { %>
         <% if (useServer) { %>    <% } %>// build:css(client) styles/main.css<% if (useFontAwesome) { %>
         <% if (useServer) { %>    <% } %>link(rel='stylesheet', href='/bower_components/font-awesome/css/font-awesome.css')<% } %><% if (useBootstrap) { %>
         <% if (useServer) { %>    <% } %>link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.css')<% } %><% if (useFoundation) { %>
@@ -41,7 +41,7 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
         // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
         <!--[if lt IE 9]><% if (responsive) { %>
         script(src='/bower_components/respond/respond.min.js')<% } %>
-        script(src='/bower_components/html5shiv/dist/html5shiv-printshiv.js')<% if (jsFramework === 'React') { %>
+        script(src='/bower_components/html5shiv/dist/html5shiv-printshiv.js')<% if (jsFramework === 'react') { %>
         script(src='/bower_components/es5-shim/es5-shim.js')
         script(src='/bower_components/es5-shim/es5-sham.js')<% } %>
         script.
@@ -79,7 +79,7 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
             e.src='//www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');<% } %>
-        <% if (jsFramework === 'React') { %>
+        <% if (jsFramework === 'react') { %>
         <!--[if lt IE 9]>
         script(src='/bower_components/es5-shim/es5-shim.js')
         script src='/bower_components/es5-shim/es5-sham.js')
@@ -87,19 +87,19 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
         <% if (useServer) { %>
         if (env == 'development')<% } %><% if (useServer) { %>
             <% } %>// build:js(client) scripts/global.js
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/jquery/dist/jquery.js')<% if (useServer) { %>
-            <% } %><% if (useBootstrap) { %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>affix.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>alert.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>button.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>carousel.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>collapse.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>dropdown.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>modal.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>scrollspy.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>tab.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>tooltip.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>popover.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>transition.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/jquery/dist/jquery.js')
+        <% if (useServer) { %>    <% } %><% if (useBootstrap) { %>script(src='/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>affix.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>alert.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>button.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>carousel.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>collapse.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>dropdown.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>modal.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>scrollspy.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>tab.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>tooltip.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>popover.js')
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>transition.js')
         <% } %><% if (useServer) { %>    <% } %><% if (useFoundation) { %>script(src='/bower_components/foundation/js/vendor/fastclick.js')
         <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/vendor/jquery.cookie.js')
         <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/vendor/placeholder.js')
@@ -122,14 +122,15 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
         <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/foundation/foundation.topbar.js')<% } %>
         <% if (useServer) { %>    <% } %>// endbuild<% if (useServer) { %>
         else
-        <% if (useServer) { %>    <% } %>script(src='/scripts/global.js')<% } %><% if (jsOption ==='RequireJS') { %>
-        script(data-main='/scripts/main', src='/bower_components/requirejs/require.js')<% } else if (jsOption ==='Browserify') { %>script(src='/scripts/app.js')<% } else { %>
+        <% if (useServer) { %>    <% } %>script(src='/scripts/global.js')<% } %>
+        <% if (jsOption === 'requirejs') { %>
+        script(data-main='/scripts/main', src='/bower_components/requirejs/require.js')<% } else if (jsOption === 'browserify') { %>script(src='/scripts/app.js')<% } else { %>
         //- Place all author scripts within the 'build:js' comments below,
             so they will be optimised correctly during a 'grunt build' task
-        // build:js(client) scripts/app.js<% if (jsFramework !== 'Backbone') { %>
+        // build:js(client) scripts/app.js<% if (jsFramework !== 'backbone') { %>
         script(src='/scripts/app.js')<% } %>
         // [injector:js]
-        // [endinjector]<% if (jsFramework === 'Backbone') { %>
+        // [endinjector]<% if (jsFramework === 'backbone') { %>
         script(src='/scripts/routes.js')
         script(src='/scripts/app.js')<% } %>
         // endbuild<% } %>

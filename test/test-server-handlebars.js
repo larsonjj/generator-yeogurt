@@ -27,12 +27,12 @@ describe('yeogurt generator server defaults', function () {
 
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
-            versionControl: 'Git',
+            versionControl: 'git',
             singlePageApplication: true,
-            htmlOption: 'Jade',
-            cssOption: 'Sass',
-            jsOption: 'RequireJS',
-            jsTemplate: 'Handlebars',
+            htmlOption: 'jade',
+            cssOption: 'sass',
+            jsOption: 'requirejs',
+            jsTemplate: 'handlebars',
             useServer: true,
             ieSupport: false,
             responsive: false,

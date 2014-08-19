@@ -17,16 +17,16 @@ var rootFiles = function rootFiles() {
         this.copy('.ftppass', '.ftppass');
     }
 
-    if (this.versionControl === 'SVN') {
+    if (this.versionControl === 'svn') {
         this.copy('svn-init.sh', 'svn-init.sh');
         this.copy('svn-init.bat', 'svn-init.bat');
     }
 
     this.copy('bowerrc', '.bowerrc');
-    if (this.versionControl === 'Git') {
+    if (this.versionControl === 'git') {
         this.copy('gitignore', '.gitignore');
         this.copy('gitattributes', '.gitattributes');
-    } else if (this.versionControl === 'SVN') {
+    } else if (this.versionControl === 'svn') {
         this.copy('svnignore', '.svnignore');
     }
 

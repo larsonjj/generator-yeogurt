@@ -13,10 +13,10 @@ var styleFiles = function styleFiles() {
     }
 
     if (this.cssOption !== 'CSS') {
-        if (this.cssOption === 'Less') {
+        if (this.cssOption === 'less') {
             this.template('client/styles/main.less', 'client/styles/main.less');
         }
-        if (this.cssOption === 'Sass') {
+        if (this.cssOption === 'sass') {
             this.template('client/styles/main.less', 'client/styles/main.scss');
         }
     }

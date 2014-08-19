@@ -12,9 +12,9 @@ var taskConfig = function(grunt) {
                 baseUrl: '<%%= yeogurt.client %>/scripts/',
                 mainConfigFile: '<%%= yeogurt.client %>/scripts/main.js',
                 out: '<%%= yeogurt.dist %>/scripts/main.js',
-                optimize: 'uglify2',<% if (jsFramework === 'React' && jsOption === 'RequireJS') { %>
+                optimize: 'uglify2',<% if (jsFramework === 'react' && jsOption === 'requirejs') { %>
                 generateSourceMaps: false,<% } else { %>generateSourceMaps: true,<% } %>
-                preserveLicenseComments: false<% if (jsFramework === 'React' && jsOption === 'RequireJS') { %>,
+                preserveLicenseComments: false<% if (jsFramework === 'react' && jsOption === 'requirejs') { %>,
                 onBuildWrite: function (moduleName, path, singleContents) {
                   return singleContents.replace(/jsx!/g, '');
                 }<% } %>

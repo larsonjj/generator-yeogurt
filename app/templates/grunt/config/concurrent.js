@@ -10,15 +10,15 @@ var taskConfig = function(grunt) {
             'pngmin:dist',
             'imagemin:dist',<% if (useJsdoc) { %>
             'jsdoc:dist',<% } %>
-            'svgmin:dist',<% if (htmlOption === 'Jade' || jsTemplate === 'Jade') { %>
-            'jade:dist',<% } else if (htmlOption === 'Swig') {  %>
-            'swig:dist',<% } %><% if (cssOption === 'Less') { %>
-            'less:dist',<% } %><% if (cssOption === 'Sass') { %>
-            'sass:dist',<% } %><% if (jsTemplate === 'Lo-dash') { %>
-            'jst:dist',<% } else if (jsTemplate === 'Handlebars') { %>
+            'svgmin:dist',<% if (htmlOption === 'jade' || jsTemplate === 'jade') { %>
+            'jade:dist',<% } else if (htmlOption === 'swig') {  %>
+            'swig:dist',<% } %><% if (cssOption === 'less') { %>
+            'less:dist',<% } %><% if (cssOption === 'sass') { %>
+            'sass:dist',<% } %><% if (jsTemplate === 'lodash') { %>
+            'jst:dist',<% } else if (jsTemplate === 'handlebars') { %>
             'handlebars:dist',<% } %><% if (useDashboard) { %>
-            'dashboard:dist',<% } %><% if (jsOption === 'RequireJS') { %>
-            'requirejs'<% } %><% if (jsOption === 'Browserify') { %>
+            'dashboard:dist',<% } %><% if (jsOption === 'requirejs') { %>
+            'requirejs'<% } %><% if (jsOption === 'browserify') { %>
             'browserify:dist'<% } %>
         ]
     });

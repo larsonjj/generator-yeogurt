@@ -32,8 +32,8 @@ describe('yeogurt generator Less', function () {
 
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
-            versionControl: 'Git',
-            cssOption: 'Less',
+            versionControl: 'git',
+            cssOption: 'less',
             useLesshat: true,
             useBootstrap: true,
             ieSupport: true,

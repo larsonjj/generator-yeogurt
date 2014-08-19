@@ -72,10 +72,10 @@ describe('yeogurt generator defaults', function () {
 
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
-            versionControl: 'Git',
-            htmlOption: 'Jade',
-            cssOption: 'Sass',
-            jsOption: 'RequireJS',
+            versionControl: 'git',
+            htmlOption: 'jade',
+            cssOption: 'sass',
+            jsOption: 'requirejs',
             ieSupport: false,
             responsive: false,
             useGA: false,

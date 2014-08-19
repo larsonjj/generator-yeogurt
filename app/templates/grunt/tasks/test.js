@@ -6,8 +6,8 @@
 var taskConfig = function(grunt) {
     grunt.registerTask('test', 'Peform tests on JavaScript', [
         <% if (jshint) { %>'jshint:test',
-        <% } %><% if (jsTemplate === 'Lo-dash') { %>'jst:test',<% } else if (jsTemplate === 'Handlebars') { %>'handlebars:test',<% } else if (jsTemplate === 'Jade') { %>
-        'jade:test',<% } %><% if (jsOption === 'Browserify') { %>
+        <% } %><% if (jsTemplate === 'lodash') { %>'jst:test',<% } else if (jsTemplate === 'handlebars') { %>'handlebars:test',<% } else if (jsTemplate === 'jade') { %>
+        'jade:test',<% } %><% if (jsOption === 'browserify') { %>
         'browserify:test',<% } %>
         'karma:unit',
         'clean:temp'

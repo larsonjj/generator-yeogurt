@@ -27,9 +27,9 @@ describe('yeogurt generator with css', function () {
 
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
-            versionControl: 'Git',
+            versionControl: 'git',
             singlePageApplication: false,
-            cssOption: 'CSS',
+            cssOption: 'css',
             useFoundation: true,
             ieSupport: true,
             responsive: true,

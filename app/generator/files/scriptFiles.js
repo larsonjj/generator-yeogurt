@@ -10,28 +10,28 @@ var scriptFiles = function scriptFiles() {
 
     this.template('client/scripts/app.js', 'client/scripts/app.js');
 
-    if (this.jsOption === 'RequireJS') {
+    if (this.jsOption === 'requirejs') {
         this.template('client/scripts/main.js', 'client/scripts/main.js');
     }
 
-    if (this.jsFramework === 'Backbone') {
+    if (this.jsFramework === 'backbone') {
         this.mkdir('client/templates');
         this.mkdir('client/scripts/views');
 
         this.template('client/scripts/backbone/routes.js', 'client/scripts/routes.js');
-        if (this.jsTemplate === 'Lo-dash') {
+        if (this.jsTemplate === 'lodash') {
             this.template('client/scripts/backbone/templates/main.html', 'client/templates/main.jst');
         }
-        else if (this.jsTemplate === 'Handlebars') {
+        else if (this.jsTemplate === 'handlebars') {
             this.template('client/scripts/backbone/templates/main.html', 'client/templates/main.hbs');
         }
-        else if (this.jsTemplate === 'Jade') {
+        else if (this.jsTemplate === 'jade') {
             this.template('client/scripts/backbone/templates/main.html', 'client/templates/main.jade');
         }
 
         this.template('client/scripts/backbone/views/main.js', 'client/scripts/views/main.js');
     }
-    else if (this.jsFramework === 'React') {
+    else if (this.jsFramework === 'react') {
         this.mkdir('client/scripts/components');
 
         this.template('client/scripts/backbone/routes.js', 'client/scripts/routes.js');

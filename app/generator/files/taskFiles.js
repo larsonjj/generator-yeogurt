@@ -11,7 +11,7 @@ var taskFiles = function taskFiles() {
     this.mkdir('grunt/tasks');
 
     // Config
-    if (this.jsOption === 'Browserify') {
+    if (this.jsOption === 'browserify') {
         this.template('grunt/config/browserify.js', 'grunt/config/browserify.js');
         this.template('grunt/config/exorcise.js', 'grunt/config/exorcise.js');
     }
@@ -41,34 +41,34 @@ var taskFiles = function taskFiles() {
     this.template('grunt/config/htmlmin.js', 'grunt/config/htmlmin.js');
     this.template('grunt/config/imagemin.js', 'grunt/config/imagemin.js');
     this.template('grunt/config/pngmin.js', 'grunt/config/pngmin.js');
-    if (this.htmlOption === 'Jade' || this.jsTemplate === 'Jade') {
+    if (this.htmlOption === 'jade' || this.jsTemplate === 'jade') {
         this.template('grunt/config/jade.js', 'grunt/config/jade.js');
     }
-    else if (this.htmlOption === 'Swig' ) {
+    else if (this.htmlOption === 'swig' ) {
         this.template('grunt/config/swig.js', 'grunt/config/swig.js');
     }
     if (this.jshint) {
         this.template('grunt/config/jshint.js', 'grunt/config/jshint.js');
     }
     this.template('grunt/config/karma.js', 'grunt/config/karma.js');
-    if (this.cssOption === 'Less') {
+    if (this.cssOption === 'less') {
         this.template('grunt/config/less.js', 'grunt/config/less.js');
     }
-    if (this.jsOption === 'RequireJS') {
+    if (this.jsOption === 'requirejs') {
         this.template('grunt/config/requirejs.js', 'grunt/config/requirejs.js');
     }
-    if (this.cssOption === 'Sass') {
+    if (this.cssOption === 'sass') {
         this.template('grunt/config/sass.js', 'grunt/config/sass.js');
     }
-    if (this.jsTemplate === 'Lo-dash') {
+    if (this.jsTemplate === 'lodash') {
         this.template('grunt/config/jst.js', 'grunt/config/jst.js');
     }
-    else if (this.jsTemplate === 'Handlebars') {
+    else if (this.jsTemplate === 'handlebars') {
         this.template('grunt/config/handlebars.js', 'grunt/config/handlebars.js');
     }
     this.template('grunt/config/svgmin.js', 'grunt/config/svgmin.js');
     this.template('grunt/config/uglify.js', 'grunt/config/uglify.js');
-    if (this.cssOption === 'CSS' && !this.singlePageApplication) {
+    if (this.cssOption === 'css' && !this.singlePageApplication) {
         this.template('grunt/config/cssmin.js', 'grunt/config/cssmin.js');
     }
     this.template('grunt/config/usemin.js', 'grunt/config/usemin.js');

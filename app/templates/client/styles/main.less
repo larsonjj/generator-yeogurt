@@ -9,8 +9,8 @@
 <% } %><% if (!useBootstrap && !useFoundation) { %>
 // Import Normalize Library
 
-<% if (cssOption === 'Sass') { %>// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
-@import '../bower_components/normalize-scss/normalize';<% } %><% if (cssOption === 'Less') { %>
+<% if (cssOption === 'sass') { %>// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
+@import '../bower_components/normalize-scss/normalize';<% } %><% if (cssOption === 'less') { %>
 // Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
 @import (less) '../bower_components/normalize.css/normalize.css';<% } %>
 <% } %><% if (!useBootstrap) { %>
@@ -24,17 +24,17 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-<% } %><% if (cssOption === 'Less') { %><% if (useFontAwesome) { %>
+<% } %><% if (cssOption === 'less') { %><% if (useFontAwesome) { %>
 // Import Font Awesome Library
 
 @import '../bower_components/font-awesome/less/font-awesome';
 @fa-font-path: '../bower_components/font-awesome/fonts';<% } %>
-<% } %><% if (cssOption === 'Sass') { %><% if (useFontAwesome) { %>
+<% } %><% if (cssOption === 'sass') { %><% if (useFontAwesome) { %>
 
 //  Import Font Awesome Library
 $fa-font-path: '../bower_components/font-awesome/fonts';
 @import '../bower_components/font-awesome/scss/font-awesome';<% } %>
-<% } %><% if (cssOption === 'Less' && useBootstrap) { %>
+<% } %><% if (cssOption === 'less' && useBootstrap) { %>
 // Import All Bootstrap Styles
 
 // Core variables and mixins
@@ -85,7 +85,7 @@ $fa-font-path: '../bower_components/font-awesome/fonts';
 
 // Utility classes
 @import "../bower_components/bootstrap/less/utilities.less";
-@import "../bower_components/bootstrap/less/responsive-utilities.less";<% } %><% if (cssOption === 'Sass' && useBootstrap) { %>
+@import "../bower_components/bootstrap/less/responsive-utilities.less";<% } %><% if (cssOption === 'sass' && useBootstrap) { %>
 // Import All Bootstrap Styles
 
 // Core variables and mixins

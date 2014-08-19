@@ -35,14 +35,19 @@ var ReactGenerator = module.exports = function ReactGenerator(args, options, con
 
     // Remove all leading and trailing slashes in folder path
     this.cleanFolderPath = function(folder) {
-        var tempArray = [];
-        var cleanedStr = folder.replace(/^\/+|\/+$/g, '');
-        cleanedStr.split('/').forEach(function(item) {
-            if (item) {
-                tempArray.push(item);
-            }
-        });
-        return tempArray.join('/');
+        if (folder) {
+            var tempArray = [];
+            var cleanedStr = folder.replace(/^\/+|\/+$/g, '');
+            cleanedStr.split('/').forEach(function(item) {
+                if (item) {
+                    tempArray.push(item);
+                }
+            });
+            return tempArray.join('/');
+        }
+        else {
+            return '';
+        }
     };
 
     console.log('You called the react subgenerator with the argument ' + this.name + '.');
@@ -51,7 +56,7 @@ var ReactGenerator = module.exports = function ReactGenerator(args, options, con
 util.inherits(ReactGenerator, yeoman.generators.NamedBase);
 
 ReactGenerator.prototype.files = function files() {
-    if (this.jsFramework !== 'React') {
+    if (this.jsFramework !== 'react') {
         console.log('This subgenerator is only used for React Applications. It seems as though you are not using React');
         console.log('Operation aborted');
     }

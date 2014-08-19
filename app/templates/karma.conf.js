@@ -8,26 +8,26 @@ module.exports = function(config) {
         basePath: '',
 
         // testing framework to use (jasmine/mocha/qunit/...)
-        frameworks: [<% if (testFramework === 'Jasmine') { %>'jasmine'<% } else if (testFramework === 'Mocha') { %>'mocha', 'chai'<% } %>],
+        frameworks: [<% if (testFramework === 'jasmine') { %>'jasmine'<% } else if (testFramework === 'mocha') { %>'mocha', 'chai'<% } %>],
 
         // list of files / patterns to load in the browser
         files: [
-            'client/bower_components/jquery/dist/jquery.js',<% if ((/Backbone/i).test(jsFramework) || (/React/i).test(jsFramework)) { %>
+            'client/bower_components/jquery/dist/jquery.js',<% if (jsFramework === 'backbone' || jsFramework === 'react') { %>
             'client/bower_components/lodash/dist/lodash.js',
-            'client/bower_components/backbone/backbone.js',<% if (jsFramework === 'React') { %>
-            'test/helpers/phantomjs-shims.js',<% } %><% } %><% if (jsTemplate === 'Handlebars') { %>
-            'client/bower_components/handlebars/handlebars.runtime.js',<% } else if (jsTemplate === 'Jade') { %>'client/bower_components/jade/runtime.js',<% } %><% if (useBootstrap) { %>'client/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>affix.js',
-            'client/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>alert.js',
-            'client/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>button.js',
-            'client/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>carousel.js',
-            'client/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>collapse.js',
-            'client/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>dropdown.js',
-            'client/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>modal.js',
-            'client/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>scrollspy.js',
-            'client/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>tab.js',
-            'client/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>tooltip.js',
-            'client/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>popover.js',
-            'client/bower_components/<% if (cssOption === 'Sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'Less' || cssOption === 'CSS') { %>bootstrap/js/<% } %>transition.js',<% } %><% if (useFoundation) { %>'client/bower_components/foundation/js/vendor/fastclick.js',
+            'client/bower_components/backbone/backbone.js',<% if (jsFramework === 'react') { %>
+            'test/helpers/phantomjs-shims.js',<% } %><% } %><% if (jsTemplate === 'handlebars') { %>
+            'client/bower_components/handlebars/handlebars.runtime.js',<% } else if (jsTemplate === 'jade') { %>'client/bower_components/jade/runtime.js',<% } %><% if (useBootstrap) { %>'client/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>affix.js',
+            'client/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>alert.js',
+            'client/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>button.js',
+            'client/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>carousel.js',
+            'client/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>collapse.js',
+            'client/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>dropdown.js',
+            'client/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>modal.js',
+            'client/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>scrollspy.js',
+            'client/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>tab.js',
+            'client/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>tooltip.js',
+            'client/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>popover.js',
+            'client/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>transition.js',<% } %><% if (useFoundation) { %>'client/bower_components/foundation/js/vendor/fastclick.js',
             'client/bower_components/foundation/js/vendor/jquery.cookie.js',
             'client/bower_components/foundation/js/vendor/placeholder.js',
             'client/bower_components/foundation/js/foundation/foundation.js',
@@ -46,8 +46,8 @@ module.exports = function(config) {
             'client/bower_components/foundation/js/foundation/foundation.slider.js',
             'client/bower_components/foundation/js/foundation/foundation.tab.js',
             'client/bower_components/foundation/js/foundation/foundation.tooltip.js',
-            'client/bower_components/foundation/js/foundation/foundation.topbar.js',<% } %><% if (jsFramework === 'Backbone') { %>
-            'test/scripts/templates.js',<% } %><% if (jsOption === 'RequireJS') { %>
+            'client/bower_components/foundation/js/foundation/foundation.topbar.js',<% } %><% if (jsFramework === 'backbone') { %>
+            'test/scripts/templates.js',<% } %><% if (jsOption === 'requirejs') { %>
             {
                 pattern: 'client/bower_components/**/*.js',
                 included: false
@@ -60,14 +60,14 @@ module.exports = function(config) {
             },
             'node_modules/requirejs/require.js',
             'node_modules/karma-requirejs/lib/adapter.js',
-            'test/test-main.js',<% } else if (jsOption === 'Browserify') { %>
+            'test/test-main.js',<% } else if (jsOption === 'browserify') { %>
             'test/scripts/bundle.js'<% } else { %>
             'client/scripts/*.js',
             'test/**/*-spec.js'<% } %>
         ],
 
         // list of files to exclude
-        exclude: [<% if (jsOption === 'RequireJS') { %>
+        exclude: [<% if (jsOption === 'requirejs') { %>
             'client/scripts/main.js'
         <% } %>],
 
@@ -99,12 +99,12 @@ module.exports = function(config) {
         // - Safari (only Mac)
         // - PhantomJS
         // - IE (only Windows)
-        browsers: ['PhantomJS'],<% if (jsOption === 'Browserify') { %>
+        browsers: ['PhantomJS'],<% if (jsOption === 'browserify') { %>
 
         // Browserify config (all optional)
         browserify: {
             // extensions: ['.coffee'],
-            // ignore: [],<% if (jsFramework === 'React') { %>
+            // ignore: [],<% if (jsFramework === 'react') { %>
             transform: [require('grunt-react').browserify],<% } %>
             // debug: true,
             // noParse: ['jquery'],

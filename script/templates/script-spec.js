@@ -1,7 +1,7 @@
 /**
 *   <%= _.classify(name) %> Spec Description
 */
-<% if (jsOption === 'RequireJS') { %>
+<% if (jsOption === 'requirejs') { %>
 define(function(require) {
     'use strict';
 
@@ -15,7 +15,7 @@ define(function(require) {
 
     });
 
-});<% } else if (jsOption === 'Browserify') { %>
+});<% } else if (jsOption === 'browserify') { %>
 'use strict';
 
 var <%= _.classify(name) %> = require('<%= folder ? folderCount : ''%>../../client/scripts/<%= folder ? cleanFolderPath(folder) + '/' :  '' %><%= _.slugify(name) %>.js');

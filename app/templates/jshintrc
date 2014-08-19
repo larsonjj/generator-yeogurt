@@ -110,11 +110,13 @@
         "waitsFor",
         "xdescribe"
     ],
-    "globals": {<% if (jsOption === 'RequireJS') { %>
-        "requirejs": true,<% } %><% if ((/Backbone/i).test(jsFramework) || (/React/i).test(jsFramework)) { %>
+    "globals": {
+        "$": true,
+        "jQuery": true<% if (jsOption === 'requirejs') { %>,
+        "requirejs": true<% } %><% if (jsFramework === 'backbone' || jsFramework === 'react') { %>,
         "Backbone": true,
         "<%= _.classify(projectName) %>": true,
-        "_": true<% } %><% if ((/Lo-dash/i).test(jsTemplate) || (/Handlebars/i).test(jsTemplate) || (/Jade/i).test(jsTemplate)) { %>,
+        "_": true<% } %><% if (jsTemplate === 'lodash' || jsTemplate === 'handlebars' || jsTemplate === 'jade') { %>,
         "JST": true<% } %><% if (useServer) { %>,
         "__dirname": true<% } %><% if (useModernizr) { %>,
         "Modernizr": true<% } %>

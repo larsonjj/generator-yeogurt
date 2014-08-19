@@ -32,12 +32,12 @@ describe('yeogurt generator backbone + lo-dash', function () {
 
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
-            versionControl: 'SVN',
-            jsFramework: 'Backbone',
-            jsTemplate: 'Lo-dash',
+            versionControl: 'svn',
+            jsFramework: 'backbone',
+            jsTemplate: 'lodash',
             singlePageApplication: true,
-            jsOption: 'Browserify',
-            cssOption: 'Sass',
+            jsOption: 'browserify',
+            cssOption: 'sass',
             ieSupport: true,
             responsive: true,
             useGA: true,

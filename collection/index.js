@@ -34,14 +34,19 @@ var CollectionGenerator = module.exports = function CollectionGenerator(args, op
 
     // Remove all leading and trailing slashes in folder path
     this.cleanFolderPath = function(folder) {
-        var tempArray = [];
-        var cleanedStr = folder.replace(/^\/+|\/+$/g, '');
-        cleanedStr.split('/').forEach(function(item) {
-            if (item) {
-                tempArray.push(item);
-            }
-        });
-        return tempArray.join('/');
+        if (folder) {
+            var tempArray = [];
+            var cleanedStr = folder.replace(/^\/+|\/+$/g, '');
+            cleanedStr.split('/').forEach(function(item) {
+                if (item) {
+                    tempArray.push(item);
+                }
+            });
+            return tempArray.join('/');
+        }
+        else {
+            return '';
+        }
     };
 
     console.log('You called the collection subgenerator with the argument ' + this.name + '.');

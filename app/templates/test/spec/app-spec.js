@@ -2,7 +2,7 @@
 *   App Spec Test
 */
 
-<% if (jsOption === 'RequireJS') { %>'use strict';
+<% if (jsOption === 'requirejs') { %>'use strict';
 
 define(function(require) {
     var app = require('app');
@@ -10,7 +10,7 @@ define(function(require) {
     describe('app', function() {
 
         it('Should run a few assertions', function() {
-            <% if (jsFramework === 'React') { %>
+            <% if (jsFramework === 'react') { %>
             // Insert <div id="app-wrapper"> within the <body> as the first child
             // This will ensure correct testing of the main.jsx React component
             var appWrapper = document.createElement('div');
@@ -21,7 +21,7 @@ define(function(require) {
 
     });
 
-});<% } else if (jsOption === 'Browserify') { %>
+});<% } else if (jsOption === 'browserify') { %>
 'use strict';
 
 var app = require('../../client/scripts/app');
@@ -29,7 +29,7 @@ var app = require('../../client/scripts/app');
 describe('app', function() {
 
     it('Should run a few assertions', function() {
-        <% if (jsFramework === 'React') { %>
+        <% if (jsFramework === 'react') { %>
         // Insert <div id="app-wrapper"> within the <body> as the first child
         // This will ensure correct testing of the main.jsx React component
         var appWrapper = document.createElement('div');
@@ -44,7 +44,7 @@ describe('app', function() {
 describe('app', function() {
 
     it('Should run a few assertions', function() {
-        <% if (jsFramework === 'React') { %>
+        <% if (jsFramework === 'react') { %>
         // Insert <div id="app-wrapper"> within the <body> as the first child
         // This will ensure correct testing of the main.jsx React component
         var appWrapper = document.createElement('div');

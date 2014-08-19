@@ -35,9 +35,9 @@ describe('yeogurt generator Dashboard', function () {
 
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
-            versionControl: 'SVN',
-            htmlOption: 'Jade',
-            cssOption: 'Sass',
+            versionControl: 'svn',
+            htmlOption: 'jade',
+            cssOption: 'sass',
             ieSupport: true,
             responsive: true,
             useGA: true,

@@ -1,7 +1,7 @@
 /**
 *   <%= _.classify(name) %> Script Description
 */
-<% if (jsOption ==='RequireJS') { %>
+<% if (jsOption === 'requirejs') { %>
 define(function(require) {
 
     'use strict';
@@ -13,7 +13,7 @@ define(function(require) {
     return init;
 
 });
-<% } else if (jsOption ==='Browserify') { %>
+<% } else if (jsOption === 'browserify') { %>
 'use strict';
 
 var <%= _.classify(name) %> = function() {

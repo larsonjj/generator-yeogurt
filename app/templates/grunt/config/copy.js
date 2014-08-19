@@ -12,8 +12,8 @@ var taskConfig = function(grunt) {
                 cwd: '<%%= yeogurt.client %>/',
                 dest: '<%%= yeogurt.staticServer %>/',
                 src: [
-                    'scripts/**/*.<% if (jsFramework === 'React' && jsOption === 'RequireJS') { %>{js,jsx}<% } else { %>js<% } %>',<% if (useDashboard) { %>
-                    'dashboard/**/*.*',<% } %><% if (jsOption === 'Browserify') { %>
+                    'scripts/**/*.<% if (jsFramework === 'react' && jsOption === 'requirejs') { %>{js,jsx}<% } else { %>js<% } %>',<% if (useDashboard) { %>
+                    'dashboard/**/*.*',<% } %><% if (jsOption === 'browserify') { %>
                     '!scripts/app.js',
                     '!scripts/main.js',<% } %>
                     'bower_components/**/*.{js,map}',
@@ -21,10 +21,10 @@ var taskConfig = function(grunt) {
                     'docs/styleguide/public/images',<% } %>
                     'images/**',
                     '*.{ico,png,txt}',
-                    'styles/fonts/**/*.{woff,otf,ttf,eot,svg}',<% if (htmlOption === 'HTML' || (/Backbone/i).test(jsFramework) && !useServer || (/React/i).test(jsFramework) && !useServer) { %>
+                    'styles/fonts/**/*.{woff,otf,ttf,eot,svg}',<% if (htmlOption === 'html' || jsFramework === 'backbone' && !useServer || jsFramework === 'react' && !useServer) { %>
                     '*.html'<% } %>
                 ]
-            }<% if (cssOption === 'CSS') { %>, {
+            }<% if (cssOption === 'css') { %>, {
                 expand: true,
                 cwd: '<%%= yeogurt.client %>/',
                 dest: '<%%= yeogurt.staticServer %>/',
@@ -39,12 +39,12 @@ var taskConfig = function(grunt) {
                 expand: true,
                 cwd: '<%%= yeogurt.client %>/',
                 dest: '<%%= yeogurt.dist %>/',
-                src: [<% if (jsOption === 'RequireJS') { %>
+                src: [<% if (jsOption === 'requirejs') { %>
                     'bower_components/requirejs/require.js',<% } %>
                     'bower_components/modernizr/modernizr.js',
                     'bower_components/**/*.{woff,otf,ttf,eot,svg}',<% if (useDashboard) { %>
                     'dashboard/**/*.*',<% } %>
-                    'bower_components/jquery/jquery.min.*',<% if (htmlOption === 'HTML' || (/Backbone/i).test(jsFramework) && !useServer || (/React/i).test(jsFramework) && !useServer) { %>
+                    'bower_components/jquery/jquery.min.*',<% if (htmlOption === 'html' || jsFramework === 'backbone' && !useServer || jsFramework === 'react' && !useServer) { %>
                     '*.html',<% } %><% if (useKss) { %>
                     'docs/styleguide/public/images',<% } %>
                     '!*.js',

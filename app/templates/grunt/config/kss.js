@@ -7,8 +7,8 @@ var taskConfig = function(grunt) {
 
     grunt.config.set('kss', {
         options: {
-        includeType: '<% if (cssOption === 'Sass') { %>scss<% } else if (cssOption === 'Less') { %>less<% } else if (cssOption === 'CSS') { %>css<% } %>',
-        includePath: '<%%= yeogurt.client %>/styles/main.<% if (cssOption === 'Sass') { %>scss<% } else if (cssOption === 'Less') { %>less<% } else if (cssOption === 'CSS') { %>css<% } %>',<% if (cssOption === 'Sass') { %>
+        includeType: '<% if (cssOption === 'sass') { %>scss<% } else if (cssOption === 'less') { %>less<% } else if (cssOption === 'css') { %>css<% } %>',
+        includePath: '<%%= yeogurt.client %>/styles/main.<% if (cssOption === 'sass') { %>scss<% } else if (cssOption === 'less') { %>less<% } else if (cssOption === 'css') { %>css<% } %>',<% if (cssOption === 'sass') { %>
             scssRoot: ['<%%= yeogurt.client %>/styles'],<% } %>
             template: '<%%= yeogurt.client %>/docs/styleguide'
         },

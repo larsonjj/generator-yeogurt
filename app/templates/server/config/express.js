@@ -8,10 +8,10 @@ var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var errorHandler = require('errorhandler');
 var session = require('express-session');
-var logger = require('morgan');<% if (dbOption === 'MongoDB') { %>
+var logger = require('morgan');<% if (dbOption === 'mongodb') { %>
 var MongoStore = require('connect-mongo')({
     session: session
-});<% } %><% if ('MySQL'.indexOf(dbOption) > -1) { %>
+});<% } %><% if (dbOption === 'mysql') { %>
 var SequelizeStore = require('connect-session-sequelize')(session.Store);<% } %>
 
 // Configuration files
@@ -19,7 +19,7 @@ var secrets = require('./secrets');
 var settings = require('./env/default');
 var security = require('./security');
 
-var expressConfig = function(app, express,<% if ('MySQL'.indexOf(dbOption) > -1) { %> sequelize,<% } %> path) {
+var expressConfig = function(app, express,<% if (dbOption === 'mysql') { %> sequelize,<% } %> path) {
 
     var hour = 3600000;
     var day = hour * 24;
@@ -30,11 +30,11 @@ var expressConfig = function(app, express,<% if ('MySQL'.indexOf(dbOption) > -1)
     // Setup port for server to run on
     app.set('port', settings.server.port);
 
-     // Setup view engine for server side templating<% if (singlePageApplication || htmlOption === 'HTML') { %>
+     // Setup view engine for server side templating<% if (singlePageApplication || htmlOption === 'html') { %>
     app.engine('.html', require('ejs').__express);
-    app.set('view engine', 'html');<% } %><% if (!singlePageApplication && htmlOption !== 'HTML') { %>
-    app.engine('<%= htmlOption === 'Jade' ? 'jade' : '' %><%= htmlOption === 'Swig' ? 'swig' : '' %><%= htmlOption === 'HTML' ? 'html' : '' %>', require('<%= htmlOption.toLowerCase() %>').renderFile);
-    app.set('view engine', '<%= htmlOption === 'Jade' ? 'jade' : '' %><%= htmlOption === 'Swig' ? 'swig' : '' %>');<% } %>
+    app.set('view engine', 'html');<% } %><% if (!singlePageApplication && htmlOption !== 'html') { %>
+    app.engine('<%= htmlOption === 'jade' ? 'jade' : '' %><%= htmlOption === 'swig' ? 'swig' : '' %><%= htmlOption === 'html' ? 'html' : '' %>', require('<%= htmlOption.toLowerCase() %>').renderFile);
+    app.set('view engine', '<%= htmlOption === 'jade' ? 'jade' : '' %><%= htmlOption === 'swig' ? 'swig' : '' %>');<% } %>
 
     // Remove x-powered-by header (doesn't let clients know we are using Express)
     app.disable('x-powered-by');
@@ -61,11 +61,11 @@ var expressConfig = function(app, express,<% if ('MySQL'.indexOf(dbOption) > -1)
     app.use(session({
         secret: secrets.sessionSecret,
         saveUninitialized: true,
-        resave: true,<% if (dbOption === 'MongoDB') { %>
+        resave: true,<% if (dbOption === 'mongodb') { %>
         store: new MongoStore({
             url: settings.database.url,
             auto_reconnect: true,
-        }),<% } %><% if (dbOption === 'MySQL') { %>
+        }),<% } %><% if (dbOption === 'mysql') { %>
         store: new SequelizeStore({
             db: sequelize
         }),<% } %>

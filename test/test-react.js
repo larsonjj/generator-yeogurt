@@ -31,11 +31,11 @@ describe('yeogurt generator backbone + react', function () {
 
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
-            versionControl: 'SVN',
-            jsFramework: 'React',
-            jsOption: 'Browserify',
+            versionControl: 'svn',
+            jsFramework: 'react',
+            jsOption: 'browserify',
             singlePageApplication: true,
-            cssOption: 'Sass',
+            cssOption: 'sass',
             ieSupport: true,
             responsive: true,
             useGA: true,

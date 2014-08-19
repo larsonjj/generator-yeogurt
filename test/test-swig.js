@@ -31,9 +31,9 @@ describe('yeogurt generator Swig', function () {
 
         helpers.mockPrompt(this.app, {
             projectName: 'testing',
-            versionControl: 'SVN',
-            htmlOption: 'Swig',
-            cssOption: 'Sass',
+            versionControl: 'svn',
+            htmlOption: 'swig',
+            cssOption: 'sass',
             ieSupport: true,
             responsive: true,
             useGA: true,

@@ -16,14 +16,19 @@ var StyleGenerator = module.exports = function StyleGenerator(args, options, con
 
     // Remove all leading and trailing slashes in folder path
     this.cleanFolderPath = function(folder) {
-        var tempArray = [];
-        var cleanedStr = folder.replace(/^\/+|\/+$/g, '');
-        cleanedStr.split('/').forEach(function(item) {
-            if (item) {
-                tempArray.push(item);
-            }
-        });
-        return tempArray.join('/');
+        if (folder) {
+            var tempArray = [];
+            var cleanedStr = folder.replace(/^\/+|\/+$/g, '');
+            cleanedStr.split('/').forEach(function(item) {
+                if (item) {
+                    tempArray.push(item);
+                }
+            });
+            return tempArray.join('/');
+        }
+        else {
+            return '';
+        }
     };
 
     console.log('You called the style subgenerator with the argument ' + this.name + '.');
@@ -36,10 +41,10 @@ StyleGenerator.prototype.files = function files() {
         console.log('Name cannot be empty. Operation aborted.');
         return;
     }
-    if (this.cssOption === 'Less') {
+    if (this.cssOption === 'less') {
         this.template('style.less', 'client/styles/' + this.cleanFolderPath(this.folder) + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.less');
     }
-    else if (this.cssOption === 'Sass') {
+    else if (this.cssOption === 'sass') {
         this.template('style.less', 'client/styles/' + this.cleanFolderPath(this.folder) + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
     }
     else {

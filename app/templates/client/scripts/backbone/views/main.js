@@ -1,7 +1,7 @@
 /**
 *   Main View Description
 */
-<% if (jsOption === 'RequireJS') { %>
+<% if (jsOption === 'requirejs') { %>
 define(function (require) {
     'use strict';
 
@@ -13,7 +13,7 @@ define(function (require) {
         el: '#app-wrapper',
 
         // Compile our stats template
-        template: JST['client/templates/main<% if (jsTemplate === 'Lo-dash') { %>.jst<% } else if (jsTemplate === 'Handlebars') { %>.hbs<% } else if (jsTemplate === 'Jade') { %><% } %>'],
+        template: JST['client/templates/main<% if (jsTemplate === 'lodash') { %>.jst<% } else if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'jade') { %><% } %>'],
 
         // Delegated events
         events: {},
@@ -32,7 +32,7 @@ define(function (require) {
     });
 
     return MainView;
-});<% } %><% if (jsOption === 'Browserify') { %>
+});<% } %><% if (jsOption === 'browserify') { %>
 'use strict';
 
 // Our overall **MainView** is the top-level piece of UI.
@@ -43,7 +43,7 @@ var MainView = Backbone.View.extend({
     el: '#app-wrapper',
 
     // Load up JST template
-    template: JST['client/templates/main<% if (jsTemplate === 'Lo-dash') { %>.jst<% } else if (jsTemplate === 'Handlebars') { %>.hbs<% } else if (jsTemplate === 'Jade') { %><% } %>'],
+    template: JST['client/templates/main<% if (jsTemplate === 'lodash') { %>.jst<% } else if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'jade') { %><% } %>'],
 
     // Delegated events
     events: {},
@@ -62,7 +62,7 @@ var MainView = Backbone.View.extend({
 });
 
 module.exports = MainView;
-<% } %><% if (jsOption === 'None') { %>
+<% } %><% if (jsOption === 'none') { %>
 'use strict';
 
 var <%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
@@ -75,7 +75,7 @@ var <%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
         el: '#app-wrapper',
 
         // Load up JST template
-        template: JST['client/templates/main<% if (jsTemplate === 'Lo-dash') { %>.jst<% } else if (jsTemplate === 'Handlebars') { %>.hbs<% } else if (jsTemplate === 'Jade') { %><% } %>'],
+        template: JST['client/templates/main<% if (jsTemplate === 'lodash') { %>.jst<% } else if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'jade') { %><% } %>'],
 
         // Delegated events
         events: {},

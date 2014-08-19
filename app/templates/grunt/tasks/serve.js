@@ -14,18 +14,18 @@ var taskConfig = function(grunt) {
             'clean:server',<% if (useServer) { %>
             'env:all',<% } %>
             'injector',
-            'copy:server',<% if (jsOption === 'Browserify') { %>
+            'copy:server',<% if (jsOption === 'browserify') { %>
             'browserify:server',
-            'exorcise:server',<% } %><% if (jsTemplate === 'Lo-dash') { %>
-            'jst:server',<% } else if (jsTemplate === 'Handlebars') { %>
-            'handlebars:server',<% } else if (jsTemplate === 'Jade') { %>
-            'jade:server',<% } %><% if (htmlOption === 'Jade' && !useServer ) { %>
-            'jade:server',<% } else if (htmlOption === 'Swig' && !useServer ) {  %>
+            'exorcise:server',<% } %><% if (jsTemplate === 'lodash') { %>
+            'jst:server',<% } else if (jsTemplate === 'handlebars') { %>
+            'handlebars:server',<% } else if (jsTemplate === 'jade') { %>
+            'jade:server',<% } %><% if (htmlOption === 'jade' && !useServer ) { %>
+            'jade:server',<% } else if (htmlOption === 'swig' && !useServer ) {  %>
             'swig:server',<% } %><% if (useDashboard) { %>
             'dashboard:server',<% } %><% if (useKss) { %>
             'kss:server',<% } %><% if (useJsdoc) { %>
-            'jsdoc:server',<% } %><% if (cssOption === 'Less') { %>
-            'less:server',<% } %><% if (cssOption === 'Sass') { %>
+            'jsdoc:server',<% } %><% if (cssOption === 'less') { %>
+            'less:server',<% } %><% if (cssOption === 'sass') { %>
             'sass:server',<% } %>
             'clean:temp',<% if (useServer) { %>
             'express:server',
