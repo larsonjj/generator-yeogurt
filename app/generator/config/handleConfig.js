@@ -79,15 +79,15 @@ var handleConfig = function handleConfig() {
 
     // Default Overwrites
     if (this.jsFramework === 'react') {
-        this.jsTemplate = this.answers.jsTemplate = 'React';
-        this.jsOption = this.answers.jsOption = 'Browserify';
+        this.jsTemplate = this.answers.jsTemplate = 'react';
+        this.jsOption = this.answers.jsOption = 'browserify';
     }
     if (!this.dbOption) {
         this.dbOption = this.answers.dbOption = 'none';
     }
 
     // Default jsOption to Browserify
-    this.jsOption = this.answers.jsOption || 'Browserify';
+    this.jsOption = this.answers.jsOption || 'browserify';
 
     // Determine if feature exists within a given object
     function hasFeature(feat, obj) {

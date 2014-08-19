@@ -55,7 +55,7 @@ var TemplateGenerator = module.exports = function TemplateGenerator(args, option
         }
     };
 
-    console.log('You called the view subgenerator with the argument ' + this.name + '.');
+    console.log('You called the template subgenerator with the argument ' + this.name + '.');
 };
 
 util.inherits(TemplateGenerator, yeoman.generators.NamedBase);
