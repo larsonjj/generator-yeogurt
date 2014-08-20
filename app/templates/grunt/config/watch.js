@@ -171,7 +171,7 @@ var taskConfig = function(grunt) {
             }
         }<% } %>
     };
-    <% if (useKss || useJsdoc) { %>
+    <% if (useKss || useJsdoc || useDashboard) { %>
     // Documentation specific configuration
     var docsConfig = {<% if (htmlOption === 'jade' && useDashboard) { %>
         jadeDocs: {
@@ -258,7 +258,7 @@ var taskConfig = function(grunt) {
     };<% } %>
 
     grunt.config.set('watch', config);
-    <% if (useKss || useJsdoc) { %>
+    <% if (useKss || useJsdoc || useDashboard) { %>
     grunt.registerTask('listen:docs', function() {
         grunt.config('watch', _.extend(config, docsConfig));
         grunt.task.run('watch');

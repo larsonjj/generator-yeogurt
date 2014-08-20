@@ -33,9 +33,9 @@ var taskConfig = function(grunt) {
             'open'<% } else { %>
             'connect:server'<% } %>
         ]);
-        <% if (useKss || useJsdoc) { %>
+        <% if (useKss || useJsdoc || useDashboard) { %>
         if (target === 'docs') {
-            return grunt.task.run(['listen']);
+            return grunt.task.run(['listen:docs']);
         }
 
         return grunt.task.run(['watch']);

@@ -2,13 +2,13 @@
 <% if (useDashboard) { %>{# [dash:data]
     {
         "status": "development",
-        "category": "<%= view %>",
-        "label": "<%= name %>",
+        "category": "module",
+        "label": "<%= _.titleize(name) %>",
         "link": "../dashboard/generated/<%= name %>.html"
     }
     [/dash] #}
 {# [dash:swig]
-    {% <%= name || 'example' %>.content() %}
+    {{ <%= _.camelize(name) || 'example' %>.content() }}
     [/dash] #}
 
 <% } %>{% macro content() %}
@@ -28,9 +28,9 @@
 {# [dash:data]
     {
         "status": "development",
-        "category": "<%= view ? view : 'page' %>",
+        "category": "page",
         "label": "<%= _.titleize(name) %>",
-        "link": "<% if (view === 'page') { %>../<%= _.slugify(name.toLowerCase()) %>.html<% } else { %>../views/<%= view %>s/<%= _.slugify(name.toLowerCase()) %>.html<% } %>"
+        "link": "../<%= name %>.html"
     }
     [/dash] #}
 <% } %><% if (!useTemplate) { %>
