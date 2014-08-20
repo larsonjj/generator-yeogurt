@@ -11,13 +11,13 @@ var taskConfig = function(grunt) {
                 dashTemplate: '<%%= yeogurt.client %>/dashboard/template.hbs',
                 logo: 'images/yeogurt-logo.png',
                 generatedDir: '<%%= yeogurt.staticServer %>/dashboard/generated',
-                assets: [<% if (htmlOption !== "HTML") { %>
-                    '<%%= yeogurt.client %>/views/components/*.<% if (htmlOption === "Jade") { %>jade<% } else if (htmlOption === "Swig") { %>swig<% } %>'
-                <% } %>]
+                assets: [
+                    // Place all needed file includes here
+                ]
             },
             files: {
                 '<%%= yeogurt.staticServer %>/dashboard/index.html': [
-                    '<%%= yeogurt.client %>/**/*.<% if (htmlOption === "Jade") { %>jade<% } else if (htmlOption === "Swig") { %>swig<% } else if (htmlOption === "HTML") { %>html<% } %>'
+                    '<%%= yeogurt.client %>/**/*.<% if (htmlOption === "jade") { %>jade<% } else if (htmlOption === "swig") { %>swig<% } else if (htmlOption === "html") { %>html<% } %>'
                 ]
             }
         },
@@ -26,13 +26,13 @@ var taskConfig = function(grunt) {
                 dashTemplate: '<%%= yeogurt.client %>/dashboard/template.hbs',
                 logo: 'images/yeogurt-logo.png',
                 generatedDir: '<%%= yeogurt.dist %>/dashboard/generated',
-                assets: [<% if (htmlOption !== "HTML") { %>
-                    '<%%= yeogurt.client %>/views/components/*.<% if (htmlOption === "Jade") { %>jade<% } else if (htmlOption === "Swig") { %>swig<% } %>'
-                <% } %>]
+                assets: [
+                    // Place all needed file includes here
+                ]
             },
             files: {
                 '<%%= yeogurt.dist %>/dashboard/index.html': [
-                    '<%%= yeogurt.client %>/**/*.<% if (htmlOption === "Jade") { %>jade<% } else if (htmlOption === "Swig") { %>swig<% } else if (htmlOption === "HTML") { %>html<% } %>'
+                    '<%%= yeogurt.client %>/**/*.<% if (htmlOption === "jade") { %>jade<% } else if (htmlOption === "swig") { %>swig<% } else if (htmlOption === "html") { %>html<% } %>'
                 ]
             }
         }

@@ -47,7 +47,7 @@ var taskConfig = function(grunt) {
         },<% } %><% if (htmlOption === 'html' || jsFramework === 'backbone') { %>
         html: {
             files: [
-                '<%%= yeogurt.client %>/views/**/*.html'
+                '<%%= yeogurt.client %>/templates/**/*.html'
             ],
             tasks: [
                 'newer:copy:server',
@@ -176,7 +176,7 @@ var taskConfig = function(grunt) {
     var docsConfig = {<% if (htmlOption === 'jade' && useDashboard) { %>
         jadeDocs: {
             files: [
-                '<%%= yeogurt.client %>/views/*.jade'
+                '<%%= yeogurt.client %>/templates/*.jade'
             ],
             tasks: [
                 'dashboard:server'
@@ -184,8 +184,8 @@ var taskConfig = function(grunt) {
         },
         jadePartialsDocs: {
             files: [
-                '<%%= yeogurt.client %>/views/**/*.jade',
-                '!<%%= yeogurt.client %>/views/*.jade'
+                '<%%= yeogurt.client %>/templates/**/*.jade',
+                '!<%%= yeogurt.client %>/templates/*.jade'
             ],
             tasks: [
                 'dashboard:server'
@@ -193,7 +193,7 @@ var taskConfig = function(grunt) {
         },<% } %><% if (htmlOption === 'swig' && useDashboard) { %>
         swigDocs: {
             files: [
-                '<%%= yeogurt.client %>/views/*.swig'
+                '<%%= yeogurt.client %>/templates/*.swig'
             ],
             tasks: [
                 'dashboard:server'
@@ -201,8 +201,8 @@ var taskConfig = function(grunt) {
         },
         swigPartialsDocs: {
             files: [
-                '<%%= yeogurt.client %>/views/**/*.swig',
-                '!<%%= yeogurt.client %>/views/*.swig'
+                '<%%= yeogurt.client %>/templates/**/*.swig',
+                '!<%%= yeogurt.client %>/templates/*.swig'
             ],
             tasks: [
                 'dashboard:server'
@@ -210,7 +210,7 @@ var taskConfig = function(grunt) {
         },<% } %><% if (useDashboard && htmlOption === 'html' || jsFramework === 'backbone') { %>
         htmlDocs: {
             files: [
-                '<%%= yeogurt.client %>/views/**/*.html'
+                '<%%= yeogurt.client %>/templates/**/*.html'
             ],
             tasks: [
                 'dashboard:server',

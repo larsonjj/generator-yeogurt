@@ -1,5 +1,5 @@
 /**
- * Generate files specific to templates/views
+ * Generate files specific to templates/templates
  */
 
 'use strict';

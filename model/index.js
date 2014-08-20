@@ -13,8 +13,7 @@ var ModelGenerator = module.exports = function ModelGenerator(args, options, con
     this.view = this.options.type || 'page';
     this.useTemplate = this.options.template || false;
     this.folder = this.options.folder || '';
-    this.useDashboard = fileJSON.extras.indexOf('useDashboard') > -1 ? true : false;
-    this.structure = fileJSON.structure;
+    this.useDashboard = fileJSON.useDashboard
     this.jsTemplate = fileJSON.jsTemplate;
     this.htmlOption = fileJSON.htmlOption;
     this.useBootstrap = fileJSON.extras.indexOf('useBootstrap') > -1 ? true : false;

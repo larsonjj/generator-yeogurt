@@ -11,8 +11,7 @@ var CollectionGenerator = module.exports = function CollectionGenerator(args, op
     // options
     this.useModel = this.options.model || false;
     this.folder = this.options.folder || '';
-    this.useDashboard = fileJSON.extras.indexOf('useDashboard') > -1 ? true : false;
-    this.structure = fileJSON.structure;
+    this.useDashboard = fileJSON.useDashboard
     this.jsTemplate = fileJSON.jsTemplate;
     this.htmlOption = fileJSON.htmlOption;
     this.useBootstrap = fileJSON.extras.indexOf('useBootstrap') > -1 ? true : false;

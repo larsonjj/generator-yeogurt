@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('underscore');
+var _ = require('lodash');
 var path = require('path');
 var fs = require('fs');
 var settings = require('../config/env/default');

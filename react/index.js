@@ -10,7 +10,6 @@ var ReactGenerator = module.exports = function ReactGenerator(args, options, con
 
     // options
     this.folder = this.options.folder || '';
-    this.structure = fileJSON.structure;
     this.projectName = fileJSON.projectName;
     this.jsTemplate = fileJSON.jsTemplate;
     this.jsFramework = fileJSON.jsFramework;

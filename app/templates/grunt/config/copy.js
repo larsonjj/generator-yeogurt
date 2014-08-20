@@ -54,7 +54,7 @@ var taskConfig = function(grunt) {
                 ]
             }<% if (useServer && singlePageApplication) { %>, {
                 expand: true,
-                cwd: 'server/views/',
+                cwd: 'server/templates/',
                 dest: '.tmp',
                 src: [
                     'index.html'
