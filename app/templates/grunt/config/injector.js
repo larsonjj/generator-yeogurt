@@ -3,6 +3,8 @@
  */
 'use strict';
 
+var _str = require('underscore.string');
+
 var taskConfig = function(grunt) {
 
     grunt.config.set('injector', {
@@ -15,7 +17,7 @@ var taskConfig = function(grunt) {
                 transform: function(filePath) {<% if (useServer) { %>
                     filePath = filePath.replace('/server/templates/', '../');
                     <% } else { %>
-                    filePath = filePath.replace('/client/', '');<% } %>
+                    filePath = filePath.replace('/client/templates/', '../');<% } %>
                     return 'include ' + filePath;
                 },
                 starttag: '//- [injector:jade]',
@@ -36,9 +38,9 @@ var taskConfig = function(grunt) {
                 transform: function(filePath) {<% if (useServer) { %>
                     filePath = filePath.replace('/server/templates/', '../');
                     <% } else { %>
-                    filePath = filePath.replace('/client/', '');<% } %>
+                    filePath = filePath.replace('/client/templates/', '../');<% } %>
                     var fileName = filePath.substring(filePath.lastIndexOf('/')+1).slice(0, -5);
-                    return '{% import "' + filePath + '" as ' + fileName + ' %}';
+                    return '{% import "' + filePath + '" as ' + _str.camelize(fileName) + ' %}';
                 },
                 starttag: '{# [injector:swig] #}',
                 endtag: '{# [endinjector] #}'

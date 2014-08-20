@@ -8,6 +8,8 @@
     }
     [/dash] #}
 {# [dash:swig]
+    {% import 'client/templates/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= name || 'example' %>.swig' as <%= _.camelize(name) || 'example' %> %}
+
     {{ <%= _.camelize(name) || 'example' %>.content() }}
     [/dash] #}
 
@@ -30,7 +32,7 @@
         "status": "development",
         "category": "page",
         "label": "<%= _.titleize(name) %>",
-        "link": "../<%= name %>.html"
+        "link": "../<%= _.slugify(name.toLowerCase()) %>.html"
     }
     [/dash] #}
 <% } %><% if (!useTemplate) { %>

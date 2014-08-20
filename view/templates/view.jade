@@ -2,12 +2,14 @@
 <% if (useDashboard) { %>//- [dash:data]
     {
         "status": "development",
-        "category": "<%= view %>",
-        "label": "<%= name %>",
-        "link": "../dashboard/generated/<%= name %>.html"
+        "category": "module",
+        "label": "<%= _.titleize(name) %>",
+        "link": "../dashboard/generated/<%= _.slugify(name.toLowerCase()) %>.html"
     }
     [/dash]
 //- [dash:jade]
+    include client/templates/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= name || 'example' %>
+
     +<%= name || 'example' %>()
     [/dash]
 
@@ -26,9 +28,9 @@ block layout
 //- [dash:data]
     {
         "status": "development",
-        "category": "<%= view ? view : 'page' %>",
+        "category": "page",
         "label": "<%= _.titleize(name) %>",
-        "link": "<% if (view === 'page') { %>../<%= _.slugify(name.toLowerCase()) %>.html<% } else { %>../views/<%= view %>s/<%= _.slugify(name.toLowerCase()) %>.html<% } %>"
+        "link": "../<%= _.slugify(name.toLowerCase()) %>.html"
     }
     [/dash]
 <% } %><% if (!useTemplate) { %>

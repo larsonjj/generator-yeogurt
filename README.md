@@ -111,7 +111,7 @@ Available sub-generators:
 ### Template
 
 #### Static Site Specific
-Creates  a jade file within the `client/templates` folder by default or within another folder using the `--type` option. Automatically, the created file's path will be included within the base layout file (Jade mixins and Swig macros must be included in the file(s) where you want to use them). If you wish to not have the generated file imported into the base layout file, pass the `--noImport` flag. Note: Importing is only designed to work with `type=module`. You can also specify a folder using the `--folder` option which is relative to the `client/templates` folder
+Creates  a jade file within the `client/templates` folder. You can also specify a folder using the `--folder` option which is relative to the `client/templates` folder Automatically, the created file's path will be included within the base layout file (Jade mixins and Swig macros must be included in the file(s) where you want to use them).
 
 Example:
 ```bash

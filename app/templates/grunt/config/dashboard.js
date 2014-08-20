@@ -11,9 +11,9 @@ var taskConfig = function(grunt) {
                 dashTemplate: '<%%= yeogurt.client %>/dashboard/template.hbs',
                 logo: 'images/yeogurt-logo.png',
                 generatedDir: '<%%= yeogurt.staticServer %>/dashboard/generated',
-                assets: [
-                    // Place all needed file includes here
-                ]
+                assets: [<% if (htmlOption !== "html") { %>
+                    '<%%= yeogurt.client %>/templates/*.<% if (htmlOption === "jade") { %>jade<% } else if (htmlOption === "swig") { %>swig<% } %>'
+                <% } %>]
             },
             files: {
                 '<%%= yeogurt.staticServer %>/dashboard/index.html': [
@@ -26,9 +26,9 @@ var taskConfig = function(grunt) {
                 dashTemplate: '<%%= yeogurt.client %>/dashboard/template.hbs',
                 logo: 'images/yeogurt-logo.png',
                 generatedDir: '<%%= yeogurt.dist %>/dashboard/generated',
-                assets: [
-                    // Place all needed file includes here
-                ]
+                assets: [<% if (htmlOption !== "html") { %>
+                    '<%%= yeogurt.client %>/templates/*.<% if (htmlOption === "jade") { %>jade<% } else if (htmlOption === "swig") { %>swig<% } %>'
+                <% } %>]
             },
             files: {
                 '<%%= yeogurt.dist %>/dashboard/index.html': [
