@@ -26,6 +26,12 @@
 * `index.html` moved from `dev/` to `lib/views` when using express server. In all previous configurations, a `index.html` was always found int he `dev/` folder. This is still true except when using an express server. When using the generated express server, the `index.html` is used as a layout, so it is included within the server `lib/` folder under `views/`. Since the client should never have to touch this file, this configuration seems to make the most sense.
 * Added Modernizr to predef array in `.jshintrc`
 
+### v0.9.7:
+#### date: 2014-08-21
+##### changes:
+* Updated grunt-sass package to v0.14.0
+
+
 ### v0.9.6:
 #### date: 2014-07-31
 ##### changes:
