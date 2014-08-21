@@ -13,6 +13,7 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 - Install the generator: `npm install -g generator-yeogurt` <br>
 - If you are using JSDoc for documentation, you will also need the [Java Runtime](https://www.java.com/en/download/)
 - Run the generator: `yo yeogurt`
+- Now you can run one of [grunt tasks](#grunt-tasks) to develop, test or deploy your app
 
 Note For Mac Users: You will need to install XCode, install command-line tools, and accept the licensing agreement.
 
