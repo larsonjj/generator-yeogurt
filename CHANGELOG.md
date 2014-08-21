@@ -1,3 +1,8 @@
+### v0.9.7:
+#### date: 2014-08-21
+##### changes:
+* Updated grunt-sass package to v0.14.0
+
 ### v0.9.6:
 #### date: 2014-07-31
 ##### changes:
