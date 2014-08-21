@@ -67,12 +67,10 @@
         "include-all": "0.1.6",<% if (jsOption === 'browserify') { %>
         "browserify" : "~4.2.0",<% } else if (jsOption === 'requirejs') { %>
         "karma-requirejs": "0.2.1",<% } %>
-        "karma-phantomjs-launcher": "0.1.2",
-        "karma-chrome-launcher": "0.1.2",<% if (testFramework === 'jasmine') { %>
+        "karma-phantomjs-launcher": "0.1.2",<% if (testFramework === 'jasmine') { %>
         "karma-jasmine": "0.1.5",<% } else if (testFramework === 'mocha') { %>
         "karma-chai": "0.1.0",
         "karma-mocha": "0.1.3",<% } %>
-        "karma-jasmine": "0.1.5",
         "karma": "0.12.21",
         "lodash": "2.4.1",
         "time-grunt": "0.2.10",<% if (useDashboard) { %>
