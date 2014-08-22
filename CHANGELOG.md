@@ -1,3 +1,8 @@
+### v0.9.9:
+#### date: 2014-08-22
+##### changes:
+* Added Gruntfile.js and grunt config file watch task that auto-reloads the watch task when changes are detected. As per [#39](https://github.com/larsonjj/generator-yeogurt/issues/39) discussion
+
 ### v0.9.8:
 #### date: 2014-08-22
 ##### changes:

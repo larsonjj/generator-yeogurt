@@ -9,6 +9,12 @@ module.exports = function(grunt) {
         options: {
             spawn: true,
             livereload: false
+        },
+        configFiles: {
+            files: ['Gruntfile.js', 'grunt/**/*.js'],
+            options: {
+                reload: true
+            }
         },<% if (htmlOption === 'Jade') { %>
         jade: {
             files: [
