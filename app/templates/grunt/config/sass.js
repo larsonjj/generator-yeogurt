@@ -8,11 +8,10 @@ module.exports = function(grunt) {
     grunt.config.set('sass', {
         server: {
             options: {
-                sourceComments: 'map',
                 outputStyle: 'nested',
-                sourceMap: '<%%= yeogurt.server %>/styles/main.css.map',
+                sourceMap: 'true',
                 includePaths: [
-                    '<%%= yeogurt.dev %>/styles/**/*.scss'
+                    '<%%= yeogurt.dev %>/styles/'
                 ]
             },
             files: {
@@ -21,11 +20,10 @@ module.exports = function(grunt) {
         },<% if (ieSupport) { %>
         serverPrint: {
             options: {
-                sourceComments: 'map',
                 outputStyle: 'compressed',
-                sourceMap: '<%%= yeogurt.server %>/styles/print.css.map',
+                sourceMap: 'true',
                 includePaths: [
-                    '<%%= yeogurt.dev %>/styles/**/*.scss'
+                    '<%%= yeogurt.dev %>/styles/'
                 ]
             },
             files: {
@@ -34,11 +32,10 @@ module.exports = function(grunt) {
         },<% } %>
         dist: {
             options: {
-                sourceComments: 'map',
                 outputStyle: 'compressed',
-                sourceMap: '<%%= yeogurt.dist %>/styles/main.css.map',
+                sourceMap: 'true',
                 includePaths: [
-                    '<%%= yeogurt.dev %>/styles/**/*.scss'
+                    '<%%= yeogurt.dev %>/styles/'
                 ]
             },
             files: {
@@ -47,11 +44,10 @@ module.exports = function(grunt) {
         },<% if (ieSupport) { %>
         distPrint: {
             options: {
-                sourceComments: 'map',
                 outputStyle: 'compressed',
-                sourceMap: '<%%= yeogurt.server %>/styles/print.css.map',
+                sourceMap: 'true',
                 includePaths: [
-                    '<%%= yeogurt.dev %>/styles/**/*.scss'
+                    '<%%= yeogurt.dev %>/styles/'
                 ]
             },
             files: {
