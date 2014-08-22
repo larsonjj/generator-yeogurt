@@ -59,7 +59,7 @@ module.exports = function(grunt) {
         },
         <% } %><% if (cssOption === 'SASS') { %>
         sass: {
-            files: ['<%%= yeogurt.dev %>/styles/**/*.<% if (useKss) { %>{scss,md}<% } else { %>scss<% } %>'],
+            files: ['<%%= yeogurt.dev %>/styles/**/*.<% if (useKss) { %>{scss,sass,md}<% } else { %>{scss,sass}<% } %>'],
             tasks: [
                 'sass:server',<% if (useKss) { %>
                 'kss:server'<% } %>
@@ -126,7 +126,7 @@ module.exports = function(grunt) {
                 '<%%= yeogurt.dev %>/.htaccess'<% } %>,
                 '<%%= yeogurt.server %>/styles/fonts/**/*.*',
                 '<%%= yeogurt.server %>/**/*.html'<% if (cssOption === 'SASS') { %>,
-                '<%%= yeogurt.dev %>/styles/**/*.scss'<% } else if (cssOption === 'LESS') { %>,
+                '<%%= yeogurt.dev %>/styles/**/*.{scss,sass}'<% } else if (cssOption === 'LESS') { %>,
                 '<%%= yeogurt.dev %>/styles/**/*.less'<% } %>,
                 '<%%= yeogurt.server %>/scripts/**/*.js',
                 '<%%= yeogurt.server %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
