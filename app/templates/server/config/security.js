@@ -11,7 +11,7 @@ var settings = require('./env/default');
 
 /**
  * Takes in express req, res, and next parameters and sets up
- * Paypal lusca module with whitelabel routes
+ * Paypal lusca module with white-listed routes
  */
 var securityConfig = function(req, res, next) {
 
@@ -19,7 +19,7 @@ var securityConfig = function(req, res, next) {
         // Conditional whitelisted URLs.
         if (_.contains(settings.security.whitelists[prop], req.path)) {
             settings.security.config[prop.replace('Whitelist', '')] = false;
-            console.log('"' + req.path + '" is whitelisted for: ' + prop.replace('Whitelist', ''));
+            console.log('"' + req.path + '" is white-listed for: ' + prop.replace('Whitelist', ''));
         }
     }
 

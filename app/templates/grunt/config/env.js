@@ -2,8 +2,8 @@
  * Configuration for node environment task(s)
  */
 'use strict';
-
-var secrets = require('../../server/config/secrets');
+<% if (useSession) { %>
+var secrets = require('../../server/config/secrets');<% } %>
 
 var taskConfig = function(grunt) {
 
@@ -14,7 +14,9 @@ var taskConfig = function(grunt) {
         prod: {
             NODE_ENV: 'production'
         },
-        all: secrets
+        all: <% if (useSession) { %>secrets<% } else { %>{
+            // Environment variables that are always loaded
+        }<% } %>
     });
 
 };

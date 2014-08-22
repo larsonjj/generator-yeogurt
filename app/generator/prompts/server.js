@@ -67,6 +67,12 @@ var serverPrompts = function serverPrompts() {
         name: 'useSession',
         message: 'Would you like to use ' + 'Cookie Session Storage'.blue + '?',
         default: true
+    }, {
+        when: function(answers) { return answers.useSession && answers.useServer; },
+        type: 'confirm',
+        name: 'useSecurity',
+        message: 'Would you like to use ' + 'Paypal\'s Lusca Security Module'.blue + '?',
+        default: true
     }], function(answers) {
         this.serverPrompts = answers;
 

@@ -89,18 +89,10 @@ var expressConfig = function(app, express,<% if (dbOption === 'mysql') { %> sequ
             res.header('Expires', 0);
             next();
         });
-    }
+    }<% if (useSession && useSecurity) { %>
 
     // Initialize Lusca Security
-    app.use(function(req, res, next) {
-        security(req, res, next);
-    });
-
-    // Make it easier to read user data within templates
-    app.use(function(req, res, next) {
-        res.locals.user = req.user;
-        next();
-    });
+    app.use(security);<% } %>
 
     // Load routes
     require('../routes')(app);

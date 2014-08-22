@@ -17,7 +17,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
         <title><%= projectName %></title>
         <meta name="description" content=""/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/><% if (useServer) { %>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/><% if (useServer && useSession && useSecurity) { %>
         <meta name="csrf-token" content="{{_csrf}}" /><% } %><% if (useGA) { %>
         <link href="//www.google-analytics.com" rel="dns-prefetch"><% } %>
 <% if (cssOption === 'css') { %><% if (useServer) { %>
