@@ -10,8 +10,10 @@ module.exports = function(grunt) {
             options: {
                 pretty: true,
                 client: false,
-                data: {
-                    debug: true
+                data: function(dest,src) {
+                    var data = locals;
+                    data.debug = true;
+                    return data;
                 }
             },
             expand: true,
@@ -24,8 +26,10 @@ module.exports = function(grunt) {
             options: {
                 pretty: true,
                 client: false,
-                data: {
-                    debug: false
+                data: function(dest,src) {
+                    var data = locals;
+                    data.debug = false;
+                    return data;
                 }
             },
             expand: true,
@@ -38,8 +42,10 @@ module.exports = function(grunt) {
             options: {
                 pretty: true,
                 client: true,
-                data: {
-                    debug: true
+                data: function(dest,src) {
+                    var data = locals;
+                    data.debug = true;
+                    return data;
                 }
             },
             files: {
@@ -50,8 +56,10 @@ module.exports = function(grunt) {
             options: {
                 pretty: false,
                 client: true,
-                data: {
-                    debug: false
+                data: function(dest,src) {
+                    var data = locals;
+                    data.debug = false;
+                    return data;
                 }
             },
             files: {
@@ -62,8 +70,10 @@ module.exports = function(grunt) {
             options: {
                 pretty: true,
                 client: true,
-                data: {
-                    debug: true
+                data: function(dest,src) {
+                    var data = locals;
+                    data.debug = true;
+                    return data;
                 }
             },
             files: {
