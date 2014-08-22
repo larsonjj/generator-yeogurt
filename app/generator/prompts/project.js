@@ -4,8 +4,8 @@
 
 'use strict';
 
-var projectInfo = function projectInfo() {
-    if (this.skipConfig) {
+var projectPrompts = function projectPrompts() {
+    if (this.existingConfig) {
         return;
     }
 
@@ -33,10 +33,10 @@ var projectInfo = function projectInfo() {
             return filterMap[val];
         }
     }], function(answers) {
-        this.projectInfo = answers;
+        this.projectPrompts = answers;
 
         cb();
     }.bind(this));
 };
 
-module.exports = projectInfo;
+module.exports = projectPrompts;

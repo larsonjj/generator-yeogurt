@@ -8,7 +8,7 @@
 * Add new options to generate a Node + express server
 * Add new options to work with either MySQL (via [Sequelize](https://github.com/sequelize/sequelize)) or MongoDB (via [Mongoose](https://github.com/LearnBoost/mongoose)) with an express server
 * Added Database information options: host, port, username, password, etc if you choose to use a database
-* Updated React to v0.11.0
+* Updated React to v0.11.x
 * Removed ability to use React with RequireJS (too many custom configurations to get react to work with r.js optimizer)
 * Added shim to get react working with phantomJS when running unit tests
 * Removed `this.toTitleCase()` function from sub-generators as it is no longer used

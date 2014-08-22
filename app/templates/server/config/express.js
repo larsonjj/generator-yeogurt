@@ -6,16 +6,16 @@
 var compress = require('compression');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
-var errorHandler = require('errorhandler');
-var session = require('express-session');
-var logger = require('morgan');<% if (dbOption === 'mongodb') { %>
+var logger = require('morgan');
+var errorHandler = require('errorhandler');<% if (useSession) { %>
+var session = require('express-session');<% if (dbOption === 'mongodb') { %>
 var MongoStore = require('connect-mongo')({
     session: session
 });<% } %><% if (dbOption === 'mysql') { %>
-var SequelizeStore = require('connect-session-sequelize')(session.Store);<% } %>
+var SequelizeStore = require('connect-session-sequelize')(session.Store);<% } %><% } %>
 
-// Configuration files
-var secrets = require('./secrets');
+// Configuration files<% if (useSession) { %>
+var secrets = require('./secrets');<% } %>
 var settings = require('./env/default');
 var security = require('./security');
 
@@ -54,7 +54,7 @@ var expressConfig = function(app, express,<% if (dbOption === 'mysql') { %> sequ
 
     // Returns middleware that parses both json and urlencoded.
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.urlencoded({ extended: true }));<% if (useSession) { %>
 
     // Create cookie that keeps track of user sessions
     // And store it in the Database
@@ -73,7 +73,7 @@ var expressConfig = function(app, express,<% if (dbOption === 'mysql') { %> sequ
             httpOnly: true, /*, secure: true for HTTPS*/
             maxAge: day
         }
-    }));
+    }));<% } %>
 
     if ('development' === env) {
         // Include livereload script

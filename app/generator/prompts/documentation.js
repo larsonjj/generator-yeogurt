@@ -4,8 +4,8 @@
 
 'use strict';
 
-var documentationInfo = function documentationInfo() {
-    if (this.skipConfig) {
+var documentationPrompts = function documentationPrompts() {
+    if (this.existingConfig) {
         return;
     }
 
@@ -25,16 +25,16 @@ var documentationInfo = function documentationInfo() {
         message: 'Would you like to generate a styleguide with ' + 'KSS (Knyle Style Sheets)'.blue + '?',
         default: true
     }, {
-        when: function() {return !self.serverInfo.useServer && !self.clientInfo.singlePageApplication;},
+        when: function() {return !self.serverPrompts.useServer && !self.clientPrompts.singlePageApplication;},
         type: 'confirm',
         name: 'useDashboard',
         message: 'Would you like to ' + 'generate a dashboard'.blue + ' for your site/app',
         default: false
     }], function(answers) {
-        this.documentation = answers;
+        this.documentationPrompts = answers;
 
         cb();
     }.bind(this));
 };
 
-module.exports = documentationInfo;
+module.exports = documentationPrompts;

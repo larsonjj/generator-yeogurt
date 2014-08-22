@@ -4,8 +4,8 @@
 
 'use strict';
 
-var clientInfo = function clientInfo() {
-    if (this.skipConfig) {
+var clientPrompts = function clientPrompts() {
+    if (this.existingConfig) {
         return;
     }
 
@@ -20,7 +20,7 @@ var clientInfo = function clientInfo() {
         message: 'Will this be a ' + 'Single Page Application'.blue + '?',
         default: true
     }, {
-        when: function(answers) { return !answers.singlePageApplication && !self.serverInfo.useServer; },
+        when: function(answers) { return !answers.singlePageApplication && !self.serverPrompts.useServer; },
         type: 'list',
         name: 'htmlOption',
         message: 'What would you like to use to ' + 'write markup'.blue + '?',
@@ -35,7 +35,7 @@ var clientInfo = function clientInfo() {
             return filterMap[val];
         }
     }, {
-        when: function(answers) { return !answers.singlePageApplication && self.serverInfo.useServer; },
+        when: function(answers) { return !answers.singlePageApplication && self.serverPrompts.useServer; },
         type: 'list',
         name: 'htmlOption',
         message: 'Which ' + 'HTML preprocessor'.blue + ' would you like to use?',
@@ -164,7 +164,7 @@ var clientInfo = function clientInfo() {
         message: 'Will you be using ' + 'Google Analytics'.blue + '?',
         default: true
     }, {
-        when: function() { return !self.serverInfo.useServer; },
+        when: function() { return !self.serverPrompts.useServer; },
         type: 'confirm',
         name: 'useFTP',
         message: 'Will you be deploying code to an ' + 'FTP server'.blue + '?',
@@ -188,10 +188,10 @@ var clientInfo = function clientInfo() {
             checked: true
         }]
     }], function(answers) {
-        this.clientInfo = answers;
+        this.clientPrompts = answers;
 
         cb();
     }.bind(this));
 };
 
-module.exports = clientInfo;
+module.exports = clientPrompts;

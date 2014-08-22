@@ -6,7 +6,7 @@
 
 var saveConfig = function saveConfig() {
     // If user chooses to use exsiting yo-rc file, then skip prompts
-    if (this.skipConfig) {
+    if (this.existingConfig) {
         return;
     }
 

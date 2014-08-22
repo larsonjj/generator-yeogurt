@@ -4,7 +4,7 @@
 
 'use strict';
 
-var serverFiles = function serverFiles() {
+var nodeFiles = function nodeFiles() {
     if (this.useServer) {
         this.mkdir('server');
         this.mkdir('server/controllers');
@@ -36,7 +36,9 @@ var serverFiles = function serverFiles() {
         }
 
         this.template('server/config/express.js', 'server/config/express.js');
-        this.template('server/config/secrets.js', 'server/config/secrets.js');
+        if (this.useSession) {
+            this.template('server/config/secrets.js', 'server/config/secrets.js');
+        }
         this.template('server/config/security.js', 'server/config/security.js');
 
         this.template('server/config/env/default.js', 'server/config/env/default.js');
@@ -49,4 +51,4 @@ var serverFiles = function serverFiles() {
     }
 };
 
-module.exports = serverFiles;
+module.exports = nodeFiles;

@@ -7,14 +7,14 @@
 
 var _ = require('lodash');
 
-var handleConfig = function handleConfig() {
+var answersConfig = function answersConfig() {
 
     // If user chooses to use exsiting yo-rc file, then skip prompts
-    if (this.skipConfig) {
+    if (this.existingConfig) {
         this.answers = this.config.get('config');
     }
     else {
-        this.answers = _.merge(this.projectInfo, this.serverInfo, this.clientInfo, this.documentation);
+        this.answers = _.merge(this.projectPrompts, this.serverPrompts, this.clientPrompts, this.documentationPrompts);
     }
 
     // Assign each answer property to `this` context to give the generator access to it
@@ -24,8 +24,10 @@ var handleConfig = function handleConfig() {
     this.versionControl = this.answers.versionControl;
 
     // Server Info
-    this.useServer      = this.answers.useServer;
-    this.dbOption       = this.answers.dbOption;
+    this.useServer  = this.answers.useServer;
+    this.dbOption   = this.answers.dbOption;
+    this.useSession = this.answers.useSession;
+
     // Setup Database URLs
     var username = this.answers.dbUser;
     var password = this.answers.dbPass ? ':' + this.answers.dbPass : '';
@@ -80,7 +82,7 @@ var handleConfig = function handleConfig() {
     // Default Overwrites
     if (this.jsFramework === 'react') {
         this.jsTemplate = this.answers.jsTemplate = 'react';
-        this.jsOption = this.answers.jsOption = 'browserify';
+        this.jsOption   = this.answers.jsOption   = 'browserify';
     }
     if (!this.dbOption) {
         this.dbOption = this.answers.dbOption = 'none';
@@ -95,8 +97,8 @@ var handleConfig = function handleConfig() {
     }
 
     // Intially set flags to false
-    this.useBootstrap = this.answers.useBootstrap ? this.answers.useBootstrap : false;
-    this.responsive = false;
+    this.useBootstrap  = this.answers.useBootstrap ? this.answers.useBootstrap : false;
+    this.responsive    = false;
     this.useFoundation = false;
 
     if (this.cssFramework === 'bootstrap') {
@@ -110,8 +112,8 @@ var handleConfig = function handleConfig() {
     }
 
     this.useFontAwesome = hasFeature('useFontAwesome', this.extras);
-    this.useModernizr = hasFeature('useModernizr', this.extras);
+    this.useModernizr   = hasFeature('useModernizr', this.extras);
 
 };
 
-module.exports = handleConfig;
+module.exports = answersConfig;

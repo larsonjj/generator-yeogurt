@@ -4,8 +4,8 @@
 
 'use strict';
 
-var serverInfo = function serverInfo() {
-    if (this.skipConfig) {
+var serverPrompts = function serverPrompts() {
+    if (this.existingConfig) {
         return;
     }
 
@@ -62,11 +62,16 @@ var serverInfo = function serverInfo() {
         when: function(answers) { return answers.dbOption !== 'none' && answers.useServer; },
         name: 'dbPass',
         message: 'What is your ' + 'password'.blue + ' for this database?'
+    }, {
+        type: 'confirm',
+        name: 'useSession',
+        message: 'Would you like to use ' + 'Cookie Session Storage'.blue + '?',
+        default: true
     }], function(answers) {
-        this.serverInfo = answers;
+        this.serverPrompts = answers;
 
         cb();
     }.bind(this));
 };
 
-module.exports = serverInfo;
+module.exports = serverPrompts;

@@ -4,17 +4,17 @@
 
 'use strict';
 
-var configCheck = function configCheck() {
+var existingConfig = function existingConfig() {
     var cb = this.async();
 
     if (this.config.get('config')) {
         this.prompt([{
             type: 'confirm',
-            name: 'skipConfig',
+            name: 'existingConfig',
             message: 'Existing .yo-rc configuration found, would you like to use it?',
             default: true,
         }], function(answers) {
-            this.skipConfig = answers.skipConfig;
+            this.existingConfig = answers.existingConfig;
             cb();
         }.bind(this));
     } else {
@@ -22,4 +22,4 @@ var configCheck = function configCheck() {
     }
 };
 
-module.exports = configCheck;
+module.exports = existingConfig;

@@ -1,6 +1,8 @@
 /**
 *   App Spec Test
 */
+<% if (testFramework === 'mocha') { %>
+/*jshint expr: true*/<% } %>
 
 <% if (jsOption === 'requirejs') { %>'use strict';
 
@@ -9,14 +11,12 @@ define(function(require) {
 
     describe('app', function() {
 
-        it('Should run a few assertions', function() {
-            <% if (jsFramework === 'react') { %>
+        it('Should run a few assertions', function() {<% if (jsFramework === 'react') { %>
             // Insert <div id="app-wrapper"> within the <body> as the first child
             // This will ensure correct testing of the main.jsx React component
             var appWrapper = document.createElement('div');
             appWrapper.id = 'app-wrapper';
-            document.body.insertBefore(appWrapper, document.body.firstChild);
-            <% } %>
+            document.body.insertBefore(appWrapper, document.body.firstChild);<% } %>
         });
 
     });
@@ -28,14 +28,12 @@ var app = require('../../client/scripts/app');
 
 describe('app', function() {
 
-    it('Should run a few assertions', function() {
-        <% if (jsFramework === 'react') { %>
+    it('Should run a few assertions', function() {<% if (jsFramework === 'react') { %>
         // Insert <div id="app-wrapper"> within the <body> as the first child
         // This will ensure correct testing of the main.jsx React component
         var appWrapper = document.createElement('div');
         appWrapper.id = 'app-wrapper';
-        document.body.insertBefore(appWrapper, document.body.firstChild);
-        <% } %>
+        document.body.insertBefore(appWrapper, document.body.firstChild);<% } %>
     });
 
 });
@@ -43,14 +41,12 @@ describe('app', function() {
 
 describe('app', function() {
 
-    it('Should run a few assertions', function() {
-        <% if (jsFramework === 'react') { %>
+    it('Should run a few assertions', function() {<% if (jsFramework === 'react') { %>
         // Insert <div id="app-wrapper"> within the <body> as the first child
         // This will ensure correct testing of the main.jsx React component
         var appWrapper = document.createElement('div');
         appWrapper.id = 'app-wrapper';
-        document.body.insertBefore(appWrapper, document.body.firstChild);
-        <% } %>
+        document.body.insertBefore(appWrapper, document.body.firstChild);<% } %>
     });
 
 });

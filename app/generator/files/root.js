@@ -30,6 +30,10 @@ var rootFiles = function rootFiles() {
         this.copy('svnignore', '.svnignore');
     }
 
+    this.copy('client/robots.txt', 'client/robots.txt');
+    this.copy('client/humans.txt', 'client/humans.txt');
+    this.copy('client/favicon.ico', 'client/favicon.ico');
+
     // client/
     this.mkdir('client');
 };

@@ -4,7 +4,7 @@
 
 'use strict';
 
-var imageFiles = function imageFiles() {
+var docFiles = function docFiles() {
     if (this.useKss) {
         this.mkdir('client/docs');
         this.mkdir('client/docs/styleguide');
@@ -22,4 +22,4 @@ var imageFiles = function imageFiles() {
     }
 };
 
-module.exports = imageFiles;
+module.exports = docFiles;

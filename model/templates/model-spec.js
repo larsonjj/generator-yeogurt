@@ -1,6 +1,8 @@
 /**
 *   <%= _.classify(name) %> Spec Description
 */
+<% if (testFramework === 'mocha') { %>
+/*jshint expr: true*/<% } %>
 <% if (jsOption === 'requirejs') { %>
 define(function(require) {
     'use strict';

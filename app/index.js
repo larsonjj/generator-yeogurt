@@ -8,27 +8,31 @@ require('colors');
 
 // Order to load and run generator config files based on their name
 var order = [
+    /* Prompts */
     'logo',
-    'checkConfig',
-    'projectInfo',
-    'serverInfo',
-    'clientInfo',
-    'documentationInfo',
-    'handleConfig',
-    'saveConfig',
-    'rootFiles',
-    'imageFiles',
-    'docFiles',
-    'taskFiles',
-    'viewFiles',
-    'scriptFiles',
-    'styleFiles',
-    'serverFiles',
-    'dashboardFiles',
-    'testingFiles',
-    'projectFiles',
-    'extraFiles',
-    'handleInstall'
+    /* Config */
+    'existing', // Check for existing .yo-rc.json file
+    'project',
+    'server',
+    'client',
+    'documentation',
+    /* Config */
+    'answers',  // Handle answers and them up for use in templates
+    'save',     // Save answers to .yo-rc.json file
+    /* Files */
+    'root',
+    'image',
+    'docs',
+    'task',
+    'view',
+    'script',
+    'style',
+    'node',
+    'dashboard',
+    'testing',
+    'project',
+    /* Config */
+    'install'   // Handle generator options and run `bower install & npm install`
 ];
 
 // Create array that will hold all generator config file objects
@@ -38,6 +42,7 @@ var config = [];
 var tasks = {};
 
 // Grab all needed generator config files
+// and assign an index based on the order array
 config = grabFiles([
     path.join(__dirname + '/generator/prompts'),
     path.join(__dirname + '/generator/config'),

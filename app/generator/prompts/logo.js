@@ -4,7 +4,7 @@
 
 'use strict';
 
-var logo = function logo() {
+var logoPrompt = function logoPrompt() {
     var yeogurtLogo = '' +
         '                                    _   \n'.red +
         '  ' + 'Welcome to'.green + '                       | |  \n'.red +
@@ -20,4 +20,4 @@ var logo = function logo() {
     this.log(yeogurtLogo);
 };
 
-module.exports = logo;
+module.exports = logoPrompt;

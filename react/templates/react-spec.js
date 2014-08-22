@@ -1,11 +1,11 @@
 /** @jsx React.DOM */
 
-/* jshint -W024 */
-/* jshint expr:true */
-
 /**
 *   <%= _.classify(name) %> Spec Description
 */
+
+/* jshint -W024 */
+/* jshint expr:true */
 
 'use strict';
 

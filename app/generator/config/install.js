@@ -4,7 +4,7 @@
 
 'use strict';
 
-var handleInstall = function handleInstall() {
+var installConfig = function installConfig() {
     if (this.options['skip-install']) {
         return;
     }
@@ -17,4 +17,4 @@ var handleInstall = function handleInstall() {
     });
 };
 
-module.exports = handleInstall;
+module.exports = installConfig;

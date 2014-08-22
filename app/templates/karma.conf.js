@@ -99,20 +99,7 @@ module.exports = function(config) {
         // - Safari (only Mac)
         // - PhantomJS
         // - IE (only Windows)
-        browsers: ['PhantomJS'],<% if (jsOption === 'browserify') { %>
-
-        // Browserify config (all optional)
-        browserify: {
-            // extensions: ['.coffee'],
-            // ignore: [],<% if (jsFramework === 'react') { %>
-            transform: [require('grunt-react').browserify],<% } %>
-            // debug: true,
-            // noParse: ['jquery'],
-            watch: false,
-        },
-
-        // Add browserify to preprocessors
-        preprocessors: {'test/**/*-spec.js': ['browserify']},<% } %>
+        browsers: ['PhantomJS'],
 
         // If browser does not capture in given timeout [ms], kill it
         captureTimeout: 60000,
