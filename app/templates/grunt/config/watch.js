@@ -8,7 +8,13 @@ var _ = require('lodash');
 var taskConfig = function(grunt) {
 
     // Configuration
-    var config = {<% if (htmlOption === 'jade' && !useServer) { %>
+    var config = {
+        configFiles: {
+            files: ['Gruntfile.js', 'grunt/**/*.js'],
+            options: {
+                reload: true
+            }
+        },<% if (htmlOption === 'jade' && !useServer) { %>
         jade: {
             files: [
                 '<%%= yeogurt.client %>/templates/*.jade'
