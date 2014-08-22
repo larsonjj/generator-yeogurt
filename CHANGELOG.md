@@ -2,6 +2,7 @@
 #### date: 2014-08-21
 ##### changes:
 * Updated grunt-sass package to v0.14.0
+* Added more info to README.md (PR: #10eea6b)[https://github.com/larsonjj/generator-yeogurt/commit/10eea6b2cb1721710f3b73f540346b11311e4bf3]
 
 ### v0.9.6:
 #### date: 2014-07-31
