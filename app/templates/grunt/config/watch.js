@@ -10,10 +10,18 @@ var taskConfig = function(grunt) {
     // Configuration
     var config = {
         configFiles: {
-            files: ['Gruntfile.js', 'grunt/**/*.js'],
+            files: [
+                'Gruntfile.js',
+                'grunt/**/*.js',
+                '*.json'
+            ],
             options: {
-                reload: true
-            }
+                reload: true,
+                interrupt: true
+            },
+            tasks: [
+                'serve:nowatch'
+            ]
         },<% if (htmlOption === 'jade' && !useServer) { %>
         jade: {
             files: [
@@ -143,11 +151,11 @@ var taskConfig = function(grunt) {
                 livereload: <% if (!useServer) { %>'<%%= connect.options.livereload %>'<% } else { %>true<% } %>
             },
             files: [
-                '<%%= yeogurt.client %>/*.{ico,png,txt,html}',
+                '<%%= yeogurt.staticServer %>/*.{ico,png,txt,html}',
                 '<%%= yeogurt.staticServer %>/styles/fonts/**/*.*',
                 '<%%= yeogurt.staticServer %>/**/*.html'<% if (cssOption === 'sass') { %>,
-                '<%%= yeogurt.client %>/styles/**/*.{scss,sass}'<% } %><% if (cssOption === 'less') { %>,
-                '<%%= yeogurt.client %>/styles/**/*.less'<% } %>,
+                '<%%= yeogurt.staticServer %>/styles/**/*.{scss,sass}'<% } %><% if (cssOption === 'less') { %>,
+                '<%%= yeogurt.staticServer %>/styles/**/*.less'<% } %>,
                 '<%%= yeogurt.staticServer %>/scripts/**/*.js',<% if (singlePageApplication && jsTemplate !== 'react') { %>
                 '<%%= yeogurt.staticServer %>/templates/**/*.js',<% } %><% if (jsFramework === 'react') { %>
                 '<%%= yeogurt.staticServer %>/scripts/**/*.jsx',<% } %>

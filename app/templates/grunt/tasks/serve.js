@@ -32,12 +32,20 @@ var taskConfig = function(grunt) {
             'jsdoc:server',<% } %><% if (cssOption === 'less') { %>
             'less:server',<% } %><% if (cssOption === 'sass') { %>
             'sass:server',<% } %>
-            'clean:temp',<% if (useServer) { %>
+            'clean:temp'
+        ]);
+
+        if (target === 'nowatch') {
+            return;
+        }
+
+        grunt.task.run([<% if (useServer) { %>
             'express:server',
             'wait',
             'open'<% } else { %>
             'connect:server'<% } %>
         ]);
+
         <% if (useKss || useJsdoc || useDashboard) { %>
         if (target === 'docs') {
             return grunt.task.run(['listen:docs']);
