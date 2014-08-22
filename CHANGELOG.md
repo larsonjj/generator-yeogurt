@@ -1,3 +1,8 @@
+### v0.9.10:
+#### date: 2014-08-22
+##### changes:
+* Added *.json files to be watched by watch:configFiles task. Also created logic that allows `grunt serve` to be rerun when changes are detected with Grunt onfig files or *.json files are updated. As per [#39](https://github.com/larsonjj/generator-yeogurt/issues/39) discussion
+
 ### v0.9.9:
 #### date: 2014-08-22
 ##### changes:
