@@ -4,14 +4,32 @@
 'use strict';
 
 var taskConfig = function(grunt) {
-    grunt.registerTask('test', 'Peform tests on JavaScript', [
-        <% if (jshint) { %>'jshint:test',
-        <% } %><% if (jsTemplate === 'lodash') { %>'jst:test',<% } else if (jsTemplate === 'handlebars') { %>'handlebars:test',<% } else if (jsTemplate === 'jade') { %>
-        'jade:test',<% } %><% if (jsOption === 'browserify') { %>
-        'browserify:test',<% } %>
-        'karma:unit',
-        'clean:temp'
-    ]);
+    grunt.registerTask('test', 'Peform tests on JavaScript', function(target) {
+        // Allow for remote access to app/site via the 0.0.0.0 ip address
+        if (grunt.option('allow-remote')) {
+            grunt.config.set('karma.options.hostname', '0.0.0.0');
+        }
+
+        grunt.task.run([<% if (jshint) { %>
+            'jshint:test',<% } %><% if (jsTemplate === 'lodash') { %>
+            'jst:test',<% } else if (jsTemplate === 'handlebars') { %>
+            'handlebars:test',<% } else if (jsTemplate === 'jade') { %>
+            'jade:test',<% } %><% if (jsOption === 'browserify') { %>
+            'browserify:test'<% } %>
+        ]);
+
+        if (target === 'watch') {
+            grunt.task.run(['karma:unitWatch']);
+        }
+        else {
+            grunt.task.run(['karma:unit']);
+        }
+
+        // Clean up temp files
+        grunt.task.run([
+            'clean:temp'
+        ]);
+    });
 };
 
 module.exports = taskConfig;

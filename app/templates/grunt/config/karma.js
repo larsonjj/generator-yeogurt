@@ -10,7 +10,11 @@ var taskConfig = function(grunt) {
             configFile: 'karma.conf.js'
         },
         unit: {
-            singleRun: true
+            singleRun: true,
+            autoWatch: false
+        },
+        unitWatch: {
+            autoWatch: true
         },
         //continuous integration mode: run tests once in PhantomJS browser.
         continuous: {
