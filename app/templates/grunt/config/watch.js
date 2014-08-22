@@ -55,7 +55,7 @@ var taskConfig = function(grunt) {
             ]
         },<% } %><% if (cssOption === 'sass') { %>
         sass: {
-            files: ['<%%= yeogurt.client %>/styles/**/*.<% if (useKss) { %>{scss,md}<% } else { %>scss<% } %>'],
+            files: ['<%%= yeogurt.dev %>/styles/**/*.<% if (useKss) { %>{scss,sass,md}<% } else { %>{scss,sass}<% } %>'],
             tasks: [
                 'injector:sass',
                 'sass:server'
@@ -140,7 +140,7 @@ var taskConfig = function(grunt) {
                 '<%%= yeogurt.client %>/*.{ico,png,txt,html}',
                 '<%%= yeogurt.staticServer %>/styles/fonts/**/*.*',
                 '<%%= yeogurt.staticServer %>/**/*.html'<% if (cssOption === 'sass') { %>,
-                '<%%= yeogurt.client %>/styles/**/*.scss'<% } %><% if (cssOption === 'less') { %>,
+                '<%%= yeogurt.client %>/styles/**/*.{scss,sass}'<% } %><% if (cssOption === 'less') { %>,
                 '<%%= yeogurt.client %>/styles/**/*.less'<% } %>,
                 '<%%= yeogurt.staticServer %>/scripts/**/*.js',<% if (singlePageApplication && jsTemplate !== 'react') { %>
                 '<%%= yeogurt.staticServer %>/templates/**/*.js',<% } %><% if (jsFramework === 'react') { %>
@@ -217,7 +217,7 @@ var taskConfig = function(grunt) {
             ]
         },<% } %><% if (cssOption === 'sass' && useKss) { %>
         sassDocs: {
-            files: ['<%%= yeogurt.client %>/styles/**/*.<% if (useKss) { %>{scss,md}<% } else { %>scss<% } %>'],
+            files: ['<%%= yeogurt.client %>/styles/**/*.<% if (useKss) { %>{scss,sass,md}<% } else { %>scss,sass<% } %>'],
             tasks: [
                 'kss:server'
             ]

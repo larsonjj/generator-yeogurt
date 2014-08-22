@@ -10,9 +10,9 @@ var taskConfig = function(grunt) {
             options: {
                 precision: 10,
                 outputStyle: 'nested',
-                sourceMap: 'main.css.map',
+                sourceMap: 'true',
                 includePaths: [
-                    '<%%= yeogurt.client %>/styles/**/*.scss'
+                    '<%%= yeogurt.dev %>/styles/'
                 ]
             },
             files: {
@@ -23,9 +23,9 @@ var taskConfig = function(grunt) {
             options: {
                 precision: 10,
                 outputStyle: 'compressed',
-                sourceMap: 'main.css.map',
+                sourceMap: 'true',
                 includePaths: [
-                    '<%%= yeogurt.client %>/styles/**/*.scss'
+                    '<%%= yeogurt.dev %>/styles/'
                 ]
             },
             files: {
