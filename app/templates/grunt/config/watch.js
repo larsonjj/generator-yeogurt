@@ -11,10 +11,18 @@ module.exports = function(grunt) {
             livereload: false
         },
         configFiles: {
-            files: ['Gruntfile.js', 'grunt/**/*.js'],
+            files: [
+                'Gruntfile.js',
+                'grunt/**/*.js',
+                '*.json'
+            ],
             options: {
-                reload: true
-            }
+                reload: true,
+                interrupt: true
+            },
+            tasks: [
+                'serve:nowatch'
+            ]
         },<% if (htmlOption === 'Jade') { %>
         jade: {
             files: [

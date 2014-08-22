@@ -27,9 +27,17 @@ module.exports = function(grunt) {
             'less:serverPrint',<% } %><% } %><% if (cssOption === 'SASS') { %>
             'sass:server',<% if (ieSupport) { %>
             'sass:serverPrint',<% } %><% } %>
-            'clean:temp',
+            'clean:temp'
+        ]);
+
+        if (target === 'nowatch') {
+            return;
+        }
+
+        return grunt.task.run([
             'connect:livereload',
             'watch'
         ]);
+
     });
 };
