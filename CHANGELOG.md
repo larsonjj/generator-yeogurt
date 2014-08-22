@@ -1,3 +1,8 @@
+### v0.9.8:
+#### date: 2014-08-22
+##### changes:
+* Fixed issue with grunt-sass task and now watch `.sass` files [#38](https://github.com/larsonjj/generator-yeogurt/pull/38)
+
 ### v0.9.7:
 #### date: 2014-08-21
 ##### changes:
