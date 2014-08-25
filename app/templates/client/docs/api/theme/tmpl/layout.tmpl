@@ -10,42 +10,34 @@
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link rel="stylesheet/less" type="text/css" href="styles/jsdoc.less" />
+    <script type="text/javascript" src="scripts/less.js"></script>
 </head>
 
 <body>
 
-<div id="main">
+    <div id="main">
 
-    <h1 class="page-title"><?js= title ?></h1>
+        <h1 class="page-title"><?js= title ?></h1>
 
-    <?js= content ?>
-</div>
-<div class="api-mobile-bar"></div>
-<nav class="navigation">
-    <div class="api-button-wrapper">
-        <a class="api-nav-toggle" href="#">
-            <span></span>
-        </a>
+        <?js= content ?>
     </div>
-    <div class="scroll-wrapper">
-        <?js= this.nav ?>
-    </div>
-</nav>
+    <div class="api-mobile-bar"></div>
+    <nav class="navigation">
+        <div class="api-button-wrapper">
+            <a class="api-nav-toggle" href="#">
+                <span></span>
+            </a>
+        </div>
+        <div class="scroll-wrapper">
+            <?js= this.nav ?>
+        </div>
+    </nav>
 
-<br clear="both">
-<script type="scripts/classlist-shim.js"></script>
-<script>
-    'use strict';
-    prettyPrint();
-    var button = document.querySelector( '.api-nav-toggle' );
-    if (button.addEventListener) {
-        button.addEventListener( 'click', function() {
-            this.classList.toggle( 'active' );
-            document.querySelector(' .navigation ').classList.toggle('open');
-        });
-    }
-</script>
-<script src="scripts/linenumber.js"> </script>
+    <br clear="both">
+    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <script type="text/javascript" src="scripts/linenumber.js"> </script>
+    <script type="text/javascript" src="scripts/main.js"></script>
+
 </body>
 </html>

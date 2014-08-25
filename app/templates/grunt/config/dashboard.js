@@ -8,30 +8,38 @@ var taskConfig = function(grunt) {
     grunt.config.set('dashboard', {
         server: {
             options: {
-                dashTemplate: '<%%= yeogurt.client %>/dashboard/template.hbs',
+                dashTemplate: '<%%= yeogurt.client %>/docs/dashboard/template.hbs',
                 logo: 'images/yeogurt-logo.png',
-                generatedDir: '<%%= yeogurt.staticServer %>/dashboard/generated',
-                assets: [<% if (htmlOption !== "html") { %>
-                    '<%%= yeogurt.client %>/templates/*.<% if (htmlOption === "jade") { %>jade<% } else if (htmlOption === "swig") { %>swig<% } %>'
-                <% } %>]
+                generatedDir: '<%%= yeogurt.staticServer %>/docs/dashboard/generated',
+                assets: [{
+                    cwd: '<%%= yeogurt.client %>/docs/dashboard/',
+                    src: [
+                        '**/*',
+                        '!*.hbs'
+                    ]
+                }]
             },
             files: {
-                '<%%= yeogurt.staticServer %>/dashboard/index.html': [
+                '<%%= yeogurt.staticServer %>/docs/dashboard/index.html': [
                     '<%%= yeogurt.client %>/**/*.<% if (htmlOption === "jade") { %>jade<% } else if (htmlOption === "swig") { %>swig<% } else if (htmlOption === "html") { %>html<% } %>'
                 ]
             }
         },
         dist: {
             options: {
-                dashTemplate: '<%%= yeogurt.client %>/dashboard/template.hbs',
+                dashTemplate: '<%%= yeogurt.client %>/docs/dashboard/template.hbs',
                 logo: 'images/yeogurt-logo.png',
-                generatedDir: '<%%= yeogurt.dist %>/dashboard/generated',
-                assets: [<% if (htmlOption !== "html") { %>
-                    '<%%= yeogurt.client %>/templates/*.<% if (htmlOption === "jade") { %>jade<% } else if (htmlOption === "swig") { %>swig<% } %>'
-                <% } %>]
+                generatedDir: '<%%= yeogurt.dist %>/docs/dashboard/generated',
+                assets: [{
+                    cwd: '<%%= yeogurt.client %>/docs/dashboard/',
+                    src: [
+                        '**/*',
+                        '!*.hbs'
+                    ]
+                }]
             },
             files: {
-                '<%%= yeogurt.dist %>/dashboard/index.html': [
+                '<%%= yeogurt.dist %>/docs/dashboard/index.html': [
                     '<%%= yeogurt.client %>/**/*.<% if (htmlOption === "jade") { %>jade<% } else if (htmlOption === "swig") { %>swig<% } else if (htmlOption === "html") { %>html<% } %>'
                 ]
             }

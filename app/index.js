@@ -28,7 +28,6 @@ var order = [
     'script',
     'style',
     'node',
-    'dashboard',
     'testing',
     /* Config */
     'install'   // Handle generator options and run `bower install & npm install`

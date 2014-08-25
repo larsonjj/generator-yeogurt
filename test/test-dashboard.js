@@ -28,9 +28,9 @@ describe('yeogurt generator Dashboard', function () {
             'grunt/config/ftpush.js',
             'grunt/tasks/deploy.js',
             'client/',
-            'client/dashboard/',
-            'client/dashboard/images/',
-            'client/dashboard/images/yeogurt-logo.png'
+            'client/docs/dashboard/',
+            'client/docs/dashboard/images/',
+            'client/docs/dashboard/images/yeogurt-logo.png'
         ];
 
         helpers.mockPrompt(this.app, {

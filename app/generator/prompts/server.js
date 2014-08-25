@@ -63,6 +63,7 @@ var serverPrompts = function serverPrompts() {
         name: 'dbPass',
         message: 'What is your ' + 'password'.blue + ' for this database?'
     }, {
+        when: function(answers) { return answers.useServer; },
         type: 'confirm',
         name: 'useSession',
         message: 'Would you like to use ' + 'Cookie Session Storage'.blue + '?',

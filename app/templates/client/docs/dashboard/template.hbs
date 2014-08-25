@@ -1,0 +1,100 @@
+<!DOCTYPE html><!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->
+<!--[if IE 9]><html lang="en" class="ie9 no-js"><![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="no-js"><!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Dashboard</title>
+        <meta name="description" content="A Simple Dashboard">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet/less" type="text/css" href="styles/dashboard.less" />
+        <script type="text/javascript" src="scripts/less.js"></script>
+        <!--[if IE 8]>
+        <script>
+            // Protect window.console method calls, e.g. console is not defined on IE
+            (function() {
+                if (!window.console) {
+                    window.console = {};
+                }
+                // union of Chrome, FF, IE, and Safari console methods
+                var m = [
+                    "log", "info", "warn", "error", "debug", "trace", "dir", "group",
+                    "groupCollapsed", "groupEnd", "time", "timeEnd", "profile", "profileEnd",
+                    "dirxml", "assert", "count", "markTimeline", "timeStamp", "clear"
+                ];
+                // define undefined methods as noops to prevent errors
+                for (var i = 0; i < m.length; i++) {
+                    if (!window.console[m[i]]) {
+                        window.console[m[i]] = function() {};
+                    }
+                }
+            })();
+        </script><![endif]-->
+    </head>
+    <body class="dashboard-body">
+        <div class="container cf">
+            <div class="dash-mobile-bar"></div>
+            <div class="sidebar">
+                <div class="dash-button-wrapper">
+                    <a class="dash-nav-toggle" href="#">
+                        <span></span>
+                    </a>
+                </div>
+                <div class="scroll-wrapper">
+                    <div class="section-wrapper">
+                        <h2 class="sidebar-title">Categories</h2>
+                        <ul class="sidebar-list category">
+                        {{#each categories}}
+                            {{#ifvalue class value='page'}}
+                            <li class="{{class}} active" data-category="{{class}}">
+                                <button type="button" class="font-black">{{name}}</button>
+                            </li>
+                            {{else}}
+                            <li class="{{class}}" data-category="{{class}}">
+                                <button type="button" class="font-black">{{name}}</button>
+                            </li>
+                            {{/ifvalue}}
+                        {{/each}}
+                        </ul>
+                    </div>
+                    <div class="section-wrapper">
+                        <h2 class="sidebar-title">Legend</h2>
+                        <button class="filter-clear hide" type="button">Clear</button>
+                        <ul class="sidebar-list legend">
+                        {{#each statuses}}
+                            <li class="{{class}}" data-category="{{class}}">
+                                <button type="button" class="font-white">{{name}}</button>
+                            </li>
+                        {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="main-title">
+                    {{#if logo}}
+                    <img alt="Logo" width="200" src="{{logo}}" />
+                    {{else}}
+                    <h3>Logo</h3>
+                    {{/if}}
+                </div>
+                <ul class="item-list">
+                {{#each data}}
+                    {{#ifvalue category value='page'}}
+                    <li class="{{category}} {{status}}">
+                        <a href="{{link}}">{{label}}</a>
+                    </li>
+                    {{else}}
+                    <li class="{{category}} {{status}} hide">
+                        <a href="{{link}}">{{label}}</a>
+                    </li>
+                    {{/ifvalue}}
+                {{/each}}
+                </ul>
+            </div>
+        </div>
+        <script type="text/javascript" src="scripts/jquery.js"></script>
+        <script type="text/javascript" src="scripts/main.js"></script>
+    </body>
+</html>

@@ -46,6 +46,5 @@
 {% endblock %}
 
 {% block content %}
-    {{ heading.content({type:'h1', class:'heading', text: 'Sample Heading'}) }}
     <p><%= name || 'empty' %> page</p>
 {% endblock %}<% } %>

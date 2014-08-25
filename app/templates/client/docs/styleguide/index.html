@@ -89,28 +89,24 @@
 <!-- SCRIPTS -->
 <script src="public/kss.js"></script>
 <script src="public/prettify.js"></script>
-<script src="public/classlist-shim.js"></script>
+<script src="public/jquery.js"></script>
 <script>
-window.onload = function() {
+/* global prettyPrint:true */
+/* global $:true */
+$(function() {
     'use strict';
     // Ensure code blocks are highlighted properly...
-    var preArray = document.getElementsByTagName('pre');
-    for (var i = 0; i < preArray.length; i++) {
-        var codeArray = preArray[i].getElementsByTagName('code');
-        for (var j = 0; j < codeArray.length; j++) {
-            codeArray[j].className += ' prettyprint';
-        }
-    }
+    $('pre code').addClass('prettyprint');
     prettyPrint();
-    var button = document.querySelector( '.styleguide-nav-toggle' );
-    if (button.addEventListener) {
-        button.addEventListener( 'click', function() {
-            this.classList.toggle( 'active' );
-            document.querySelector(' .styleguide-menu-container ').classList.toggle('styleguide-drawer-open');
-        });
-    }
 
-};
+    // Set up mobile menu toggle
+    var $button = $( '.styleguide-nav-toggle' );
+    var $menu = $(' .styleguide-menu-container ');
+    $button.on('click', function() {
+        $(this).toggleClass('active');
+        $menu.toggleClass('styleguide-drawer-open');
+    });
+});
 </script>
 </body>
 </html>
