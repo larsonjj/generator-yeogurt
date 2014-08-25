@@ -24,8 +24,8 @@ describe('yeogurt generator Dashboard', function () {
             // add files and folders you expect to exist here.
             'grunt/',
             'grunt/config',
-            'grunt/config/dashboard.js',
-            'grunt/config/ftpush.js',
+            'grunt/config/doc/dashboard.js',
+            'grunt/config/deploy/ftpush.js',
             'grunt/tasks/deploy.js',
             'client/',
             'client/docs/dashboard/',

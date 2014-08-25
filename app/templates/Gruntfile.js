@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 
     // Load the include-all library in order to require all of our grunt
     // configurations and task registrations dynamically.
-    var  includeAll = require('include-all');
+    var includeAll = require('include-all');
 
     /**
      * Loads Grunt configuration modules from the specified
@@ -59,8 +59,15 @@ module.exports = function(grunt) {
     }
 
     // Load task functions
-    var taskConfigurations = loadTasks('./grunt/config'),
-        registerDefinitions = loadTasks('./grunt/tasks');
+    var utilConfig = loadTasks('./grunt/config/util');
+    var compileConfig = loadTasks('./grunt/config/compile');
+    var docConfig = loadTasks('./grunt/config/doc');
+    var testConfig = loadTasks('./grunt/config/test');
+    var optimizeConfig = loadTasks('./grunt/config/optimize');
+    var deployConfig = loadTasks('./grunt/config/deploy');
+    var serverConfig = loadTasks('./grunt/config/server');
+    var testConfig = loadTasks('./grunt/config/test');
+    var registerDefinitions = loadTasks('./grunt/tasks');
 
     // (ensure that a default task exists)
     if (!registerDefinitions.
@@ -72,7 +79,14 @@ module.exports = function(grunt) {
     }
 
     // Run task functions to configure Grunt.
-    invokeConfigFn(taskConfigurations);
+    invokeConfigFn(utilConfig);
+    invokeConfigFn(compileConfig);
+    invokeConfigFn(docConfig);
+    invokeConfigFn(testConfig);
+    invokeConfigFn(optimizeConfig);
+    invokeConfigFn(deployConfig);
+    invokeConfigFn(serverConfig);
+    invokeConfigFn(testConfig);
     invokeConfigFn(registerDefinitions);
 
 };

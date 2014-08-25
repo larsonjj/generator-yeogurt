@@ -22,8 +22,8 @@ describe('yeogurt generator server defaults', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'grunt/config/open.js',
-            'grunt/config/express.js',
+            'grunt/config/util/open.js',
+            'grunt/config/server/express.js',
             'server/templates/index.html',
             'server/modules',
             'server/modules/reactRender.js',

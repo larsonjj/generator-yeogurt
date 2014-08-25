@@ -24,7 +24,7 @@ describe('yeogurt generator no IE with less', function () {
             // add files and folders you expect to exist here.
             'grunt/',
             'grunt/config',
-            'grunt/config/less.js'
+            'grunt/config/compile/less.js'
         ];
 
         helpers.mockPrompt(this.app, {

@@ -26,7 +26,7 @@ describe('yeogurt generator Less with no dashbaord', function () {
             'client/styles',
             'grunt/',
             'grunt/config',
-            'grunt/config/less.js'
+            'grunt/config/compile/less.js'
         ];
 
         helpers.mockPrompt(this.app, {

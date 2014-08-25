@@ -12,72 +12,72 @@ var taskFiles = function taskFiles() {
 
     // Config
     if (this.jsOption === 'browserify') {
-        this.template('grunt/config/browserify.js', 'grunt/config/browserify.js');
-        this.template('grunt/config/exorcise.js', 'grunt/config/exorcise.js');
+        this.template('grunt/config/compile/browserify.js', 'grunt/config/compile/browserify.js');
+        this.template('grunt/config/util/exorcise.js', 'grunt/config/util/exorcise.js');
     }
     if (this.useJsdoc) {
-        this.template('grunt/config/jsdoc.js', 'grunt/config/jsdoc.js');
+        this.template('grunt/config/doc/jsdoc.js', 'grunt/config/doc/jsdoc.js');
     }
-    this.template('grunt/config/clean.js', 'grunt/config/clean.js');
-    this.template('grunt/config/compress.js', 'grunt/config/compress.js');
+    this.template('grunt/config/util/clean.js', 'grunt/config/util/clean.js');
+    this.template('grunt/config/util/compress.js', 'grunt/config/util/compress.js');
     if (!this.useServer) {
-        this.template('grunt/config/connect.js', 'grunt/config/connect.js');
+        this.template('grunt/config/server/connect.js', 'grunt/config/server/connect.js');
     }
     else {
-        this.template('grunt/config/open.js', 'grunt/config/open.js');
+        this.template('grunt/config/util/open.js', 'grunt/config/util/open.js');
     }
-    this.template('grunt/config/concurrent.js', 'grunt/config/concurrent.js');
-    this.template('grunt/config/copy.js', 'grunt/config/copy.js');
-    this.template('grunt/config/concat.js', 'grunt/config/concat.js');
+    this.template('grunt/config/util/concurrent.js', 'grunt/config/util/concurrent.js');
+    this.template('grunt/config/util/copy.js', 'grunt/config/util/copy.js');
+    this.template('grunt/config/optimize/concat.js', 'grunt/config/optimize/concat.js');
     if (this.useDashboard) {
-        this.template('grunt/config/dashboard.js', 'grunt/config/dashboard.js');
+        this.template('grunt/config/doc/dashboard.js', 'grunt/config/doc/dashboard.js');
     }
     if (this.useFTP) {
-        this.template('grunt/config/ftpush.js', 'grunt/config/ftpush.js');
+        this.template('grunt/config/deploy/ftpush.js', 'grunt/config/deploy/ftpush.js');
     }
     if (this.useKss) {
-        this.template('grunt/config/kss.js', 'grunt/config/kss.js');
+        this.template('grunt/config/doc/kss.js', 'grunt/config/doc/kss.js');
     }
-    this.template('grunt/config/htmlmin.js', 'grunt/config/htmlmin.js');
-    this.template('grunt/config/imagemin.js', 'grunt/config/imagemin.js');
-    this.template('grunt/config/pngmin.js', 'grunt/config/pngmin.js');
+    this.template('grunt/config/optimize/htmlmin.js', 'grunt/config/optimize/htmlmin.js');
+    this.template('grunt/config/optimize/imagemin.js', 'grunt/config/optimize/imagemin.js');
+    this.template('grunt/config/optimize/pngmin.js', 'grunt/config/optimize/pngmin.js');
     if (this.htmlOption === 'jade' || this.jsTemplate === 'jade') {
-        this.template('grunt/config/jade.js', 'grunt/config/jade.js');
+        this.template('grunt/config/compile/jade.js', 'grunt/config/compile/jade.js');
     }
     else if (this.htmlOption === 'swig' ) {
-        this.template('grunt/config/swig.js', 'grunt/config/swig.js');
+        this.template('grunt/config/compile/swig.js', 'grunt/config/compile/swig.js');
     }
     if (this.jshint) {
-        this.template('grunt/config/jshint.js', 'grunt/config/jshint.js');
+        this.template('grunt/config/util/jshint.js', 'grunt/config/util/jshint.js');
     }
-    this.template('grunt/config/karma.js', 'grunt/config/karma.js');
+    this.template('grunt/config/test/karma.js', 'grunt/config/test/karma.js');
     if (this.cssOption === 'less') {
-        this.template('grunt/config/less.js', 'grunt/config/less.js');
+        this.template('grunt/config/compile/less.js', 'grunt/config/compile/less.js');
     }
     if (this.jsOption === 'requirejs') {
-        this.template('grunt/config/requirejs.js', 'grunt/config/requirejs.js');
+        this.template('grunt/config/compile/requirejs.js', 'grunt/config/compile/requirejs.js');
     }
     if (this.cssOption === 'sass') {
-        this.template('grunt/config/sass.js', 'grunt/config/sass.js');
+        this.template('grunt/config/compile/sass.js', 'grunt/config/compile/sass.js');
     }
     if (this.jsTemplate === 'lodash') {
-        this.template('grunt/config/jst.js', 'grunt/config/jst.js');
+        this.template('grunt/config/compile/jst.js', 'grunt/config/compile/jst.js');
     }
     else if (this.jsTemplate === 'handlebars') {
-        this.template('grunt/config/handlebars.js', 'grunt/config/handlebars.js');
+        this.template('grunt/config/compile/handlebars.js', 'grunt/config/compile/handlebars.js');
     }
-    this.template('grunt/config/svgmin.js', 'grunt/config/svgmin.js');
-    this.template('grunt/config/uglify.js', 'grunt/config/uglify.js');
+    this.template('grunt/config/optimize/svgmin.js', 'grunt/config/optimize/svgmin.js');
+    this.template('grunt/config/optimize/uglify.js', 'grunt/config/optimize/uglify.js');
     if (this.cssOption === 'css' && !this.singlePageApplication) {
-        this.template('grunt/config/cssmin.js', 'grunt/config/cssmin.js');
+        this.template('grunt/config/optimize/cssmin.js', 'grunt/config/optimize/cssmin.js');
     }
-    this.template('grunt/config/usemin.js', 'grunt/config/usemin.js');
-    this.template('grunt/config/watch.js', 'grunt/config/watch.js');
+    this.template('grunt/config/optimize/usemin.js', 'grunt/config/optimize/usemin.js');
+    this.template('grunt/config/util/watch.js', 'grunt/config/util/watch.js');
     if (this.useServer) {
-        this.template('grunt/config/express.js', 'grunt/config/express.js');
-        this.template('grunt/config/env.js', 'grunt/config/env.js');
+        this.template('grunt/config/server/express.js', 'grunt/config/server/express.js');
+        this.template('grunt/config/server/env.js', 'grunt/config/server/env.js');
     }
-    this.template('grunt/config/injector.js', 'grunt/config/injector.js');
+    this.template('grunt/config/util/injector.js', 'grunt/config/util/injector.js');
 
     // Tasks
     this.template('grunt/tasks/build.js', 'grunt/tasks/build.js');

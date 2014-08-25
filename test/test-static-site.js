@@ -22,7 +22,7 @@ describe('yeogurt generator with static site', function () {
     it('creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
-            'grunt/config/cssmin.js'
+            'grunt/config/optimize/cssmin.js'
         ];
 
         helpers.mockPrompt(this.app, {

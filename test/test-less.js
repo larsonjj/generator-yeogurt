@@ -27,7 +27,7 @@ describe('yeogurt generator Less', function () {
             'client/styles/main.less',
             'grunt/',
             'grunt/config',
-            'grunt/config/less.js'
+            'grunt/config/compile/less.js'
         ];
 
         helpers.mockPrompt(this.app, {
