@@ -5,6 +5,7 @@
 
 module.exports = function(grunt) {
 
+    var locals = JSON.parse(require('fs').readFileSync('locals.json', 'utf8'));
     grunt.config.set('jade', {<% if (structure === 'Static Site') { %>
         server: {
             options: {
