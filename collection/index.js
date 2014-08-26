@@ -55,7 +55,7 @@ util.inherits(CollectionGenerator, yeoman.generators.NamedBase);
 
 CollectionGenerator.prototype.files = function files() {
     if (!this.singlePageApplication) {
-        console.log('This subgenerator is not available for Static Sites. Please choose another.');
+        console.log('This subgenerator is not available for Static Sites.\nOperation aborted');
         return;
     }
     else if (this.singlePageApplication) {

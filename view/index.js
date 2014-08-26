@@ -85,10 +85,10 @@ ViewGenerator.prototype.files = function files() {
                 this.template('view.jade', rootPath +'/templates/' + this.cleanFolderPath(this.folder) +'/' + this._.slugify(this.name.toLowerCase()) + '.jade');
             }
             else if (!this.name) {
-                console.log('Name cannot be empty. Operation aborted.');
+                console.log('Name cannot be empty.\nOperation aborted.');
             }
             else {
-                console.log('Must use a supported type: page, template, module. Operation aborted');
+                console.log('Must use a supported type: page, template, module.\nOperation aborted');
             }
         }
         else if (this.htmlOption === 'swig') {
@@ -102,15 +102,15 @@ ViewGenerator.prototype.files = function files() {
                 this.template('view.swig', rootPath +'/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.swig');
             }
             else if (!this.name) {
-                console.log('Name cannot be empty. Operation aborted.');
+                console.log('Name cannot be empty.\nOperation aborted.');
             }
             else {
-                console.log('Must use a supported type: page, template, module. Operation aborted');
+                console.log('Must use a supported type: page, template, module.\nOperation aborted');
             }
         }
         else if (this.htmlOption === 'html') {
             console.log('You have chosen to use HTML, so you cannot use this sub-generator.');
-            console.log('If you would like to create a new page. Just duplicate your index.html');
+            console.log('If you would like to create a new page. Just duplicate/copy your index.html');
             console.log('Operation aborted');
         }
     }
@@ -118,7 +118,7 @@ ViewGenerator.prototype.files = function files() {
         if (this.jsTemplate !== 'react') {
 
             if (!this.name) {
-                console.log('Name cannot be empty. Operation aborted.');
+                console.log('Name cannot be empty.\nOperation aborted.');
                 return;
             }
             this.template('view.js', rootPath +'/scripts/views/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
@@ -135,7 +135,7 @@ ViewGenerator.prototype.files = function files() {
 
         }
         else {
-            console.log('You have chosen to use React, so this subgenerator is not available to use.');
+            console.log('You have chosen to use React, so this subgenerator is not available.');
             console.log('Try the following to generate a new react component: yo yeogurt:react myreact');
             console.log('Operation aborted');
         }

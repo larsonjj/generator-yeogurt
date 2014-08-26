@@ -57,12 +57,12 @@ util.inherits(ModelGenerator, yeoman.generators.NamedBase);
 
 ModelGenerator.prototype.files = function files() {
     if (!this.singlePageApplication) {
-        console.log('This subgenerator is not available for Static Sites. Please choose another.');
+        console.log('This subgenerator is not available for Static Sites.\nOperation aborted.');
         return;
     }
     else if (this.singlePageApplication) {
         if (!this.name) {
-            console.log('Name cannot be empty. Operation aborted.');
+            console.log('Name cannot be empty.\nOperation aborted.');
             return;
         }
         this.template('model.js', 'client/scripts/models/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');

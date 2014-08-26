@@ -4,7 +4,7 @@
         "status": "development",
         "category": "module",
         "label": "<%= _.titleize(name) %>",
-        "link": "generated/<%= name %>.html"
+        "link": "generated/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= name %>.html"
     }
     [/dash] #}
 {# [dash:swig]
@@ -32,7 +32,7 @@
         "status": "development",
         "category": "page",
         "label": "<%= _.titleize(name) %>",
-        "link": "../../<%= _.slugify(name.toLowerCase()) %>.html"
+        "link": "../../<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= _.slugify(name.toLowerCase()) %>.html"
     }
     [/dash] #}
 <% } %><% if (!useTemplate) { %>
