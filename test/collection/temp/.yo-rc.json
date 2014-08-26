@@ -1,0 +1,12 @@
+{
+  "generator-yeogurt": {
+    "config": {
+      "jsFramework": "react",
+      "extras": [],
+      "jsTemplate": "react",
+      "jsOption": "browserify",
+      "dbOption": "none"
+    },
+    "version": "0.10.0"
+  }
+}

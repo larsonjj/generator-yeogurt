@@ -1,16 +1,15 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var fileJSON = require(process.cwd() + '/.yo-rc.json')['generator-yeogurt'].config;
-// var generatorUtils = require('../modules/util.js');
 
 var ViewGenerator = module.exports = function ViewGenerator(args, options, config) {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
     // as `this.name`.
     yeoman.generators.NamedBase.apply(this, arguments);
 
+    var fileJSON = this.config.get('config');
+
     // options
-    this.useDashboard = this.options.dashboard || false;
     this.view = this.options.type || 'page';
     this.useTemplate = this.options.template || false;
     this.folder = this.options.folder || '';
@@ -19,14 +18,8 @@ var ViewGenerator = module.exports = function ViewGenerator(args, options, confi
     this.jsTemplate = fileJSON.jsTemplate;
     this.testFramework = fileJSON.testFramework;
     this.htmlOption = fileJSON.htmlOption;
-    this.useBootstrap = fileJSON.extras.indexOf('useBootstrap') > -1 ? true : false;
-    this.cssOption = fileJSON.cssOption;
     this.useServer = fileJSON.useServer;
     this.jsOption = fileJSON.jsOption;
-    this.useGA = fileJSON.useGA;
-    this.ieSupport = fileJSON.ieSupport;
-    this.useModernizr = fileJSON.extras.indexOf('useModernizr') > -1 ? true : false;
-    this.ieSupport = fileJSON.ieSupport;
     this.singlePageApplication = fileJSON.singlePageApplication;
 
     var getNumberOfPaths = [];
@@ -54,12 +47,13 @@ var ViewGenerator = module.exports = function ViewGenerator(args, options, confi
         }
     };
 
-    console.log('You called the view subgenerator with the argument ' + this.name + '.');
 };
 
 util.inherits(ViewGenerator, yeoman.generators.NamedBase);
 
 ViewGenerator.prototype.files = function files() {
+    this.log('You called the view subgenerator with the argument ' + this.name + '.');
+
     var rootPath;
     if (!this.singlePageApplication && this.useServer) {
         rootPath = 'server';
@@ -70,7 +64,7 @@ ViewGenerator.prototype.files = function files() {
 
     if (!this.singlePageApplication) {
         if (this.useTemplate && this.view !== 'page') {
-            console.log('The template option will be ignored as the type is not "page"');
+            this.log('The template option will be ignored as the type is not "page"');
         }
 
         if (this.htmlOption === 'jade') {
@@ -84,10 +78,10 @@ ViewGenerator.prototype.files = function files() {
                 this.template('view.jade', rootPath +'/templates/' + this.cleanFolderPath(this.folder) +'/' + this._.slugify(this.name.toLowerCase()) + '.jade');
             }
             else if (!this.name) {
-                console.log('Name cannot be empty.\nOperation aborted.');
+                this.log('Name cannot be empty.\nOperation aborted.');
             }
             else {
-                console.log('Must use a supported type: page, template, module.\nOperation aborted');
+                this.log('Must use a supported type: page, template, module.\nOperation aborted');
             }
         }
         else if (this.htmlOption === 'swig') {
@@ -101,23 +95,23 @@ ViewGenerator.prototype.files = function files() {
                 this.template('view.swig', rootPath +'/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.swig');
             }
             else if (!this.name) {
-                console.log('Name cannot be empty.\nOperation aborted.');
+                this.log('Name cannot be empty.\nOperation aborted.');
             }
             else {
-                console.log('Must use a supported type: page, template, module.\nOperation aborted');
+                this.log('Must use a supported type: page, template, module.\nOperation aborted');
             }
         }
         else if (this.htmlOption === 'html') {
-            console.log('You have chosen to use HTML, so you cannot use this sub-generator.');
-            console.log('If you would like to create a new page. Just duplicate/copy your index.html');
-            console.log('Operation aborted');
+            this.log('You have chosen to use HTML, so you cannot use this sub-generator.');
+            this.log('If you would like to create a new page. Just duplicate/copy your index.html');
+            this.log('Operation aborted');
         }
     }
     else if (this.singlePageApplication) {
         if (this.jsTemplate !== 'react') {
 
             if (!this.name) {
-                console.log('Name cannot be empty.\nOperation aborted.');
+                this.log('Name cannot be empty.\nOperation aborted.');
                 return;
             }
             this.template('view.js', rootPath +'/scripts/views/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
@@ -134,9 +128,9 @@ ViewGenerator.prototype.files = function files() {
 
         }
         else {
-            console.log('You have chosen to use React, so this subgenerator is not available.');
-            console.log('Try the following to generate a new react component: yo yeogurt:react myreact');
-            console.log('Operation aborted');
+            this.log('You have chosen to use React, so this subgenerator is not available.');
+            this.log('Try the following to generate a new react component: yo yeogurt:react myreact');
+            this.log('Operation aborted');
         }
     }
 };

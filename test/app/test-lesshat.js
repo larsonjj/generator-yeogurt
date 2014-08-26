@@ -2,11 +2,13 @@
 'use strict';
 
 var path    = require('path');
-var helpers = require('yeoman-generator').test;
+var yeoman  = require('yeoman-generator');
+var helpers = yeoman.test;
+var assert  = yeoman.assert;
 var Output = require( '../helpers/mute' );
 
 
-describe('yeogurt generator Less with no dashbaord', function () {
+describe('yeogurt generator Less with no dashboard', function () {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -49,7 +51,7 @@ describe('yeogurt generator Less with no dashbaord', function () {
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {
-            helpers.assertFile(expected);
+            assert.file(expected);
             done();
         });
     });

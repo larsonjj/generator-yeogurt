@@ -2,11 +2,13 @@
 'use strict';
 
 var path    = require('path');
-var helpers = require('yeoman-generator').test;
+var yeoman  = require('yeoman-generator');
+var helpers = yeoman.test;
+var assert  = yeoman.assert;
 var Output = require( '../helpers/mute' );
 
 
-describe('yeogurt generator with git', function () {
+describe('yeogurt generator documentation', function () {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -30,6 +32,7 @@ describe('yeogurt generator with git', function () {
             // add files and folders you expect to exist here.
             'client/docs',
             'client/docs/styleguide',
+            'client/docs/dashboard',
             'client/docs/styleguide/index.html',
             'client/docs/styleguide/public/kss.js',
             'client/docs/styleguide/public/kss.less',
@@ -54,7 +57,7 @@ describe('yeogurt generator with git', function () {
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {
-            helpers.assertFile(expected);
+            assert.file(expected);
             done();
         });
     });

@@ -1,12 +1,13 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var fileJSON = require(process.cwd() + '/.yo-rc.json')['generator-yeogurt'].config;
 
 var ScriptGenerator = module.exports = function ScriptGenerator(args, options, config) {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
     // as `this.name`.
     yeoman.generators.NamedBase.apply(this, arguments);
+
+    var fileJSON = this.config.get('config');
 
     // options
     this.useDashboard = this.options.dashboard || false;
@@ -39,12 +40,13 @@ var ScriptGenerator = module.exports = function ScriptGenerator(args, options, c
         }
     };
 
-    console.log('You called the script subgenerator with the argument ' + this.name + '.');
 };
 
 util.inherits(ScriptGenerator, yeoman.generators.NamedBase);
 
 ScriptGenerator.prototype.files = function files() {
+    this.log('You called the script subgenerator with the argument ' + this.name + '.');
+
     if (!this.name) {
         console.log('Name cannot be empty. Operation aborted.');
         return;

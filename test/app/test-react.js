@@ -2,7 +2,9 @@
 'use strict';
 
 var path    = require('path');
-var helpers = require('yeoman-generator').test;
+var yeoman  = require('yeoman-generator');
+var helpers = yeoman.test;
+var assert  = yeoman.assert;
 var Output = require( '../helpers/mute' );
 
 
@@ -52,7 +54,7 @@ describe('yeogurt generator backbone + react', function () {
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {
-            helpers.assertFile(expected);
+            assert.file(expected);
             done();
         });
     });

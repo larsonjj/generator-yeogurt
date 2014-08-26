@@ -1,0 +1,12 @@
+{
+    "name": "",
+    "version": "0.0.1",
+    "dependencies": {
+        "jquery": "~2.1.0",
+        "backbone": "~1.1.2",
+        "lodash": "~2.4.1",
+        "es5-shim": "~3.4.0",
+        "requirejs": "~2.1.11"
+    },
+  "devDependencies": {}
+}

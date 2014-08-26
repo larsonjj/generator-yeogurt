@@ -2,7 +2,9 @@
 'use strict';
 
 var path    = require('path');
-var helpers = require('yeoman-generator').test;
+var yeoman  = require('yeoman-generator');
+var helpers = yeoman.test;
+var assert  = yeoman.assert;
 var Output = require( '../helpers/mute' );
 
 
@@ -31,8 +33,6 @@ describe('yeogurt generator Dashboard', function () {
             'grunt/',
             'grunt/config',
             'grunt/config/doc/dashboard.js',
-            'grunt/config/deploy/ftpush.js',
-            'grunt/tasks/deploy.js',
             'client/',
             'client/docs/dashboard/',
             'client/docs/dashboard/images/',
@@ -54,7 +54,7 @@ describe('yeogurt generator Dashboard', function () {
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {
-            helpers.assertFile(expected);
+            assert.file(expected);
             done();
         });
     });

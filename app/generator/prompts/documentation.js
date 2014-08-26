@@ -29,7 +29,7 @@ var documentationPrompts = function documentationPrompts() {
         type: 'confirm',
         name: 'useDashboard',
         message: 'Would you like to ' + 'generate a dashboard'.blue + ' for your site/app',
-        default: false
+        default: true
     }], function(answers) {
         this.documentationPrompts = answers;
 
