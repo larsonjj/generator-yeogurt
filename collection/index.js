@@ -11,8 +11,8 @@ var CollectionGenerator = module.exports = function CollectionGenerator(args, op
     // options
     this.useModel = this.options.model || false;
     this.folder = this.options.folder || '';
-    this.useDashboard = fileJSON.useDashboard
-    this.jsTemplate = fileJSON.jsTemplate;
+    this.useDashboard = fileJSON.useDashboard;
+    this.jsFramework = fileJSON.jsFramework;
     this.htmlOption = fileJSON.htmlOption;
     this.useBootstrap = fileJSON.extras.indexOf('useBootstrap') > -1 ? true : false;
     this.cssOption = fileJSON.cssOption;
@@ -21,7 +21,8 @@ var CollectionGenerator = module.exports = function CollectionGenerator(args, op
     this.ieSupport = fileJSON.ieSupport;
     this.useModernizr = fileJSON.extras.indexOf('useModernizr') > -1 ? true : false;
     this.ieSupport = fileJSON.ieSupport;
-    this.responsive = fileJSON.responsive;
+    this.singlePageApplication = fileJSON.singlePageApplication;
+    this.testFramework = fileJSON.testFramework;
 
     var getNumberOfPaths = [];
     this.folder.split('/').forEach(function(item) {
@@ -54,9 +55,12 @@ var CollectionGenerator = module.exports = function CollectionGenerator(args, op
 util.inherits(CollectionGenerator, yeoman.generators.NamedBase);
 
 CollectionGenerator.prototype.files = function files() {
-    if (!this.singlePageApplication) {
+    if (!this.singlePageApplication && this.jsFramework !== 'react') {
         console.log('This subgenerator is not available for Static Sites.\nOperation aborted');
         return;
+    }
+    else if (this.jsFramework === 'react') {
+        console.log('This subgenerator is not available for React application.\nOperation aborted');
     }
     else if (this.singlePageApplication) {
         if (!this.name) {

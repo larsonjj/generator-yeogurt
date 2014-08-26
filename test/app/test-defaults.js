@@ -13,12 +13,14 @@ describe('yeogurt generator defaults', function () {
                 return done(err);
             }
 
-            this.app.on( 'start', Output.mute );
-this.app.on( 'end', Output.unmute );
-
-this.app = helpers.createGenerator('yeogurt:app', [
+            this.app = helpers.createGenerator('yeogurt:app', [
                 '../../../app',
             ]);
+
+            // Prevent Yeoman writes while the generator runs
+            // and reenable them when it's finished to see the test results
+            this.app.on( 'start', Output.mute );
+            this.app.on( 'end', Output.unmute );
             done();
         }.bind(this));
     });

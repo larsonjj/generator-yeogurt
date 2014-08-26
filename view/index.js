@@ -12,12 +12,12 @@ var ViewGenerator = module.exports = function ViewGenerator(args, options, confi
     // options
     this.useDashboard = this.options.dashboard || false;
     this.view = this.options.type || 'page';
-    this.noImport = this.options.noImport || false;
     this.useTemplate = this.options.template || false;
     this.folder = this.options.folder || '';
-    this.useDashboard = fileJSON.useDashboard
+    this.useDashboard = fileJSON.useDashboard;
     this.projectName = fileJSON.projectName;
     this.jsTemplate = fileJSON.jsTemplate;
+    this.testFramework = fileJSON.testFramework;
     this.htmlOption = fileJSON.htmlOption;
     this.useBootstrap = fileJSON.extras.indexOf('useBootstrap') > -1 ? true : false;
     this.cssOption = fileJSON.cssOption;
@@ -27,7 +27,6 @@ var ViewGenerator = module.exports = function ViewGenerator(args, options, confi
     this.ieSupport = fileJSON.ieSupport;
     this.useModernizr = fileJSON.extras.indexOf('useModernizr') > -1 ? true : false;
     this.ieSupport = fileJSON.ieSupport;
-    this.responsive = fileJSON.responsive;
     this.singlePageApplication = fileJSON.singlePageApplication;
 
     var getNumberOfPaths = [];

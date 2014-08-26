@@ -108,7 +108,7 @@ var taskConfig = function(grunt) {
             ]
         },<% if (jsFramework === 'react') { %>
         jsx: {
-            files: ['<%%= yeogurt.client %>/scripts/views/**/*.jsx'],
+            files: ['<%%= yeogurt.client %>/scripts/components/**/*.jsx'],
             tasks: [<% if (jsOption === 'requirejs') { %>
                 'newer:copy:server',<% } %><% if (jsOption === 'browserify') { %>
                 'browserify:server',
@@ -166,7 +166,7 @@ var taskConfig = function(grunt) {
             files: [
                 'server.js',
                 'server/**/*.{js,json,html}'<% if (jsFramework === 'react') { %>,
-                '<%%= yeogurt.client %>/scripts/views/*.jsx'<% } %><% if (jsTemplate === 'handlebars') { %>,
+                '<%%= yeogurt.client %>/scripts/components/*.jsx'<% } %><% if (jsTemplate === 'handlebars') { %>,
                 '<%%= yeogurt.client %>/templates/**/*.hbs'<% } %><% if (jsTemplate === 'lodash') { %>,
                 '<%%= yeogurt.client %>/templates/**/*.jst'<% } %><% if (jsTemplate === 'jade') { %>,
                 '<%%= yeogurt.client %>/templates/**/*.jade'<% } %><% if (htmlOption === 'swig') { %>,

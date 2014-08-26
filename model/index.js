@@ -13,8 +13,8 @@ var ModelGenerator = module.exports = function ModelGenerator(args, options, con
     this.view = this.options.type || 'page';
     this.useTemplate = this.options.template || false;
     this.folder = this.options.folder || '';
-    this.useDashboard = fileJSON.useDashboard
-    this.jsTemplate = fileJSON.jsTemplate;
+    this.useDashboard = fileJSON.useDashboard;
+    this.jsFramework = fileJSON.jsFramework;
     this.htmlOption = fileJSON.htmlOption;
     this.useBootstrap = fileJSON.extras.indexOf('useBootstrap') > -1 ? true : false;
     this.cssOption = fileJSON.cssOption;
@@ -23,7 +23,8 @@ var ModelGenerator = module.exports = function ModelGenerator(args, options, con
     this.ieSupport = fileJSON.ieSupport;
     this.useModernizr = fileJSON.extras.indexOf('useModernizr') > -1 ? true : false;
     this.ieSupport = fileJSON.ieSupport;
-    this.responsive = fileJSON.responsive;
+    this.singlePageApplication = fileJSON.singlePageApplication;
+    this.testFramework = fileJSON.testFramework;
 
     var getNumberOfPaths = [];
     this.folder.split('/').forEach(function(item) {
@@ -56,9 +57,12 @@ var ModelGenerator = module.exports = function ModelGenerator(args, options, con
 util.inherits(ModelGenerator, yeoman.generators.NamedBase);
 
 ModelGenerator.prototype.files = function files() {
-    if (!this.singlePageApplication) {
-        console.log('This subgenerator is not available for Static Sites.\nOperation aborted.');
+    if (!this.singlePageApplication && this.jsFramework !== 'react') {
+        console.log('This subgenerator is not available for Static Sites.\nOperation aborted');
         return;
+    }
+    else if (this.jsFramework === 'react') {
+        console.log('This subgenerator is not available for React application.\nOperation aborted');
     }
     else if (this.singlePageApplication) {
         if (!this.name) {

@@ -1,0 +1,9 @@
+node_modules
+*.log
+dist
+.ftppass
+bower_components
+.grunt
+.serve
+.tmp
+secrets.js

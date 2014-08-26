@@ -1,4 +1,4 @@
-// Generated on <%= (new Date).toISOString().split('T')[0] %> using <%= pkg.name %> <%= pkg.version %>
+// Generated on 2014-08-26 using generator-yeogurt 0.10.0
 'use strict';
 
 // Folder paths for:
@@ -25,8 +25,7 @@ module.exports = function(grunt) {
         // translate useminPrepare to use the 'grunt-usemin' plugin
         useminPrepare: 'grunt-usemin',
         // translate swig to use the 'grunt-wobble-swig' plugin
-        swig: 'grunt-swig-templates'<% if (useServer) { %>,
-        express: 'grunt-express-server'<% } %>
+        swig: 'grunt-swig-templates'
     });
 
     // Load the include-all library in order to require all of our grunt
@@ -60,10 +59,10 @@ module.exports = function(grunt) {
 
     // Load task functions
     var utilConfig = loadTasks('./grunt/config/util');
-    var compileConfig = loadTasks('./grunt/config/compile');<% if (useKss || useDashboard || useJsdoc) { %>
-    var docConfig = loadTasks('./grunt/config/doc');<% } %>
-    var optimizeConfig = loadTasks('./grunt/config/optimize');<% if (useFTP) { %>
-    var deployConfig = loadTasks('./grunt/config/deploy');<% } %>
+    var compileConfig = loadTasks('./grunt/config/compile');
+    var docConfig = loadTasks('./grunt/config/doc');
+    var optimizeConfig = loadTasks('./grunt/config/optimize');
+    var deployConfig = loadTasks('./grunt/config/deploy');
     var serverConfig = loadTasks('./grunt/config/server');
     var testConfig = loadTasks('./grunt/config/test');
     var registerDefinitions = loadTasks('./grunt/tasks');
@@ -79,10 +78,10 @@ module.exports = function(grunt) {
 
     // Run task functions to configure Grunt.
     invokeConfigFn(utilConfig);
-    invokeConfigFn(compileConfig);<% if (useKss || useDashboard || useJsdoc) { %>
-    invokeConfigFn(docConfig);<% } %>
-    invokeConfigFn(optimizeConfig);<% if (useFTP) { %>
-    invokeConfigFn(deployConfig);<% } %>
+    invokeConfigFn(compileConfig);
+    invokeConfigFn(docConfig);
+    invokeConfigFn(optimizeConfig);
+    invokeConfigFn(deployConfig);
     invokeConfigFn(serverConfig);
     invokeConfigFn(testConfig);
     invokeConfigFn(registerDefinitions);
