@@ -69,7 +69,7 @@ var taskConfig = function(grunt) {
             ]
         },<% } %><% if (cssOption === 'sass') { %>
         sass: {
-            files: ['<%%= yeogurt.dev %>/styles/**/*.<% if (useKss) { %>{scss,sass,md}<% } else { %>{scss,sass}<% } %>'],
+            files: ['<%%= yeogurt.client %>/styles/**/*.<% if (useKss) { %>{scss,sass,md}<% } else { %>{scss,sass}<% } %>'],
             tasks: [
                 'injector:sass',
                 'sass:server'
@@ -188,71 +188,50 @@ var taskConfig = function(grunt) {
     <% if (useKss || useJsdoc || useDashboard) { %>
     // Documentation specific configuration
     var docsConfig = {<% if (htmlOption === 'jade' && useDashboard) { %>
-        jadeDocs: {
-            files: [
-                '<%%= yeogurt.client %>/templates/*.jade'
-            ],
+        jade: {
             tasks: [
                 'dashboard:server'
             ]
         },
-        jadePartialsDocs: {
-            files: [
-                '<%%= yeogurt.client %>/templates/**/*.jade',
-                '!<%%= yeogurt.client %>/templates/*.jade'
-            ],
+        jadePartials: {
             tasks: [
                 'dashboard:server'
             ]
         },<% } %><% if (htmlOption === 'swig' && useDashboard) { %>
-        swigDocs: {
-            files: [
-                '<%%= yeogurt.client %>/templates/*.swig'
-            ],
+        swig: {
             tasks: [
                 'dashboard:server'
             ]
         },
-        swigPartialsDocs: {
-            files: [
-                '<%%= yeogurt.client %>/templates/**/*.swig',
-                '!<%%= yeogurt.client %>/templates/*.swig'
-            ],
+        swigPartials: {
             tasks: [
                 'dashboard:server'
             ]
         },<% } %><% if (useDashboard && htmlOption === 'html' || jsFramework === 'backbone') { %>
-        htmlDocs: {
-            files: [
-                '<%%= yeogurt.client %>/templates/**/*.html'
-            ],
+        html: {
             tasks: [
                 'dashboard:server',
             ]
         },<% } %><% if (cssOption === 'sass' && useKss) { %>
-        sassDocs: {
-            files: ['<%%= yeogurt.client %>/styles/**/*.<% if (useKss) { %>{scss,sass,md}<% } else { %>scss,sass<% } %>'],
+        sass: {
             tasks: [
                 'kss:server'
             ]
         },<% } %><% if (cssOption === 'less' && useKss) { %>
-        lessDocs: {
-            files: ['<%%= yeogurt.client %>/styles/**/*.<% if (useKss) { %>{less,md}<% } else { %>less<% } %>'],
+        less: {
             tasks: [
                 'kss:server'
             ]
         },<% } %><% if (useJsdoc) { %>
-        jsDocs: {
+        js: {
             files: [
-                '<%%= yeogurt.client %>/scripts/**/*.js',
                 'README.md'
             ],
             tasks: [
                 'jsdoc:server'
             ]
         },<% } %><% if (jsFramework === 'react' && useJsdoc) { %>
-        jsxDocs: {
-            files: ['<%%= yeogurt.client %>/scripts/views/**/*.jsx'],
+        jsx: {
             tasks: [
                 'jsdoc:server'
             ]
@@ -265,7 +244,7 @@ var taskConfig = function(grunt) {
         },<% } %><% if (useDashboard) { %>
         dashboard: {
             files: [
-                '<%%= yeogurt.client %>/dashboard/**/*.*'
+                '<%%= yeogurt.client %>/docs/dashboard/**/*.*'
             ],
             tasks: ['dashboard:server']
         }<% } %>
@@ -274,7 +253,11 @@ var taskConfig = function(grunt) {
     grunt.config.set('watch', config);
     <% if (useKss || useJsdoc || useDashboard) { %>
     grunt.registerTask('listen:docs', function() {
-        grunt.config('watch', _.extend(config, docsConfig));
+        // Merge docsConfig object with the config object without overwriting arrays
+        // Instead concatenate all arrays with each other
+        grunt.config('watch', _.merge(config, docsConfig, function(a, b) {
+            return _.isArray(a) ? a.concat(b) : undefined;
+        }));
         grunt.task.run('watch');
     });
     <% } %>

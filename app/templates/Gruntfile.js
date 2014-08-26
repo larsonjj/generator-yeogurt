@@ -62,7 +62,6 @@ module.exports = function(grunt) {
     var utilConfig = loadTasks('./grunt/config/util');
     var compileConfig = loadTasks('./grunt/config/compile');
     var docConfig = loadTasks('./grunt/config/doc');
-    var testConfig = loadTasks('./grunt/config/test');
     var optimizeConfig = loadTasks('./grunt/config/optimize');
     var deployConfig = loadTasks('./grunt/config/deploy');
     var serverConfig = loadTasks('./grunt/config/server');

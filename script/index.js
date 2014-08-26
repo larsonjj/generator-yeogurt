@@ -12,6 +12,7 @@ var ScriptGenerator = module.exports = function ScriptGenerator(args, options, c
     this.useDashboard = this.options.dashboard || false;
     this.folder = this.options.folder || '';
     this.jsOption = fileJSON.jsOption;
+    this.testFramework = fileJSON.testFramework;
 
     var getNumberOfPaths = [];
     this.folder.split('/').forEach(function(item) {

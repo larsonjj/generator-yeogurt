@@ -4,7 +4,7 @@
         "status": "development",
         "category": "module",
         "label": "<%= _.titleize(name) %>",
-        "link": "../dashboard/generated/<%= name %>.html"
+        "link": "generated/<%= name %>.html"
     }
     [/dash] #}
 {# [dash:swig]
@@ -32,18 +32,12 @@
         "status": "development",
         "category": "page",
         "label": "<%= _.titleize(name) %>",
-        "link": "../<%= _.slugify(name.toLowerCase()) %>.html"
+        "link": "../../<%= _.slugify(name.toLowerCase()) %>.html"
     }
     [/dash] #}
 <% } %><% if (!useTemplate) { %>
 {% extends './layouts/base.swig' %}<% } else { %>
 {% extends './layouts/<%= useTemplate %>.swig' %}<% } %>
-
-{# use the 'block body' if you need to set a page-level class on the <body> tag #}
-{% block body %}
-    {% set bodyClass = '<%= _.slugify(name.toLowerCase()) %>' %}
-    {% parent %}
-{% endblock %}
 
 {% block content %}
     <p><%= name || 'empty' %> page</p>

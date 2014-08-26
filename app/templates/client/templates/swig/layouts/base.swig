@@ -19,8 +19,7 @@
         <meta name="description" content=""/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/><% if (useServer && useSession && useSecurity) { %>
         <meta name="csrf-token" content="{{_csrf}}" /><% } %><% if (useGA) { %>
-        <link href="//www.google-analytics.com" rel="dns-prefetch"><% } %>
-<% if (cssOption === 'css') { %><% if (useServer) { %>
+        <link href="//www.google-analytics.com" rel="dns-prefetch"><% } %><% if (cssOption === 'css') { %><% if (useServer) { %>
         {% if env == 'development' %}<% } %>
         <!-- build:css(client) styles/main.css --><% if (useBootstrap) { %>
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
@@ -73,18 +72,11 @@
             })();
         </script>
         <![endif]--><% } %>
-        {# Blocking off body tag so pages have the ability change the body's class #}
-        {% set bodyClass = false %}
-        {% block body %}
-            {% if bodyClass %}
-            <body class="{{bodyClass}}">
-            {% else %}
-            <body>
-            {% endif %}
-        {% endblock %}
-            <!--[if lte IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-            <![endif]-->
+    </head>
+    <body>
+        <!--[if lte IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
 
         {% block content %}{% endblock %}
 
@@ -140,9 +132,8 @@
         <% } %><!-- endbuild --><% if (useServer) { %>
         {% else %}
         <script src="/scripts/globals.js"></script>
-        {% endif %}<% } %>
+        {% endif %}<% } %><% if  (jsOption === 'requirejs') { %>
 
-<% if  (jsOption === 'requirejs') { %>
         <script data-main="scripts/main", src="bower_components/requirejs/require.js"></script><% } else if (jsOption === 'browserify') { %><script src="/scripts/app.js"></script><% } else { %>
         {#
             Place all author scripts within the 'build:js' comments below,
