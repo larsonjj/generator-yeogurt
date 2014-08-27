@@ -94,7 +94,9 @@ var answersConfig = function answersConfig() {
 
     // Determine if feature exists within a given object
     function hasFeature(feat, obj) {
-        return obj.indexOf(feat) !== -1;
+        if (obj) {
+            return obj.indexOf(feat) !== -1;
+        }
     }
 
     // Intially set flags to false

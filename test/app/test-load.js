@@ -9,10 +9,9 @@ describe('yeogurt generator', function () {
         // Todo: unit test sub-generators
         // assert(require('../style') !== undefined);
         // assert(require('../script') !== undefined);
-        // assert(require('../react') !== undefined);
-        // assert(require('../route') !== undefined);
+        assert(require('../../react') !== undefined);
         // assert(require('../view') !== undefined);
-        // assert(require('../model') !== undefined);
-        // assert(require('../collection') !== undefined);
+        assert(require('../../model') !== undefined);
+        assert(require('../../collection') !== undefined);
     });
 });

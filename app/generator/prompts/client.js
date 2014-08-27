@@ -186,7 +186,8 @@ var clientPrompts = function clientPrompts() {
             name: 'Modernizr',
             value: 'useModernizr',
             checked: true
-        }]
+        }],
+        default: []
     }], function(answers) {
         this.clientPrompts = answers;
 
