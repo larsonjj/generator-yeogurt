@@ -54,76 +54,23 @@ util.inherits(ViewGenerator, yeoman.generators.NamedBase);
 ViewGenerator.prototype.files = function files() {
     this.log('You called the view subgenerator with the argument ' + this.name + '.');
 
-    var rootPath;
-    if (!this.singlePageApplication && this.useServer) {
-        rootPath = 'server';
-    }
-    else {
-        rootPath = 'client';
-    }
-
-    if (!this.singlePageApplication) {
-        if (this.useTemplate && this.view !== 'page') {
-            this.log('The template option will be ignored as the type is not "page"');
-        }
-
-        if (this.htmlOption === 'jade') {
-            if (this.view === 'page') {
-                this.template('view.jade', rootPath + '/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.jade');
-            }
-            else if (this.view === 'module') {
-                this.template('view.jade', rootPath +'/templates/' + this.cleanFolderPath(this.folder) +'/' + this._.slugify(this.name.toLowerCase()) + '.jade');
-            }
-            else if (this.view === 'layout') {
-                this.template('view.jade', rootPath +'/templates/' + this.cleanFolderPath(this.folder) +'/' + this._.slugify(this.name.toLowerCase()) + '.jade');
-            }
-            else if (!this.name) {
-                this.log('Name cannot be empty.\nOperation aborted.');
-            }
-            else {
-                this.log('Must use a supported type: page, template, module.\nOperation aborted');
-            }
-        }
-        else if (this.htmlOption === 'swig') {
-            if (this.view === 'page') {
-                this.template('view.swig', rootPath +'/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.swig');
-            }
-            else if (this.view === 'module') {
-                this.template('view.swig', rootPath +'/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.swig');
-            }
-            else if (this.view === 'template') {
-                this.template('view.swig', rootPath +'/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.swig');
-            }
-            else if (!this.name) {
-                this.log('Name cannot be empty.\nOperation aborted.');
-            }
-            else {
-                this.log('Must use a supported type: page, template, module.\nOperation aborted');
-            }
-        }
-        else if (this.htmlOption === 'html') {
-            this.log('You have chosen to use HTML, so you cannot use this sub-generator.');
-            this.log('If you would like to create a new page. Just duplicate/copy your index.html');
-            this.log('Operation aborted');
-        }
-    }
-    else if (this.singlePageApplication) {
+    if (this.singlePageApplication) {
         if (this.jsTemplate !== 'react') {
 
             if (!this.name) {
                 this.log('Name cannot be empty.\nOperation aborted.');
                 return;
             }
-            this.template('view.js', rootPath +'/scripts/views/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
+            this.template('view.js', 'client/scripts/views/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
             this.template('view-spec.js', 'test/spec/views/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
             if (this.jsTemplate === 'lodash') {
-                this.template('view.html', rootPath +'/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.jst');
+                this.template('view.html', 'client/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.jst');
             }
             else if (this.jsTemplate === 'handlebars') {
-                this.template('view.html', rootPath +'/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.hbs');
+                this.template('view.html', 'client/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.hbs');
             }
             else if (this.jsTemplate === 'jade') {
-                this.template('view.html', rootPath +'/views/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.jade');
+                this.template('view.html', 'client/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.jade');
             }
 
         }
@@ -132,5 +79,10 @@ ViewGenerator.prototype.files = function files() {
             this.log('Try the following to generate a new react component: yo yeogurt:react myreact');
             this.log('Operation aborted');
         }
+    }
+    else {
+        this.log('You have chosen to create a static site, so this subgenerator is not available.');
+        this.log('If you were trying to create a new template, try the following: yo yeogurt:react myreact');
+        this.log('Operation aborted');
     }
 };

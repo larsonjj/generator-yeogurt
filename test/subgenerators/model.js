@@ -35,7 +35,8 @@ describe('Model sub-generator', function () {
             var model = 'mymodel';
             var filesToTest = [
                 // add files and folders you expect to NOT exist here.
-                'test/spec/models/' + model + '.js'
+                'test/spec/models/' + model + '.js',
+                'client/scripts/models/' + model + '.js'
             ];
 
             helpers.mockPrompt(this.app, {
@@ -65,7 +66,8 @@ describe('Model sub-generator', function () {
             var folder = 'folder/';
             var filesToTest = [
                 // add files and folders you expect to NOT exist here.
-                'test/spec/models/' + folder + model + '.js'
+                'test/spec/models/' + folder + model + '.js',
+                'client/scripts/models/' + folder + model + '.js'
             ];
             this.app.run({}, function() {
                 var modelGen = helpers.createGenerator(
@@ -94,7 +96,8 @@ describe('Model sub-generator', function () {
             var folder = '/////folder/////';
             var filesToTest = [
                 // add files and folders you expect to NOT exist here.
-                'test/spec/models/folder/' + model + '.js'
+                'test/spec/models/folder/' + model + '.js',
+                'client/scripts/models/folder/' + model + '.js'
             ];
             this.app.run({}, function() {
                 var modelGen = helpers.createGenerator(
@@ -122,7 +125,8 @@ describe('Model sub-generator', function () {
             var model = 'mymodel';
             var filesToTest = [
                 // add files and folders you expect to NOT exist here.
-                'test/spec/models/' + model + '.js'
+                'test/spec/models/' + model + '.js',
+                'client/scripts/models/' + model + '.js'
             ];
 
             helpers.mockPrompt(this.app, {
@@ -145,14 +149,15 @@ describe('Model sub-generator', function () {
         });
         it('Handles folder option', function(done) {
             helpers.mockPrompt(this.app, {
-                htmlOption: 'swig'
+                htmlOption: 'jade'
             });
             // Filename
             var model = 'mymodel';
             var folder = 'folder/';
             var filesToTest = [
                 // add files and folders you expect to NOT exist here.
-                'test/spec/models/' + folder + model + '.js'
+                'test/spec/models/' + folder + model + '.js',
+                'client/scripts/models/' + folder + model + '.js'
             ];
             this.app.run({}, function() {
                 var modelGen = helpers.createGenerator(
@@ -174,14 +179,15 @@ describe('Model sub-generator', function () {
         });
         it('Handles folder option with funky path', function(done) {
             helpers.mockPrompt(this.app, {
-                htmlOption: 'swig'
+                htmlOption: 'jade'
             });
             // Filename
             var model = 'mymodel';
             var folder = '/////folder/////';
             var filesToTest = [
                 // add files and folders you expect to NOT exist here.
-                'test/spec/models/folder/' + model + '.js'
+                'test/spec/models/folder/' + model + '.js',
+                'client/scripts/models/folder/' + model + '.js'
             ];
             this.app.run({}, function() {
                 var modelGen = helpers.createGenerator(
@@ -212,7 +218,8 @@ describe('Model sub-generator', function () {
             var model = 'mymodel';
             var filesToTest = [
                 // add files and folders you expect to NOT exist here.
-                'test/spec/models/' + model + '.js'
+                'test/spec/models/' + model + '.js',
+                'client/scripts/models/' + model + '.js'
             ];
             this.app.run({}, function() {
                 var modelGen = helpers.createGenerator(
@@ -238,7 +245,8 @@ describe('Model sub-generator', function () {
             var folder = 'folder/';
             var filesToTest = [
                 // add files and folders you expect to NOT exist here.
-                'test/spec/models/' + folder + model + '.js'
+                'test/spec/models/' + folder + model + '.js',
+                'client/scripts/models/' + folder + model + '.js'
             ];
             this.app.run({}, function() {
                 var modelGen = helpers.createGenerator(
@@ -267,7 +275,8 @@ describe('Model sub-generator', function () {
             var folder = '/////folder/////';
             var filesToTest = [
                 // add files and folders you expect to NOT exist here.
-                'test/spec/models/folder/' + model + '.js'
+                'test/spec/models/folder/' + model + '.js',
+                'client/scripts/models/folder/' + model + '.js'
             ];
             this.app.run({}, function() {
                 var modelGen = helpers.createGenerator(

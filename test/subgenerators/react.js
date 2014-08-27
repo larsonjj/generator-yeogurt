@@ -157,7 +157,7 @@ describe('React sub-generator', function () {
         });
         it('Handles folder option', function(done) {
             helpers.mockPrompt(this.app, {
-                htmlOption: 'swig'
+                htmlOption: 'jade'
             });
             // Filename
             var react = 'myreact';
@@ -186,7 +186,7 @@ describe('React sub-generator', function () {
         });
         it('Handles folder option with funky path', function(done) {
             helpers.mockPrompt(this.app, {
-                htmlOption: 'swig'
+                htmlOption: 'jade'
             });
             // Filename
             var react = 'myreact';

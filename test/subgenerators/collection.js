@@ -35,7 +35,8 @@ describe('Collection sub-generator', function () {
             var collection = 'mycollection';
             var filesToTest = [
                 // add files and folders you expect to NOT exist here.
-                'test/spec/collections/' + collection + '.js'
+                'test/spec/collections/' + collection + '.js',
+                'client/scripts/collections/' + collection + '.js'
             ];
 
             helpers.mockPrompt(this.app, {
@@ -65,7 +66,8 @@ describe('Collection sub-generator', function () {
             var folder = 'folder/';
             var filesToTest = [
                 // add files and folders you expect to NOT exist here.
-                'test/spec/collections/' + folder + collection + '.js'
+                'test/spec/collections/' + folder + collection + '.js',
+                'client/scripts/collections/' + folder + collection + '.js'
             ];
             this.app.run({}, function() {
                 var collectionGen = helpers.createGenerator(
@@ -94,7 +96,8 @@ describe('Collection sub-generator', function () {
             var folder = '/////folder/////';
             var filesToTest = [
                 // add files and folders you expect to NOT exist here.
-                'test/spec/collections/folder/' + collection + '.js'
+                'test/spec/collections/folder/' + collection + '.js',
+                'client/scripts/collections/folder/' + collection + '.js'
             ];
             this.app.run({}, function() {
                 var collectionGen = helpers.createGenerator(
@@ -122,7 +125,8 @@ describe('Collection sub-generator', function () {
             var collection = 'mycollection';
             var filesToTest = [
                 // add files and folders you expect to NOT exist here.
-                'test/spec/collections/' + collection + '.js'
+                'test/spec/collections/' + collection + '.js',
+                'client/scripts/collections/' + collection + '.js'
             ];
 
             helpers.mockPrompt(this.app, {
@@ -145,14 +149,15 @@ describe('Collection sub-generator', function () {
         });
         it('Handles folder option', function(done) {
             helpers.mockPrompt(this.app, {
-                htmlOption: 'swig'
+                htmlOption: 'jade'
             });
             // Filename
             var collection = 'mycollection';
             var folder = 'folder/';
             var filesToTest = [
                 // add files and folders you expect to NOT exist here.
-                'test/spec/collections/' + folder + collection + '.js'
+                'test/spec/collections/' + folder + collection + '.js',
+                'client/scripts/collections/' + folder + collection + '.js'
             ];
             this.app.run({}, function() {
                 var collectionGen = helpers.createGenerator(
@@ -174,14 +179,15 @@ describe('Collection sub-generator', function () {
         });
         it('Handles folder option with funky path', function(done) {
             helpers.mockPrompt(this.app, {
-                htmlOption: 'swig'
+                htmlOption: 'jade'
             });
             // Filename
             var collection = 'mycollection';
             var folder = '/////folder/////';
             var filesToTest = [
                 // add files and folders you expect to NOT exist here.
-                'test/spec/collections/folder/' + collection + '.js'
+                'test/spec/collections/folder/' + collection + '.js',
+                'client/scripts/collections/folder/' + collection + '.js'
             ];
             this.app.run({}, function() {
                 var collectionGen = helpers.createGenerator(
@@ -212,7 +218,8 @@ describe('Collection sub-generator', function () {
             var collection = 'mycollection';
             var filesToTest = [
                 // add files and folders you expect to NOT exist here.
-                'test/spec/collections/' + collection + '.js'
+                'test/spec/collections/' + collection + '.js',
+                'client/scripts/collections/' + collection + '.js'
             ];
             this.app.run({}, function() {
                 var collectionGen = helpers.createGenerator(
@@ -238,7 +245,8 @@ describe('Collection sub-generator', function () {
             var folder = 'folder/';
             var filesToTest = [
                 // add files and folders you expect to NOT exist here.
-                'test/spec/collections/' + folder + collection + '.js'
+                'test/spec/collections/' + folder + collection + '.js',
+                'client/scripts/collections/' + folder + collection + '.js'
             ];
             this.app.run({}, function() {
                 var collectionGen = helpers.createGenerator(
@@ -267,7 +275,8 @@ describe('Collection sub-generator', function () {
             var folder = '/////folder/////';
             var filesToTest = [
                 // add files and folders you expect to NOT exist here.
-                'test/spec/collections/folder/' + collection + '.js'
+                'test/spec/collections/folder/' + collection + '.js',
+                'client/scripts/collections/folder/' + collection + '.js'
             ];
             this.app.run({}, function() {
                 var collectionGen = helpers.createGenerator(
