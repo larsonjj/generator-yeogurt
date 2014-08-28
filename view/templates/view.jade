@@ -19,7 +19,7 @@ extend base
 block template
     //- Define header block from base template
     block header
-        +header()
+        +h1()
 
     //- Provides template level styling
     #template-wrapper.template-wrapper<% if (name) { %>(class="<%= _.slugify(name.toLowerCase()) %>")<% } %>
