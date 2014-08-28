@@ -46,6 +46,7 @@ describe('yeogurt generator LESS no bootstrap', function () {
             cssOption: 'LESS',
             useLesshat: true,
             ieSupport: true,
+            useBootstrap: false,
             responsive: true,
             useGA: true,
             useFTP: true,

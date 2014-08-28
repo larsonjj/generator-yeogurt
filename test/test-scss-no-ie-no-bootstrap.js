@@ -31,6 +31,7 @@ describe('yeogurt generator no IE with scss', function () {
             cssOption: 'SASS',
             useBourbon: true,
             ieSupport: false,
+            useBootstrap: false,
             responsive: true,
             useGA: true,
             useFTP: true,

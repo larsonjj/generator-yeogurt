@@ -35,6 +35,7 @@ describe('yeogurt generator no IE with less', function () {
             useLesshat: true,
             ieSupport: false,
             responsive: true,
+            useBootstrap: false,
             useGA: true,
             useFTP: true,
             jshint: true,

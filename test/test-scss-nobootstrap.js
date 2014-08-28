@@ -42,6 +42,7 @@ describe('yeogurt generator SASS no bootstrap', function () {
             versionControl: 'Git',
             cssOption: 'SASS',
             useBourbon: true,
+            useBootstrap: false,
             ieSupport: true,
             responsive: true,
             useGA: true,
