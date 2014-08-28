@@ -43,6 +43,7 @@ describe('yeogurt generator Swig', function () {
             htmlOption: 'swig',
             cssOption: 'sass',
             ieSupport: true,
+            useServer: false,
             responsive: true,
             useGA: true,
             useFTP: true,

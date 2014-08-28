@@ -45,6 +45,7 @@ describe('yeogurt generator backbone + jade', function () {
             singlePageApplication: true,
             jsTemplate: 'jade',
             jsOption: 'browserify',
+            useServer: false,
             cssOption: 'sass',
             ieSupport: true,
             responsive: true,

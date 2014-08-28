@@ -46,6 +46,7 @@ describe('yeogurt generator backbone + handlebars', function () {
             jsTemplate: 'handlebars',
             jsOption: 'browserify',
             cssOption: 'sass',
+            useServer: false,
             ieSupport: true,
             responsive: true,
             useGA: true,

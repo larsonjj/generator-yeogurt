@@ -48,6 +48,7 @@ describe('yeogurt generator backbone + lo-dash', function () {
             cssOption: 'sass',
             ieSupport: true,
             responsive: true,
+            useServer: false,
             useGA: true,
             useFTP: true,
             jshint: true,

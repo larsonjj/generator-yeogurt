@@ -44,6 +44,7 @@ describe('yeogurt generator backbone + react', function () {
             jsOption: 'browserify',
             singlePageApplication: true,
             cssOption: 'sass',
+            useServer: false,
             ieSupport: true,
             responsive: true,
             useGA: true,

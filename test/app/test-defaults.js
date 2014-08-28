@@ -85,6 +85,7 @@ describe('yeogurt generator defaults', function () {
             cssOption: 'sass',
             jsOption: 'requirejs',
             ieSupport: false,
+            useServer: false,
             responsive: false,
             useGA: false,
             useFTP: false,
