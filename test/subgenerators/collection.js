@@ -131,7 +131,7 @@ describe('Collection sub-generator', function () {
 
             helpers.mockPrompt(this.app, {
                 htmlOption: 'jade',
-                useServer: false
+                singlePageApplication: false
             });
             this.app.run({}, function() {
                 var collectionGen = helpers.createGenerator(
@@ -151,7 +151,7 @@ describe('Collection sub-generator', function () {
         it('Handles folder option', function(done) {
             helpers.mockPrompt(this.app, {
                 htmlOption: 'jade',
-                useServer: false
+                singlePageApplication: false
             });
             // Filename
             var collection = 'mycollection';
@@ -182,7 +182,7 @@ describe('Collection sub-generator', function () {
         it('Handles folder option with funky path', function(done) {
             helpers.mockPrompt(this.app, {
                 htmlOption: 'jade',
-                useServer: false
+                singlePageApplication: false
             });
             // Filename
             var collection = 'mycollection';
@@ -216,7 +216,7 @@ describe('Collection sub-generator', function () {
         it('Handles defaults', function(done) {
             helpers.mockPrompt(this.app, {
                 htmlOption: 'swig',
-                useServer: false
+                singlePageApplication: false
             });
             // Filename
             var collection = 'mycollection';
@@ -243,7 +243,7 @@ describe('Collection sub-generator', function () {
         it('Handles folder option', function(done) {
             helpers.mockPrompt(this.app, {
                 htmlOption: 'swig',
-                useServer: false
+                singlePageApplication: false
             });
             // Filename
             var collection = 'mycollection';
@@ -274,7 +274,7 @@ describe('Collection sub-generator', function () {
         it('Handles folder option with funky path', function(done) {
             helpers.mockPrompt(this.app, {
                 htmlOption: 'swig',
-                useServer: false
+                singlePageApplication: false
             });
             // Filename
             var collection = 'mycollection';

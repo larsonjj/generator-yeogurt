@@ -130,7 +130,8 @@ describe('Model sub-generator', function () {
             ];
 
             helpers.mockPrompt(this.app, {
-                htmlOption: 'jade'
+                htmlOption: 'jade',
+                singlePageApplication: false
             });
             this.app.run({}, function() {
                 var modelGen = helpers.createGenerator(
@@ -149,7 +150,8 @@ describe('Model sub-generator', function () {
         });
         it('Handles folder option', function(done) {
             helpers.mockPrompt(this.app, {
-                htmlOption: 'jade'
+                htmlOption: 'jade',
+                singlePageApplication: false
             });
             // Filename
             var model = 'mymodel';
@@ -179,7 +181,8 @@ describe('Model sub-generator', function () {
         });
         it('Handles folder option with funky path', function(done) {
             helpers.mockPrompt(this.app, {
-                htmlOption: 'jade'
+                htmlOption: 'jade',
+                singlePageApplication: false
             });
             // Filename
             var model = 'mymodel';
@@ -212,7 +215,8 @@ describe('Model sub-generator', function () {
     describe('Does not create any model files when using Static Swig', function() {
         it('Handles defaults', function(done) {
             helpers.mockPrompt(this.app, {
-                htmlOption: 'swig'
+                htmlOption: 'swig',
+                singlePageApplication: false
             });
             // Filename
             var model = 'mymodel';
@@ -238,7 +242,8 @@ describe('Model sub-generator', function () {
         });
         it('Handles folder option', function(done) {
             helpers.mockPrompt(this.app, {
-                htmlOption: 'swig'
+                htmlOption: 'swig',
+                singlePageApplication: false
             });
             // Filename
             var model = 'mymodel';
@@ -268,7 +273,8 @@ describe('Model sub-generator', function () {
         });
         it('Handles folder option with funky path', function(done) {
             helpers.mockPrompt(this.app, {
-                htmlOption: 'swig'
+                htmlOption: 'swig',
+                singlePageApplication: false
             });
             // Filename
             var model = 'mymodel';

@@ -131,7 +131,8 @@ describe('Template sub-generator', function () {
 
                 helpers.mockPrompt(this.app, {
                     htmlOption: 'jade',
-                    singlePageApplication: false
+                    singlePageApplication: false,
+                    useServer: false
                 });
                 this.app.run({}, function() {
                     var templateGen = helpers.createGenerator(
@@ -159,7 +160,8 @@ describe('Template sub-generator', function () {
 
                 helpers.mockPrompt(this.app, {
                     htmlOption: 'jade',
-                    singlePageApplication: false
+                    singlePageApplication: false,
+                    useServer: false
                 });
                 this.app.run({}, function() {
                     var templateGen = helpers.createGenerator(
@@ -190,7 +192,8 @@ describe('Template sub-generator', function () {
 
                 helpers.mockPrompt(this.app, {
                     htmlOption: 'jade',
-                    singlePageApplication: false
+                    singlePageApplication: false,
+                    useServer: false
                 });
                 this.app.run({}, function() {
                     var templateGen = helpers.createGenerator(
@@ -213,7 +216,8 @@ describe('Template sub-generator', function () {
             it('Handles folder option', function(done) {
                 helpers.mockPrompt(this.app, {
                     htmlOption: 'jade',
-                    singlePageApplication: false
+                    singlePageApplication: false,
+                    useServer: false
                 });
                 // Filename
                 var template = 'mytemplate';
@@ -243,7 +247,8 @@ describe('Template sub-generator', function () {
             it('Handles folder option with funky path', function(done) {
                 helpers.mockPrompt(this.app, {
                     htmlOption: 'jade',
-                    singlePageApplication: false
+                    singlePageApplication: false,
+                    useServer: false
                 });
                 // Filename
                 var template = 'mytemplate';
@@ -446,7 +451,8 @@ describe('Template sub-generator', function () {
 
                 helpers.mockPrompt(this.app, {
                     htmlOption: 'swig',
-                    singlePageApplication: false
+                    singlePageApplication: false,
+                    useServer: false
                 });
                 this.app.run({}, function() {
                     var templateGen = helpers.createGenerator(
@@ -477,7 +483,8 @@ describe('Template sub-generator', function () {
 
                 helpers.mockPrompt(this.app, {
                     htmlOption: 'swig',
-                    singlePageApplication: false
+                    singlePageApplication: false,
+                    useServer: false
                 });
                 this.app.run({}, function() {
                     var templateGen = helpers.createGenerator(
@@ -508,7 +515,8 @@ describe('Template sub-generator', function () {
 
                 helpers.mockPrompt(this.app, {
                     htmlOption: 'swig',
-                    singlePageApplication: false
+                    singlePageApplication: false,
+                    useServer: false
                 });
                 this.app.run({}, function() {
                     var templateGen = helpers.createGenerator(
@@ -531,7 +539,8 @@ describe('Template sub-generator', function () {
             it('Handles folder option', function(done) {
                 helpers.mockPrompt(this.app, {
                     htmlOption: 'swig',
-                    singlePageApplication: false
+                    singlePageApplication: false,
+                    useServer: false
                 });
                 // Filename
                 var template = 'mytemplate';
@@ -561,7 +570,8 @@ describe('Template sub-generator', function () {
             it('Handles folder option with funky path', function(done) {
                 helpers.mockPrompt(this.app, {
                     htmlOption: 'swig',
-                    singlePageApplication: false
+                    singlePageApplication: false,
+                    useServer: false
                 });
                 // Filename
                 var template = 'mytemplate';

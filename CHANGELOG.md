@@ -26,6 +26,16 @@
 * `index.html` moved from `dev/` to `lib/views` when using express server. In all previous configurations, a `index.html` was always found int he `dev/` folder. This is still true except when using an express server. When using the generated express server, the `index.html` is used as a layout, so it is included within the server `lib/` folder under `views/`. Since the client should never have to touch this file, this configuration seems to make the most sense.
 * Added Modernizr to predef array in `.jshintrc`
 
+### v0.9.11:
+#### date: 2014-08-28
+##### changes:
+* Merged Fix for including sample jade h1 mixin ([#47](https://github.com/larsonjj/generator-yeogurt/pull/47))
+
+### v0.9.10:
+#### date: 2014-08-22
+##### changes:
+* Added *.json files to be watched by watch:configFiles task. Also created logic that allows `grunt serve` to be rerun when changes are detected with Grunt onfig files or *.json files are updated. As per [#39](https://github.com/larsonjj/generator-yeogurt/issues/39) discussion
+
 ### v0.9.9:
 #### date: 2014-08-22
 ##### changes:

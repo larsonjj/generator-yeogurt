@@ -130,7 +130,8 @@ describe('View sub-generator', function () {
             ];
 
             helpers.mockPrompt(this.app, {
-                htmlOption: 'jade'
+                htmlOption: 'jade',
+                singlePageApplication: false
             });
             this.app.run({}, function() {
                 var viewGen = helpers.createGenerator(
@@ -149,7 +150,8 @@ describe('View sub-generator', function () {
         });
         it('Handles folder option', function(done) {
             helpers.mockPrompt(this.app, {
-                htmlOption: 'jade'
+                htmlOption: 'jade',
+                singlePageApplication: false
             });
             // Filename
             var view = 'myview';
@@ -179,7 +181,8 @@ describe('View sub-generator', function () {
         });
         it('Handles folder option with funky path', function(done) {
             helpers.mockPrompt(this.app, {
-                htmlOption: 'jade'
+                htmlOption: 'jade',
+                singlePageApplication: false
             });
             // Filename
             var view = 'myview';
@@ -212,7 +215,8 @@ describe('View sub-generator', function () {
     describe('Does not create any view files when using Static Swig', function() {
         it('Handles defaults', function(done) {
             helpers.mockPrompt(this.app, {
-                htmlOption: 'swig'
+                htmlOption: 'swig',
+                singlePageApplication: false
             });
             // Filename
             var view = 'myview';
@@ -238,7 +242,8 @@ describe('View sub-generator', function () {
         });
         it('Handles folder option', function(done) {
             helpers.mockPrompt(this.app, {
-                htmlOption: 'swig'
+                htmlOption: 'swig',
+                singlePageApplication: false
             });
             // Filename
             var view = 'myview';
@@ -268,7 +273,8 @@ describe('View sub-generator', function () {
         });
         it('Handles folder option with funky path', function(done) {
             helpers.mockPrompt(this.app, {
-                htmlOption: 'swig'
+                htmlOption: 'swig',
+                singlePageApplication: false
             });
             // Filename
             var view = 'myview';
