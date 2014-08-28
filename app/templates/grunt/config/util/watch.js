@@ -152,13 +152,10 @@ var taskConfig = function(grunt) {
             },
             files: [
                 '<%%= yeogurt.staticServer %>/*.{ico,png,txt,html}',
-                '<%%= yeogurt.staticServer %>/styles/fonts/**/*.*',
-                '<%%= yeogurt.staticServer %>/**/*.html'<% if (cssOption === 'sass') { %>,
-                '<%%= yeogurt.staticServer %>/styles/**/*.{scss,sass}'<% } %><% if (cssOption === 'less') { %>,
-                '<%%= yeogurt.staticServer %>/styles/**/*.less'<% } %>,
+                '<%%= yeogurt.staticServer %>/**/*.html',
+                '<%%= yeogurt.staticServer %>/styles/**/*.{css,ttf,otf,woff,svg,eot}'
                 '<%%= yeogurt.staticServer %>/scripts/**/*.js',<% if (singlePageApplication && jsTemplate !== 'react') { %>
-                '<%%= yeogurt.staticServer %>/templates/**/*.js',<% } %><% if (jsFramework === 'react') { %>
-                '<%%= yeogurt.staticServer %>/scripts/**/*.jsx',<% } %>
+                '<%%= yeogurt.staticServer %>/templates/**/*.{jst,hbs,jade}',<% } %>
                 '<%%= yeogurt.staticServer %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
             ]
         }<% if (useServer) { %>,

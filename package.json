@@ -42,21 +42,22 @@
     "localtest-report": "istanbul cover _mocha --report html -- test/**/*.js && open coverage/index.html"
   },
   "dependencies": {
-    "yeoman-generator": "~0.16.0",
+    "yeoman-generator": "~0.17.0",
     "colors": "~0.6.2",
     "lodash": "~2.4.1"
   },
   "devDependencies": {
-    "fixture-stdout": "0.2.1",
-    "mocha": "1.17.0",
     "coveralls": "2.8.0",
-    "mocha-lcov-reporter": "0.0.1",
-    "istanbul": "0.2.6"
+    "fixture-stdout": "0.2.1",
+    "grunt-nsp-package": "0.0.5",
+    "istanbul": "0.2.6",
+    "mocha": "1.17.0",
+    "mocha-lcov-reporter": "0.0.1"
   },
   "peerDependencies": {
     "yo": ">=1.0.6"
-    },
-    "engines": {
+  },
+  "engines": {
     "node": ">=0.10.0",
     "npm": ">=1.2.10"
   },
