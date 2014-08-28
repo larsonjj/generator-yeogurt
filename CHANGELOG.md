@@ -1,3 +1,8 @@
+### v0.9.11:
+#### date: 2014-08-28
+##### changes:
+* Merged Fix for including sample jade h1 mixin ([#47](https://github.com/larsonjj/generator-yeogurt/pull/47))
+
 ### v0.9.10:
 #### date: 2014-08-22
 ##### changes:
