@@ -199,72 +199,201 @@ describe('View sub-generator', function () {
     });
 
     describe('Create view files when using Backbone', function () {
-        it('Handles defaults with Lo-dash', function(done) {
-            // Filename
-            var view = 'myview';
-            var filesToTest = [
-                'test/spec/views/' + view + '-spec.js',
-                'client/scripts/views/' + view + '.js',
-                'client/templates/' + view + '.jst'
-            ];
+        describe('Handles defaults with Lo-dash', function () {
+            describe('Using Browserify', function() {
+                it('Using Jasmine', function(done) {
+                    // Filename
+                    var view = 'myview';
+                    var filesToTest = [
+                        'test/spec/views/' + view + '-spec.js',
+                        'client/scripts/views/' + view + '.js',
+                        'client/templates/' + view + '.jst'
+                    ];
+                    var fileContentToTest = [
+                        ['client/templates/' + view + '.jst', /<div>/i],
+                        ['client/scripts/views/' + view + '.js', /module\.exports/i],
+                        ['test/spec/views/' + view + '-spec.js', /describe/i]
+                    ];
 
-            helpers.mockPrompt(this.app, {
-                jsFramework: 'backbone',
-                singlePageApplication: true,
-                jsTemplate: 'lodash',
-                jsOption: 'browserify',
-                testFramework: 'jasmine'
+                    helpers.mockPrompt(this.app, {
+                        jsFramework: 'backbone',
+                        singlePageApplication: true,
+                        jsTemplate: 'lodash',
+                        jsOption: 'browserify',
+                        testFramework: 'jasmine'
+                    });
+                    this.app.run([], function() {
+                        createSubGenerator('view', view, {}, function() {
+                            assert.file(filesToTest);
+                            assert.fileContent(fileContentToTest);
+                            done();
+                        });
+                    });
+                });
             });
-            this.app.run([], function() {
-                createSubGenerator('view', view, {}, function() {
-                    assert.file(filesToTest);
-                    done();
+            describe('Using RequireJS', function() {
+                it('Using Jasmine', function(done) {
+                    // Filename
+                    var view = 'myview';
+                    var filesToTest = [
+                        'test/spec/views/' + view + '-spec.js',
+                        'client/scripts/views/' + view + '.js',
+                        'client/templates/' + view + '.jst'
+                    ];
+                    var fileContentToTest = [
+                        ['client/templates/' + view + '.jst', /<div>/i],
+                        ['client/scripts/views/' + view + '.js', /define\(function\(require\)/i],
+                        ['test/spec/views/' + view + '-spec.js', /define\(function\(require\)/i]
+                    ];
+
+                    helpers.mockPrompt(this.app, {
+                        jsFramework: 'backbone',
+                        singlePageApplication: true,
+                        jsTemplate: 'lodash',
+                        jsOption: 'requirejs',
+                        testFramework: 'jasmine'
+                    });
+                    this.app.run([], function() {
+                        createSubGenerator('view', view, {}, function() {
+                            assert.file(filesToTest);
+                            assert.fileContent(fileContentToTest);
+                            done();
+                        });
+                    });
                 });
             });
         });
-        it('Handles defaults with Handlebars', function(done) {
-            // Filename
-            var view = 'myview';
-            var filesToTest = [
-                'test/spec/views/' + view + '-spec.js',
-                'client/scripts/views/' + view + '.js',
-                'client/templates/' + view + '.hbs'
-            ];
+        describe('Handles defaults with Handlebars', function() {
+            describe('Using Browserify', function() {
+                it('Using Jasmine', function(done) {
+                    // Filename
+                    var view = 'myview';
+                    var filesToTest = [
+                        'test/spec/views/' + view + '-spec.js',
+                        'client/scripts/views/' + view + '.js',
+                        'client/templates/' + view + '.hbs'
+                    ];
+                    var fileContentToTest = [
+                        ['client/templates/' + view + '.hbs', /<div>/i],
+                        ['client/scripts/views/' + view + '.js', /module\.exports/i],
+                        ['test/spec/views/' + view + '-spec.js', /describe/i]
+                    ];
 
-            helpers.mockPrompt(this.app, {
-                jsFramework: 'backbone',
-                singlePageApplication: true,
-                jsTemplate: 'handlebars',
-                jsOption: 'browserify',
-                testFramework: 'jasmine'
+                    helpers.mockPrompt(this.app, {
+                        jsFramework: 'backbone',
+                        singlePageApplication: true,
+                        jsTemplate: 'handlebars',
+                        jsOption: 'browserify',
+                        testFramework: 'jasmine'
+                    });
+                    this.app.run([], function() {
+                        createSubGenerator('view', view, {}, function() {
+                            assert.file(filesToTest);
+                            assert.fileContent(fileContentToTest);
+                            done();
+                        });
+                    });
+                });
             });
-            this.app.run([], function() {
-                createSubGenerator('view', view, {}, function() {
-                    assert.file(filesToTest);
-                    done();
+            describe('Using RequireJS', function() {
+                it('Using Jasmine', function(done) {
+                    // Filename
+                    var view = 'myview';
+                    var filesToTest = [
+                        'test/spec/views/' + view + '-spec.js',
+                        'client/scripts/views/' + view + '.js',
+                        'client/templates/' + view + '.hbs'
+                    ];
+                    var fileContentToTest = [
+                        ['client/templates/' + view + '.hbs', /<div>/i],
+                        ['client/scripts/views/' + view + '.js', /define\(function\(require\)/i],
+                        ['test/spec/views/' + view + '-spec.js', /define\(function\(require\)/i]
+                    ];
+
+                    helpers.mockPrompt(this.app, {
+                        jsFramework: 'backbone',
+                        singlePageApplication: true,
+                        jsTemplate: 'handlebars',
+                        jsOption: 'requirejs',
+                        testFramework: 'jasmine'
+                    });
+                    this.app.run([], function() {
+                        createSubGenerator('view', view, {}, function() {
+                            assert.file(filesToTest);
+                            assert.fileContent(fileContentToTest);
+                            done();
+                        });
+                    });
                 });
             });
         });
-        it('Handles defaults with Jade', function(done) {
-            // Filename
-            var view = 'myview';
-            var filesToTest = [
-                'test/spec/views/' + view + '-spec.js',
-                'client/scripts/views/' + view + '.js',
-                'client/templates/' + view + '.jade'
-            ];
+        describe('Handles defaults with Jade', function() {
+            describe('Using Browserify', function() {
+                it('Using Jasmine', function(done) {
+                    // Filename
+                    var view = 'myview';
+                    var filesToTest = [
+                        'test/spec/views/' + view + '-spec.js',
+                        'client/scripts/views/' + view + '.js',
+                        'client/templates/' + view + '.jade'
+                    ];
+                    var fileContentToTest = [
+                        ['client/scripts/views/' + view + '.js', /module\.exports/i],
+                        ['test/spec/views/' + view + '-spec.js', /describe/i]
+                    ];
+                    var fileContentToNotFind = [
+                        ['client/templates/' + view + '.jade', /<div>/i]
+                    ];
 
-            helpers.mockPrompt(this.app, {
-                jsFramework: 'backbone',
-                singlePageApplication: true,
-                jsTemplate: 'jade',
-                jsOption: 'browserify',
-                testFramework: 'jasmine'
+                    helpers.mockPrompt(this.app, {
+                        jsFramework: 'backbone',
+                        singlePageApplication: true,
+                        jsTemplate: 'jade',
+                        jsOption: 'browserify',
+                        testFramework: 'jasmine'
+                    });
+                    this.app.run([], function() {
+                        createSubGenerator('view', view, {}, function() {
+                            assert.file(filesToTest);
+                            assert.fileContent(fileContentToTest);
+                            assert.noFileContent(fileContentToNotFind);
+                            done();
+                        });
+                    });
+                });
             });
-            this.app.run([], function() {
-                createSubGenerator('view', view, {}, function() {
-                    assert.file(filesToTest);
-                    done();
+            describe('Using RequireJS', function() {
+                it('Using Jasmine', function(done) {
+                    // Filename
+                    var view = 'myview';
+                    var filesToTest = [
+                        'test/spec/views/' + view + '-spec.js',
+                        'client/scripts/views/' + view + '.js',
+                        'client/templates/' + view + '.jade'
+                    ];
+                    var fileContentToTest = [
+                        ['client/scripts/views/' + view + '.js', /define\(function\(require\)/i],
+                        ['test/spec/views/' + view + '-spec.js', /define\(function\(require\)/i]
+                    ];
+                    var fileContentToNotFind = [
+                        ['client/templates/' + view + '.jade', /<div>/i]
+                    ];
+
+                    helpers.mockPrompt(this.app, {
+                        jsFramework: 'backbone',
+                        singlePageApplication: true,
+                        jsTemplate: 'jade',
+                        jsOption: 'requirejs',
+                        testFramework: 'jasmine'
+                    });
+                    this.app.run([], function() {
+                        createSubGenerator('view', view, {}, function() {
+                            assert.file(filesToTest);
+                            assert.fileContent(fileContentToTest);
+                            assert.noFileContent(fileContentToNotFind);
+                            done();
+                        });
+                    });
                 });
             });
         });

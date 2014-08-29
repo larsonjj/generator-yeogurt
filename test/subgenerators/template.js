@@ -130,7 +130,7 @@ describe('Template sub-generator', function () {
                     });
                 });
             });
-            it('Handles defaults with type: Template', function(done) {
+            it('Handles defaults with type: Layout', function(done) {
                 // Filename
                 var template = 'mytemplate';
                 var type = 'layout';
@@ -196,6 +196,70 @@ describe('Template sub-generator', function () {
                 });
             });
         });
+        describe('Client templates with Dashboard', function () {
+            it('Handles defaults with type: Page', function(done) {
+                // Filename
+                var template = 'mytemplate';
+                var fileContentToTest = [
+                    ['client/templates/' + template + '.jade', /\[dash\:data\]/i]
+                ];
+
+                helpers.mockPrompt(this.app, {
+                    htmlOption: 'jade',
+                    singlePageApplication: false,
+                    useServer: false,
+                    useDashboard: true
+                });
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {}, function() {
+                        assert.fileContent(fileContentToTest);
+                        done();
+                    });
+                });
+            });
+            it('Handles defaults with type: Module', function(done) {
+                // Filename
+                var template = 'mytemplate';
+                var type = 'module';
+                var fileContentToTest = [
+                    ['client/templates/modules/' + template + '.jade', /\[dash\:jade\]/i]
+                ];
+
+                helpers.mockPrompt(this.app, {
+                    htmlOption: 'jade',
+                    singlePageApplication: false,
+                    useServer: false,
+                    useDashboard: true
+                });
+                this.app.run([], function() {
+                        createSubGenerator('template', template, {type: type}, function() {
+                        assert.fileContent(fileContentToTest);
+                        done();
+                    });
+                });
+            });
+            it('Handles defaults with type: Layout', function(done) {
+                // Filename
+                var template = 'mytemplate';
+                var type = 'layout';
+                var fileContentToTest = [
+                    ['client/templates/layouts/' + template + '.jade', /\[dash\:jade\]/i]
+                ];
+
+                helpers.mockPrompt(this.app, {
+                    htmlOption: 'jade',
+                    singlePageApplication: false,
+                    useServer: false,
+                    useDashboard: true
+                });
+                this.app.run([], function() {
+                        createSubGenerator('template', template, {type: type}, function() {
+                        assert.noFileContent(fileContentToTest);
+                        done();
+                    });
+                });
+            });
+        });
         describe('Server templates', function () {
             it('Handles defaults with type: Page', function(done) {
                 // Filename
@@ -234,12 +298,12 @@ describe('Template sub-generator', function () {
                 });
                 this.app.run([], function() {
                     createSubGenerator('template', template, {type: type}, function() {
-                    assert.file(filesToTest);
-                    done();
-                });
+                        assert.file(filesToTest);
+                        done();
+                    });
                 });
             });
-            it('Handles defaults with type: Template', function(done) {
+            it('Handles defaults with type: Layout', function(done) {
                 // Filename
                 var template = 'mytemplate';
                 var type = 'layout';
@@ -255,9 +319,9 @@ describe('Template sub-generator', function () {
                 });
                 this.app.run([], function() {
                     createSubGenerator('template', template, {type: type}, function() {
-                    assert.file(filesToTest);
-                    done();
-                });
+                        assert.file(filesToTest);
+                        done();
+                    });
                 });
             });
             it('Handles folder option', function(done) {
@@ -296,6 +360,71 @@ describe('Template sub-generator', function () {
                 this.app.run([], function() {
                     createSubGenerator('template', template, {folder: folder}, function() {
                         assert.file(filesToTest);
+                        done();
+                    });
+                });
+            });
+        });
+        describe('Server templates with Dashboard', function () {
+            it('Handles defaults with type: Page', function(done) {
+                // Filename
+                var template = 'mytemplate';
+                var type = 'page';
+                var fileContentToTest = [
+                    // add files and folders you expect to NOT exist here.
+                    ['server/templates/' + template + '.jade', /\[dash\:data\]/i]
+                ];
+
+                helpers.mockPrompt(this.app, {
+                    htmlOption: 'jade',
+                    singlePageApplication: false,
+                    useServer: true
+                });
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {type: type}, function() {
+                        assert.fileContent(fileContentToTest);
+                        done();
+                    });
+                });
+            });
+            it('Handles defaults with type: Module', function(done) {
+                // Filename
+                var template = 'mytemplate';
+                var type = 'module';
+                var fileContentToTest = [
+                    // add files and folders you expect to NOT exist here.
+                    ['server/templates/modules/' + template + '.jade', /\[dash\:jade\]/i]
+                ];
+
+                helpers.mockPrompt(this.app, {
+                    htmlOption: 'jade',
+                    singlePageApplication: false,
+                    useServer: true
+                });
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {type: type}, function() {
+                        assert.fileContent(fileContentToTest);
+                        done();
+                    });
+                });
+            });
+            it('Handles defaults with type: Layout', function(done) {
+                // Filename
+                var template = 'mytemplate';
+                var type = 'layout';
+                var fileContentToTest = [
+                    ['server/templates/layouts/' + template + '.jade', /\[dash\:jade\]/i]
+                ];
+
+                helpers.mockPrompt(this.app, {
+                    htmlOption: 'jade',
+                    singlePageApplication: false,
+                    useServer: true,
+                    useDashboard: true
+                });
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {type: type}, function() {
+                        assert.noFileContent(fileContentToTest);
                         done();
                     });
                 });
@@ -347,7 +476,7 @@ describe('Template sub-generator', function () {
                     });
                 });
             });
-            it('Handles defaults with type: Template', function(done) {
+            it('Handles defaults with type: Layout', function(done) {
                 // Filename
                 var template = 'mytemplate';
                 var type = 'layout';
@@ -409,6 +538,70 @@ describe('Template sub-generator', function () {
                 });
             });
         });
+        describe('Client templates with Dashboard', function () {
+            it('Handles defaults with type: Page', function(done) {
+                // Filename
+                var template = 'mytemplate';
+                var fileContentToTest = [
+                    ['client/templates/' + template + '.swig', /\[dash\:data\]/i]
+                ];
+
+                helpers.mockPrompt(this.app, {
+                    htmlOption: 'swig',
+                    singlePageApplication: false,
+                    useServer: false,
+                    useDashboard: true
+                });
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {}, function() {
+                        assert.fileContent(fileContentToTest);
+                        done();
+                    });
+                });
+            });
+            it('Handles defaults with type: Module', function(done) {
+                // Filename
+                var template = 'mytemplate';
+                var type = 'module';
+                var fileContentToTest = [
+                    ['client/templates/modules/' + template + '.swig', /\[dash\:swig\]/i]
+                ];
+
+                helpers.mockPrompt(this.app, {
+                    htmlOption: 'swig',
+                    singlePageApplication: false,
+                    useServer: false,
+                    useDashboard: true
+                });
+                this.app.run([], function() {
+                        createSubGenerator('template', template, {type: type}, function() {
+                        assert.fileContent(fileContentToTest);
+                        done();
+                    });
+                });
+            });
+            it('Handles defaults with type: Layout', function(done) {
+                // Filename
+                var template = 'mytemplate';
+                var type = 'layout';
+                var fileContentToTest = [
+                    ['client/templates/layouts/' + template + '.swig', /\[dash\:swig\]/i]
+                ];
+
+                helpers.mockPrompt(this.app, {
+                    htmlOption: 'swig',
+                    singlePageApplication: false,
+                    useServer: false,
+                    useDashboard: true
+                });
+                this.app.run([], function() {
+                        createSubGenerator('template', template, {type: type}, function() {
+                        assert.noFileContent(fileContentToTest);
+                        done();
+                    });
+                });
+            });
+        });
         describe('Server templates', function () {
             it('Handles defaults with type: Page', function(done) {
                 // Filename
@@ -451,7 +644,7 @@ describe('Template sub-generator', function () {
                     });
                 });
             });
-            it('Handles defaults with type: Template', function(done) {
+            it('Handles defaults with type: Layout', function(done) {
                 // Filename
                 var template = 'mytemplate';
                 var type = 'layout';
@@ -508,6 +701,71 @@ describe('Template sub-generator', function () {
                 this.app.run([], function() {
                     createSubGenerator('template', template, {folder: folder}, function() {
                         assert.file(filesToTest);
+                        done();
+                    });
+                });
+            });
+        });
+        describe('Server templates with Dashboard', function () {
+            it('Handles defaults with type: Page', function(done) {
+                // Filename
+                var template = 'mytemplate';
+                var type = 'page';
+                var fileContentToTest = [
+                    // add files and folders you expect to NOT exist here.
+                    ['server/templates/' + template + '.swig', /\[dash\:data\]/i]
+                ];
+
+                helpers.mockPrompt(this.app, {
+                    htmlOption: 'swig',
+                    singlePageApplication: false,
+                    useServer: true
+                });
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {type: type}, function() {
+                        assert.fileContent(fileContentToTest);
+                        done();
+                    });
+                });
+            });
+            it('Handles defaults with type: Module', function(done) {
+                // Filename
+                var template = 'mytemplate';
+                var type = 'module';
+                var fileContentToTest = [
+                    // add files and folders you expect to NOT exist here.
+                    ['server/templates/modules/' + template + '.swig', /\[dash\:swig\]/i]
+                ];
+
+                helpers.mockPrompt(this.app, {
+                    htmlOption: 'swig',
+                    singlePageApplication: false,
+                    useServer: true
+                });
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {type: type}, function() {
+                        assert.fileContent(fileContentToTest);
+                        done();
+                    });
+                });
+            });
+            it('Handles defaults with type: Layout', function(done) {
+                // Filename
+                var template = 'mytemplate';
+                var type = 'layout';
+                var fileContentToTest = [
+                    ['server/templates/layouts/' + template + '.swig', /\[dash\:swig\]/i]
+                ];
+
+                helpers.mockPrompt(this.app, {
+                    htmlOption: 'swig',
+                    singlePageApplication: false,
+                    useServer: true,
+                    useDashboard: true
+                });
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {type: type}, function() {
+                        assert.noFileContent(fileContentToTest);
                         done();
                     });
                 });
