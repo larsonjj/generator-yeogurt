@@ -5,7 +5,8 @@ var path    = require('path');
 var yeoman  = require('yeoman-generator');
 var helpers = yeoman.test;
 var assert  = yeoman.assert;
-var Output  = require( '../helpers/mute' );
+var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
+var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
 
 describe('React sub-generator', function () {
@@ -15,16 +16,8 @@ describe('React sub-generator', function () {
                 return done(err);
             }
 
-            this.app = helpers.createGenerator('yeogurt:app', [
-                '../../../app'
-            ]);
+            this.app = createAppGenerator();
 
-            this.app.options['skip-install'] = true;
-
-            // Prevent Yeoman writes while the generator runs
-            // and reenable them when it's finished to see the test results
-            this.app.on('start', Output.mute);
-            this.app.on('end', Output.unmute);
             done();
         }.bind(this));
     });
@@ -45,16 +38,8 @@ describe('React sub-generator', function () {
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
-            this.app.run({}, function() {
-                var reactGen = helpers.createGenerator(
-                    'yeogurt:react', [
-                        '../../../react'
-                    ],
-                    [react]
-                );
-                reactGen.on( 'start', Output.mute );
-                reactGen.on( 'end', Output.unmute );
-                reactGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('react', react, {}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -75,19 +60,8 @@ describe('React sub-generator', function () {
                 // add files and folders you expect to NOT exist here.
                 'test/spec/components/' + folder + react + '.jsx'
             ];
-            this.app.run({}, function() {
-                var reactGen = helpers.createGenerator(
-                    'yeogurt:react', [
-                        '../../../react'
-                    ],
-                    [react],
-                    {
-                        folder: folder
-                    }
-                );
-                reactGen.on( 'start', Output.mute );
-                reactGen.on( 'end', Output.unmute );
-                reactGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('react', react, {folder: folder}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -108,19 +82,8 @@ describe('React sub-generator', function () {
                 // add files and folders you expect to NOT exist here.
                 'test/spec/components/folder/' + react + '.jsx'
             ];
-            this.app.run({}, function() {
-                var reactGen = helpers.createGenerator(
-                    'yeogurt:react', [
-                        '../../../react'
-                    ],
-                    [react],
-                    {
-                        folder: folder
-                    }
-                );
-                reactGen.on( 'start', Output.mute );
-                reactGen.on( 'end', Output.unmute );
-                reactGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('react', react, {folder: folder}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -140,16 +103,8 @@ describe('React sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 htmlOption: 'jade'
             });
-            this.app.run({}, function() {
-                var reactGen = helpers.createGenerator(
-                    'yeogurt:react', [
-                        '../../../react'
-                    ],
-                    [react]
-                );
-                reactGen.on( 'start', Output.mute );
-                reactGen.on( 'end', Output.unmute );
-                reactGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('react', react, {}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -166,19 +121,8 @@ describe('React sub-generator', function () {
                 // add files and folders you expect to NOT exist here.
                 'test/spec/components/' + folder + react + '.jsx'
             ];
-            this.app.run({}, function() {
-                var reactGen = helpers.createGenerator(
-                    'yeogurt:react', [
-                        '../../../react'
-                    ],
-                    [react],
-                    {
-                        folder: folder
-                    }
-                );
-                reactGen.on( 'start', Output.mute );
-                reactGen.on( 'end', Output.unmute );
-                reactGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('react', react, {folder: folder}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -195,19 +139,8 @@ describe('React sub-generator', function () {
                 // add files and folders you expect to NOT exist here.
                 'test/spec/components/folder/' + react + '.jsx'
             ];
-            this.app.run({}, function() {
-                var reactGen = helpers.createGenerator(
-                    'yeogurt:react', [
-                        '../../../react'
-                    ],
-                    [react],
-                    {
-                        folder: folder
-                    }
-                );
-                reactGen.on( 'start', Output.mute );
-                reactGen.on( 'end', Output.unmute );
-                reactGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('react', react, {folder: folder}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -226,16 +159,8 @@ describe('React sub-generator', function () {
                 // add files and folders you expect to NOT exist here.
                 'test/spec/components/' + react + '.js'
             ];
-            this.app.run({}, function() {
-                var reactGen = helpers.createGenerator(
-                    'yeogurt:react', [
-                        '../../../react'
-                    ],
-                    [react]
-                );
-                reactGen.on( 'start', Output.mute );
-                reactGen.on( 'end', Output.unmute );
-                reactGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('react', react, {}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -252,19 +177,8 @@ describe('React sub-generator', function () {
                 // add files and folders you expect to NOT exist here.
                 'test/spec/components/' + folder + react + '.jsx'
             ];
-            this.app.run({}, function() {
-                var reactGen = helpers.createGenerator(
-                    'yeogurt:react', [
-                        '../../../react'
-                    ],
-                    [react],
-                    {
-                        folder: folder
-                    }
-                );
-                reactGen.on( 'start', Output.mute );
-                reactGen.on( 'end', Output.unmute );
-                reactGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('react', react, {folder: folder}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -281,19 +195,8 @@ describe('React sub-generator', function () {
                 // add files and folders you expect to NOT exist here.
                 'test/spec/components/folder/' + react + '.jsx'
             ];
-            this.app.run({}, function() {
-                var reactGen = helpers.createGenerator(
-                    'yeogurt:react', [
-                        '../../../react'
-                    ],
-                    [react],
-                    {
-                        folder: folder
-                    }
-                );
-                reactGen.on( 'start', Output.mute );
-                reactGen.on( 'end', Output.unmute );
-                reactGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('react', react, {folder: folder}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -314,16 +217,8 @@ describe('React sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 jsFramework: 'react'
             });
-            this.app.run({}, function() {
-                var reactGen = helpers.createGenerator(
-                    'yeogurt:react', [
-                        '../../../react'
-                    ],
-                    [react]
-                );
-                reactGen.on( 'start', Output.mute );
-                reactGen.on( 'end', Output.unmute );
-                reactGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('react', react, {}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -342,19 +237,8 @@ describe('React sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 jsFramework: 'react'
             });
-            this.app.run({}, function() {
-                var reactGen = helpers.createGenerator(
-                    'yeogurt:react', [
-                        '../../../react'
-                    ],
-                    [react],
-                    {
-                        folder: folder
-                    }
-                );
-                reactGen.on( 'start', Output.mute );
-                reactGen.on( 'end', Output.unmute );
-                reactGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('react', react, {folder: folder}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -373,19 +257,8 @@ describe('React sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 jsFramework: 'react'
             });
-            this.app.run({}, function() {
-                var reactGen = helpers.createGenerator(
-                    'yeogurt:react', [
-                        '../../../react'
-                    ],
-                    [react],
-                    {
-                        folder: folder
-                    }
-                );
-                reactGen.on( 'start', Output.mute );
-                reactGen.on( 'end', Output.unmute );
-                reactGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('react', react, {folder: folder}, function() {
                     assert.file(filesToTest);
                     done();
                 });

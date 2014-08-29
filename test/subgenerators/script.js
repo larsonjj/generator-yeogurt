@@ -5,7 +5,8 @@ var path    = require('path');
 var yeoman  = require('yeoman-generator');
 var helpers = yeoman.test;
 var assert  = yeoman.assert;
-var Output  = require( '../helpers/mute' );
+var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
+var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
 
 describe('Script sub-generator', function () {
@@ -15,16 +16,8 @@ describe('Script sub-generator', function () {
                 return done(err);
             }
 
-            this.app = helpers.createGenerator('yeogurt:app', [
-                '../../../app'
-            ]);
+            this.app = createAppGenerator();
 
-            this.app.options['skip-install'] = true;
-
-            // Prevent Yeoman writes while the generator runs
-            // and reenable them when it's finished to see the test results
-            this.app.on('start', Output.mute);
-            this.app.on('end', Output.unmute);
             done();
         }.bind(this));
     });
@@ -42,16 +35,8 @@ describe('Script sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 jsOption: 'none'
             });
-            this.app.run({}, function() {
-                var scriptGen = helpers.createGenerator(
-                    'yeogurt:script', [
-                        '../../../script'
-                    ],
-                    [script]
-                );
-                scriptGen.on( 'start', Output.mute );
-                scriptGen.on( 'end', Output.unmute );
-                scriptGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('script', script, {}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -70,19 +55,8 @@ describe('Script sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 jsOption: 'none'
             });
-            this.app.run({}, function() {
-                var scriptGen = helpers.createGenerator(
-                    'yeogurt:script', [
-                        '../../../script'
-                    ],
-                    [script],
-                    {
-                        folder: folder
-                    }
-                );
-                scriptGen.on( 'start', Output.mute );
-                scriptGen.on( 'end', Output.unmute );
-                scriptGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('script', script, {folder: folder}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -101,19 +75,8 @@ describe('Script sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 jsOption: 'none'
             });
-            this.app.run({}, function() {
-                var scriptGen = helpers.createGenerator(
-                    'yeogurt:script', [
-                        '../../../script'
-                    ],
-                    [script],
-                    {
-                        folder: folder
-                    }
-                );
-                scriptGen.on( 'start', Output.mute );
-                scriptGen.on( 'end', Output.unmute );
-                scriptGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('script', script, {folder: folder}, function() {
                     assert.file(filesToTest);
                     done();
                 });

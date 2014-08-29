@@ -5,7 +5,8 @@ var path    = require('path');
 var yeoman  = require('yeoman-generator');
 var helpers = yeoman.test;
 var assert  = yeoman.assert;
-var Output  = require( '../helpers/mute' );
+var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
+var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
 
 describe('Collection sub-generator', function () {
@@ -15,16 +16,8 @@ describe('Collection sub-generator', function () {
                 return done(err);
             }
 
-            this.app = helpers.createGenerator('yeogurt:app', [
-                '../../../app'
-            ]);
+            this.app = createAppGenerator();
 
-            this.app.options['skip-install'] = true;
-
-            // Prevent Yeoman writes while the generator runs
-            // and reenable them when it's finished to see the test results
-            this.app.on('start', Output.mute);
-            this.app.on('end', Output.unmute);
             done();
         }.bind(this));
     });
@@ -42,16 +35,8 @@ describe('Collection sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 jsFramework: 'react'
             });
-            this.app.run({}, function() {
-                var collectionGen = helpers.createGenerator(
-                    'yeogurt:collection', [
-                        '../../../collection'
-                    ],
-                    [collection]
-                );
-                collectionGen.on( 'start', Output.mute );
-                collectionGen.on( 'end', Output.unmute );
-                collectionGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('collection', collection, {}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -69,19 +54,8 @@ describe('Collection sub-generator', function () {
                 'test/spec/collections/' + folder + collection + '.js',
                 'client/scripts/collections/' + folder + collection + '.js'
             ];
-            this.app.run({}, function() {
-                var collectionGen = helpers.createGenerator(
-                    'yeogurt:collection', [
-                        '../../../collection'
-                    ],
-                    [collection],
-                    {
-                        folder: folder
-                    }
-                );
-                collectionGen.on( 'start', Output.mute );
-                collectionGen.on( 'end', Output.unmute );
-                collectionGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('collection', collection, {folder: folder}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -99,19 +73,8 @@ describe('Collection sub-generator', function () {
                 'test/spec/collections/folder/' + collection + '.js',
                 'client/scripts/collections/folder/' + collection + '.js'
             ];
-            this.app.run({}, function() {
-                var collectionGen = helpers.createGenerator(
-                    'yeogurt:collection', [
-                        '../../../collection'
-                    ],
-                    [collection],
-                    {
-                        folder: folder
-                    }
-                );
-                collectionGen.on( 'start', Output.mute );
-                collectionGen.on( 'end', Output.unmute );
-                collectionGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('collection', collection, {folder: folder}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -133,16 +96,8 @@ describe('Collection sub-generator', function () {
                 htmlOption: 'jade',
                 singlePageApplication: false
             });
-            this.app.run({}, function() {
-                var collectionGen = helpers.createGenerator(
-                    'yeogurt:collection', [
-                        '../../../collection'
-                    ],
-                    [collection]
-                );
-                collectionGen.on( 'start', Output.mute );
-                collectionGen.on( 'end', Output.unmute );
-                collectionGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('collection', collection, {}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -161,19 +116,8 @@ describe('Collection sub-generator', function () {
                 'test/spec/collections/' + folder + collection + '.js',
                 'client/scripts/collections/' + folder + collection + '.js'
             ];
-            this.app.run({}, function() {
-                var collectionGen = helpers.createGenerator(
-                    'yeogurt:collection', [
-                        '../../../collection'
-                    ],
-                    [collection],
-                    {
-                        folder: folder
-                    }
-                );
-                collectionGen.on( 'start', Output.mute );
-                collectionGen.on( 'end', Output.unmute );
-                collectionGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('collection', collection, {folder: folder}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -192,19 +136,8 @@ describe('Collection sub-generator', function () {
                 'test/spec/collections/folder/' + collection + '.js',
                 'client/scripts/collections/folder/' + collection + '.js'
             ];
-            this.app.run({}, function() {
-                var collectionGen = helpers.createGenerator(
-                    'yeogurt:collection', [
-                        '../../../collection'
-                    ],
-                    [collection],
-                    {
-                        folder: folder
-                    }
-                );
-                collectionGen.on( 'start', Output.mute );
-                collectionGen.on( 'end', Output.unmute );
-                collectionGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('collection', collection, {folder: folder}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -225,16 +158,8 @@ describe('Collection sub-generator', function () {
                 'test/spec/collections/' + collection + '.js',
                 'client/scripts/collections/' + collection + '.js'
             ];
-            this.app.run({}, function() {
-                var collectionGen = helpers.createGenerator(
-                    'yeogurt:collection', [
-                        '../../../collection'
-                    ],
-                    [collection]
-                );
-                collectionGen.on( 'start', Output.mute );
-                collectionGen.on( 'end', Output.unmute );
-                collectionGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('collection', collection, {}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -253,19 +178,8 @@ describe('Collection sub-generator', function () {
                 'test/spec/collections/' + folder + collection + '.js',
                 'client/scripts/collections/' + folder + collection + '.js'
             ];
-            this.app.run({}, function() {
-                var collectionGen = helpers.createGenerator(
-                    'yeogurt:collection', [
-                        '../../../collection'
-                    ],
-                    [collection],
-                    {
-                        folder: folder
-                    }
-                );
-                collectionGen.on( 'start', Output.mute );
-                collectionGen.on( 'end', Output.unmute );
-                collectionGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('collection', collection, {folder: folder}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -284,19 +198,8 @@ describe('Collection sub-generator', function () {
                 'test/spec/collections/folder/' + collection + '.js',
                 'client/scripts/collections/folder/' + collection + '.js'
             ];
-            this.app.run({}, function() {
-                var collectionGen = helpers.createGenerator(
-                    'yeogurt:collection', [
-                        '../../../collection'
-                    ],
-                    [collection],
-                    {
-                        folder: folder
-                    }
-                );
-                collectionGen.on( 'start', Output.mute );
-                collectionGen.on( 'end', Output.unmute );
-                collectionGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('collection', collection, {folder: folder}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -321,16 +224,8 @@ describe('Collection sub-generator', function () {
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
-            this.app.run({}, function() {
-                var collectionGen = helpers.createGenerator(
-                    'yeogurt:collection', [
-                        '../../../collection'
-                    ],
-                    [collection]
-                );
-                collectionGen.on( 'start', Output.mute );
-                collectionGen.on( 'end', Output.unmute );
-                collectionGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('collection', collection, {}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -353,19 +248,8 @@ describe('Collection sub-generator', function () {
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
-            this.app.run({}, function() {
-                var collectionGen = helpers.createGenerator(
-                    'yeogurt:collection', [
-                        '../../../collection'
-                    ],
-                    [collection],
-                    {
-                        folder: folder
-                    }
-                );
-                collectionGen.on( 'start', Output.mute );
-                collectionGen.on( 'end', Output.unmute );
-                collectionGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('collection', collection, {folder: folder}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -388,19 +272,8 @@ describe('Collection sub-generator', function () {
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
-            this.app.run({}, function() {
-                var collectionGen = helpers.createGenerator(
-                    'yeogurt:collection', [
-                        '../../../collection'
-                    ],
-                    [collection],
-                    {
-                        folder: folder
-                    }
-                );
-                collectionGen.on( 'start', Output.mute );
-                collectionGen.on( 'end', Output.unmute );
-                collectionGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('collection', collection, {folder: folder}, function() {
                     assert.file(filesToTest);
                     done();
                 });

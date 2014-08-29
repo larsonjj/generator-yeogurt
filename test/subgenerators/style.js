@@ -5,7 +5,8 @@ var path    = require('path');
 var yeoman  = require('yeoman-generator');
 var helpers = yeoman.test;
 var assert  = yeoman.assert;
-var Output  = require( '../helpers/mute' );
+var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
+var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
 
 describe('Style sub-generator', function () {
@@ -15,16 +16,8 @@ describe('Style sub-generator', function () {
                 return done(err);
             }
 
-            this.app = helpers.createGenerator('yeogurt:app', [
-                '../../../app'
-            ]);
+            this.app = createAppGenerator();
 
-            this.app.options['skip-install'] = true;
-
-            // Prevent Yeoman writes while the generator runs
-            // and reenable them when it's finished to see the test results
-            this.app.on('start', Output.mute);
-            this.app.on('end', Output.unmute);
             done();
         }.bind(this));
     });
@@ -41,16 +34,8 @@ describe('Style sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 cssOption: 'sass'
             });
-            this.app.run({}, function() {
-                var styleGen = helpers.createGenerator(
-                    'yeogurt:style', [
-                        '../../../style'
-                    ],
-                    [style]
-                );
-                styleGen.on( 'start', Output.mute );
-                styleGen.on( 'end', Output.unmute );
-                styleGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('style', style, {}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -68,19 +53,8 @@ describe('Style sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 cssOption: 'sass'
             });
-            this.app.run({}, function() {
-                var styleGen = helpers.createGenerator(
-                    'yeogurt:style', [
-                        '../../../style'
-                    ],
-                    [style],
-                    {
-                        folder: folder
-                    }
-                );
-                styleGen.on( 'start', Output.mute );
-                styleGen.on( 'end', Output.unmute );
-                styleGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('style', style, {folder: folder}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -98,19 +72,8 @@ describe('Style sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 cssOption: 'sass'
             });
-            this.app.run({}, function() {
-                var styleGen = helpers.createGenerator(
-                    'yeogurt:style', [
-                        '../../../style'
-                    ],
-                    [style],
-                    {
-                        folder: folder
-                    }
-                );
-                styleGen.on( 'start', Output.mute );
-                styleGen.on( 'end', Output.unmute );
-                styleGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('style', style, {folder: folder}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -130,16 +93,8 @@ describe('Style sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 cssOption: 'less'
             });
-            this.app.run({}, function() {
-                var styleGen = helpers.createGenerator(
-                    'yeogurt:style', [
-                        '../../../style'
-                    ],
-                    [style]
-                );
-                styleGen.on( 'start', Output.mute );
-                styleGen.on( 'end', Output.unmute );
-                styleGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('style', style, {}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -157,19 +112,8 @@ describe('Style sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 cssOption: 'less'
             });
-            this.app.run({}, function() {
-                var styleGen = helpers.createGenerator(
-                    'yeogurt:style', [
-                        '../../../style'
-                    ],
-                    [style],
-                    {
-                        folder: folder
-                    }
-                );
-                styleGen.on( 'start', Output.mute );
-                styleGen.on( 'end', Output.unmute );
-                styleGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('style', style, {folder: folder}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -187,19 +131,8 @@ describe('Style sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 cssOption: 'less'
             });
-            this.app.run({}, function() {
-                var styleGen = helpers.createGenerator(
-                    'yeogurt:style', [
-                        '../../../style'
-                    ],
-                    [style],
-                    {
-                        folder: folder
-                    }
-                );
-                styleGen.on( 'start', Output.mute );
-                styleGen.on( 'end', Output.unmute );
-                styleGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('style', style, {folder: folder}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -219,16 +152,8 @@ describe('Style sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 cssOption: 'css'
             });
-            this.app.run({}, function() {
-                var styleGen = helpers.createGenerator(
-                    'yeogurt:style', [
-                        '../../../style'
-                    ],
-                    [style]
-                );
-                styleGen.on( 'start', Output.mute );
-                styleGen.on( 'end', Output.unmute );
-                styleGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('style', style, {}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -246,19 +171,8 @@ describe('Style sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 cssOption: 'css'
             });
-            this.app.run({}, function() {
-                var styleGen = helpers.createGenerator(
-                    'yeogurt:style', [
-                        '../../../style'
-                    ],
-                    [style],
-                    {
-                        folder: folder
-                    }
-                );
-                styleGen.on( 'start', Output.mute );
-                styleGen.on( 'end', Output.unmute );
-                styleGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('style', style, {folder: folder}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -276,19 +190,8 @@ describe('Style sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 cssOption: 'css'
             });
-            this.app.run({}, function() {
-                var styleGen = helpers.createGenerator(
-                    'yeogurt:style', [
-                        '../../../style'
-                    ],
-                    [style],
-                    {
-                        folder: folder
-                    }
-                );
-                styleGen.on( 'start', Output.mute );
-                styleGen.on( 'end', Output.unmute );
-                styleGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('style', style, {folder: folder}, function() {
                     assert.file(filesToTest);
                     done();
                 });

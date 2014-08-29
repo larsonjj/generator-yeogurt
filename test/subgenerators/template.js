@@ -5,7 +5,8 @@ var path    = require('path');
 var yeoman  = require('yeoman-generator');
 var helpers = yeoman.test;
 var assert  = yeoman.assert;
-var Output  = require( '../helpers/mute' );
+var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
+var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
 describe('Template sub-generator', function () {
     beforeEach(function (done) {
@@ -14,16 +15,8 @@ describe('Template sub-generator', function () {
                 return done(err);
             }
 
-            this.app = helpers.createGenerator('yeogurt:app', [
-                '../../../app'
-            ]);
+            this.app = createAppGenerator();
 
-            this.app.options['skip-install'] = true;
-
-            // Prevent Yeoman writes while the generator runs
-            // and reenable them when it's finished to see the test results
-            this.app.on('start', Output.mute);
-            this.app.on('end', Output.unmute);
             done();
         }.bind(this));
     });
@@ -42,16 +35,8 @@ describe('Template sub-generator', function () {
                 jsFramework: 'react',
                 singlePageApplication: true
             });
-            this.app.run({}, function() {
-                var templateGen = helpers.createGenerator(
-                    'yeogurt:template', [
-                        '../../../template'
-                    ],
-                    [template]
-                );
-                templateGen.on( 'start', Output.mute );
-                templateGen.on( 'end', Output.unmute );
-                templateGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('template', template, {}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -69,19 +54,8 @@ describe('Template sub-generator', function () {
                 'test/spec/components/' + folder + template + '.js',
                 'client/scripts/components/' + folder + template + '.jsx'
             ];
-            this.app.run({}, function() {
-                var templateGen = helpers.createGenerator(
-                    'yeogurt:template', [
-                        '../../../template'
-                    ],
-                    [template],
-                    {
-                        folder: folder
-                    }
-                );
-                templateGen.on( 'start', Output.mute );
-                templateGen.on( 'end', Output.unmute );
-                templateGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('template', template, {folder: folder}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -99,19 +73,8 @@ describe('Template sub-generator', function () {
                 'test/spec/components/folder/' + template + '.js',
                 'client/scripts/components/folder/' + template + '.jsx'
             ];
-            this.app.run({}, function() {
-                var templateGen = helpers.createGenerator(
-                    'yeogurt:template', [
-                        '../../../template'
-                    ],
-                    [template],
-                    {
-                        folder: folder
-                    }
-                );
-                templateGen.on( 'start', Output.mute );
-                templateGen.on( 'end', Output.unmute );
-                templateGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('template', template, {folder: folder}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -134,19 +97,11 @@ describe('Template sub-generator', function () {
                     singlePageApplication: false,
                     useServer: false
                 });
-                this.app.run({}, function() {
-                    var templateGen = helpers.createGenerator(
-                        'yeogurt:template', [
-                            '../../../template'
-                        ],
-                        [template]
-                    );
-                    templateGen.on( 'start', Output.mute );
-                    templateGen.on( 'end', Output.unmute );
-                    templateGen.run({}, function() {
-                        assert.file(filesToTest);
-                        done();
-                    });
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {}, function() {
+                    assert.file(filesToTest);
+                    done();
+                });
                 });
             });
             it('Handles defaults with type: Module', function(done) {
@@ -163,22 +118,11 @@ describe('Template sub-generator', function () {
                     singlePageApplication: false,
                     useServer: false
                 });
-                this.app.run({}, function() {
-                    var templateGen = helpers.createGenerator(
-                        'yeogurt:template', [
-                            '../../../template'
-                        ],
-                        [template],
-                        {
-                            type: type
-                        }
-                    );
-                    templateGen.on( 'start', Output.mute );
-                    templateGen.on( 'end', Output.unmute );
-                    templateGen.run({}, function() {
-                        assert.file(filesToTest);
-                        done();
-                    });
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {type: type}, function() {
+                    assert.file(filesToTest);
+                    done();
+                });
                 });
             });
             it('Handles defaults with type: Template', function(done) {
@@ -195,19 +139,8 @@ describe('Template sub-generator', function () {
                     singlePageApplication: false,
                     useServer: false
                 });
-                this.app.run({}, function() {
-                    var templateGen = helpers.createGenerator(
-                        'yeogurt:template', [
-                            '../../../template'
-                        ],
-                        [template],
-                        {
-                            type: type
-                        }
-                    );
-                    templateGen.on( 'start', Output.mute );
-                    templateGen.on( 'end', Output.unmute );
-                    templateGen.run({}, function() {
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {type: type}, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -226,22 +159,11 @@ describe('Template sub-generator', function () {
                     // add files and folders you expect to NOT exist here.
                     'client/templates/' + folder + template + '.jade'
                 ];
-                this.app.run({}, function() {
-                    var templateGen = helpers.createGenerator(
-                        'yeogurt:template', [
-                            '../../../template'
-                        ],
-                        [template],
-                        {
-                            folder: folder
-                        }
-                    );
-                    templateGen.on( 'start', Output.mute );
-                    templateGen.on( 'end', Output.unmute );
-                    templateGen.run({}, function() {
-                        assert.file(filesToTest);
-                        done();
-                    });
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {folder: folder}, function() {
+                    assert.file(filesToTest);
+                    done();
+                });
                 });
             });
             it('Handles folder option with funky path', function(done) {
@@ -257,22 +179,11 @@ describe('Template sub-generator', function () {
                     // add files and folders you expect to NOT exist here.
                     'client/templates/folder/' + template + '.jade'
                 ];
-                this.app.run({}, function() {
-                    var templateGen = helpers.createGenerator(
-                        'yeogurt:template', [
-                            '../../../template'
-                        ],
-                        [template],
-                        {
-                            folder: folder
-                        }
-                    );
-                    templateGen.on( 'start', Output.mute );
-                    templateGen.on( 'end', Output.unmute );
-                    templateGen.run({}, function() {
-                        assert.file(filesToTest);
-                        done();
-                    });
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {folder: folder}, function() {
+                    assert.file(filesToTest);
+                    done();
+                });
                 });
             });
         });
@@ -291,22 +202,11 @@ describe('Template sub-generator', function () {
                     singlePageApplication: false,
                     useServer: true
                 });
-                this.app.run({}, function() {
-                    var templateGen = helpers.createGenerator(
-                        'yeogurt:template', [
-                            '../../../template'
-                        ],
-                        [template],
-                        {
-                            type: type
-                        }
-                    );
-                    templateGen.on( 'start', Output.mute );
-                    templateGen.on( 'end', Output.unmute );
-                    templateGen.run({}, function() {
-                        assert.file(filesToTest);
-                        done();
-                    });
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {type: type}, function() {
+                    assert.file(filesToTest);
+                    done();
+                });
                 });
             });
             it('Handles defaults with type: Module', function(done) {
@@ -323,22 +223,11 @@ describe('Template sub-generator', function () {
                     singlePageApplication: false,
                     useServer: true
                 });
-                this.app.run({}, function() {
-                    var templateGen = helpers.createGenerator(
-                        'yeogurt:template', [
-                            '../../../template'
-                        ],
-                        [template],
-                        {
-                            type: type
-                        }
-                    );
-                    templateGen.on( 'start', Output.mute );
-                    templateGen.on( 'end', Output.unmute );
-                    templateGen.run({}, function() {
-                        assert.file(filesToTest);
-                        done();
-                    });
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {type: type}, function() {
+                    assert.file(filesToTest);
+                    done();
+                });
                 });
             });
             it('Handles defaults with type: Template', function(done) {
@@ -355,22 +244,11 @@ describe('Template sub-generator', function () {
                     singlePageApplication: false,
                     useServer: true
                 });
-                this.app.run({}, function() {
-                    var templateGen = helpers.createGenerator(
-                        'yeogurt:template', [
-                            '../../../template'
-                        ],
-                        [template],
-                        {
-                            type: type
-                        }
-                    );
-                    templateGen.on( 'start', Output.mute );
-                    templateGen.on( 'end', Output.unmute );
-                    templateGen.run({}, function() {
-                        assert.file(filesToTest);
-                        done();
-                    });
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {type: type}, function() {
+                    assert.file(filesToTest);
+                    done();
+                });
                 });
             });
             it('Handles folder option', function(done) {
@@ -386,19 +264,8 @@ describe('Template sub-generator', function () {
                     // add files and folders you expect to NOT exist here.
                     'server/templates/' + folder + template + '.jade'
                 ];
-                this.app.run({}, function() {
-                    var templateGen = helpers.createGenerator(
-                        'yeogurt:template', [
-                            '../../../template'
-                        ],
-                        [template],
-                        {
-                            folder: folder
-                        }
-                    );
-                    templateGen.on( 'start', Output.mute );
-                    templateGen.on( 'end', Output.unmute );
-                    templateGen.run({}, function() {
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {folder: folder}, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -417,19 +284,8 @@ describe('Template sub-generator', function () {
                     // add files and folders you expect to NOT exist here.
                     'server/templates/folder/' + template + '.jade'
                 ];
-                this.app.run({}, function() {
-                    var templateGen = helpers.createGenerator(
-                        'yeogurt:template', [
-                            '../../../template'
-                        ],
-                        [template],
-                        {
-                            folder: folder
-                        }
-                    );
-                    templateGen.on( 'start', Output.mute );
-                    templateGen.on( 'end', Output.unmute );
-                    templateGen.run({}, function() {
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {folder: folder}, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -454,19 +310,8 @@ describe('Template sub-generator', function () {
                     singlePageApplication: false,
                     useServer: false
                 });
-                this.app.run({}, function() {
-                    var templateGen = helpers.createGenerator(
-                        'yeogurt:template', [
-                            '../../../template'
-                        ],
-                        [template],
-                        {
-                            type: type
-                        }
-                    );
-                    templateGen.on( 'start', Output.mute );
-                    templateGen.on( 'end', Output.unmute );
-                    templateGen.run({}, function() {
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {type: type}, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -486,19 +331,8 @@ describe('Template sub-generator', function () {
                     singlePageApplication: false,
                     useServer: false
                 });
-                this.app.run({}, function() {
-                    var templateGen = helpers.createGenerator(
-                        'yeogurt:template', [
-                            '../../../template'
-                        ],
-                        [template],
-                        {
-                            type: type
-                        }
-                    );
-                    templateGen.on( 'start', Output.mute );
-                    templateGen.on( 'end', Output.unmute );
-                    templateGen.run({}, function() {
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {type: type}, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -518,22 +352,11 @@ describe('Template sub-generator', function () {
                     singlePageApplication: false,
                     useServer: false
                 });
-                this.app.run({}, function() {
-                    var templateGen = helpers.createGenerator(
-                        'yeogurt:template', [
-                            '../../../template'
-                        ],
-                        [template],
-                        {
-                            type: type
-                        }
-                    );
-                    templateGen.on( 'start', Output.mute );
-                    templateGen.on( 'end', Output.unmute );
-                    templateGen.run({}, function() {
-                        assert.file(filesToTest);
-                        done();
-                    });
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {type: type}, function() {
+                    assert.file(filesToTest);
+                    done();
+                });
                 });
             });
             it('Handles folder option', function(done) {
@@ -549,19 +372,8 @@ describe('Template sub-generator', function () {
                     // add files and folders you expect to NOT exist here.
                     'client/templates/' + folder + template + '.swig'
                 ];
-                this.app.run({}, function() {
-                    var templateGen = helpers.createGenerator(
-                        'yeogurt:template', [
-                            '../../../template'
-                        ],
-                        [template],
-                        {
-                            folder: folder
-                        }
-                    );
-                    templateGen.on( 'start', Output.mute );
-                    templateGen.on( 'end', Output.unmute );
-                    templateGen.run({}, function() {
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {folder: folder}, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -580,19 +392,8 @@ describe('Template sub-generator', function () {
                     // add files and folders you expect to NOT exist here.
                     'client/templates/folder/' + template + '.swig'
                 ];
-                this.app.run({}, function() {
-                    var templateGen = helpers.createGenerator(
-                        'yeogurt:template', [
-                            '../../../template'
-                        ],
-                        [template],
-                        {
-                            folder: folder
-                        }
-                    );
-                    templateGen.on( 'start', Output.mute );
-                    templateGen.on( 'end', Output.unmute );
-                    templateGen.run({}, function() {
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {folder: folder}, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -613,16 +414,8 @@ describe('Template sub-generator', function () {
                     singlePageApplication: false,
                     useServer: true
                 });
-                this.app.run({}, function() {
-                    var templateGen = helpers.createGenerator(
-                        'yeogurt:template', [
-                            '../../../template'
-                        ],
-                        [template]
-                    );
-                    templateGen.on( 'start', Output.mute );
-                    templateGen.on( 'end', Output.unmute );
-                    templateGen.run({}, function() {
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {}, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -642,19 +435,8 @@ describe('Template sub-generator', function () {
                     singlePageApplication: false,
                     useServer: true
                 });
-                this.app.run({}, function() {
-                    var templateGen = helpers.createGenerator(
-                        'yeogurt:template', [
-                            '../../../template'
-                        ],
-                        [template],
-                        {
-                            type: type
-                        }
-                    );
-                    templateGen.on( 'start', Output.mute );
-                    templateGen.on( 'end', Output.unmute );
-                    templateGen.run({}, function() {
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {type: type}, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -674,19 +456,8 @@ describe('Template sub-generator', function () {
                     singlePageApplication: false,
                     useServer: true
                 });
-                this.app.run({}, function() {
-                    var templateGen = helpers.createGenerator(
-                        'yeogurt:template', [
-                            '../../../template'
-                        ],
-                        [template],
-                        {
-                            type: type
-                        }
-                    );
-                    templateGen.on( 'start', Output.mute );
-                    templateGen.on( 'end', Output.unmute );
-                    templateGen.run({}, function() {
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {type: type}, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -705,19 +476,8 @@ describe('Template sub-generator', function () {
                     // add files and folders you expect to NOT exist here.
                     'server/templates/' + folder + template + '.swig'
                 ];
-                this.app.run({}, function() {
-                    var templateGen = helpers.createGenerator(
-                        'yeogurt:template', [
-                            '../../../template'
-                        ],
-                        [template],
-                        {
-                            folder: folder
-                        }
-                    );
-                    templateGen.on( 'start', Output.mute );
-                    templateGen.on( 'end', Output.unmute );
-                    templateGen.run({}, function() {
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {folder: folder}, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -736,19 +496,8 @@ describe('Template sub-generator', function () {
                     // add files and folders you expect to NOT exist here.
                     'server/templates/folder/' + template + '.swig'
                 ];
-                this.app.run({}, function() {
-                    var templateGen = helpers.createGenerator(
-                        'yeogurt:template', [
-                            '../../../template'
-                        ],
-                        [template],
-                        {
-                            folder: folder
-                        }
-                    );
-                    templateGen.on( 'start', Output.mute );
-                    templateGen.on( 'end', Output.unmute );
-                    templateGen.run({}, function() {
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {folder: folder}, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -773,16 +522,8 @@ describe('Template sub-generator', function () {
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
-            this.app.run({}, function() {
-                var templateGen = helpers.createGenerator(
-                    'yeogurt:template', [
-                        '../../../template'
-                    ],
-                    [template]
-                );
-                templateGen.on( 'start', Output.mute );
-                templateGen.on( 'end', Output.unmute );
-                templateGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('template', template, {}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -803,16 +544,8 @@ describe('Template sub-generator', function () {
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
-            this.app.run({}, function() {
-                var templateGen = helpers.createGenerator(
-                    'yeogurt:template', [
-                        '../../../template'
-                    ],
-                    [template]
-                );
-                templateGen.on( 'start', Output.mute );
-                templateGen.on( 'end', Output.unmute );
-                templateGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('template', template, {}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -833,16 +566,8 @@ describe('Template sub-generator', function () {
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
-            this.app.run({}, function() {
-                var templateGen = helpers.createGenerator(
-                    'yeogurt:template', [
-                        '../../../template'
-                    ],
-                    [template]
-                );
-                templateGen.on( 'start', Output.mute );
-                templateGen.on( 'end', Output.unmute );
-                templateGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('template', template, {}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -864,19 +589,8 @@ describe('Template sub-generator', function () {
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
-            this.app.run({}, function() {
-                var templateGen = helpers.createGenerator(
-                    'yeogurt:template', [
-                        '../../../template'
-                    ],
-                    [template],
-                    {
-                        folder: folder
-                    }
-                );
-                templateGen.on( 'start', Output.mute );
-                templateGen.on( 'end', Output.unmute );
-                templateGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('template', template, {folder: folder}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -898,19 +612,8 @@ describe('Template sub-generator', function () {
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
-            this.app.run({}, function() {
-                var templateGen = helpers.createGenerator(
-                    'yeogurt:template', [
-                        '../../../template'
-                    ],
-                    [template],
-                    {
-                        folder: folder
-                    }
-                );
-                templateGen.on( 'start', Output.mute );
-                templateGen.on( 'end', Output.unmute );
-                templateGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('template', template, {folder: folder}, function() {
                     assert.file(filesToTest);
                     done();
                 });

@@ -5,7 +5,8 @@ var path    = require('path');
 var yeoman  = require('yeoman-generator');
 var helpers = yeoman.test;
 var assert  = yeoman.assert;
-var Output  = require( '../helpers/mute' );
+var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
+var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
 describe('View sub-generator', function () {
     beforeEach(function (done) {
@@ -14,16 +15,8 @@ describe('View sub-generator', function () {
                 return done(err);
             }
 
-            this.app = helpers.createGenerator('yeogurt:app', [
-                '../../../app'
-            ]);
+            this.app = createAppGenerator();
 
-            this.app.options['skip-install'] = true;
-
-            // Prevent Yeoman writes while the generator runs
-            // and reenable them when it's finished to see the test results
-            this.app.on('start', Output.mute);
-            this.app.on('end', Output.unmute);
             done();
         }.bind(this));
     });
@@ -42,16 +35,8 @@ describe('View sub-generator', function () {
                 jsFramework: 'react',
                 singlePageApplication: true
             });
-            this.app.run({}, function() {
-                var viewGen = helpers.createGenerator(
-                    'yeogurt:view', [
-                        '../../../view'
-                    ],
-                    [view]
-                );
-                viewGen.on( 'start', Output.mute );
-                viewGen.on( 'end', Output.unmute );
-                viewGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('view', view, {}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -69,19 +54,8 @@ describe('View sub-generator', function () {
                 'test/spec/views/' + folder + view + '.js',
                 'client/scripts/views/' + folder + view + '.js'
             ];
-            this.app.run({}, function() {
-                var viewGen = helpers.createGenerator(
-                    'yeogurt:view', [
-                        '../../../view'
-                    ],
-                    [view],
-                    {
-                        folder: folder
-                    }
-                );
-                viewGen.on( 'start', Output.mute );
-                viewGen.on( 'end', Output.unmute );
-                viewGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('view', view, {folder: folder}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -99,19 +73,8 @@ describe('View sub-generator', function () {
                 'test/spec/views/folder/' + view + '.js',
                 'client/scripts/views/folder/' + view + '.js'
             ];
-            this.app.run({}, function() {
-                var viewGen = helpers.createGenerator(
-                    'yeogurt:view', [
-                        '../../../view'
-                    ],
-                    [view],
-                    {
-                        folder: folder
-                    }
-                );
-                viewGen.on( 'start', Output.mute );
-                viewGen.on( 'end', Output.unmute );
-                viewGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('view', view, {folder: folder}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -133,16 +96,8 @@ describe('View sub-generator', function () {
                 htmlOption: 'jade',
                 singlePageApplication: false
             });
-            this.app.run({}, function() {
-                var viewGen = helpers.createGenerator(
-                    'yeogurt:view', [
-                        '../../../view'
-                    ],
-                    [view]
-                );
-                viewGen.on( 'start', Output.mute );
-                viewGen.on( 'end', Output.unmute );
-                viewGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('view', view, {}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -161,19 +116,8 @@ describe('View sub-generator', function () {
                 'test/spec/views/' + folder + view + '.js',
                 'client/scripts/views/' + folder + view + '.js'
             ];
-            this.app.run({}, function() {
-                var viewGen = helpers.createGenerator(
-                    'yeogurt:view', [
-                        '../../../view'
-                    ],
-                    [view],
-                    {
-                        folder: folder
-                    }
-                );
-                viewGen.on( 'start', Output.mute );
-                viewGen.on( 'end', Output.unmute );
-                viewGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('view', view, {folder: folder}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -192,19 +136,8 @@ describe('View sub-generator', function () {
                 'test/spec/views/folder/' + view + '.js',
                 'client/scripts/views/folder/' + view + '.js'
             ];
-            this.app.run({}, function() {
-                var viewGen = helpers.createGenerator(
-                    'yeogurt:view', [
-                        '../../../view'
-                    ],
-                    [view],
-                    {
-                        folder: folder
-                    }
-                );
-                viewGen.on( 'start', Output.mute );
-                viewGen.on( 'end', Output.unmute );
-                viewGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('view', view, {folder: folder}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -225,16 +158,8 @@ describe('View sub-generator', function () {
                 'client/scripts/views/' + view + '.js',
                 'test/spec/views/' + view + '.js'
             ];
-            this.app.run({}, function() {
-                var viewGen = helpers.createGenerator(
-                    'yeogurt:view', [
-                        '../../../view'
-                    ],
-                    [view]
-                );
-                viewGen.on( 'start', Output.mute );
-                viewGen.on( 'end', Output.unmute );
-                viewGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('view', view, {}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -253,19 +178,8 @@ describe('View sub-generator', function () {
                 'test/spec/views/' + folder + view + '.js',
                 'client/scripts/views/' + folder + view + '.js'
             ];
-            this.app.run({}, function() {
-                var viewGen = helpers.createGenerator(
-                    'yeogurt:view', [
-                        '../../../view'
-                    ],
-                    [view],
-                    {
-                        folder: folder
-                    }
-                );
-                viewGen.on( 'start', Output.mute );
-                viewGen.on( 'end', Output.unmute );
-                viewGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('view', view, {folder: folder}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -284,19 +198,8 @@ describe('View sub-generator', function () {
                 'test/spec/views/folder/' + view + '.js',
                 'client/scripts/views/folder/' + view + '.js'
             ];
-            this.app.run({}, function() {
-                var viewGen = helpers.createGenerator(
-                    'yeogurt:view', [
-                        '../../../view'
-                    ],
-                    [view],
-                    {
-                        folder: folder
-                    }
-                );
-                viewGen.on( 'start', Output.mute );
-                viewGen.on( 'end', Output.unmute );
-                viewGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('view', view, {folder: folder}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -322,16 +225,8 @@ describe('View sub-generator', function () {
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
-            this.app.run({}, function() {
-                var viewGen = helpers.createGenerator(
-                    'yeogurt:view', [
-                        '../../../view'
-                    ],
-                    [view]
-                );
-                viewGen.on( 'start', Output.mute );
-                viewGen.on( 'end', Output.unmute );
-                viewGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('view', view, {}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -354,16 +249,8 @@ describe('View sub-generator', function () {
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
-            this.app.run({}, function() {
-                var viewGen = helpers.createGenerator(
-                    'yeogurt:view', [
-                        '../../../view'
-                    ],
-                    [view]
-                );
-                viewGen.on( 'start', Output.mute );
-                viewGen.on( 'end', Output.unmute );
-                viewGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('view', view, {}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -386,16 +273,8 @@ describe('View sub-generator', function () {
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
-            this.app.run({}, function() {
-                var viewGen = helpers.createGenerator(
-                    'yeogurt:view', [
-                        '../../../view'
-                    ],
-                    [view]
-                );
-                viewGen.on( 'start', Output.mute );
-                viewGen.on( 'end', Output.unmute );
-                viewGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('view', view, {}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -418,19 +297,8 @@ describe('View sub-generator', function () {
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
-            this.app.run({}, function() {
-                var viewGen = helpers.createGenerator(
-                    'yeogurt:view', [
-                        '../../../view'
-                    ],
-                    [view],
-                    {
-                        folder: folder
-                    }
-                );
-                viewGen.on( 'start', Output.mute );
-                viewGen.on( 'end', Output.unmute );
-                viewGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('view', view, {folder: folder}, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -453,19 +321,8 @@ describe('View sub-generator', function () {
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
-            this.app.run({}, function() {
-                var viewGen = helpers.createGenerator(
-                    'yeogurt:view', [
-                        '../../../view'
-                    ],
-                    [view],
-                    {
-                        folder: folder
-                    }
-                );
-                viewGen.on( 'start', Output.mute );
-                viewGen.on( 'end', Output.unmute );
-                viewGen.run({}, function() {
+            this.app.run([], function() {
+                createSubGenerator('view', view, {folder: folder}, function() {
                     assert.file(filesToTest);
                     done();
                 });

@@ -59,7 +59,7 @@ describe('yeogurt generator server defaults', function () {
             extras: []
         });
         this.app.options['skip-install'] = true;
-        this.app.run({}, function () {
+        this.app.run([], function () {
             assert.file(expected);
             done();
         });
