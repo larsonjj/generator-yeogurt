@@ -38,7 +38,7 @@
   },
   "scripts": {
     "test": "istanbul cover _mocha --report lcovonly -- test/**/*.js --reporter list --timeout 100000 && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "localtest": "mocha test/**/*.js --reporter spec",
+    "localtest": "mocha test/**/*.js -b --reporter spec",
     "localtest-report": "istanbul cover _mocha --report html -- test/**/*.js && open coverage/index.html"
   },
   "dependencies": {

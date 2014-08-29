@@ -27,7 +27,6 @@ describe('Model sub-generator', function () {
             // Filename
             var model = 'mymodel';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/models/' + model + '.js',
                 'client/scripts/models/' + model + '.js'
             ];
@@ -50,7 +49,6 @@ describe('Model sub-generator', function () {
             var model = 'mymodel';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/models/' + folder + model + '.js',
                 'client/scripts/models/' + folder + model + '.js'
             ];
@@ -69,7 +67,6 @@ describe('Model sub-generator', function () {
             var model = 'mymodel';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/models/folder/' + model + '.js',
                 'client/scripts/models/folder/' + model + '.js'
             ];
@@ -87,7 +84,6 @@ describe('Model sub-generator', function () {
             // Filename
             var model = 'mymodel';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/models/' + model + '.js',
                 'client/scripts/models/' + model + '.js'
             ];
@@ -112,7 +108,6 @@ describe('Model sub-generator', function () {
             var model = 'mymodel';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/models/' + folder + model + '.js',
                 'client/scripts/models/' + folder + model + '.js'
             ];
@@ -132,7 +127,6 @@ describe('Model sub-generator', function () {
             var model = 'mymodel';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/models/folder/' + model + '.js',
                 'client/scripts/models/folder/' + model + '.js'
             ];
@@ -154,7 +148,6 @@ describe('Model sub-generator', function () {
             // Filename
             var model = 'mymodel';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/models/' + model + '.js',
                 'client/scripts/models/' + model + '.js'
             ];
@@ -174,7 +167,6 @@ describe('Model sub-generator', function () {
             var model = 'mymodel';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/models/' + folder + model + '.js',
                 'client/scripts/models/' + folder + model + '.js'
             ];
@@ -194,7 +186,6 @@ describe('Model sub-generator', function () {
             var model = 'mymodel';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/models/folder/' + model + '.js',
                 'client/scripts/models/folder/' + model + '.js'
             ];
@@ -212,7 +203,6 @@ describe('Model sub-generator', function () {
             // Filename
             var model = 'mymodel';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/models/' + model + '-spec.js',
                 'client/scripts/models/' + model + '.js'
             ];
@@ -231,12 +221,97 @@ describe('Model sub-generator', function () {
                 });
             });
         });
+        it('Handles defaults with Browserify', function(done) {
+            // Filename
+            var model = 'mymodel';
+            var fileContentToTest = [
+                ['test/spec/models/' + model + '-spec.js', /describe/i],
+                ['client/scripts/models/' + model + '.js', /module\.exports/i]
+            ];
+
+            helpers.mockPrompt(this.app, {
+                jsFramework: 'backbone',
+                singlePageApplication: true,
+                jsTemplate: 'lodash',
+                jsOption: 'browserify',
+                testFramework: 'jasmine'
+            });
+            this.app.run([], function() {
+                createSubGenerator('model', model, {}, function() {
+                    assert.fileContent(fileContentToTest);
+                    done();
+                });
+            });
+        });
+        it('Handles defaults with RequireJS', function(done) {
+            // Filename
+            var model = 'mymodel';
+            var fileContentToTest = [
+                ['test/spec/models/' + model + '-spec.js', /define\(function\(require\)/i],
+                ['client/scripts/models/' + model + '.js', /define\(function\(require\)/i]
+            ];
+
+            helpers.mockPrompt(this.app, {
+                jsFramework: 'backbone',
+                singlePageApplication: true,
+                jsTemplate: 'lodash',
+                jsOption: 'requirejs',
+                testFramework: 'jasmine'
+            });
+            this.app.run([], function() {
+                createSubGenerator('model', model, {}, function() {
+                    assert.fileContent(fileContentToTest);
+                    done();
+                });
+            });
+        });
+        it('Handles defaults with Mocha', function(done) {
+            // Filename
+            var model = 'mymodel';
+            var fileContentToTest = [
+                ['test/spec/models/' + model + '-spec.js', /jshint expr/i],
+            ];
+
+            helpers.mockPrompt(this.app, {
+                jsFramework: 'backbone',
+                singlePageApplication: true,
+                jsTemplate: 'lodash',
+                jsOption: 'requirejs',
+                testFramework: 'mocha'
+            });
+            this.app.run([], function() {
+                createSubGenerator('model', model, {}, function() {
+                    assert.fileContent(fileContentToTest);
+                    done();
+                });
+            });
+        });
+        it('Handles defaults with Jasmine', function(done) {
+            // Filename
+            var model = 'mymodel';
+            var fileContentToTest = [
+                ['test/spec/models/' + model + '-spec.js', /jshint expr/i],
+            ];
+
+            helpers.mockPrompt(this.app, {
+                jsFramework: 'backbone',
+                singlePageApplication: true,
+                jsTemplate: 'lodash',
+                jsOption: 'requirejs',
+                testFramework: 'jasmine'
+            });
+            this.app.run([], function() {
+                createSubGenerator('model', model, {}, function() {
+                    assert.noFileContent(fileContentToTest);
+                    done();
+                });
+            });
+        });
         it('Handles folder option', function(done) {
             // Filename
             var model = 'mymodel';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/models/' + folder + model + '-spec.js',
                 'client/scripts/models/' + folder + model + '.js'
             ];
@@ -260,7 +335,6 @@ describe('Model sub-generator', function () {
             var model = 'mymodel';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/models/folder/' + model + '-spec.js',
                 'client/scripts/models/folder/' + model + '.js'
             ];

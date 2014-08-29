@@ -2,7 +2,7 @@
 *   <%= _.classify(name) %> View Description
 */
 <% if (jsOption === 'requirejs') { %>
-define(function (require) {
+define(function(require) {
     'use strict';
 
     var <%= _.classify(name) %>View = Backbone.View.extend({

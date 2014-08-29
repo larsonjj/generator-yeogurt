@@ -27,7 +27,6 @@ describe('React sub-generator', function () {
             // Filename
             var react = 'myreact';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/components/' + react + '.js'
             ];
 
@@ -57,7 +56,6 @@ describe('React sub-generator', function () {
             var react = 'myreact';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/components/' + folder + react + '.jsx'
             ];
             this.app.run([], function() {
@@ -79,7 +77,6 @@ describe('React sub-generator', function () {
             var react = 'myreact';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/components/folder/' + react + '.jsx'
             ];
             this.app.run([], function() {
@@ -96,7 +93,6 @@ describe('React sub-generator', function () {
             // Filename
             var react = 'myreact';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/components/' + react + '.js'
             ];
 
@@ -118,7 +114,6 @@ describe('React sub-generator', function () {
             var react = 'myreact';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/components/' + folder + react + '.jsx'
             ];
             this.app.run([], function() {
@@ -136,7 +131,6 @@ describe('React sub-generator', function () {
             var react = 'myreact';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/components/folder/' + react + '.jsx'
             ];
             this.app.run([], function() {
@@ -156,7 +150,6 @@ describe('React sub-generator', function () {
             // Filename
             var react = 'myreact';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/components/' + react + '.js'
             ];
             this.app.run([], function() {
@@ -174,7 +167,6 @@ describe('React sub-generator', function () {
             var react = 'myreact';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/components/' + folder + react + '.jsx'
             ];
             this.app.run([], function() {
@@ -192,7 +184,6 @@ describe('React sub-generator', function () {
             var react = 'myreact';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/components/folder/' + react + '.jsx'
             ];
             this.app.run([], function() {
@@ -209,9 +200,12 @@ describe('React sub-generator', function () {
             // Filename
             var react = 'myreact';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/components/' + react + '-spec.js',
                 'client/scripts/components/' + react + '.jsx'
+            ];
+            var fileContentToTest = [
+                ['test/spec/components/' + react + '-spec.js', /\@jsx React\.DOM /i],
+                ['client/scripts/components/' + react + '.jsx', /\@jsx React\.DOM /i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -220,6 +214,25 @@ describe('React sub-generator', function () {
             this.app.run([], function() {
                 createSubGenerator('react', react, {}, function() {
                     assert.file(filesToTest);
+                    assert.fileContent(fileContentToTest);
+                    done();
+                });
+            });
+        });
+        it('Handles defaults with Mocha', function(done) {
+            // Filename
+            var react = 'myreact';
+            var fileContentToTest = [
+                ['test/spec/components/' + react + '-spec.js', /jshint expr/i],
+            ];
+
+            helpers.mockPrompt(this.app, {
+                jsFramework: 'react',
+                testFramework: 'mocha'
+            });
+            this.app.run([], function() {
+                createSubGenerator('react', react, {}, function() {
+                    assert.fileContent(fileContentToTest);
                     done();
                 });
             });
@@ -229,7 +242,6 @@ describe('React sub-generator', function () {
             var react = 'myreact';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/components/' + folder + react + '-spec.js',
                 'client/scripts/components/' + folder + react + '.jsx'
             ];
@@ -249,7 +261,6 @@ describe('React sub-generator', function () {
             var react = 'myreact';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/components/folder/' + react + '-spec.js',
                 'client/scripts/components/folder/' + react + '.jsx'
             ];

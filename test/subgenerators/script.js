@@ -27,7 +27,6 @@ describe('Script sub-generator', function () {
             // Filename
             var script = 'myscript';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/' + script + '-spec.js',
                 'client/scripts/' + script + '.js'
             ];
@@ -42,12 +41,83 @@ describe('Script sub-generator', function () {
                 });
             });
         });
+        it('Handles defaults with Browserify', function(done) {
+            // Filename
+            var script = 'myscript';
+            var fileContentToTest = [
+                ['test/spec/' + script + '-spec.js', /describe/i],
+                ['client/scripts/' + script + '.js', /module\.exports/i]
+            ];
+
+            helpers.mockPrompt(this.app, {
+                jsOption: 'browserify'
+            });
+            this.app.run([], function() {
+                createSubGenerator('script', script, {}, function() {
+                    assert.fileContent(fileContentToTest);
+                    done();
+                });
+            });
+        });
+        it('Handles defaults with RequireJS', function(done) {
+            // Filename
+            var script = 'myscript';
+            var fileContentToTest = [
+                ['test/spec/' + script + '-spec.js', /define\(function\(require\)/i],
+                ['client/scripts/' + script + '.js', /define\(function\(require\)/i]
+            ];
+
+            helpers.mockPrompt(this.app, {
+                jsOption: 'requirejs'
+            });
+            this.app.run([], function() {
+                createSubGenerator('script', script, {}, function() {
+                    assert.fileContent(fileContentToTest);
+                    done();
+                });
+            });
+        });
+        it('Handles defaults with Mocha', function(done) {
+            // Filename
+            var script = 'myscript';
+            var fileContentToTest = [
+                ['test/spec/' + script + '-spec.js', /jshint expr/i]
+            ];
+
+            helpers.mockPrompt(this.app, {
+                jsOption: 'none',
+                testFramework: 'mocha'
+            });
+            this.app.run([], function() {
+                createSubGenerator('script', script, {}, function() {
+                    assert.fileContent(fileContentToTest);
+                    done();
+                });
+            });
+        });
+        it('Handles defaults with Jasmine', function(done) {
+            // Filename
+            var script = 'myscript';
+            var fileContentToTest = [
+                ['test/spec/' + script + '-spec.js', /jshint expr/i]
+            ];
+
+            helpers.mockPrompt(this.app, {
+                jsOption: 'none',
+                testFramework: 'requirejs'
+            });
+            this.app.run([], function() {
+                createSubGenerator('script', script, {}, function() {
+                    assert.noFileContent(fileContentToTest);
+                    done();
+                });
+            });
+        });
         it('Handles folder option', function(done) {
             // Filename
             var script = 'myscript';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/' + folder + script + '-spec.js',
                 'client/scripts/' + folder + script + '.js'
             ];
@@ -67,7 +137,6 @@ describe('Script sub-generator', function () {
             var script = 'myscript';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/folder/' + script + '-spec.js',
                 'client/scripts/folder/' + script + '.js'
             ];

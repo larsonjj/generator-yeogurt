@@ -27,7 +27,6 @@ describe('Collection sub-generator', function () {
             // Filename
             var collection = 'mycollection';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/collections/' + collection + '.js',
                 'client/scripts/collections/' + collection + '.js'
             ];
@@ -50,7 +49,6 @@ describe('Collection sub-generator', function () {
             var collection = 'mycollection';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/collections/' + folder + collection + '.js',
                 'client/scripts/collections/' + folder + collection + '.js'
             ];
@@ -69,7 +67,6 @@ describe('Collection sub-generator', function () {
             var collection = 'mycollection';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/collections/folder/' + collection + '.js',
                 'client/scripts/collections/folder/' + collection + '.js'
             ];
@@ -87,7 +84,6 @@ describe('Collection sub-generator', function () {
             // Filename
             var collection = 'mycollection';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/collections/' + collection + '.js',
                 'client/scripts/collections/' + collection + '.js'
             ];
@@ -112,7 +108,6 @@ describe('Collection sub-generator', function () {
             var collection = 'mycollection';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/collections/' + folder + collection + '.js',
                 'client/scripts/collections/' + folder + collection + '.js'
             ];
@@ -132,7 +127,6 @@ describe('Collection sub-generator', function () {
             var collection = 'mycollection';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/collections/folder/' + collection + '.js',
                 'client/scripts/collections/folder/' + collection + '.js'
             ];
@@ -154,7 +148,6 @@ describe('Collection sub-generator', function () {
             // Filename
             var collection = 'mycollection';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/collections/' + collection + '.js',
                 'client/scripts/collections/' + collection + '.js'
             ];
@@ -174,7 +167,6 @@ describe('Collection sub-generator', function () {
             var collection = 'mycollection';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/collections/' + folder + collection + '.js',
                 'client/scripts/collections/' + folder + collection + '.js'
             ];
@@ -194,7 +186,6 @@ describe('Collection sub-generator', function () {
             var collection = 'mycollection';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/collections/folder/' + collection + '.js',
                 'client/scripts/collections/folder/' + collection + '.js'
             ];
@@ -212,7 +203,6 @@ describe('Collection sub-generator', function () {
             // Filename
             var collection = 'mycollection';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/collections/' + collection + '-spec.js',
                 'client/scripts/collections/' + collection + '.js'
             ];
@@ -231,12 +221,97 @@ describe('Collection sub-generator', function () {
                 });
             });
         });
+        it('Handles defaults with Browserify', function(done) {
+            // Filename
+            var collection = 'mycollection';
+            var fileContentToTest = [
+                ['test/spec/collections/' + collection + '-spec.js', /describe/i],
+                ['client/scripts/collections/' + collection + '.js', /module\.exports/i]
+            ];
+
+            helpers.mockPrompt(this.app, {
+                jsFramework: 'backbone',
+                singlePageApplication: true,
+                jsTemplate: 'lodash',
+                jsOption: 'browserify',
+                testFramework: 'jasmine'
+            });
+            this.app.run([], function() {
+                createSubGenerator('collection', collection, {}, function() {
+                    assert.fileContent(fileContentToTest);
+                    done();
+                });
+            });
+        });
+        it('Handles defaults with RequireJS', function(done) {
+            // Filename
+            var collection = 'mycollection';
+            var fileContentToTest = [
+                ['test/spec/collections/' + collection + '-spec.js', /define\(function\(require\)/i],
+                ['client/scripts/collections/' + collection + '.js', /define\(function\(require\)/i]
+            ];
+
+            helpers.mockPrompt(this.app, {
+                jsFramework: 'backbone',
+                singlePageApplication: true,
+                jsTemplate: 'lodash',
+                jsOption: 'requirejs',
+                testFramework: 'jasmine'
+            });
+            this.app.run([], function() {
+                createSubGenerator('collection', collection, {}, function() {
+                    assert.fileContent(fileContentToTest);
+                    done();
+                });
+            });
+        });
+        it('Handles defaults with Mocha', function(done) {
+            // Filename
+            var collection = 'mycollection';
+            var fileContentToTest = [
+                ['test/spec/collections/' + collection + '-spec.js', /jshint expr/i],
+            ];
+
+            helpers.mockPrompt(this.app, {
+                jsFramework: 'backbone',
+                singlePageApplication: true,
+                jsTemplate: 'lodash',
+                jsOption: 'requirejs',
+                testFramework: 'mocha'
+            });
+            this.app.run([], function() {
+                createSubGenerator('collection', collection, {}, function() {
+                    assert.fileContent(fileContentToTest);
+                    done();
+                });
+            });
+        });
+        it('Handles defaults with Jasmine', function(done) {
+            // Filename
+            var collection = 'mycollection';
+            var fileContentToTest = [
+                ['test/spec/collections/' + collection + '-spec.js', /jshint expr/i],
+            ];
+
+            helpers.mockPrompt(this.app, {
+                jsFramework: 'backbone',
+                singlePageApplication: true,
+                jsTemplate: 'lodash',
+                jsOption: 'requirejs',
+                testFramework: 'jasmine'
+            });
+            this.app.run([], function() {
+                createSubGenerator('collection', collection, {}, function() {
+                    assert.noFileContent(fileContentToTest);
+                    done();
+                });
+            });
+        });
         it('Handles folder option', function(done) {
             // Filename
             var collection = 'mycollection';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/collections/' + folder + collection + '-spec.js',
                 'client/scripts/collections/' + folder + collection + '.js'
             ];
@@ -260,7 +335,6 @@ describe('Collection sub-generator', function () {
             var collection = 'mycollection';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/collections/folder/' + collection + '-spec.js',
                 'client/scripts/collections/folder/' + collection + '.js'
             ];

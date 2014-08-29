@@ -26,7 +26,6 @@ describe('Template sub-generator', function () {
             // Filename
             var template = 'mytemplate';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'client/scripts/components/' + template + '.jsx',
                 'test/spec/components/' + template + '.js'
             ];
@@ -50,7 +49,6 @@ describe('Template sub-generator', function () {
             var template = 'mytemplate';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/components/' + folder + template + '.js',
                 'client/scripts/components/' + folder + template + '.jsx'
             ];
@@ -69,7 +67,6 @@ describe('Template sub-generator', function () {
             var template = 'mytemplate';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/components/folder/' + template + '.js',
                 'client/scripts/components/folder/' + template + '.jsx'
             ];
@@ -91,6 +88,9 @@ describe('Template sub-generator', function () {
                     // add files and folders you expect to NOT exist here.
                     'client/templates/' + template + '.jade',
                 ];
+                var fileContentToTest = [
+                    ['client/templates/' + template + '.jade', /page/i]
+                ];
 
                 helpers.mockPrompt(this.app, {
                     htmlOption: 'jade',
@@ -99,9 +99,10 @@ describe('Template sub-generator', function () {
                 });
                 this.app.run([], function() {
                     createSubGenerator('template', template, {}, function() {
-                    assert.file(filesToTest);
-                    done();
-                });
+                        assert.file(filesToTest);
+                        assert.fileContent(fileContentToTest);
+                        done();
+                    });
                 });
             });
             it('Handles defaults with type: Module', function(done) {
@@ -112,6 +113,9 @@ describe('Template sub-generator', function () {
                     // add files and folders you expect to NOT exist here.
                     'client/templates/modules/' + template + '.jade',
                 ];
+                var fileContentToTest = [
+                    ['client/templates/modules/' + template + '.jade', /include client\/templates/i]
+                ];
 
                 helpers.mockPrompt(this.app, {
                     htmlOption: 'jade',
@@ -119,10 +123,11 @@ describe('Template sub-generator', function () {
                     useServer: false
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {type: type}, function() {
-                    assert.file(filesToTest);
-                    done();
-                });
+                        createSubGenerator('template', template, {type: type}, function() {
+                        assert.file(filesToTest);
+                        assert.fileContent(fileContentToTest);
+                        done();
+                    });
                 });
             });
             it('Handles defaults with type: Template', function(done) {
@@ -133,6 +138,9 @@ describe('Template sub-generator', function () {
                     // add files and folders you expect to NOT exist here.
                     'client/templates/layouts/' + template + '.jade',
                 ];
+                var fileContentToTest = [
+                    ['client/templates/layouts/' + template + '.jade', /extend base/i]
+                ];
 
                 helpers.mockPrompt(this.app, {
                     htmlOption: 'jade',
@@ -142,6 +150,7 @@ describe('Template sub-generator', function () {
                 this.app.run([], function() {
                     createSubGenerator('template', template, {type: type}, function() {
                         assert.file(filesToTest);
+                        assert.fileContent(fileContentToTest);
                         done();
                     });
                 });
@@ -353,10 +362,10 @@ describe('Template sub-generator', function () {
                     useServer: false
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {type: type}, function() {
-                    assert.file(filesToTest);
-                    done();
-                });
+                        createSubGenerator('template', template, {type: type}, function() {
+                        assert.file(filesToTest);
+                        done();
+                    });
                 });
             });
             it('Handles folder option', function(done) {
@@ -511,8 +520,10 @@ describe('Template sub-generator', function () {
             // Filename
             var template = 'mytemplate';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'client/templates/' + template + '.jst'
+            ];
+            var fileContentToTest = [
+                ['client/templates/' + template + '.jst', /<div>/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -525,6 +536,7 @@ describe('Template sub-generator', function () {
             this.app.run([], function() {
                 createSubGenerator('template', template, {}, function() {
                     assert.file(filesToTest);
+                    assert.fileContent(fileContentToTest);
                     done();
                 });
             });
@@ -533,9 +545,12 @@ describe('Template sub-generator', function () {
             // Filename
             var template = 'mytemplate';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'client/templates/' + template + '.hbs'
             ];
+            var fileContentToTest = [
+                ['client/templates/' + template + '.hbs', /<div>/i]
+            ];
+
 
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
@@ -547,6 +562,7 @@ describe('Template sub-generator', function () {
             this.app.run([], function() {
                 createSubGenerator('template', template, {}, function() {
                     assert.file(filesToTest);
+                    assert.fileContent(fileContentToTest);
                     done();
                 });
             });
@@ -555,8 +571,10 @@ describe('Template sub-generator', function () {
             // Filename
             var template = 'mytemplate';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'client/templates/' + template + '.jade'
+            ];
+            var fileContentToTest = [
+                ['client/templates/' + template + '.jade', /<div>/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -569,6 +587,7 @@ describe('Template sub-generator', function () {
             this.app.run([], function() {
                 createSubGenerator('template', template, {}, function() {
                     assert.file(filesToTest);
+                    assert.noFileContent(fileContentToTest);
                     done();
                 });
             });
@@ -578,7 +597,6 @@ describe('Template sub-generator', function () {
             var template = 'mytemplate';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'client/templates/folder/' + template + '.jst'
             ];
 
@@ -601,7 +619,6 @@ describe('Template sub-generator', function () {
             var template = 'mytemplate';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'client/templates/folder/' + template + '.jst'
             ];
 

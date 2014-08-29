@@ -27,7 +27,6 @@ describe('Style sub-generator', function () {
             // Filename
             var style = 'mystyle';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'client/styles/_' + style + '.scss'
             ];
 
@@ -46,7 +45,6 @@ describe('Style sub-generator', function () {
             var style = 'mystyle';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'client/styles/folder/_' + style + '.scss'
             ];
 
@@ -65,7 +63,6 @@ describe('Style sub-generator', function () {
             var style = 'mystyle';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'client/styles/folder/_' + style + '.scss'
             ];
 
@@ -86,7 +83,6 @@ describe('Style sub-generator', function () {
             // Filename
             var style = 'mystyle';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'client/styles/_' + style + '.less'
             ];
 
@@ -105,7 +101,6 @@ describe('Style sub-generator', function () {
             var style = 'mystyle';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'client/styles/folder/_' + style + '.less'
             ];
 
@@ -124,7 +119,6 @@ describe('Style sub-generator', function () {
             var style = 'mystyle';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'client/styles/folder/_' + style + '.less'
             ];
 
@@ -145,7 +139,6 @@ describe('Style sub-generator', function () {
             // Filename
             var style = 'mystyle';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'client/styles/' + style + '.css'
             ];
 
@@ -164,7 +157,6 @@ describe('Style sub-generator', function () {
             var style = 'mystyle';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'client/styles/folder/' + style + '.css'
             ];
 
@@ -183,7 +175,6 @@ describe('Style sub-generator', function () {
             var style = 'mystyle';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'client/styles/folder/' + style + '.css'
             ];
 

@@ -26,7 +26,6 @@ describe('View sub-generator', function () {
             // Filename
             var view = 'myview';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'client/scripts/views/' + view + '.js',
                 'test/spec/views/' + view + '.js'
             ];
@@ -50,7 +49,6 @@ describe('View sub-generator', function () {
             var view = 'myview';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/views/' + folder + view + '.js',
                 'client/scripts/views/' + folder + view + '.js'
             ];
@@ -69,7 +67,6 @@ describe('View sub-generator', function () {
             var view = 'myview';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/views/folder/' + view + '.js',
                 'client/scripts/views/folder/' + view + '.js'
             ];
@@ -87,7 +84,6 @@ describe('View sub-generator', function () {
             // Filename
             var view = 'myview';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'client/scripts/views/' + view + '.js',
                 'test/spec/views/' + view + '.js'
             ];
@@ -112,7 +108,6 @@ describe('View sub-generator', function () {
             var view = 'myview';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/views/' + folder + view + '.js',
                 'client/scripts/views/' + folder + view + '.js'
             ];
@@ -132,7 +127,6 @@ describe('View sub-generator', function () {
             var view = 'myview';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/views/folder/' + view + '.js',
                 'client/scripts/views/folder/' + view + '.js'
             ];
@@ -154,7 +148,6 @@ describe('View sub-generator', function () {
             // Filename
             var view = 'myview';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'client/scripts/views/' + view + '.js',
                 'test/spec/views/' + view + '.js'
             ];
@@ -174,7 +167,6 @@ describe('View sub-generator', function () {
             var view = 'myview';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/views/' + folder + view + '.js',
                 'client/scripts/views/' + folder + view + '.js'
             ];
@@ -194,7 +186,6 @@ describe('View sub-generator', function () {
             var view = 'myview';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/views/folder/' + view + '.js',
                 'client/scripts/views/folder/' + view + '.js'
             ];
@@ -212,7 +203,6 @@ describe('View sub-generator', function () {
             // Filename
             var view = 'myview';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/views/' + view + '-spec.js',
                 'client/scripts/views/' + view + '.js',
                 'client/templates/' + view + '.jst'
@@ -236,7 +226,6 @@ describe('View sub-generator', function () {
             // Filename
             var view = 'myview';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/views/' + view + '-spec.js',
                 'client/scripts/views/' + view + '.js',
                 'client/templates/' + view + '.hbs'
@@ -260,7 +249,6 @@ describe('View sub-generator', function () {
             // Filename
             var view = 'myview';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/views/' + view + '-spec.js',
                 'client/scripts/views/' + view + '.js',
                 'client/templates/' + view + '.jade'
@@ -285,7 +273,6 @@ describe('View sub-generator', function () {
             var view = 'myview';
             var folder = 'folder/';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/views/' + folder + view + '-spec.js',
                 'client/scripts/views/' + folder + view + '.js'
             ];
@@ -309,7 +296,6 @@ describe('View sub-generator', function () {
             var view = 'myview';
             var folder = '/////folder/////';
             var filesToTest = [
-                // add files and folders you expect to NOT exist here.
                 'test/spec/views/folder/' + view + '-spec.js',
                 'client/scripts/views/folder/' + view + '.js'
             ];
