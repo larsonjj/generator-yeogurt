@@ -27,27 +27,17 @@ describe('yeogurt generator server with jade templates', function () {
         }.bind(this));
     });
 
-    it('creates expected files', function (done) {
+    it('Creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
             'server/modules/jadeRender.js'
         ];
 
         helpers.mockPrompt(this.app, {
-            projectName: 'testing',
-            versionControl: 'git',
             singlePageApplication: true,
-            htmlOption: 'jade',
-            cssOption: 'sass',
-            jsOption: 'requirejs',
-            jsTemplate: 'jade',
+            jsFramework: 'backbone',
             useServer: true,
-            ieSupport: false,
-            responsive: false,
-            useGA: false,
-            useFTP: false,
-            jshint: false,
-            extras: []
+            jsTemplate: 'jade'
         });
         this.app.options['skip-install'] = true;
         this.app.run([], function () {

@@ -27,7 +27,7 @@ describe('yeogurt generator backbone + react', function () {
         }.bind(this));
     });
 
-    it('creates expected files', function (done) {
+    it('Creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
             'client/scripts/components',

@@ -4,7 +4,7 @@
 
 'use strict';
 
-var existingConfig = function existingConfig() {
+var existingConfigPrompt = function existingConfigPrompt() {
     var cb = this.async();
 
     if (this.config.get('config')) {
@@ -22,4 +22,4 @@ var existingConfig = function existingConfig() {
     }
 };
 
-module.exports = existingConfig;
+module.exports = existingConfigPrompt;

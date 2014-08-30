@@ -5,29 +5,23 @@ var path    = require('path');
 var yeoman  = require('yeoman-generator');
 var helpers = yeoman.test;
 var assert  = yeoman.assert;
-var Output = require( '../helpers/mute' );
+var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 
 
-describe('yeogurt generator with git', function () {
+describe('Yeogurt generator using Git', function () {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
                 return done(err);
             }
 
-            this.app = helpers.createGenerator('yeogurt:app', [
-                '../../../app'
-            ]);
+            this.app = createAppGenerator();
 
-            // Prevent Yeoman writes while the generator runs
-            // and reenable them when it's finished to see the test results
-            this.app.on( 'start', Output.mute );
-            this.app.on( 'end', Output.unmute );
             done();
         }.bind(this));
     });
 
-    it('creates expected files', function (done) {
+    it('Creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
             '.gitignore',
@@ -35,16 +29,7 @@ describe('yeogurt generator with git', function () {
         ];
 
         helpers.mockPrompt(this.app, {
-            projectName: 'testing',
             versionControl: 'git',
-            cssOption: 'sass',
-            ieSupport: true,
-            responsive: true,
-            useGA: true,
-            useFTP: true,
-            jshint: true,
-            useDashboard: true,
-            extras: ['useFontAwesome']
         });
         this.app.options['skip-install'] = true;
         this.app.run([], function () {

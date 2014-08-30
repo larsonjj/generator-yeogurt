@@ -5,45 +5,28 @@ var path    = require('path');
 var yeoman  = require('yeoman-generator');
 var helpers = yeoman.test;
 var assert  = yeoman.assert;
-var Output = require( '../helpers/mute' );
+var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 
 
-describe('yeogurt generator defaults', function () {
+describe('Yeogurt generator using Default Configuration', function () {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
                 return done(err);
             }
 
-            this.app = helpers.createGenerator('yeogurt:app', [
-                '../../../app',
-            ]);
+            this.app = createAppGenerator();
 
-            // Prevent Yeoman writes while the generator runs
-            // and reenable them when it's finished to see the test results
-            this.app.on( 'start', Output.mute );
-            this.app.on( 'end', Output.unmute );
             done();
         }.bind(this));
     });
 
-    it('creates expected files', function (done) {
+    it('Creates expected files', function (done) {
         var expected = [
             // add files and folders you expect to exist here.
             '.yo-rc.json',
             'README.md',
-            'client/',
-            'client/templates',
-            'client/templates/layouts',
-            'client/templates/index.jade',
-            'client/templates/layouts/base.jade',
-            'client/styles',
-            'client/scripts',
-            'client/scripts/main.js',
-            'client/scripts/app.js',
-            'test',
             'karma.conf.js',
-            'client/images',
             '.editorconfig',
             'Gruntfile.js',
             'bower.json',
@@ -52,15 +35,23 @@ describe('yeogurt generator defaults', function () {
             '.gitignore',
             '.gitattributes',
             '.editorconfig',
+            'client/',
+            'client/styles',
+            'client/scripts',
+            'client/scripts/components',
+            'client/scripts/app.js',
+            'client/images',
             'client/robots.txt',
             'client/humans.txt',
             'client/favicon.ico',
+            'test',
             'grunt/',
             'grunt/config',
             'grunt/tasks',
             'grunt/config/util/clean.js',
             'grunt/config/util/copy.js',
-            'grunt/config/server/connect.js',
+            'grunt/config/server/express.js',
+            'grunt/config/server/env.js',
             'grunt/config/util/compress.js',
             'grunt/config/optimize/htmlmin.js',
             'grunt/config/optimize/imagemin.js',
@@ -69,7 +60,7 @@ describe('yeogurt generator defaults', function () {
             'grunt/config/optimize/usemin.js',
             'grunt/config/util/watch.js',
             'grunt/config/compile/sass.js',
-            'grunt/config/compile/requirejs.js',
+            'grunt/config/compile/browserify.js',
             'grunt/config/test/karma.js',
             'grunt/tasks/build.js',
             'grunt/tasks/default.js',
@@ -79,18 +70,7 @@ describe('yeogurt generator defaults', function () {
         ];
 
         helpers.mockPrompt(this.app, {
-            projectName: 'testing',
-            versionControl: 'git',
-            htmlOption: 'jade',
-            cssOption: 'sass',
-            jsOption: 'requirejs',
-            ieSupport: false,
-            useServer: false,
-            responsive: false,
-            useGA: false,
-            useFTP: false,
-            jshint: false,
-            extras: []
+            existingConfig: false
         });
         this.app.options['skip-install'] = true;
         this.app.run([], function () {

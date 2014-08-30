@@ -25,6 +25,7 @@ var clientPrompts = function clientPrompts() {
         name: 'htmlOption',
         message: 'What would you like to use to ' + 'write markup'.blue + '?',
         choices: ['Jade', 'Swig', 'HTML'],
+        default: 'jade',
         filter: function(val) {
             var filterMap = {
                 'Jade': 'jade',
@@ -54,6 +55,7 @@ var clientPrompts = function clientPrompts() {
         name: 'jsFramework',
         message: 'Which ' + 'JavaScript framework/library'.blue + ' would you like to use?',
         choices: ['React', 'Backbone'],
+        default: 'react',
         filter: function(val) {
             var filterMap = {
                 'React': 'react',
@@ -82,11 +84,12 @@ var clientPrompts = function clientPrompts() {
         type: 'list',
         name: 'jsOption',
         message: 'Which ' + 'JavaScript module library'.blue + ' would you like to use?',
-        choices: ['RequireJS', 'Browserify', 'None'],
+        choices: ['Browserify', 'RequireJS', 'None'],
+        default: 'browserify',
         filter: function(val) {
             var filterMap = {
-                'RequireJS': 'requirejs',
                 'Browserify': 'browserify',
+                'RequireJS': 'requirejs',
                 'None': 'none'
             };
 
@@ -97,6 +100,7 @@ var clientPrompts = function clientPrompts() {
         name: 'testFramework',
         message: 'Which JavaScript ' + 'testing framework'.blue + ' would you like to use?',
         choices: ['Jasmine', 'Mocha'],
+        default: 'jasmine',
         filter: function(val) {
             var filterMap = {
                 'Jasmine': 'jasmine',
@@ -110,6 +114,7 @@ var clientPrompts = function clientPrompts() {
         name: 'cssOption',
         message: 'What would you like to use to ' + 'write styles'.blue + '?',
         choices: ['Sass', 'Less', 'CSS'],
+        default: 'sass',
         filter: function(val) {
             var filterMap = {
                 'Sass': 'sass',
@@ -137,6 +142,7 @@ var clientPrompts = function clientPrompts() {
         name: 'cssFramework',
         message: 'Which CSS ' + 'framework'.blue + ' would you like to use?',
         choices: ['Bootstrap', 'Foundation', 'None'],
+        default: 'sass',
         filter: function(val) {
             var filterMap = {
                 'Bootstrap': 'bootstrap',
@@ -187,7 +193,7 @@ var clientPrompts = function clientPrompts() {
             value: 'useModernizr',
             checked: true
         }],
-        default: []
+        default: ['useFontAwesome', 'useModernizr']
     }], function(answers) {
         this.clientPrompts = answers;
 

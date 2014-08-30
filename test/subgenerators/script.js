@@ -68,7 +68,8 @@ describe('Script sub-generator', function () {
             ];
 
             helpers.mockPrompt(this.app, {
-                jsOption: 'requirejs'
+                jsOption: 'requirejs',
+                jsFramework: 'backbone'
             });
             this.app.run([], function() {
                 createSubGenerator('script', script, {}, function() {
