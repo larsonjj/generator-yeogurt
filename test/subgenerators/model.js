@@ -22,6 +22,29 @@ describe('Model sub-generator', function () {
         }.bind(this));
     });
 
+    describe('Does not create any model files when using Static Site', function () {
+        it('Handles defaults', function(done) {
+            // Filename
+            var model = 'mymodel';
+            var filesToTest = [
+                'test/spec/models/' + model + '.js',
+                'client/scripts/models/' + model + '.js'
+            ];
+
+            helpers.mockPrompt(this.app, {
+                jsFramework: false,
+                singlePageApplication: false,
+                htmlOption: 'swig'
+            });
+            this.app.run([], function() {
+                createSubGenerator('model', model, {}, function() {
+                    assert.noFile(filesToTest);
+                    done();
+                });
+            });
+        });
+    });
+
     describe('Does not create any model files when using React', function () {
         it('Handles defaults', function(done) {
             // Filename

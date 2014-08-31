@@ -71,7 +71,7 @@ describe('Yeogurt generator using Default Configuration', function () {
         helpers.mockPrompt(this.app, {
             existingConfig: false
         });
-        this.app.options['skip-install'] = true;
+
         this.app.run([], function () {
             assert.file(expected);
             done();

@@ -57,10 +57,6 @@ ViewGenerator.prototype.files = function files() {
     if (this.singlePageApplication) {
         if (this.jsTemplate !== 'react') {
 
-            if (!this.name) {
-                this.log('Name cannot be empty.\nOperation aborted.');
-                return;
-            }
             this.template('view.js', 'client/scripts/views/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
             this.template('view-spec.js', 'test/spec/views/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
             if (this.jsTemplate === 'lodash') {

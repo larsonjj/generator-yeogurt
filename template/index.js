@@ -65,10 +65,6 @@ TemplateGenerator.prototype.files = function files() {
     if (this.singlePageApplication) {
         if (this.jsTemplate !== 'react') {
 
-            if (!this.name) {
-                this.log('Name cannot be empty.\nOperation aborted.');
-                return;
-            }
             if (this.jsTemplate === 'lodash') {
                 this.template('template.html', rootPath +'/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.jst');
             }
@@ -101,9 +97,6 @@ TemplateGenerator.prototype.files = function files() {
             else if (this.type === 'layout') {
                 this.template('template.jade', rootPath +'/templates/layouts/' + this.cleanFolderPath(this.folder) +'/' + this._.slugify(this.name.toLowerCase()) + '.jade');
             }
-            else if (!this.name) {
-                this.log('Name cannot be empty.\nOperation aborted.');
-            }
             else {
                 this.log('Must use a supported type: page, template, module.\nOperation aborted');
             }
@@ -118,17 +111,14 @@ TemplateGenerator.prototype.files = function files() {
             else if (this.type === 'layout') {
                 this.template('template.swig', rootPath +'/templates/layouts/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.swig');
             }
-            else if (!this.name) {
-                this.log('Name cannot be empty.\nOperation aborted.');
-            }
             else {
                 this.log('Must use a supported type: page, template, module.\nOperation aborted');
             }
         }
         else if (this.htmlOption === 'html') {
             this.log('You have chosen to use HTML, so you cannot use this sub-generator.');
-            this.log('If you would like to create a new page. Just duplicate/copy your index.html');
-            this.log('Operation aborted');
+            this.log('If you would like to create a new page. Just duplicate/copy your index.html.');
+            this.log('Operation aborted.');
         }
     }
 };

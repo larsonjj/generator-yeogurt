@@ -47,10 +47,6 @@ util.inherits(ScriptGenerator, yeoman.generators.NamedBase);
 ScriptGenerator.prototype.files = function files() {
     this.log('You called the script subgenerator with the argument ' + this.name + '.');
 
-    if (!this.name) {
-        console.log('Name cannot be empty. Operation aborted.');
-        return;
-    }
     this.template('script.js', 'client/scripts/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
     this.template('script-spec.js', 'test/spec/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
 

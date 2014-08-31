@@ -59,10 +59,6 @@ ModelGenerator.prototype.files = function files() {
         this.log('This subgenerator is not available for React application.\nOperation aborted');
     }
     else if (this.singlePageApplication) {
-        if (!this.name) {
-            this.log('Name cannot be empty.\nOperation aborted.');
-            return;
-        }
         this.template('model.js', 'client/scripts/models/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
         this.template('model-spec.js', 'test/spec/models/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
     }

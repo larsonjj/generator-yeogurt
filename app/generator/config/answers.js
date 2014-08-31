@@ -85,9 +85,6 @@ var answersConfig = function answersConfig() {
         this.jsTemplate = this.answers.jsTemplate = 'react';
         this.jsOption   = this.answers.jsOption   = 'browserify';
     }
-    if (!this.dbOption) {
-        this.dbOption = this.answers.dbOption = 'none';
-    }
 
     // Default jsOption to Browserify
     this.jsOption = this.answers.jsOption || 'browserify';

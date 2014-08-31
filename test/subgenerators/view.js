@@ -34,6 +34,7 @@ describe('View sub-generator', function () {
                 jsFramework: 'react',
                 singlePageApplication: true
             });
+
             this.app.run([], function() {
                 createSubGenerator('view', view, {}, function() {
                     assert.noFile(filesToTest);
@@ -52,6 +53,7 @@ describe('View sub-generator', function () {
                 'test/spec/views/' + folder + view + '.js',
                 'client/scripts/views/' + folder + view + '.js'
             ];
+
             this.app.run([], function() {
                 createSubGenerator('view', view, {folder: folder}, function() {
                     assert.noFile(filesToTest);
@@ -70,6 +72,7 @@ describe('View sub-generator', function () {
                 'test/spec/views/folder/' + view + '.js',
                 'client/scripts/views/folder/' + view + '.js'
             ];
+
             this.app.run([], function() {
                 createSubGenerator('view', view, {folder: folder}, function() {
                     assert.noFile(filesToTest);
@@ -92,6 +95,7 @@ describe('View sub-generator', function () {
                 htmlOption: 'jade',
                 singlePageApplication: false
             });
+
             this.app.run([], function() {
                 createSubGenerator('view', view, {}, function() {
                     assert.noFile(filesToTest);
@@ -111,6 +115,7 @@ describe('View sub-generator', function () {
                 'test/spec/views/' + folder + view + '.js',
                 'client/scripts/views/' + folder + view + '.js'
             ];
+
             this.app.run([], function() {
                 createSubGenerator('view', view, {folder: folder}, function() {
                     assert.noFile(filesToTest);
@@ -130,6 +135,7 @@ describe('View sub-generator', function () {
                 'test/spec/views/folder/' + view + '.js',
                 'client/scripts/views/folder/' + view + '.js'
             ];
+
             this.app.run([], function() {
                 createSubGenerator('view', view, {folder: folder}, function() {
                     assert.noFile(filesToTest);
@@ -151,6 +157,7 @@ describe('View sub-generator', function () {
                 'client/scripts/views/' + view + '.js',
                 'test/spec/views/' + view + '.js'
             ];
+
             this.app.run([], function() {
                 createSubGenerator('view', view, {}, function() {
                     assert.noFile(filesToTest);
@@ -170,6 +177,7 @@ describe('View sub-generator', function () {
                 'test/spec/views/' + folder + view + '.js',
                 'client/scripts/views/' + folder + view + '.js'
             ];
+
             this.app.run([], function() {
                 createSubGenerator('view', view, {folder: folder}, function() {
                     assert.noFile(filesToTest);
@@ -189,6 +197,7 @@ describe('View sub-generator', function () {
                 'test/spec/views/folder/' + view + '.js',
                 'client/scripts/views/folder/' + view + '.js'
             ];
+
             this.app.run([], function() {
                 createSubGenerator('view', view, {folder: folder}, function() {
                     assert.noFile(filesToTest);
@@ -599,6 +608,7 @@ describe('View sub-generator', function () {
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
+
             this.app.run([], function() {
                 createSubGenerator('view', view, {folder: folder}, function() {
                     assert.file(filesToTest);
@@ -622,6 +632,7 @@ describe('View sub-generator', function () {
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
+
             this.app.run([], function() {
                 createSubGenerator('view', view, {folder: folder}, function() {
                     assert.file(filesToTest);

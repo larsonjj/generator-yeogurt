@@ -39,10 +39,6 @@ util.inherits(StyleGenerator, yeoman.generators.NamedBase);
 StyleGenerator.prototype.files = function files() {
     this.log('You called the style subgenerator with the argument ' + this.name + '.');
 
-    if (!this.name) {
-        this.log('Name cannot be empty. Operation aborted.');
-        return;
-    }
     if (this.cssOption === 'less') {
         this.template('style.less', 'client/styles/' + this.cleanFolderPath(this.folder) + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.less');
     }

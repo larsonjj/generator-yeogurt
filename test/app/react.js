@@ -45,6 +45,7 @@ describe('Yeogurt generator using React', function () {
                         useServer: false,
                         testFramework: 'jasmine'
                     });
+
                     this.app.run([], function () {
                         assert.file(expected);
                         assert.fileContent(fileContentToTest);
@@ -74,6 +75,7 @@ describe('Yeogurt generator using React', function () {
                         useServer: false,
                         testFramework: 'mocha'
                     });
+
                     this.app.run([], function () {
                         assert.file(expected);
                         assert.fileContent(fileContentToTest);
@@ -107,6 +109,7 @@ describe('Yeogurt generator using React', function () {
                         useServer: true,
                         testFramework: 'jasmine'
                     });
+
                     this.app.run([], function () {
                         assert.file(expected);
                         assert.fileContent(fileContentToTest);
@@ -136,6 +139,7 @@ describe('Yeogurt generator using React', function () {
                         useServer: true,
                         testFramework: 'mocha'
                     });
+
                     this.app.run([], function () {
                         assert.file(expected);
                         assert.fileContent(fileContentToTest);

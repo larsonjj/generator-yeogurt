@@ -51,10 +51,6 @@ ReactGenerator.prototype.files = function files() {
         this.log('Operation aborted');
     }
     else {
-        if (!this.name) {
-            this.log('Name cannot be empty. Operation aborted.');
-            return;
-        }
         this.template('react.js', 'client/scripts/components/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.jsx');
         this.template('react-spec.js', 'test/spec/components/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
     }

@@ -35,7 +35,7 @@ describe('Yeogurt generator using a Dashboard', function () {
         helpers.mockPrompt(this.app, {
             useDashboard: true
         });
-        this.app.options['skip-install'] = true;
+
         this.app.run([], function () {
             assert.file(expected);
             done();

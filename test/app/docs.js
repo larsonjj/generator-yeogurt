@@ -32,6 +32,7 @@ describe('Yeogurt generator using Documentation', function () {
             helpers.mockPrompt(this.app, {
                 useJSDoc: true
             });
+
             this.app.run([], function () {
                 assert.file(expected);
                 done();
@@ -55,6 +56,7 @@ describe('Yeogurt generator using Documentation', function () {
             helpers.mockPrompt(this.app, {
                 useKss: true
             });
+
             this.app.run([], function () {
                 assert.file(expected);
                 done();
@@ -80,6 +82,7 @@ describe('Yeogurt generator using Documentation', function () {
             helpers.mockPrompt(this.app, {
                 useDashboard: true
             });
+
             this.app.run([], function () {
                 assert.file(expected);
                 done();

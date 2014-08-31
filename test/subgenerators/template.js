@@ -79,54 +79,139 @@ describe('Template sub-generator', function () {
         });
     });
 
+    describe('Does not create template files when using Static HTML', function () {
+        it('Handles defaults with type: Page', function(done) {
+            // Filename
+            var template = 'mytemplate';
+            var filesToTest = [
+                // add files and folders you expect to NOT exist here.
+                'client/templates/' + template + '.html',
+                'client/templates/' + template + '.jade',
+                'client/templates/' + template + '.swig',
+            ];
+
+            helpers.mockPrompt(this.app, {
+                htmlOption: 'html',
+                singlePageApplication: false,
+                useServer: false
+            });
+            this.app.run([], function() {
+                createSubGenerator('template', template, {}, function() {
+                    assert.noFile(filesToTest);
+                    done();
+                });
+            });
+        });
+   });
+
     describe('Create template files when using Static Jade', function () {
         describe('Client templates', function () {
-            it('Handles defaults with type: Page', function(done) {
-                // Filename
-                var template = 'mytemplate';
-                var filesToTest = [
-                    // add files and folders you expect to NOT exist here.
-                    'client/templates/' + template + '.jade',
-                ];
-                var fileContentToTest = [
-                    ['client/templates/' + template + '.jade', /page/i]
-                ];
+            describe('Handles defaults with type: Page', function() {
+                it('Without template', function(done) {
+                    // Filename
+                    var template = 'mytemplate';
+                    var filesToTest = [
+                        // add files and folders you expect to NOT exist here.
+                        'client/templates/' + template + '.jade',
+                    ];
+                    var fileContentToTest = [
+                        ['client/templates/' + template + '.jade', /page/i]
+                    ];
 
-                helpers.mockPrompt(this.app, {
-                    htmlOption: 'jade',
-                    singlePageApplication: false,
-                    useServer: false
+                    helpers.mockPrompt(this.app, {
+                        htmlOption: 'jade',
+                        singlePageApplication: false,
+                        useServer: false
+                    });
+
+                    this.app.run([], function() {
+                        createSubGenerator('template', template, {}, function() {
+                            assert.file(filesToTest);
+                            assert.fileContent(fileContentToTest);
+                            done();
+                        });
+                    });
                 });
-                this.app.run([], function() {
-                    createSubGenerator('template', template, {}, function() {
-                        assert.file(filesToTest);
-                        assert.fileContent(fileContentToTest);
-                        done();
+                it('With template', function(done) {
+                    // Filename
+                    var template = 'mytemplate';
+                    var filesToTest = [
+                        // add files and folders you expect to NOT exist here.
+                        'client/templates/' + template + '.jade',
+                    ];
+                    var fileContentToTest = [
+                        ['client/templates/' + template + '.jade', /testTemplate/i]
+                    ];
+
+                    helpers.mockPrompt(this.app, {
+                        htmlOption: 'jade',
+                        singlePageApplication: false,
+                        useServer: false
+                    });
+
+                    this.app.run([], function() {
+                        createSubGenerator('template', template, {template: 'testTemplate'}, function() {
+                            assert.file(filesToTest);
+                            assert.fileContent(fileContentToTest);
+                            done();
+                        });
                     });
                 });
             });
-            it('Handles defaults with type: Module', function(done) {
-                // Filename
-                var template = 'mytemplate';
-                var type = 'module';
-                var filesToTest = [
-                    // add files and folders you expect to NOT exist here.
-                    'client/templates/modules/' + template + '.jade',
-                ];
-                var fileContentToTest = [
-                    ['client/templates/modules/' + template + '.jade', /include client\/templates/i]
-                ];
+            describe('Handles defaults with type: Module', function() {
+                it('Without template', function(done) {
+                    // Filename
+                    var template = 'mytemplate';
+                    var type = 'module';
+                    var filesToTest = [
+                        // add files and folders you expect to NOT exist here.
+                        'client/templates/modules/' + template + '.jade',
+                    ];
+                    var fileContentToTest = [
+                        ['client/templates/modules/' + template + '.jade', /include client\/templates/i]
+                    ];
 
-                helpers.mockPrompt(this.app, {
-                    htmlOption: 'jade',
-                    singlePageApplication: false,
-                    useServer: false
+                    helpers.mockPrompt(this.app, {
+                        htmlOption: 'jade',
+                        singlePageApplication: false,
+                        useServer: false
+                    });
+
+                    this.app.run([], function() {
+                            createSubGenerator('template', template, {type: type}, function() {
+                            assert.file(filesToTest);
+                            assert.fileContent(fileContentToTest);
+                            done();
+                        });
+                    });
                 });
-                this.app.run([], function() {
-                        createSubGenerator('template', template, {type: type}, function() {
-                        assert.file(filesToTest);
-                        assert.fileContent(fileContentToTest);
-                        done();
+                it('With template', function(done) {
+                    // Filename
+                    var template = 'mytemplate';
+                    var type = 'module';
+                    var filesToTest = [
+                        // add files and folders you expect to NOT exist here.
+                        'client/templates/modules/' + template + '.jade',
+                    ];
+                    var fileContentToTest = [
+                        ['client/templates/modules/' + template + '.jade', /testTemplate/i]
+                    ];
+
+                    helpers.mockPrompt(this.app, {
+                        htmlOption: 'jade',
+                        singlePageApplication: false,
+                        useServer: false
+                    });
+
+                    this.app.run([], function() {
+                        createSubGenerator('template', template, {
+                            template: 'testTemplate',
+                            type: type
+                        }, function() {
+                            assert.file(filesToTest);
+                            assert.noFileContent(fileContentToTest);
+                            done();
+                        });
                     });
                 });
             });
@@ -151,6 +236,27 @@ describe('Template sub-generator', function () {
                     createSubGenerator('template', template, {type: type}, function() {
                         assert.file(filesToTest);
                         assert.fileContent(fileContentToTest);
+                        done();
+                    });
+                });
+            });
+            it('Handles defaults with unsupported type', function(done) {
+                // Filename
+                var template = 'mytemplate';
+                var type = 'derp';
+                var filesToTest = [
+                    // add files and folders you expect to NOT exist here.
+                    'client/templates/' + template + '.jade',
+                ];
+
+                helpers.mockPrompt(this.app, {
+                    htmlOption: 'jade',
+                    singlePageApplication: false,
+                    useServer: false
+                });
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {type: type}, function() {
+                        assert.noFile(filesToTest);
                         done();
                     });
                 });
@@ -493,6 +599,27 @@ describe('Template sub-generator', function () {
                 this.app.run([], function() {
                         createSubGenerator('template', template, {type: type}, function() {
                         assert.file(filesToTest);
+                        done();
+                    });
+                });
+            });
+            it('Handles defaults with unsupported type', function(done) {
+                // Filename
+                var template = 'mytemplate';
+                var type = 'derp';
+                var filesToTest = [
+                    // add files and folders you expect to NOT exist here.
+                    'client/templates/' + template + '.swig',
+                ];
+
+                helpers.mockPrompt(this.app, {
+                    htmlOption: 'swig',
+                    singlePageApplication: false,
+                    useServer: false
+                });
+                this.app.run([], function() {
+                    createSubGenerator('template', template, {type: type}, function() {
+                        assert.noFile(filesToTest);
                         done();
                     });
                 });

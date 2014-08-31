@@ -6,7 +6,6 @@
 
 var existingConfigPrompt = function existingConfigPrompt() {
     var cb = this.async();
-
     if (this.config.get('config')) {
         this.prompt([{
             type: 'confirm',
@@ -17,7 +16,8 @@ var existingConfigPrompt = function existingConfigPrompt() {
             this.existingConfig = answers.existingConfig;
             cb();
         }.bind(this));
-    } else {
+    }
+    else {
         cb();
     }
 };

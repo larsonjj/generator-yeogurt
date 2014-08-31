@@ -48,7 +48,7 @@ util.inherits(CollectionGenerator, yeoman.generators.NamedBase);
 CollectionGenerator.prototype.files = function files() {
     this.log('You called the collection subgenerator with the argument ' + this.name + '.');
 
-    if (!this.singlePageApplication && this.jsFramework !== 'react') {
+    if (!this.singlePageApplication) {
         this.log('This subgenerator is not available for Static Sites.\nOperation aborted');
         return;
     }
@@ -56,10 +56,6 @@ CollectionGenerator.prototype.files = function files() {
         this.log('This subgenerator is not available for React application.\nOperation aborted');
     }
     else if (this.singlePageApplication) {
-        if (!this.name) {
-            this.log('Name cannot be empty. Operation aborted.');
-            return;
-        }
         this.template('collection.js', 'client/scripts/collections/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
         this.template('collection-spec.js', 'test/spec/collections/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
     }

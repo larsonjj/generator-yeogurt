@@ -30,6 +30,7 @@ describe('Yeogurt generator using Git', function () {
         helpers.mockPrompt(this.app, {
             versionControl: 'git',
         });
+
         this.app.run([], function () {
             assert.file(expected);
             done();

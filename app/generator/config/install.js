@@ -5,15 +5,9 @@
 'use strict';
 
 var installConfig = function installConfig() {
-    if (this.options['skip-install']) {
-        return;
-    }
 
-    var done = this.async();
-    this.installDependencies({
-        skipMessage: this.options['skip-install-message'],
-        skipInstall: this.options['skip-install'],
-        callback: done
+    this.on('end', function () {
+        this.installDependencies({ skipInstall: this.options['skip-install'] });
     });
 };
 
