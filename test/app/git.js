@@ -23,7 +23,6 @@ describe('Yeogurt generator using Git', function () {
 
     it('Creates expected files', function (done) {
         var expected = [
-            // add files and folders you expect to exist here.
             '.gitignore',
             '.gitattributes'
         ];
@@ -31,7 +30,6 @@ describe('Yeogurt generator using Git', function () {
         helpers.mockPrompt(this.app, {
             versionControl: 'git',
         });
-        this.app.options['skip-install'] = true;
         this.app.run([], function () {
             assert.file(expected);
             done();

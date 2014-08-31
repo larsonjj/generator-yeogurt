@@ -23,9 +23,9 @@ describe('Yeogurt generator using RequireJS', function () {
 
     it('Creates expected files', function (done) {
         var expected = [
-            // add files and folders you expect to exist here.
             'client/scripts/main.js',
-            'test/test-main.js'
+            'test/test-main.js',
+            'grunt/config/compile/requirejs.js'
         ];
 
         helpers.mockPrompt(this.app, {

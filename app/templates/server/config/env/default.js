@@ -14,7 +14,7 @@ var defaults = {
         url: '<%= dbURL %>'
     },
     root: path.normalize(__dirname + '/../../..'),
-    staticAssets: 'client/.serve',
+    staticAssets: 'client/.serve'<% if (useSecurity) { %>,
     security: {
         whitelists: {
             csrfWhitelist: [],
@@ -32,7 +32,7 @@ var defaults = {
             hsts: false,
             xssProtection: true
         }
-    }
+    }<% } %>
 };
 
 // Export the config object based on the NODE_ENV

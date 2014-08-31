@@ -2,7 +2,7 @@
 *   Main Router Description
 */
 <% if (jsOption === 'requirejs') { %>
-define(function (require) {
+define(function(require) {
     'use strict';
 
     var MainView = require('views/main');

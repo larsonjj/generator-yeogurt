@@ -68,7 +68,7 @@ var taskFiles = function taskFiles() {
     }
     this.template('grunt/config/optimize/svgmin.js', 'grunt/config/optimize/svgmin.js');
     this.template('grunt/config/optimize/uglify.js', 'grunt/config/optimize/uglify.js');
-    if (this.cssOption === 'css' && !this.singlePageApplication) {
+    if (this.cssOption === 'css') {
         this.template('grunt/config/optimize/cssmin.js', 'grunt/config/optimize/cssmin.js');
     }
     this.template('grunt/config/optimize/usemin.js', 'grunt/config/optimize/usemin.js');

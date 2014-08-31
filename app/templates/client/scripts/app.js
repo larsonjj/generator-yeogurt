@@ -2,7 +2,7 @@
 *   App Description
 */
 <% if (jsOption === 'requirejs') { %>
-define(function (require) {
+define(function(require) {
     'use strict';<% if (jsFramework === 'backbone') { %>
     var Router = require('routes');<% } %>
 

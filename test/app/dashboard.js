@@ -23,7 +23,6 @@ describe('Yeogurt generator using a Dashboard', function () {
 
     it('Creates expected files', function (done) {
         var expected = [
-            // add files and folders you expect to exist here.
             'grunt/',
             'grunt/config',
             'grunt/config/doc/dashboard.js',

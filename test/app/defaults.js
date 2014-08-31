@@ -23,7 +23,6 @@ describe('Yeogurt generator using Default Configuration', function () {
 
     it('Creates expected files', function (done) {
         var expected = [
-            // add files and folders you expect to exist here.
             '.yo-rc.json',
             'README.md',
             'karma.conf.js',

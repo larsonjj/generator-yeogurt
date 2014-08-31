@@ -23,7 +23,6 @@ describe('Yeogurt generator using SVN', function () {
 
     it('Creates expected files', function (done) {
         var expected = [
-            // add files and folders you expect to exist here.
             'svn-init.sh',
             'svn-init.bat',
             '.svnignore'

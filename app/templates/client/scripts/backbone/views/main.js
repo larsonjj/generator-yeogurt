@@ -2,7 +2,7 @@
 *   Main View Description
 */
 <% if (jsOption === 'requirejs') { %>
-define(function (require) {
+define(function(require) {
     'use strict';
 
     // Our overall **MainView** is the top-level piece of UI.
