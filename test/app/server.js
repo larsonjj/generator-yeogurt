@@ -125,8 +125,7 @@ describe('Yeogurt generator using Server', function () {
         describe('With Defaults', function () {
             it('Creates expected files', function (done) {
                 var expected = [
-                    'server/templates/index.html',
-                    'server/modules'
+                    'server/templates/index.html'
                 ];
 
                 helpers.mockPrompt(this.app, {
@@ -142,7 +141,8 @@ describe('Yeogurt generator using Server', function () {
         describe('With React', function () {
             it('Creates expected files', function (done) {
                 var expected = [
-                    'server/modules/reactRender.js'
+                    'server/modules/reactRender.js',
+                    'server/modules'
                 ];
 
                 helpers.mockPrompt(this.app, {
@@ -178,6 +178,9 @@ describe('Yeogurt generator using Server', function () {
         });
         describe('Without Server templates', function () {
             it('Creates expected files', function (done) {
+                var expectedContent = [
+                    ['server/routes.js', /app\.get\('\*'/i]
+                ];
                 var fileContentToTest = [
                     ['server/templates/index.html', /<\%\- body \%\>/i],
                     ['server/controllers/main.js', /reactRender/i]
@@ -191,6 +194,7 @@ describe('Yeogurt generator using Server', function () {
                 });
                 this.app.run([], function () {
                     assert.noFileContent(fileContentToTest);
+                    assert.fileContent(expectedContent);
                     done();
                 });
             });

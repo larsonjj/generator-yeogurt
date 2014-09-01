@@ -12,11 +12,11 @@ var nodeFiles = function nodeFiles() {
         this.mkdir('server/config/env');
         if (this.useServer && this.singlePageApplication) {
             this.mkdir('server/templates');
-            this.mkdir('server/modules');
         }
         if (this.singlePageApplication) {
             if (this.useServerTemplates) {
                 if (this.jsFramework === 'react') {
+                    this.mkdir('server/modules');
                     this.template('server/modules/reactRender.js','server/modules/reactRender.js');
                 }
             }
