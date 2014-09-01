@@ -28,7 +28,6 @@ describe('Yeogurt generator using Server', function () {
                 'grunt/config/server/env.js',
                 'server/controllers/main.js',
                 'server/config/express.js',
-                'server/templates/layouts',
                 'server/config/env',
                 'server/config/env/default.js',
                 'server/config/env/development.js',
@@ -127,8 +126,7 @@ describe('Yeogurt generator using Server', function () {
             it('Creates expected files', function (done) {
                 var expected = [
                     'server/templates/index.html',
-                    'server/modules',
-                    'server/modules/serverCheck.js'
+                    'server/modules'
                 ];
 
                 helpers.mockPrompt(this.app, {
@@ -150,10 +148,49 @@ describe('Yeogurt generator using Server', function () {
                 helpers.mockPrompt(this.app, {
                     useSinglePageApplication: true,
                     useServer: true,
+                    useServerTemplates: true,
                     jsFramework: 'react'
                 });
                 this.app.run([], function () {
                     assert.file(expected);
+                    done();
+                });
+            });
+        });
+        describe('With Server templates', function () {
+            it('Creates expected files', function (done) {
+                var fileContentToTest = [
+                    ['server/templates/index.html', /<\%\- body \%\>/i],
+                    ['server/controllers/main.js', /reactRender/i]
+                ];
+
+                helpers.mockPrompt(this.app, {
+                    useSinglePageApplication: true,
+                    useServer: true,
+                    useServerTemplates: true,
+                    jsFramework: 'react'
+                });
+                this.app.run([], function () {
+                    assert.fileContent(fileContentToTest);
+                    done();
+                });
+            });
+        });
+        describe('Without Server templates', function () {
+            it('Creates expected files', function (done) {
+                var fileContentToTest = [
+                    ['server/templates/index.html', /<\%\- body \%\>/i],
+                    ['server/controllers/main.js', /reactRender/i]
+                ];
+
+                helpers.mockPrompt(this.app, {
+                    useSinglePageApplication: true,
+                    useServer: true,
+                    useServerTemplates: false,
+                    jsFramework: 'react'
+                });
+                this.app.run([], function () {
+                    assert.noFileContent(fileContentToTest);
                     done();
                 });
             });

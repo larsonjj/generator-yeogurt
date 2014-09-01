@@ -153,7 +153,7 @@ var taskConfig = function(grunt) {
             files: [
                 '<%%= yeogurt.staticServer %>/*.{ico,png,txt,html}',
                 '<%%= yeogurt.staticServer %>/**/*.html',
-                '<%%= yeogurt.staticServer %>/styles/**/*.{css,ttf,otf,woff,svg,eot}'
+                '<%%= yeogurt.staticServer %>/styles/**/*.{css,ttf,otf,woff,svg,eot}',
                 '<%%= yeogurt.staticServer %>/scripts/**/*.js',<% if (singlePageApplication && jsTemplate !== 'react') { %>
                 '<%%= yeogurt.staticServer %>/templates/**/*.{jst,hbs,jade}',<% } %>
                 '<%%= yeogurt.staticServer %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'

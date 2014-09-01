@@ -27,7 +27,8 @@ describe('Yeogurt generator using CSS Framework', function () {
             ];
 
             helpers.mockPrompt(this.app, {
-                cssFramework: 'bootstrap'
+                cssFramework: 'bootstrap',
+                cssOption: 'sass'
             });
 
             this.app.run([], function () {
@@ -43,7 +44,8 @@ describe('Yeogurt generator using CSS Framework', function () {
             ];
 
             helpers.mockPrompt(this.app, {
-                cssFramework: 'foundation'
+                cssFramework: 'foundation',
+                cssOption: 'sass'
             });
 
             this.app.run([], function () {

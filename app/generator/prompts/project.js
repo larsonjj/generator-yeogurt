@@ -23,7 +23,6 @@ var projectPrompts = function projectPrompts() {
         name: 'versionControl',
         message: 'Which ' + 'version control software'.blue + ' are you using (or plan to use)?',
         choices: ['Git', 'SVN', 'None (I like to live on the edge)'],
-        default: 'git',
         filter: function(val) {
             var filterMap = {
                 'Git': 'git',

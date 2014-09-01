@@ -24,7 +24,6 @@ var serverPrompts = function serverPrompts() {
         name: 'dbOption',
         message: 'What ' + 'database type'.blue + ' would you like to use ?',
         choices: ['MongoDB', 'MySQL', 'None'],
-        default: 'mongodb',
         filter: function(val) {
             var filterMap = {
                 'MongoDB': 'mongodb',

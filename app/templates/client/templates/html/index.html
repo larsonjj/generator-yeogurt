@@ -90,7 +90,7 @@
             </p><% } %>
         </div>
         <code class="version">v<%= pkg.version %></code><% } else if (singlePageApplication) { %>
-        <div id="app-wrapper"><% if (useServer) { %>
+        <div id="app-wrapper"><% if (useServer && useServerTemplates) { %>
             <%%- body %>
         <% } %></div><% } %><% if (useGA) { %>
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

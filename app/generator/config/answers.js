@@ -28,6 +28,7 @@ var answersConfig = function answersConfig() {
     this.dbOption   = this.answers.dbOption;
     this.useSession = this.answers.useSession;
     this.useSecurity = this.answers.useSecurity;
+    this.useServerTemplates = this.answers.useServerTemplates;
 
     // Setup Database URLs
     var username = this.answers.dbUser;

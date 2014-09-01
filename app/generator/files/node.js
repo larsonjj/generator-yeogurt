@@ -13,20 +13,12 @@ var nodeFiles = function nodeFiles() {
         if (this.useServer && this.singlePageApplication) {
             this.mkdir('server/templates');
             this.mkdir('server/modules');
-            this.copy('server/modules/serverCheck.js', 'server/modules/serverCheck.js');
         }
         if (this.singlePageApplication) {
-            if (this.jsFramework === 'react') {
-                this.template('server/modules/reactRender.js','server/modules/reactRender.js');
-            }
-            else if (this.jsTemplate === 'jade') {
-                this.template('server/modules/jadeRender.js','server/modules/jadeRender.js');
-            }
-            else if (this.jsTemplate === 'handlebars') {
-                this.template('server/modules/hbsRender.js','server/modules/hbsRender.js');
-            }
-            else if (this.jsTemplate === 'lodash') {
-                this.template('server/modules/lodashRender.js','server/modules/lodashRender.js');
+            if (this.useServerTemplates) {
+                if (this.jsFramework === 'react') {
+                    this.template('server/modules/reactRender.js','server/modules/reactRender.js');
+                }
             }
             this.template('client/templates/html/index.html', 'server/templates/index.html');
         }

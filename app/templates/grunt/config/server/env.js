@@ -3,7 +3,7 @@
  */
 'use strict';
 <% if (useSession) { %>
-var secrets = require('../../server/config/secrets');<% } %>
+var secrets = require('../../../server/config/secrets');<% } %>
 
 var taskConfig = function(grunt) {
 
