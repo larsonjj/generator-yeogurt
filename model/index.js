@@ -1,6 +1,7 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
+var cleanFolderPath = require('../helpers/clean-folder-path');
 
 var ModelGenerator = module.exports = function ModelGenerator(args, options, config) {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -28,22 +29,7 @@ var ModelGenerator = module.exports = function ModelGenerator(args, options, con
     this.folderCount = getNumberOfPaths.join('');
 
     // Remove all leading and trailing slashes in folder path
-    this.cleanFolderPath = function(folder) {
-        if (folder) {
-            var tempArray = [];
-            var cleanedStr = folder.replace(/^\/+|\/+$/g, '');
-            cleanedStr.split('/').forEach(function(item) {
-                if (item) {
-                    tempArray.push(item);
-                }
-            });
-            return tempArray.join('/');
-        }
-        else {
-            return '';
-        }
-    };
-
+    this.cleanFolderPath = cleanFolderPath;
 };
 
 util.inherits(ModelGenerator, yeoman.generators.NamedBase);
