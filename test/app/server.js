@@ -91,6 +91,9 @@ describe('Yeogurt generator using Server', function () {
                 'server/templates/layouts/base.jade',
                 'server/templates/index.jade',
             ];
+            var expectedContent = [
+                ['server/routes.js', /app\.get\('\/'/i]
+            ];
 
             helpers.mockPrompt(this.app, {
                 useSinglePageApplication: false,
@@ -99,6 +102,7 @@ describe('Yeogurt generator using Server', function () {
             });
             this.app.run([], function () {
                 assert.file(expected);
+                assert.fileContent(expectedContent);
                 done();
             });
         });
@@ -109,6 +113,9 @@ describe('Yeogurt generator using Server', function () {
                 'server/templates/layouts/base.swig',
                 'server/templates/index.swig',
             ];
+            var expectedContent = [
+                ['server/routes.js', /app\.get\('\/'/i]
+            ];
 
             helpers.mockPrompt(this.app, {
                 useSinglePageApplication: false,
@@ -117,6 +124,7 @@ describe('Yeogurt generator using Server', function () {
             });
             this.app.run([], function () {
                 assert.file(expected);
+                assert.fileContent(expectedContent);
                 done();
             });
         });
