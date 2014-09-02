@@ -34,9 +34,33 @@ describe('Script sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 jsOption: 'none'
             });
+
             this.app.run([], function() {
                 createSubGenerator('script', script, {}, function() {
                     assert.file(filesToTest);
+                    done();
+                });
+            });
+        });
+        it('Handles defaults without testing', function(done) {
+            // Filename
+            var script = 'myscript';
+            var filesToTest = [
+                'client/scripts/' + script + '.js'
+            ];
+            var filesNotCreated = [
+                'test/spec/' + script + '-spec.js',
+            ];
+
+            helpers.mockPrompt(this.app, {
+                jsOption: 'none',
+                useTesting: false
+            });
+
+            this.app.run([], function() {
+                createSubGenerator('script', script, {}, function() {
+                    assert.file(filesToTest);
+                    assert.noFile(filesNotCreated);
                     done();
                 });
             });

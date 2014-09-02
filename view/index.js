@@ -17,6 +17,7 @@ var ViewGenerator = module.exports = function ViewGenerator(args, options, confi
     this.useDashboard = fileJSON.useDashboard;
     this.projectName = fileJSON.projectName;
     this.jsTemplate = fileJSON.jsTemplate;
+    this.useTesting = fileJSON.useTesting;
     this.testFramework = fileJSON.testFramework;
     this.htmlOption = fileJSON.htmlOption;
     this.useServer = fileJSON.useServer;
@@ -45,7 +46,9 @@ ViewGenerator.prototype.files = function files() {
         if (this.jsTemplate !== 'react') {
 
             this.template('view.js', 'client/scripts/views/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
-            this.template('view-spec.js', 'test/spec/views/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+            if (this.useTesting) {
+                this.template('view-spec.js', 'test/spec/views/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+            }
             if (this.jsTemplate === 'lodash') {
                 this.template('view.html', 'client/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.jst');
             }

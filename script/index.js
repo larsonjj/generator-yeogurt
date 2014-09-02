@@ -14,6 +14,7 @@ var ScriptGenerator = module.exports = function ScriptGenerator(args, options, c
     this.useDashboard = this.options.dashboard || false;
     this.folder = this.options.folder || '';
     this.jsOption = fileJSON.jsOption;
+    this.useTesting = fileJSON.useTesting;
     this.testFramework = fileJSON.testFramework;
 
     var getNumberOfPaths = [];
@@ -34,6 +35,8 @@ ScriptGenerator.prototype.files = function files() {
     this.log('You called the script subgenerator with the argument ' + this.name + '.');
 
     this.template('script.js', 'client/scripts/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
-    this.template('script-spec.js', 'test/spec/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+    if (this.useTesting) {
+        this.template('script-spec.js', 'test/spec/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+    }
 
 };

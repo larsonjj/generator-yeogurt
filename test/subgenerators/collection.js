@@ -221,6 +221,32 @@ describe('Collection sub-generator', function () {
                 });
             });
         });
+        it('Handles defaults with no testing', function(done) {
+            // Filename
+            var collection = 'mycollection';
+            var filesToTest = [
+                'client/scripts/collections/' + collection + '.js'
+            ];
+            var filesNotCreated = [
+                'test/spec/collections/' + collection + '-spec.js',
+            ];
+
+            helpers.mockPrompt(this.app, {
+                jsFramework: 'backbone',
+                singlePageApplication: true,
+                useTesting: false,
+                jsTemplate: 'lodash',
+                jsOption: 'browserify',
+                testFramework: 'jasmine'
+            });
+            this.app.run([], function() {
+                createSubGenerator('collection', collection, {}, function() {
+                    assert.file(filesToTest);
+                    assert.noFile(filesNotCreated);
+                    done();
+                });
+            });
+        });
         it('Handles defaults with Browserify', function(done) {
             // Filename
             var collection = 'mycollection';

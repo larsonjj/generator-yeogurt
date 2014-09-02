@@ -219,6 +219,32 @@ describe('React sub-generator', function () {
                 });
             });
         });
+        it('Handles defaults without testing', function(done) {
+            // Filename
+            var react = 'myreact';
+            var filesToTest = [
+                'client/scripts/components/' + react + '.jsx'
+            ];
+            var fileContentToTest = [
+                ['client/scripts/components/' + react + '.jsx', /\@jsx React\.DOM /i]
+            ];
+            var filesNotCreated = [
+                'test/spec/components/' + react + '-spec.js',
+            ];
+
+            helpers.mockPrompt(this.app, {
+                jsFramework: 'react',
+                useTesting: false
+            });
+            this.app.run([], function() {
+                createSubGenerator('react', react, {}, function() {
+                    assert.file(filesToTest);
+                    assert.noFile(filesNotCreated);
+                    assert.fileContent(fileContentToTest);
+                    done();
+                });
+            });
+        });
         it('Handles defaults with Mocha', function(done) {
             // Filename
             var react = 'myreact';

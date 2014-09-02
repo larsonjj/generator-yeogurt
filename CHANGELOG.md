@@ -1,30 +1,53 @@
 ### v0.10.0:
-#### date: 2014-07-18
+#### date: 2014-09-02
 ##### changes:
+
+***Removals***
 * Removed example modules folder and module.js as it can easily be created with the script subgenerator
-* Fixed jadePartials watch task to not use the `newer:` prefix as it caused changes to components and templates to not be re-compiled
-* Fixed React components property `mixins`. (previously was `mixin`)
 * Removed grunt-uncss as it wasn't consistantly keeping the correct styles
-* Add new options to generate a Node + express server
-* Add new options to work with either MySQL (via [Sequelize](https://github.com/sequelize/sequelize)) or MongoDB (via [Mongoose](https://github.com/LearnBoost/mongoose)) with an express server
-* Added Database information options: host, port, username, password, etc if you choose to use a database
-* Updated React to v0.11.x
 * Removed ability to use React with RequireJS (too many custom configurations to get react to work with r.js optimizer)
-* Added shim to get react working with phantomJS when running unit tests
+* Removed all H5BP extras (adobe xdomain, IE11 icons, apple touch icon, and htaccess) as they were a bit superfluous for most projects and are easily added after project generation.
+* Removed logic to create extra print.css stylesheet for IE8 as the respond.js shim correctly translates @media print styles.
 * Removed `this.toTitleCase()` function from sub-generators as it is no longer used
+* Removed body tag classes from Jade and Swig templates
+* Removed example Jade and Swig files to reduce extra cruft.
+
+***Additions***
+* Added ability to read existing `.yo-rc.json` files to load existing configuration
+* Added `--allow-remote` option for `grunt serve`, `grunt serve:dist`, and `grunt serve:watch` tasks, so you can access your app/site from remote devices on the same network
+* Added new option to generate a Node + express server
+* Added new option to work with either MySQL (via [Sequelize](https://github.com/sequelize/sequelize)) or MongoDB (via [Mongoose](https://github.com/LearnBoost/mongoose)) with an express server
+* Added new option to enable express security with Paypal's [Lusca](https://github.com/krakenjs/lusca) module
+* Added Database information prompts: host, port, username, password, etc if you choose to use a database
+* Added shim to get react working with phantomJS when running unit tests
+* Added new option to render React components on the server.
 * Added seperate `grunt serve:docs` task to update documentation when files are changed. This means that by default `grunt serve` will not recompile KSS, JSDoc, or the dashbaord. This allows for much faster rebuilds by default.
-* Fixed reloading of Lo-dash, handlebars, and jade client-side templates when running `grunt serve`
-* Updated bootstrap to 4.3.x and updated all corresponding links to adhere to new bower_components structure
-* Removed all H5BP extras (adobe xdomain, IE11 icons, and apple touch icon) except for the htaccess file as they were a bit superfluous for most projects.
 * Added ES5 shims to properly support IE8 when using React
-* Removed logic to create extra print.css stylesheet for IE8 as the respond.js shim correctly translates @media print.
-* Changed style and view subgenerators to import files automatically to main.{scss,less} or index.{jade,swig} for Static Sites (use `--noImport` if you don't want you're file imported)
-* Updated grunt-sass to 0.14.x and added a 10 decimal precision option, so as to correctly compile large decimal numbers. (fixes many css issues with bootstrap and foundation)
-* Added `process.env.NODE_ENV = 'production'` to `grunt build` task to help remove dev comments from react npm module
-* Changed `connect:server` to serve up the `dev/.serve` folder as root so backbone pushState will work
 * Added `*.ico` files to `grunt-copy` task to make sure `favicon.ico` is loaded up correctly
-* `index.html` moved from `dev/` to `lib/views` when using express server. In all previous configurations, a `index.html` was always found int he `dev/` folder. This is still true except when using an express server. When using the generated express server, the `index.html` is used as a layout, so it is included within the server `lib/` folder under `views/`. Since the client should never have to touch this file, this configuration seems to make the most sense.
-* Added Modernizr to predef array in `.jshintrc`
+* Added `process.env.NODE_ENV = 'production'` to `grunt build` task to help remove dev comments from react npm module
+* Added 150+ tests for generator and sub-generators to ensure code stability and reduce bugs. Should also allow for faster releases.
+* Added `grunt test:watch` task to allow for test file watching and auto re-run of those tests when changes are detected.
+* Added new prompt to choose whether or not unit testing JavaScript is desired. (No longer required to generate unit tests)
+* Added filter maps for prompt values to make prompt messages easier to change
+
+***Updates***
+* Updated generator prompts to be categorized so they are easier to follow
+* Updated and revamped `README.md` documentation.
+* Updated 'dev/' folder to now be 'client/'.
+* Updated React to v0.11.x
+* Updated sub-generators to have the `--folder` option. Meaning placement of generated files can be customized.
+* Updated bootstrap to 4.3.x and updated all corresponding links to adhere to new bower_components structure
+* Updated style and view subgenerators to no longer require the `--import` flag as [`grunt-injector`](https://www.npmjs.org/package/grunt-injector) has been implemented to handle all file include/import injections now.
+* Updated grunt-sass to 0.14.x and added a 10 decimal precision option, so as to correctly compile large decimal numbers. (fixes many css issues with bootstrap and foundation)
+* Updated `connect:server` to serve up the `dev/.serve` folder as root so Backbone router pushState will work
+* Update: For single page applications and static sites using only HTML, `index.html` moved from `dev/` to `lib/templates` when using express server.
+* Update: For Static Sites using preprocessors (Jade, Swig, etc), `base` template file has moved from `dev/` to `client/templates/layouts` or `server/templates/layouts` if using express server
+
+***Fixes***
+* Fixed React components property `mixins`. (previously was `mixin`)
+* Fixed reloading of Lo-dash, handlebars, and jade client-side templates when running `grunt serve`
+
+
 
 ### v0.9.11:
 #### date: 2014-08-28

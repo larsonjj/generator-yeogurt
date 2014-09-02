@@ -244,6 +244,32 @@ describe('Model sub-generator', function () {
                 });
             });
         });
+        it('Handles defaults with no testing', function(done) {
+            // Filename
+            var model = 'mymodel';
+            var filesToTest = [
+                'client/scripts/models/' + model + '.js'
+            ];
+            var filesNotCreated = [
+                'test/spec/models/' + model + '-spec.js',
+            ];
+
+            helpers.mockPrompt(this.app, {
+                jsFramework: 'backbone',
+                singlePageApplication: true,
+                useTesting: false,
+                jsTemplate: 'lodash',
+                jsOption: 'browserify',
+                testFramework: 'jasmine'
+            });
+            this.app.run([], function() {
+                createSubGenerator('model', model, {}, function() {
+                    assert.file(filesToTest);
+                    assert.noFile(filesNotCreated);
+                    done();
+                });
+            });
+        });
         it('Handles defaults with Browserify', function(done) {
             // Filename
             var model = 'mymodel';

@@ -208,6 +208,28 @@ describe('View sub-generator', function () {
     });
 
     describe('Create view files when using Backbone', function () {
+        it('Without testing', function(done) {
+            // Filename
+            var view = 'myview';
+            var filesNotCreated = [
+                'test/spec/views/' + view + '-spec.js',
+            ];
+
+            helpers.mockPrompt(this.app, {
+                jsFramework: 'backbone',
+                singlePageApplication: true,
+                useTesting: false,
+                jsTemplate: 'lodash',
+                jsOption: 'browserify',
+                testFramework: 'jasmine'
+            });
+            this.app.run([], function() {
+                createSubGenerator('view', view, {}, function() {
+                    assert.noFile(filesNotCreated);
+                    done();
+                });
+            });
+        });
         describe('Handles defaults with Lo-dash', function () {
             describe('Using Browserify', function() {
                 it('Using Jasmine', function(done) {

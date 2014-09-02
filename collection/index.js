@@ -17,6 +17,7 @@ var CollectionGenerator = module.exports = function CollectionGenerator(args, op
     this.jsOption = fileJSON.jsOption;
     this.singlePageApplication = fileJSON.singlePageApplication;
     this.testFramework = fileJSON.testFramework;
+    this.useTesting = fileJSON.useTesting;
 
     var getNumberOfPaths = [];
     this.folder.split('/').forEach(function(item) {
@@ -44,7 +45,9 @@ CollectionGenerator.prototype.files = function files() {
     }
     else if (this.singlePageApplication) {
         this.template('collection.js', 'client/scripts/collections/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
-        this.template('collection-spec.js', 'test/spec/collections/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+        if (this.useTesting) {
+            this.template('collection-spec.js', 'test/spec/collections/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+        }
     }
 
 };
