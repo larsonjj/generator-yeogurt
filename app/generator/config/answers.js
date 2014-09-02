@@ -14,7 +14,13 @@ var answersConfig = function answersConfig() {
         this.answers = this.config.get('config');
     }
     else {
-        this.answers = _.merge(this.projectPrompts, this.serverPrompts, this.clientPrompts, this.documentationPrompts);
+        this.answers = _.merge(
+            this.projectPrompts,
+            this.serverPrompts,
+            this.clientPrompts,
+            this.documentationPrompts,
+            this.testingPrompts
+        );
     }
 
     // Assign each answer property to `this` context to give the generator access to it
@@ -24,10 +30,10 @@ var answersConfig = function answersConfig() {
     this.versionControl = this.answers.versionControl;
 
     // Server Info
-    this.useServer  = this.answers.useServer;
-    this.dbOption   = this.answers.dbOption;
-    this.useSession = this.answers.useSession;
-    this.useSecurity = this.answers.useSecurity;
+    this.useServer          = this.answers.useServer;
+    this.dbOption           = this.answers.dbOption;
+    this.useSession         = this.answers.useSession;
+    this.useSecurity        = this.answers.useSecurity;
     this.useServerTemplates = this.answers.useServerTemplates;
 
     // Setup Database URLs
@@ -75,6 +81,7 @@ var answersConfig = function answersConfig() {
 
     // Testing
     this.testFramework         = this.answers.testFramework;
+    this.useTesting = this.answers.useTesting;
 
     // Documentation
     this.useJsdoc              = this.answers.useJsdoc;

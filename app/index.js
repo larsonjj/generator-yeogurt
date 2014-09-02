@@ -15,6 +15,7 @@ var order = [
     'project',
     'server',
     'client',
+    'testing',
     'documentation',
     /* Config */
     'answers',  // Handle answers and them up for use in templates
@@ -28,7 +29,7 @@ var order = [
     'script',
     'style',
     'node',
-    'testing',
+    'tests',
     /* Config */
     'install'   // Handle generator options and run `bower install & npm install`
 ];

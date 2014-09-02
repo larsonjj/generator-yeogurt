@@ -25,7 +25,6 @@ describe('Yeogurt generator using Default Configuration', function () {
         var expected = [
             '.yo-rc.json',
             'README.md',
-            'karma.conf.js',
             '.editorconfig',
             'Gruntfile.js',
             'bower.json',
@@ -40,7 +39,6 @@ describe('Yeogurt generator using Default Configuration', function () {
             'client/robots.txt',
             'client/humans.txt',
             'client/favicon.ico',
-            'test',
             'grunt/',
             'grunt/config',
             'grunt/tasks',
@@ -55,7 +53,6 @@ describe('Yeogurt generator using Default Configuration', function () {
             'grunt/config/optimize/uglify.js',
             'grunt/config/optimize/usemin.js',
             'grunt/config/util/watch.js',
-            'grunt/config/test/karma.js',
             'grunt/tasks/build.js',
             'grunt/tasks/default.js',
             'grunt/tasks/serve.js',

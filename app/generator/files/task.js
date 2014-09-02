@@ -44,13 +44,12 @@ var taskFiles = function taskFiles() {
     if (this.htmlOption === 'jade' || this.jsTemplate === 'jade') {
         this.template('grunt/config/compile/jade.js', 'grunt/config/compile/jade.js');
     }
-    else if (this.htmlOption === 'swig' ) {
+    else if (this.htmlOption === 'swig') {
         this.template('grunt/config/compile/swig.js', 'grunt/config/compile/swig.js');
     }
     if (this.jshint) {
         this.template('grunt/config/util/jshint.js', 'grunt/config/util/jshint.js');
     }
-    this.template('grunt/config/test/karma.js', 'grunt/config/test/karma.js');
     if (this.cssOption === 'less') {
         this.template('grunt/config/compile/less.js', 'grunt/config/compile/less.js');
     }
@@ -78,6 +77,9 @@ var taskFiles = function taskFiles() {
         this.template('grunt/config/server/env.js', 'grunt/config/server/env.js');
     }
     this.template('grunt/config/util/injector.js', 'grunt/config/util/injector.js');
+    if (this.useTesting) {
+        this.template('grunt/config/test/karma.js', 'grunt/config/test/karma.js');
+    }
 
     // Tasks
     this.template('grunt/tasks/build.js', 'grunt/tasks/build.js');

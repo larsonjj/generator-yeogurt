@@ -100,19 +100,6 @@ var clientPrompts = function clientPrompts() {
         }
     }, {
         type: 'list',
-        name: 'testFramework',
-        message: 'Which JavaScript ' + 'testing framework'.blue + ' would you like to use?',
-        choices: ['Jasmine', 'Mocha'],
-        filter: function(val) {
-            var filterMap = {
-                'Jasmine': 'jasmine',
-                'Mocha': 'mocha'
-            };
-
-            return filterMap[val];
-        }
-    }, {
-        type: 'list',
         name: 'cssOption',
         message: 'What would you like to use to ' + 'write styles'.blue + '?',
         choices: ['Sass', 'Less', 'CSS'],
