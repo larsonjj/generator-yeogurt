@@ -33,6 +33,7 @@
 ***Updates***
 * Updated generator prompts to be categorized so they are easier to follow
 * Updated and revamped `README.md` documentation.
+* Updated all automated forms of documentation to use jQuery and Less for much easier custom theming
 * Updated 'dev/' folder to now be 'client/'.
 * Updated React to v0.11.x
 * Updated sub-generators to have the `--folder` option. Meaning placement of generated files can be customized.
