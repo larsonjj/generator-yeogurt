@@ -127,7 +127,7 @@ A grunt task looks for new/updated files in your project and automatically injec
 |Sass | Any | `client/styles/main.scss`
 |Jade | Static | `client/templates/layouts/base.jade` or `server/templates/layouts/base.jade` if using express server
 |Swig | Static |`client/templates/layouts/base.swig` or `server/templates/layouts/base.swig` if using express server
-|CSS, JS | Static | `client/templates/layouts/base.{jade,swig}` or `server/templates/layouts/base.{jade,swig}`
+|CSS, JS | Static | `client/templates/layouts/base.{jade,swig}` or `server/templates/layouts/base.{jade,swig}` if using express server
 |CSS, JS | Single Page Application | `client/index.html` or `server/templates/index.html` if using express server
 
 
