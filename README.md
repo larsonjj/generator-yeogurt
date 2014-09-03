@@ -264,7 +264,7 @@ yo yeogurt:template mylayout --type=layout
 yo yeogurt:template mymodule --type=module
 ```
 
-##### For Single Page Applications
+##### For Backbone applications
 Creates a new template file (Jade, Handlebars, or Lo-dash depending on which you chose) within the `client/templates` folder.
 
 There are also an option that can be used to change the default behavior:
