@@ -1,0 +1,26 @@
+<% if (jsTemplate !== 'jade') { %><div class="main-container">
+    <h1>Welcome to Yeogurt!</h1>
+    <p>
+        Take a look at the <a href="https://github.com/larsonjj/generator-yeogurt#yeogurt-generator---">documentation</a> and start mixing up something awesome.
+    </p>
+    <p>
+        <img src="/images/yeogurt-swirl.png" width="75px" class="logo" />
+    </p><% if (useJsdoc || useKss) { %>
+    <p class="links"><% if (useKss) { %>
+        <a href="/docs/styleguide/index.html">Styleguide</a><% } %><% if (useJsdoc) { %>
+        <a href="/docs/api/index.html">API</a><% } %>
+    </p><% } %>
+</div>
+<code class="version">v<%= pkg.version %></code><% } else { %>.main-container
+    h1 Welcome to Yeogurt!
+    p
+        | Take a look at the
+        a(href='https://github.com/larsonjj/generator-yeogurt#yeogurt-generator---') documentation
+        | and start mixing up something awesome.
+    p
+        img.logo(src='/images/yeogurt-swirl.png', width='75px')<% if (useJsdoc || useKss) { %>
+    p.links<% if (useKss) { %>
+        a(href="/docs/styleguide/index.html") Styleguide<% } %><% if (useJsdoc) { %>
+        a(href="/docs/api/index.html") API<% } %><% } %>
+    code.version v<%= pkg.version %>
+<% } %>

@@ -1,52 +1,52 @@
 /**
 *   App Spec Test
 */
+<% if (testFramework === 'mocha') { %>
+/*jshint expr: true*/<% } %>
 
-<% if (jsOption === 'RequireJS') { %>'use strict';
+<% if (jsOption === 'requirejs') { %>'use strict';
 
 define(function(require) {
     var app = require('app');
 
-    describe('just checking', function() {
+    describe('app', function() {
 
-        it('works for app', function() {
-            var msg = 'Welcome to yeogurt!';
-
-            var message = app.init(msg);
-            <% if (testFramework === 'Jasmine') { %>
-            expect(message).toMatch(/initialized/);<% } else if (testFramework === 'Mocha + Chai') { %>expect(message).to.match(/initialized/);<% } %>
+        it('Should run a few assertions', function() {<% if (jsFramework === 'react') { %>
+            // Insert <div id="app-wrapper"> within the <body> as the first child
+            // This will ensure correct testing of the main.jsx React component
+            var appWrapper = document.createElement('div');
+            appWrapper.id = 'app-wrapper';
+            document.body.insertBefore(appWrapper, document.body.firstChild);<% } %>
         });
 
     });
 
-});<% } else if (jsOption === 'Browserify') { %>
+});<% } else if (jsOption === 'browserify') { %>
 'use strict';
 
-var app = require('../../dev/scripts/app');
+var app = require('../../client/scripts/app');
 
-describe('just checking', function() {
+describe('app', function() {
 
-    it('works for app', function() {
-        var msg = 'Welcome to yeogurt!';
-
-        var message = app.init(msg);
-
-        <% if (testFramework === 'Jasmine') { %>
-        expect(message).toMatch(/initialized/);<% } else if (testFramework === 'Mocha + Chai') { %>expect(message).to.match(/initialized/);<% } %>
+    it('Should run a few assertions', function() {<% if (jsFramework === 'react') { %>
+        // Insert <div id="app-wrapper"> within the <body> as the first child
+        // This will ensure correct testing of the main.jsx React component
+        var appWrapper = document.createElement('div');
+        appWrapper.id = 'app-wrapper';
+        document.body.insertBefore(appWrapper, document.body.firstChild);<% } %>
     });
 
 });
 <% } else { %>'use strict';
 
-describe('just checking', function() {
+describe('app', function() {
 
-    it('works for app', function() {
-        var msg = 'Welcome to yeogurt!';
-
-        var message = app.init(msg);
-
-        <% if (testFramework === 'Jasmine') { %>
-        expect(message).toMatch(/initialized/);<% } else if (testFramework === 'Mocha + Chai') { %>expect(message).to.match(/initialized/);<% } %>
+    it('Should run a few assertions', function() {<% if (jsFramework === 'react') { %>
+        // Insert <div id="app-wrapper"> within the <body> as the first child
+        // This will ensure correct testing of the main.jsx React component
+        var appWrapper = document.createElement('div');
+        appWrapper.id = 'app-wrapper';
+        document.body.insertBefore(appWrapper, document.body.firstChild);<% } %>
     });
 
 });

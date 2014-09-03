@@ -4,5 +4,6 @@ dist
 .ftppass
 bower_components
 .grunt
-.server
+.serve
 .tmp
+secrets.js

@@ -1,6 +1,6 @@
 node_modules
 *.log
-test/temp
+test/**/temp
 coverage/
 .coveralls.yml
 .DS_Store

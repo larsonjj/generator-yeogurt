@@ -3,30 +3,35 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
     grunt.registerTask('serve', 'Open a development server within your browser', function (target) {
+        // Allow for remote access to app/site via the 0.0.0.0 ip address
+        if (grunt.option('allow-remote')) {
+            grunt.config.set('connect.options.hostname', '0.0.0.0');
+        }
+
         if (target === 'dist') {
-            return grunt.task.run(['build', 'connect:dist:keepalive']);
+            return grunt.task.run(['build',<% if (useServer) { %>
+            'env:all', 'env:prod', 'express:dist', 'open', 'keepalive'<% } else { %> 'connect:dist:keepalive'<% } %>]);
         }
 
         grunt.task.run([
-            'clean:server',
-            'copy:server',<% if (jshint) { %>
-            'jshint:test',<% } %><% if (jsOption === 'Browserify') { %>
+            'clean:server',<% if (useServer) { %>
+            'env:all',<% } %>
+            'injector',
+            'copy:server',<% if (jsOption === 'browserify') { %>
             'browserify:server',
-            'exorcise:server',<% } %><% if (jsTemplate === 'Lo-dash (Underscore)') { %>
-            'jst:server',<% } else if (jsTemplate === 'Handlebars') { %>
-            'handlebars:server',<% } else if (jsTemplate === 'Jade') { %>
-            'jade:server',<% } %><% if (htmlOption === 'Jade') { %>
-            'jade:server',<% } else if(htmlOption === 'Swig') {  %>
+            'exorcise:server',<% } %><% if (jsTemplate === 'lodash') { %>
+            'jst:server',<% } else if (jsTemplate === 'handlebars') { %>
+            'handlebars:server',<% } else if (jsTemplate === 'jade') { %>
+            'jade:server',<% } %><% if (htmlOption === 'jade' && !useServer ) { %>
+            'jade:server',<% } else if (htmlOption === 'swig' && !useServer ) {  %>
             'swig:server',<% } %><% if (useDashboard) { %>
             'dashboard:server',<% } %><% if (useKss) { %>
             'kss:server',<% } %><% if (useJsdoc) { %>
-            'jsdoc:server',<% } %><% if (cssOption === 'LESS') { %>
-            'less:server',<% if (ieSupport) { %>
-            'less:serverPrint',<% } %><% } %><% if (cssOption === 'SASS') { %>
-            'sass:server',<% if (ieSupport) { %>
-            'sass:serverPrint',<% } %><% } %>
+            'jsdoc:server',<% } %><% if (cssOption === 'less') { %>
+            'less:server',<% } %><% if (cssOption === 'sass') { %>
+            'sass:server',<% } %>
             'clean:temp'
         ]);
 
@@ -34,10 +39,23 @@ module.exports = function(grunt) {
             return;
         }
 
-        return grunt.task.run([
-            'connect:livereload',
-            'watch'
+        grunt.task.run([<% if (useServer) { %>
+            'express:server',
+            'wait',
+            'open'<% } else { %>
+            'connect:server'<% } %>
         ]);
 
+        <% if (useKss || useJsdoc || useDashboard) { %>
+        if (target === 'docs') {
+            return grunt.task.run(['listen:docs']);
+        }
+
+        return grunt.task.run(['watch']);
+        <% } else { %>
+        return grunt.task.run(['watch']);
+        <% } %>
     });
 };
+
+module.exports = taskConfig;

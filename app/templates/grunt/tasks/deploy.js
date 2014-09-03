@@ -3,7 +3,7 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
     grunt.registerTask('ftpinfo', 'Grab FTP info for deployment; If valid, then deploy to FTP server', function() {
         var ftpJSON = grunt.file.readJSON('.ftppass');
         if (ftpJSON.host === '') {
@@ -19,3 +19,5 @@ module.exports = function(grunt) {
         'ftpinfo'
     ]);
 };
+
+module.exports = taskConfig;

@@ -1,3 +1,53 @@
+### v0.10.0:
+#### date: 2014-09-03
+##### changes:
+
+***Removals***
+* Removed example modules folder and module.js as it can easily be created with the script subgenerator
+* Removed grunt-uncss as it wasn't consistantly keeping the correct styles
+* Removed ability to use React with RequireJS (too many custom configurations to get react to work with r.js optimizer)
+* Removed all H5BP extras (adobe xdomain, IE11 icons, apple touch icon, and htaccess) as they were a bit superfluous for most projects and are easily added after project generation.
+* Removed logic to create extra print.css stylesheet for IE8 as the respond.js shim correctly translates @media print styles.
+* Removed `this.toTitleCase()` function from sub-generators as it is no longer used
+* Removed body tag classes from Jade and Swig templates
+* Removed example Jade and Swig files to reduce extra cruft.
+
+***Additions***
+* Added ability to read existing `.yo-rc.json` files to load existing configuration
+* Added `--allow-remote` option for `grunt serve`, `grunt serve:dist`, and `grunt serve:watch` tasks, so you can access your app/site from remote devices on the same network
+* Added new option to generate a Node + express server
+* Added new option to work with either MySQL (via [Sequelize](https://github.com/sequelize/sequelize)) or MongoDB (via [Mongoose](https://github.com/LearnBoost/mongoose)) with an express server
+* Added new option to enable express security with Paypal's [Lusca](https://github.com/krakenjs/lusca) module
+* Added Database information prompts: host, port, username, password, etc if you choose to use a database
+* Added shim to get react working with phantomJS when running unit tests
+* Added new option to render React components on the server.
+* Added seperate `grunt serve:docs` task to update documentation when files are changed. This means that by default `grunt serve` will not recompile KSS, JSDoc, or the dashbaord. This allows for much faster rebuilds by default.
+* Added ES5 shims to properly support IE8 when using React
+* Added `*.ico` files to `grunt-copy` task to make sure `favicon.ico` is loaded up correctly
+* Added `process.env.NODE_ENV = 'production'` to `grunt build` task to help remove dev comments from react npm module
+* Added 150+ tests for generator and sub-generators to ensure code stability and reduce bugs. Should also allow for faster releases.
+* Added `grunt test:watch` task to allow for test file watching and auto re-run of those tests when changes are detected.
+* Added new prompt to choose whether or not unit testing JavaScript is desired. (No longer required to generate unit tests)
+* Added filter maps for prompt values to make prompt messages easier to change
+
+***Updates***
+* Updated generator prompts to be categorized so they are easier to follow
+* Updated and revamped `README.md` documentation.
+* Updated 'dev/' folder to now be 'client/'.
+* Updated React to v0.11.x
+* Updated sub-generators to have the `--folder` option. Meaning placement of generated files can be customized.
+* Updated bootstrap to 4.3.x and updated all corresponding links to adhere to new bower_components structure
+* Updated style and view subgenerators to no longer require the `--import` flag as [`grunt-injector`](https://www.npmjs.org/package/grunt-injector) has been implemented to handle all file include/import injections now.
+* Updated grunt-sass to 0.14.x and added a 10 decimal precision option, so as to correctly compile large decimal numbers. (fixes many css issues with bootstrap and foundation)
+* Updated `connect:server` to serve up the `dev/.serve` folder as root so Backbone router pushState will work
+* Update: For single page applications and static sites using only HTML, `index.html` moved from `dev/` to `lib/templates` when using express server.
+* Update: For Static Sites using preprocessors (Jade, Swig, etc), `base` template file has moved from `dev/` to `client/templates/layouts` or `server/templates/layouts` if using express server
+
+***Fixes***
+* Fixed reloading of Lo-dash, handlebars, and jade client-side templates when running `grunt serve`
+
+
+
 ### v0.9.11:
 #### date: 2014-08-28
 ##### changes:
@@ -23,6 +73,7 @@
 ##### changes:
 * Updated grunt-sass package to v0.14.0
 * Added more info to README.md (PR: #10eea6b)[https://github.com/larsonjj/generator-yeogurt/commit/10eea6b2cb1721710f3b73f540346b11311e4bf3]
+
 
 ### v0.9.6:
 #### date: 2014-07-31
@@ -74,7 +125,7 @@
 * Replaced heading component with h1 component to provide a simpler example
 * Updated all this._.camelize to be this._.slugify to keep all sub generators consistant.
 * Added logic to make sure all names passed into subgenerators are converted to lower case to make sure spec files are run correctly.
-* Added a check and abort statement for 'view' subgenerator when using Backbone + React
+* Added a check and abort statement for 'view' subgenerator when using React
 * Added model and model spec file generation to 'collection' subgenerator
 * Added max-width to content list items for dashboard, so they don't get strectched too much.
 * Added a full 'margin: 0' to sidebar menu on styleguide to remove Foundation UL tag margins
@@ -93,12 +144,12 @@
 ### v0.8.1:
 #### date: 2014-06-13
 ##### changes:
-* Fixed [#28](https://github.com/larsonjj/generator-yeogurt/issues/28): Fonts were not being copied to `.server` folder when running 'grunt serve'
+* Fixed [#28](https://github.com/larsonjj/generator-yeogurt/issues/28): Fonts were not being copied to `.serve` folder when running 'grunt serve'
 
 ### v0.8.0:
 #### date: 2014-06-13
 ##### changes:
-* Added Single Page Application option in generator that allows user to scaffold out a project using Backbone in combination with: Facebook's React, Handlebars, Lo-dash (Underscore), or Jade views/templating.
+* Added Single Page Application option in generator that allows user to scaffold out a project using Backbone in combination with: Facebook's React, Handlebars, Lo-dash, or Jade views/templating.
 * Updated imagemin plugin to only handle `.jpg` and `.gif` files and added pngmin plugin to handle `.png` files. (This fixes iamgemin freezing on PNG files)
 * Added new router, model, collection, and view subgenerators that mimic those of the official [generator-backbone](https://github.com/yeoman/generator-backbone)
 * Added another subgenerator specifically for React components
@@ -110,7 +161,7 @@
 * Added [backbone react mixin plugin](https://www.npmjs.org/package/backbone-react-component) for better reactjs integration with backbone
 * Implemented [jsx-require-plugin](https://github.com/philix/jsx-requirejs-plugin) to handle JSX templates for react
 * Added [Knyle Style Sheet](http://warpspire.com/posts/kss/) generation option to generator with grunt-kss
-* Changed `SCSS` to `SASS` to avoid confusion in the generator
+* Changed `SCSS` to `Sass` to avoid confusion in the generator
 * Added dns prefetch for google analytics
 * Added [Docker](https://github.com/jbt/docker) generator option to generate JavaScript API documentation
 * Removed unneeded grunt distJS task for uglify
@@ -202,7 +253,7 @@
 * Added new option to use Vanilla JavaScript
 * Moved Author and Vendor JavaScript right before `</body>` ([Reasoning](http://developer.yahoo.com/performance/rules.html))
 * Updated Script subgenerator to no longer create inline scripts
-* Switched to use official Bootstrap SASS Library
+* Switched to use official Bootstrap Sass Library
 * Fixed Browserify Livereload issue (browserify script changes didn't trigger a rebuild)
 * Removed karma and jshint tests from 'build task' and added to the 'default' task
 * Defined the console object within the dynamic dashboard for IE
@@ -215,7 +266,7 @@
 * Updated istanbul, mocha, karma, grunt-karma, and bower dependencies
 * Changed serve and test ports to 9010 and 9011 repectively to avoid conflicts
 * Fixed some typos within JS module comments
-* Added bootstrap stylesheet that include each of it's modules for either LESS or SASS
+* Added bootstrap stylesheet that include each of it's modules for either Less or Sass
 
 ### v0.3.4:
 #### date: 2014-03-10
@@ -247,7 +298,7 @@
 * Fixed location of Contribute.md (moved to root)
 * Updated Readme.md to correct some errors and typos
 * Added back svn-init.sh in order to help setup ignores for SVN repositories
-* Fixed font awesome pathing for LESS and SASS
+* Fixed font awesome pathing for Less and Sass
 * Fixed print styles (IE8 Support)
 * Removed unneeded less copy task for sourcemaps
 * Solidified dependency versions

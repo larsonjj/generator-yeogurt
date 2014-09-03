@@ -1,0 +1,50 @@
+<% if (!useBootstrap) { %>
+/* Box sizing styles: Apply a natural box layout model to all elements */
+
+
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+<% } %>/* Author Custom Styles */
+
+.main-container {
+    padding-top: 200px;
+    text-align: center;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.version {
+    font-size: 14px;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.logo {
+    margin-top: 15px;
+}
+
+.links a {
+    color: white;
+    margin-right: 5px;
+    margin-top: 20px;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    background: #ed7c6c;
+    display: inline-block;
+    zoom: 1;
+    line-height: normal;
+    white-space: nowrap;
+    vertical-align: baseline;
+    text-align: center;
+    cursor: pointer;
+    font-size: 100%;
+    padding: .5em 1em;
+    text-decoration: none;
+}

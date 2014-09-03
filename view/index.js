@@ -1,153 +1,74 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var fileJSON = require(process.cwd() + '/.yo-rc.json')['generator-yeogurt'].config;
-var generatorUtils = require('../modules/util.js');
+var cleanFolderPath = require('../helpers/clean-folder-path');
 
 var ViewGenerator = module.exports = function ViewGenerator(args, options, config) {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
     // as `this.name`.
     yeoman.generators.NamedBase.apply(this, arguments);
 
+    var fileJSON = this.config.get('config');
+
     // options
-    this.useDashboard = this.options.dashboard || false;
     this.view = this.options.type || 'page';
-    this.import = this.options.import || false;
     this.useTemplate = this.options.template || false;
-    this.useDashboard = fileJSON.extras.indexOf('useDashboard') > -1 ? true : false;
-    this.structure = fileJSON.structure;
+    this.folder = this.options.folder || '';
+    this.useDashboard = fileJSON.useDashboard;
     this.projectName = fileJSON.projectName;
     this.jsTemplate = fileJSON.jsTemplate;
+    this.useTesting = fileJSON.useTesting;
+    this.testFramework = fileJSON.testFramework;
     this.htmlOption = fileJSON.htmlOption;
-    this.useBootstrap = fileJSON.extras.indexOf('useBootstrap') > -1 ? true : false;
-    this.cssOption = fileJSON.cssOption;
+    this.useServer = fileJSON.useServer;
     this.jsOption = fileJSON.jsOption;
-    this.useGA = fileJSON.useGA;
-    this.ieSupport = fileJSON.ieSupport;
-    this.useModernizr = fileJSON.extras.indexOf('useModernizr') > -1 ? true : false;
-    this.ieSupport = fileJSON.ieSupport;
-    this.responsive = fileJSON.responsive;
+    this.singlePageApplication = fileJSON.singlePageApplication;
 
-    this.toTitleCase = function(str) {
-        return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-    };
+    var getNumberOfPaths = [];
+    this.folder.split('/').forEach(function(item) {
+        if (item) {
+            getNumberOfPaths.push('../');
+        }
+    });
+    this.folderCount = getNumberOfPaths.join('');
 
-    console.log('You called the view subgenerator with the argument ' + this.name + '.');
+    // Remove all leading and trailing slashes in folder path
+    this.cleanFolderPath = cleanFolderPath;
+
 };
 
 util.inherits(ViewGenerator, yeoman.generators.NamedBase);
 
 ViewGenerator.prototype.files = function files() {
-    if (this.structure === 'Static Site') {
-        if (this.useTemplate && this.view !== 'page') {
-            console.log('The template option will be ignored as the type is not "page"');
-        }
+    this.log('You called the view subgenerator with the argument ' + this.name + '.');
 
-        if (this.htmlOption === 'Jade') {
-            if (this.view === 'page') {
-                this.template('view.jade', 'dev/views/' + this._.slugify(this.name.toLowerCase()) + '.jade');
-            }
-            else if (this.view === 'component') {
-                this.template('view.jade', 'dev/views/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.jade');
-                // write the component file as an include
-                if(this.import) {
-                    try {
-                        generatorUtils.rewriteFile({
-                            file: 'dev/views/templates/base.jade',
-                            needle: '//- [include:component]',
-                            end: '//- [/include]',
-                            splicable: [
-                                'include ../components/' + this._.slugify(this.name.toLowerCase())
-                            ]
-                        });
-                        console.log('Added ' + this._.slugify(this.name.toLowerCase()) + ' to base.jade!');
-                    } catch (e) {
-                        console.log('Error adding ' + this._.slugify(this.name.toLowerCase()) + ' to base.jade!');
-                    }
-                }
-            }
-            else if (this.view === 'template') {
-                this.template('view.jade', 'dev/views/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.jade');
-            }
-            else if (!this.name) {
-                console.log('Name cannot be empty. Operation aborted.');
-            }
-            else {
-                console.log('Must use a supported type: page, template, component. Operation aborted');
-            }
-        }
-        else if (this.htmlOption === 'Swig') {
-            if (this.view === 'page') {
-                this.template('view.swig', 'dev/views/' + this._.slugify(this.name.toLowerCase()) + '.swig');
-            }
-            else if (this.view === 'component') {
-                this.template('view.swig', 'dev/views/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.swig');
-                // write the component file as an include
-                if(this.import) {
-                    try {
-                        generatorUtils.rewriteFile({
-                            file: 'dev/views/templates/base.swig',
-                            needle: '{# [/include:component] #}',
-                            end: '{# [/include] #}',
-                            splicable: [
-                                '{% import \'../components/' + this._.slugify(this.name.toLowerCase()) + '.swig\' as ' + this._.slugify(this.name.toLowerCase()) + ' %}'
-                            ]
-                        });
-                        console.log('Added ' + this._.slugify(this.name.toLowerCase()) + ' to base.jade!');
-                    } catch (e) {
-                        console.log('Error adding ' + this._.slugify(this.name.toLowerCase()) + ' to base.jade!');
-                    }
-                }
-            }
-            else if (this.view === 'template') {
-                this.template('view.swig', 'dev/views/' + this.view +'s/' + this._.slugify(this.name.toLowerCase()) + '.swig');
-            }
-            else if (!this.name) {
-                console.log('Name cannot be empty. Operation aborted.');
-            }
-            else {
-                console.log('Must use a supported type: page, template, component. Operation aborted');
-            }
-        }
-        else if (this.htmlOption === 'None (Vanilla HTML)') {
-            console.log(this.useDashboard);
-            if (this.view === 'page') {
-                this.template('view.html', 'dev/views/' + this._.slugify(this.name.toLowerCase()) + '.html');
-            }
-            else {
-                console.log('You have chosen to use Vanilla HTML, so only pages can be generated.');
-                console.log('Try the following to generate a page: yo yeogurt:view mypage');
-                console.log('Operation aborted');
-            }
-        }
-    }
-    else if (this.structure === 'Single Page Application') {
-        if (this.jsTemplate !== 'React') {
+    if (this.singlePageApplication) {
+        if (this.jsTemplate !== 'react') {
 
-            if (!this.name) {
-                console.log('Name cannot be empty. Operation aborted.');
-                return;
+            this.template('view.js', 'client/scripts/views/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
+            if (this.useTesting) {
+                this.template('view-spec.js', 'test/spec/views/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
             }
-            this.template('view.js', 'dev/scripts/views/' + this._.slugify(this.name.toLowerCase()) + '.js');
-            this.template('view-spec.js', 'test/spec/views/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
-            if (this.jsTemplate === 'Lo-dash (Underscore)') {
-                this.template('template.html', 'dev/scripts/templates/' + this._.slugify(this.name.toLowerCase()) + '.jst');
+            if (this.jsTemplate === 'lodash') {
+                this.template('view.html', 'client/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.jst');
             }
-            else if (this.jsTemplate === 'Handlebars') {
-                this.template('template.html', 'dev/scripts/templates/' + this._.slugify(this.name.toLowerCase()) + '.hbs');
+            else if (this.jsTemplate === 'handlebars') {
+                this.template('view.html', 'client/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.hbs');
             }
-            else if (this.jsTemplate === 'Swig') {
-                this.template('template.html', 'dev/scripts/templates/' + this._.slugify(this.name.toLowerCase()) + '.swig');
-            }
-            else if (this.jsTemplate === 'Jade') {
-                this.template('template.html', 'dev/scripts/templates/' + this._.slugify(this.name.toLowerCase()) + '.jade');
+            else if (this.jsTemplate === 'jade') {
+                this.template('view.html', 'client/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.jade');
             }
 
         }
         else {
-            console.log('You have chosen to use Backbone + React, so this subgenerator is not available to use.');
-            console.log('Try the following to generate a new view/component: yo yeogurt:component mycomponent');
-            console.log('Operation aborted');
+            this.log('You have chosen to use React, so this subgenerator is not available.');
+            this.log('Try the following to generate a new react component: yo yeogurt:react myreact');
+            this.log('Operation aborted');
         }
+    }
+    else {
+        this.log('You have chosen to create a static site, so this subgenerator is not available.');
+        this.log('If you were trying to create a new template, try the following: yo yeogurt:react myreact');
+        this.log('Operation aborted');
     }
 };

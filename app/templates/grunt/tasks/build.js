@@ -3,19 +3,22 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+var taskConfig = function(grunt) {
     grunt.registerTask('build', 'Build a production ready version of your site.', [
-        'clean:dist',
+        'clean:dist',<% if (useServer) { %>
+        'env:prod',<% } %>
+        'injector',
         'copy:dist',
         'concurrent:compile',<% if (useKss) { %>
         'kss:dist',<% } %>
         'useminPrepare',
-        'concat:generated',<% if (cssOption === 'None (Vanilla CSS)') { %>
+        'concat:generated',<% if (cssOption === 'css') { %>
         'cssmin:generated',<% } %>
         'usemin',
-        'htmlmin:dist',<% if (cssOption === 'None (Vanilla CSS)') { %>
-        'uncss',<% } %>
+        'htmlmin:dist',
         'uglify',
         'clean:temp'
     ]);
 };
+
+module.exports = taskConfig;

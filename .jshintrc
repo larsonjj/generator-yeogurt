@@ -5,7 +5,8 @@
         "requirejs": true,
         "require": true,
         "node": true,
-        "process": true
+        "process": true,
+        "__dirname": true
     },
     "browser": true,
     "globalstrict": true,

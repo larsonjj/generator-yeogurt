@@ -1,0 +1,228 @@
+/**
+ * Main Stylesheet
+ */
+
+<% if (useBourbon) { %>// Import Bourbon Mixins
+@import '../bower_components/bourbon/dist/_bourbon';<% } %><% if (useLesshat) { %>// Import Lesshat Library
+
+@import '../bower_components/lesshat/build/lesshat';
+<% } %><% if (!useBootstrap && !useFoundation) { %>
+// Import Normalize Library
+
+<% if (cssOption === 'sass') { %>// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
+@import '../bower_components/normalize-scss/normalize';<% } %><% if (cssOption === 'less') { %>
+// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
+@import (less) '../bower_components/normalize.css/normalize.css';<% } %>
+<% } %><% if (!useBootstrap) { %>
+// Box sizing partial styles:
+// Apply a natural box layout model to all elements
+
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+<% } %><% if (cssOption === 'less') { %><% if (useFontAwesome) { %>
+// Import Font Awesome Library
+
+@import '../bower_components/font-awesome/less/font-awesome';
+@fa-font-path: '../bower_components/font-awesome/fonts';<% } %>
+<% } %><% if (cssOption === 'sass') { %><% if (useFontAwesome) { %>
+
+//  Import Font Awesome Library
+$fa-font-path: '../bower_components/font-awesome/fonts';
+@import '../bower_components/font-awesome/scss/font-awesome';<% } %>
+<% } %><% if (cssOption === 'less' && useBootstrap) { %>
+// Import All Bootstrap Styles
+
+// Core variables and mixins
+@import "../bower_components/bootstrap/less/variables.less";
+@import "../bower_components/bootstrap/less/mixins.less";
+
+// Reset
+@import "../bower_components/bootstrap/less/normalize.less";
+@import "../bower_components/bootstrap/less/print.less";
+
+// Core CSS
+@import "../bower_components/bootstrap/less/scaffolding.less";
+@import "../bower_components/bootstrap/less/type.less";
+@import "../bower_components/bootstrap/less/code.less";
+@import "../bower_components/bootstrap/less/grid.less";
+@import "../bower_components/bootstrap/less/tables.less";
+@import "../bower_components/bootstrap/less/forms.less";
+@import "../bower_components/bootstrap/less/buttons.less";
+
+// Components
+@import "../bower_components/bootstrap/less/component-animations.less";
+@import "../bower_components/bootstrap/less/glyphicons.less";
+@import "../bower_components/bootstrap/less/dropdowns.less";
+@import "../bower_components/bootstrap/less/button-groups.less";
+@import "../bower_components/bootstrap/less/input-groups.less";
+@import "../bower_components/bootstrap/less/navs.less";
+@import "../bower_components/bootstrap/less/navbar.less";
+@import "../bower_components/bootstrap/less/breadcrumbs.less";
+@import "../bower_components/bootstrap/less/pagination.less";
+@import "../bower_components/bootstrap/less/pager.less";
+@import "../bower_components/bootstrap/less/labels.less";
+@import "../bower_components/bootstrap/less/badges.less";
+@import "../bower_components/bootstrap/less/jumbotron.less";
+@import "../bower_components/bootstrap/less/thumbnails.less";
+@import "../bower_components/bootstrap/less/alerts.less";
+@import "../bower_components/bootstrap/less/progress-bars.less";
+@import "../bower_components/bootstrap/less/media.less";
+@import "../bower_components/bootstrap/less/list-group.less";
+@import "../bower_components/bootstrap/less/panels.less";
+@import "../bower_components/bootstrap/less/wells.less";
+@import "../bower_components/bootstrap/less/close.less";
+
+// Components w/ JavaScript
+@import "../bower_components/bootstrap/less/modals.less";
+@import "../bower_components/bootstrap/less/tooltip.less";
+@import "../bower_components/bootstrap/less/popovers.less";
+@import "../bower_components/bootstrap/less/carousel.less";
+
+// Utility classes
+@import "../bower_components/bootstrap/less/utilities.less";
+@import "../bower_components/bootstrap/less/responsive-utilities.less";<% } %><% if (cssOption === 'sass' && useBootstrap) { %>
+// Import All Bootstrap Styles
+
+// Core variables and mixins
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
+
+// Reset
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/normalize";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/print";
+
+// Core CSS
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/scaffolding";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/type";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/code";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/grid";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/tables";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/forms";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/buttons";
+
+// Components
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/component-animations";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/glyphicons";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/dropdowns";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/button-groups";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/input-groups";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/navs";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/navbar";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/breadcrumbs";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/pagination";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/pager";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/labels";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/badges";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/jumbotron";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/thumbnails";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/alerts";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/progress-bars";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/media";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/list-group";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/panels";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/wells";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/close";
+
+// Components w/ JavaScript
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/modals";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/tooltip";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/popovers";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/carousel";
+
+// Utility classes
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/utilities";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/responsive-utilities";<% } %><% if (useFoundation) { %>
+
+// Import All Foundation Styles
+
+@import "../bower_components/foundation/scss/normalize";
+
+@import "../bower_components/foundation/scss/foundation/components/grid";
+@import "../bower_components/foundation/scss/foundation/components/accordion";
+@import "../bower_components/foundation/scss/foundation/components/alert-boxes";
+@import "../bower_components/foundation/scss/foundation/components/block-grid";
+@import "../bower_components/foundation/scss/foundation/components/breadcrumbs";
+@import "../bower_components/foundation/scss/foundation/components/button-groups";
+@import "../bower_components/foundation/scss/foundation/components/buttons";
+@import "../bower_components/foundation/scss/foundation/components/clearing";
+@import "../bower_components/foundation/scss/foundation/components/dropdown";
+@import "../bower_components/foundation/scss/foundation/components/dropdown-buttons";
+@import "../bower_components/foundation/scss/foundation/components/flex-video";
+@import "../bower_components/foundation/scss/foundation/components/forms";
+@import "../bower_components/foundation/scss/foundation/components/inline-lists";
+@import "../bower_components/foundation/scss/foundation/components/joyride";
+@import "../bower_components/foundation/scss/foundation/components/keystrokes";
+@import "../bower_components/foundation/scss/foundation/components/labels";
+@import "../bower_components/foundation/scss/foundation/components/magellan";
+@import "../bower_components/foundation/scss/foundation/components/orbit";
+@import "../bower_components/foundation/scss/foundation/components/pagination";
+@import "../bower_components/foundation/scss/foundation/components/panels";
+@import "../bower_components/foundation/scss/foundation/components/pricing-tables";
+@import "../bower_components/foundation/scss/foundation/components/progress-bars";
+@import "../bower_components/foundation/scss/foundation/components/range-slider";
+@import "../bower_components/foundation/scss/foundation/components/reveal";
+@import "../bower_components/foundation/scss/foundation/components/side-nav";
+@import "../bower_components/foundation/scss/foundation/components/split-buttons";
+@import "../bower_components/foundation/scss/foundation/components/sub-nav";
+@import "../bower_components/foundation/scss/foundation/components/switch";
+@import "../bower_components/foundation/scss/foundation/components/tables";
+@import "../bower_components/foundation/scss/foundation/components/tabs";
+@import "../bower_components/foundation/scss/foundation/components/thumbs";
+@import "../bower_components/foundation/scss/foundation/components/tooltips";
+@import "../bower_components/foundation/scss/foundation/components/top-bar";
+@import "../bower_components/foundation/scss/foundation/components/type";
+@import "../bower_components/foundation/scss/foundation/components/offcanvas";
+@import "../bower_components/foundation/scss/foundation/components/visibility";<% } %>
+
+// [injector]
+// [endinjector]
+
+.main-container {
+    padding-top: 200px;
+    text-align: center;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.version {
+    font-size: 14px;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.logo {
+    margin-top: 15px;
+}
+
+.links a {
+    color: white;
+    margin-right: 5px;
+    margin-top: 20px;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    background: #ed7c6c;
+    display: inline-block;
+    zoom: 1;
+    line-height: normal;
+    white-space: nowrap;
+    vertical-align: baseline;
+    text-align: center;
+    cursor: pointer;
+    font-size: 100%;
+    padding: .5em 1em;
+    text-decoration: none;
+}
+
+// Styling on warning for users on IE7 or below
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}

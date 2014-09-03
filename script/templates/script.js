@@ -1,44 +1,40 @@
 /**
 *   <%= _.classify(name) %> Script Description
 */
-
-<% if (jsOption ==='RequireJS') { %>define(function(require) {
+<% if (jsOption === 'requirejs') { %>
+define(function(require) {
 
     'use strict';
 
-    var <%= _.classify(name) %> = {
-        init: function(msg) {
-            var $ele = $('<p></p>');
-
-            $ele.append('<%= name %> loaded! - Message: ' + msg);
-            console.log($ele.text());
-            return $ele.text() + 'initialized';
-        }
+    var init = function() {
+        // Intialize module
     };
 
-    return <%= _.classify(name) %>;
+    return init;
 
 });
-<% } else if (jsOption ==='Browserify') { %>'use strict';
+<% } else if (jsOption === 'browserify') { %>
+'use strict';
 
-var <%= _.classify(name) %> = {
-    init: function(msg) {
-        var $ele = $('<p></p>');
+var <%= _.classify(name) %> = function() {
 
-        $ele.append('<%= name %> loaded! - Message: ' + msg);
-        console.log($ele.text());
-        return $ele.text() + 'initialized';
-    }
+    var init = function() {
+         // Intialize module
+    };
+
+    return init;
+
 };
 
-module.exports = <%= _.classify(name) %>;<% } else { %>'use strict';
-var <%= _.classify(name) %> = {
-    init: function(msg) {
-        var $ele = $('<p></p>');
+module.exports = <%= _.classify(name) %>;
+<% } else { %>'use strict';
+var <%= _.classify(name) %> = (function() {
 
-        $ele.append('<%= name %> loaded! - Message: ' + msg);
-        console.log($ele.text());
-        return $ele.text() + 'initialized';
-    }
-};
+    var init = function() {
+         // Intialize module
+    };
+
+    return init;
+
+}());
 <% } %>
