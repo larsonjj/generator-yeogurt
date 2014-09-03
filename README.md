@@ -188,8 +188,52 @@ Runs `grunt build` and pushes optimized files to a specified FTP server.
 ## Default Generators
 ***Note: (This following sub-generators can be used with any type of project)***
 
+### Script
+Creates 2 files:
+
+- A script file within the `client/scripts` folder.
+- A unit test file within the `test/spec` folder.
+
+There are also an option that can be used to change the default behavior:
+
+|Options |Possible Values |Description
+|---------|---------------|-----------
+|--folder | [any folder path] |  Creates file relative to the `client/scripts` folder
+
+Example:
+
+```
+## Module
+yo yeogurt:script myscript
+
+## Module with specified folder: client/scripts/account
+yo yeogurt:script myscript --folder=account
+```
+
+### Style
+Create a stylesheet file within `client/styles` folder.
+
+There are also an option that can be used to change the default behavior:
+
+|Options |Possible Values |Description
+|---------|---------------|-----------
+|--folder | [any folder path] |  Creates file relative to the `client/styles` folder
+
+Example:
+
+```
+## Style
+yo yeogurt:style mystyle
+
+## Style within specified folder: client/styles/account
+yo yeogurt:style mystyle --folder=account
+```
+
+## Static Site and Backbone Sub-generators
+***Note: (The following sub-generator cannot be used with React applications)***
+
 ### Template
-> IMPORTANT: This sub-generator is unique in that it's behavior differs depending on if you have generated a Static Site or a Single Page Application.
+> IMPORTANT: This sub-generator is unique in that it's behavior differs depending on if you have generated a Static Site or a Backbone application.
 
 ##### For Static Sites
 Creates a jade file within the `client/templates` folder.
@@ -238,48 +282,6 @@ yo yeogurt:template mytemplate
 
 ## Template with specified folder client/templates/account
 yo yeogurt:template mytemplate --folder=account
-```
-
-
-### Script
-Creates 2 files:
-
-- A script file within the `client/scripts` folder.
-- A unit test file within the `test/spec` folder.
-
-There are also an option that can be used to change the default behavior:
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--folder | [any folder path] |  Creates file relative to the `client/scripts` folder
-
-Example:
-
-```
-## Module
-yo yeogurt:script myscript
-
-## Module with specified folder: client/scripts/account
-yo yeogurt:script myscript --folder=account
-```
-
-### Style
-Create a stylesheet file within `client/styles` folder.
-
-There are also an option that can be used to change the default behavior:
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--folder | [any folder path] |  Creates file relative to the `client/styles` folder
-
-Example:
-
-```
-## Style
-yo yeogurt:style mystyle
-
-## Style within specified folder: client/styles/account
-yo yeogurt:style mystyle --folder=account
 ```
 
 ## React Sub-generators
