@@ -144,9 +144,9 @@ Starts up a development server that watches files and automatically reloads them
 
 |Tasks| Description
 |---------|-------
-|grunt serve --allow-remote| same `grunt serve`, but allows remote devices on the same network to view your site/app
+|grunt serve --allow-remote| same as `grunt serve`, but allows remote devices on the same network to view your site/app
 |grunt serve:dist| runs `grunt build` and starts up a server that loads the optimized files
-|grunt serve:dist --allow-remote| same `grunt serve:dist`, but allows remote devices on the same network to view your site/app
+|grunt serve:dist --allow-remote| same as `grunt serve:dist`, but allows remote devices on the same network to view your site/app
 
 ### `grunt build`
 Builds out an optimized site through compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, optimization of images, and processing of [usemin blocks](Usemin blocks). All files created from this task are put in the `{project root}/dist/` folder.
