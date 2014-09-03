@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="270" src="https://raw.githubusercontent.com/larsonjj/generator-yeogurt/master/docs/images/logo.png" />
+    <img src="https://raw.githubusercontent.com/larsonjj/generator-yeogurt/master/docs/images/logo.png" />
 </p>
 
 # Yeogurt Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-yeogurt.png?branch=master)](https://travis-ci.org/larsonjj/generator-yeogurt) [![NPM version](https://badge.fury.io/js/generator-yeogurt.png)](http://badge.fury.io/js/generator-yeogurt) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-yeogurt/badge.png)](https://coveralls.io/r/larsonjj/generator-yeogurt)
@@ -408,7 +408,7 @@ Odds are that you will need to add some third party libraries to your project at
 
 Once you have your library installed, you will want to add it to your project. To do this, you'll need to add a new `<script>` tag to your base template file:
 
-*** Static Sites ***
+***Static Sites***
 
 |Template Type | Server? | Base Template Location
 |---------|---------------|---------
@@ -418,7 +418,7 @@ Once you have your library installed, you will want to add it to your project. T
 |Swig | Yes | `server/templates/layouts/base.swig`
 |HTML | No | `client/templates/index.html`
 
-*** Single Page Applications ***
+***Single Page Applications***
 
 |Library/Framework | Server? | Base Template Location
 |---------|---------------|---------
@@ -446,7 +446,7 @@ This does a couple things:
 
 Your library should now load correctly (assuming your source path is correct).
 
-> Important: If your third-party script will be referenced within your own code (ex. using jQuery), you need to make sure that JSHint is aware it. Check out [JSHint giving errors for third-party scripts](#jshint giving errors for third-party scripts) to see how to make this happen.
+> Important: If your third-party script will be referenced within your own code (ex. using jQuery), you need to make sure that JSHint is aware it. Check out [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts) to see how to make this happen.
 
 
 ## Deployment
@@ -492,7 +492,7 @@ git config --global url."https://".insteadOf git://
 ##### Typical error message:
 > Backbone is not defined
 
-When adding third-party scripts, you should always link to them using `<script>` tags within your base template file (See [Adding third-party libraries](#adding third-party libraries)). However, doing so does not inform JSHint that your new library is defined globally. Thus, giving you errors.
+When adding third-party scripts, you should always link to them using `<script>` tags within your base template file (See [Adding third-party libraries](#adding-third-party-libraries)). However, doing so does not inform JSHint that your new library is defined globally. Thus, giving you errors.
 
 ##### Solution
 To remedy this situation, all you need to do is open up your `.jshintrc` file in the root directory of you project, and add your new library name to the `global:` property array:
