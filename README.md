@@ -1,11 +1,12 @@
--> <img width="270" src="https://raw.githubusercontent.com/larsonjj/generator-yeogurt/master/docs/images/logo.png" />
-</center> <-
+<p align="center">
+    <img width="270" src="https://raw.githubusercontent.com/larsonjj/generator-yeogurt/master/docs/images/logo.png" />
+</p>
 
--> [![Build Status](https://secure.travis-ci.org/larsonjj/generator-yeogurt.png?branch=master)](https://travis-ci.org/larsonjj/generator-yeogurt) [![NPM version](https://badge.fury.io/js/generator-yeogurt.png)](http://badge.fury.io/js/generator-yeogurt) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-yeogurt/badge.png)](https://coveralls.io/r/larsonjj/generator-yeogurt) <-
+# Yeogurt Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-yeogurt.png?branch=master)](https://travis-ci.org/larsonjj/generator-yeogurt) [![NPM version](https://badge.fury.io/js/generator-yeogurt.png)](http://badge.fury.io/js/generator-yeogurt) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-yeogurt/badge.png)](https://coveralls.io/r/larsonjj/generator-yeogurt)
 
 A [Yeoman](http://yeoman.io) generator that creates a sensible structure for static sites and single page applications by using your favorite tools.
 
-#What can I create with Yeogurt?
+## What can I create with Yeogurt?
 - Build out static sites using [Jade](http://jade-lang.com/), [Swig](http://paularmstrong.github.io/swig/), or HTML.
 - Create Single Page Applications using [Backbone](http://backbonejs.org/) or [React](http://facebook.github.io/react/).
 - Make your site/app full-stack by adding an [Express](http://expressjs.com/) Server with optional database, cookie session, and security support .
@@ -14,16 +15,16 @@ Check out the [features](#features) section to see everything this Yeogurt has t
 
 
 
-# Getting Started
+## Getting Started
 This generator utilizes [Yeoman](http://yeoman.io/), [Grunt](http://gruntjs.com/), and [Bower](http://bower.io/) to Scaffold out projects, automate tasks, and manage front-end dependencies respectively. If this is your first time here, it is recommended you [read about these tools](http://yeoman.io/learning/index.html) before proceeding.
 
-## Installation
+### Installation
 There are a few dependencies that this project relies on:
 
-### Node.js
+#### Node.js
 Check to see if you already have Node installed. Do this by bringing up a terminal/command prompt and type `node -v`. If the response shows a version at or above `v0.10.x`, you are alll set and can proceed to installing Yeoman, Grunt, and Bower. If you see an error and/or your version is too low, navigate to the [Node.js](http://nodejs.org/) website and install Node from there.
 
-### Yeoman, Grunt, & Bower
+#### Yeoman, Grunt, & Bower
 Once you have Node installed, make sure you have these tools by opening up a terminal/command prompt and entering following commands:
 
 | Command    | Response
@@ -36,12 +37,12 @@ If you get any errors and/or you're version(s) are too low, you should run `npm 
 
 > NOTE: Bower requires the use of [Git](http://git-scm.com/) to install packages.
 
-### Yeogurt Generator
+#### Yeogurt
 Now that you have all the needed dependencies, you can install this generator with the following command: `npm install -g generator-yeogurt`
 
 That completes installation! So at this point you should have all the needed tools to start working Yeogurt.
 
-## Usage
+### Usage
 When starting a new project, you will want to: open up a terminal/command prompt, make a new directory, and navigate into it.
 
 ```
@@ -77,7 +78,7 @@ You can learn more about what tasks are available in the [grunt tasks](#grunt ta
 Congratulations! You should now have successfully created a Yeogurt project and be ready to start building out your site/app.
 
 
-# Features
+## Features
 
 ### Included in every project
 - Built in preview server with LiveReload
@@ -121,7 +122,7 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 A grunt task looks for new/updated files in your project and automatically injects imports/includes in the appropriate places based on an injection block.
 
 |Filetype(s) |Project Type (Static/Single Page Appliction)| File to be injected into
-|---------|---------------
+|---------|---------------|---------
 |Less| Any | `client/styles/main.less`
 |Sass | Any | `client/styles/main.scss`
 |Jade | Static | `client/templates/layouts/base.jade` or `server/templates/layouts/base.jade` if using express server
@@ -131,7 +132,7 @@ A grunt task looks for new/updated files in your project and automatically injec
 
 
 
-# Grunt Workflow
+## Grunt Workflow
 
 ### `grunt`
 Runs both `grunt test` and `grunt build`.
@@ -386,24 +387,70 @@ yo yeogurt:model mycollection --model=mymodel
 yo yeogurt:model mycollection --folder=accounts
 ```
 
-# Automated Documentation
-## Dashboard
-If you chose to create a Dashboard, a dashboard will be automatically generated from raeading your Jade/Swig files. After running `grunt serve` or `grunt serve:dist`, it can be accessed at `/docs/dashboard/index.html.
+## Automated Documentation
+### Dashboard
+If you chose to create a Dashboard, a dashboard will be automatically generated from raeading your Jade/Swig files. After running `grunt serve` or `grunt serve:dist`, it can be accessed at `/docs/dashboard/index.html`.
 
 For more information and usage, please refer to the `grunt-dashboard` plugin [documentation](https://github.com/larsonjj/grunt-dashboard).
 
-## JavaScript API
+### JavaScript API
 If you chose to use [JSDoc](http://usejsdoc.org/), JavaScript API documenation will be automatically generated from reading your script files. After running `grunt serve` or `grunt serve:dist`, it can be accessed at `/docs/api/index.html`.
 
 You can view an example [here](http://yeoman.github.io/generator/).
 
-## Styleguide
+### Styleguide
 If you chose to use [KSS (Knyle Style Sheets)](http://warpspire.com/posts/kss/), a Styleguide will be automatically generated from reading your Less/Sass/CSS files. After running `grunt serve` or `grunt serve:dist`, it can be accessed at `/docs/styleguide/index.html`.
 
 Knyle Style Sheets (KSS) is used at Github to create their [styleguide](https://github.com/styleguide) and is used in this generator via [kss-node](https://github.com/hughsk/kss-node). Be sure to look up [documentation](http://warpspire.com/posts/kss/) to see how to write KSS comments in your stylesheets.
 
-# Deployment
-## FTP Server
+## Adding third-party libraries
+Odds are that you will need to add some third party libraries to your project at some point. To do so, it is strongly recommended that you install them using bower ([usage](http://bower.io/)). If you can't [find the package on bower](http://bower.io/search/) (very rare) or you have your own in-house libraries that you like to use, you should put them within a `client/scripts/vendor` folder (jshint is setup to ignore this folder).
+
+Once you have your library installed, you will want to add it to your project. To do this, you'll need to add a new `<script>` tag to your base template file:
+
+*** Static Sites ***
+
+|Template Type | Server? | Base Template Location
+|---------|---------------|---------
+|Jade | No  | `client/templates/layouts/base.jade`
+|Jade | Yes | `server/templates/layouts/base.jade`
+|Swig | No |`client/templates/layouts/base.swig`
+|Swig | Yes | `server/templates/layouts/base.swig`
+|HTML | No | `client/templates/index.html`
+
+*** Single Page Applications ***
+
+|Library/Framework | Server? | Base Template Location
+|---------|---------------|---------
+|Any | No  | `client/templates/index.html`
+|Any | Yes | `server/templates/index.html`
+
+Within your base template file, you will want to locate the `build:js({client,.tmp}) scripts/global.js` comment and add your `<script>` after it. Also, Make sure it is also located before the `endbuild` comment:
+
+```
+<!-- base template file -->
+
+<!-- build:js({client,.tmp}) scripts/global.js -->
+...
+    <script src="/scripts/vendor/thirdparty.js"></script>
+    <script src="/bower_components/somescript/thirdparty.js"></script>
+...
+<!-- endbuild -->
+```
+
+This does a couple things:
+
+- Ensures that your libraries get optimized when running `grunt build` (will be minified and concatenated to `scripts/global.js` using [grunt-usemin](https://github.com/yeoman/grunt-usemin))
+- Allows you to choose the order in which you load your scripts
+- Keeps your global/third-party scripts away from your own code
+
+Your library should now load correctly (assuming your source path is correct).
+
+> Important: If your third-party script will be referenced within your own code (ex. using jQuery), you need to make sure that JSHint is aware it. Check out [JSHint giving errors for third-party scripts](#jshint giving errors for third-party scripts) to see how to make this happen.
+
+
+## Deployment
+### FTP Server
 If you are deploying to an FTP server, you will need to make sure that you fill out the generated `.ftppass` file. It is located in the root folder of your yeogurt project.
 
 This file looks like this:
@@ -425,7 +472,7 @@ For more info on setting up the `.ftppass` file, refer to the [grunt-ftpush](htt
 
 > Important: You will want to test your FTP connection information using an FTP client first (ex. [Filezilla](https://filezilla-project.org/)). This will ensure that you are: a) using the correct information and b) copying files to the correct directory.
 
-# Common Gotchas
+## Common Gotchas
 ### Bower not installing dependencies using Git
 ##### Typical error message:
 > fatal: unable to connect to github.com: github.com
@@ -441,7 +488,27 @@ git config --global url."https://".insteadOf git://
 
 [Source](http://stackoverflow.com/questions/16298986/unable-to-connect-to-github-com-for-cloning)
 
-# Contributing
+### JSHint giving errors for third-party scripts
+##### Typical error message:
+> Backbone is not defined
+
+When adding third-party scripts, you should always link to them using `<script>` tags within your base template file (See [Adding third-party libraries](#adding third-party libraries)). However, doing so does not inform JSHint that your new library is defined globally. Thus, giving you errors.
+
+##### Solution
+To remedy this situation, all you need to do is open up your `.jshintrc` file in the root directory of you project, and add your new library name to the `global:` property array:
+
+```
+// .jshintrc
+{
+...
+    global: {
+        Backbone: true // Tells JSHint that Backbone is defined globally
+    }
+...
+}
+```
+
+## Contributing
 
 Anyone and everyone is welcome to contribute. Please take a moment to
 review the [guidelines for contributing](CONTRIBUTING.md).

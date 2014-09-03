@@ -44,7 +44,6 @@
 * Update: For Static Sites using preprocessors (Jade, Swig, etc), `base` template file has moved from `dev/` to `client/templates/layouts` or `server/templates/layouts` if using express server
 
 ***Fixes***
-* Fixed React components property `mixins`. (previously was `mixin`)
 * Fixed reloading of Lo-dash, handlebars, and jade client-side templates when running `grunt serve`
 
 
