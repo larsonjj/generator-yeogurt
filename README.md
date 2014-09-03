@@ -142,7 +142,7 @@ Starts up a development server that watches files and automatically reloads them
 
 **Extra Task Target(s)**
 
-|Task:Target [--option]| Description
+|Tasks| Description
 |---------|-------
 |grunt serve --allow-remote| same `grunt serve`, but allows remote devices on the same network to view your site/app
 |grunt serve:dist| runs `grunt build` and starts up a server that loads the optimized files
@@ -156,7 +156,7 @@ Runs JSHint and Karma to lint and run JavaScript tests, respectively.
 
 **Extra Task Target(s)**
 
-|Task:Target [--option]| Description
+|Tasks| Description
 |---------|-------
 |grunt test:watch| runs `grunt test`, but also watches test files and auto runs tests when changes are detected.
 |grunt test:watch --allow-remote| same as `grunt test:watch`, but allows remote devices on the same network to view/run you tests
