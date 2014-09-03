@@ -11,7 +11,7 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 - Create Single Page Applications using [Backbone](http://backbonejs.org/) or [React](http://facebook.github.io/react/).
 - Make your site/app full-stack by adding an [Express](http://expressjs.com/) Server with optional database, cookie session, and security support .
 
-Check out the [features](#features) section to see everything this Yeogurt has to offer.
+Check out the [features](#features) section to see everything this generator has to offer.
 
 
 
