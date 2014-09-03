@@ -186,7 +186,7 @@ Runs `grunt build` and pushes optimized files to a specified FTP server.
 ***Note: Generators need to be run from the root directory of your app.***
 
 ## Default Generators
-***Note: (This following sub-generators can be used with any type of project)***
+***Note: (The following sub-generators can be used with any type of project)***
 
 ### Script
 Creates 2 files:
