@@ -95,20 +95,20 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 - IE8 Support via [HTML5shiv](https://github.com/aFarkas/html5shiv) and [RespondJS](https://github.com/scottjehl/Respond)
 - JavaScript Linting with [JSHint](http://www.jshint.com/)
 - Feature detection with [Modernizr](http://modernizr.com/)
-- Dashboard - auto-generated dashboard for your site with [grunt-dashboard](https://github.com/larsonjj/grunt-dashboard)
 - Styleguide - auto-generated styleguide for your stylesheets with [Knyle Style Sheets](http://warpspire.com/posts/kss/)
 - JavaScript Documentation - auto-generated API for your scripts with [JSDoc](http://usejsdoc.org/)
 - JavaScript unit testing with [Jasmine](http://jasmine.github.io/) or [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/)
 - Test running with [Karma](http://karma-runner.github.io/0.12/index.html)
 - FTP deployment
 
-
-
 ### Static Site Options
 - Markup with [Jade](http://jade-lang.com/), [Swig](http://paularmstrong.github.io/swig/), or HTML
+- Dashboard - auto-generated dashboard for your site with [grunt-dashboard](https://github.com/larsonjj/grunt-dashboard)
+    - Only available for Static Sites that are not using an Express server
 
 ### Single Page Application Options
 - Facebook's [React](http://facebook.github.io/react/)
+    - Must use Browserify
 - Backbone with [Jade](http://jade-lang.com/), [Handlebars](http://handlebarsjs.com/), or [Lo-dash](http://lodash.com/) templating
 
 ### Express Server Options
@@ -422,7 +422,7 @@ Once you have your library installed, you will want to add it to your project. T
 
 |Library/Framework | Server? | Base Template Location
 |---------|---------------|---------
-|Any | No  | `client/templates/index.html`
+|Any | No  | `client/index.html`
 |Any | Yes | `server/templates/index.html`
 
 Within your base template file, you will want to locate the `build:js({client,.tmp}) scripts/global.js` comment and add your `<script>` after it. Also, Make sure it is also located before the `endbuild` comment:

@@ -18,6 +18,7 @@ define(function(require) {
         // Start route handling
         Backbone.history.start({ pushState : pushState, root : '/' });
 
+        // Handle pushState for incompatible browsers
         if (!pushState && window.location.pathname !== '/') {
             window.location.replace('/#' + window.location.pathname);
         }<% } else { %>
@@ -46,7 +47,7 @@ var pushState = !!(enablePushState && window.history && window.history.pushState
 // Start route handling
 Backbone.history.start({ pushState : pushState, root : '/' });
 
-// Handle pushState for incompatibl browsers
+// Handle pushState for incompatible browsers
 if (!pushState && window.location.pathname !== '/') {
     window.location.replace('/#' + window.location.pathname);
 }<% } else { %>
