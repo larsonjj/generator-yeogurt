@@ -169,10 +169,11 @@ Runs `grunt build` and pushes optimized files to a specified FTP server.
 ## Sub-Generators
 
 #### Default (Can be used on any project)
-
-* [yeogurt:template](#template)
 * [yeogurt:script](#script)
 * [yeogurt:style](#style)
+
+#### Static Sites and Backbone applications
+* [yeogurt:template](#template)
 
 #### React Only
 * [yeogurt:react](#react)
