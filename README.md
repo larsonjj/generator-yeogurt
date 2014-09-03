@@ -288,7 +288,6 @@ yo yeogurt:template mytemplate --folder=account
 ***Note: (The following sub-generator can only be used with React applications)***
 
 ### React
-***Note: (Can only be used with React application)***
 
 Creates 2 files
 
