@@ -16,7 +16,7 @@ var testingPrompts = function testingPrompts() {
     this.prompt([{
         type: 'confirm',
         name: 'useTesting',
-        message: 'Will you be ' + 'testing your JavaScript'.blue + '?',
+        message: 'Will you be ' + 'testing your client-side JavaScript'.blue + '?',
         default: true
     }, {
         when: function(answers) { return answers.useTesting; },

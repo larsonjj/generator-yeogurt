@@ -14,6 +14,7 @@ var ReactGenerator = module.exports = function ReactGenerator(args, options, con
     this.folder = this.options.folder || '';
     this.jsFramework = fileJSON.jsFramework;
     this.testFramework = fileJSON.testFramework;
+    this.useJsx = fileJSON.useJsx;
     this.useTesting = fileJSON.useTesting;
 
     var getNumberOfPaths = [];
@@ -39,7 +40,12 @@ ReactGenerator.prototype.files = function files() {
         this.log('Operation aborted');
     }
     else {
-        this.template('react.js', 'client/scripts/components/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.jsx');
+        if (this.useJsx) {
+            this.template('react.jsx', 'client/scripts/components/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.jsx');
+        }
+        else {
+            this.template('react.js', 'client/scripts/components/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
+        }
         if (this.useTesting) {
             this.template('react-spec.js', 'test/spec/components/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
         }

@@ -7,8 +7,9 @@
 <% if (jsFramework === 'react') { %>
 var reactRender = require('../modules/reactRender');<% } %><% } %>
 
-var mainController = function(req, res) {<% if (singlePageApplication) { %><% if (useServerTemplates) { %><% if (jsFramework === 'react') { %>
-    var html = reactRender({}, 'main.jsx');<% } %><% } %>
+var mainController = function(req, res) {<% if (singlePageApplication) { %><% if (useServerTemplates) { %><% if (jsFramework === 'react') { %><% if (useJsx) { %>
+    var html = reactRender({}, 'main.jsx');<% } else { %>
+    var html = reactRender({}, 'main.js');<% } %><% } %><% } %>
     res.render('index', {
         env: process.env.NODE_ENV || 'development'<% if (useServerTemplates) { %>,
         body: html || ''<% } %>
