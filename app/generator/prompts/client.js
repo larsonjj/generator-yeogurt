@@ -63,6 +63,12 @@ var clientPrompts = function clientPrompts() {
             return filterMap[val];
         }
     }, {
+        when: function(answers) { return answers.jsFramework === 'react'; },
+        type: 'confirm',
+        name: 'useJsx',
+        message: 'Would you like to use ' + 'React\'s JSX syntax'.blue + '?',
+        default: true
+    }, {
         when: function(answers) { return self.serverPrompts.useServer && answers.jsFramework === 'react'; },
         type: 'confirm',
         name: 'useServerTemplates',

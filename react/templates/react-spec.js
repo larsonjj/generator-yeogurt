@@ -1,4 +1,7 @@
-/** @jsx React.DOM */
+<% if (useJsx) { %>/** @jsx React.DOM */
+
+<% } %>
+/*jshint newcap:false */
 
 /**
 *   <%= _.classify(name) %> Spec Description
@@ -9,7 +12,7 @@
 
 'use strict';
 
-var <%= _.classify(name) %> = require('<%= folder ? folderCount : ''%>../../../client/scripts/components/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= _.slugify(name) %>.jsx');
+var <%= _.classify(name) %> = require('<%= folder ? folderCount : ''%>../../../client/scripts/components/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= _.slugify(name) %>.js<% if (useJsx) { %>x<% } %>');
 
 var ReactTestUtils;
 var reactRender;

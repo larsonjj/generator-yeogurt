@@ -67,6 +67,7 @@ var answersConfig = function answersConfig() {
     this.singlePageApplication = this.answers.singlePageApplication;
     this.htmlOption            = this.answers.htmlOption;
     this.jsFramework           = this.answers.jsFramework;
+    this.useJsx                = this.answers.useJsx;
     this.jsTemplate            = this.answers.jsTemplate;
     this.jsOption              = this.answers.jsOption;
     this.cssOption             = this.answers.cssOption;
