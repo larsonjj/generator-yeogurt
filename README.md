@@ -13,8 +13,6 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 
 Check out the [features](#features) section to see everything this generator has to offer.
 
-
-
 ## Getting Started
 This generator utilizes [Yeoman](http://yeoman.io/), [Grunt](http://gruntjs.com/), and [Bower](http://bower.io/) to Scaffold out projects, automate tasks, and manage front-end dependencies respectively. If this is your first time here, it is recommended you [read about these tools](http://yeoman.io/learning/index.html) before proceeding.
 
@@ -509,6 +507,9 @@ To remedy this situation, all you need to do is open up your `.jshintrc` file in
 ...
 }
 ```
+
+## Roadmap
+Check out the [Roadmap](ROADMAP.md) to see what's coming down the development pipeline.
 
 ## Contributing
 
