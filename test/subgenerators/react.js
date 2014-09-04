@@ -201,6 +201,33 @@ describe('React sub-generator', function () {
             var react = 'myreact';
             var filesToTest = [
                 'test/spec/components/' + react + '-spec.js',
+                'client/scripts/components/' + react + '.js'
+            ];
+            var fileContentToTest = [
+                ['client/scripts/components/' + react + '.js', /React\.DOM/i]
+            ];
+            var fileContentNotThere = [
+                ['test/spec/components/' + react + '-spec.js', /\jsx/i]
+            ];
+
+            helpers.mockPrompt(this.app, {
+                jsFramework: 'react',
+                useJsx: false
+            });
+            this.app.run([], function() {
+                createSubGenerator('react', react, {}, function() {
+                    assert.file(filesToTest);
+                    assert.fileContent(fileContentToTest);
+                    assert.noFileContent(fileContentNotThere);
+                    done();
+                });
+            });
+        });
+        it('Handles defaults with JSX', function(done) {
+            // Filename
+            var react = 'myreact';
+            var filesToTest = [
+                'test/spec/components/' + react + '-spec.js',
                 'client/scripts/components/' + react + '.jsx'
             ];
             var fileContentToTest = [

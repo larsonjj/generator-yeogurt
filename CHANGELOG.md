@@ -1,3 +1,13 @@
+### v0.10.1:
+#### date: 2014-09-04
+##### changes:
+* Updated prompts, tests, and generator to make React JSX syntax optional
+* Remove generator Gruntfile.js and grunt-nsp plugin as it just seems to crash all the time
+* Fixed Backbone routes so they don't use the `default:` property. It breaks IE8 compatibility.
+* Fixed issue where `test` folder is created for React projects when unit testing is disabled
+* DEV: Started using git-flow for development to make branching structure more predictable for maintainers and contributors
+* Implemented a roadmap file to give better context to current and future development efforts
+
 ### v0.10.0:
 #### date: 2014-09-03
 ##### changes:

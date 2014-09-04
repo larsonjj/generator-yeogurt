@@ -1,4 +1,4 @@
-/** @jsx React.DOM */
+/*jshint newcap:false */
 
 /**
 *   <%= _.classify(name) %> Component Description
@@ -8,12 +8,12 @@
 
 var React = require('react');
 
-var <%= _.classify(name) %> = React.createClass({
+var <%= _.classify(name) %> = React.createClass({displayName: '<%= _.classify(name) %>',
     render: function() {
         return (
-            <div>
-                <p ref="p"><%= name.toLowerCase() %> component</p>
-            </div>
+            React.DOM.div(null,
+                React.DOM.p({ref: 'p'}, '<%= _.classify(name) %> component')
+            )
         );
     }
 });

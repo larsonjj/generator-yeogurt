@@ -22,8 +22,9 @@ define(function(require) {
 });<% } else if (jsOption === 'browserify') { %>
 'use strict';
 <% if (jsFramework === 'react') { %>
-var React = require('react');
-var MainComponent = require('./components/main.jsx');
+var React = require('react');<% if (useJsx) { %>
+var MainComponent = require('./components/main.jsx');<% } else { %>
+var MainComponent = require('./components/main.js');<% } %>
 <% } else if (jsFramework === 'backbone') { %>
 var MainView = require('./views/main');<% } %>
 
