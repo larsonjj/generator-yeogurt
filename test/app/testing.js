@@ -95,5 +95,29 @@ describe('Yeogurt generator unit testing', function () {
                 });
             });
         });
+        describe('With React', function () {
+            it('Does not create certain files', function (done) {
+                var notExpected = [
+                    'test',
+                    'test/helpers',
+                    'test/helpers/phantomjs-shim.js'
+                ];
+                var fileContentToTest = [
+                    ['Gruntfile.js', /testConfig/i]
+                ];
+
+                helpers.mockPrompt(this.app, {
+                    useTesting: false,
+                    jsFramework: 'react',
+                    testFramework: 'jasmine'
+                });
+
+                this.app.run([], function () {
+                    assert.noFile(notExpected);
+                    assert.noFileContent(fileContentToTest);
+                    done();
+                });
+            });
+        });
     });
 });
