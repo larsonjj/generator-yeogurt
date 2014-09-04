@@ -9,10 +9,10 @@ define(function(require) {
 
     var MainRouter = Backbone.Router.extend({
         routes: {
-            '': 'default'
+            '': 'main'
         },
 
-        default: function() {
+        main: function() {
             // Initialize the main view
             new MainView();
         }
@@ -29,10 +29,10 @@ var MainView = require('./views/main');<% } %>
 
 var MainRouter = Backbone.Router.extend({
     routes: {
-        '': 'default'
+        '': 'main'
     },
 
-    default: function() {<% if (jsFramework === 'react') { %>
+    main: function() {<% if (jsFramework === 'react') { %>
         React.renderComponent(new MainComponent(), document.getElementById('app-wrapper'));<% } else if (jsFramework === 'backbone') { %>
         // Initialize the main view
         new MainView();<% } %>
@@ -50,10 +50,10 @@ var <%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
     // Main Router
     <%= _.camelize(projectName) %>.MainRouter = Backbone.Router.extend({
         routes: {
-            '': 'default'
+            '': 'main'
         },
 
-        default: function() {
+        main: function() {
             // Initialize the main view
             new <%= _.camelize(projectName) %>.MainView();
         }

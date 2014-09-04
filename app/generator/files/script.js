@@ -36,7 +36,9 @@ var scriptFiles = function scriptFiles() {
 
         this.template('client/scripts/backbone/routes.js', 'client/scripts/routes.js');
         this.template('client/scripts/react/main.jsx', 'client/scripts/components/main.jsx');
-        this.template('test/helpers/phantomjs-shims.js', 'test/helpers/phantomjs-shims.js');
+        if (this.useTesting) {
+            this.template('test/helpers/phantomjs-shims.js', 'test/helpers/phantomjs-shims.js');
+        }
     }
 };
 
