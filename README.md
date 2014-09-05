@@ -33,7 +33,7 @@ Once you have Node installed, make sure you have these tools by opening up a ter
 
 If you get any errors and/or you're version(s) are too low, you should run `npm install -g yo`. This will install all three tools and update them to their latest versions.
 
-> NOTE: Bower requires the use of [Git](http://git-scm.com/) to install packages.
+> IMPORTANT: Bower requires the use of [Git](http://git-scm.com/) to install packages.
 
 #### Yeogurt
 Now that you have all the needed dependencies, you can install this generator with the following command: `npm install -g generator-yeogurt`
@@ -53,7 +53,7 @@ then, run the Yeogurt generator.
 yo yeogurt
 ```
 
-Optionally, you can skip the automated installation of node and bower packages by passing in `--skip-install`.
+Optionally, you can skip the automated installation of npm and bower packages by passing in `--skip-install`.
 
 ```
 yo yeogurt --skip-install
@@ -65,15 +65,15 @@ Follow all the prompts and choose what suits you most for the project you would 
 
 Now you can run:
 
-- `grunt` for building a production version of your site.
+- `grunt` for testing and building a production version of your site.
 - `grunt serve` for previewing your site/app on a development server.
-- `grunt serve:dist` for previewing a built version of your site/app.
+- `grunt serve:dist` for previewing a production version of your site/app.
 
 You can learn more about what tasks are available in the [grunt tasks](#grunt-workflow) section.
 
 > IMPORTANT: SVN users should run the `svn-init.sh` (Linux, OSX) or `svn-init.bat` (Window) script in order to correctly setup ignores for your project. These scripts will be located in the root of your project folder. It is recommended that you do this before committing any code.
 
-Congratulations! You should now have successfully created a Yeogurt project and be ready to start building out your site/app.
+Congratulations! You should now have successfully created a Yeogurt project and are ready to start building out your site/app.
 
 
 ## Features
@@ -133,7 +133,7 @@ A grunt task looks for new/updated files in your project and automatically injec
 ## Grunt Workflow
 
 ### `grunt`
-Runs both `grunt test` and `grunt build`.
+Runs both [`grunt test`](#grunt-test) and [`grunt build`](#grunt-build).
 
 ### `grunt serve`
 Starts up a development server that watches files and automatically reloads them to the browser when a change is detected.
@@ -142,9 +142,10 @@ Starts up a development server that watches files and automatically reloads them
 
 |Tasks| Description
 |---------|-------
-|grunt serve --allow-remote| same as `grunt serve`, but allows remote devices on the same network to view your site/app
-|grunt serve:dist| runs `grunt build` and starts up a server that loads the optimized files
-|grunt serve:dist --allow-remote| same as `grunt serve:dist`, but allows remote devices on the same network to view your site/app
+|grunt serve:dist| runs [`grunt build`](#grunt-build) and starts up a server that loads the optimized files
+|grunt serve:docs| same as [`grunt serve`](#grunt-serve), but will also watch and recompiles automated documentation (KSS, JSDoc, etc).
+
+***NOTE: you can add the `--allow-remote` option to any of these commands to allow remote devices on the same network to view your site/app***
 
 ### `grunt build`
 Builds out an optimized site through compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, optimization of images, and processing of [usemin blocks](Usemin blocks). All files created from this task are put in the `{project root}/dist/` folder.
@@ -156,13 +157,14 @@ Runs JSHint and Karma to lint and run JavaScript tests, respectively.
 
 |Tasks| Description
 |---------|-------
-|grunt test:watch| runs `grunt test`, but also watches test files and auto runs tests when changes are detected.
-|grunt test:watch --allow-remote| same as `grunt test:watch`, but allows remote devices on the same network to view/run you tests
+|grunt test:watch| runs [`grunt test`](#grunt-test), but also watches test files and auto runs tests when changes are detected.
+
+***NOTE: you can add the `--allow-remote` option to any of these commands to allow remote devices on the same network to view/run your tests***
 
 ### `grunt deploy`
-Runs `grunt build` and pushes optimized files to a specified FTP server.
+Runs [`grunt build`](#grunt-build) and pushes optimized files to a specified FTP server.
 
-***NOTE: FTP server info is specified in the `.ftppass` file in the root of your project)***
+***NOTE: [FTP server](#ftp-server) info is specified in the `.ftppass` file in the root of your project)***
 
 ## Sub-Generators
 
@@ -289,7 +291,7 @@ yo yeogurt:template mytemplate --folder=account
 
 Creates 2 files
 
-- A new React JSX file within the `client/scripts/components`
+- A new React component file within the `client/scripts/components`
 - A unit test file within the `test/spec/components` folder.
 
 |Options |Possible Values |Description
@@ -446,7 +448,7 @@ This does a couple things:
 
 Your library should now load correctly (assuming your source path is correct).
 
-> Important: If your third-party script will be referenced within your own code (ex. using jQuery), you need to make sure that JSHint is aware it. Check out [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts) to see how to make this happen.
+> IMPORTANT: If your third-party script will be referenced within your own code (ex. using jQuery), you need to make sure that JSHint is aware it. Check out [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts) to see how to make this happen.
 
 
 ## Deployment
@@ -470,7 +472,7 @@ Fill out the necessary connection information needed to access your FTP server a
 
 For more info on setting up the `.ftppass` file, refer to the [grunt-ftpush](https://github.com/inossidabile/grunt-ftpush) documentation
 
-> Important: You will want to test your FTP connection information using an FTP client first (ex. [Filezilla](https://filezilla-project.org/)). This will ensure that you are: a) using the correct information and b) copying files to the correct directory.
+> IMPORTANT: You will want to test your FTP connection information using an FTP client first (ex. [Filezilla](https://filezilla-project.org/)). This will ensure that you are: a) using the correct information and b) copying files to the correct directory.
 
 ## Common Gotchas
 ### Bower not installing dependencies using Git
