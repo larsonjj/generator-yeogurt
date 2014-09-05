@@ -9,7 +9,7 @@ var taskConfig = function(grunt) {
         server: {
             options: {<% if (jsFramework === 'react') { %>
                 transform:  [ require('grunt-react').browserify ],<% } %>
-                bundleOptions: {
+                browserifyOptions: {
                     debug: true
                 },
                 watch: true
@@ -21,7 +21,7 @@ var taskConfig = function(grunt) {
         dist: {
             options: {<% if (jsFramework === 'react') { %>
                 transform:  [ require('grunt-react').browserify ],<% } %>
-                bundleOptions: {
+                browserifyOptions: {
                     debug: true
                 },
                 preBundleCB: function(b) {
@@ -39,7 +39,7 @@ var taskConfig = function(grunt) {
         test: {
             options: {<% if (jsFramework === 'react') { %>
                 transform:  [ require('grunt-react').browserify ],<% } %>
-                bundleOptions: {
+                browserifyOptions: {
                     debug: true
                 },
                 watch: true

@@ -1,3 +1,9 @@
+### v0.10.2:
+#### date: 2014-09-05
+##### changes:
+* Fixed [#60](https://github.com/larsonjj/generator-yeogurt/issues/60) and [#61](https://github.com/larsonjj/generator-yeogurt/issues/61)
+* Updated grunt-browserify and connect-livereload to latest packages
+
 ### v0.10.1:
 #### date: 2014-09-04
 ##### changes:
