@@ -31,6 +31,9 @@ StyleGenerator.prototype.files = function files() {
     else if (this.cssOption === 'sass') {
         this.template('style.less', 'client/styles/' + this.cleanFolderPath(this.folder) + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
     }
+    else if (this.cssOption === 'stylus') {
+        this.template('style.less', 'client/styles/' + this.cleanFolderPath(this.folder) + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.styl');
+    }
     else {
         this.template('style.less', 'client/styles/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.css');
     }

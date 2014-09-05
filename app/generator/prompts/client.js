@@ -108,11 +108,12 @@ var clientPrompts = function clientPrompts() {
         type: 'list',
         name: 'cssOption',
         message: 'What would you like to use to ' + 'write styles'.blue + '?',
-        choices: ['Sass', 'Less', 'CSS'],
+        choices: ['Sass', 'Less', 'Stylus', 'CSS'],
         filter: function(val) {
             var filterMap = {
                 'Sass': 'sass',
                 'Less': 'less',
+                'Stylus': 'stylus',
                 'CSS': 'css'
             };
 

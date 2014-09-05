@@ -1,18 +1,19 @@
-/**
- * Main Stylesheet
- */
+// Main Stylesheet
 
 <% if (useBourbon) { %>// Import Bourbon Mixins
 @import '../bower_components/bourbon/dist/_bourbon';<% } %><% if (useLesshat) { %>// Import Lesshat Library
 
 @import '../bower_components/lesshat/build/lesshat';
 <% } %><% if (!useBootstrap && !useFoundation) { %>
-// Import Normalize Library
-
 <% if (cssOption === 'sass') { %>// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
 @import '../bower_components/normalize-scss/normalize';<% } %><% if (cssOption === 'less') { %>
 // Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
-@import (less) '../bower_components/normalize.css/normalize.css';<% } %>
+@import (less) '../bower_components/normalize.css/normalize.css';<% } %><% if (cssOption === 'stylus') { %>
+// Import Nib mixin library
+@import '../../node_modules/nib'
+
+// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
+global-reset()<% } %>
 <% } %><% if (!useBootstrap) { %>
 // Box sizing partial styles:
 // Apply a natural box layout model to all elements

@@ -46,12 +46,16 @@ describe('Yeogurt generator using Styles', function () {
                 'grunt/config',
                 'grunt/config/compile/sass.js'
             ];
+            var fileContentToTest = [
+                ['client/styles/main.scss', /sass/i]
+            ];
 
             helpers.mockPrompt(this.app, {
                 cssOption: 'sass'
             });
             this.app.run([], function () {
                 assert.file(expected);
+                assert.fileContent(fileContentToTest);
                 done();
             });
         });
@@ -82,12 +86,16 @@ describe('Yeogurt generator using Styles', function () {
                 'grunt/config',
                 'grunt/config/compile/less.js'
             ];
+            var fileContentToTest = [
+                ['client/styles/main.less', /less/i]
+            ];
 
             helpers.mockPrompt(this.app, {
                 cssOption: 'less'
             });
             this.app.run([], function () {
                 assert.file(expected);
+                assert.fileContent(fileContentToTest);
                 done();
             });
         });
@@ -105,6 +113,32 @@ describe('Yeogurt generator using Styles', function () {
                     assert.fileContent(fileContentToTest);
                     done();
                 });
+            });
+        });
+    });
+    describe('With Stylus', function () {
+        it('Creates expected files', function (done) {
+            var expected = [
+                'client/',
+                'client/styles',
+                'client/styles/main.styl',
+                'grunt/',
+                'grunt/config',
+                'grunt/config/compile/stylus.js'
+            ];
+            var fileContentToTest = [
+                ['client/styles/main.styl', /nib/i]
+            ];
+
+            helpers.mockPrompt(this.app, {
+                cssOption: 'stylus',
+                useBootstrap: false,
+                useFoundation: false
+            });
+            this.app.run([], function () {
+                assert.file(expected);
+                assert.fileContent(fileContentToTest);
+                done();
             });
         });
     });

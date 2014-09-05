@@ -59,6 +59,9 @@ var taskFiles = function taskFiles() {
     if (this.cssOption === 'sass') {
         this.template('grunt/config/compile/sass.js', 'grunt/config/compile/sass.js');
     }
+    if (this.cssOption === 'stylus') {
+        this.template('grunt/config/compile/stylus.js', 'grunt/config/compile/stylus.js');
+    }
     if (this.jsTemplate === 'lodash') {
         this.template('grunt/config/compile/jst.js', 'grunt/config/compile/jst.js');
     }

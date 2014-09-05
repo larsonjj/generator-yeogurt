@@ -56,7 +56,9 @@
         "grunt-contrib-copy": "0.5.0",
         "grunt-contrib-uglify": "0.4.0",<% if (cssOption === 'sass') { %>
         "grunt-sass": "0.14.0",<% } %><% if (cssOption === 'less') { %>
-        "grunt-contrib-less": "~0.11.0",<% } %>
+        "grunt-contrib-less": "~0.11.0",<% } %><% if (cssOption === 'stylus') { %>
+        "grunt-contrib-stylus": "~0.19.0",
+        "nib": "1.0.3",<% } %>
         "grunt-open": "0.2.3",
         "grunt-svgmin": "0.4.0",
         "grunt-injector": "0.5.3",

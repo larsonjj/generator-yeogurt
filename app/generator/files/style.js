@@ -19,6 +19,9 @@ var styleFiles = function styleFiles() {
         if (this.cssOption === 'sass') {
             this.template('client/styles/main.less', 'client/styles/main.scss');
         }
+        if (this.cssOption === 'stylus') {
+            this.template('client/styles/main.less', 'client/styles/main.styl');
+        }
     }
     else {
         this.template('client/styles/main.css', 'client/styles/main.css');
