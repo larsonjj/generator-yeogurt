@@ -165,7 +165,7 @@ var taskConfig = function(grunt) {
                 'server.js',
                 'server/**/*.{js,json,html}'<% if (jsFramework === 'react') { %><% if (useJsx) { %>,
                 '<%%= yeogurt.client %>/scripts/components/*.jsx'<% } else { %>
-                '<%%= yeogurt.client %>/scripts/components/*.js'<% } %><% if (htmlOption === 'swig') { %>,
+                '<%%= yeogurt.client %>/scripts/components/*.js'<% } %><% } %><% if (htmlOption === 'swig') { %>,
                 '<%%= yeogurt.server %>/templates/**/*.swig'<% } %><% if (htmlOption === 'jade') { %>,
                 '<%%= yeogurt.server %>/templates/**/*.jade'<% } %>
             ],
