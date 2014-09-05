@@ -39,7 +39,7 @@
         "grunt-contrib-htmlmin": "0.3.0",<% if (jsOption === 'requirejs') { %>
         "grunt-contrib-requirejs": "0.4.4",<% } else if (jsOption === 'browserify') { %>
         "minifyify": "4.0.3",
-        "grunt-browserify": "2.1.4",
+        "grunt-browserify": "~3.0.0",
         "grunt-exorcise": "0.1.0",<% } %>
         "grunt-usemin": "2.1.1",<% if (useJsdoc) { %>
         "grunt-jsdoc": "beta",<% } %>
@@ -78,7 +78,7 @@
         "bower": "~1.3.3",<% if (useFTP) { %>
         "grunt-ftpush": "~0.3.3",<% } %>
         "jit-grunt": "~0.6.0"<% if (useServer) { %>,
-        "connect-livereload": "~0.3.0",
+        "connect-livereload": "~0.4.0",
         "grunt-express-server": "~0.4.5"<% } %>
     },
     "scripts": {<% if (useServer) { %>
