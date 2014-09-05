@@ -39,18 +39,33 @@ var expressConfig = function(app, express,<% if (dbOption === 'mysql') { %> sequ
     // Remove x-powered-by header (doesn't let clients know we are using Express)
     app.disable('x-powered-by');
 
+    // Setup path where all server templates will reside
+    app.set('views', path.join(settings.root, 'server/templates'));
+
     if ('production' === env) {
         // Enable GZip compression for all static assets
         app.use(compress());
     }
+    else if ('development' === env) {
+        // Include livereload script
+        app.use(require('connect-livereload')());
 
-    // Setup path where all server templates will reside
-    app.set('views', path.join(settings.root, 'server/templates'));
+        // Disable caching for easier testing
+        app.use(function noCache(req, res, next) {
+            res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
+            res.header('Pragma', 'no-cache');
+            res.header('Expires', 0);
+            next();
+        });
+    }
 
     // Load favicon
     app.use(favicon((settings.root + '/' + settings.staticAssets + '/favicon.ico')));
 
     app.use(express.static(path.join(settings.root, settings.staticAssets), {maxAge: week}));
+
+    // Setup log level for server console output
+    app.use(logger('dev'));
 
     // Returns middleware that parses both json and urlencoded.
     app.use(bodyParser.json());
@@ -73,23 +88,7 @@ var expressConfig = function(app, express,<% if (dbOption === 'mysql') { %> sequ
             httpOnly: true, /*, secure: true for HTTPS*/
             maxAge: day
         }
-    }));<% } %>
-
-    if ('development' === env) {
-        // Include livereload script
-        app.use(require('connect-livereload')());
-
-        // Setup log level for server console output
-        app.use(logger('dev'));
-
-        // Disable caching for easier testing
-        app.use(function noCache(req, res, next) {
-            res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
-            res.header('Pragma', 'no-cache');
-            res.header('Expires', 0);
-            next();
-        });
-    }<% if (useSession && useSecurity) { %>
+    }));<% } %><% if (useSession && useSecurity) { %>
 
     // Initialize Lusca Security
     app.use(security);<% } %>
