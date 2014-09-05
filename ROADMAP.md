@@ -4,6 +4,7 @@
 * Add [Stylus](http://learnboost.github.io/stylus/) support
 * Add Sass syntax support (in addition to Scss default)
 * Update prompts, tests, and generator to enable Flux architecure for React projects
+* Update Static Sites using express to use middleware for style compilation (sass, less, stylus) instead of grunt plugins.
 
 ## v0.12.0
 * Add [Pure.css](http://purecss.io/) CSS library option/support
