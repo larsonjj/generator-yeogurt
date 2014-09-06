@@ -97,16 +97,22 @@ var taskConfig = function(grunt) {
             options: {
                 transform: function(filePath) {
                     filePath = filePath.replace('/client/styles/', '');
-                    return '@import \'' + filePath.slice(0, -5) + '\';';
+                    <% if (sassSyntax === 'scss') { %>
+                    return '@import \'' + filePath.slice(0, -5) + '\';';<% } else { %>
+                    return '@import ' + filePath.slice(0, -5);<% } %>
                 },
                 starttag: '// [injector]',
                 endtag: '// [endinjector]'
             },
-            files: {
+            files: {<% if (sassSyntax === 'scss') { %>
                 '<%%= yeogurt.client %>/styles/main.scss': [
                     '<%%= yeogurt.client %>/styles/**/*.scss',
                     '!<%%= yeogurt.client %>/styles/main.scss'
-                ]
+                ]<% } else { %>
+                '<%%= yeogurt.client %>/styles/main.sass': [
+                    '<%%= yeogurt.client %>/styles/**/*.sass',
+                    '!<%%= yeogurt.client %>/styles/main.sass'
+                ]<% } %>
             }
         },<% } %><% if (cssOption === 'stylus') { %>
         // Inject component scss into main.scss

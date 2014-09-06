@@ -31,7 +31,26 @@ describe('Style sub-generator', function () {
             ];
 
             helpers.mockPrompt(this.app, {
-                cssOption: 'sass'
+                cssOption: 'sass',
+                sassSyntax: 'scss'
+            });
+            this.app.run([], function() {
+                createSubGenerator('style', style, {}, function() {
+                    assert.file(filesToTest);
+                    done();
+                });
+            });
+        });
+        it('Handles defaults with .sass syntax', function(done) {
+            // Filename
+            var style = 'mystyle';
+            var filesToTest = [
+                'client/styles/_' + style + '.sass'
+            ];
+
+            helpers.mockPrompt(this.app, {
+                cssOption: 'sass',
+                sassSyntax: 'sass'
             });
             this.app.run([], function() {
                 createSubGenerator('style', style, {}, function() {

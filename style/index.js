@@ -14,6 +14,7 @@ var StyleGenerator = module.exports = function StyleGenerator(args, options, con
     this.useDashboard = this.options.dashboard || false;
     this.folder = this.options.folder || '';
     this.cssOption = fileJSON.cssOption;
+    this.sassSyntax = fileJSON.sassSyntax || 'scss';
     this.testFramework = fileJSON.testFramework;
 
     // Remove all leading and trailing slashes in folder path
@@ -29,7 +30,7 @@ StyleGenerator.prototype.files = function files() {
         this.template('style.less', 'client/styles/' + this.cleanFolderPath(this.folder) + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.less');
     }
     else if (this.cssOption === 'sass') {
-        this.template('style.less', 'client/styles/' + this.cleanFolderPath(this.folder) + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.scss');
+        this.template('style.less', 'client/styles/' + this.cleanFolderPath(this.folder) + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.' + this.sassSyntax);
     }
     else if (this.cssOption === 'stylus') {
         this.template('style.less', 'client/styles/' + this.cleanFolderPath(this.folder) + '/' + '_' + this._.slugify(this.name.toLowerCase()) + '.styl');

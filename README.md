@@ -474,6 +474,9 @@ For more info on setting up the `.ftppass` file, refer to the [grunt-ftpush](htt
 
 > IMPORTANT: You will want to test your FTP connection information using an FTP client first (ex. [Filezilla](https://filezilla-project.org/)). This will ensure that you are: a) using the correct information and b) copying files to the correct directory.
 
+## Guides
+Check out the [Guides](docs/guides/README.md) section to learn how to integrate other technologies like Ruby Sass
+
 ## Common Gotchas
 ### Bower not installing dependencies using Git
 ##### Typical error message:

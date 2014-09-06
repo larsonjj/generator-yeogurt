@@ -71,6 +71,7 @@ var answersConfig = function answersConfig() {
     this.jsTemplate            = this.answers.jsTemplate;
     this.jsOption              = this.answers.jsOption;
     this.cssOption             = this.answers.cssOption;
+    this.sassSyntax            = this.answers.sassSyntax;
     this.useBourbon            = this.answers.useBourbon;
     this.useLesshat            = this.answers.useLesshat;
     this.cssFramework          = this.answers.cssFramework;
