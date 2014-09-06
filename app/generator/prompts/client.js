@@ -121,6 +121,20 @@ var clientPrompts = function clientPrompts() {
         }
     }, {
         when: function(answers) { return answers.cssOption === 'sass'; },
+        type: 'list',
+        name: 'sassSyntax',
+        message: 'What ' + 'Sass syntax'.blue + ' would you like to use ?',
+        choices: ['Scss', 'Sass'],
+        filter: function(val) {
+            var filterMap = {
+                'Scss': 'scss',
+                'Sass': 'sass'
+            };
+
+            return filterMap[val];
+        }
+    }, {
+        when: function(answers) { return answers.cssOption === 'sass'; },
         type: 'confirm',
         name: 'useBourbon',
         message: 'Would you like to use the ' + 'Bourbon Mixin Library'.blue + '?',

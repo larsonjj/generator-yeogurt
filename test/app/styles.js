@@ -75,6 +75,32 @@ describe('Yeogurt generator using Styles', function () {
                 });
             });
         });
+        describe('With Sass (not Scss) syntax', function () {
+            it('Creates expected content', function (done) {
+                var expected = [
+                    'client/',
+                    'client/styles',
+                    'client/styles/main.sass',
+                    'grunt/',
+                    'grunt/config',
+                    'grunt/config/compile/sass.js'
+                ];
+                var fileContentToTest = [
+                    ['grunt/config/compile/sass.js', /\.sass/i],
+                    ['grunt/config/doc/kss.js', /main\.sass/i]
+                ];
+
+                helpers.mockPrompt(this.app, {
+                    cssOption: 'sass',
+                    sassSyntax: 'sass',
+                });
+                this.app.run([], function () {
+                    assert.file(expected);
+                    assert.fileContent(fileContentToTest);
+                    done();
+                });
+            });
+        });
     });
     describe('With Less', function () {
         it('Creates expected files', function (done) {

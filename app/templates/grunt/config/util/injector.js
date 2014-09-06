@@ -102,11 +102,15 @@ var taskConfig = function(grunt) {
                 starttag: '// [injector]',
                 endtag: '// [endinjector]'
             },
-            files: {
+            files: {<% if (sassSyntax === 'scss') { %>
                 '<%%= yeogurt.client %>/styles/main.scss': [
                     '<%%= yeogurt.client %>/styles/**/*.scss',
                     '!<%%= yeogurt.client %>/styles/main.scss'
-                ]
+                ]<% } else { %>
+                '<%%= yeogurt.client %>/styles/main.sass': [
+                    '<%%= yeogurt.client %>/styles/**/*.sass',
+                    '!<%%= yeogurt.client %>/styles/main.sass'
+                ]<% } %>
             }
         },<% } %><% if (cssOption === 'stylus') { %>
         // Inject component scss into main.scss

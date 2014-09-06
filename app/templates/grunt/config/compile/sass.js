@@ -10,26 +10,28 @@ var taskConfig = function(grunt) {
             options: {
                 precision: 10,
                 outputStyle: 'nested',
-                sourceMap: 'true',
+                sourceMap: true,
                 includePaths: [
                     '<%%= yeogurt.client %>/styles/'
                 ]
             },
-            files: {
-                '<%%= yeogurt.staticServer %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.scss'
+            files: {<% if (sassSyntax === 'scss') { %>
+                '<%%= yeogurt.staticServer %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.scss'<% } else { %>
+                '<%%= yeogurt.staticServer %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.sass'<% } %>
             }
         },
         dist: {
             options: {
                 precision: 10,
                 outputStyle: 'compressed',
-                sourceMap: 'true',
+                sourceMap: true,
                 includePaths: [
                     '<%%= yeogurt.client %>/styles/'
                 ]
             },
-            files: {
-                '<%%= yeogurt.dist %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.scss'
+            files: {<% if (sassSyntax === 'scss') { %>
+                '<%%= yeogurt.dists %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.scss'<% } else { %>
+                '<%%= yeogurt.dists %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.sass'<% } %>
             }
         }
     });
