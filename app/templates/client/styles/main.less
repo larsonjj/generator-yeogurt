@@ -1,10 +1,9 @@
-// Main Stylesheet
+// Main Stylesheet<% if (useBourbon) { %>
 
-<% if (useBourbon) { %>// Import Bourbon Mixins
+// Import Bourbon Mixins
 @import '../bower_components/bourbon/dist/_bourbon';<% } %><% if (useLesshat) { %>// Import Lesshat Library
 
-@import '../bower_components/lesshat/build/lesshat';
-<% } %><% if (!useBootstrap && !useFoundation) { %>
+@import '../bower_components/lesshat/build/lesshat';<% } %><% if (!useBootstrap && !useFoundation) { %>
 <% if (cssOption === 'sass') { %>// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
 @import '../bower_components/normalize-scss/normalize';<% } %><% if (cssOption === 'less') { %>
 // Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
@@ -29,13 +28,11 @@ global-reset()<% } %>
 // Import Font Awesome Library
 
 @import '../bower_components/font-awesome/less/font-awesome';
-@fa-font-path: '../bower_components/font-awesome/fonts';<% } %>
-<% } %><% if (cssOption === 'sass') { %><% if (useFontAwesome) { %>
-
+@fa-font-path: '../bower_components/font-awesome/fonts';<% } %><% } %><% if (cssOption === 'sass') { %><% if (useFontAwesome) { %>
 //  Import Font Awesome Library
 $fa-font-path: '../bower_components/font-awesome/fonts';
-@import '../bower_components/font-awesome/scss/font-awesome';<% } %>
-<% } %><% if (cssOption === 'less' && useBootstrap) { %>
+@import '../bower_components/font-awesome/scss/font-awesome';<% } %><% } %><% if (cssOption === 'less' && useBootstrap) { %>
+
 // Import All Bootstrap Styles
 
 // Core variables and mixins
@@ -87,6 +84,7 @@ $fa-font-path: '../bower_components/font-awesome/fonts';
 // Utility classes
 @import "../bower_components/bootstrap/less/utilities.less";
 @import "../bower_components/bootstrap/less/responsive-utilities.less";<% } %><% if (cssOption === 'sass' && useBootstrap) { %>
+
 // Import All Bootstrap Styles
 
 // Core variables and mixins
@@ -178,7 +176,8 @@ $fa-font-path: '../bower_components/font-awesome/fonts';
 @import "../bower_components/foundation/scss/foundation/components/top-bar";
 @import "../bower_components/foundation/scss/foundation/components/type";
 @import "../bower_components/foundation/scss/foundation/components/offcanvas";
-@import "../bower_components/foundation/scss/foundation/components/visibility";<% } %>
+@import "../bower_components/foundation/scss/foundation/components/visibility";
+<% } %>
 
 // Injects all imports files automatically (ex. _mypartial)
 // [injector]

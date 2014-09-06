@@ -17,6 +17,7 @@ var order = [
     'client',
     'testing',
     'documentation',
+    'deployment',
     /* Config */
     'answers',  // Handle answers and them up for use in templates
     'save',     // Save answers to .yo-rc.json file

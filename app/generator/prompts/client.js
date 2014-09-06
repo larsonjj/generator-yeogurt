@@ -184,12 +184,6 @@ var clientPrompts = function clientPrompts() {
         message: 'Will you be using ' + 'Google Analytics'.blue + '?',
         default: true
     }, {
-        when: function() { return !self.serverPrompts.useServer; },
-        type: 'confirm',
-        name: 'useFTP',
-        message: 'Will you be deploying code to an ' + 'FTP server'.blue + '?',
-        default: true
-    }, {
         type: 'confirm',
         name: 'jshint',
         message: 'Would you like to lint your Javascript with ' + 'JSHint'.blue + '?',
