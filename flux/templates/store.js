@@ -4,7 +4,7 @@
 
 'use strict';
 
-var AppDispatcher = require('../dispatcher/app-dispatcher');
+var AppDispatcher = require('../dispatchers/app');
 var EventEmitter = require('events').EventEmitter;
 var <%= _.classify(name) %>Constants = require('../constants/<%= _.slugify(name.toLowerCase()) %>');
 
@@ -56,12 +56,12 @@ AppDispatcher.register(function(payload) {
     var text;
 
     switch (action.actionType) {
-        case <%=_.classify(name) %> Constants.SAMPLE_CONSTANT:
+        case <%=_.classify(name) %>Constants.SAMPLE_CONSTANT:
             text = action.text.trim();
             if (text !== '') {
                 update(text);
                 // Let application know, that a change has occured
-                TodoStore.emitChange();
+                <%= _.classify(name) %>Store.emitChange();
             }
             break;
         default:

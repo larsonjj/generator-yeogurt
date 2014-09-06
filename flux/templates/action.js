@@ -4,7 +4,7 @@
 
 'use strict';
 
-var AppDispatcher = require('../dispatcher/app-dispatcher');
+var AppDispatcher = require('../dispatchers/app');
 var <%= _.classify(name) %>Constants = require('../constants/<%= _.slugify(name.toLowerCase()) %>');
 
 var <%= _.classify(name) %>Action = {

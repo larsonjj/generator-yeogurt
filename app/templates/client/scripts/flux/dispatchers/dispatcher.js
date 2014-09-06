@@ -3,12 +3,15 @@
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
- * LICENSE.txt file in this directory. An additional grant
- * of patent rights can be found in the PATENTS.txt file in this directory as well.
+ * LICENSE.txt file in the ../legal directory. An additional grant
+ * of patent rights can be found in the PATENTS.txt file in the ../legal directory as well.
  *
  * @providesModule Dispatcher
  * @typechecks
  */
+
+/*jshint -W089 */
+
 'use strict';
 
 var invariant = require('./invariant');
