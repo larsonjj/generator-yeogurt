@@ -17,7 +17,7 @@ var nodeFiles = function nodeFiles() {
             if (this.useServerTemplates) {
                 if (this.jsFramework === 'react') {
                     this.mkdir('server/modules');
-                    this.template('server/modules/reactRender.js','server/modules/reactRender.js');
+                    this.template('server/modules/react-render.js','server/modules/react-render.js');
                 }
             }
             this.template('client/templates/html/index.html', 'server/templates/index.html');

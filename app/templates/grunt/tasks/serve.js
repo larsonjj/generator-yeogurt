@@ -31,7 +31,8 @@ var taskConfig = function(grunt) {
             'kss:server',<% } %><% if (useJsdoc) { %>
             'jsdoc:server',<% } %><% if (cssOption === 'less') { %>
             'less:server',<% } %><% if (cssOption === 'sass') { %>
-            'sass:server',<% } %>
+            'sass:server',<% } %><% if (cssOption === 'stylus') { %>
+            'stylus:server',<% } %>
             'clean:temp'
         ]);
 

@@ -17,7 +17,15 @@ var styleFiles = function styleFiles() {
             this.template('client/styles/main.less', 'client/styles/main.less');
         }
         if (this.cssOption === 'sass') {
-            this.template('client/styles/main.less', 'client/styles/main.scss');
+            if (this.sassSyntax === 'sass') {
+                this.template('client/styles/main.sass', 'client/styles/main.sass');
+            }
+            else {
+                this.template('client/styles/main.less', 'client/styles/main.scss');
+            }
+        }
+        if (this.cssOption === 'stylus') {
+            this.template('client/styles/main.less', 'client/styles/main.styl');
         }
     }
     else {

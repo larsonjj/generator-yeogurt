@@ -81,6 +81,13 @@ var taskConfig = function(grunt) {
                 'injector:less',
                 'less:server'
             ]
+        },<% } %><% if (cssOption === 'stylus') { %>
+        stylus: {
+            files: ['<%%= yeogurt.client %>/styles/**/*.<% if (useKss) { %>{styl,md}<% } else { %>styl<% } %>'],
+            tasks: [
+                'injector:stylus',
+                'stylus:server'
+            ]
         },<% } %>
         injectCss: {
             files: [

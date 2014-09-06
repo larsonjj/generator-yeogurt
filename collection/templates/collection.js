@@ -5,7 +5,7 @@
 define(function(require) {
     'use strict';
 
-    var <%= useModel ? _.classify(useModel) : _.classify(name) %>Model = require('models/<%= useModel ? _.slugify(useModel) : _.slugify(name) %>');
+    var <%= useModel ? _.classify(useModel) : _.classify(name) %>Model = require('models/<%= useModel ? _.slugify(useModel) : _.slugify(name.toLowerCase()) %>');
 
     var <%= _.classify(name) %>Collection = Backbone.Collection.extend({
 
@@ -17,7 +17,7 @@ define(function(require) {
 });<% } else if (jsOption === 'browserify') { %>
 'use strict';
 
-var <%= useModel ? _.classify(useModel) : _.classify(name) %>Model = require('models/<%= useModel ? _.slugify(useModel) : _.slugify(name) %>');
+var <%= useModel ? _.classify(useModel) : _.classify(name) %>Model = require('models/<%= useModel ? _.slugify(useModel) : _.slugify(name.toLowerCase()) %>');
 
 var <%= _.classify(name) %>Collection = Backbone.Collection.extend({
 

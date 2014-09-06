@@ -16,7 +16,7 @@ var taskFiles = function taskFiles() {
         this.template('grunt/config/util/exorcise.js', 'grunt/config/util/exorcise.js');
     }
     if (this.useJsdoc) {
-        this.template('grunt/config/doc/jsdoc.js', 'grunt/config/doc/jsdoc.js');
+        this.template('grunt/config/docs/jsdoc.js', 'grunt/config/docs/jsdoc.js');
     }
     this.template('grunt/config/util/clean.js', 'grunt/config/util/clean.js');
     this.template('grunt/config/util/compress.js', 'grunt/config/util/compress.js');
@@ -30,13 +30,13 @@ var taskFiles = function taskFiles() {
     this.template('grunt/config/util/copy.js', 'grunt/config/util/copy.js');
     this.template('grunt/config/optimize/concat.js', 'grunt/config/optimize/concat.js');
     if (this.useDashboard) {
-        this.template('grunt/config/doc/dashboard.js', 'grunt/config/doc/dashboard.js');
+        this.template('grunt/config/docs/dashboard.js', 'grunt/config/docs/dashboard.js');
     }
     if (this.useFTP) {
         this.template('grunt/config/deploy/ftpush.js', 'grunt/config/deploy/ftpush.js');
     }
     if (this.useKss) {
-        this.template('grunt/config/doc/kss.js', 'grunt/config/doc/kss.js');
+        this.template('grunt/config/docs/kss.js', 'grunt/config/docs/kss.js');
     }
     this.template('grunt/config/optimize/htmlmin.js', 'grunt/config/optimize/htmlmin.js');
     this.template('grunt/config/optimize/imagemin.js', 'grunt/config/optimize/imagemin.js');
@@ -58,6 +58,9 @@ var taskFiles = function taskFiles() {
     }
     if (this.cssOption === 'sass') {
         this.template('grunt/config/compile/sass.js', 'grunt/config/compile/sass.js');
+    }
+    if (this.cssOption === 'stylus') {
+        this.template('grunt/config/compile/stylus.js', 'grunt/config/compile/stylus.js');
     }
     if (this.jsTemplate === 'lodash') {
         this.template('grunt/config/compile/jst.js', 'grunt/config/compile/jst.js');

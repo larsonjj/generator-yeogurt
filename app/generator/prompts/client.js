@@ -69,6 +69,12 @@ var clientPrompts = function clientPrompts() {
         message: 'Would you like to use ' + 'React\'s JSX syntax'.blue + '?',
         default: true
     }, {
+        when: function(answers) { return answers.jsFramework === 'react'; },
+        type: 'confirm',
+        name: 'useFlux',
+        message: 'Would you like to use ' + 'Flux'.blue + ' with your React application?',
+        default: true
+    }, {
         when: function(answers) { return self.serverPrompts.useServer && answers.jsFramework === 'react'; },
         type: 'confirm',
         name: 'useServerTemplates',
@@ -108,12 +114,27 @@ var clientPrompts = function clientPrompts() {
         type: 'list',
         name: 'cssOption',
         message: 'What would you like to use to ' + 'write styles'.blue + '?',
-        choices: ['Sass', 'Less', 'CSS'],
+        choices: ['Sass', 'Less', 'Stylus', 'CSS'],
         filter: function(val) {
             var filterMap = {
                 'Sass': 'sass',
                 'Less': 'less',
+                'Stylus': 'stylus',
                 'CSS': 'css'
+            };
+
+            return filterMap[val];
+        }
+    }, {
+        when: function(answers) { return answers.cssOption === 'sass'; },
+        type: 'list',
+        name: 'sassSyntax',
+        message: 'What ' + 'Sass syntax'.blue + ' would you like to use ?',
+        choices: ['Scss', 'Sass'],
+        filter: function(val) {
+            var filterMap = {
+                'Scss': 'scss',
+                'Sass': 'sass'
             };
 
             return filterMap[val];

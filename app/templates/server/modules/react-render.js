@@ -9,14 +9,14 @@ require('node-jsx').install();<% } %>
 // helper function for rendering a view with React on the Server-side
 var reactHelper = function(data, template) {
 
-    // Retrieve specified JSX file
-    var Component = require(path.join(settings.root, 'client/scripts/components/') + template);
+    // Retrieve specified component file
+    var component = require(path.join(settings.root, 'client/scripts/components/') + template);
 
     // Convert data to workable JavaScript object
     var cleanedData = JSON.parse(JSON.stringify(data));
 
-    // Return compiled JSX template with passed in data
-    return React.renderComponentToString(Component(cleanedData));
+    // Return compiled component template with passed in data
+    return React.renderComponentToString(component(cleanedData));
 };
 
 module.exports = reactHelper;
