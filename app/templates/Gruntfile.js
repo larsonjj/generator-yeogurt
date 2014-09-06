@@ -61,7 +61,7 @@ module.exports = function(grunt) {
     // Load task functions
     var utilConfig = loadTasks('./grunt/config/util');
     var compileConfig = loadTasks('./grunt/config/compile');<% if (useKss || useDashboard || useJsdoc) { %>
-    var docConfig = loadTasks('./grunt/config/doc');<% } %>
+    var docConfig = loadTasks('./grunt/config/docs');<% } %>
     var optimizeConfig = loadTasks('./grunt/config/optimize');<% if (useFTP) { %>
     var deployConfig = loadTasks('./grunt/config/deploy');<% } %>
     var serverConfig = loadTasks('./grunt/config/server');<% if (useTesting) { %>

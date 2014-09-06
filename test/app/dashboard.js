@@ -25,7 +25,7 @@ describe('Yeogurt generator using a Dashboard', function () {
         var expected = [
             'grunt/',
             'grunt/config',
-            'grunt/config/doc/dashboard.js',
+            'grunt/config/docs/dashboard.js',
             'client/',
             'client/docs/dashboard/',
             'client/docs/dashboard/images/',
