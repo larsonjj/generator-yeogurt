@@ -12,7 +12,7 @@
 
 'use strict';
 
-var <%= _.classify(name) %> = require('<%= folder ? folderCount : ''%>../../../client/scripts/components/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= _.slugify(name) %>.js<% if (useJsx) { %>x<% } %>');
+var <%= _.classify(name) %> = require('<%= folder ? folderCount : ''%>../../../client/scripts/components/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= _.slugify(name.toLowerCase()) %>.js<% if (useJsx) { %>x<% } %>');
 
 var ReactTestUtils;
 var reactRender;

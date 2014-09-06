@@ -44,6 +44,9 @@ var scriptFiles = function scriptFiles() {
         if (this.useTesting) {
             this.template('test/helpers/phantomjs-shims.js', 'test/helpers/phantomjs-shims.js');
         }
+        if (this.useFlux) {
+            this.directory('client/scripts/flux', 'client/scripts/flux');
+        }
     }
 };
 

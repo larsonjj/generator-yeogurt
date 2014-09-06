@@ -23,6 +23,33 @@ describe('Yeogurt generator using React', function () {
 
     describe('On the Client', function () {
         describe('With Browserify', function () {
+            describe('With Flux', function() {
+                it ('Creates expected files', function(done) {
+                    var expected = [
+                        'client/scripts/flux',
+                        'client/scripts/flux/legal',
+                        'client/scripts/flux/dispatchers/app.js',
+                        'client/scripts/flux/dispatchers/dispatcher.js',
+                        'client/scripts/flux/dispatchers/invariant.js',
+                        'client/scripts/flux/legal/LICENSE.txt',
+                        'client/scripts/flux/legal/PATENTS.txt',
+                    ];
+
+                    helpers.mockPrompt(this.app, {
+                        singlePageApplication: true,
+                        jsFramework: 'react',
+                        useFlux: true,
+                        jsTemplate: false,
+                        jsOption: 'browserify',
+                        useServer: false,
+                    });
+
+                    this.app.run([], function () {
+                        assert.file(expected);
+                        done();
+                    });
+                });
+            });
             describe('Using Jasmine', function () {
                 describe('Using JSX', function () {
                     it ('Creates expected files with expected content', function(done) {
@@ -208,7 +235,7 @@ describe('Yeogurt generator using React', function () {
                             ['server/templates/index.html', /app\-wrapper/i]
                         ];
                         var fileContentNotThere = [
-                            ['server/modules/reactRender.js', /node-jsx/i],
+                            ['server/modules/react-render.js', /node-jsx/i],
                             ['server/controllers/main.js', /node-jsx/i],
                         ];
 
@@ -276,7 +303,7 @@ describe('Yeogurt generator using React', function () {
                             ['server/templates/index.html', /app\-wrapper/i]
                         ];
                         var fileContentNotThere = [
-                            ['server/modules/reactRender.js', /node-jsx/i],
+                            ['server/modules/react-render.js', /node-jsx/i],
                             ['server/controllers/main.js', /node-jsx/i],
                         ];
 

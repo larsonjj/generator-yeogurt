@@ -7,7 +7,7 @@
 define(function(require) {
     'use strict';
 
-    var <%= _.classify(name) %> = require('<%= folder ? cleanFolderPath(folder) + '/' :  '' %><%= _.slugify(name) %>');
+    var <%= _.classify(name) %> = require('<%= folder ? cleanFolderPath(folder) + '/' :  '' %><%= _.slugify(name.toLowerCase()) %>');
 
     describe('Give it some context', function() {
 
@@ -20,7 +20,7 @@ define(function(require) {
 });<% } else if (jsOption === 'browserify') { %>
 'use strict';
 
-var <%= _.classify(name) %> = require('<%= folder ? folderCount : ''%>../../client/scripts/<%= folder ? cleanFolderPath(folder) + '/' :  '' %><%= _.slugify(name) %>.js');
+var <%= _.classify(name) %> = require('<%= folder ? folderCount : ''%>../../client/scripts/<%= folder ? cleanFolderPath(folder) + '/' :  '' %><%= _.slugify(name.toLowerCase()) %>.js');
 
 describe('Give it some context', function() {
 

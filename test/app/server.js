@@ -149,7 +149,7 @@ describe('Yeogurt generator using Server', function () {
         describe('With React', function () {
             it('Creates expected files', function (done) {
                 var expected = [
-                    'server/modules/reactRender.js',
+                    'server/modules/react-render.js',
                     'server/modules'
                 ];
 
