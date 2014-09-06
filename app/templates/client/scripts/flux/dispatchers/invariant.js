@@ -8,7 +8,6 @@
  *
  * @providesModule invariant
  */
-/*global __DEV__: true */
 
 'use strict';
 
@@ -24,7 +23,7 @@
  */
 
 var invariant = function(condition, format, a, b, c, d, e, f) {
-    if (__DEV__) {
+    if (false) {
         if (format === undefined) {
             throw new Error('invariant requires an error message argument');
         }
