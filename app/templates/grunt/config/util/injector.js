@@ -97,7 +97,9 @@ var taskConfig = function(grunt) {
             options: {
                 transform: function(filePath) {
                     filePath = filePath.replace('/client/styles/', '');
-                    return '@import \'' + filePath.slice(0, -5) + '\';';
+                    <% if (sassSyntax === 'scss') { %>
+                    return '@import \'' + filePath.slice(0, -5) + '\';';<% } else { %>
+                    return '@import ' + filePath.slice(0, -5);<% } %>
                 },
                 starttag: '// [injector]',
                 endtag: '// [endinjector]'
