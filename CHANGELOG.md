@@ -1,3 +1,10 @@
+### v0.11.0:
+#### date: 2014-09-06
+##### changes:
+* Added [Stylus](http://learnboost.github.io/stylus/) support
+* Added Sass syntax support (in addition to Scss default)
+* Updated prompts, tests, and generators to enable Flux architecure for React projects
+
 ### v0.10.2:
 #### date: 2014-09-05
 ##### changes:
