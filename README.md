@@ -6,9 +6,58 @@
 
 A [Yeoman](http://yeoman.io) generator that creates a sensible structure for static sites and single page applications by using your favorite tools.
 
+# Table of Contents
+
+- [What can I create with Yeogurt?](#what-can-i-create-with-yeogurt)
+- [Getting Started](#getting-started)
+    - [Installation](#installation)
+    - [Usage](#usage)
+- [Features](#features)
+    - [Included in every project](#included-in-every-project)
+    - [Available Options](#available-options)
+    - [Static Site Options](#static-site-options)
+    - [Single Page Application Options](#single-page-application-options)
+    - [Express Server Options](#express-server-options)
+    - [Automatic File Injection](#automatic-file-injection)
+- [Grunt Workflow](#grunt-workflow)
+- [Sub-Generators](#sub-generators)
+    - [Default (Can be used on any project)](#default-can-be-used-on-any-project)
+    - [Static Sites and Backbone applications](#static-sites-and-backbone-applications)
+    - [React application](#react-application)
+    - [Flux application](#flux-application)
+    - [Backbone application](#backbone-application)
+- [Default Generators](#default-generators)
+    - [Script](#script)
+    - [Style](#style)
+- [Static Site and Backbone Sub-generators](#static-site-and-backbone-sub-generators)
+    - [Template](#template)
+- [React Sub-generator](#react-sub-generator)
+    - [React](#react)
+- [Flux Sub-generator](#flux-sub-generator)
+    - [Flux](#flux)
+- [Backbone Sub-generators](#backbone-sub-generators)
+    - [View](#view)
+    - [Model](#model)
+    - [Collection](#collection)
+- [Automated Documentation](#automated-documentation)
+    - [Dashboard](#dashboard)
+    - [JavaScript API](#javascript-api)
+    - [Styleguide](#styleguide)
+- [Adding third-party libraries](#adding-third-party-libraries)
+- [Deployment](#deployment)
+    - [FTP Server](#ftp-server)
+- [Guides](#guides)
+- [Common Gotchas](#common-gotchas)
+    - [Bower not installing dependencies using Git](#bower-not-installing-dependencies-using-git)
+    - [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [Release History](#release-history)
+- [License](#license)
+
 ## What can I create with Yeogurt?
 - Build out static sites using [Jade](http://jade-lang.com/), [Swig](http://paularmstrong.github.io/swig/), or HTML.
-- Create Single Page Applications using [Backbone](http://backbonejs.org/) or [React](http://facebook.github.io/react/).
+- Create Single Page Applications using [Backbone](http://backbonejs.org/) or [React](http://facebook.github.io/react/) (optionally with [Flux](http://facebook.github.io/react/docs/flux-overview.html)).
 - Make your site/app full-stack by adding an [Express](http://expressjs.com/) Server with optional database, cookie session, and security support .
 
 Check out the [features](#features) section to see everything this generator has to offer.
@@ -88,7 +137,7 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 
 - Project/Site naming
 - Default ignores for [Git](http://git-scm.com/) or [SVN](http://subversion.apache.org/)
-- Stylesheets with [Less](http://lesscss.org/), [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass)), or CSS
+- Stylesheets with [Less](http://lesscss.org/), [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass)), [Stylus](http://learnboost.github.io/stylus/), or CSS
 - Modular JavaScript with [RequireJS](http://requirejs.org/) or [Browserify](http://browserify.org/)
 - IE8 Support via [HTML5shiv](https://github.com/aFarkas/html5shiv) and [RespondJS](https://github.com/scottjehl/Respond)
 - JavaScript Linting with [JSHint](http://www.jshint.com/)
@@ -105,8 +154,8 @@ Congratulations! You should now have successfully created a Yeogurt project and 
     - Only available for Static Sites that are not using an Express server
 
 ### Single Page Application Options
-- Facebook's [React](http://facebook.github.io/react/)
-    - Must use Browserify
+- Facebook's [React](http://facebook.github.io/react/) with [Flux](http://facebook.github.io/react/docs/flux-overview.html) (Optional)
+> IMPORTANT: React only use Browserify (no RequireJS support)
 - Backbone with [Jade](http://jade-lang.com/), [Handlebars](http://handlebarsjs.com/), or [Lo-dash](http://lodash.com/) templating
 
 ### Express Server Options
@@ -123,6 +172,7 @@ A grunt task looks for new/updated files in your project and automatically injec
 |---------|---------------|---------
 |Less| Any | `client/styles/main.less`
 |Sass | Any | `client/styles/main.scss`
+|Stylus | Any | `client/styles/main.styl`
 |Jade | Static | `client/templates/layouts/base.jade` or `server/templates/layouts/base.jade` if using express server
 |Swig | Static |`client/templates/layouts/base.swig` or `server/templates/layouts/base.swig` if using express server
 |CSS, JS | Static | `client/templates/layouts/base.{jade,swig}` or `server/templates/layouts/base.{jade,swig}` if using express server
@@ -175,10 +225,14 @@ Runs [`grunt build`](#grunt-build) and pushes optimized files to a specified FTP
 #### Static Sites and Backbone applications
 * [yeogurt:template](#template)
 
-#### React Only
+#### React application
 * [yeogurt:react](#react)
 
-#### Backbone Only
+#### Flux application
+* [yeogurt:flux](#flux)
+
+
+#### Backbone application
 * [yeogurt:view](#view)
 * [yeogurt:model](#model)
 * [yeogurt:collection](#collection)
@@ -284,7 +338,7 @@ yo yeogurt:template mytemplate
 yo yeogurt:template mytemplate --folder=account
 ```
 
-## React Sub-generators
+## React Sub-generator
 ***Note: (The following sub-generator can only be used with React applications)***
 
 ### React
@@ -307,6 +361,32 @@ yo yeogurt:react myreact
 
 ## React within specified folder: client/scripts/components/account
 yo yeogurt:react myreact --folder=account
+```
+
+## Flux Sub-generator
+***Note: (The following sub-generator can only be used with React + Flux applications)***
+
+### Flux
+
+Creates 6 files:
+
+***Source Files***
+
+- A new Flux store file within the `client/scripts/flux/stores`
+- A new Flux constant file within the `client/scripts/flux/constants`
+- A new Flux action file within the `client/scripts/flux/actions`
+
+***Test Files***
+
+- A store test file within the `test/spec/stores` folder.
+- A constant test file within the `test/spec/constants` folder.
+- A action test file within the `test/spec/action` folder.
+
+Example:
+
+```
+## Flux
+yo yeogurt:flux myflux
 ```
 
 ## Backbone Sub-generators
@@ -401,7 +481,7 @@ If you chose to use [JSDoc](http://usejsdoc.org/), JavaScript API documenation w
 You can view an example [here](http://yeoman.github.io/generator/).
 
 ### Styleguide
-If you chose to use [KSS (Knyle Style Sheets)](http://warpspire.com/posts/kss/), a Styleguide will be automatically generated from reading your Less/Sass/CSS files. After running `grunt serve` or `grunt serve:dist`, it can be accessed at `/docs/styleguide/index.html`.
+If you chose to use [KSS (Knyle Style Sheets)](http://warpspire.com/posts/kss/), a Styleguide will be automatically generated from reading your Less/Sass/Stylus/CSS files. After running `grunt serve` or `grunt serve:dist`, it can be accessed at `/docs/styleguide/index.html`.
 
 Knyle Style Sheets (KSS) is used at Github to create their [styleguide](https://github.com/styleguide) and is used in this generator via [kss-node](https://github.com/hughsk/kss-node). Be sure to look up [documentation](http://warpspire.com/posts/kss/) to see how to write KSS comments in your stylesheets.
 

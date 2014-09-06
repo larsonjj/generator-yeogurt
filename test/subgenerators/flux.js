@@ -307,54 +307,5 @@ describe('Flux sub-generator', function () {
                 });
             });
         });
-        it('Handles folder option', function(done) {
-            // Filename
-            var flux = 'myflux';
-            var folder = 'folder/';
-            var filesToTest = [
-                'test/spec/flux/stores/' + folder + flux + '-spec.js',
-                'test/spec/flux/actions/' + folder + flux + '-spec.js',
-                'test/spec/flux/constants/' + folder + flux + '-spec.js',
-                'client/scripts/flux/actions/' + folder + flux + '.js',
-                'client/scripts/flux/constants/' + folder + flux + '.js',
-                'client/scripts/flux/stores/' + folder + flux + '.js'
-            ];
-
-            helpers.mockPrompt(this.app, {
-                jsFramework: 'react',
-                useFlux: true,
-                useTesting: true
-            });
-            this.app.run([], function() {
-                createSubGenerator('flux', flux, {folder: folder}, function() {
-                    assert.file(filesToTest);
-                    done();
-                });
-            });
-        });
-        it('Handles folder option with funky path', function(done) {
-            // Filename
-            var flux = 'myflux';
-            var folder = '/////folder/////';
-            var filesToTest = [
-                'test/spec/flux/stores/folder/' + flux + '-spec.js',
-                'test/spec/flux/actions/folder/' + flux + '-spec.js',
-                'test/spec/flux/constants/folder/' + flux + '-spec.js',
-                'client/scripts/flux/stores/folder/' + flux + '.js',
-                'client/scripts/flux/actions/folder/' + flux + '.js',
-                'client/scripts/flux/constants/folder/' + flux + '.js'
-            ];
-
-            helpers.mockPrompt(this.app, {
-                jsFramework: 'react',
-                useFlux: true,
-            });
-            this.app.run([], function() {
-                createSubGenerator('flux', flux, {folder: folder}, function() {
-                    assert.file(filesToTest);
-                    done();
-                });
-            });
-        });
     });
 });

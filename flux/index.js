@@ -1,7 +1,6 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var cleanFolderPath = require('../helpers/clean-folder-path');
 
 var FluxGenerator = module.exports = function FluxGenerator(args, options, config) {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -16,17 +15,6 @@ var FluxGenerator = module.exports = function FluxGenerator(args, options, confi
     this.useFlux = fileJSON.useFlux;
     this.testFramework = fileJSON.testFramework;
     this.useTesting = fileJSON.useTesting;
-
-    var getNumberOfPaths = [];
-    this.folder.split('/').forEach(function(item) {
-        if (item) {
-            getNumberOfPaths.push('../');
-        }
-    });
-    this.folderCount = getNumberOfPaths.join('');
-
-    // Remove all leading and trailing slashes in folder path
-    this.cleanFolderPath = cleanFolderPath;
 
 };
 
@@ -45,14 +33,14 @@ FluxGenerator.prototype.files = function files() {
     }
     else {
         // Create constant, action, and store files
-        this.template('constant.js', 'client/scripts/flux/constants/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
-        this.template('action.js', 'client/scripts/flux/actions/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
-        this.template('store.js', 'client/scripts/flux/stores/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
+        this.template('constant.js', 'client/scripts/flux/constants/' + this._.slugify(this.name.toLowerCase()) + '.js');
+        this.template('action.js', 'client/scripts/flux/actions/' + this._.slugify(this.name.toLowerCase()) + '.js');
+        this.template('store.js', 'client/scripts/flux/stores/' + this._.slugify(this.name.toLowerCase()) + '.js');
 
         if (this.useTesting) {
-            this.template('constant-spec.js', 'test/spec/flux/constants/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
-            this.template('action-spec.js', 'test/spec/flux/actions/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
-            this.template('store-spec.js', 'test/spec/flux/stores/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+            this.template('constant-spec.js', 'test/spec/flux/constants/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+            this.template('action-spec.js', 'test/spec/flux/actions/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+            this.template('store-spec.js', 'test/spec/flux/stores/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
         }
     }
 
