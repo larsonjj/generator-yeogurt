@@ -30,8 +30,8 @@ var taskConfig = function(grunt) {
                 ]
             },
             files: {<% if (sassSyntax === 'scss') { %>
-                '<%%= yeogurt.dists %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.scss'<% } else { %>
-                '<%%= yeogurt.dists %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.sass'<% } %>
+                '<%%= yeogurt.dist %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.scss'<% } else { %>
+                '<%%= yeogurt.dist %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.sass'<% } %>
             }
         }
     });
