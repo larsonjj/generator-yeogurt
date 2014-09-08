@@ -5,7 +5,7 @@
 
 'use strict';<% if (singlePageApplication && useServerTemplates) { %>
 <% if (jsFramework === 'react') { %>
-var reactRender = require('../modules/reactRender');<% } %><% } %>
+var reactRender = require('../modules/react-render');<% } %><% } %>
 
 var mainController = function(req, res) {<% if (singlePageApplication) { %><% if (useServerTemplates) { %><% if (jsFramework === 'react') { %><% if (useJsx) { %>
     var html = reactRender({}, 'main.jsx');<% } else { %>
