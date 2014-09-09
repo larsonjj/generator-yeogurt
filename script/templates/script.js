@@ -16,15 +16,17 @@ define(function(require) {
 <% } else if (jsOption === 'browserify') { %>
 'use strict';
 
-var <%= _.classify(name) %> = function() {
+var <%= _.classify(name) %> = (function() {
 
     var init = function() {
          // Intialize module
     };
 
-    return init;
+    return {
+        init: init
+    };
 
-};
+})();
 
 module.exports = <%= _.classify(name) %>;
 <% } else { %>'use strict';
