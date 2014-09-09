@@ -1,3 +1,9 @@
+### v0.11.2:
+#### date: 2014-09-09
+##### changes:
+* Fixed issue where --template option should have been --layout within template sub-generator
+* Fixed link issue for dashboard when creating jade files with template sub-generator
+
 ### v0.11.1:
 #### date: 2014-09-08
 ##### changes:

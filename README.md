@@ -285,7 +285,7 @@ There are also an option that can be used to change the default behavior:
 
 |Options |Possible Values |Description
 |---------|---------------|-----------
-|--type| `module`, `template`, or `page(default)` | Creates file in folder specified by type: `client/templates/{type}/myfile` or `server/templates/{type}/myfile` if using express server
+|--type| `module`, `layout`, or `page(default)` | Creates file in folder specified by type: `client/templates/{type}/myfile` or `server/templates/{type}/myfile` if using express server
 |--folder | [any folder path] |  Creates file relative to the `client/templates` folder or `server/templates` if using express server
 
 Examples:

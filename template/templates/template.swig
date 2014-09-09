@@ -8,7 +8,7 @@
     }
     [/dash] #}
 {# [dash:swig]
-    {% import 'client/templates/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= name || 'example' %>.swig' as <%= _.camelize(name) || 'example' %> %}
+    {% import 'client/templates/modules/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= name || 'example' %>.swig' as <%= _.camelize(name) || 'example' %> %}
 
     {{ <%= _.camelize(name) || 'example' %>.content() }}
     [/dash] #}
@@ -35,9 +35,9 @@
         "link": "../../<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= _.slugify(name.toLowerCase()) %>.html"
     }
     [/dash] #}
-<% } %><% if (!useTemplate) { %>
+<% } %><% if (!useLayout) { %>
 {% extends './layouts/base.swig' %}<% } else { %>
-{% extends './layouts/<%= useTemplate %>.swig' %}<% } %>
+{% extends './layouts/<%= useLayout %>.swig' %}<% } %>
 
 {% block content %}
     <p><%= name || 'empty' %> page</p>
