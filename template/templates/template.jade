@@ -8,7 +8,7 @@
     }
     [/dash]
 //- [dash:jade]
-    include client/templates/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= name || 'example' %>
+    include client/templates/modules/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= name || 'example' %>
 
     +<%= name || 'example' %>()
     [/dash]
@@ -33,9 +33,9 @@ block layout
         "link": "../../<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= _.slugify(name.toLowerCase()) %>.html"
     }
     [/dash]
-<% } %><% if (!useTemplate) { %>
+<% } %><% if (!useLayout) { %>
 extend ./layouts/base<% } else { %>
-extend ./layouts/<%= useTemplate %><% } %>
+extend ./layouts/<%= useLayout %><% } %>
 
 block content
     p <%= name || 'empty' %> page<% } %>
