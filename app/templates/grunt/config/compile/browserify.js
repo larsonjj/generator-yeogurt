@@ -35,7 +35,7 @@ var taskConfig = function(grunt) {
             files: {
                 '<%%= yeogurt.dist %>/scripts/app.js': ['<%%= yeogurt.client %>/scripts/app.js']
             }
-        },
+        },<% if (useTesting) { %>
         test: {
             options: {<% if (jsFramework === 'react') { %>
                 transform:  [ require('grunt-react').browserify ],<% } %>
@@ -47,7 +47,7 @@ var taskConfig = function(grunt) {
             files: {
                 'test/scripts/bundle.js': ['test/spec/**/*-spec.js']
             }
-        },
+        }<% } %>
     });
 
 };
