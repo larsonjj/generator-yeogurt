@@ -1,9 +1,9 @@
 ### v0.11.1:
 #### date: 2014-09-08
 ##### changes:
-* Fixed import issue where `reactRender` should be `react-render`
-* Fixed issue where test task was loaded for browserify, when it doesnt need to be there
-* Fixed `grunt/config/compile/sass.js` compile error where property `dists` should be `dist`
+* Fixed import issue where `reactRender` should be `react-render` e9f2702ae90fe5d139b132d6ec37c5fa8b973597
+* Fixed issue where test task was loaded for browserify, when it doesnt need to be there f5eb42e11cb685fe5f9fe7147f1c6c0edea9284d
+* Fixed `grunt/config/compile/sass.js` compile error where property `dists` should be `dist` 357160e46ce4c170e384b65308d5fb96f177416b
 
 ### v0.11.0:
 #### date: 2014-09-06
