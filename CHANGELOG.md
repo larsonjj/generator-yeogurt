@@ -1,3 +1,9 @@
+### v0.11.4:
+#### date: 2014-09-09
+##### changes:
+* Removed unneeded template-spec file for tempalte sub-generator
+* Removed layout block for swig and jade templates with type=layout in the subgenerator
+
 ### v0.11.3:
 #### date: 2014-09-09
 ##### changes:
