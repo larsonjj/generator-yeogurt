@@ -1,3 +1,8 @@
+### v0.11.3:
+#### date: 2014-09-09
+##### changes:
+* Scripts sub-generator now uses revealing module pattern
+
 ### v0.11.2:
 #### date: 2014-09-09
 ##### changes:
