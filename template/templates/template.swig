@@ -19,13 +19,10 @@
 {% endmacro %}<% } else if (type === 'layout') { %>
 {% extends 'base.swig' %}
 
-{% block layout %}
+{# Provides layout level markup #}
+<div class="layout-wrapper"><% if (name) { %>(class="<%= _.slugify(name.toLowerCase()) %>")<% } %></div>
+    {% block content %}{% endblock %}
 
-    {# Provides layout level markup #}
-    <div class="layout-wrapper"><% if (name) { %>(class="<%= _.slugify(name.toLowerCase()) %>")<% } %></div>
-        {% block content %}{% endblock %}
-
-{% endblock %}
 <% } else if (type === 'page') { %><% if (useDashboard) { %>
 {# [dash:data]
     {
