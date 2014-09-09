@@ -143,7 +143,7 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 ### Single Page Application Options
 - Facebook's [React](http://facebook.github.io/react/) with [Flux](http://facebook.github.io/react/docs/flux-overview.html) (Optional)
 
-> IMPORTANT: React only use Browserify (no RequireJS support)
+> IMPORTANT: You can only use Browserify with React (no RequireJS support)
 
 - Backbone with [Jade](http://jade-lang.com/), [Handlebars](http://handlebarsjs.com/), or [Lo-dash](http://lodash.com/) templating
 
