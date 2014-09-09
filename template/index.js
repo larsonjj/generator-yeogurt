@@ -12,7 +12,7 @@ var TemplateGenerator = module.exports = function TemplateGenerator(args, option
 
     // options
     this.type = this.options.type || 'page';
-    this.useTemplate = this.options.template || false;
+    this.useLayout = this.options.layout || false;
     this.folder = this.options.folder || '';
     this.useDashboard = fileJSON.useDashboard;
     this.projectName = fileJSON.projectName;
@@ -69,7 +69,7 @@ TemplateGenerator.prototype.files = function files() {
         }
     }
     else {
-        if (this.useTemplate && this.type !== 'page') {
+        if (this.useLayout && this.type !== 'page') {
             this.log('The template option will be ignored as the type is not "page"');
         }
 

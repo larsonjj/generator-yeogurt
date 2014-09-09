@@ -150,7 +150,7 @@ describe('Template sub-generator', function () {
                     });
 
                     this.app.run([], function() {
-                        createSubGenerator('template', template, {template: 'testTemplate'}, function() {
+                        createSubGenerator('template', template, {layout: 'testTemplate'}, function() {
                             assert.file(filesToTest);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -205,7 +205,7 @@ describe('Template sub-generator', function () {
 
                     this.app.run([], function() {
                         createSubGenerator('template', template, {
-                            template: 'testTemplate',
+                            layout: 'testTemplate',
                             type: type
                         }, function() {
                             assert.file(filesToTest);
