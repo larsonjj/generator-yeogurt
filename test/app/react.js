@@ -29,8 +29,6 @@ describe('Yeogurt generator using React', function () {
                         'client/scripts/flux',
                         'client/scripts/flux/legal',
                         'client/scripts/flux/dispatchers/app.js',
-                        'client/scripts/flux/dispatchers/dispatcher.js',
-                        'client/scripts/flux/dispatchers/invariant.js',
                         'client/scripts/flux/legal/LICENSE.txt',
                         'client/scripts/flux/legal/PATENTS.txt',
                     ];
