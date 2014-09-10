@@ -110,7 +110,6 @@ var taskConfig = function(grunt) {
             ],
             tasks: [<% if (jshint) { %>
                 'newer:jshint',<% } %><% if (jsOption === 'browserify') { %>
-                'browserify:server',
                 'exorcise:server',<% } %>
                 'newer:copy:server'
             ]
@@ -120,7 +119,6 @@ var taskConfig = function(grunt) {
             files: ['<%%= yeogurt.client %>/scripts/components/**/*.js'],<% } %>
             tasks: [<% if (jsOption === 'requirejs') { %>
                 'newer:copy:server',<% } %><% if (jsOption === 'browserify') { %>
-                'browserify:server',
                 'exorcise:server'<% } %>
             ]
         },<% } %><% if (jsTemplate === 'handlebars') { %>
