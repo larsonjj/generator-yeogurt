@@ -27,7 +27,6 @@ describe('Yeogurt generator using React', function () {
                 it ('Creates expected files', function(done) {
                     var expected = [
                         'client/scripts/flux',
-                        'client/scripts/flux/legal',
                         'client/scripts/flux/dispatchers/app.js'
                     ];
 
