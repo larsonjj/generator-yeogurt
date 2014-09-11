@@ -1,3 +1,4 @@
+'use strict';
 (function() {
     var counter = 0;
     var numbered;

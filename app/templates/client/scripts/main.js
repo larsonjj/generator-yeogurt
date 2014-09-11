@@ -1,5 +1,5 @@
 /**
-*   Main Description
+*   Main Configuration
 */
 
 'use strict';

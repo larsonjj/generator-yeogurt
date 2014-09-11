@@ -27,12 +27,7 @@ describe('Yeogurt generator using React', function () {
                 it ('Creates expected files', function(done) {
                     var expected = [
                         'client/scripts/flux',
-                        'client/scripts/flux/legal',
-                        'client/scripts/flux/dispatchers/app.js',
-                        'client/scripts/flux/dispatchers/dispatcher.js',
-                        'client/scripts/flux/dispatchers/invariant.js',
-                        'client/scripts/flux/legal/LICENSE.txt',
-                        'client/scripts/flux/legal/PATENTS.txt',
+                        'client/scripts/flux/dispatchers/app.js'
                     ];
 
                     helpers.mockPrompt(this.app, {

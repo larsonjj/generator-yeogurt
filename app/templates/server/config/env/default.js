@@ -1,3 +1,6 @@
+/**
+ * Default Configuration for all environments
+ */
 'use strict';
 
 var path = require('path');

@@ -1,7 +1,7 @@
 /*jshint newcap:false */
 
 /**
-*   Main Component Description
+*   Main Component
 */
 
 'use strict';

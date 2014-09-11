@@ -37,6 +37,7 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 - [Common Gotchas](#common-gotchas)
     - [Bower not installing dependencies using Git](#bower-not-installing-dependencies-using-git)
     - [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts)
+- [Testing](#testing)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [Release History](#release-history)
@@ -143,7 +144,7 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 ### Single Page Application Options
 - Facebook's [React](http://facebook.github.io/react/) with [Flux](http://facebook.github.io/react/docs/flux-overview.html) (Optional)
 
-> IMPORTANT: React only use Browserify (no RequireJS support)
+> IMPORTANT: You can only use Browserify with React (no RequireJS support)
 
 - Backbone with [Jade](http://jade-lang.com/), [Handlebars](http://handlebarsjs.com/), or [Lo-dash](http://lodash.com/) templating
 
@@ -182,7 +183,7 @@ Starts up a development server that watches files and automatically reloads them
 |Tasks| Description
 |---------|-------
 |grunt serve:dist| runs [`grunt build`](#grunt-build) and starts up a server that loads the optimized files
-|grunt serve:docs| same as [`grunt serve`](#grunt-serve), but will also watch and recompiles automated documentation (KSS, JSDoc, etc).
+|grunt serve:docs| same as [`grunt serve`](#grunt-serve), but will also watch and recompile automated documentation (KSS, JSDoc, etc).
 
 ***NOTE: you can add the `--allow-remote` option to any of these commands to allow remote devices on the same network to view your site/app***
 
@@ -581,6 +582,13 @@ To remedy this situation, all you need to do is open up your `.jshintrc` file in
 ...
 }
 ```
+
+## Testing
+To run unit tests, you have a couple options:
+
+- `npm test`: This will run all unit tests with Mocha and send the report to [coveralls.io](http://coveralls.io) to be processed. (Don't run this for local testing)
+- `npm run localtest`: This is the same as `npm test` only it doesn't send anything to coveralls.io. (Use this for local testing)
+- `npm run localtest-report`: This is the same as `npm run localtest`, but it also generates an HTML report of the current code coverage.
 
 ## Roadmap
 Check out the [Roadmap](ROADMAP.md) to see what's coming down the development pipeline.

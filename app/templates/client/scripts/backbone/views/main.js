@@ -1,11 +1,11 @@
 /**
-*   Main View Description
+*   Main View
 */
 <% if (jsOption === 'requirejs') { %>
 define(function(require) {
     'use strict';
 
-    // Our overall **MainView** is the top-level piece of UI.
+    // MainView is the top-level piece of UI.
     var MainView = Backbone.View.extend({
 
         // Instead of generating a new element, bind to the existing skeleton of
@@ -35,7 +35,7 @@ define(function(require) {
 });<% } %><% if (jsOption === 'browserify') { %>
 'use strict';
 
-// Our overall **MainView** is the top-level piece of UI.
+// MainView is the top-level piece of UI.
 var MainView = Backbone.View.extend({
 
     // Instead of generating a new element, bind to the existing skeleton of

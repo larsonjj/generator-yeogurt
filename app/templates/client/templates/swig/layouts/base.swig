@@ -95,6 +95,10 @@
         <script src="/bower_components/es5-shim/es5-sham.js"></script>
         <![endif]--><% } %><% if (useServer) { %>
         {% if env == 'development' %}<% } %>
+        {#
+            Place all vendor scripts within the 'build:js(client) scripts/globals.js' comments below,
+            so they will be optimised correctly during a 'grunt build' task
+        #}
         <!-- build:js(client) scripts/globals.js -->
         <script src="/bower_components/jquery/dist/jquery.js"></script><% if  (useBootstrap) { %>
         <script src="/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>affix.js"></script>
@@ -136,7 +140,7 @@
 
         <script data-main="scripts/main", src="bower_components/requirejs/require.js"></script><% } else if (jsOption === 'browserify') { %><script src="/scripts/app.js"></script><% } else { %>
         {#
-            Place all author scripts within the 'build:js' comments below,
+            Place all author scripts within the 'build:js(client) scripts/app.js' comments below,
             so they will be optimised correctly during a 'grunt build' task
         #}
         <!-- build:js(client) scripts/app.js --><% if (jsFramework !== 'backbone') { %>

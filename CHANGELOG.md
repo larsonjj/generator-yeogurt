@@ -1,7 +1,15 @@
+### v0.11.5:
+#### date: 2014-09-10
+##### changes:
+* Added information within the `README.md` on how to run unit tests on this generator.
+* Removed all Dispatcher files from flux generation option in favor of using flux npm module instead.
+* Updated styles for 'browse happy' markup when using IE7 or below.
+* Removed extraneous `browserify:server` tasks from `watch.js` grunt config file.
+
 ### v0.11.4:
 #### date: 2014-09-09
 ##### changes:
-* Removed unneeded template-spec file for tempalte sub-generator
+* Removed unneeded template-spec file for template sub-generator
 * Removed layout block for swig and jade templates with type=layout in the subgenerator
 
 ### v0.11.3:

@@ -1,6 +1,5 @@
 /**
- * GET /
- * Home page.
+ * Main Controller
  */
 
 'use strict';<% if (singlePageApplication && useServerTemplates) { %>
