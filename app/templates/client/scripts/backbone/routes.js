@@ -1,5 +1,5 @@
 /**
-*   Main Router Description
+*   Main Router
 */
 <% if (jsOption === 'requirejs') { %>
 define(function(require) {
@@ -8,6 +8,7 @@ define(function(require) {
     var MainView = require('views/main');
 
     var MainRouter = Backbone.Router.extend({
+        // Defined routes
         routes: {
             '': 'main'
         },
@@ -29,6 +30,7 @@ var MainComponent = require('./components/main.js');<% } %>
 var MainView = require('./views/main');<% } %>
 
 var MainRouter = Backbone.Router.extend({
+    // Defined routes
     routes: {
         '': 'main'
     },
@@ -50,6 +52,7 @@ var <%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
 
     // Main Router
     <%= _.camelize(projectName) %>.MainRouter = Backbone.Router.extend({
+        // Defined routes
         routes: {
             '': 'main'
         },

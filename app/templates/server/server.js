@@ -1,3 +1,6 @@
+/**
+ * Node Server Configuration
+ */
 'use strict';
 
 // Module dependencies.

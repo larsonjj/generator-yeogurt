@@ -1,5 +1,5 @@
 /**
- * Module dependencies.
+ * Database Configuration
  */
 
 'use strict';
@@ -11,9 +11,7 @@ var Sequelize = require('sequelize');<% } %>
 // Add coloring for console output
 require('colors');
 
-/**
- * Database Connection.
- */
+// Database Connection.
 var databaseConfig = function(app) {
 
     var env = app.get('env');

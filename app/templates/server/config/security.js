@@ -1,6 +1,6 @@
 /*global _: true*/
 /**
- * Module dependencies.
+ * Security Configuration
  */
 
 'use strict';

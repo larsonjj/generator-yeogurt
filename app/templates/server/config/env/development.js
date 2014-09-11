@@ -1,3 +1,6 @@
+/**
+ * Development Configuration
+ */
 'use strict';
 
 // Development specific configuration

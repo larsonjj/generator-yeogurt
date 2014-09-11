@@ -1,5 +1,5 @@
 /**
-*   App Description
+*   Application Logic
 */
 <% if (jsOption === 'requirejs') { %>
 define(function(require) {

@@ -1,3 +1,6 @@
+/**
+ * Production Configuration
+ */
 'use strict';
 
 // Production specific configuration
