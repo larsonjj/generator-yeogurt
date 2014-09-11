@@ -83,8 +83,10 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
         script src='/bower_components/es5-shim/es5-sham.js')
         <![endif]--><% } %>
         <% if (useServer) { %>
-        if (env == 'development')<% } %><% if (useServer) { %>
-            <% } %>// build:js(client) scripts/global.js
+        if (env == 'development')<% } %>
+        //- Place all vendor scripts within the 'build:js(client) scripts/global.js' comments below,
+            so they will be optimised correctly during a 'grunt build' task
+        <% if (useServer) { %>    <% } %>// build:js(client) scripts/global.js
         <% if (useServer) { %>    <% } %>script(src='/bower_components/jquery/dist/jquery.js')
         <% if (useServer) { %>    <% } %><% if (useBootstrap) { %>script(src='/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>affix.js')
         <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>alert.js')
@@ -123,7 +125,7 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
         <% if (useServer) { %>    <% } %>script(src='/scripts/global.js')<% } %>
         <% if (jsOption === 'requirejs') { %>
         script(data-main='/scripts/main', src='/bower_components/requirejs/require.js')<% } else if (jsOption === 'browserify') { %>script(src='/scripts/app.js')<% } else { %>
-        //- Place all author scripts within the 'build:js' comments below,
+        //- Place all author scripts within the 'build:js(client) scripts/app.js' comments below,
             so they will be optimised correctly during a 'grunt build' task
         // build:js(client) scripts/app.js<% if (jsFramework !== 'backbone') { %>
         script(src='/scripts/app.js')<% } %>
