@@ -48,3 +48,12 @@
     padding: .5em 1em;
     text-decoration: none;
 }
+
+/* Styling on warning for users on IE7 or below */
+.browsehappy {
+    text-align: center;
+    margin: 0;
+    background: #fff8e2;
+    color: #000;
+    padding: 0.5em 0;
+}

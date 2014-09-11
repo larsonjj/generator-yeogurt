@@ -182,7 +182,7 @@ Starts up a development server that watches files and automatically reloads them
 |Tasks| Description
 |---------|-------
 |grunt serve:dist| runs [`grunt build`](#grunt-build) and starts up a server that loads the optimized files
-|grunt serve:docs| same as [`grunt serve`](#grunt-serve), but will also watch and recompiles automated documentation (KSS, JSDoc, etc).
+|grunt serve:docs| same as [`grunt serve`](#grunt-serve), but will also watch and recompile automated documentation (KSS, JSDoc, etc).
 
 ***NOTE: you can add the `--allow-remote` option to any of these commands to allow remote devices on the same network to view your site/app***
 
