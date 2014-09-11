@@ -37,6 +37,7 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 - [Common Gotchas](#common-gotchas)
     - [Bower not installing dependencies using Git](#bower-not-installing-dependencies-using-git)
     - [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts)
+- [Testing](#testing)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [Release History](#release-history)
@@ -581,6 +582,13 @@ To remedy this situation, all you need to do is open up your `.jshintrc` file in
 ...
 }
 ```
+
+## Testing
+To run unit tests, you have a couple options:
+
+- `npm test`: This will run all unit tests with Mocha and send the report to `[coveralls.io](http://coveralls.io)` to be processed. (Don't run this for local testing)
+- `npm run localtest`: This is the same as `npm test` only it doesn't send anything to coveralls.io. (Use this for local testing)
+- `npm run localtest-report`: This is the same as `npm run localtest`, but it also generates an HTML report of the current code coverage.
 
 ## Roadmap
 Check out the [Roadmap](ROADMAP.md) to see what's coming down the development pipeline.
