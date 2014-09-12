@@ -7,3 +7,4 @@ client/.serve
 .tmp
 .grunt
 server/config/secrets.js
+.DS_Store

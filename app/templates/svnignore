@@ -7,3 +7,4 @@ bower_components
 .serve
 .tmp
 secrets.js
+.DS_Store
