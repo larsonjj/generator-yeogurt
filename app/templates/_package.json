@@ -36,6 +36,7 @@
         "grunt-contrib-compress": "0.7.0",<% if (htmlOption === 'jade' || jsTemplate === 'jade') { %>
         "grunt-contrib-jade": "0.12.0",<% } %><% if (htmlOption === 'swig') { %>
         "grunt-swig-templates": "~0.1.1",<% } %>
+        "grunt-autoprefixer": "~1.0.1",
         "grunt-contrib-htmlmin": "0.3.0",<% if (jsOption === 'requirejs') { %>
         "grunt-contrib-requirejs": "0.4.4",<% } else if (jsOption === 'browserify') { %>
         "minifyify": "4.0.3",

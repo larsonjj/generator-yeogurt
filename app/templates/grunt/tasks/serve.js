@@ -33,6 +33,7 @@ var taskConfig = function(grunt) {
             'less:server',<% } %><% if (cssOption === 'sass') { %>
             'sass:server',<% } %><% if (cssOption === 'stylus') { %>
             'stylus:server',<% } %>
+            'autoprefixer:server',
             'clean:temp'
         ]);
 
