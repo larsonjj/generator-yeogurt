@@ -13,8 +13,8 @@ var taskConfig = function(grunt) {
         'autoprefixer:server',<% if (useKss) { %>
         'kss:dist',<% } %>
         'useminPrepare',
-        'concat:generated',<% if (cssOption === 'css') { %>
-        'cssmin:generated',<% } %>
+        'concat:generated',
+        'cssmin:generated',
         'usemin',
         'htmlmin:dist',
         'uglify',
