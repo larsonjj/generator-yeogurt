@@ -20,6 +20,7 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
         link(href='//www.google-analytics.com', rel='dns-prefetch')<% } %><% if (useServer) { %>
 
         if (env == 'development')<% } %><% if (cssOption === 'css') { %>
+
         <% if (useServer) { %>    <% } %>// build:css(client) styles/global.css<% if (useFontAwesome) { %>
         <% if (useServer) { %>    <% } %>link(rel='stylesheet', href='/bower_components/font-awesome/css/font-awesome.css')<% } %><% if (useBootstrap) { %>
         <% if (useServer) { %>    <% } %>link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.css')<% } %><% if (useFoundation) { %>
