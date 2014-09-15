@@ -25,9 +25,9 @@
 
         <%% if (env === 'development') { %><% } else { %>
 
-        <% } %><!-- build:css(client) styles/global.css -->
-        <% if (useBootstrap) { %><link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
-        <% } %><% if (useFoundation) { %><link rel="stylesheet" href="/bower_components/foundation/css/normalize.css">
+        <% } %><!-- build:css(client) styles/global.css --><% if (useBootstrap) { %>
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"><% } %><% if (useFoundation) { %>
+        <link rel="stylesheet" href="/bower_components/foundation/css/normalize.css">
         <link rel="stylesheet" href="/bower_components/foundation/css/foundation.css"><% } %><% if (useFontAwesome) { %>
         <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css"><% } %>
             <!-- [injector:css] -->

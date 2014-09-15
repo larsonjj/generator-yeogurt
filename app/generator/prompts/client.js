@@ -152,7 +152,7 @@ var clientPrompts = function clientPrompts() {
         message: 'Would you like to use the ' + 'Lesshat Mixin Library'.blue + '?',
         default: true
     }, {
-        when: function(answers) { return answers.cssOption === 'sass' || answers.cssOption === 'none'; },
+        when: function(answers) { return answers.cssOption === 'sass' || answers.cssOption === 'css'; },
         type: 'list',
         name: 'cssFramework',
         message: 'Which CSS ' + 'framework'.blue + ' would you like to use?',
