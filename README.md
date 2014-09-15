@@ -37,6 +37,7 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 - [Common Gotchas](#common-gotchas)
     - [Bower not installing dependencies using Git](#bower-not-installing-dependencies-using-git)
     - [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts)
+    - [`grunt deploy` is not copying files to FTP server][grunt-deploy-is-not-copying-files-to-ftp-server]
 - [Testing](#testing)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
@@ -590,6 +591,13 @@ To remedy this situation, all you need to do is open up your `.jshintrc` file in
 ...
 }
 ```
+
+### `grunt deploy` is not copying files to FTP server
+
+`grunt deploy` runs the [grunt-ftpush](https://github.com/inossidabile/grunt-ftpush) plugin. This plugin tries to cache files that have been transferred to an FTP server (even if there is an error). The cache is stored in the `.grunt` folder at the root of the project.
+
+##### Solution
+Delete the `.grunt` folder. Once this folder is deleted, it will remove the FTP cache and should now allow you to do a full FTP transfer using `grunt deploy`.
 
 ## Testing
 To run unit tests, you have a couple options:
