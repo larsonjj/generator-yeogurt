@@ -20,37 +20,46 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/><% if (useServer && useSession && useSecurity) { %>
         <meta name="csrf-token" content="{{_csrf}}" /><% } %><% if (useGA) { %>
         <link href="//www.google-analytics.com" rel="dns-prefetch"><% } %><% if (cssOption === 'css') { %><% if (useServer) { %>
-        {% if env == 'development' %}<% } %>
-        <!-- build:css(client) styles/main.css --><% if (useBootstrap) { %>
+
+        {% if env == 'development' %}<% } else { %>
+
+        <% } %><!-- build:css(client) styles/global.css --><% if (useBootstrap) { %>
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
         <% } %><% if (useFoundation) { %><link rel="stylesheet" href="/bower_components/foundation/css/normalize.css">
         <link rel="stylesheet" href="/bower_components/foundation/css/foundation.css">
         <% } %><% if (useFontAwesome) { %>
         <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css"><% } %>
-        <link rel="stylesheet" href="/styles/main.css">
             <!-- [injector:css] -->
             <!-- [endinjector] -->
+        <!-- endbuild -->
+
+        <!-- build:css(client) styles/main.css -->
+        <link rel="stylesheet" href="/styles/main.css">
         <!-- endbuild --><% if (useServer) { %>
         {% else %}
         <link rel="stylesheet" href="/styles/main.css">
         {% endif %}<% } %><% } else { %><% if (useServer) { %>
-        {% if env == 'development' %}<% } %>
-        <!-- build:css(client) styles/main.css -->
-        <link rel="stylesheet" href="/styles/main.css">
+
+        {% if env == 'development' %}<% } else { %>
+
+        <% } %><!-- build:css(client) styles/global.css -->
             <!-- [injector:css] -->
             <!-- [endinjector] -->
-        <!-- endbuild --><% if (useServer) { %>
+        <!-- endbuild -->
+
+        <link rel="stylesheet" href="/styles/main.css"><% if (useServer) { %>
         {% else %}
         <link rel="stylesheet" href="/styles/main.css">
         {% endif %}<% } %><% } %><% if (useModernizr) { %>
-        <script src="/bower_components/modernizr/modernizr.js"></script><% } %><% if (ieSupport) { %>
+
+        <!-- build:js scripts/vendor/modernizr.js -->
+        <script src="/bower_components/modernizr/modernizr.js"></script>
+        <!-- endbuild --><% } %><% if (ieSupport) { %>
+
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-        <% if (responsive) { %>
+        <!--[if lt IE 9]><% if (responsive) { %>
         <script src="/bower_components/respond/respond.min.js"></script><% } %>
-        <script src="/bower_components/html5shiv/dist/html5shiv-printshiv.js"></script><% if (jsFramework === 'react') { %>
-        <script src="/bower_components/es5-shim/es5-shim.js"></script>
-        <script src="/bower_components/es5-shim/es5-sham.js"></script><% } %>
+        <script src="/bower_components/html5shiv/dist/html5shiv-printshiv.js"></script>
         <script>
             // Protect window.console method calls, e.g. console is not defined on IE
             (function() {
@@ -78,9 +87,9 @@
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        {% block content %}{% endblock %}
+        {% block content %}{% endblock %}<% if (useGA) { %>
 
-        <% if (useGA) { %><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
             function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
@@ -88,18 +97,16 @@
             e.src='//www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script><% } %>
-        <% if (jsFramework === 'react') { %>
+        </script><% } %><% if (jsFramework === 'react') { %>
+
         <!--[if lt IE 9]>
         <script src="/bower_components/es5-shim/es5-shim.js"></script>
         <script src="/bower_components/es5-shim/es5-sham.js"></script>
         <![endif]--><% } %><% if (useServer) { %>
-        {% if env == 'development' %}<% } %>
-        {#
-            Place all vendor scripts within the 'build:js(client) scripts/globals.js' comments below,
-            so they will be optimised correctly during a 'grunt build' task
-        #}
-        <!-- build:js(client) scripts/globals.js -->
+
+        {% if env == 'development' %}<% } else { %>
+
+        <% } %><!-- build:js(client) scripts/global.js -->
         <script src="/bower_components/jquery/dist/jquery.js"></script><% if  (useBootstrap) { %>
         <script src="/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>affix.js"></script>
         <script src="/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>alert.js"></script>
@@ -138,17 +145,15 @@
         <script src="/scripts/globals.js"></script>
         {% endif %}<% } %><% if  (jsOption === 'requirejs') { %>
 
-        <script data-main="scripts/main", src="bower_components/requirejs/require.js"></script><% } else if (jsOption === 'browserify') { %><script src="/scripts/app.js"></script><% } else { %>
-        {#
-            Place all author scripts within the 'build:js(client) scripts/app.js' comments below,
-            so they will be optimised correctly during a 'grunt build' task
-        #}
-        <!-- build:js(client) scripts/app.js --><% if (jsFramework !== 'backbone') { %>
-        <script src="/scripts/app.js"></script><% } %>
+        <script data-main="scripts/main", src="bower_components/requirejs/require.js"></script><% } else if (jsOption === 'browserify') { %>
+
+        <script src="/scripts/app.js"></script><% } else { %>
+
+        <!-- build:js(client) scripts/app.js -->
             <!-- [injector:js] -->
             <!-- [endinjector] --><% if (jsFramework === 'backbone') { %>
-        <script src="/scripts/routes.js"></script>
-        <script src="/scripts/app.js"></script><% } %>
+        <script src="/scripts/routes.js"></script><% } %>
+        <script src="/scripts/app.js"></script>
         <!-- endbuild --><% } %>
     </body>
 </html>
