@@ -9,7 +9,7 @@ var cleanFolderPath = function(folder) {
                 tempArray.push(item);
             }
         });
-        return tempArray.join('/');
+        return tempArray.join('/') + '/'; // Add trailing slash
     }
     else {
         return '';

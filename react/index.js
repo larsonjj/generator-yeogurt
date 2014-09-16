@@ -2,8 +2,9 @@
 var util = require('util');
 var yeoman = require('yeoman-generator');
 var cleanFolderPath = require('../helpers/clean-folder-path');
+var deleteFile = require('../helpers/delete-file');
 
-var ReactGenerator = module.exports = function ReactGenerator(args, options, config) {
+var ReactGenerator = module.exports = function ReactGenerator() {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
     // as `this.name`.
     yeoman.generators.NamedBase.apply(this, arguments);
@@ -12,6 +13,7 @@ var ReactGenerator = module.exports = function ReactGenerator(args, options, con
 
     // options
     this.folder = this.options.folder || '';
+    this.delete = this.options.delete || '';
     this.jsFramework = fileJSON.jsFramework;
     this.testFramework = fileJSON.testFramework;
     this.useJsx = fileJSON.useJsx;
@@ -40,14 +42,27 @@ ReactGenerator.prototype.files = function files() {
         this.log('Operation aborted');
     }
     else {
-        if (this.useJsx) {
-            this.template('react.jsx', 'client/scripts/components/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.jsx');
+        if (!this.delete) {
+            if (this.useJsx) {
+                this.template('react.jsx', 'client/scripts/components/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.jsx');
+            }
+            else {
+                this.template('react.js', 'client/scripts/components/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.js');
+            }
+            if (this.useTesting) {
+                this.template('react-spec.js', 'test/spec/components/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+            }
         }
         else {
-            this.template('react.js', 'client/scripts/components/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
-        }
-        if (this.useTesting) {
-            this.template('react-spec.js', 'test/spec/components/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+            if (this.useJsx) {
+                deleteFile('client/scripts/components/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.jsx', this);
+            }
+            else {
+                deleteFile('client/scripts/components/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.js', this);
+            }
+            if (this.useTesting) {
+                deleteFile('test/spec/components/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '-spec.js', this);
+            }
         }
     }
 
