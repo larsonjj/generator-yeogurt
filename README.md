@@ -37,7 +37,7 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 - [Common Gotchas](#common-gotchas)
     - [Bower not installing dependencies using Git](#bower-not-installing-dependencies-using-git)
     - [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts)
-    - [`grunt deploy` is not copying files to FTP server](grunt-deploy-is-not-copying-files-to-ftp-server)
+    - [`grunt deploy` is not copying files to FTP server](#grunt-deploy-is-not-copying-files-to-ftp-server)
 - [Testing](#testing)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
