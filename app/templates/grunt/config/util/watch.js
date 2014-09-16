@@ -72,28 +72,34 @@ var taskConfig = function(grunt) {
             files: ['<%%= yeogurt.client %>/styles/**/*.<% if (useKss) { %>{scss,sass,md}<% } else { %>{scss,sass}<% } %>'],
             tasks: [
                 'injector:sass',
-                'sass:server'
+                'sass:server',
+                'autoprefixer:server'
             ]
         },<% } %><% if (cssOption === 'less') { %>
         less: {
             files: ['<%%= yeogurt.client %>/styles/**/*.<% if (useKss) { %>{less,md}<% } else { %>less<% } %>'],
             tasks: [
                 'injector:less',
-                'less:server'
+                'less:server',
+                'autoprefixer:server'
             ]
         },<% } %><% if (cssOption === 'stylus') { %>
         stylus: {
             files: ['<%%= yeogurt.client %>/styles/**/*.<% if (useKss) { %>{styl,md}<% } else { %>styl<% } %>'],
             tasks: [
                 'injector:stylus',
-                'stylus:server'
+                'stylus:server',
+                'autoprefixer:server'
             ]
         },<% } %>
         injectCss: {
             files: [
                 '<%%= yeogurt.client %>/styles/**/*.css'
             ],
-            tasks: ['injector:css']
+            tasks: [
+                'injector:css',
+                'autoprefixer:server'
+            ]
         },<% if (jsOption === 'none') { %>
         injectJs: {
             files: [

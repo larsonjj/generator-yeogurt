@@ -37,6 +37,7 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 - [Common Gotchas](#common-gotchas)
     - [Bower not installing dependencies using Git](#bower-not-installing-dependencies-using-git)
     - [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts)
+    - [`grunt deploy` is not copying files to FTP server](#grunt-deploy-is-not-copying-files-to-ftp-server)
 - [Testing](#testing)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
@@ -476,9 +477,9 @@ If you chose to use [KSS (Knyle Style Sheets)](http://warpspire.com/posts/kss/),
 Knyle Style Sheets (KSS) is used at Github to create their [styleguide](https://github.com/styleguide) and is used in this generator via [kss-node](https://github.com/hughsk/kss-node). Be sure to look up [documentation](http://warpspire.com/posts/kss/) to see how to write KSS comments in your stylesheets.
 
 ## Adding third-party libraries
-Odds are that you will need to add some third party libraries to your project at some point. To do so, it is strongly recommended that you install them using bower ([usage](http://bower.io/)). If you can't [find the package on bower](http://bower.io/search/) (very rare) or you have your own in-house libraries that you like to use, you should put them within a `client/scripts/vendor` folder (jshint is setup to ignore this folder).
+Odds are that you will need to add some third party libraries to your project at some point. To do so, it is strongly recommended that you install them using bower ([usage](http://bower.io/)). If you can't [find the package on bower](http://bower.io/search/) (very rare) or you have your own in-house libraries that you like to use, you should put your scripts within a `client/scripts/vendor` folder (jshint is setup to ignore this folder), styles within a `client/styles/vendor` folder, and all other file types can go whereever your want within the `client` folder (This will make sure that your base template can access them).
 
-Once you have your library installed, you will want to add it to your project. To do this, you'll need to add a new `<script>` tag to your base template file:
+Once you have your library installed, you will want to add it to your project. To do this, you'll need to add a new `<script>` or `<link>` tag to your base template file:
 
 ***Static Sites***
 
@@ -497,12 +498,20 @@ Once you have your library installed, you will want to add it to your project. T
 |Any | No  | `client/index.html`
 |Any | Yes | `server/templates/index.html`
 
-Within your base template file, you will want to locate the `build:js({client,.tmp}) scripts/global.js` comment and add your `<script>` after it. Also, Make sure it is also located before the `endbuild` comment:
+Within your base template file, you will want to locate the `build:js({client,.tmp}) scripts/global.js` comment for scripts and the `build:css(client) styles/global.css` comment for styles. Once located, add your `<script>` or `<link>` after the comment and make sure it is also located before the `endbuild` comment:
 
+***Styles***
 ```
-<!-- base template file -->
+<!-- build:css(client) styles/global.css -->
+...
+    <link href="/styles/vendor/thirdparty.css"></script>
+...
+<!-- endbuild -->
+```
 
-<!-- build:js({client,.tmp}) scripts/global.js -->
+***Scripts***
+```
+<!-- build:js(client) scripts/global.js -->
 ...
     <script src="/scripts/vendor/thirdparty.js"></script>
     <script src="/bower_components/somescript/thirdparty.js"></script>
@@ -512,13 +521,13 @@ Within your base template file, you will want to locate the `build:js({client,.t
 
 This does a couple things:
 
-- Ensures that your libraries get optimized when running `grunt build` (will be minified and concatenated to `scripts/global.js` using [grunt-usemin](https://github.com/yeoman/grunt-usemin))
-- Allows you to choose the order in which you load your scripts
-- Keeps your global/third-party scripts away from your own code
+- Ensures that your libraries get optimized when running `grunt build` (will be minified and concatenated to `scripts/global.js` for scripts and `styles/global.css` for styles using [grunt-usemin](https://github.com/yeoman/grunt-usemin))
+- Allows you to choose the order in which you load your scripts and stylesheets
+- Keeps your global/third-party scripts and stylesheets away from your own code
 
 Your library should now load correctly (assuming your source path is correct).
 
-> IMPORTANT: If your third-party script will be referenced within your own code (ex. using jQuery), you need to make sure that JSHint is aware it. Check out [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts) to see how to make this happen.
+> IMPORTANT: If you have third-party script that will be referenced within your own code (ex. using jQuery), you need to make sure that JSHint is aware it. Check out [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts) to see how to make this happen.
 
 
 ## Deployment
@@ -582,6 +591,13 @@ To remedy this situation, all you need to do is open up your `.jshintrc` file in
 ...
 }
 ```
+
+### `grunt deploy` is not copying files to FTP server
+
+`grunt deploy` runs the [grunt-ftpush](https://github.com/inossidabile/grunt-ftpush) plugin. This plugin tries to cache files that have been transferred to an FTP server (even if there is an error). The cache is stored in the `.grunt` folder at the root of the project.
+
+##### Solution
+Delete the `.grunt` folder. Once this folder is deleted, it will remove the FTP cache and should now allow you to do a full FTP transfer using `grunt deploy`.
 
 ## Testing
 To run unit tests, you have a couple options:

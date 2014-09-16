@@ -1,7 +1,6 @@
-<% if (!useBootstrap) { %>
+/* Main Stylesheet */<% if (!useBootstrap) { %>
+
 /* Box sizing styles: Apply a natural box layout model to all elements */
-
-
 *,
 *:before,
 *:after {
