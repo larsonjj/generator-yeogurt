@@ -1,13 +1,13 @@
-# Installing Pure.css
-Want to use [Pure.css](http://purecss.io/)? Follow this guide to get up and running with it quickly.
+# Installing Underscore
+Note a fan or [Lo-dash](http://lodash.com/)? Want to use [Underscore](http://underscorejs.org/)? Follow this guide to get up and running with it quickly.
 
 ## Steps
 
-### 1. Install Pure.css library
+### 1. Install Underscore library
 From the root of you project folder, open up a terminal/command prompt and run:
 
 ```
-bower install pure --save
+bower install underscore --save
 ```
 
 This will download the library and place it in the `client/bower_components` folder
@@ -33,15 +33,17 @@ Locate your base template with the following table:
 |Any | No  | `client/index.html`
 |Any | Yes | `server/templates/index.html`
 
-Once you have located the base template file for your project, navigate to the `<!-- build:css(client) styles/global.css -->` comment and add the needed script:
+Once you have located the base template file for your project, navigate to the `<!-- build:js(client) scripts/global.js -->` comment and make the following changes:
 
-```html
-<!-- build:css(client) styles/global.css -->
+```diff
+<!-- build:js(client) scripts/global.js -->
 ...
-<link rel="stylesheet" type="text/css" href="/bower_components/pure/pure-min.css">
+// Remove lo-dash if it's there
+-    <script src="/bower_components/lodash/dist/lodash.js"></script>
++    <script type="text/javascript" src="/bower_components/underscore.string/dist/underscore.string.min.js"></script>
 ...
 <!-- endbuild -->
 ```
 
 ## Usage
-After following all of the above steps, you should be all set. Start up your development server with `grunt serve` and begin building with Pure.css.
+After following all of the above steps, you should be all set. Start up your development server with `grunt serve` and begin building with Underscore.

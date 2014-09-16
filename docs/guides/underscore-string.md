@@ -7,7 +7,7 @@ Want to use [Underscore.string](http://epeli.github.io/underscore.string/)? Foll
 From the root of you project folder, open up a terminal/command prompt and run:
 
 ```
-bower install underscore.string
+bower install underscore.string --save
 ```
 
 This will download the library and place it in the `client/bower_components` folder
