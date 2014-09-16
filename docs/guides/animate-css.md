@@ -7,7 +7,7 @@ Want to use [Animate.css](http://daneden.github.io/animate.css/)? Follow this gu
 From the root of you project folder, open up a terminal/command prompt and run:
 
 ```
-bower install animate.css
+bower install animate.css --save
 ```
 
 This will download the library and place it in the `client/bower_components` folder

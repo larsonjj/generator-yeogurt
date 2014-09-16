@@ -1,3 +1,10 @@
+### v0.11.7:
+#### date: 2014-09-15
+##### changes:
+* Added guide for installing [Animate.css](http://daneden.github.io/animate.css/)
+* Added guide for installing [pure.css](http://purecss.io/)
+* Added guide for installing [Underscore.string](http://epeli.github.io/underscore.string/)
+
 ### v0.11.6:
 #### date: 2014-09-15
 ##### changes:
