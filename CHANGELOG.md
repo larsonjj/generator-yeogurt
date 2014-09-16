@@ -1,3 +1,16 @@
+### v0.11.6:
+#### date: 2014-09-15
+##### changes:
+* Fixed formatting of `bower.json` file
+* Formatted spacing for all base templates (jade, swig, html)
+* Enabled css build comments in all base templates
+* Fixed issue where css build comments were incorrectly included with Sass, Less, and Sylus projects
+* Removed extra call for es5-shims files when using react
+* Added sourcemaps for css build comment files
+* Added `.DS_Store` to ignored files
+* Added autoprefixer task to run on all css to ensure browser compatibility.
+* Fixed issue where css frameworks could not be selected when using CSS
+
 ### v0.11.5:
 #### date: 2014-09-10
 ##### changes:
