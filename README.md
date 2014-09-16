@@ -500,21 +500,21 @@ Once you have your library installed, you will want to add it to your project. T
 
 Within your base template file, you will want to locate the `build:js({client,.tmp}) scripts/global.js` comment for scripts and the `build:css(client) styles/global.css` comment for styles. Once located, add your `<script>` or `<link>` after the comment and make sure it is also located before the `endbuild` comment:
 
+***Styles***
 ```
-<!-- Scripts -->
+<!-- build:css(client) styles/global.css -->
+...
+    <link href="/styles/vendor/thirdparty.css"></script>
+...
+<!-- endbuild -->
+```
 
+***Scripts***
+```
 <!-- build:js(client) scripts/global.js -->
 ...
     <script src="/scripts/vendor/thirdparty.js"></script>
     <script src="/bower_components/somescript/thirdparty.js"></script>
-...
-<!-- endbuild -->
-
-<!-- Styles -->
-
-<!-- build:css(client) styles/global.css -->
-...
-    <link href="/styles/vendor/thirdparty.css"></script>
 ...
 <!-- endbuild -->
 ```
