@@ -45,3 +45,18 @@ Once you have located the base template file for your project, navigate to the `
 
 ## Usage
 After following all of the above steps, you should be all set. Start up your development server with `grunt serve` and begin building with Underscore.string.
+
+## Extras
+
+### Using with Underscore or Lo-dash
+If you would like to use Underscore.string with [Underscore](http://underscorejs.org/) or [Lo-dash](http://lodash.com/) to gain [chaining ability](https://github.com/epeli/underscore.string#underscorestring-), just add the following to your base template `<!-- build:js(client) scripts/global.js -->` comments:
+
+```html
+<!-- build:js(client) scripts/global.js -->
+...
+// Place under both Underscore/Lo-dash and Underscore.string scripts
+<script type="text/javascript">
+    _.mixin(_.string.exports());
+</script>
+...
+```
