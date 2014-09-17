@@ -16,11 +16,9 @@ var taskConfig = function(grunt) {
                     'dashboard/**/*.*',<% } %><% if (jsOption === 'browserify') { %>
                     '!scripts/app.js',
                     '!scripts/main.js',<% } %>
-                    'bower_components/**/*.{js,map}',
-                    'bower_components/**/*.{woff,otf,ttf,eot,svg}',<% if (useKss) { %>
+                    'bower_components/**/*.{js,map,css,woff,otf,ttf,eot,svg}',<% if (useKss) { %>
                     'docs/styleguide/public/images',<% } %>
                     'styles/**/*.css',
-                    'bower_components/**/*.{css,map}',
                     'images/**',
                     '*.{ico,png,txt}',
                     'styles/fonts/**/*.{woff,otf,ttf,eot,svg}',<% if (htmlOption === 'html' || jsFramework === 'backbone' && !useServer || jsFramework === 'react' && !useServer) { %>
@@ -34,7 +32,8 @@ var taskConfig = function(grunt) {
                 cwd: '<%%= yeogurt.client %>/',
                 dest: '<%%= yeogurt.dist %>/',
                 src: [<% if (jsOption === 'requirejs') { %>
-                    'bower_components/requirejs/require.js',<% } %>
+                    'bower_components/requirejs/require.js',<% } %><% if (useModernizr) { %>
+                    'bower_components/modernizr/modernizr.js',<% } %>
                     'bower_components/**/*.{woff,otf,ttf,eot,svg}',<% if (useDashboard) { %>
                     'dashboard/**/*.*',<% } %><% if (htmlOption === 'html' || jsFramework === 'backbone' && !useServer || jsFramework === 'react' && !useServer) { %>
                     '*.html',<% } %><% if (useKss) { %>

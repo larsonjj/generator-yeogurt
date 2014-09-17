@@ -37,23 +37,11 @@
         <!-- endbuild --><% if (useServer) { %>
         {% else %}
         <link rel="stylesheet" href="/styles/main.css">
-        {% endif %}<% } %><% } else { %><% if (useServer) { %>
+        {% endif %}<% } %><% } else { %>
 
-        {% if env == 'development' %}<% } else { %>
+        <link rel="stylesheet" href="/styles/main.css"><% } %><% if (useModernizr) { %>
 
-        <% } %><!-- build:css(client) styles/global.css -->
-            <!-- [injector:css] -->
-            <!-- [endinjector] -->
-        <!-- endbuild -->
-
-        <link rel="stylesheet" href="/styles/main.css"><% if (useServer) { %>
-        {% else %}
-        <link rel="stylesheet" href="/styles/main.css">
-        {% endif %}<% } %><% } %><% if (useModernizr) { %>
-
-        <!-- build:js scripts/vendor/modernizr.js -->
-        <script src="/bower_components/modernizr/modernizr.js"></script>
-        <!-- endbuild --><% } %><% if (ieSupport) { %>
+        <script src="/bower_components/modernizr/modernizr.js"></script><% } %><% if (ieSupport) { %>
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]><% if (responsive) { %>
@@ -101,11 +89,10 @@
         <!--[if lt IE 9]>
         <script src="/bower_components/es5-shim/es5-shim.js"></script>
         <script src="/bower_components/es5-shim/es5-sham.js"></script>
-        <![endif]--><% } %><% if (useServer) { %>
+        <![endif]--><% } %>
 
-        {% if env == 'development' %}<% } else { %>
-
-        <% } %><!-- build:js(client) scripts/global.js -->
+<% if (useServer) { %>        {% if env == 'development' %}<% } %>
+        <!-- build:js(client) scripts/global.js -->
         <script src="/bower_components/jquery/dist/jquery.js"></script><% if  (useBootstrap) { %>
         <script src="/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>affix.js"></script>
         <script src="/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>alert.js"></script>

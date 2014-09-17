@@ -39,23 +39,11 @@
         <!-- endbuild --><% if (useServer) { %>
         <%% } else { %>
         <link rel="stylesheet" href="styles/main.css">
-        <%% } %><% } %><% } else { %><% if (useServer) { %>
+        <%% } %><% } %><% } else { %>
 
-        <%% if (env === 'development') { %><% } else { %>
+        <link rel="stylesheet" href="styles/main.css"><% } %><% if (useModernizr) { %>
 
-        <% } %><!-- build:css(client) styles/global.css -->
-            <!-- [injector:css] -->
-            <!-- [endinjector] -->
-        <!-- endbuild -->
-
-        <link rel="stylesheet" href="styles/main.css"><% if (useServer) { %>
-        <%% } else { %>
-        <link rel="stylesheet" href="styles/main.css">
-        <%% } %><% } %><% } %><% if (useModernizr) { %>
-
-        <!-- build:js scripts/vendor/modernizr.js -->
-        <script src="/bower_components/modernizr/modernizr.js"></script>
-        <!-- endbuild --><% } %><% if (ieSupport) { %>
+        <script src="/bower_components/modernizr/modernizr.js"></script><% } %><% if (ieSupport) { %>
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]><% if (responsive) { %>
@@ -122,7 +110,8 @@
         <script src="/bower_components/es5-shim/es5-shim.js"></script>
         <script src="/bower_components/es5-shim/es5-sham.js"></script>
         <![endif]--><% } %>
-        <% if (useServer) { %><%% if (env === 'development') { %><% } %>
+
+<% if (useServer) { %>        <%% if (env === 'development') { %><% } %>
         <!-- build:js(client) scripts/global.js -->
         <script src="/bower_components/jquery/dist/jquery.js"></script><% if (jsFramework === 'backbone' || jsFramework === 'react') { %>
         <script src="/bower_components/lodash/dist/lodash.js"></script>
