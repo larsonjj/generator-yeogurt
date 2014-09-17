@@ -1,3 +1,12 @@
+### v0.11.8:
+#### date: 2014-09-17
+##### changes:
+* Reverted modernizr `<!-- build -->` comments
+* Reverted css `<!-- build -->` comments for sass, less, and stylus projects
+* Fixed typo in `README.md`
+* Fixed server template formatting for Jade, Swig, and HTML base templates
+* Added `--delete` option to subgenerators to allow for file deletion. ([#34](https://github.com/larsonjj/generator-yeogurt/issues/34))
+
 ### v0.11.7:
 #### date: 2014-09-15
 ##### changes:
