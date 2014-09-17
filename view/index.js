@@ -2,8 +2,9 @@
 var util = require('util');
 var yeoman = require('yeoman-generator');
 var cleanFolderPath = require('../helpers/clean-folder-path');
+var deleteFile = require('../helpers/delete-file');
 
-var ViewGenerator = module.exports = function ViewGenerator(args, options, config) {
+var ViewGenerator = module.exports = function ViewGenerator() {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
     // as `this.name`.
     yeoman.generators.NamedBase.apply(this, arguments);
@@ -14,6 +15,7 @@ var ViewGenerator = module.exports = function ViewGenerator(args, options, confi
     this.view = this.options.type || 'page';
     this.useTemplate = this.options.template || false;
     this.folder = this.options.folder || '';
+    this.delete = this.options.delete || '';
     this.useDashboard = fileJSON.useDashboard;
     this.projectName = fileJSON.projectName;
     this.jsTemplate = fileJSON.jsTemplate;
@@ -44,21 +46,36 @@ ViewGenerator.prototype.files = function files() {
 
     if (this.singlePageApplication) {
         if (this.jsTemplate !== 'react') {
-
-            this.template('view.js', 'client/scripts/views/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
-            if (this.useTesting) {
-                this.template('view-spec.js', 'test/spec/views/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+            if (!this.delete) {
+                this.template('view.js', 'client/scripts/views/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.js');
+                if (this.useTesting) {
+                    this.template('view-spec.js', 'test/spec/views/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+                }
+                if (this.jsTemplate === 'lodash') {
+                    this.template('view.html', 'client/templates/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.jst');
+                }
+                else if (this.jsTemplate === 'handlebars') {
+                    this.template('view.html', 'client/templates/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.hbs');
+                }
+                else if (this.jsTemplate === 'jade') {
+                    this.template('view.html', 'client/templates/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.jade');
+                }
             }
-            if (this.jsTemplate === 'lodash') {
-                this.template('view.html', 'client/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.jst');
+            else {
+                deleteFile('client/scripts/views/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.js', this);
+                if (this.useTesting) {
+                    deleteFile('test/spec/views/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '-spec.js', this);
+                }
+                if (this.jsTemplate === 'lodash') {
+                    deleteFile('client/templates/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.jst', this);
+                }
+                else if (this.jsTemplate === 'handlebars') {
+                    deleteFile('client/templates/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.hbs', this);
+                }
+                else if (this.jsTemplate === 'jade') {
+                    deleteFile('client/templates/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.jade', this);
+                }
             }
-            else if (this.jsTemplate === 'handlebars') {
-                this.template('view.html', 'client/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.hbs');
-            }
-            else if (this.jsTemplate === 'jade') {
-                this.template('view.html', 'client/templates/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.jade');
-            }
-
         }
         else {
             this.log('You have chosen to use React, so this subgenerator is not available.');

@@ -17,9 +17,9 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
         meta(name='description', content='')
         meta(name='viewport', content='width=device-width, initial-scale=1.0')<% if (useServer && useSession && useSecurity) { %>
         meta(name='csrf-token', content=_csrf)<% } %><% if (useGA) { %>
-        link(href='//www.google-analytics.com', rel='dns-prefetch')<% } %><% if (useServer) { %>
+        link(href='//www.google-analytics.com', rel='dns-prefetch')<% } %><% if (cssOption === 'css') { %><% if (useServer) { %>
 
-        if (env == 'development')<% } %><% if (cssOption === 'css') { %>
+        if (env == 'development')<% } %>
 
         <% if (useServer) { %>    <% } %>// build:css(client) styles/global.css<% if (useFontAwesome) { %>
         <% if (useServer) { %>    <% } %>link(rel='stylesheet', href='/bower_components/font-awesome/css/font-awesome.css')<% } %><% if (useBootstrap) { %>
@@ -33,18 +33,9 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
         else
             link(rel='stylesheet', href='/styles/main.css')<% } %><% } else { %>
 
-        <% if (useServer) { %>    <% } %>// build:css(client) styles/global.css
-        <% if (useServer) { %>    <% } %>// [injector:css]
-        <% if (useServer) { %>    <% } %>// [endinjector]
-        <% if (useServer) { %>    <% } %>// endbuild
+        link(rel='stylesheet', href='/styles/main.css')<% } %><% if (useModernizr) { %>
 
-        <% if (useServer) { %>    <% } %>link(rel='stylesheet', href='/styles/main.css')<% if (useServer) { %>
-        else
-            link(rel='stylesheet', href='/styles/main.css')<% } %><% } %><% if (useModernizr) { %>
-
-        // build:js scripts/vendor/modernizr.js
-        script(src='/bower_components/modernizr/modernizr.js')
-        // endbuild<% } %><% if (ieSupport) { %>
+        script(src='/bower_components/modernizr/modernizr.js')<% } %><% if (ieSupport) { %>
 
         // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
         <!--[if lt IE 9]><% if (responsive) { %>
@@ -87,12 +78,11 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
 
         <!--[if lt IE 9]>
         script(src='/bower_components/es5-shim/es5-shim.js')
-        script src='/bower_components/es5-shim/es5-sham.js')
-        <![endif]--><% } %><% if (useServer) { %>
+        script (src='/bower_components/es5-shim/es5-sham.js')
+        <![endif]--><% } %>
 
-        if (env == 'development')<% } else { %>
-
-        <% } %><% if (useServer) { %>    <% } %>// build:js(client) scripts/global.js
+<% if (useServer) { %>        if (env == 'development')<% } %>
+        <% if (useServer) { %>    <% } %>// build:js(client) scripts/global.js
         <% if (useServer) { %>    <% } %>script(src='/bower_components/jquery/dist/jquery.js')
         <% if (useBootstrap) { %><% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>affix.js')
         <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>alert.js')
@@ -127,7 +117,7 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
         <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/foundation/foundation.topbar.js')<% } %>
         <% if (useServer) { %>    <% } %>// endbuild<% if (useServer) { %>
         else
-        script(src='/scripts/global.js')<% } %><% if (jsOption === 'requirejs') { %>
+            script(src='/scripts/global.js')<% } %><% if (jsOption === 'requirejs') { %>
 
         script(data-main='/scripts/main', src='/bower_components/requirejs/require.js')<% } else if (jsOption === 'browserify') { %>
 

@@ -1,6 +1,6 @@
 {
   "name": "generator-yeogurt",
-  "version": "0.11.7",
+  "version": "0.11.8",
   "description": "A Yeoman generator that creates a sensible structure for static sites and single page applications by using your favorite tools.",
   "keywords": [
     "yeoman-generator",
@@ -51,7 +51,8 @@
     "fixture-stdout": "0.2.1",
     "istanbul": "0.2.6",
     "mocha": "1.17.0",
-    "mocha-lcov-reporter": "0.0.1"
+    "mocha-lcov-reporter": "0.0.1",
+    "rimraf": "2.2.8"
   },
   "peerDependencies": {
     "yo": ">=1.0.6"

@@ -2,8 +2,9 @@
 var util = require('util');
 var yeoman = require('yeoman-generator');
 var cleanFolderPath = require('../helpers/clean-folder-path');
+var deleteFile = require('../helpers/delete-file');
 
-var ModelGenerator = module.exports = function ModelGenerator(args, options, config) {
+var ModelGenerator = module.exports = function ModelGenerator() {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
     // as `this.name`.
     yeoman.generators.NamedBase.apply(this, arguments);
@@ -15,6 +16,7 @@ var ModelGenerator = module.exports = function ModelGenerator(args, options, con
     this.view = this.options.type || 'page';
     this.useTemplate = this.options.template || false;
     this.folder = this.options.folder || '';
+    this.delete = this.options.delete || '';
     this.jsFramework = fileJSON.jsFramework;
     this.jsOption = fileJSON.jsOption;
     this.singlePageApplication = fileJSON.singlePageApplication;
@@ -46,9 +48,17 @@ ModelGenerator.prototype.files = function files() {
         this.log('This subgenerator is not available for React application.\nOperation aborted');
     }
     else if (this.singlePageApplication) {
-        this.template('model.js', 'client/scripts/models/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '.js');
-        if (this.useTesting) {
-            this.template('model-spec.js', 'test/spec/models/' + this.cleanFolderPath(this.folder) + '/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+        if (!this.delete) {
+            this.template('model.js', 'client/scripts/models/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.js');
+            if (this.useTesting) {
+                this.template('model-spec.js', 'test/spec/models/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+            }
+        }
+        else {
+            deleteFile('client/scripts/models/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.js', this);
+            if (this.useTesting) {
+                deleteFile('test/spec/models/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '-spec.js', this);
+            }
         }
     }
 

@@ -14,7 +14,7 @@ var taskConfig = function(grunt) {
         'kss:dist',<% } %>
         'useminPrepare',
         'concat:generated',
-        'cssmin:generated',
+        'cssmin',
         'usemin',
         'htmlmin:dist',
         'uglify',

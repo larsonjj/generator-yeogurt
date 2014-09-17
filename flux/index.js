@@ -1,8 +1,9 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
+var deleteFile = require('../helpers/delete-file');
 
-var FluxGenerator = module.exports = function FluxGenerator(args, options, config) {
+var FluxGenerator = module.exports = function FluxGenerator() {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
     // as `this.name`.
     yeoman.generators.NamedBase.apply(this, arguments);
@@ -11,6 +12,7 @@ var FluxGenerator = module.exports = function FluxGenerator(args, options, confi
 
     // options
     this.folder = this.options.folder || '';
+    this.delete = this.options.delete || '';
     this.jsFramework = fileJSON.jsFramework;
     this.useFlux = fileJSON.useFlux;
     this.testFramework = fileJSON.testFramework;
@@ -32,15 +34,28 @@ FluxGenerator.prototype.files = function files() {
         this.log('Operation aborted');
     }
     else {
-        // Create constant, action, and store files
-        this.template('constant.js', 'client/scripts/flux/constants/' + this._.slugify(this.name.toLowerCase()) + '.js');
-        this.template('action.js', 'client/scripts/flux/actions/' + this._.slugify(this.name.toLowerCase()) + '.js');
-        this.template('store.js', 'client/scripts/flux/stores/' + this._.slugify(this.name.toLowerCase()) + '.js');
+        if (!this.delete) {
+            // Create constant, action, and store files
+            this.template('constant.js', 'client/scripts/flux/constants/' + this._.slugify(this.name.toLowerCase()) + '.js');
+            this.template('action.js', 'client/scripts/flux/actions/' + this._.slugify(this.name.toLowerCase()) + '.js');
+            this.template('store.js', 'client/scripts/flux/stores/' + this._.slugify(this.name.toLowerCase()) + '.js');
 
-        if (this.useTesting) {
-            this.template('constant-spec.js', 'test/spec/flux/constants/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
-            this.template('action-spec.js', 'test/spec/flux/actions/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
-            this.template('store-spec.js', 'test/spec/flux/stores/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+            if (this.useTesting) {
+                this.template('constant-spec.js', 'test/spec/flux/constants/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+                this.template('action-spec.js', 'test/spec/flux/actions/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+                this.template('store-spec.js', 'test/spec/flux/stores/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+            }
+        }
+        else {
+            deleteFile('client/scripts/flux/constants/' + this._.slugify(this.name.toLowerCase()) + '.js', this);
+            deleteFile('client/scripts/flux/actions/' + this._.slugify(this.name.toLowerCase()) + '.js', this);
+            deleteFile('client/scripts/flux/stores/' + this._.slugify(this.name.toLowerCase()) + '.js', this);
+
+            if (this.useTesting) {
+                deleteFile('test/spec/flux/constants/' + this._.slugify(this.name.toLowerCase()) + '-spec.js', this);
+                deleteFile('test/spec/flux/actions/' + this._.slugify(this.name.toLowerCase()) + '-spec.js', this);
+                deleteFile('test/spec/flux/stores/' + this._.slugify(this.name.toLowerCase()) + '-spec.js', this);
+            }
         }
     }
 
