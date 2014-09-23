@@ -41,7 +41,7 @@ var answersConfig = function answersConfig() {
     this.answers.dbPass = this.answers.dbPass === 'nopass' ? '' : this.answers.dbPass;
 
     // Setup Database URLs
-    var username = this.answers.dbUser;
+    var username = this.answers.dbUser || '';
     var password = this.answers.dbPass ? ':' + this.answers.dbPass : '';
     var port     = this.answers.dbPort;
     var host     = this.answers.dbUser ? '@' + this.answers.dbHost : this.answers.dbHost;
