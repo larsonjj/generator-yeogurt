@@ -57,11 +57,26 @@ var serverPrompts = function serverPrompts() {
         when: function(answers) { return answers.dbOption !== 'none' && answers.useServer; },
         name: 'dbUser',
         message: 'What is your ' + 'username'.blue + ' for this database?',
-        default: 'root'
+        validate: function(val) {
+            if (val || (/nouser/i).test(val)) {
+                return true;
+            }
+            else {
+                return 'This field is required (enter "nouser" to leave blank)';
+            }
+        }
     }, {
         when: function(answers) { return answers.dbOption !== 'none' && answers.useServer; },
         name: 'dbPass',
-        message: 'What is your ' + 'password'.blue + ' for this database?'
+        message: 'What is your ' + 'password'.blue + ' for this database?',
+        validate: function(val) {
+            if (val || (/nopass/i).test(val)) {
+                return true;
+            }
+            else {
+                return 'This field is required (enter "nopass" to leave blank)';
+            }
+        }
     }, {
         when: function(answers) { return answers.useServer; },
         type: 'confirm',
