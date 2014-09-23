@@ -244,6 +244,7 @@ There are also an option that can be used to change the default behavior:
 |Options |Possible Values |Description
 |---------|---------------|-----------
 |--folder | [any folder path] |  Creates file relative to the `client/scripts` folder
+|--delete | [n/a] |  Deletes file relative to the `client/scripts` folder
 
 Example:
 
@@ -263,6 +264,7 @@ There are also an option that can be used to change the default behavior:
 |Options |Possible Values |Description
 |---------|---------------|-----------
 |--folder | [any folder path] |  Creates file relative to the `client/styles` folder
+|--delete | [n/a] |  Deletes file relative to the `client/styles` folder
 
 Example:
 
@@ -289,6 +291,7 @@ There are also an option that can be used to change the default behavior:
 |---------|---------------|-----------
 |--type| `module`, `layout`, or `page(default)` | Creates file in folder specified by type: `client/templates/{type}/myfile` or `server/templates/{type}/myfile` if using express server
 |--folder | [any folder path] |  Creates file relative to the `client/templates` folder or `server/templates` if using express server
+|--delete | [n/a] |  Deletes file relative to the `client/templates` folder or `server/templates` if using express server
 
 Examples:
 
@@ -317,6 +320,7 @@ There are also an option that can be used to change the default behavior:
 |Options |Possible Values |Description
 |---------|---------------|-----------
 |--folder | [any folder path] |  Creates file relative to the `client/templates` folder
+|--delete | [n/a] |  Deletes file relative to the `client/templates` folder
 
 
 Example:
@@ -342,6 +346,7 @@ Creates 2 files
 |Options |Possible Values |Description
 |---------|---------------|-----------
 |--folder | [any folder path] |  Creates file relative to the `client/scripts/components` folder
+|--delete | [n/a] |  Deletes file relative to the `client/scripts/components` folder
 
 
 Example:
@@ -396,6 +401,7 @@ There are also an option that can be used to change the default behavior:
 |Options |Possible Values |Description
 |---------|---------------|-----------
 |--folder | [any folder path] |  Creates file relative to the `client/scripts/views` folder
+|--delete | [n/a] |  Deletes file relative to the `client/scripts/views` folder
 
 
 Example:
@@ -421,6 +427,7 @@ There are also an option that can be used to change the default behavior:
 |Options |Possible Values |Description
 |---------|---------------|-----------
 |--folder | [any folder path] |  Creates file relative to the `client/templates` folder
+|--delete | [n/a] |  Deletes file relative to the `client/templates` folder
 
 Example:
 
@@ -446,6 +453,7 @@ There are also a couple possible options that can be used to change the default 
 |---------|---------------|-----------
 |--model | `[filename of model]` |  Adds the specified model name to the collection `model:` property
 |--folder | [any folder path] |  Creates file relative to the `client/templates` folder
+|--delete | [n/a] |  Deletes file relative to the `client/templates` folder
 
 Example:
 
