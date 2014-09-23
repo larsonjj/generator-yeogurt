@@ -1,3 +1,11 @@
+### v0.12.0:
+#### date: 2014-09-22
+##### changes:
+* Added validation prompts for Database and FTP usernames and password.
+* Added logic to delete username and password info from `.yo-rc.json` file as that information should be kept confidential
+* Added prompts for FTP host, folder, username, and password
+* Added information and [new repository](https://github.com/larsonjj/yeogurt-vagrant) for using Yeogurt with [Vagrant](https://www.vagrantup.com/)
+
 ### v0.11.8:
 #### date: 2014-09-17
 ##### changes:
