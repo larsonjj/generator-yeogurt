@@ -1,8 +1,8 @@
 {
-    "host": "",
-    "serverPath": "/html",
+    "host": "<%= ftpHost %>",
+    "serverPath": "<%= ftpFolder %>",
     "key1": {
-        "username": "jdoe",
-        "password": "jdoe1"
+        "username": "<%= ftpUser %>",
+        "password": "<%= ftpPass %>"
       }
 }

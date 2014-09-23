@@ -19,7 +19,8 @@ var answersConfig = function answersConfig() {
             this.serverPrompts,
             this.clientPrompts,
             this.documentationPrompts,
-            this.testingPrompts
+            this.testingPrompts,
+            this.deploymentPrompts
         );
     }
 
@@ -36,8 +37,11 @@ var answersConfig = function answersConfig() {
     this.useSecurity        = this.answers.useSecurity;
     this.useServerTemplates = this.answers.useServerTemplates;
 
+    this.answers.dbUser = this.answers.dbUser === 'nouser' ? '' : this.answers.dbUser;
+    this.answers.dbPass = this.answers.dbPass === 'nopass' ? '' : this.answers.dbPass;
+
     // Setup Database URLs
-    var username = this.answers.dbUser;
+    var username = this.answers.dbUser || '';
     var password = this.answers.dbPass ? ':' + this.answers.dbPass : '';
     var port     = this.answers.dbPort;
     var host     = this.answers.dbUser ? '@' + this.answers.dbHost : this.answers.dbHost;
@@ -78,7 +82,6 @@ var answersConfig = function answersConfig() {
     this.cssFramework          = this.answers.cssFramework;
     this.ieSupport             = this.answers.ieSupport;
     this.useGA                 = this.answers.useGA;
-    this.useFTP                = this.answers.useFTP;
     this.jshint                = this.answers.jshint;
     this.extras                = this.answers.extras;
 
@@ -90,6 +93,13 @@ var answersConfig = function answersConfig() {
     this.useJsdoc              = this.answers.useJsdoc;
     this.useKss                = this.answers.useKss;
     this.useDashboard          = this.answers.useDashboard;
+
+    // Deployment
+    this.useFTP                = this.answers.useFTP;
+    this.ftpHost               = this.answers.ftpHost;
+    this.ftpFolder             = this.answers.ftpFolder;
+    this.ftpUser               = this.answers.ftpUser === 'nouser' ? '' : this.answers.ftpUser;
+    this.ftpPass               = this.answers.ftpUser === 'nopass' ? '' : this.answers.ftpPass;
 
     // Default Overwrites
     if (this.jsFramework === 'react') {
