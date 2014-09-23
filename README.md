@@ -33,6 +33,7 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 - [Adding third-party libraries](#adding-third-party-libraries)
 - [Deployment](#deployment)
     - [FTP Server](#ftp-server)
+- [Vagrant Setup](#vagrant-setup)
 - [Guides](#guides)
 - [Common Gotchas](#common-gotchas)
     - [Bower not installing dependencies using Git](#bower-not-installing-dependencies-using-git)
@@ -560,6 +561,9 @@ Fill out the necessary connection information needed to access your FTP server a
 For more info on setting up the `.ftppass` file, refer to the [grunt-ftpush](https://github.com/inossidabile/grunt-ftpush) documentation
 
 > IMPORTANT: You will want to test your FTP connection information using an FTP client first (ex. [Filezilla](https://filezilla-project.org/)). This will ensure that you are: a) using the correct information and b) copying files to the correct directory.
+
+## Vagrant Setup
+If you would like to use Yeogurt with [Vagrant](https://www.vagrantup.com/), head over to the [yeogurt-vagrant](https://github.com/larsonjj/yeogurt-vagrant) repository for installation and setup instructions.
 
 ## Guides
 Check out the [Guides](docs/guides/README.md) section to learn how to integrate other technologies like Ruby Sass
