@@ -1,8 +1,9 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var cleanFolderPath = require('../helpers/clean-folder-path');
 var deleteFile = require('../helpers/delete-file');
+var getRootDir = require('../helpers/get-root-dir');
+var path = require('path');
 
 var ReactGenerator = module.exports = function ReactGenerator() {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -12,57 +13,73 @@ var ReactGenerator = module.exports = function ReactGenerator() {
     var fileJSON = this.config.get('config');
 
     // options
-    this.folder = this.options.folder || '';
     this.delete = this.options.delete || '';
     this.jsFramework = fileJSON.jsFramework;
     this.testFramework = fileJSON.testFramework;
     this.useJsx = fileJSON.useJsx;
     this.useTesting = fileJSON.useTesting;
 
-    var getNumberOfPaths = [];
-    this.folder.split('/').forEach(function(item) {
-        if (item) {
-            getNumberOfPaths.push('../');
-        }
-    });
-    this.folderCount = getNumberOfPaths.join('');
-
-    // Remove all leading and trailing slashes in folder path
-    this.cleanFolderPath = cleanFolderPath;
-
 };
 
 util.inherits(ReactGenerator, yeoman.generators.NamedBase);
 
-ReactGenerator.prototype.files = function files() {
-    this.log('You called the react subgenerator with the argument ' + this.name + '.');
-
+// Prompts
+ReactGenerator.prototype.ask = function ask() {
     if (this.jsFramework !== 'react') {
         this.log('This subgenerator is only used for React Applications. It seems as though you are not using React');
         this.log('Operation aborted');
+        this.abort = true;
+        return;
     }
-    else {
-        if (!this.delete) {
-            if (this.useJsx) {
-                this.template('react.jsx', 'client/scripts/components/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.jsx');
-            }
-            else {
-                this.template('react.js', 'client/scripts/components/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.js');
-            }
-            if (this.useTesting) {
-                this.template('react-spec.js', 'test/spec/components/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '-spec.js');
-            }
+
+    var createOrDelete = this.delete ? 'delete' : 'create';
+
+    var done = this.async();
+    var prompts = [{
+        name: 'reactFile',
+        message: 'Where would you like to ' + createOrDelete + ' this react component?',
+        default: 'client/scripts/components'
+    }, {
+        name: 'testFile',
+        message: 'Where would you like to ' + createOrDelete + ' this react component\'s test?',
+        default: 'test/spec/components'
+    }];
+
+    this.prompt(prompts, function(answers) {
+        // Get root directory
+        this.rootDir = getRootDir(answers.testFile);
+
+        this.reactFile = path.join(answers.reactFile, this._.slugify(this.name.toLowerCase()));
+        this.testFile = path.join(answers.testFile, this._.slugify(this.name.toLowerCase()));
+        done();
+    }.bind(this));
+};
+
+ReactGenerator.prototype.files = function files() {
+    if (this.abort) {
+        return;
+    }
+
+    if (!this.delete) {
+        if (this.useJsx) {
+            this.template('react.jsx', this.reactFile + '.jsx');
         }
         else {
-            if (this.useJsx) {
-                deleteFile('client/scripts/components/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.jsx', this);
-            }
-            else {
-                deleteFile('client/scripts/components/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.js', this);
-            }
-            if (this.useTesting) {
-                deleteFile('test/spec/components/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '-spec.js', this);
-            }
+            this.template('react.js', this.reactFile + '.js');
+        }
+        if (this.useTesting) {
+            this.template('react-spec.js', this.testFile + '-spec.js');
+        }
+    }
+    else {
+        if (this.useJsx) {
+            deleteFile(this.reactFile + '.jsx', this);
+        }
+        else {
+            deleteFile(this.reactFile + '.js', this);
+        }
+        if (this.useTesting) {
+            deleteFile(this.testFile + '-spec.js', this);
         }
     }
 

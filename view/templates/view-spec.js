@@ -1,4 +1,4 @@
-/**
+ /**
 *   <%= _.classify(name) %> Spec Description
 */
 <% if (testFramework === 'mocha') { %>
@@ -7,12 +7,12 @@
 define(function(require) {
     'use strict';
 
-    var <%= _.classify(name) %> = require('views/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= _.slugify(name.toLowerCase()) %>');
+    var <%= _.classify(name) %> = require('<%= viewFile %>');
 
     describe('<%= _.classify(name) %> View', function () {
 
         beforeEach(function () {
-            this.<%= _.classify(name) %>View = new <%= _.classify(name) %>();
+            this.<%= _.classify(name) %> = new <%= _.classify(name) %>();
         });
 
         it('Should run a few assertions', function(){
@@ -24,12 +24,12 @@ define(function(require) {
 });<% } else if (jsOption === 'browserify') { %>
 'use strict';
 
-var <%= _.classify(name) %> = require('<%= folder ? folderCount : ''%>../../client/scripts/views/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= _.slugify(name.toLowerCase()) %>.js');
+var <%= _.classify(name) %> = require('<%= rootDir %><%= viewFile %>');
 
 describe('<%= _.classify(name) %> View', function () {
 
     beforeEach(function () {
-        this.<%= _.classify(name) %>View = new <%= _.classify(name) %>();
+        this.<%= _.classify(name) %> = new <%= _.classify(name) %>();
     });
 
     it('Should run a few assertions', function(){

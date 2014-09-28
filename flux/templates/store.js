@@ -6,7 +6,7 @@
 
 var AppDispatcher = require('../dispatchers/app');
 var EventEmitter = require('events').EventEmitter;
-var <%= _.classify(name) %>Constants = require('../constants/<%= _.slugify(name.toLowerCase()) %>');
+var <%= _.classify(name) %> = require('../constants/<%= _.slugify(name.toLowerCase()) %>');
 
 // Default change event name
 var CHANGE_EVENT = 'change';
@@ -22,31 +22,31 @@ function update(data) {
     _data = data;
 }
 
-var <%= _.classify(name) %>Store = EventEmitter.prototype;
+var <%= _.classify(name) %> = EventEmitter.prototype;
 
 /**
  * Get data.
  * @return {object}
  */
-<%= _.classify(name) %>Store.getData = function() {
+<%= _.classify(name) %>.getData = function() {
     return _data;
 };
 
-<%= _.classify(name) %>Store.emitChange = function() {
+<%= _.classify(name) %>.emitChange = function() {
     this.emit(CHANGE_EVENT);
 };
 
 /**
  * @param {function} callback
  */
-<%= _.classify(name) %>Store.addChangeListener = function(callback) {
+<%= _.classify(name) %>.addChangeListener = function(callback) {
     this.on(CHANGE_EVENT, callback);
 };
 
 /**
  * @param {function} callback
  */
-<%= _.classify(name) %>Store.removeChangeListener = function(callback) {
+<%= _.classify(name) %>.removeChangeListener = function(callback) {
     this.removeListener(CHANGE_EVENT, callback);
 };
 
@@ -56,12 +56,12 @@ AppDispatcher.register(function(payload) {
     var text;
 
     switch (action.actionType) {
-        case <%=_.classify(name) %>Constants.SAMPLE_CONSTANT:
+        case <%=_.classify(name) %>.SAMPLE_CONSTANT:
             text = action.text.trim();
             if (text !== '') {
                 update(text);
                 // Let application know, that a change has occured
-                <%= _.classify(name) %>Store.emitChange();
+                <%= _.classify(name) %>.emitChange();
             }
             break;
         default:
@@ -72,4 +72,4 @@ AppDispatcher.register(function(payload) {
     return true; // No errors.  Needed by promise in Dispatcher.
 });
 
-module.exports = <%= _.classify(name) %>Store;
+module.exports = <%= _.classify(name) %>;

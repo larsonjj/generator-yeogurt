@@ -5,7 +5,7 @@
 'use strict';
 
 var AppDispatcher = require('../dispatchers/app');
-var <%= _.classify(name) %>Constants = require('../constants/<%= _.slugify(name.toLowerCase()) %>');
+var <%= _.classify(name) %> = require('../constants/<%= _.slugify(name.toLowerCase()) %>');
 
 var <%= _.classify(name) %>Action = {
     // Replace sample with your own action property
@@ -14,7 +14,7 @@ var <%= _.classify(name) %>Action = {
      */
     sample: function(text) {
         AppDispatcher.handleViewAction({
-            actionType: <%= _.classify(name) %>Constants.SAMPLE_CONSTANT,
+            actionType: <%= _.classify(name) %>.SAMPLE_CONSTANT,
             text: text
         });
     },

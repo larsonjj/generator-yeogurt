@@ -1,8 +1,9 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var cleanFolderPath = require('../helpers/clean-folder-path');
 var deleteFile = require('../helpers/delete-file');
+var getRootDir = require('../helpers/get-root-dir');
+var path = require('path');
 
 var ScriptGenerator = module.exports = function ScriptGenerator() {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -12,39 +13,52 @@ var ScriptGenerator = module.exports = function ScriptGenerator() {
     var fileJSON = this.config.get('config');
 
     // options
-    this.useDashboard = this.options.dashboard || false;
-    this.folder = this.options.folder || '';
     this.delete = this.options.delete || '';
     this.jsOption = fileJSON.jsOption;
     this.useTesting = fileJSON.useTesting;
     this.testFramework = fileJSON.testFramework;
-
-    var getNumberOfPaths = [];
-    this.folder.split('/').forEach(function(item) {
-        if (item) {
-            getNumberOfPaths.push('../');
-        }
-    });
-    this.folderCount = getNumberOfPaths.join('');
-
-    // Remove all leading and trailing slashes in folder path
-    this.cleanFolderPath = cleanFolderPath;
 };
 
 util.inherits(ScriptGenerator, yeoman.generators.NamedBase);
 
+// Prompts
+ScriptGenerator.prototype.ask = function ask() {
+
+    var createOrDelete = this.delete ? 'delete' : 'create';
+
+    var done = this.async();
+    var prompts = [{
+        name: 'scriptFile',
+        message: 'Where would you like to ' + createOrDelete + ' this script?',
+        default: 'client/scripts'
+    }, {
+        name: 'testFile',
+        message: 'Where would you like to ' + createOrDelete + ' this script\'s test?',
+        default: 'test/spec'
+    }];
+
+    this.prompt(prompts, function(answers) {
+        // Get root directory
+        this.rootDir = getRootDir(answers.testFile);
+
+        this.scriptFile = path.join(answers.scriptFile, this._.slugify(this.name.toLowerCase()));
+        this.testFile = path.join(answers.testFile, this._.slugify(this.name.toLowerCase()));
+        done();
+    }.bind(this));
+};
+
+// Create Files
 ScriptGenerator.prototype.files = function files() {
-    this.log('You called the script subgenerator with the argument ' + this.name + '.');
     if (!this.delete) {
-        this.template('script.js', 'client/scripts/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.js');
+        this.template('script.js', this.scriptFile + '.js');
         if (this.useTesting) {
-            this.template('script-spec.js', 'test/spec/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '-spec.js');
+            this.template('script-spec.js', this.testFile + '-spec.js');
         }
     }
     else {
-        deleteFile('client/scripts/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.js', this);
+        deleteFile(this.scriptFile + '.js', this);
         if (this.useTesting) {
-            deleteFile('test/spec/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '-spec.js', this);
+            deleteFile(this.testFile + '-spec.js', this);
         }
     }
 

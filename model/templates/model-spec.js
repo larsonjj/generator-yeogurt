@@ -7,15 +7,15 @@
 define(function(require) {
     'use strict';
 
-    var <%= _.classify(name) %> = require('models/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= _.slugify(name.toLowerCase()) %>');
+    var <%= _.classify(name) %> = require('<%= modelFile %>');
 
     describe('<%= _.classify(name) %> Model', function () {
 
         beforeEach(function () {
-            this.<%= _.classify(name) %>Model = new <%= _.classify(name) %>();
+            this.<%= _.classify(name) %> = new <%= _.classify(name) %>();
         });
 
-        it('Should run a few assertions', function(){
+        it('Should run a few assertions', function() {
 
         });
 
@@ -24,12 +24,12 @@ define(function(require) {
 });<% } else if (jsOption === 'browserify') { %>
 'use strict';
 
-var <%= _.classify(name) %> = require('<%= folder ? folderCount : ''%>../../../client/scripts/models/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= _.slugify(name.toLowerCase()) %>.js');
+var <%= _.classify(name) %> = require('<%= rootDir %><%= modelFile %>.js');
 
 describe('<%= _.classify(name) %> Model', function () {
 
     beforeEach(function () {
-        this.<%= _.classify(name) %>Model = new <%= _.classify(name) %>();
+        this.<%= _.classify(name) %> = new <%= _.classify(name) %>();
     });
 
     it('Should run a few assertions', function(){

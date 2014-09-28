@@ -5,7 +5,7 @@
 define(function(require) {
     'use strict';
 
-    var <%= _.classify(name) %>View = Backbone.View.extend({
+    var <%= _.classify(name) %> = Backbone.View.extend({
 
         tagName: 'div',
 
@@ -14,7 +14,7 @@ define(function(require) {
         className: '',
 
         // Compile our stats template
-        template: JST['client/templates/<%= _.camelize(name) %>.<% if (jsTemplate === 'lodash') { %>jst<% } else if (jsTemplate === 'handlebars') { %>hbs<% } else if (jsTemplate === 'jade') { %>jade<% } else if (jsTemplate === 'swig') { %>swig<% } %>'],
+        template: JST['<%= templateFile %>.<% if (jsTemplate === 'lodash') { %>jst<% } else if (jsTemplate === 'handlebars') { %>hbs<% } else if (jsTemplate === 'jade') { %>jade<% } else if (jsTemplate === 'swig') { %>swig<% } %>'],
 
         // Delegated events
         events: {},
@@ -31,11 +31,11 @@ define(function(require) {
 
     });
 
-    return <%= _.classify(name) %>View;
+    return <%= _.classify(name) %>;
 });<% } else if (jsOption === 'browserify') { %>
 'use strict';
 
-var <%= _.classify(name) %>View = Backbone.View.extend({
+var <%= _.classify(name) %> = Backbone.View.extend({
 
     tagName: 'div',
 
@@ -44,7 +44,7 @@ var <%= _.classify(name) %>View = Backbone.View.extend({
     className: '',
 
     // Compile our stats template
-    template: JST['client/templates/<%= _.camelize(name) %>.<% if (jsTemplate === 'lodash') { %>jst<% } else if (jsTemplate === 'handlebars') { %>hbs<% } else if (jsTemplate === 'jade') { %>jade<% } else if (jsTemplate === 'swig') { %>swig<% } %>'],
+    template: JST['<%= templateFile %>.<% if (jsTemplate === 'lodash') { %>jst<% } else if (jsTemplate === 'handlebars') { %>hbs<% } else if (jsTemplate === 'jade') { %>jade<% } else if (jsTemplate === 'swig') { %>swig<% } %>'],
 
     // Delegated events
     events: {},
@@ -61,5 +61,5 @@ var <%= _.classify(name) %>View = Backbone.View.extend({
 
 });
 
-module.exports = <%= _.classify(name) %>View;
+module.exports = <%= _.classify(name) %>;
 <% } %>

@@ -5,25 +5,25 @@
 define(function(require) {
     'use strict';
 
-    var <%= useModel ? _.classify(useModel) : _.classify(name) %>Model = require('models/<%= useModel ? _.slugify(useModel) : _.slugify(name.toLowerCase()) %>');
+    var <%= _.classify(modelName) %> = require('<%= modelFile %>');
 
-    var <%= _.classify(name) %>Collection = Backbone.Collection.extend({
+    var <%= _.classify(name) %> = Backbone.Collection.extend({
 
-        model: <% useModel ? _.classify(useModel) : _.classify(name) %>Model
+        model: <%= _.classify(modelName) %>
 
     });
 
-    return <%= _.classify(name) %>Collection;
+    return <%= _.classify(name) %>;
 });<% } else if (jsOption === 'browserify') { %>
 'use strict';
 
-var <%= useModel ? _.classify(useModel) : _.classify(name) %>Model = require('models/<%= useModel ? _.slugify(useModel) : _.slugify(name.toLowerCase()) %>');
+var <%= _.classify(modelName) %> = require('<%= rootDir %><%= modelFile %>');
 
-var <%= _.classify(name) %>Collection = Backbone.Collection.extend({
+var <%= _.classify(name) %> = Backbone.Collection.extend({
 
-    model: <%= useModel ? _.classify(useModel) : _.classify(name) %>Model
+    model: <%= _.classify(modelName) %>
 
 });
 
-module.exports = <%= _.classify(name) %>Collection;
+module.exports = <%= _.classify(name) %>;
 <% } %>

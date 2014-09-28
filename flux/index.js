@@ -2,6 +2,8 @@
 var util = require('util');
 var yeoman = require('yeoman-generator');
 var deleteFile = require('../helpers/delete-file');
+var getRootDir = require('../helpers/get-root-dir');
+var path = require('path');
 
 var FluxGenerator = module.exports = function FluxGenerator() {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -11,7 +13,6 @@ var FluxGenerator = module.exports = function FluxGenerator() {
     var fileJSON = this.config.get('config');
 
     // options
-    this.folder = this.options.folder || '';
     this.delete = this.options.delete || '';
     this.jsFramework = fileJSON.jsFramework;
     this.useFlux = fileJSON.useFlux;
@@ -22,40 +23,76 @@ var FluxGenerator = module.exports = function FluxGenerator() {
 
 util.inherits(FluxGenerator, yeoman.generators.NamedBase);
 
-FluxGenerator.prototype.files = function files() {
-    this.log('You called the flux subgenerator with the argument ' + this.name + '.');
+// Prompts
+FluxGenerator.prototype.ask = function ask() {
 
     if (this.jsFramework !== 'react') {
         this.log('This subgenerator is only used for React Applications. It seems as though you are not using React');
         this.log('Operation aborted');
+        this.abort = true;
+        return;
     }
     else if (!this.useFlux) {
         this.log('This subgenerator is only used for React Applications using Flux. It seems as though you are not using Flux');
         this.log('Operation aborted');
+        this.abort = true;
+        return;
+    }
+
+    var createOrDelete = this.delete ? 'delete' : 'create';
+
+    var done = this.async();
+    var prompts = [{
+        name: 'fluxFile',
+        message: 'Where would you like to ' + createOrDelete + ' flux files?',
+        default: 'client/scripts/flux'
+    }, {
+        name: 'testFile',
+        message: 'Where would you like to ' + createOrDelete + ' flux file tests?',
+        default: 'test/spec/flux'
+    }];
+
+    this.prompt(prompts, function(answers) {
+        // Get root directory
+        this.rootDir = getRootDir(answers.testFile);
+
+        this.constantFile = path.join(answers.fluxFile, '/constants/' , this._.slugify(this.name.toLowerCase()));
+        this.actionFile = path.join(answers.fluxFile, '/actions/', this._.slugify(this.name.toLowerCase()));
+        this.storeFile = path.join(answers.fluxFile, '/stores/', this._.slugify(this.name.toLowerCase()));
+        this.testConstantFile = path.join(answers.testFile, '/constants/' , this._.slugify(this.name.toLowerCase()));
+        this.testActionFile = path.join(answers.testFile, '/actions/' , this._.slugify(this.name.toLowerCase()));
+        this.testStoreFile = path.join(answers.testFile, '/stores/' , this._.slugify(this.name.toLowerCase()));
+        done();
+    }.bind(this));
+};
+
+// Create files
+FluxGenerator.prototype.files = function files() {
+    if (this.abort) {
+        return;
+    }
+
+    if (!this.delete) {
+        // Create constant, action, and store files
+        this.template('constant.js', this.constantFile + '.js');
+        this.template('action.js', this.actionFile + '.js');
+        this.template('store.js', this.storeFile + '.js');
+
+        if (this.useTesting) {
+            this.template('constant-spec.js', this.testConstantFile + '-spec.js');
+            this.template('action-spec.js', this.testActionFile + '-spec.js');
+            this.template('store-spec.js', this.testStoreFile + '-spec.js');
+        }
     }
     else {
-        if (!this.delete) {
-            // Create constant, action, and store files
-            this.template('constant.js', 'client/scripts/flux/constants/' + this._.slugify(this.name.toLowerCase()) + '.js');
-            this.template('action.js', 'client/scripts/flux/actions/' + this._.slugify(this.name.toLowerCase()) + '.js');
-            this.template('store.js', 'client/scripts/flux/stores/' + this._.slugify(this.name.toLowerCase()) + '.js');
+        deleteFile(this.constantFile + '.js', this);
+        deleteFile(this.actionFile + '.js', this);
+        deleteFile(this.storeFile + '.js', this);
 
-            if (this.useTesting) {
-                this.template('constant-spec.js', 'test/spec/flux/constants/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
-                this.template('action-spec.js', 'test/spec/flux/actions/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
-                this.template('store-spec.js', 'test/spec/flux/stores/' + this._.slugify(this.name.toLowerCase()) + '-spec.js');
-            }
-        }
-        else {
-            deleteFile('client/scripts/flux/constants/' + this._.slugify(this.name.toLowerCase()) + '.js', this);
-            deleteFile('client/scripts/flux/actions/' + this._.slugify(this.name.toLowerCase()) + '.js', this);
-            deleteFile('client/scripts/flux/stores/' + this._.slugify(this.name.toLowerCase()) + '.js', this);
-
-            if (this.useTesting) {
-                deleteFile('test/spec/flux/constants/' + this._.slugify(this.name.toLowerCase()) + '-spec.js', this);
-                deleteFile('test/spec/flux/actions/' + this._.slugify(this.name.toLowerCase()) + '-spec.js', this);
-                deleteFile('test/spec/flux/stores/' + this._.slugify(this.name.toLowerCase()) + '-spec.js', this);
-            }
+        if (this.useTesting) {
+            deleteFile(this.testConstantFile + '-spec.js', this);
+            deleteFile(this.testActionFile + '-spec.js', this);
+            deleteFile(this.testStoreFile + '-spec.js', this);
         }
     }
 

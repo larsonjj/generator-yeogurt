@@ -1,8 +1,9 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var cleanFolderPath = require('../helpers/clean-folder-path');
 var deleteFile = require('../helpers/delete-file');
+var getRootDir = require('../helpers/get-root-dir');
+var path = require('path');
 
 var CollectionGenerator = module.exports = function CollectionGenerator() {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -13,7 +14,6 @@ var CollectionGenerator = module.exports = function CollectionGenerator() {
 
     // options
     this.useModel = this.options.model || false;
-    this.folder = this.options.folder || '';
     this.delete = this.options.delete || false;
     this.jsFramework = fileJSON.jsFramework;
     this.jsOption = fileJSON.jsOption;
@@ -21,42 +21,71 @@ var CollectionGenerator = module.exports = function CollectionGenerator() {
     this.testFramework = fileJSON.testFramework;
     this.useTesting = fileJSON.useTesting;
 
-    var getNumberOfPaths = [];
-    this.folder.split('/').forEach(function(item) {
-        if (item) {
-            getNumberOfPaths.push('../');
-        }
-    });
-    this.folderCount = getNumberOfPaths.join('');
-
-    // Remove all leading and trailing slashes in folder path
-    this.cleanFolderPath = cleanFolderPath;
 };
 
 util.inherits(CollectionGenerator, yeoman.generators.NamedBase);
 
-CollectionGenerator.prototype.files = function files() {
-    this.log('You called the collection subgenerator with the argument ' + this.name + '.');
-
+// Prompts
+CollectionGenerator.prototype.ask = function ask() {
     if (!this.singlePageApplication) {
         this.log('This subgenerator is not available for Static Sites.\nOperation aborted');
+        this.abort = true;
         return;
     }
     else if (this.jsFramework === 'react') {
         this.log('This subgenerator is not available for React application.\nOperation aborted');
+        this.abort = true;
+        return;
     }
-    else if (this.singlePageApplication) {
-        if (!this.delete) {
-            this.template('collection.js', 'client/scripts/collections/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.js');
-            if (this.useTesting) {
-                this.template('collection-spec.js', 'test/spec/collections/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '-spec.js');
-            }
+
+    var createOrDelete = this.delete ? 'delete' : 'create';
+
+    var done = this.async();
+    var prompts = [{
+        name: 'collectionFile',
+        message: 'Where would you like to ' + createOrDelete + ' this collection?',
+        default: 'client/scripts/collections'
+    }, {
+        name: 'existingModelName',
+        message: 'What is the name of the model you would like to use with this collection?',
+        default: this.name + '-model'
+    }, {
+        name: 'existingModelLocation',
+        message: 'What folder is the model file located in?',
+        default: 'client/scripts/models'
+    }, {
+        name: 'testFile',
+        message: 'Where would you like to ' + createOrDelete + ' this collection\'s test?',
+        default: 'test/spec/collections'
+    }];
+
+    this.prompt(prompts, function(answers) {
+        // Get root directory
+        this.rootDir = getRootDir(answers.testFile);
+        this.modelName = answers.existingModelName;
+
+        this.collectionFile = path.join(answers.collectionFile, this._.slugify(this.name.toLowerCase()));
+        this.modelFile = path.join(answers.existingModelLocation, this._.slugify(answers.existingModelName.toLowerCase()));
+        this.testFile = path.join(answers.testFile, this._.slugify(this.name.toLowerCase()));
+        done();
+    }.bind(this));
+};
+
+// Create files
+CollectionGenerator.prototype.files = function files() {
+    if (this.abort) {
+        return;
+    }
+    if (!this.delete) {
+        this.template('collection.js', this.collectionFile + '.js');
+        if (this.useTesting) {
+            this.template('collection-spec.js', this.testFile + '-spec.js');
         }
-        else {
-            deleteFile('client/scripts/collections/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.js', this);
-            if (this.useTesting) {
-                deleteFile('test/spec/collections/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '-spec.js', this);
-            }
+    }
+    else {
+        deleteFile(this.collectionFile + '.js', this);
+        if (this.useTesting) {
+            deleteFile(this.testFile + '-spec.js', this);
         }
     }
 

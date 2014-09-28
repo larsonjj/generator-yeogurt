@@ -10,7 +10,9 @@ define(function(require) {
         // Intialize module
     };
 
-    return init;
+    return {
+        init: init
+    };
 
 });
 <% } else if (jsOption === 'browserify') { %>

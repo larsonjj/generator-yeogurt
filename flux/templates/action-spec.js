@@ -1,5 +1,5 @@
 /**
-*   <%= _.classify(name) %>Action Spec Description
+*   <%= _.classify(name) %> Spec Description
 */
 
 /* jshint newcap:false */
@@ -8,9 +8,9 @@
 
 'use strict';
 
-var <%= _.classify(name) %>Action = require('<%= folder ? folderCount : ''%>../../../../client/scripts/flux/actions/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= _.slugify(name.toLowerCase()) %>.js');
+var <%= _.classify(name) %> = require('<%= rootDir %>../<%= actionFile %>');
 
-describe('Testing Flux Action: <%= _.classify(name) %>Action', function() {
+describe('Testing Flux Action: <%= _.classify(name) %>', function() {
     it('Should run a few assertions', function() {
 
     });

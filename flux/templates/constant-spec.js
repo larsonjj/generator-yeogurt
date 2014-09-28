@@ -1,5 +1,5 @@
 /**
-*   <%= _.classify(name) %>Constant Spec Description
+*   <%= _.classify(name) %> Spec Description
 */
 
 /* jshint newcap:false */
@@ -8,9 +8,9 @@
 
 'use strict';
 
-var <%= _.classify(name) %>Constant = require('<%= folder ? folderCount : ''%>../../../../client/scripts/flux/constants/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= _.slugify(name.toLowerCase()) %>.js');
+var <%= _.classify(name) %> = require('<%= rootDir %>../<%= constantFile %>');
 
-describe('Testing Flux Constant: <%= _.classify(name) %>Constant', function() {
+describe('Testing Flux Constant: <%= _.classify(name) %>', function() {
     it('Should run a few assertions', function() {
 
     });

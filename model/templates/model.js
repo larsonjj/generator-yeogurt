@@ -5,7 +5,7 @@
 define(function(require) {
     'use strict';
 
-    var <%= _.classify(name) %>Model = Backbone.Model.extend({
+    var <%= _.classify(name) %> = Backbone.Model.extend({
 
         url: '',
 
@@ -24,11 +24,11 @@ define(function(require) {
 
     });
 
-    return <%= _.classify(name) %>Model;
+    return <%= _.classify(name) %>;
 });<% } else if (jsOption === 'browserify') { %>
 'use strict';
 
-var <%= _.classify(name) %>Model = Backbone.Model.extend({
+var <%= _.classify(name) %> = Backbone.Model.extend({
 
     url: '',
 
@@ -47,5 +47,5 @@ var <%= _.classify(name) %>Model = Backbone.Model.extend({
 
 });
 
-module.exports = <%= _.classify(name) %>Model;
+module.exports = <%= _.classify(name) %>;
 <% } %>
