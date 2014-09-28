@@ -36,8 +36,8 @@ var taskConfig = function(grunt) {
                 preserveComments: 'some'
             },
             expand: true,
-            cwd: '.tmp/scripts/templates/',
-            dest: '.tmp/scripts/templates/',
+            cwd: '.tmp/templates/',
+            dest: '.tmp/templates/',
             src: ['templates.js']
         }<% } %>
     });

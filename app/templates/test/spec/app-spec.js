@@ -7,7 +7,7 @@
 <% if (jsOption === 'requirejs') { %>'use strict';
 
 define(function(require) {
-    var app = require('app');
+    var app = require('client/scripts/app');
 
     describe('app', function() {
 

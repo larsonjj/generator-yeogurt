@@ -5,7 +5,7 @@
 define(function(require) {
     'use strict';
 
-    var MainView = require('views/main');
+    var MainView = require('./views/main');
 
     var MainRouter = Backbone.Router.extend({
         // Defined routes

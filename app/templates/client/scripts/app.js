@@ -4,7 +4,7 @@
 <% if (jsOption === 'requirejs') { %>
 define(function(require) {
     'use strict';<% if (jsFramework === 'backbone') { %>
-    var Router = require('routes');<% } %>
+    var Router = require('./routes');<% } %>
 
     var init = function(msg) {<% if (jsFramework === 'backbone') { %>
         // Initialize route(s)

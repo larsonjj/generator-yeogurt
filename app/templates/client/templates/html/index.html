@@ -112,7 +112,7 @@
         <![endif]--><% } %>
 
 <% if (useServer) { %>        <%% if (env === 'development') { %><% } %>
-        <!-- build:js(client) scripts/global.js -->
+        <!-- build:js(<% if (jsFramework === 'backbone') { %>{client,.tmp}<% } else { %>client<% } %>) scripts/global.js -->
         <script src="/bower_components/jquery/dist/jquery.js"></script><% if (jsFramework === 'backbone' || jsFramework === 'react') { %>
         <script src="/bower_components/lodash/dist/lodash.js"></script>
         <script src="/bower_components/backbone/backbone.js"></script><% } %><% if (jsTemplate === 'handlebars') { %>
