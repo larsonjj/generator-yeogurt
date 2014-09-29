@@ -35,7 +35,10 @@ describe('Style sub-generator', function () {
                 sassSyntax: 'scss'
             });
             this.app.run([], function() {
-                createSubGenerator('style', style, {}, function() {
+                createSubGenerator('style', style, {}, {
+                    // mock prompt data
+                    styleFile: 'client/styles/'
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -53,7 +56,10 @@ describe('Style sub-generator', function () {
                 sassSyntax: 'sass'
             });
             this.app.run([], function() {
-                createSubGenerator('style', style, {}, function() {
+                createSubGenerator('style', style, {}, {
+                    // mock prompt data
+                    styleFile: 'client/styles/'
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -71,7 +77,10 @@ describe('Style sub-generator', function () {
                 cssOption: 'sass'
             });
             this.app.run([], function() {
-                createSubGenerator('style', style, {folder: folder}, function() {
+                createSubGenerator('style', style, {}, {
+                    // mock prompt data
+                    styleFile: 'client/styles/' + folder,
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -89,7 +98,10 @@ describe('Style sub-generator', function () {
                 cssOption: 'sass'
             });
             this.app.run([], function() {
-                createSubGenerator('style', style, {folder: folder}, function() {
+                createSubGenerator('style', style, {}, {
+                    // mock prompt data
+                    styleFile: 'client/styles/' + folder,
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -109,7 +121,10 @@ describe('Style sub-generator', function () {
                 cssOption: 'less'
             });
             this.app.run([], function() {
-                createSubGenerator('style', style, {}, function() {
+                createSubGenerator('style', style, {}, {
+                    // mock prompt data
+                    styleFile: 'client/styles/'
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -127,7 +142,10 @@ describe('Style sub-generator', function () {
                 cssOption: 'less'
             });
             this.app.run([], function() {
-                createSubGenerator('style', style, {folder: folder}, function() {
+                createSubGenerator('style', style, {}, {
+                    // mock prompt data
+                    styleFile: 'client/styles/' + folder,
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -145,7 +163,10 @@ describe('Style sub-generator', function () {
                 cssOption: 'less'
             });
             this.app.run([], function() {
-                createSubGenerator('style', style, {folder: folder}, function() {
+                createSubGenerator('style', style, {}, {
+                    // mock prompt data
+                    styleFile: 'client/styles/' + folder,
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -164,7 +185,10 @@ describe('Style sub-generator', function () {
                 cssOption: 'stylus'
             });
             this.app.run([], function() {
-                createSubGenerator('style', style, {}, function() {
+                createSubGenerator('style', style, {}, {
+                    // mock prompt data
+                    styleFile: 'client/styles/'
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -182,7 +206,10 @@ describe('Style sub-generator', function () {
                 cssOption: 'stylus'
             });
             this.app.run([], function() {
-                createSubGenerator('style', style, {folder: folder}, function() {
+                createSubGenerator('style', style, {}, {
+                    // mock prompt data
+                    styleFile: 'client/styles/' + folder,
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -200,7 +227,10 @@ describe('Style sub-generator', function () {
                 cssOption: 'stylus'
             });
             this.app.run([], function() {
-                createSubGenerator('style', style, {folder: folder}, function() {
+                createSubGenerator('style', style, {}, {
+                    // mock prompt data
+                    styleFile: 'client/styles/' + folder,
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -220,7 +250,10 @@ describe('Style sub-generator', function () {
                 cssOption: 'css'
             });
             this.app.run([], function() {
-                createSubGenerator('style', style, {}, function() {
+                createSubGenerator('style', style, {}, {
+                    // mock prompt data
+                    styleFile: 'client/styles/'
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -238,7 +271,10 @@ describe('Style sub-generator', function () {
                 cssOption: 'css'
             });
             this.app.run([], function() {
-                createSubGenerator('style', style, {folder: folder}, function() {
+                createSubGenerator('style', style, {}, {
+                    // mock prompt data
+                    styleFile: 'client/styles/' + folder,
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -256,7 +292,10 @@ describe('Style sub-generator', function () {
                 cssOption: 'css'
             });
             this.app.run([], function() {
-                createSubGenerator('style', style, {folder: folder}, function() {
+                createSubGenerator('style', style, {}, {
+                    // mock prompt data
+                    styleFile: 'client/styles/' + folder,
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });

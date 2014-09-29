@@ -26,6 +26,7 @@ util.inherits(StyleGenerator, yeoman.generators.NamedBase);
 StyleGenerator.prototype.ask = function ask() {
 
     var createOrDelete = this.delete ? 'delete' : 'create';
+    var prefix = this.cssOption === 'css' ? '' : '_';
 
     var done = this.async();
     var prompts = [{
@@ -34,8 +35,9 @@ StyleGenerator.prototype.ask = function ask() {
         default: 'client/styles'
     }];
 
+
     this.prompt(prompts, function(answers) {
-        this.styleFile = path.join(answers.styleFile, '_' + this._.slugify(this.name.toLowerCase()));
+        this.styleFile = path.join(answers.styleFile, prefix + this._.slugify(this.name.toLowerCase()));
         done();
     }.bind(this));
 };

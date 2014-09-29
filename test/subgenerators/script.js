@@ -36,7 +36,11 @@ describe('Script sub-generator', function () {
             });
 
             this.app.run([], function() {
-                createSubGenerator('script', script, {}, function() {
+                createSubGenerator('script', script, {}, {
+                    // mock prompt data
+                    scriptFile: 'client/scripts/',
+                    testFile: 'test/spec/'
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -58,7 +62,11 @@ describe('Script sub-generator', function () {
             });
 
             this.app.run([], function() {
-                createSubGenerator('script', script, {}, function() {
+                createSubGenerator('script', script, {}, {
+                    // mock prompt data
+                    scriptFile: 'client/scripts/',
+                    testFile: 'test/spec/'
+                }, function() {
                     assert.file(filesToTest);
                     assert.noFile(filesNotCreated);
                     done();
@@ -77,7 +85,11 @@ describe('Script sub-generator', function () {
                 jsOption: 'browserify'
             });
             this.app.run([], function() {
-                createSubGenerator('script', script, {}, function() {
+                createSubGenerator('script', script, {}, {
+                    // mock prompt data
+                    scriptFile: 'client/scripts/',
+                    testFile: 'test/spec/'
+                }, function() {
                     assert.fileContent(fileContentToTest);
                     done();
                 });
@@ -96,7 +108,11 @@ describe('Script sub-generator', function () {
                 jsFramework: 'backbone'
             });
             this.app.run([], function() {
-                createSubGenerator('script', script, {}, function() {
+                createSubGenerator('script', script, {}, {
+                    // mock prompt data
+                    scriptFile: 'client/scripts/',
+                    testFile: 'test/spec/'
+                }, function() {
                     assert.fileContent(fileContentToTest);
                     done();
                 });
@@ -114,7 +130,11 @@ describe('Script sub-generator', function () {
                 testFramework: 'mocha'
             });
             this.app.run([], function() {
-                createSubGenerator('script', script, {}, function() {
+                createSubGenerator('script', script, {}, {
+                    // mock prompt data
+                    scriptFile: 'client/scripts/',
+                    testFile: 'test/spec/'
+                }, function() {
                     assert.fileContent(fileContentToTest);
                     done();
                 });
@@ -132,7 +152,11 @@ describe('Script sub-generator', function () {
                 testFramework: 'requirejs'
             });
             this.app.run([], function() {
-                createSubGenerator('script', script, {}, function() {
+                createSubGenerator('script', script, {}, {
+                    // mock prompt data
+                    scriptFile: 'client/scripts/',
+                    testFile: 'test/spec/'
+                }, function() {
                     assert.noFileContent(fileContentToTest);
                     done();
                 });
@@ -151,7 +175,11 @@ describe('Script sub-generator', function () {
                 jsOption: 'none'
             });
             this.app.run([], function() {
-                createSubGenerator('script', script, {folder: folder}, function() {
+                createSubGenerator('script', script, {}, {
+                    // mock prompt data
+                    scriptFile: 'client/scripts/' + folder,
+                    testFile: 'test/spec/' + folder
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -170,7 +198,11 @@ describe('Script sub-generator', function () {
                 jsOption: 'none'
             });
             this.app.run([], function() {
-                createSubGenerator('script', script, {folder: folder}, function() {
+                createSubGenerator('script', script, {}, {
+                    // mock prompt data
+                    scriptFile: 'client/scripts/' + folder,
+                    testFile: 'test/spec/' + folder
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });

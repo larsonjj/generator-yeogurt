@@ -38,7 +38,11 @@ describe('React sub-generator', function () {
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('react', react, {}, function() {
+                createSubGenerator('react', react, {}, {
+                    // mock prompt data
+                    reactFile: 'client/scripts/components/',
+                    testFile: 'test/spec/components/'
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -59,7 +63,11 @@ describe('React sub-generator', function () {
                 'test/spec/components/' + folder + react + '.jsx'
             ];
             this.app.run([], function() {
-                createSubGenerator('react', react, {folder: folder}, function() {
+                createSubGenerator('react', react, {}, {
+                    // mock prompt data
+                    reactFile: 'client/scripts/components/' + folder,
+                    testFile: 'test/spec/components/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -80,7 +88,11 @@ describe('React sub-generator', function () {
                 'test/spec/components/folder/' + react + '.jsx'
             ];
             this.app.run([], function() {
-                createSubGenerator('react', react, {folder: folder}, function() {
+                createSubGenerator('react', react, {}, {
+                    // mock prompt data
+                    reactFile: 'client/scripts/components/' + folder,
+                    testFile: 'test/spec/components/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -100,7 +112,11 @@ describe('React sub-generator', function () {
                 htmlOption: 'jade'
             });
             this.app.run([], function() {
-                createSubGenerator('react', react, {}, function() {
+                createSubGenerator('react', react, {}, {
+                    // mock prompt data
+                    reactFile: 'client/scripts/components/',
+                    testFile: 'test/spec/components/'
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -117,7 +133,11 @@ describe('React sub-generator', function () {
                 'test/spec/components/' + folder + react + '.jsx'
             ];
             this.app.run([], function() {
-                createSubGenerator('react', react, {folder: folder}, function() {
+                createSubGenerator('react', react, {}, {
+                    // mock prompt data
+                    reactFile: 'client/scripts/components/' + folder,
+                    testFile: 'test/spec/components/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -134,7 +154,11 @@ describe('React sub-generator', function () {
                 'test/spec/components/folder/' + react + '.jsx'
             ];
             this.app.run([], function() {
-                createSubGenerator('react', react, {folder: folder}, function() {
+                createSubGenerator('react', react, {}, {
+                    // mock prompt data
+                    reactFile: 'client/scripts/components/' + folder,
+                    testFile: 'test/spec/components/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -153,7 +177,11 @@ describe('React sub-generator', function () {
                 'test/spec/components/' + react + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('react', react, {}, function() {
+                createSubGenerator('react', react, {}, {
+                    // mock prompt data
+                    reactFile: 'client/scripts/components/',
+                    testFile: 'test/spec/components/'
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -170,7 +198,11 @@ describe('React sub-generator', function () {
                 'test/spec/components/' + folder + react + '.jsx'
             ];
             this.app.run([], function() {
-                createSubGenerator('react', react, {folder: folder}, function() {
+                createSubGenerator('react', react, {}, {
+                    // mock prompt data
+                    reactFile: 'client/scripts/components/' + folder,
+                    testFile: 'test/spec/components/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -187,7 +219,11 @@ describe('React sub-generator', function () {
                 'test/spec/components/folder/' + react + '.jsx'
             ];
             this.app.run([], function() {
-                createSubGenerator('react', react, {folder: folder}, function() {
+                createSubGenerator('react', react, {}, {
+                    // mock prompt data
+                    reactFile: 'client/scripts/components/' + folder,
+                    testFile: 'test/spec/components/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -215,7 +251,11 @@ describe('React sub-generator', function () {
                 useJsx: false
             });
             this.app.run([], function() {
-                createSubGenerator('react', react, {}, function() {
+                createSubGenerator('react', react, {}, {
+                    // mock prompt data
+                    reactFile: 'client/scripts/components/',
+                    testFile: 'test/spec/components/'
+                }, function() {
                     assert.file(filesToTest);
                     assert.fileContent(fileContentToTest);
                     assert.noFileContent(fileContentNotThere);
@@ -239,7 +279,11 @@ describe('React sub-generator', function () {
                 jsFramework: 'react'
             });
             this.app.run([], function() {
-                createSubGenerator('react', react, {}, function() {
+                createSubGenerator('react', react, {}, {
+                    // mock prompt data
+                    reactFile: 'client/scripts/components/',
+                    testFile: 'test/spec/components/'
+                }, function() {
                     assert.file(filesToTest);
                     assert.fileContent(fileContentToTest);
                     done();
@@ -264,7 +308,11 @@ describe('React sub-generator', function () {
                 useTesting: false
             });
             this.app.run([], function() {
-                createSubGenerator('react', react, {}, function() {
+                createSubGenerator('react', react, {}, {
+                    // mock prompt data
+                    reactFile: 'client/scripts/components/',
+                    testFile: 'test/spec/components/'
+                }, function() {
                     assert.file(filesToTest);
                     assert.noFile(filesNotCreated);
                     assert.fileContent(fileContentToTest);
@@ -284,7 +332,11 @@ describe('React sub-generator', function () {
                 testFramework: 'mocha'
             });
             this.app.run([], function() {
-                createSubGenerator('react', react, {}, function() {
+                createSubGenerator('react', react, {}, {
+                    // mock prompt data
+                    reactFile: 'client/scripts/components/',
+                    testFile: 'test/spec/components/'
+                }, function() {
                     assert.fileContent(fileContentToTest);
                     done();
                 });
@@ -303,7 +355,11 @@ describe('React sub-generator', function () {
                 jsFramework: 'react'
             });
             this.app.run([], function() {
-                createSubGenerator('react', react, {folder: folder}, function() {
+                createSubGenerator('react', react, {}, {
+                    // mock prompt data
+                    reactFile: 'client/scripts/components/' + folder,
+                    testFile: 'test/spec/components/' + folder
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -322,7 +378,11 @@ describe('React sub-generator', function () {
                 jsFramework: 'react'
             });
             this.app.run([], function() {
-                createSubGenerator('react', react, {folder: folder}, function() {
+                createSubGenerator('react', react, {}, {
+                    // mock prompt data
+                    reactFile: 'client/scripts/components/' + folder,
+                    testFile: 'test/spec/components/' + folder
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });

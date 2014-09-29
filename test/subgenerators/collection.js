@@ -35,7 +35,11 @@ describe('Collection sub-generator', function () {
                 jsFramework: 'react'
             });
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections',
+                    testFile: 'test/spec/collections'
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -53,7 +57,11 @@ describe('Collection sub-generator', function () {
                 'client/scripts/collections/' + folder + collection + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {folder: folder}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections/' + folder,
+                    testFile: 'test/spec/collections/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -71,7 +79,11 @@ describe('Collection sub-generator', function () {
                 'client/scripts/collections/folder/' + collection + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {folder: folder}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections/' + folder,
+                    testFile: 'test/spec/collections/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -93,7 +105,7 @@ describe('Collection sub-generator', function () {
                 singlePageApplication: false
             });
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {}, function() {
+                createSubGenerator('collection', collection, {}, {}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -112,7 +124,7 @@ describe('Collection sub-generator', function () {
                 'client/scripts/collections/' + folder + collection + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {folder: folder}, function() {
+                createSubGenerator('collection', collection, {}, {}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -131,7 +143,7 @@ describe('Collection sub-generator', function () {
                 'client/scripts/collections/folder/' + collection + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {folder: folder}, function() {
+                createSubGenerator('collection', collection, {}, {}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -152,7 +164,11 @@ describe('Collection sub-generator', function () {
                 'client/scripts/collections/' + collection + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections',
+                    testFile: 'test/spec/collections'
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -171,7 +187,11 @@ describe('Collection sub-generator', function () {
                 'client/scripts/collections/' + folder + collection + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {folder: folder}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections/' + folder,
+                    testFile: 'test/spec/collections/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -186,11 +206,15 @@ describe('Collection sub-generator', function () {
             var collection = 'mycollection';
             var folder = '/////folder/////';
             var filesToTest = [
-                'test/spec/collections/folder/' + collection + '.js',
-                'client/scripts/collections/folder/' + collection + '.js'
+                'test/spec/collections/' + folder + collection + '.js',
+                'client/scripts/collections/' + folder + collection + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {folder: folder}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections/' + folder,
+                    testFile: 'test/spec/collections/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -215,7 +239,11 @@ describe('Collection sub-generator', function () {
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections',
+                    testFile: 'test/spec/collections'
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -240,7 +268,10 @@ describe('Collection sub-generator', function () {
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections'
+                }, function() {
                     assert.file(filesToTest);
                     assert.noFile(filesNotCreated);
                     done();
@@ -263,7 +294,11 @@ describe('Collection sub-generator', function () {
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections',
+                    testFile: 'test/spec/collections'
+                }, function() {
                     assert.fileContent(fileContentToTest);
                     done();
                 });
@@ -285,7 +320,11 @@ describe('Collection sub-generator', function () {
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections',
+                    testFile: 'test/spec/collections'
+                }, function() {
                     assert.fileContent(fileContentToTest);
                     done();
                 });
@@ -306,7 +345,11 @@ describe('Collection sub-generator', function () {
                 testFramework: 'mocha'
             });
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections',
+                    testFile: 'test/spec/collections'
+                }, function() {
                     assert.fileContent(fileContentToTest);
                     done();
                 });
@@ -327,7 +370,11 @@ describe('Collection sub-generator', function () {
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections',
+                    testFile: 'test/spec/collections'
+                }, function() {
                     assert.noFileContent(fileContentToTest);
                     done();
                 });
@@ -350,7 +397,11 @@ describe('Collection sub-generator', function () {
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {folder: folder}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections/' + folder,
+                    testFile: 'test/spec/collections/' + folder
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -373,7 +424,11 @@ describe('Collection sub-generator', function () {
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {folder: folder}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections/' + folder,
+                    testFile: 'test/spec/collections/' + folder
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });

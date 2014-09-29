@@ -37,7 +37,11 @@ describe('Model sub-generator', function () {
                 htmlOption: 'swig'
             });
             this.app.run([], function() {
-                createSubGenerator('model', model, {}, function() {
+                createSubGenerator('model', model, {}, {
+                    // mock prompt data
+                    modelFile: 'client/scripts/models/',
+                    testFile: 'test/spec/models/'
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -58,7 +62,11 @@ describe('Model sub-generator', function () {
                 jsFramework: 'react'
             });
             this.app.run([], function() {
-                createSubGenerator('model', model, {}, function() {
+                createSubGenerator('model', model, {}, {
+                    // mock prompt data
+                    modelFile: 'client/scripts/models/',
+                    testFile: 'test/spec/models/'
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -76,7 +84,11 @@ describe('Model sub-generator', function () {
                 'client/scripts/models/' + folder + model + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('model', model, {folder: folder}, function() {
+                createSubGenerator('model', model, {}, {
+                    // mock prompt data
+                    modelFile: 'client/scripts/models/' + folder,
+                    testFile: 'test/spec/models/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -94,7 +106,11 @@ describe('Model sub-generator', function () {
                 'client/scripts/models/folder/' + model + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('model', model, {folder: folder}, function() {
+                createSubGenerator('model', model, {}, {
+                    // mock prompt data
+                    modelFile: 'client/scripts/models/' + folder,
+                    testFile: 'test/spec/models/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -116,7 +132,11 @@ describe('Model sub-generator', function () {
                 singlePageApplication: false
             });
             this.app.run([], function() {
-                createSubGenerator('model', model, {}, function() {
+                createSubGenerator('model', model, {}, {
+                    // mock prompt data
+                    modelFile: 'client/scripts/models/',
+                    testFile: 'test/spec/models/'
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -135,7 +155,11 @@ describe('Model sub-generator', function () {
                 'client/scripts/models/' + folder + model + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('model', model, {folder: folder}, function() {
+                createSubGenerator('model', model, {}, {
+                    // mock prompt data
+                    modelFile: 'client/scripts/models/' + folder,
+                    testFile: 'test/spec/models/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -154,7 +178,11 @@ describe('Model sub-generator', function () {
                 'client/scripts/models/folder/' + model + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('model', model, {folder: folder}, function() {
+                createSubGenerator('model', model, {}, {
+                    // mock prompt data
+                    modelFile: 'client/scripts/models/' + folder,
+                    testFile: 'test/spec/models/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -175,7 +203,11 @@ describe('Model sub-generator', function () {
                 'client/scripts/models/' + model + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('model', model, {}, function() {
+                createSubGenerator('model', model, {}, {
+                    // mock prompt data
+                    modelFile: 'client/scripts/models/',
+                    testFile: 'test/spec/models/'
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -194,7 +226,11 @@ describe('Model sub-generator', function () {
                 'client/scripts/models/' + folder + model + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('model', model, {folder: folder}, function() {
+                createSubGenerator('model', model, {}, {
+                    // mock prompt data
+                    modelFile: 'client/scripts/models/' + folder,
+                    testFile: 'test/spec/models/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -213,7 +249,11 @@ describe('Model sub-generator', function () {
                 'client/scripts/models/folder/' + model + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('model', model, {folder: folder}, function() {
+                createSubGenerator('model', model, {}, {
+                    // mock prompt data
+                    modelFile: 'client/scripts/models/' + folder,
+                    testFile: 'test/spec/models/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -238,7 +278,11 @@ describe('Model sub-generator', function () {
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('model', model, {}, function() {
+                createSubGenerator('model', model, {}, {
+                    // mock prompt data
+                    modelFile: 'client/scripts/models/',
+                    testFile: 'test/spec/models/'
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -263,7 +307,11 @@ describe('Model sub-generator', function () {
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('model', model, {}, function() {
+                createSubGenerator('model', model, {}, {
+                    // mock prompt data
+                    modelFile: 'client/scripts/models/',
+                    testFile: 'test/spec/models/'
+                }, function() {
                     assert.file(filesToTest);
                     assert.noFile(filesNotCreated);
                     done();
@@ -286,7 +334,11 @@ describe('Model sub-generator', function () {
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('model', model, {}, function() {
+                createSubGenerator('model', model, {}, {
+                    // mock prompt data
+                    modelFile: 'client/scripts/models/',
+                    testFile: 'test/spec/models/'
+                }, function() {
                     assert.fileContent(fileContentToTest);
                     done();
                 });
@@ -308,7 +360,11 @@ describe('Model sub-generator', function () {
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('model', model, {}, function() {
+                createSubGenerator('model', model, {}, {
+                    // mock prompt data
+                    modelFile: 'client/scripts/models/',
+                    testFile: 'test/spec/models/'
+                }, function() {
                     assert.fileContent(fileContentToTest);
                     done();
                 });
@@ -329,7 +385,11 @@ describe('Model sub-generator', function () {
                 testFramework: 'mocha'
             });
             this.app.run([], function() {
-                createSubGenerator('model', model, {}, function() {
+                createSubGenerator('model', model, {}, {
+                    // mock prompt data
+                    modelFile: 'client/scripts/models/',
+                    testFile: 'test/spec/models/'
+                }, function() {
                     assert.fileContent(fileContentToTest);
                     done();
                 });
@@ -350,7 +410,11 @@ describe('Model sub-generator', function () {
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('model', model, {}, function() {
+                createSubGenerator('model', model, {}, {
+                    // mock prompt data
+                    modelFile: 'client/scripts/models/',
+                    testFile: 'test/spec/models/'
+                }, function() {
                     assert.noFileContent(fileContentToTest);
                     done();
                 });
@@ -373,7 +437,11 @@ describe('Model sub-generator', function () {
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('model', model, {folder: folder}, function() {
+                createSubGenerator('model', model, {}, {
+                    // mock prompt data
+                    modelFile: 'client/scripts/models/' + folder,
+                    testFile: 'test/spec/models/' + folder
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -396,7 +464,11 @@ describe('Model sub-generator', function () {
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('model', model, {folder: folder}, function() {
+                createSubGenerator('model', model, {}, {
+                    // mock prompt data
+                    modelFile: 'client/scripts/models/' + folder,
+                    testFile: 'test/spec/models/' + folder
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });

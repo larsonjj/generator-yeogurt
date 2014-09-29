@@ -4,13 +4,13 @@
         "status": "development",
         "category": "module",
         "label": "<%= _.titleize(name) %>",
-        "link": "generated/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= name %>.html"
+        "link": "generated/<%= _.slugify(name.toLowerCase()) %>.html"
     }
     [/dash] #}
 {# [dash:swig]
-    {% import 'client/templates/modules/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= name || 'example' %>.swig' as <%= _.camelize(name) || 'example' %> %}
+    {% import '<%= templateFile %>.swig' as <%= name || 'example' %> %}
 
-    {{ <%= _.camelize(name) || 'example' %>.content() }}
+    {{ <%= name || 'example' %>.content() }}
     [/dash] #}
 
 <% } %>{% macro content() %}
@@ -29,7 +29,7 @@
         "status": "development",
         "category": "page",
         "label": "<%= _.titleize(name) %>",
-        "link": "../../<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= _.slugify(name.toLowerCase()) %>.html"
+        "link": "../../<%= templateFile %>.html"
     }
     [/dash] #}
 <% } %><% if (!useLayout) { %>
