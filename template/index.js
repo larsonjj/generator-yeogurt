@@ -86,7 +86,7 @@ TemplateGenerator.prototype.ask = function ask() {
         default: 'layouts/base'
     }, {
         when: function(answers) {
-            return answers.type === 'modules';
+            return answers.type === 'module';
         },
         name: 'templateFile',
         message: 'Where would you like to ' + createOrDelete + ' this template?',
@@ -101,12 +101,13 @@ TemplateGenerator.prototype.ask = function ask() {
     }];
 
     this.prompt(prompts, function(answers) {
-        // Get root directory
-        this.rootDir = getRootDir(answers.templateFile);
-
         if (answers.type === 'page') {
             answers.templateFile = rootPath + '/templates';
         }
+
+        // Get root directory
+        this.rootDir = getRootDir(answers.templateFile);
+
         this.type = answers.type;
         this.useLayout = answers.useLayout || false;
         this.templateFile = path.join(answers.templateFile, this._.slugify(this.name.toLowerCase()));
