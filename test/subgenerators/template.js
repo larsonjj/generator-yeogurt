@@ -205,7 +205,7 @@ describe('Template sub-generator', function () {
                     this.app.run([], function() {
                         createSubGenerator('template', template, {}, {
                                 // mock prompt data
-                                templateFile: 'client/templates/',
+                                templateFile: 'client/templates/modules/',
                                 type: type
                             }, function() {
                             assert.file(filesToTest);
@@ -235,7 +235,7 @@ describe('Template sub-generator', function () {
                     this.app.run([], function() {
                         createSubGenerator('template', template, {}, {
                             // mock prompt data
-                            templateFile: 'client/templates/',
+                            templateFile: 'client/templates/modules/',
                             type: type
                         }, function() {
                             assert.file(filesToTest);
@@ -265,7 +265,7 @@ describe('Template sub-generator', function () {
                 this.app.run([], function() {
                     createSubGenerator('template', template, {}, {
                         // mock prompt data
-                        templateFile: 'client/templates/',
+                        templateFile: 'client/templates/layouts/',
                         type: type
                     }, function() {
                         assert.file(filesToTest);
@@ -311,12 +311,12 @@ describe('Template sub-generator', function () {
                 var folder = 'folder/';
                 var filesToTest = [
                     // add files and folders you expect to NOT exist here.
-                    'client/templates/' + folder + 'modules/' + template + '.jade'
+                    'client/templates/modules/' + folder + template + '.jade'
                 ];
                 this.app.run([], function() {
                     createSubGenerator('template', template, {}, {
                         // mock prompt data
-                        templateFile: 'client/templates/' + folder,
+                        templateFile: 'client/templates/modules/' + folder,
                         type: type
                     }, function() {
                     assert.file(filesToTest);
@@ -336,12 +336,12 @@ describe('Template sub-generator', function () {
                 var folder = '/////folder/////';
                 var filesToTest = [
                     // add files and folders you expect to NOT exist here.
-                    'client/templates/' + folder + 'modules/' + template + '.jade'
+                    'client/templates/modules/' + folder + template + '.jade'
                 ];
                 this.app.run([], function() {
                     createSubGenerator('template', template, {}, {
                         // mock prompt data
-                        templateFile: 'client/templates/' + folder,
+                        templateFile: 'client/templates/modules/' + folder,
                         type: type
                     }, function() {
                     assert.file(filesToTest);
@@ -393,7 +393,7 @@ describe('Template sub-generator', function () {
                 this.app.run([], function() {
                         createSubGenerator('template', template, {}, {
                             // mock prompt data
-                            templateFile: 'client/templates/',
+                            templateFile: 'client/templates/modules/',
                             type: type
                         }, function() {
                         assert.fileContent(fileContentToTest);
@@ -418,7 +418,7 @@ describe('Template sub-generator', function () {
                 this.app.run([], function() {
                     createSubGenerator('template', template, {}, {
                             // mock prompt data
-                            templateFile: 'client/templates/',
+                            templateFile: 'client/templates/layouts/',
                             type: type
                         }, function() {
                         assert.noFileContent(fileContentToTest);
@@ -470,7 +470,7 @@ describe('Template sub-generator', function () {
                 this.app.run([], function() {
                     createSubGenerator('template', template, {}, {
                         // mock prompt data
-                        templateFile: 'server/templates/',
+                        templateFile: 'server/templates/modules/',
                         type: type
                     }, function() {
                         assert.file(filesToTest);
@@ -495,7 +495,7 @@ describe('Template sub-generator', function () {
                 this.app.run([], function() {
                     createSubGenerator('template', template, {}, {
                         // mock prompt data
-                        templateFile: 'server/templates/',
+                        templateFile: 'server/templates/layouts/',
                         type: type
                     }, function() {
                         assert.file(filesToTest);
@@ -511,16 +511,16 @@ describe('Template sub-generator', function () {
                 });
                 // Filename
                 var template = 'mytemplate';
-                var type = 'page';
+                var type = 'module';
                 var folder = 'folder/';
                 var filesToTest = [
                     // add files and folders you expect to NOT exist here.
-                    'server/templates/' + folder + template + '.jade'
+                    'server/templates/modules/' + folder + template + '.jade'
                 ];
                 this.app.run([], function() {
                     createSubGenerator('template', template, {}, {
                         // mock prompt data
-                        templateFile: 'server/templates/' + folder,
+                        templateFile: 'server/templates/modules/' + folder,
                         type: type
                     }, function() {
                         assert.file(filesToTest);
@@ -536,16 +536,16 @@ describe('Template sub-generator', function () {
                 });
                 // Filename
                 var template = 'mytemplate';
-                var type = 'page';
+                var type = 'module';
                 var folder = '/////folder/////';
                 var filesToTest = [
                     // add files and folders you expect to NOT exist here.
-                    'server/templates/folder/' + template + '.jade'
+                    'server/templates/modules/' + folder + template + '.jade'
                 ];
                 this.app.run([], function() {
                     createSubGenerator('template', template, {}, {
                         // mock prompt data
-                        templateFile: 'server/templates/' + folder,
+                        templateFile: 'server/templates/modules/' + folder,
                         type: type
                     }, function() {
                         assert.file(filesToTest);
@@ -597,7 +597,7 @@ describe('Template sub-generator', function () {
                 this.app.run([], function() {
                     createSubGenerator('template', template, {}, {
                         // mock prompt data
-                        templateFile: 'server/templates/',
+                        templateFile: 'server/templates/modules/',
                         type: type
                     }, function() {
                         assert.fileContent(fileContentToTest);
@@ -622,7 +622,7 @@ describe('Template sub-generator', function () {
                 this.app.run([], function() {
                     createSubGenerator('template', template, {}, {
                         // mock prompt data
-                        templateFile: 'server/templates/',
+                        templateFile: 'server/templates/layouts/',
                         type: type
                     }, function() {
                         assert.noFileContent(fileContentToTest);
@@ -677,7 +677,7 @@ describe('Template sub-generator', function () {
                 this.app.run([], function() {
                     createSubGenerator('template', template, {}, {
                         // mock prompt data
-                        templateFile: 'client/templates/',
+                        templateFile: 'client/templates/modules/',
                         type: type
                     }, function() {
                         assert.file(filesToTest);
@@ -702,7 +702,7 @@ describe('Template sub-generator', function () {
                 this.app.run([], function() {
                         createSubGenerator('template', template, {}, {
                             // mock prompt data
-                        templateFile: 'client/templates/',
+                        templateFile: 'client/templates/layouts/',
                         type: type
                         }, function() {
                         assert.file(filesToTest);
@@ -743,16 +743,16 @@ describe('Template sub-generator', function () {
                 });
                 // Filename
                 var template = 'mytemplate';
-                var type = 'page';
+                var type = 'module';
                 var folder = 'folder/';
                 var filesToTest = [
                     // add files and folders you expect to NOT exist here.
-                    'client/templates/' + folder + template + '.swig'
+                    'client/templates/modules/' + folder + template + '.swig'
                 ];
                 this.app.run([], function() {
                     createSubGenerator('template', template, {}, {
                         // mock prompt data
-                        templateFile: 'client/templates/' + folder,
+                        templateFile: 'client/templates/modules/' + folder,
                         type: type
                     }, function() {
                         assert.file(filesToTest);
@@ -768,16 +768,16 @@ describe('Template sub-generator', function () {
                 });
                 // Filename
                 var template = 'mytemplate';
-                var type = 'page';
+                var type = 'module';
                 var folder = '/////folder/////';
                 var filesToTest = [
                     // add files and folders you expect to NOT exist here.
-                    'client/templates/folder/' + template + '.swig'
+                    'client/templates/modules/' + folder + template + '.swig'
                 ];
                 this.app.run([], function() {
                     createSubGenerator('template', template, {}, {
                         // mock prompt data
-                        templateFile: 'client/templates/' + folder,
+                        templateFile: 'client/templates/modules/' + folder,
                         type: type
                     }, function() {
                         assert.file(filesToTest);
@@ -829,7 +829,7 @@ describe('Template sub-generator', function () {
                 this.app.run([], function() {
                         createSubGenerator('template', template, {}, {
                             // mock prompt data
-                        templateFile: 'client/templates/',
+                        templateFile: 'client/templates/modules/',
                         type: type
                         }, function() {
                         assert.fileContent(fileContentToTest);
@@ -854,7 +854,7 @@ describe('Template sub-generator', function () {
                 this.app.run([], function() {
                         createSubGenerator('template', template, {}, {
                             // mock prompt data
-                            templateFile: 'client/templates/',
+                            templateFile: 'client/templates/layouts/',
                             type: type
                         }, function() {
                         assert.noFileContent(fileContentToTest);
@@ -906,7 +906,7 @@ describe('Template sub-generator', function () {
                 this.app.run([], function() {
                     createSubGenerator('template', template, {}, {
                         // mock prompt data
-                        templateFile: 'server/templates/',
+                        templateFile: 'server/templates/modules/',
                         type: type
                     }, function() {
                         assert.file(filesToTest);
@@ -931,7 +931,7 @@ describe('Template sub-generator', function () {
                 this.app.run([], function() {
                     createSubGenerator('template', template, {}, {
                         // mock prompt data
-                        templateFile: 'server/templates/',
+                        templateFile: 'server/templates/layouts/',
                         type: type
                     }, function() {
                         assert.file(filesToTest);
@@ -947,16 +947,16 @@ describe('Template sub-generator', function () {
                 });
                 // Filename
                 var template = 'mytemplate';
-                var type = 'page';
+                var type = 'module';
                 var folder = 'folder/';
                 var filesToTest = [
                     // add files and folders you expect to NOT exist here.
-                    'server/templates/' + folder + template + '.swig'
+                    'server/templates/modules/' + folder + template + '.swig'
                 ];
                 this.app.run([], function() {
                     createSubGenerator('template', template, {}, {
                         // mock prompt data
-                        templateFile: 'server/templates/' + folder,
+                        templateFile: 'server/templates/modules/' + folder,
                         type: type
                     }, function() {
                         assert.file(filesToTest);
@@ -972,16 +972,16 @@ describe('Template sub-generator', function () {
                 });
                 // Filename
                 var template = 'mytemplate';
-                var type = 'page';
+                var type = 'module';
                 var folder = '/////folder/////';
                 var filesToTest = [
                     // add files and folders you expect to NOT exist here.
-                    'server/templates/folder/' + template + '.swig'
+                    'server/templates/modules/' + folder + template + '.swig'
                 ];
                 this.app.run([], function() {
                     createSubGenerator('template', template, {}, {
                         // mock prompt data
-                        templateFile: 'server/templates/' + folder,
+                        templateFile: 'server/templates/modules/' + folder,
                         type: type
                     }, function() {
                         assert.file(filesToTest);
@@ -1033,7 +1033,7 @@ describe('Template sub-generator', function () {
                 this.app.run([], function() {
                     createSubGenerator('template', template, {}, {
                         // mock prompt data
-                        templateFile: 'server/templates/',
+                        templateFile: 'server/templates/modules/',
                         type: type
                     }, function() {
                         assert.fileContent(fileContentToTest);
@@ -1058,7 +1058,7 @@ describe('Template sub-generator', function () {
                 this.app.run([], function() {
                     createSubGenerator('template', template, {}, {
                         // mock prompt data
-                        templateFile: 'server/templates/',
+                        templateFile: 'server/templates/layouts/',
                         type: type
                     }, function() {
                         assert.noFileContent(fileContentToTest);

@@ -2,6 +2,7 @@
 var util = require('util');
 var yeoman = require('yeoman-generator');
 var deleteFile = require('../helpers/delete-file');
+var getRootDir = require('../helpers/get-root-dir');
 var path = require('path');
 
 var TemplateGenerator = module.exports = function TemplateGenerator() {
@@ -82,21 +83,33 @@ TemplateGenerator.prototype.ask = function ask() {
         },
         name: 'useLayout',
         message: 'What template you you like to extend from?',
-        default: 'base'
+        default: 'layouts/base'
     }, {
+        when: function(answers) {
+            return answers.type === 'modules';
+        },
         name: 'templateFile',
         message: 'Where would you like to ' + createOrDelete + ' this template?',
-        default: rootPath + '/templates'
+        default: rootPath + '/templates/modules'
+    }, {
+        when: function(answers) {
+            return answers.type === 'layout';
+        },
+        name: 'templateFile',
+        message: 'Where would you like to ' + createOrDelete + ' this template?',
+        default: rootPath + '/templates/layouts'
     }];
 
     this.prompt(prompts, function(answers) {
-        var extraFolder = '';
-        if (answers.type === 'module' || answers.type === 'layout') {
-            extraFolder = answers.type + 's';
+        // Get root directory
+        this.rootDir = getRootDir(answers.templateFile);
+
+        if (answers.type === 'page') {
+            answers.templateFile = rootPath + '/templates';
         }
         this.type = answers.type;
         this.useLayout = answers.useLayout || false;
-        this.templateFile = path.join(answers.templateFile, extraFolder, this._.slugify(this.name.toLowerCase()));
+        this.templateFile = path.join(answers.templateFile, this._.slugify(this.name.toLowerCase()));
         done();
     }.bind(this));
 };

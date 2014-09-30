@@ -29,12 +29,11 @@
         "status": "development",
         "category": "page",
         "label": "<%= _.titleize(name) %>",
-        "link": "../../<%= templateFile %>.html"
+        "link": "<%= rootDir %><%= _.slugify(name.toLowerCase()) %>.html"
     }
     [/dash] #}
-<% } %><% if (!useLayout) { %>
-{% extends './layouts/base.swig' %}<% } else { %>
-{% extends './layouts/<%= useLayout %>.swig' %}<% } %>
+<% } %>
+{% extends './<%= rootDir.replace('../../', '') %><%= useLayout %>.swig' %}
 
 {% block content %}
     <p><%= name || 'empty' %> page</p>

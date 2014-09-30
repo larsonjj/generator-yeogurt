@@ -29,12 +29,11 @@ block content
         "status": "development",
         "category": "page",
         "label": "<%= _.titleize(name) %>",
-        "link": "../../<%= templateFile %>.html"
+        "link": "<%= rootDir %><%= _.slugify(name.toLowerCase()) %>.html"
     }
     [/dash]
-<% } %><% if (!useLayout) { %>
-extend ./layouts/base<% } else { %>
-extend ./layouts/<%= useLayout %><% } %>
+<% } %>
+extend ./<%= rootDir.replace('../../', '') %><%= useLayout %>
 
 block content
     p <%= name || 'empty' %> page<% } %>
