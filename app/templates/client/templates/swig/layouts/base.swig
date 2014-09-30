@@ -74,7 +74,10 @@
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        {% block content %}{% endblock %}<% if (useGA) { %>
+        {% block layout %}
+        {% block content %}{% endblock %}
+        {% endblock %}<% if (useGA) { %>
+
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>

@@ -20,8 +20,11 @@
 {% extends 'base.swig' %}
 
 {# Provides layout level markup #}
-<div class="layout-wrapper"><% if (name) { %>(class="<%= _.slugify(name.toLowerCase()) %>")<% } %></div>
-    {% block content %}{% endblock %}
+{% block layout %}
+<div class="layout-wrapper <% if (name) { %><%= _.slugify(name.toLowerCase()) %><% } %>">
+{% block content %}{% endblock %}
+</div>
+{% endblock %}
 
 <% } else if (type === 'page') { %><% if (useDashboard) { %>
 {# [dash:data]
@@ -36,5 +39,5 @@
 {% extends './<%= rootDir.replace('../../', '') %><%= useLayout %>.swig' %}
 
 {% block content %}
-    <p><%= name || 'empty' %> page</p>
+<p><%= name || 'empty' %> page</p>
 {% endblock %}<% } %>
