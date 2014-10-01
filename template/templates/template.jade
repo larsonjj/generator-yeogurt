@@ -18,12 +18,10 @@
         p This is an example paragraph<% } else if (type === 'layout') { %>
 extend base
 
-block content
-
+block layout
     //- Provides layout level markup
     .layout-wrapper<% if (name) { %>(class="<%= _.slugify(name.toLowerCase()) %>")<% } %>
-
-<% } else if (type === 'page') { %><% if (useDashboard) { %>
+        block content<% } else if (type === 'page') { %><% if (useDashboard) { %>
 //- [dash:data]
     {
         "status": "development",
