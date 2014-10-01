@@ -1,3 +1,9 @@
+### v0.12.1:
+#### date: 2014-10-01
+##### changes:
+* Updated istanbul coverage reporter and fixed npm test scripts
+* Fixed rimraf issue when running subgenerators ([#78](https://github.com/larsonjj/generator-yeogurt/issues/78))
+
 ### v0.12.0:
 #### date: 2014-09-22
 ##### changes:
