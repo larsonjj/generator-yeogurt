@@ -187,7 +187,7 @@ Starts up a development server that watches files and automatically reloads them
 |grunt serve:dist| runs [`grunt build`](#grunt-build) and starts up a server that loads the optimized files
 |grunt serve:docs| same as [`grunt serve`](#grunt-serve), but will also watch and recompile automated documentation (KSS, JSDoc, etc).
 
-*** NOTE: you can add the `--allow-remote` option to any of these commands to allow remote devices on the same network to view your site/app ***
+***NOTE: you can add the `--allow-remote` option to any of these commands to allow remote devices on the same network to view your site/app***
 
 ### `grunt build`
 Builds out an optimized site through compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, optimization of images, and processing of [usemin blocks](Usemin blocks). All files created from this task are put in the `{project root}/dist/` folder.
@@ -229,10 +229,10 @@ Runs [`grunt build`](#grunt-build) and pushes optimized files to a specified FTP
 * [yeogurt:model](#model)
 * [yeogurt:collection](#collection)
 
-*** Note: Generators need to be run from the root directory of your app. ***
+***Note: Generators need to be run from the root directory of your app.***
 
 ## Default Generators
-*** Note: (The following sub-generators can be used with any type of project) ***
+***Note: (The following sub-generators can be used with any type of project)***
 
 ### Script
 Creates a new module script.
@@ -332,7 +332,7 @@ Produces:
 {client,server}/templates/modules/mytemplate.jade
 ```
 
-***NOTE: `{client,server}` means that the Jade file will be created in the `client` folder, or in the `server` folder if using an Express server ***
+***NOTE: `{client,server}` means that the Jade file will be created in the `client` folder, or in the `server` folder if using an Express server***
 
 There is also an option that can be used to change the default behavior:
 
@@ -356,7 +356,7 @@ Produces:
 client/templates/mytemplate.{jst,hbs,jade}
 ```
 
-***NOTE: `{jst,hbs,jade}` means that the file extension template will match the template engine you chose: `underscore, handlebars, or jade` respectively ***
+***NOTE: `{jst,hbs,jade}` means that the file extension template will match the template engine you chose: `underscore, handlebars, or jade` respectively***
 
 There is also an option that can be used to change the default behavior:
 
@@ -465,7 +465,7 @@ client/templates/myview.{jst,hbs,jade}
 test/spec/views/myview-spec.js
 ```
 
-***NOTE: `{jst,hbs,jade}` means that the file extension template will match the template engine you chose: `underscore, handlebars, or jade` respectively ***
+***NOTE: `{jst,hbs,jade}` means that the file extension template will match the template engine you chose: `underscore, handlebars, or jade` respectively***
 
 There is also an option that can be used to change the default behavior:
 
