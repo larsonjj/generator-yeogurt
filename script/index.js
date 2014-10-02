@@ -26,12 +26,16 @@ ScriptGenerator.prototype.ask = function ask() {
 
     var createOrDelete = this.delete ? 'delete' : 'create';
 
+    var self = this;
     var done = this.async();
     var prompts = [{
         name: 'scriptFile',
         message: 'Where would you like to ' + createOrDelete + ' this script?',
         default: 'client/scripts'
     }, {
+        when: function() {
+            return self.useTesting;
+        },
         name: 'testFile',
         message: 'Where would you like to ' + createOrDelete + ' this script\'s test?',
         default: 'test/spec'
@@ -39,10 +43,12 @@ ScriptGenerator.prototype.ask = function ask() {
 
     this.prompt(prompts, function(answers) {
         // Get root directory
-        this.rootDir = getRootDir(answers.testFile);
+        this.rootDir = getRootDir(answers.scriptFile);
 
         this.scriptFile = path.join(answers.scriptFile, this._.slugify(this.name.toLowerCase()));
-        this.testFile = path.join(answers.testFile, this._.slugify(this.name.toLowerCase()));
+        if (this.useTesting) {
+            this.testFile = path.join(answers.testFile, this._.slugify(this.name.toLowerCase()));
+        }
         done();
     }.bind(this));
 };

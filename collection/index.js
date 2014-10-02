@@ -40,6 +40,7 @@ CollectionGenerator.prototype.ask = function ask() {
 
     var createOrDelete = this.delete ? 'delete' : 'create';
 
+    var self = this;
     var done = this.async();
     var prompts = [{
         name: 'collectionFile',
@@ -54,6 +55,9 @@ CollectionGenerator.prototype.ask = function ask() {
         message: 'What folder is the model file located in?',
         default: 'client/scripts/models'
     }, {
+        when: function() {
+            return self.useTesting;
+        },
         name: 'testFile',
         message: 'Where would you like to ' + createOrDelete + ' this collection\'s test?',
         default: 'test/spec/collections'
@@ -61,12 +65,15 @@ CollectionGenerator.prototype.ask = function ask() {
 
     this.prompt(prompts, function(answers) {
         // Get root directory
-        this.rootDir = getRootDir(answers.testFile);
+        this.rootDir = getRootDir(answers.collectionFile);
         this.modelName = answers.existingModelName;
 
         this.collectionFile = path.join(answers.collectionFile, this._.slugify(this.name.toLowerCase()));
         this.modelFile = path.join(answers.existingModelLocation, this._.slugify(answers.existingModelName.toLowerCase()));
-        this.testFile = path.join(answers.testFile, this._.slugify(this.name.toLowerCase()));
+
+        if (this.useTesting) {
+            this.testFile = path.join(answers.testFile, this._.slugify(this.name.toLowerCase()));
+        }
         done();
     }.bind(this));
 };

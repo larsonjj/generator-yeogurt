@@ -41,12 +41,16 @@ FluxGenerator.prototype.ask = function ask() {
 
     var createOrDelete = this.delete ? 'delete' : 'create';
 
+    var self = this;
     var done = this.async();
     var prompts = [{
         name: 'fluxFile',
         message: 'Where would you like to ' + createOrDelete + ' flux files?',
         default: 'client/scripts/flux'
     }, {
+        when: function() {
+            return self.useTesting;
+        },
         name: 'testFile',
         message: 'Where would you like to ' + createOrDelete + ' flux file tests?',
         default: 'test/spec/flux'
@@ -54,14 +58,17 @@ FluxGenerator.prototype.ask = function ask() {
 
     this.prompt(prompts, function(answers) {
         // Get root directory
-        this.rootDir = getRootDir(answers.testFile);
+        this.rootDir = getRootDir(answers.fluxFile);
 
         this.constantFile = path.join(answers.fluxFile, '/constants/' , this._.slugify(this.name.toLowerCase()));
         this.actionFile = path.join(answers.fluxFile, '/actions/', this._.slugify(this.name.toLowerCase()));
         this.storeFile = path.join(answers.fluxFile, '/stores/', this._.slugify(this.name.toLowerCase()));
-        this.testConstantFile = path.join(answers.testFile, '/constants/' , this._.slugify(this.name.toLowerCase()));
-        this.testActionFile = path.join(answers.testFile, '/actions/' , this._.slugify(this.name.toLowerCase()));
-        this.testStoreFile = path.join(answers.testFile, '/stores/' , this._.slugify(this.name.toLowerCase()));
+
+        if (this.useTesting) {
+            this.testConstantFile = path.join(answers.testFile, '/constants/' , this._.slugify(this.name.toLowerCase()));
+            this.testActionFile = path.join(answers.testFile, '/actions/' , this._.slugify(this.name.toLowerCase()));
+            this.testStoreFile = path.join(answers.testFile, '/stores/' , this._.slugify(this.name.toLowerCase()));
+        }
         done();
     }.bind(this));
 };

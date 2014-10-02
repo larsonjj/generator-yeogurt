@@ -34,12 +34,16 @@ ReactGenerator.prototype.ask = function ask() {
 
     var createOrDelete = this.delete ? 'delete' : 'create';
 
+    var self = this;
     var done = this.async();
     var prompts = [{
         name: 'reactFile',
         message: 'Where would you like to ' + createOrDelete + ' this react component?',
         default: 'client/scripts/components'
     }, {
+        when: function() {
+            return self.useTesting;
+        },
         name: 'testFile',
         message: 'Where would you like to ' + createOrDelete + ' this react component\'s test?',
         default: 'test/spec/components'
@@ -47,10 +51,12 @@ ReactGenerator.prototype.ask = function ask() {
 
     this.prompt(prompts, function(answers) {
         // Get root directory
-        this.rootDir = getRootDir(answers.testFile);
-
+        this.rootDir = getRootDir(answers.reactFile);
         this.reactFile = path.join(answers.reactFile, this._.slugify(this.name.toLowerCase()));
-        this.testFile = path.join(answers.testFile, this._.slugify(this.name.toLowerCase()));
+
+        if (this.useTesting) {
+            this.testFile = path.join(answers.testFile, this._.slugify(this.name.toLowerCase()));
+        }
         done();
     }.bind(this));
 };
