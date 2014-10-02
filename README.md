@@ -59,7 +59,7 @@ This generator utilizes [Yeoman](http://yeoman.io/), [Grunt](http://gruntjs.com/
 There are a few dependencies that this project relies on:
 
 #### Node.js
-Check to see if you already have Node installed. Do this by bringing up a terminal/command prompt and type `node -v`. If the response shows a version at or above `v0.10.x`, you are alll set and can proceed to installing Yeoman, Grunt, and Bower. If you see an error and/or your version is too low, navigate to the [Node.js](http://nodejs.org/) website and install Node from there.
+Check to see if you already have Node installed. Do this by bringing up a terminal/command prompt and type `node -v`. If the response shows a version at or above `v0.10.x`, you are all set and can proceed to installing Yeoman, Grunt, and Bower. If you see an error and/or your version is too low, navigate to the [Node.js](http://nodejs.org/) website and install Node from there.
 
 #### Yeoman, Grunt, & Bower
 Once you have Node installed, make sure you have these tools by opening up a terminal/command prompt and entering following commands:
@@ -160,7 +160,7 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 ### Automatic File Injection
 A grunt task looks for new/updated files in your project and automatically injects imports/includes in the appropriate places based on an injection block.
 
-|Filetype(s) |Project Type (Static/Single Page Appliction)| File to be injected into
+|Filetype(s) |Project Type (Static/Single Page Application File to be injected into
 |---------|---------------|---------
 |Less| Any | `client/styles/main.less`
 |Sass | Any | `client/styles/main.scss`
@@ -187,7 +187,7 @@ Starts up a development server that watches files and automatically reloads them
 |grunt serve:dist| runs [`grunt build`](#grunt-build) and starts up a server that loads the optimized files
 |grunt serve:docs| same as [`grunt serve`](#grunt-serve), but will also watch and recompile automated documentation (KSS, JSDoc, etc).
 
-***NOTE: you can add the `--allow-remote` option to any of these commands to allow remote devices on the same network to view your site/app***
+*** NOTE: you can add the `--allow-remote` option to any of these commands to allow remote devices on the same network to view your site/app ***
 
 ### `grunt build`
 Builds out an optimized site through compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, optimization of images, and processing of [usemin blocks](Usemin blocks). All files created from this task are put in the `{project root}/dist/` folder.
@@ -229,52 +229,67 @@ Runs [`grunt build`](#grunt-build) and pushes optimized files to a specified FTP
 * [yeogurt:model](#model)
 * [yeogurt:collection](#collection)
 
-***Note: Generators need to be run from the root directory of your app.***
+*** Note: Generators need to be run from the root directory of your app. ***
 
 ## Default Generators
-***Note: (The following sub-generators can be used with any type of project)***
+*** Note: (The following sub-generators can be used with any type of project) ***
 
 ### Script
-Creates 2 files:
-
-- A script file within the `client/scripts` folder.
-- A unit test file within the `test/spec` folder.
-
-There are also an option that can be used to change the default behavior:
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--folder | [any folder path] |  Creates file relative to the `client/scripts` folder
-|--delete | [n/a] |  Deletes file relative to the `client/scripts` folder
+Creates a new module script.
 
 Example:
 
 ```
-## Module
-yo yeogurt:script myscript
+$ yo yeogurt:script myscript
+? Where would you like to create this script?: client/scripts
+? Where would you like to create this script's test?: test/spec
+```
 
-## Module with specified folder: client/scripts/account
-yo yeogurt:script myscript --folder=account
+Produces:
+
+```
+client/scripts/myscript.js
+test/spec/myscript-spec.js
+```
+
+There is also an option that can be used to change the default behavior:
+
+|Options |Possible Values |Description
+|---------|---------------|-----------
+|--delete | [n/a] |  Deletes specified file(s)
+
+Example:
+
+```
+yo yeogurt:script myscript --delete
 ```
 
 ### Style
-Create a stylesheet file within `client/styles` folder.
-
-There are also an option that can be used to change the default behavior:
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--folder | [any folder path] |  Creates file relative to the `client/styles` folder
-|--delete | [n/a] |  Deletes file relative to the `client/styles` folder
+Create a new stylesheet.
 
 Example:
 
 ```
-## Style
 yo yeogurt:style mystyle
+? Where would you like to create this stylesheet?: client/styles
+```
 
-## Style within specified folder: client/styles/account
-yo yeogurt:style mystyle --folder=account
+Produces:
+
+```
+client/styles/_mystyle.scss
+```
+
+There is also an option that can be used to change the default behavior:
+
+|Options |Possible Values |Description
+|---------|---------------|-----------
+|--delete | [n/a] |  Deletes specified file(s)
+
+Example:
+
+```
+yo yeogurt:style mystyle --delete
 ```
 
 ## Static Site and Backbone Sub-generators
@@ -284,54 +299,75 @@ yo yeogurt:style mystyle --folder=account
 > IMPORTANT: This sub-generator is unique in that it's behavior differs depending on if you have generated a Static Site or a Backbone application.
 
 ##### For Static Sites
-Creates a jade file within the `client/templates` folder.
-
-There are also an option that can be used to change the default behavior:
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--type| `module`, `layout`, or `page(default)` | Creates file in folder specified by type: `client/templates/{type}/myfile` or `server/templates/{type}/myfile` if using express server
-|--folder | [any folder path] |  Creates file relative to the `client/templates` folder or `server/templates` if using express server
-|--delete | [n/a] |  Deletes file relative to the `client/templates` folder or `server/templates` if using express server
+Creates a jade file in the `client` folder (or `server` folder if using an Express server).
 
 Examples:
 
 ```
-## Page
-yo yeogurt:template mypage
+yo yeogurt:template mytemplate
 
-## Page using specified Template
-yo yeogurt:template mypage --layout=base
+# Page
+? What type of template do you want to create?: Page
+? What template you you like to extend from?: layouts/base
 
-## Page using specified folder: {server,client}/templates
-yo yeogurt:template mypage --layout=base
+# Layout
+? What type of template do you want to create?: Layout
+? Where would you like to create this template?: {client,server}/templates/layouts
 
-## Template
-yo yeogurt:template mylayout --type=layout
-
-## Module
-yo yeogurt:template mymodule --type=module
+# Module
+? What type of template do you want to create?: Module
+? Where would you like to create this template?: {client,server}/templates/modules
 ```
 
-##### For Backbone applications
-Creates a new template file (Jade, Handlebars, or Lo-dash depending on which you chose) within the `client/templates` folder.
+Produces:
 
-There are also an option that can be used to change the default behavior:
+```
+# Page
+{client,server}/templates/mytemplate.jade
+
+# Layout
+{client,server}/templates/layouts/mytemplate.jade
+
+# Module
+{client,server}/templates/modules/mytemplate.jade
+```
+
+***NOTE: `{client,server}` means that the Jade file will be created in the `client` folder, or in the `server` folder if using an Express server ***
+
+There is also an option that can be used to change the default behavior:
 
 |Options |Possible Values |Description
 |---------|---------------|-----------
-|--folder | [any folder path] |  Creates file relative to the `client/templates` folder
-|--delete | [n/a] |  Deletes file relative to the `client/templates` folder
+|--delete | [n/a] |  Deletes specified file(s)
 
+##### For Backbone applications
+Creates a new template file (Jade, Handlebars, or Lo-dash depending on which you chose).
 
 Example:
 
 ```
-## Template
 yo yeogurt:template mytemplate
+? Where would you like to create this template?: client/templates
+```
 
-## Template with specified folder client/templates/account
-yo yeogurt:template mytemplate --folder=account
+Produces:
+
+```
+client/templates/mytemplate.{jst,hbs,jade}
+```
+
+***NOTE: `{jst,hbs,jade}` means that the file extension template will match the template engine you chose: `underscore, handlebars, or jade` respectively ***
+
+There is also an option that can be used to change the default behavior:
+
+|Options |Possible Values |Description
+|---------|---------------|-----------
+|--delete | [n/a] |  Deletes specified file(s)
+
+Example:
+
+```
+yo yeogurt:template mytemplate --delete
 ```
 
 ## React Sub-generator
@@ -339,25 +375,33 @@ yo yeogurt:template mytemplate --folder=account
 
 ### React
 
-Creates 2 files
-
-- A new React component file within the `client/scripts/components`
-- A unit test file within the `test/spec/components` folder.
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--folder | [any folder path] |  Creates file relative to the `client/scripts/components` folder
-|--delete | [n/a] |  Deletes file relative to the `client/scripts/components` folder
-
+Creates React JSX Component File.
 
 Example:
 
 ```
-## React
-yo yeogurt:react myreact
+yo yeogurt:react mycomponent
+? Where would you like to create this react component?: client/scripts/components
+? Where would you like to create this react component's test?: test/spec/components
+```
 
-## React within specified folder: client/scripts/components/account
-yo yeogurt:react myreact --folder=account
+Produces:
+
+```
+client/scripts/components/mycomponent.jsx
+test/spec/components/mycomponent-spec.js
+```
+
+There is also an option that can be used to change the default behavior:
+
+|Options |Possible Values |Description
+|---------|---------------|-----------
+|--delete | [n/a] |  Deletes specified file(s)
+
+Example:
+
+```
+yo yeogurt:react mycomponent --delete
 ```
 
 ## Flux Sub-generator
@@ -365,118 +409,148 @@ yo yeogurt:react myreact --folder=account
 
 ### Flux
 
-Creates 6 files:
-
-***Source Files***
-
-- A new Flux store file within the `client/scripts/flux/stores`
-- A new Flux constant file within the `client/scripts/flux/constants`
-- A new Flux action file within the `client/scripts/flux/actions`
-
-***Test Files***
-
-- A store test file within the `test/spec/stores` folder.
-- A constant test file within the `test/spec/constants` folder.
-- A action test file within the `test/spec/action` folder.
+Creates Flux files:
 
 Example:
 
 ```
-## Flux
 yo yeogurt:flux myflux
+? Where would you like to create flux files?: client/scripts/flux
+? Where would you like to create flux file tests?: test/spec/flux
+```
+
+Produces:
+
+```
+client/scripts/flux/constants/myflux.js
+client/scripts/flux/actions/myflux.js
+client/scripts/flux/stores/myflux.js
+test/spec/flux/constants/myflux-spec.js
+test/spec/flux/actions/myflux-spec.js
+test/spec/flux/stores/myflux-spec.js
+```
+
+There is also an option that can be used to change the default behavior:
+
+|Options |Possible Values |Description
+|---------|---------------|-----------
+|--delete | [n/a] |  Deletes specified file(s)
+
+Example:
+
+```
+yo yeogurt:flux myflux --delete
 ```
 
 ## Backbone Sub-generators
 ***Note: (The following sub-generators can only be used with Backbone applications)***
 
 ### View
-Creates 3 files:
-
-- A new template file (Jade, Handlebars, or Lo-dash depending on which you chose) within the `client/templates` folder
-- A new Backbone view file within the `client/scripts/views` folder
-- A unit test file within the `test/spec/views` folder.
-
-There are also an option that can be used to change the default behavior:
-
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--folder | [any folder path] |  Creates file relative to the `client/scripts/views` folder
-|--delete | [n/a] |  Deletes file relative to the `client/scripts/views` folder
-
+Creates a Backbone view along with a corresponding template:
 
 Example:
 
 ```
-## View
 yo yeogurt:view myview
+? Where would you like to create this view?: client/scripts/views
+? Where would you like to create this view's template?: client/templates
+? Where would you like to create this view's test?: test/spec/views
+```
 
-## View
-yo yeogurt:view myview --folder=account
+Produces:
+
+```
+client/scripts/views/myview.js
+client/templates/myview.{jst,hbs,jade}
+test/spec/views/myview-spec.js
+```
+
+***NOTE: `{jst,hbs,jade}` means that the file extension template will match the template engine you chose: `underscore, handlebars, or jade` respectively ***
+
+There is also an option that can be used to change the default behavior:
+
+|Options |Possible Values |Description
+|---------|---------------|-----------
+|--delete | [n/a] |  Deletes specified file(s)
+
+Example:
+
+```
+yo yeogurt:view myview --delete
 ```
 
 ### Model
 
-Creates 2 files:
-
-- A new Backbone model file within `client/scripts/models`
-- A unit test spec file within the `test/spec/models` folder
-
-There are also an option that can be used to change the default behavior:
-
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--folder | [any folder path] |  Creates file relative to the `client/templates` folder
-|--delete | [n/a] |  Deletes file relative to the `client/templates` folder
+Creates a Backbone model.
 
 Example:
 
 ```
-## Model
 yo yeogurt:model mymodel
+? Where would you like to create this model?: client/scripts/models
+? Where would you like to create this model's test?: test/spec/models
+```
 
-## Model with specified folder
-yo yeogurt:model mymodel --folder=account
+Produces:
+
+```
+client/scripts/models/mymodel.js
+test/spec/models/mymodel-spec.js
+```
+
+There is also an option that can be used to change the default behavior:
+
+|Options |Possible Values |Description
+|---------|---------------|-----------
+|--delete | [n/a] |  Deletes specified file(s)
+
+Example:
+
+```
+yo yeogurt:model mymodel --delete
 ```
 
 ### Collection
 
-Creates 2 files
-
-- A new Backbone collection file within `client/scripts/collections`
-- A unit test spec file within the `test/spec/collections` folder.
-
-There are also a couple possible options that can be used to change the default behavior:
-
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--model | `[filename of model]` |  Adds the specified model name to the collection `model:` property
-|--folder | [any folder path] |  Creates file relative to the `client/templates` folder
-|--delete | [n/a] |  Deletes file relative to the `client/templates` folder
+Creates a Backbone collection file with the ability to specify which Backbone model to use.
 
 Example:
 
 ```
-## Collection
 yo yeogurt:model mycollection
+? Where would you like to create this collection?: client/scripts/collections
+? What is the name of the model you would like to use with this collection?: mycollection-model
+? What folder is the model file located in?: client/scripts/models
+? Where would you like to create this collection's test?: test/spec/collections
+```
 
-## Collection with specified model
-yo yeogurt:model mycollection --model=mymodel
+Produces:
 
-## Collection with specified folder
-yo yeogurt:model mycollection --folder=accounts
+```
+client/scripts/collections/mycollection.js
+test/spec/collections/mycollection-spec.js
+```
+
+There is also an option that can be used to change the default behavior:
+
+|Options |Possible Values |Description
+|---------|---------------|-----------
+|--delete | [n/a] |  Deletes specified file(s)
+
+Example:
+
+```
+yo yeogurt:collection mycollection --delete
 ```
 
 ## Automated Documentation
 ### Dashboard
-If you chose to create a Dashboard, a dashboard will be automatically generated from raeading your Jade/Swig files. After running `grunt serve` or `grunt serve:dist`, it can be accessed at `/docs/dashboard/index.html`.
+If you chose to create a Dashboard, a dashboard will be automatically generated from reading your Jade/Swig files. After running `grunt serve` or `grunt serve:dist`, it can be accessed at `/docs/dashboard/index.html`.
 
 For more information and usage, please refer to the `grunt-dashboard` plugin [documentation](https://github.com/larsonjj/grunt-dashboard).
 
 ### JavaScript API
-If you chose to use [JSDoc](http://usejsdoc.org/), JavaScript API documenation will be automatically generated from reading your script files. After running `grunt serve` or `grunt serve:dist`, it can be accessed at `/docs/api/index.html`.
+If you chose to use [JSDoc](http://usejsdoc.org/), JavaScript API documentation will be automatically generated from reading your script files. After running `grunt serve` or `grunt serve:dist`, it can be accessed at `/docs/api/index.html`.
 
 You can view an example [here](http://yeoman.github.io/generator/).
 
@@ -486,7 +560,7 @@ If you chose to use [KSS (Knyle Style Sheets)](http://warpspire.com/posts/kss/),
 Knyle Style Sheets (KSS) is used at Github to create their [styleguide](https://github.com/styleguide) and is used in this generator via [kss-node](https://github.com/hughsk/kss-node). Be sure to look up [documentation](http://warpspire.com/posts/kss/) to see how to write KSS comments in your stylesheets.
 
 ## Adding third-party libraries
-Odds are that you will need to add some third party libraries to your project at some point. To do so, it is strongly recommended that you install them using bower ([usage](http://bower.io/)). If you can't [find the package on bower](http://bower.io/search/) (very rare) or you have your own in-house libraries that you like to use, you should put your scripts within a `client/scripts/vendor` folder (jshint is setup to ignore this folder), styles within a `client/styles/vendor` folder, and all other file types can go whereever you want within the `client` folder (This will make sure that your base template can access them).
+Odds are that you will need to add some third party libraries to your project at some point. To do so, it is strongly recommended that you install them using bower ([usage](http://bower.io/)). If you can't [find the package on bower](http://bower.io/search/) (very rare) or you have your own in-house libraries that you like to use, you should put your scripts within a `client/scripts/vendor` folder (jshint is setup to ignore this folder), styles within a `client/styles/vendor` folder, and all other file types can go where-ever you want within the `client` folder (This will make sure that your base template can access them).
 
 Once you have your library installed, you will want to add it to your project. To do this, you'll need to add a new `<script>` or `<link>` tag to your base template file:
 
@@ -541,7 +615,7 @@ Your library should now load correctly (assuming your source path is correct).
 
 ## Deployment
 ### FTP Server
-If you are deploying to an FTP server, you will need to make sure that you fill out the generated `.ftppass` file. It is located in the root folder of your yeogurt project.
+If you are deploying to an FTP server, you will need to make sure that you fill out the generated `.ftppass` file. It is located in the root folder of your Yeogurt project.
 
 This file looks like this:
 

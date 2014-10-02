@@ -98,6 +98,13 @@ TemplateGenerator.prototype.ask = function ask() {
         name: 'templateFile',
         message: 'Where would you like to ' + createOrDelete + ' this template?',
         default: rootPath + '/templates/layouts'
+    }, {
+        when: function() {
+            return self.singlePageApplication;
+        },
+        name: 'templateFile',
+        message: 'Where would you like to ' + createOrDelete + ' this template?',
+        default: rootPath + '/templates'
     }];
 
     this.prompt(prompts, function(answers) {
