@@ -9,9 +9,8 @@ var taskConfig = function(grunt) {
         'env:prod',<% } %>
         'injector',
         'copy:dist',
-        'concurrent:compile',
-        'autoprefixer:server',<% if (useKss) { %>
-        'kss:dist',<% } %>
+        'concurrent',
+        'autoprefixer:server',
         'useminPrepare',
         'concat:generated',
         'cssmin',

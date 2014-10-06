@@ -8,3 +8,4 @@ client/.serve
 .grunt
 server/config/secrets.js
 .DS_Store
+.yo-rc.json
