@@ -5,7 +5,8 @@
 
 var path = require('path');
 var _ = require('lodash');
-var envConfig = require('./' + process.env.NODE_ENV || 'development' + '.js') || {};
+var env = process.env.NODE_ENV || 'development';
+var envConfig = require('./' + env);
 
 // All configurations will extend these options
 var defaults = {

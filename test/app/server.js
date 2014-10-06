@@ -57,6 +57,7 @@ describe('Yeogurt generator using Server', function () {
 
             helpers.mockPrompt(this.app, {
                 dbOption: 'mongodb',
+                useServer: true
             });
             this.app.run([], function () {
                 assert.file(expected);
@@ -77,6 +78,7 @@ describe('Yeogurt generator using Server', function () {
 
             helpers.mockPrompt(this.app, {
                 dbOption: 'mysql',
+                useServer: true
             });
             this.app.run([], function () {
                 assert.file(expected);
@@ -240,7 +242,7 @@ describe('Yeogurt generator using Server', function () {
 
             helpers.mockPrompt(this.app, {
                 useServer: true,
-                useSession: true
+                useAuth: true
             });
             this.app.run([], function () {
                 assert.file(expected);

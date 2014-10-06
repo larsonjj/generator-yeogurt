@@ -80,11 +80,33 @@ var serverPrompts = function serverPrompts() {
     }, {
         when: function(answers) { return answers.useServer; },
         type: 'confirm',
-        name: 'useSession',
-        message: 'Would you like to use ' + 'Cookie Session Storage'.blue + '?',
+        name: 'useAuth',
+        message: 'Would you like to ' + 'Authenticate Users'.blue + '?',
         default: true
     }, {
-        when: function(answers) { return answers.useSession && answers.useServer; },
+        when: function(answers) { return answers.useServer && answers.useAuth; },
+        type: 'checkbox',
+        name: 'authTypes',
+        message: 'What ' + 'types of authentication'.blue + ' would you like to use?',
+        choices: [
+            {
+                name: 'Local (Email & Password)',
+                value: 'local',
+                checked: true
+            },
+            {
+                name: 'Facebook',
+                value: 'facebook',
+                checked: true
+            },
+            {
+                name: 'Twitter',
+                value: 'twitter',
+                checked: true
+            }
+        ]
+    }, {
+        when: function(answers) { return answers.useAuth && answers.useServer; },
         type: 'confirm',
         name: 'useSecurity',
         message: 'Would you like to use ' + 'Paypal\'s Lusca Security Module'.blue + '?',

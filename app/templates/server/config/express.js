@@ -7,19 +7,20 @@ var compress = require('compression');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
-var errorHandler = require('errorhandler');<% if (useSession) { %>
+var errorHandler = require('errorhandler');<% if (useAuth) { %>
+var auth = require('./auth');
 var session = require('express-session');<% if (dbOption === 'mongodb') { %>
 var MongoStore = require('connect-mongo')({
     session: session
 });<% } %><% if (dbOption === 'mysql') { %>
 var SequelizeStore = require('connect-session-sequelize')(session.Store);<% } %><% } %>
 
-// Configuration files<% if (useSession) { %>
+// Configuration files<% if (useAuth) { %>
 var secrets = require('./secrets');<% } %>
 var settings = require('./env/default');
 var security = require('./security');
 
-var expressConfig = function(app, express,<% if (dbOption === 'mysql') { %> sequelize,<% } %> path) {
+var expressConfig = function(app, express, db, path) {
 
     var hour = 3600000;
     var day = hour * 24;
@@ -69,7 +70,7 @@ var expressConfig = function(app, express,<% if (dbOption === 'mysql') { %> sequ
 
     // Returns middleware that parses both json and urlencoded.
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: true }));<% if (useSession) { %>
+    app.use(bodyParser.urlencoded({ extended: true }));<% if (useAuth) { %>
 
     // Create cookie that keeps track of user sessions
     // And store it in the Database
@@ -82,13 +83,16 @@ var expressConfig = function(app, express,<% if (dbOption === 'mysql') { %> sequ
             auto_reconnect: true,
         }),<% } %><% if (dbOption === 'mysql') { %>
         store: new SequelizeStore({
-            db: sequelize
+            db: db.sequelize
         }),<% } %>
         cookie: {
             httpOnly: true, /*, secure: true for HTTPS*/
             maxAge: day
         }
-    }));<% } %><% if (useSession && useSecurity) { %>
+    }));<% } %><% if (useAuth && useSecurity) { %>
+
+    // Initialize Authentication
+    auth(db);
 
     // Initialize Lusca Security
     app.use(security);<% } %>

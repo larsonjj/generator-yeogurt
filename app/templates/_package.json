@@ -12,7 +12,12 @@
         "serve-favicon": "2.0.1",
         "errorhandler": "^1.0.0",
         "express": "~4.6.0",
-        "express-session": "~1.6.0",
+        "express-session": "~1.6.0",<% if (useAuth) { %>
+        "passport": "0.2.1",
+        "bcrypt": "0.8.0",<% if (authTypes.indexOf('local') > -1) { %>
+        "passport-local": "~1.0.0",<% } %><% if (authTypes.indexOf('facebook') > -1) { %>
+        "passport-facebook": "~1.0.3",<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
+        "passport-twitter": "~1.0.2",<% } %><% } %>
         "lusca": "^1.0.0",<% if (dbOption === 'mongodb') { %>
         "mongoose": "^3.8.8",
         "connect-mongo": "^0.4.0",<% } %>

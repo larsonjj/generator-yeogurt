@@ -9,6 +9,13 @@ var _ = require('lodash');
 
 var answersConfig = function answersConfig() {
 
+    // Determine if feature exists within a given object
+    var hasFeature = function(feat, obj) {
+        if (obj) {
+            return obj.indexOf(feat) !== -1;
+        }
+    };
+
     // If user chooses to use exsiting yo-rc file, then skip prompts
     if (this.existingConfig) {
         this.answers = this.config.get('config');
@@ -33,7 +40,8 @@ var answersConfig = function answersConfig() {
     // Server Info
     this.useServer          = this.answers.useServer;
     this.dbOption           = this.answers.dbOption;
-    this.useSession         = this.answers.useSession;
+    this.useAuth            = this.answers.useAuth;
+    this.authTypes            = this.answers.authTypes;
     this.useSecurity        = this.answers.useSecurity;
     this.useServerTemplates = this.answers.useServerTemplates;
 
@@ -87,7 +95,7 @@ var answersConfig = function answersConfig() {
 
     // Testing
     this.testFramework         = this.answers.testFramework;
-    this.useTesting = this.answers.useTesting;
+    this.useTesting            = this.answers.useTesting;
 
     // Documentation
     this.useJsdoc              = this.answers.useJsdoc;
@@ -109,13 +117,6 @@ var answersConfig = function answersConfig() {
 
     // Default jsOption to Browserify
     this.jsOption = this.answers.jsOption || 'browserify';
-
-    // Determine if feature exists within a given object
-    function hasFeature(feat, obj) {
-        if (obj) {
-            return obj.indexOf(feat) !== -1;
-        }
-    }
 
     // Intially set flags to false
     this.useBootstrap  = this.answers.useBootstrap ? this.answers.useBootstrap : false;

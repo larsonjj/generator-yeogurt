@@ -3,49 +3,18 @@
  */
 
 'use strict';
-<% if (dbOption === 'mongodb') { %>
-var mongoose = require('mongoose');<% } %>
-var settings = require('./env/default');<% if (dbOption === 'mysql') { %>
-var Sequelize = require('sequelize');<% } %>
+var settings = require('./env/default');
+var Sequelize = require('sequelize');
+var fs = require('fs');
+var path = require('path');
+var db = {};
 
 // Add coloring for console output
 require('colors');
 
 // Database Connection.
-var databaseConfig = function(app) {
+var databaseConfig = function() {
 
-    var env = app.get('env');
-
-    <% if (dbOption === 'mongodb') { %>
-    var connect = function() {
-        var options = {
-            server: {
-                socketOptions: {
-                    keepAlive: 1
-                }
-            },
-            auto_reconnect: true
-        };
-        // Connect to database
-        mongoose.connect(settings.database.url, options);
-    };
-    connect();
-
-    if ('development' === env) {
-        mongoose.set('debug', true);
-    }
-
-    // Success handler
-    mongoose.connection.on('connected', function() {
-        console.log('✔ MongoDB Connection Success!'.green);
-    });
-
-    // Error handler
-    mongoose.connection.on('error', function() {
-        console.error('✗ MongoDB Connection Error. Please make sure MongoDB is running.'.red);
-    });
-
-    <% } %><% if (dbOption === 'mysql') { %>
     var options = {
         // Database Type
         dialect: 'mysql',
@@ -98,8 +67,25 @@ var databaseConfig = function(app) {
 
     // Connect to database
     var sequelize = new Sequelize(settings.database.url, options);
+
+    // Import all models (optionally create associations)
+    fs
+        .readdirSync(path.join(__dirname, '../models'))
+        .forEach(function(file) {
+            var model = sequelize['import'](path.join(__dirname, '../models' , file));
+            db[model.name] = model;
+        });
+
+    // Associate models if `associate` method is found within model's `classMethods` object
+    Object.keys(db).forEach(function(modelName) {
+        if ('associate' in db[modelName]) {
+            db[modelName].associate(db);
+        }
+    });
+
+    // Verify DB connection
     sequelize.authenticate().complete(function(err) {
-        if ( !! err) {
+        if (!!err) {
             console.error('✗ Database Connection Error: \n'.red, err);
         }
         else {
@@ -107,9 +93,10 @@ var databaseConfig = function(app) {
         }
     });
 
-    // Return instance of sequelize
-    return sequelize;
-    <% } %>
+    db.sequelize = sequelize;
+    db.Sequelize = Sequelize;
+
+    return db;
 };
 
 module.exports = databaseConfig;

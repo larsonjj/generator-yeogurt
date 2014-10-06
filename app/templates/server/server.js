@@ -14,13 +14,11 @@ require('colors');
 // Create Express server.
 var app = express();
 <% if (dbOption !== 'none') { %>
-// Database Configuration
-var db = require('./server/config/database');
+// Database Configuration<% if (dbOption === 'mysql') { %>
+var db = require('./server/config/database')();<% } else if (dbOption === 'mongodb') { %>
+var db = require('./server/config/database')(app);<% } %><% } %>
 
-// Connect to Database
-<% if (dbOption === 'mysql') { %>var sequelize = <% } %>db(app);<% } %>
-
-require('./server/config/express')(app, express,<% if (dbOption === 'mysql') { %> sequelize,<% } %> path);
+require('./server/config/express')(app, express, db, path);
 
 /**
  * Start Express server.

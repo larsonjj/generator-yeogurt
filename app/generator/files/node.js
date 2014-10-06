@@ -23,13 +23,36 @@ var nodeFiles = function nodeFiles() {
             this.template('client/templates/html/index.html', 'server/templates/index.html');
         }
 
-        if (this.dbOption !== 'none') {
-            this.template('server/config/database.js', 'server/config/database.js');
+        if (this.dbOption === 'mongodb') {
+            this.template('server/config/mongodb/database.js', 'server/config/database.js');
+        }
+        if (this.dbOption === 'mysql') {
+            this.template('server/config/mysql/database.js', 'server/config/database.js');
         }
 
         this.template('server/config/express.js', 'server/config/express.js');
-        if (this.useSession) {
+
+        if (this.useAuth) {
             this.template('server/config/secrets.js', 'server/config/secrets.js');
+            this.template('server/config/auth.js', 'server/config/auth.js');
+
+            if (this.authTypes.indexOf('local') > -1) {
+                this.template('server/config/strategies/local.js', 'server/config/strategies/local.js');
+            }
+            if (this.authTypes.indexOf('facebook') > -1) {
+                this.template('server/config/strategies/facebook.js', 'server/config/strategies/facebook.js');
+            }
+            if (this.authTypes.indexOf('twitter') > -1) {
+                this.template('server/config/strategies/twitter.js', 'server/config/strategies/twitter.js');
+            }
+
+            if (this.dbOption === 'mongodb') {
+                this.template('server/models/mongodb/user.js', 'server/models/user.js');
+            }
+            if (this.dbOption === 'mysql') {
+                this.template('server/models/mysql/user.js', 'server/models/user.js');
+            }
+
         }
         this.template('server/config/security.js', 'server/config/security.js');
 
