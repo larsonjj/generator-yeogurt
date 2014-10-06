@@ -104,7 +104,15 @@ var serverPrompts = function serverPrompts() {
                 value: 'twitter',
                 checked: true
             }
-        ]
+        ],
+        validate: function(val) {
+            if (val.length > 0) {
+                return true;
+            }
+            else {
+                return 'You must select at least one option.';
+            }
+        }
     }, {
         when: function(answers) { return answers.useAuth && answers.useServer; },
         type: 'confirm',
