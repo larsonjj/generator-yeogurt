@@ -81,7 +81,7 @@ var serverPrompts = function serverPrompts() {
         when: function(answers) { return answers.useServer; },
         type: 'confirm',
         name: 'useAuth',
-        message: 'Would you like to ' + 'Authenticate Users'.blue + '?',
+        message: 'Would you like to ' + 'authenticate users'.blue + '?',
         default: true
     }, {
         when: function(answers) { return answers.useServer && answers.useAuth; },
@@ -109,7 +109,7 @@ var serverPrompts = function serverPrompts() {
         when: function(answers) { return answers.useAuth && answers.useServer; },
         type: 'confirm',
         name: 'useSecurity',
-        message: 'Would you like to use ' + 'Paypal\'s Lusca Security Module'.blue + '?',
+        message: 'Would you like to use ' + 'Paypal\'s Lusca security module'.blue + '?',
         default: true
     }], function(answers) {
         this.serverPrompts = answers;
