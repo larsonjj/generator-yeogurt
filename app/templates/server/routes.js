@@ -6,8 +6,9 @@
 
 // Load controller.
 var mainController = require('./controllers/main');
+var userController = require('./controllers/user');
 var passport = require('passport');
-var passportConf = require('./config/auth');
+var authConf = require('./config/auth');
 
 var routes = function (app) {<% if (useAuth) { %>
     app.get('/login', userController.getLogin);
@@ -19,13 +20,11 @@ var routes = function (app) {<% if (useAuth) { %>
     app.post('/reset/:token', userController.postReset);
     app.get('/signup', userController.getSignup);
     app.post('/signup', userController.postSignup);
-    app.get('/contact', contactController.getContact);
-    app.post('/contact', contactController.postContact);
-    app.get('/account', passportConf.isAuthenticated, userController.getAccount);
-    app.post('/account/profile', passportConf.isAuthenticated, userController.postUpdateProfile);
-    app.post('/account/password', passportConf.isAuthenticated, userController.postUpdatePassword);
-    app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
-    app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);<% if (authTypes.indexOf('facebook') > -1) { %>
+    app.get('/account', authConf.isAuthenticated, userController.getAccount);
+    app.post('/account/profile', authConf.isAuthenticated, userController.postUpdateProfile);
+    app.post('/account/password', authConf.isAuthenticated, userController.postUpdatePassword);
+    app.post('/account/delete', authConf.isAuthenticated, userController.postDeleteAccount);
+    app.get('/account/unlink/:provider', authConf.isAuthenticated, userController.getOauthUnlink);<% if (authTypes.indexOf('facebook') > -1) { %>
     // Facebook routes
     app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
     app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), function(req, res) {

@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('lodash');
 var passport = require('passport');<% if (authTypes.indexOf('local') > -1) { %>
 var localStrategy = require('./strategies/local');<% } %><% if (authTypes.indexOf('facebook') > -1) { %>
 var facebookStrategy = require('./strategies/facebook');<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
@@ -19,27 +20,33 @@ var auth = function(db) {
     localStrategy(passport, db.user);<% } %><% if (authTypes.indexOf('facebook') > -1) { %>
     facebookStrategy(passport, db.user);<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
     twitterStrategy(passport, db.user);<% } %>
-
-    // Login Required middleware.
-
-    exports.isAuthenticated = function(req, res, next) {
-        if (req.isAuthenticated()) return next();
-        res.redirect('/login');
-    };
-
-    // Authorization Required middleware.
-
-    exports.isAuthorized = function(req, res, next) {
-        var provider = req.path.split('/').slice(-1)[0];
-
-        if (_.find(req.user.tokens, {
-            kind: provider
-        })) {
-            next();
-        } else {
-            res.redirect('/auth/' + provider);
-        }
-    };
 };
 
-module.exports = auth;
+// Login Required middleware.
+
+var isAuthenticated = function(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login');
+};
+
+// Authorization Required middleware.
+
+var isAuthorized = function(req, res, next) {
+    var provider = req.path.split('/').slice(-1)[0];
+
+    if (_.find(req.user.tokens, {
+        kind: provider
+    })) {
+        next();
+    } else {
+        res.redirect('/auth/' + provider);
+    }
+};
+
+module.exports = {
+    auth: auth,
+    isAuthenticated: isAuthenticated,
+    isAuthorized: isAuthorized
+}

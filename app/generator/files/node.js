@@ -35,6 +35,7 @@ var nodeFiles = function nodeFiles() {
         if (this.useAuth) {
             this.template('server/config/secrets.js', 'server/config/secrets.js');
             this.template('server/config/auth.js', 'server/config/auth.js');
+            this.template('server/controllers/user.js', 'server/controllers/user.js');
 
             if (this.authTypes.indexOf('local') > -1) {
                 this.template('server/config/strategies/local.js', 'server/config/strategies/local.js');

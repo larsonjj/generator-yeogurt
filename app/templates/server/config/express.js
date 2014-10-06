@@ -8,7 +8,7 @@ var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var errorHandler = require('errorhandler');<% if (useAuth) { %>
-var auth = require('./auth');
+var authConf = require('./auth');
 var session = require('express-session');<% if (dbOption === 'mongodb') { %>
 var MongoStore = require('connect-mongo')({
     session: session
@@ -92,7 +92,7 @@ var expressConfig = function(app, express, db, path) {
     }));<% } %><% if (useAuth && useSecurity) { %>
 
     // Initialize Authentication
-    auth(db);
+    authConf.auth(db);
 
     // Initialize Lusca Security
     app.use(security);<% } %>
