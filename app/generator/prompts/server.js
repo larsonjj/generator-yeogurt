@@ -106,7 +106,7 @@ var serverPrompts = function serverPrompts() {
             }
         ],
         validate: function(val) {
-            if (val.length > 0) {
+            if (val && val.length > 0) {
                 return true;
             }
             else {
