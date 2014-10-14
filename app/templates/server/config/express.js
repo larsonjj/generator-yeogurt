@@ -31,10 +31,10 @@ var expressConfig = function(app, express, db, path) {
     // Setup port for server to run on
     app.set('port', settings.server.port);
 
-     // Setup view engine for server side templating<% if (singlePageApplication || htmlOption === 'html') { %>
+     // Setup view engine for server side templating<% if (singlePageApplication) { %>
     app.engine('.html', require('ejs').__express);
     app.set('view engine', 'html');<% } %><% if (!singlePageApplication && htmlOption !== 'html') { %>
-    app.engine('<%= htmlOption === 'jade' ? 'jade' : '' %><%= htmlOption === 'swig' ? 'swig' : '' %><%= htmlOption === 'html' ? 'html' : '' %>', require('<%= htmlOption %>').renderFile);
+    app.engine('<%= htmlOption === 'jade' ? 'jade' : '' %><%= htmlOption === 'swig' ? 'swig' : '' %>', require('<%= htmlOption %>').renderFile);
     app.set('view engine', '<%= htmlOption === 'jade' ? 'jade' : '' %><%= htmlOption === 'swig' ? 'swig' : '' %>');<% } %>
 
     // Remove x-powered-by header (doesn't let clients know we are using Express)

@@ -21,7 +21,7 @@ var taskConfig = function(grunt) {
             },
             files: {
                 '<%%= yeogurt.staticServer %>/docs/dashboard/index.html': [
-                    '<%%= yeogurt.client %>/**/*.<% if (htmlOption === "jade") { %>jade<% } else if (htmlOption === "swig") { %>swig<% } else if (htmlOption === "html") { %>html<% } %>'
+                    '<%%= yeogurt.client %>/**/*.<% if (htmlOption === "jade") { %>jade<% } else if (htmlOption === "swig") { %>swig<% } %>'
                 ]
             }
         },
@@ -40,7 +40,7 @@ var taskConfig = function(grunt) {
             },
             files: {
                 '<%%= yeogurt.dist %>/docs/dashboard/index.html': [
-                    '<%%= yeogurt.client %>/**/*.<% if (htmlOption === "jade") { %>jade<% } else if (htmlOption === "swig") { %>swig<% } else if (htmlOption === "html") { %>html<% } %>'
+                    '<%%= yeogurt.client %>/**/*.<% if (htmlOption === "jade") { %>jade<% } else if (htmlOption === "swig") { %>swig<% } %>'
                 ]
             }
         }

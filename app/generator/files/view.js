@@ -19,9 +19,6 @@ var viewFiles = function viewFiles() {
         this.template('client/templates/swig/index.swig', viewRoot + 'templates/index.swig');
         this.template('client/templates/swig/layouts/base.swig', viewRoot + 'templates/layouts/base.swig');
     }
-    else if (this.htmlOption === 'html') {
-        this.template('client/templates/html/index.html', 'client/index.html');
-    }
 
     if (this.singlePageApplication) {
         if (!this.useServer) {

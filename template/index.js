@@ -39,15 +39,6 @@ TemplateGenerator.prototype.ask = function ask() {
             return;
         }
     }
-    else {
-        if (this.htmlOption === 'html') {
-            this.log('You have chosen to use HTML, so you cannot use this sub-generator.');
-            this.log('If you would like to create a new page. Just duplicate/copy your index.html.');
-            this.log('Operation aborted.');
-            this.abort = true;
-            return;
-        }
-    }
 
     var self = this;
     var createOrDelete = this.delete ? 'delete' : 'create';

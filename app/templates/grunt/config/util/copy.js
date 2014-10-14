@@ -21,7 +21,7 @@ var taskConfig = function(grunt) {
                     'styles/**/*.css',
                     'images/**',
                     '*.{ico,png,txt}',
-                    'styles/fonts/**/*.{woff,otf,ttf,eot,svg}',<% if (htmlOption === 'html' || jsFramework === 'backbone' && !useServer || jsFramework === 'react' && !useServer) { %>
+                    'styles/fonts/**/*.{woff,otf,ttf,eot,svg}',<% if (jsFramework === 'backbone' && !useServer || jsFramework === 'react' && !useServer) { %>
                     '*.html'<% } %>
                 ]
             }]
@@ -35,7 +35,7 @@ var taskConfig = function(grunt) {
                     'bower_components/requirejs/require.js',<% } %><% if (useModernizr) { %>
                     'bower_components/modernizr/modernizr.js',<% } %>
                     'bower_components/**/*.{woff,otf,ttf,eot,svg}',<% if (useDashboard) { %>
-                    'dashboard/**/*.*',<% } %><% if (htmlOption === 'html' || jsFramework === 'backbone' && !useServer || jsFramework === 'react' && !useServer) { %>
+                    'dashboard/**/*.*',<% } %><% if (jsFramework === 'backbone' && !useServer || jsFramework === 'react' && !useServer) { %>
                     '*.html',<% } %><% if (useKss) { %>
                     'docs/styleguide/public/images',<% } %>
                     '!*.js',

@@ -58,7 +58,7 @@ var taskConfig = function(grunt) {
                 'injector:swig',
                 'swig:server'
             ]
-        },<% } %><% if (htmlOption === 'html' || jsFramework === 'backbone') { %>
+        },<% } %><% if (jsFramework === 'backbone') { %>
         html: {
             files: [
                 '<%%= yeogurt.client %>/templates/**/*.html'
@@ -215,7 +215,7 @@ var taskConfig = function(grunt) {
             tasks: [
                 'dashboard:server'
             ]
-        },<% } %><% if (useDashboard && htmlOption === 'html' || jsFramework === 'backbone') { %>
+        },<% } %><% if (jsFramework === 'backbone') { %>
         html: {
             tasks: [
                 'dashboard:server',

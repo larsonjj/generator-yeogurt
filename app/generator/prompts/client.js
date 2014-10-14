@@ -20,22 +20,6 @@ var clientPrompts = function clientPrompts() {
         message: 'Will this be a ' + 'Single Page Application'.blue + '?',
         default: true
     }, {
-        when: function(answers) { return !answers.singlePageApplication && !self.serverPrompts.useServer; },
-        type: 'list',
-        name: 'htmlOption',
-        message: 'What would you like to use to ' + 'write markup'.blue + '?',
-        choices: ['Jade', 'Swig', 'HTML'],
-        filter: function(val) {
-            var filterMap = {
-                'Jade': 'jade',
-                'Swig': 'swig',
-                'HTML': 'html'
-            };
-
-            return filterMap[val];
-        }
-    }, {
-        when: function(answers) { return !answers.singlePageApplication && self.serverPrompts.useServer; },
         type: 'list',
         name: 'htmlOption',
         message: 'Which ' + 'HTML preprocessor'.blue + ' would you like to use?',
