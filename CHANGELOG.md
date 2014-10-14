@@ -1,3 +1,8 @@
+### v0.13.0:
+#### date: 2014-10-17
+##### changes:
+* Removed `HTML` option for Static Sites
+
 ### v0.12.1:
 #### date: 2014-10-01
 ##### changes:
