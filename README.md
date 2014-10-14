@@ -46,7 +46,7 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 - [License](#license)
 
 ## What can I create with Yeogurt?
-- Build out static sites using [Jade](http://jade-lang.com/), [Swig](http://paularmstrong.github.io/swig/), or HTML.
+- Build out static sites using [Jade](http://jade-lang.com/) or [Swig](http://paularmstrong.github.io/swig/).
 - Create Single Page Applications using [Backbone](http://backbonejs.org/) or [React](http://facebook.github.io/react/) (optionally with [Flux](http://facebook.github.io/react/docs/flux-overview.html)).
 - Make your site/app full-stack by adding an [Express](http://expressjs.com/) Server with optional database, cookie session, and security support .
 
@@ -139,7 +139,7 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 - FTP deployment
 
 ### Static Site Options
-- Markup with [Jade](http://jade-lang.com/), [Swig](http://paularmstrong.github.io/swig/), or HTML
+- Markup with [Jade](http://jade-lang.com/) or [Swig](http://paularmstrong.github.io/swig/)
 - Dashboard - auto-generated dashboard for your site with [grunt-dashboard](https://github.com/larsonjj/grunt-dashboard)
     - Only available for Static Sites that are not using an Express server
 
@@ -572,7 +572,6 @@ Once you have your library installed, you will want to add it to your project. T
 |Jade | Yes | `server/templates/layouts/base.jade`
 |Swig | No |`client/templates/layouts/base.swig`
 |Swig | Yes | `server/templates/layouts/base.swig`
-|HTML | No | `client/templates/index.html`
 
 ***Single Page Applications***
 
