@@ -78,7 +78,7 @@ var serverPrompts = function serverPrompts() {
             }
         }
     }, {
-        when: function(answers) { return answers.useServer; },
+        when: function(answers) { return answers.useServer && answers.dbOption !== 'none'; },
         type: 'confirm',
         name: 'useAuth',
         message: 'Would you like to ' + 'authenticate users'.blue + '?',

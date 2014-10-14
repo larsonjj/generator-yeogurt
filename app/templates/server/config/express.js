@@ -7,7 +7,11 @@ var compress = require('compression');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
+var path = require('path');
 var errorHandler = require('errorhandler');<% if (useAuth) { %>
+var flash = require('express-flash');
+var expressValidator = require('express-validator');
+var passport = require('passport');
 var authConf = require('./auth');
 var session = require('express-session');<% if (dbOption === 'mongodb') { %>
 var MongoStore = require('connect-mongo')({
@@ -20,7 +24,7 @@ var secrets = require('./secrets');<% } %>
 var settings = require('./env/default');
 var security = require('./security');
 
-var expressConfig = function(app, express, db, path) {
+var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% } %>) {
 
     var hour = 3600000;
     var day = hour * 24;
@@ -72,6 +76,8 @@ var expressConfig = function(app, express, db, path) {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));<% if (useAuth) { %>
 
+    app.use(expressValidator());
+
     // Create cookie that keeps track of user sessions
     // And store it in the Database
     app.use(session({
@@ -89,10 +95,29 @@ var expressConfig = function(app, express, db, path) {
             httpOnly: true, /*, secure: true for HTTPS*/
             maxAge: day
         }
-    }));<% } %><% if (useAuth && useSecurity) { %>
+    }));
 
     // Initialize Authentication
-    authConf.auth(db);
+    authConf.auth(db, passport);
+    app.use(passport.initialize());
+    app.use(passport.session());
+
+    app.use(flash());
+
+    app.use(function(req, res, next) {
+      // Make user object available in templates.
+      res.locals.user = req.user;
+      next();
+    });
+    app.use(function(req, res, next) {
+      // Remember original destination before login.
+      var path = req.path.split('/')[1];
+      if (/auth|login|logout|signup|fonts|favicon/i.test(path)) {
+        return next();
+      }
+      req.session.returnTo = req.path;
+      next();
+    });<% } %><% if ( useAuth && useSecurity) { %>
 
     // Initialize Lusca Security
     app.use(security);<% } %>

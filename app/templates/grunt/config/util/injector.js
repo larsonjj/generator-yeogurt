@@ -26,9 +26,7 @@ var taskConfig = function(grunt) {
             files: {<% if (useServer) { %>
                 '<%%= yeogurt.server %>/templates/layouts/base.jade'<% } else { %>
                 '<%%= yeogurt.client %>/templates/layouts/base.jade'<% } %>: [
-                    '<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/**/*.jade',
-                    '!<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/*.jade',
-                    '!<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/layouts/**/*.jade',
+                    '<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/modules/*.jade',
                 ]
             }
         },<% } %><% if (htmlOption === 'swig') { %>
@@ -48,9 +46,7 @@ var taskConfig = function(grunt) {
             files: {<% if (useServer) { %>
                 '<%%= yeogurt.server %>/templates/layouts/base.swig'<% } else { %>
                 '<%%= yeogurt.client %>/templates/layouts/base.swig'<% } %>: [
-                    '<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/**/*.swig',
-                    '!<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/*.swig',
-                    '!<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/layouts/**/*.swig',
+                    '<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/modules/*.swig',
                 ]
             }
         },<% } %><% if (jsOption === 'none') { %>

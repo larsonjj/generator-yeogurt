@@ -1,12 +1,11 @@
 'use strict';
 
-var _ = require('lodash');
-var passport = require('passport');<% if (authTypes.indexOf('local') > -1) { %>
+var _ = require('lodash');<% if (authTypes.indexOf('local') > -1) { %>
 var localStrategy = require('./strategies/local');<% } %><% if (authTypes.indexOf('facebook') > -1) { %>
 var facebookStrategy = require('./strategies/facebook');<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
 var twitterStrategy = require('./strategies/twitter');<% } %>
 
-var auth = function(db) {
+var auth = function(db, passport) {
     passport.serializeUser(function(user, done) {
         done(null, user.id);
     });
@@ -49,4 +48,4 @@ module.exports = {
     auth: auth,
     isAuthenticated: isAuthenticated,
     isAuthorized: isAuthorized
-}
+};

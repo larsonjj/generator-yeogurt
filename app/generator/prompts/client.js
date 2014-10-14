@@ -20,6 +20,7 @@ var clientPrompts = function clientPrompts() {
         message: 'Will this be a ' + 'Single Page Application'.blue + '?',
         default: true
     }, {
+        when: function(answers) { return !answers.singlePageApplication; },
         type: 'list',
         name: 'htmlOption',
         message: 'Which ' + 'HTML preprocessor'.blue + ' would you like to use?',

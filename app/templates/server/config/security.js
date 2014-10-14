@@ -1,4 +1,3 @@
-/*global _: true*/
 /**
  * Security Configuration
  */

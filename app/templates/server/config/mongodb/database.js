@@ -33,16 +33,14 @@ var databaseConfig = function(app) {
 
     if ('development' === env) {
         mongoose.set('debug', true);
-    }
+    }<% if (useAuth) { %>
 
     // Import all models
-    fs
-        .readdirSync(path.join(__dirname, '../models'))
-        .forEach(function(file) {
-            var name = path.basename(file, '.js');
-            var model = mongoose.model(name, require(path.join(__dirname, '../models', file)));
-            db[name] = model;
-        });
+    fs.readdirSync(path.join(__dirname, '../models')).forEach(function(file) {
+        var name = path.basename(file, '.js');
+        var model = mongoose.model(name, require(path.join(__dirname, '../models', file)));
+        db[name] = model;
+    });<% } %>
 
     // Success handler
     mongoose.connection.on('connected', function() {

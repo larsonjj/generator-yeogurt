@@ -12,6 +12,16 @@ var viewFiles = function viewFiles() {
         this.mkdir(viewRoot + 'templates/layouts');
         this.template('client/templates/jade/index.jade', viewRoot + 'templates/index.jade');
         this.template('client/templates/jade/layouts/base.jade', viewRoot + 'templates/layouts/base.jade');
+
+        // Account
+        this.template('client/templates/jade/account/forgot.jade', viewRoot + 'templates/account/forgot.jade');
+        this.template('client/templates/jade/account/login.jade', viewRoot + 'templates/account/login.jade');
+        this.template('client/templates/jade/account/profile.jade', viewRoot + 'templates/account/profile.jade');
+        this.template('client/templates/jade/account/reset.jade', viewRoot + 'templates/account/reset.jade');
+        this.template('client/templates/jade/account/signup.jade', viewRoot + 'templates/account/signup.jade');
+
+        // Modules
+        this.template('client/templates/jade/modules/navbar.jade', viewRoot + 'templates/modules/navbar.jade');
     }
     else if (this.htmlOption === 'swig') {
         this.mkdir(viewRoot + 'templates');

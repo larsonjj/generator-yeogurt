@@ -18,7 +18,7 @@ var app = express();
 var db = require('./server/config/database')();<% } else if (dbOption === 'mongodb') { %>
 var db = require('./server/config/database')(app);<% } %><% } %>
 
-require('./server/config/express')(app, express, db, path);
+require('./server/config/express')(app, express<% if (dbOption !== 'none') { %>,  db<% } %>);
 
 /**
  * Start Express server.

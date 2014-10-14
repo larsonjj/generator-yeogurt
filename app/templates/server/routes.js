@@ -5,10 +5,10 @@
 'use strict';
 
 // Load controller.
-var mainController = require('./controllers/main');
+var mainController = require('./controllers/main');<% if (useAuth) { %>
 var userController = require('./controllers/user');
 var passport = require('passport');
-var authConf = require('./config/auth');
+var authConf = require('./config/auth');<% } %>
 
 var routes = function (app) {<% if (useAuth) { %>
     app.get('/login', userController.getLogin);
@@ -25,6 +25,7 @@ var routes = function (app) {<% if (useAuth) { %>
     app.post('/account/password', authConf.isAuthenticated, userController.postUpdatePassword);
     app.post('/account/delete', authConf.isAuthenticated, userController.postDeleteAccount);
     app.get('/account/unlink/:provider', authConf.isAuthenticated, userController.getOauthUnlink);<% if (authTypes.indexOf('facebook') > -1) { %>
+
     // Facebook routes
     app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
     app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), function(req, res) {

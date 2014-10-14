@@ -11,8 +11,9 @@ var async = require('async');
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
-var passport = require('passport');
-var User = require('../models/User');
+var passport = require('passport');<% if (dbOption === 'mongodb') { %>
+var User = require('mongoose').model('user');<% } else if (dbOption === 'mysql') { %>
+var User = require('../models/User');<% } %>
 var secrets = require('../config/secrets');
 
 /**
@@ -162,10 +163,10 @@ var postUpdateProfile = function(req, res, next) {
             return next(err);
         }
         user.email = req.body.email || '';
-        user.profile.name = req.body.name || '';
-        user.profile.gender = req.body.gender || '';
-        user.profile.location = req.body.location || '';
-        user.profile.website = req.body.website || '';
+        user.name = req.body.name || '';
+        user.gender = req.body.gender || '';
+        user.location = req.body.location || '';
+        user.website = req.body.website || '';
 
         user.save(function(err) {
             if (err) {
