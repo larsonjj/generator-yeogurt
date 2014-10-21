@@ -102,11 +102,12 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     app.use(passport.initialize());
     app.use(passport.session());
 
-    app.use(flash());
+    app.use(flash());<% if ( useAuth && useSecurity) { %>
+
+    // Initialize Lusca Security
+    app.use(security);<% } %>
 
     app.use(function(req, res, next) {
-        // Make NODE_ENV available to all templates
-        res.locals.env = process.env.NODE_ENV || 'development';
         // Make user object available in templates.
         res.locals.user = req.user;
         next();
@@ -119,10 +120,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
         }
         req.session.returnTo = req.path;
         next();
-    });<% } %><% if ( useAuth && useSecurity) { %>
-
-    // Initialize Lusca Security
-    app.use(security);<% } %>
+    });<% } %>
 
     // Load routes
     require('../routes')(app);

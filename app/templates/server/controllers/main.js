@@ -10,12 +10,14 @@ var mainController = function(req, res) {<% if (singlePageApplication) { %><% if
     var html = reactRender({}, 'main.jsx');<% } else { %>
     var html = reactRender({}, 'main.js');<% } %><% } %><% } %>
     res.render('index', {
-        title: 'Home'<% if (useServerTemplates) { %>,
+        title: 'Home',
+        env: process.env.NODE_ENV || 'development'<% if (useServerTemplates) { %>,
         body: html || ''
     }<% } %>);
     <% } %><% if (!singlePageApplication) { %>
     res.render('index', {
-        title: 'Home'
+        title: 'Home',
+        env: process.env.NODE_ENV || 'development'
     });<% } %>
 };
 
