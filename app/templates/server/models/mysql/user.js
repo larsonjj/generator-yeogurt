@@ -3,7 +3,7 @@ var bcrypt = require('bcrypt-nodejs');
 var crypto = require('crypto');
 
 var UserModel = function(sequelize, DataTypes) {
-    var User = sequelize.define('User', {
+    var User = sequelize.define('user', {
         email: {
             type: DataTypes.STRING,
             unique: true,

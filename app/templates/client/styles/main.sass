@@ -118,10 +118,12 @@ $fa-font-path: "../bower_components/font-awesome/fonts"
 // [injector]
 // [endinjector]
 
-.main-container
-    padding-top: 200px
+body
+    padding-top: 50px
+
+.yeogurt-info
     text-align: center
-    width: 500px
+    max-width: 500px
     margin-left: auto
     margin-right: auto
 
@@ -133,7 +135,10 @@ $fa-font-path: "../bower_components/font-awesome/fonts"
     right: 10px
 
 .logo
-    margin-top: 15px
+    margin-top: 15px<% if (useAuth) { %>
+
+.nav-profile-image
+    margin: -15px 10px -15px;<% } %>
 
 
 .links a

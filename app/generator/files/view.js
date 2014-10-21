@@ -22,6 +22,10 @@ var viewFiles = function viewFiles() {
 
         // Modules
         this.template('client/templates/jade/modules/navbar.jade', viewRoot + 'templates/modules/navbar.jade');
+        this.template('client/templates/jade/modules/messages.jade', viewRoot + 'templates/modules/messages.jade');
+
+        // Layouts
+        this.template('client/templates/jade/layouts/one-column.jade', viewRoot + 'templates/layouts/one-column.jade');
     }
     else if (this.htmlOption === 'swig') {
         this.mkdir(viewRoot + 'templates');

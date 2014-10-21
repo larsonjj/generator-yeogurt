@@ -105,18 +105,20 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     app.use(flash());
 
     app.use(function(req, res, next) {
-      // Make user object available in templates.
-      res.locals.user = req.user;
-      next();
+        // Make NODE_ENV available to all templates
+        res.locals.env = process.env.NODE_ENV || 'development';
+        // Make user object available in templates.
+        res.locals.user = req.user;
+        next();
     });
     app.use(function(req, res, next) {
-      // Remember original destination before login.
-      var path = req.path.split('/')[1];
-      if (/auth|login|logout|signup|fonts|favicon/i.test(path)) {
-        return next();
-      }
-      req.session.returnTo = req.path;
-      next();
+        // Remember original destination before login.
+        var path = req.path.split('/')[1];
+        if (/auth|login|logout|signup|fonts|favicon/i.test(path)) {
+            return next();
+        }
+        req.session.returnTo = req.path;
+        next();
     });<% } %><% if ( useAuth && useSecurity) { %>
 
     // Initialize Lusca Security

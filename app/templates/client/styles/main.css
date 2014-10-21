@@ -11,13 +11,17 @@
 
 <% } %>/* Author Custom Styles */
 
-.main-container {
-    padding-top: 200px;
+body {
+    padding-top: 50px;
+}
+
+.yeogurt-info {
     text-align: center;
-    width: 500px;
+    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
 }
+
 .version {
     font-size: 14px;
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
@@ -25,9 +29,14 @@
     top: 10px;
     right: 10px;
 }
+
 .logo {
     margin-top: 15px;
-}
+}<% if (useAuth) { %>
+
+.nav-profile-image {
+    margin: -15px 10px -15px;
+}<% } %>
 
 .links a {
     color: white;
