@@ -24,12 +24,10 @@
         "passport-facebook": "~1.0.3",<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
         "passport-twitter": "~1.0.2",<% } %><% } %>
         "lusca": "^1.0.0",<% if (dbOption === 'mongodb') { %>
-        "mongoose": "^3.8.8",
-        "connect-mongo": "^0.4.0",<% } %>
+        "mongoose": "^3.8.8",<% } %>
         "morgan": "^1.0.0",
         "ejs": "~0.8.4",<% if (dbOption === 'mysql') { %>
         "mysql": "2.3.2",
-        "connect-session-sequelize": "1.0.0",
         "sequelize": "1.7.9",<% } %>
         "uglify-js": "^2.4.12"<% if (htmlOption === 'swig') { %>,
         "swig": "1.4.1"<% } %><% if (jsTemplate === 'jade' || htmlOption === 'jade') { %>,
