@@ -15,7 +15,17 @@ require('colors');
 var app = express();
 <% if (dbOption !== 'none') { %>
 // Database Configuration<% if (dbOption === 'mysql') { %>
-var db = require('./server/config/database')();<% } else if (dbOption === 'mongodb') { %>
+var db = require('./server/config/database');
+
+// Verify DB connection
+db.sequelize.authenticate().complete(function(err) {
+    if (!!err) {
+        console.error('✗ Database Connection Error: \n'.red, err);
+    }
+    else {
+        console.log('✔ MySQL Connection Success!'.green);
+    }
+});<% } else if (dbOption === 'mongodb') { %>
 var db = require('./server/config/database')(app);<% } %><% } %>
 
 require('./server/config/express')(app, express<% if (dbOption !== 'none') { %>,  db<% } %>);

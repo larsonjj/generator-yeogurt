@@ -89,7 +89,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     }));
 
     // Initialize Authentication
-    authConf.auth(db, passport);
+    authConf.auth(db.user, passport);
     app.use(passport.initialize());
     app.use(passport.session());<% if ( useAuth && useSecurity) { %>
 
@@ -102,7 +102,11 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
         // Make user object available in templates.
         res.locals.user = req.user;
         next();
-    });
+    });<% } %>
+
+    // Setup static assets
+    app.use(express.static(path.join(settings.root, settings.staticAssets), {maxAge: week}));<% if (useAuth) { %>
+
     app.use(function(req, res, next) {
         // Remember original destination before login.
         var path = req.path.split('/')[1];
@@ -112,9 +116,6 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
         req.session.returnTo = req.path;
         next();
     });<% } %>
-
-    // Setup static assets
-    app.use(express.static(path.join(settings.root, settings.staticAssets), {maxAge: week}));
 
     // Load routes
     require('../routes')(app);

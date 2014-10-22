@@ -43,40 +43,14 @@ var UserModel = function(sequelize, DataTypes) {
         resetPasswordToken: DataTypes.STRING,
         resetPasswordExpires: DataTypes.DATE
     }, {
-        classMethods: {
-            saltPassword: function() {
-                bcrypt.genSalt(5, function(err, salt) {
-                    if (err) {
-                      return console.log(err);
-                    }
-
-                    bcrypt.hash(this.getDataValue('password'), salt, null, function(err, hash) {
-                        if (err) {
-                          return console.log(err);
-                        }
-                        this.setDataValue('password', hash);
-                    });
-                });
-            },
+        instanceMethods: {
             comparePassword: function(candidatePassword, cb) {
-                bcrypt.compare(candidatePassword, this.getDataValue('password'), function(err, isMatch) {
+                bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
                     if (err) {
                         return cb(err);
                     }
                     cb(null, isMatch);
                 });
-            },
-            gravatar: function(size) {
-                if (!size) {
-                  size = 200; // Set default size to 200x200px
-                }
-
-                if (!this.getDataValue('email')) {
-                    return 'https://gravatar.com/avatar/?s=' + size + '&d=retro';
-                }
-
-                var md5 = crypto.createHash('md5').update(this.getDataValue('email')).digest('hex');
-                return 'https://gravatar.com/avatar/' + md5 + '?s=' + size + '&d=retro';
             }
         }
     });

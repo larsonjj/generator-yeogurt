@@ -39,7 +39,7 @@ mixin navbar()
                                 if user.picture
                                     img.nav-profile-image(src='#{user.picture}', width='30')
                                 else
-                                    img.nav-profile-image(src='#{user.gravatar(60)}', width='30')
+                                    img.nav-profile-image(src='#{user.picture || "https://gravatar.com/avatar/?s=200&d=retro"}', width='30')
                                 | #{user.name || user.email || user.id}&nbsp;
                                 i.caret
                             ul.dropdown-menu
