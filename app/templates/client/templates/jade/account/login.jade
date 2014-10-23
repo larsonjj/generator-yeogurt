@@ -26,11 +26,11 @@ block content
                         button.btn.btn-primary(type='submit')
                             span.ion-android-hand
                             | Login
-                        a.btn.btn-link(href='/forgot') Forgot your password?
-                    hr
+                        a.btn.btn-link(href='/forgot') Forgot your password?<% if (authTypes.indexOf('facebook') > -1 || authTypes.indexOf('twitter') > -1) { %>
+                    hr<% if (authTypes.indexOf('facebook') > -1) { %>
                     a.btn.btn-block.btn-facebook.btn-social(href='/auth/facebook')
                         i.fa.fa-facebook
                         | Sign in with Facebook
-                    a.btn.btn-block.btn-twitter.btn-social(href='/auth/twitter')
+                    <% } %><% if (authTypes.indexOf('twitter') > -1) { %>a.btn.btn-block.btn-twitter.btn-social(href='/auth/twitter')
                         i.fa.fa-twitter
-                        | Sign in with Twitter
+                        | Sign in with Twitter<% } %><% } %>

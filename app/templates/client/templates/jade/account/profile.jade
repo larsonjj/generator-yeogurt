@@ -78,17 +78,17 @@ block content
                 input(type='hidden', name='_csrf', value=_csrf)<% } %>
                 button.btn.btn-danger(type='submit')
                     span.ion-trash-b
-                    | Delete my account
+                    | Delete my account<% if (authTypes.indexOf('facebook') > -1 || authTypes.indexOf('twitter') > -1) { %>
 
             .page-header
-                h3 Linked Accounts
+                h3 Linked Accounts<% if (authTypes.indexOf('facebook') > -1) { %>
 
             if user.facebook
                 p: a.text-danger(href='/account/unlink/facebook') Unlink your Facebook account
             else
                 p: a(href='/auth/facebook') Link your Facebook account
 
-            if user.twitter
+            <% } %><% if (authTypes.indexOf('facebook') > -1) { %>if user.twitter
                 p: a.text-danger(href='/account/unlink/twitter') Unlink your Twitter account
             else
-                p: a(href='/auth/twitter') Link your Twitter account
+                p: a(href='/auth/twitter') Link your Twitter account<% } %><% } %>
