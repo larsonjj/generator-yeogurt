@@ -42,11 +42,10 @@ var isAuthenticated = function(req, res, next) {
 var isAuthorized = function(req, res, next) {
     var provider = req.path.split('/').slice(-1)[0];
 
-    if (_.find(req.user.tokens, {
-        kind: provider
-    })) {
+    if (req.user[provider + 'Token']) {
         next();
-    } else {
+    }
+    else {
         res.redirect('/auth/' + provider);
     }
 };

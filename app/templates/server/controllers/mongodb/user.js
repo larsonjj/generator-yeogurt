@@ -10,10 +10,8 @@ var _ = require('lodash');
 var async = require('async');
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
-var smtpTransport = require('nodemailer-smtp-transport');
-var passport = require('passport');<% if (dbOption === 'mongodb') { %>
-var User = require('mongoose').model('user');<% } else if (dbOption === 'mysql') { %>
-var User = require('../models/User');<% } %>
+var passport = require('passport');
+var User = require('mongoose').model('user');
 var secrets = require('../config/secrets');
 
 /**
@@ -249,10 +247,12 @@ var getOauthUnlink = function(req, res, next) {
             return next(err);
         }
 
+        // Remove provider token
         user[provider] = undefined;
-        user.tokens = _.reject(user.tokens, function(token) {
-            return token.kind === provider;
-        });
+        user[provider + 'Token'] = undefined;
+        if (user[provider + 'Secret']) {
+            user[provider + 'Secret'] = undefined;
+        }
 
         user.save(function(err) {
             if (err) {
@@ -341,17 +341,11 @@ var postReset = function(req, res, next) {
                 });
         },
         function(user, done) {
-            var transporter = nodemailer.createTransport({
-                service: 'SendGrid',
-                auth: {
-                    user: secrets.sendgrid.user,
-                    pass: secrets.sendgrid.password
-                }
-            });
+            var transporter = nodemailer.createTransport();
             var mailOptions = {
                 to: user.email,
-                from: 'hackathon@starter.com',
-                subject: 'Your Hackathon Starter password has been changed',
+                from: 'yeogurt@yoururl.com',
+                subject: 'Your Yeogurt password has been changed',
                 text: 'Hello,\n\n' +
                     'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
             };
@@ -428,14 +422,7 @@ var postForgot = function(req, res, next) {
             });
         },
         function(token, user, done) {
-            var transporter = nodemailer.createTransport(smtpTransport({
-                host: 'localhost',
-                port: 25,
-                auth: {
-                    user: 'username',
-                    pass: 'password'
-                }
-            }));
+            var transporter = nodemailer.createTransport();
             var mailOptions = {
                 to: user.email,
                 from: 'yeogurt@yoururl.com',
