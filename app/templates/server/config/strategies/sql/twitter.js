@@ -44,7 +44,7 @@ var strategy = function(passport, User) {
                         user.name = user.name || profile.displayName;
                         user.location = user.location || profile._json.location;
                         user.picture = user.picture || profile._json.profile_image_url_https;
-                        User.build(user).save().success(function() {
+                        user.save().success(function() {
                             req.flash('info', {
                                 msg: 'Twitter account has been linked.'
                             });
@@ -81,7 +81,7 @@ var strategy = function(passport, User) {
                 user.name = profile.displayName;
                 user.location = profile._json.location;
                 user.picture = profile._json.profile_image_url_https;
-                User.build(user).save().success(function() {
+                user.save().success(function() {
                     done(null, user);
                 });
             }).error(function(err) {

@@ -28,7 +28,7 @@ var UserModel = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
         },
         gender: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING
         },
         location: {
             type: DataTypes.STRING,
@@ -37,22 +37,45 @@ var UserModel = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
         },
         picture: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING
         },
 
         resetPasswordToken: DataTypes.STRING,
         resetPasswordExpires: DataTypes.DATE
     }, {
         instanceMethods: {
-            comparePassword: function(candidatePassword, cb) {
+            comparePassword: function(candidatePassword, done) {
                 bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
                     if (err) {
-                        return cb(err);
+                        return done(err);
                     }
-                    cb(null, isMatch);
+                    done(null, isMatch);
                 });
             }
         }
+    });
+
+    User.hook('beforeValidate', function(user, done) {
+
+        // Check to see if password has changed
+        if (!user.changed('password')) {
+            return done(null, user);
+        }
+
+        // Salt password
+        bcrypt.genSalt(5, function(err, salt) {
+            if (err) {
+              return done(err);
+            }
+
+            bcrypt.hash(user.password, salt, null, function(err, hash) {
+                if (err) {
+                  return done(err);
+                }
+                user.password = hash;
+                return done(null, user);
+            });
+        });
     });
 
     return User;

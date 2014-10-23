@@ -114,59 +114,39 @@ var postSignup = function(req, res, next) {
         return res.redirect('/signup');
     }
 
-    async.waterfall([
-        function(done) {
-            // Salt password
-            bcrypt.genSalt(5, function(err, salt) {
-                if (err) {
-                  return done(err);
-                }
+    var user = {
+        email: req.body.email,
+        password: req.body.password
+    };
 
-                bcrypt.hash(req.body.password, salt, null, function(err, hash) {
-                    if (err) {
-                      return done(err);
-                    }
-                    password = hash;
-                    done();
-                });
+    User.find({
+        where: {
+            email: req.body.email
+        }
+    }).success(function(existingUser) {
+        if (existingUser) {
+            req.flash('errors', {
+                msg: 'Account with that email address already exists.'
             });
-        },
-        function(done) {
-            var user = {
-                email: req.body.email,
-                password: password
-            };
-
-            User.find({
-                where: {
-                    email: req.body.email
-                }
-            }).success(function(existingUser) {
-                if (existingUser) {
-                    req.flash('errors', {
-                        msg: 'Account with that email address already exists.'
-                    });
-                    return res.redirect('/signup');
-                }
-                User.create(user).success(function() {
-                    req.logIn(user, function(err) {
-                        if (err) {
-                            return next(err);
-                        }
-                        res.redirect('/');
-                    });
-                }).error(function(err) {
-                    if (err) {
-                        return next(err);
-                    }
-                });
-            }).error(function(err) {
+            return res.redirect('/signup');
+        }
+        User.create(user).success(function(user) {
+            req.logIn(user, function(err) {
                 if (err) {
                     return next(err);
                 }
+                res.redirect('/');
             });
+        }).error(function(err) {
+            if (err) {
+                return next(err);
+            }
+        });
+    }).error(function(err) {
+        if (err) {
+            return next(err);
         }
-    ]);
+    });
 };
 
 /**
@@ -197,7 +177,7 @@ var postUpdateProfile = function(req, res, next) {
         user.location = req.body.location || '';
         user.website = req.body.website || '';
 
-        User.build(user).save().success(function() {
+        user.save().success(function() {
             req.flash('success', {
                 msg: 'Profile information updated.'
             });
@@ -238,10 +218,7 @@ var postUpdatePassword = function(req, res, next) {
     }).success(function(user) {
         user.password = req.body.password;
 
-        User.build(user).save().success(function() {
-            if (err) {
-                return next(err);
-            }
+        user.save().success(function() {
             req.flash('success', {
                 msg: 'Password has been changed.'
             });
@@ -292,13 +269,14 @@ var getOauthUnlink = function(req, res, next) {
             id: req.user.id
         }
     }).success(function(user) {
-        user[provider] = undefined;
-        // TODO Fix token reject
-        user.tokens = _.reject(user.tokens, function(token) {
-            return token.kind === provider;
-        });
+        // Remove provider token
+        user[provider] = null;
+        user[provider + 'Token'] = null;
+        if (user[provider + 'Secret']) {
+            user[provider + 'Secret'] = null;
+        }
 
-        User.build(user).save().success(function() {
+        user.save().success(function() {
             req.flash('info', {
                 msg: provider + ' account has been unlinked.'
             });
@@ -379,12 +357,15 @@ var postReset = function(req, res, next) {
                 }
 
                 user.password = req.body.password;
-                user.resetPasswordToken = undefined;
-                user.resetPasswordExpires = undefined;
+                user.resetPasswordToken = null;
+                user.resetPasswordExpires = null;
 
-                User.build(user).save().success(function() {
+                user.save().success(function() {
                     req.logIn(user, function(err) {
-                        done(err, user);
+                        if (err) {
+                            return done(err);
+                        }
+                        done(null, user);
                     });
                 }).error(function(err) {
                     if (err) {
@@ -398,18 +379,11 @@ var postReset = function(req, res, next) {
             });
         },
         function(user, done) {
-            var transporter = nodemailer.createTransport({
-                host: 'localhost',
-                port: 25,
-                auth: {
-                    user: 'username',
-                    pass: 'password'
-                }
-            });
+            var transporter = nodemailer.createTransport();
             var mailOptions = {
                 to: user.email,
-                from: 'hackathon@starter.com',
-                subject: 'Your Hackathon Starter password has been changed',
+                from: 'yeogurt@yoururl.com',
+                subject: 'Your Yeogurt password has been changed',
                 text: 'Hello,\n\n' +
                     'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
             };
@@ -481,7 +455,7 @@ var postForgot = function(req, res, next) {
                 user.resetPasswordToken = token;
                 user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
-                User.build(user).save().success(function() {
+                user.save().success(function() {
                     done(null, token, user);
                 });
             }).error(function(err) {
@@ -491,14 +465,7 @@ var postForgot = function(req, res, next) {
             });
         },
         function(token, user, done) {
-            var transporter = nodemailer.createTransport(smtpTransport({
-                host: 'localhost',
-                port: 25,
-                auth: {
-                    user: 'username',
-                    pass: 'password'
-                }
-            }));
+            var transporter = nodemailer.createTransport();
             var mailOptions = {
                 to: user.email,
                 from: 'yeogurt@yoururl.com',

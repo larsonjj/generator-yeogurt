@@ -43,7 +43,7 @@ var strategy = function(passport, User) {
                         user.name = user.name || profile.displayName;
                         user.gender = user.gender || profile._json.gender;
                         user.picture = user.picture || 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
-                        User.build(user).save().success(function() {
+                        user.save().success(function() {
                             req.flash('info', {
                                 msg: 'Facebook account has been linked.'
                             });
@@ -88,7 +88,7 @@ var strategy = function(passport, User) {
                         user.gender = profile._json.gender;
                         user.picture = 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
                         user.location = (profile._json.location) ? profile._json.location.name : '';
-                        User.build(user).save().success(function() {
+                        user.save().success(function() {
                             done(null, user);
                         });
                     }
