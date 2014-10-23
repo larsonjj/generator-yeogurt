@@ -10,7 +10,6 @@ var _ = require('lodash');
 var async = require('async');
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
-var smtpTransport = require('nodemailer-smtp-transport');
 var passport = require('passport');<% if (dbOption === 'mongodb') { %>
 var User = require('mongoose').model('user');<% } else if (dbOption === 'mysql') { %>
 var db = require('../config/database');

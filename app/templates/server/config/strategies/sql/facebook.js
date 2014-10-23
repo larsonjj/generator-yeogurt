@@ -88,7 +88,7 @@ var strategy = function(passport, User) {
                         user.gender = profile._json.gender;
                         user.picture = 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
                         user.location = (profile._json.location) ? profile._json.location.name : '';
-                        user.save().success(function() {
+                        User.build(user).save().success(function(user) {
                             done(null, user);
                         });
                     }

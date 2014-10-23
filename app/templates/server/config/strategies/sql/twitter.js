@@ -81,7 +81,7 @@ var strategy = function(passport, User) {
                 user.name = profile.displayName;
                 user.location = profile._json.location;
                 user.picture = profile._json.profile_image_url_https;
-                user.save().success(function() {
+                User.build(user).save().success(function(user) {
                     done(null, user);
                 });
             }).error(function(err) {
