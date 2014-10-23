@@ -13,11 +13,7 @@ var flash = require('express-flash');
 var expressValidator = require('express-validator');
 var passport = require('passport');
 var authConf = require('./auth');
-var session = require('express-session');<% if (dbOption === 'mongodb') { %>
-var MongoStore = require('connect-mongo')({
-    session: session
-});<% } %><% if (dbOption === 'mysql') { %>
-var SequelizeStore = require('connect-session-sequelize')(session.Store);<% } %><% } %>
+var session = require('express-session');<% } %>
 
 // Configuration files<% if (useAuth) { %>
 var secrets = require('./secrets');<% } %>
@@ -64,10 +60,11 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
         });
     }
 
+    // Initialize server validation flash messages
+    app.use(flash());
+
     // Load favicon
     app.use(favicon((settings.root + '/' + settings.staticAssets + '/favicon.ico')));
-
-    app.use(express.static(path.join(settings.root, settings.staticAssets), {maxAge: week}));
 
     // Setup log level for server console output
     app.use(logger('dev'));
@@ -76,6 +73,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));<% if (useAuth) { %>
 
+    // Initialize form validation
     app.use(expressValidator());
 
     // Create cookie that keeps track of user sessions
@@ -83,14 +81,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     app.use(session({
         secret: secrets.sessionSecret,
         saveUninitialized: true,
-        resave: true,<% if (dbOption === 'mongodb') { %>
-        store: new MongoStore({
-            url: settings.database.url,
-            auto_reconnect: true,
-        }),<% } %><% if (dbOption === 'mysql') { %>
-        store: new SequelizeStore({
-            db: db.sequelize
-        }),<% } %>
+        resave: true,
         cookie: {
             httpOnly: true, /*, secure: true for HTTPS*/
             maxAge: day
@@ -98,20 +89,24 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     }));
 
     // Initialize Authentication
-    authConf.auth(db, passport);
+    authConf.auth(db.user, passport);
     app.use(passport.initialize());
-    app.use(passport.session());
-
-    app.use(flash());<% if ( useAuth && useSecurity) { %>
+    app.use(passport.session());<% if ( useAuth && useSecurity) { %>
 
     // Initialize Lusca Security
     app.use(security);<% } %>
 
     app.use(function(req, res, next) {
+        // Make Node environment available in templates
+        res.locals.env = process.env.NODE_ENV || 'development';
         // Make user object available in templates.
         res.locals.user = req.user;
         next();
-    });
+    });<% } %>
+
+    // Setup static assets
+    app.use(express.static(path.join(settings.root, settings.staticAssets), {maxAge: week}));<% if (useAuth) { %>
+
     app.use(function(req, res, next) {
         // Remember original destination before login.
         var path = req.path.split('/')[1];

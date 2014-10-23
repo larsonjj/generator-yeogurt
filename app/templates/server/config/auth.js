@@ -5,20 +5,27 @@ var localStrategy = require('./strategies/local');<% } %><% if (authTypes.indexO
 var facebookStrategy = require('./strategies/facebook');<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
 var twitterStrategy = require('./strategies/twitter');<% } %>
 
-var auth = function(db, passport) {
+var auth = function(User, passport) {
     passport.serializeUser(function(user, done) {
         done(null, user.id);
     });
 
-    passport.deserializeUser(function(id, done) {
-        db.user.findById(id, function(err, user) {
+    passport.deserializeUser(function(id, done) {<% if (dbOption === 'mongodb') { %>
+        User.findById(id, function(err, user) {
             done(err, user);
-        });
+        });<% } else if (dbOption === 'mysql') { %>
+        User.find({
+            where: {
+                id: id
+            }
+        }).success(function(user) {
+            done(null, user);
+        });<% } %>
     });<% if (authTypes.indexOf('local') > -1) { %>
 
-    localStrategy(passport, db.user);<% } %><% if (authTypes.indexOf('facebook') > -1) { %>
-    facebookStrategy(passport, db.user);<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
-    twitterStrategy(passport, db.user);<% } %>
+    localStrategy(passport, User);<% } %><% if (authTypes.indexOf('facebook') > -1) { %>
+    facebookStrategy(passport, User);<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
+    twitterStrategy(passport, User);<% } %>
 };
 
 // Login Required middleware.
@@ -35,11 +42,10 @@ var isAuthenticated = function(req, res, next) {
 var isAuthorized = function(req, res, next) {
     var provider = req.path.split('/').slice(-1)[0];
 
-    if (_.find(req.user.tokens, {
-        kind: provider
-    })) {
+    if (req.user[provider + 'Token']) {
         next();
-    } else {
+    }
+    else {
         res.redirect('/auth/' + provider);
     }
 };
