@@ -1,6 +1,5 @@
 'use strict';
 var bcrypt = require('bcrypt-nodejs');
-var crypto = require('crypto');
 
 var UserModel = function(sequelize, DataTypes) {
     var User = sequelize.define('user', {
@@ -12,6 +11,10 @@ var UserModel = function(sequelize, DataTypes) {
                 isLowercase: true,
                 notNull: true
             }
+        },
+        role: {
+            type: DataTypes.STRING,
+            defaultValue: 'user'
         },
         password: DataTypes.STRING,
 

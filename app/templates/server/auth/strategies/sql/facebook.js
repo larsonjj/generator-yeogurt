@@ -1,7 +1,7 @@
 'use strict';
 
 var FacebookStrategy = require('passport-facebook').Strategy;
-var secrets = require('../secrets');
+var secrets = require('../../config/secrets');
 
 /**
  * OAuth Strategy Overview

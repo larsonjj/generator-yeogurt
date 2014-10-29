@@ -14,7 +14,9 @@
         "express-session": "~1.6.0",<% if (useAuth) { %>
         "express-flash": "^0.0.2",
         "validator": "~3.19.1",
-        "express-validator": "^2.6.0",
+        "express-validator": "^2.6.0",<% if (useJwt) { %>
+        "jsonwebtoken": "~1.1.2",
+        "express-jwt": "~0.4.0",<% } %>
         "bcrypt-nodejs": "^0.0.3",
         "bcrypt": "0.8.0",
         "nodemailer": "1.3.0",

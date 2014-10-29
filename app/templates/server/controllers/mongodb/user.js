@@ -13,6 +13,7 @@ var nodemailer = require('nodemailer');
 var passport = require('passport');
 var User = require('mongoose').model('user');
 var secrets = require('../config/secrets');
+var authConf = require('../auth');
 
 /**
  * GET /login
@@ -39,8 +40,53 @@ var postLogin = function(req, res, next) {
     req.assert('email', 'Email is not valid').isEmail();
     req.assert('password', 'Password cannot be blank').notEmpty();
 
-    var errors = req.validationErrors();
+    var errors = req.validationErrors();<% if (useJwt) { %>
 
+    if (errors) {
+        if (!req.xhr) {
+            req.flash('errors', errors);
+            return res.redirect('/login');
+        }
+        else {
+            return res.json(401, error);
+        }
+    }
+
+    passport.authenticate('local', function(err, user, info) {
+        if (err) {
+            return next(err);
+        }
+        if (!user) {
+            if (!req.xhr) {
+                req.flash('errors', {
+                    msg: info.message
+                });
+                return res.redirect('/login');
+            }
+            else {
+                return res.json(404, {
+                    message: 'Something went wrong, please try again.'
+                });
+            }
+        }
+        req.logIn(user, function(err) {
+            if (err) {
+                return next(err);
+            }
+            if (!req.xhr) {
+                req.flash('success', {
+                    msg: 'Success! You are logged in.'
+                });
+                res.redirect(req.session.returnTo || '/');
+            }
+            else {
+                var token = authConf.signToken(user.id, user.role);
+                res.json({
+                    token: token
+                });
+            }
+        });
+    })(req, res, next);<% } else { %>
     if (errors) {
         req.flash('errors', errors);
         return res.redirect('/login');
@@ -65,7 +111,7 @@ var postLogin = function(req, res, next) {
             });
             res.redirect(req.session.returnTo || '/');
         });
-    })(req, res, next);
+    })(req, res, next);<% } %>
 };
 
 /**
@@ -104,8 +150,86 @@ var postSignup = function(req, res, next) {
     req.assert('password', 'Password must be at least 4 characters long').len(4);
     req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
-    var errors = req.validationErrors();
+    var errors = req.validationErrors();<% if (useJwt) { %>
 
+    if (errors) {
+        if (!req.xhr) {
+            req.flash('errors', errors);
+            return res.redirect('/signup');
+        }
+        else {
+            res.json({
+                errors: errors
+            });
+        }
+    }
+
+    var user = new User({
+        email: req.body.email,
+        password: req.body.password
+    });
+
+    User.findOne({
+        email: req.body.email
+    }, function(err, existingUser) {
+        if (err) {
+            if (!req.xhr) {
+                req.flash('errors', {
+                    msg: 'Error trying to find user'
+                });
+                return res.redirect('/signup');
+            }
+            else {
+                res.json({
+                    errors: [{
+                        param: 'email',
+                        msg: 'Error trying to find user'
+                    }]
+                });
+            }
+        }
+        if (existingUser) {
+            if (!req.xhr) {
+                req.flash('errors', {
+                    msg: 'Account with that email address already exists.'
+                });
+                return res.redirect('/signup');
+            }
+            else {
+                res.json({
+                    errors: [{
+                        param: 'email',
+                        msg: 'Account with that email address already exists.'
+                    }]
+                });
+            }
+        }
+        user.save(function(err) {
+            if (err) {
+                return next(err);
+            }
+            if (!req.xhr) {
+                req.logIn(user, function(err) {
+                    if (err) {
+                        return next(err);
+                    }
+                    req.flash('success', {
+                        msg: 'Account created successfully.'
+                    });
+                    res.redirect('/');
+                });
+            }
+            else {
+                var token = authConf.signToken(user.id, user.role);
+                res.json({
+                    token: token,
+                    success: [{
+                        msg: 'Account created successfully.'
+                    }]
+                });
+            }
+        });
+    });<% } else { %>
     if (errors) {
         req.flash('errors', errors);
         return res.redirect('/signup');
@@ -133,10 +257,13 @@ var postSignup = function(req, res, next) {
                 if (err) {
                     return next(err);
                 }
+                req.flash('success', {
+                    msg: 'Account created successfully.'
+                });
                 res.redirect('/');
             });
         });
-    });
+    });<% } %>
 };
 
 /**
@@ -155,7 +282,37 @@ var getAccount = function(req, res) {
  * Update profile information.
  */
 
-var postUpdateProfile = function(req, res, next) {
+var postUpdateProfile = function(req, res, next) {<% if (useJwt) { %>
+    User.findById(req.user.id, function(err, user) {
+        if (err) {
+            return next(err);
+        }
+
+        user.email = req.body.email || '';
+        user.name = req.body.name || '';
+        user.gender = req.body.gender || '';
+        user.location = req.body.location || '';
+        user.website = req.body.website || '';
+
+        user.save(function(err) {
+            if (err) {
+                return next(err);
+            }
+            if (!req.xhr) {
+                req.flash('success', {
+                    msg: 'Profile information updated.'
+                });
+                res.redirect('/account');
+            }
+            else {
+                res.json({
+                    success: [{
+                        msg: 'Profile information updated.'
+                    }]
+                });
+            }
+        });
+    });<% } else { %>
     User.findById(req.user.id, function(err, user) {
         if (err) {
             return next(err);
@@ -175,7 +332,7 @@ var postUpdateProfile = function(req, res, next) {
             });
             res.redirect('/account');
         });
-    });
+    });<% } %>
 };
 
 /**
@@ -188,8 +345,45 @@ var postUpdatePassword = function(req, res, next) {
     req.assert('password', 'Password must be at least 4 characters long').len(4);
     req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
-    var errors = req.validationErrors();
+    var errors = req.validationErrors();<% if (useJwt) { %>
+    if (errors) {
+        if (!req.xhr) {
+            req.flash('errors', errors);
+            return res.redirect('/account');
+        }
+        else {
+            res.json({
+                errors: errors
+            });
+        }
+    }
 
+    User.findById(req.user.id, function(err, user) {
+        if (err) {
+            return next(err);
+        }
+
+        user.password = req.body.password;
+
+        user.save(function(err) {
+            if (err) {
+                return next(err);
+            }
+            if (!req.xhr) {
+                req.flash('success', {
+                    msg: 'Password has been changed.'
+                });
+                res.redirect('/account');
+            }
+            else {
+                res.json({
+                    success: [{
+                        msg: 'Password has been changed.'
+                    }]
+                });
+            }
+        });
+    });<% } else { %>
     if (errors) {
         req.flash('errors', errors);
         return res.redirect('/account');
@@ -211,7 +405,7 @@ var postUpdatePassword = function(req, res, next) {
             });
             res.redirect('/account');
         });
-    });
+    });<% } %>
 };
 
 /**
@@ -219,9 +413,30 @@ var postUpdatePassword = function(req, res, next) {
  * Delete user account.
  */
 
-var postDeleteAccount = function(req, res, next) {
+var postDeleteAccount = function(req, res, next) {<% if (useJwt) { %>
     User.remove({
-        _id: req.user.id
+        id: req.user.id
+    }, function(err) {
+        if (err) {
+            return next(err);
+        }
+        if (!req.xhr) {
+            req.logout();
+            req.flash('info', {
+                msg: 'Your account has been deleted.'
+            });
+            res.redirect('/');
+        }
+        else {
+            res.json({
+                info: [{
+                    msg: 'Your account has been deleted.'
+                }]
+            });
+        }
+    });<% } else { %>
+    User.remove({
+        id: req.user.id
     }, function(err) {
         if (err) {
             return next(err);
@@ -231,7 +446,21 @@ var postDeleteAccount = function(req, res, next) {
             msg: 'Your account has been deleted.'
         });
         res.redirect('/');
-    });
+    });<% } %>
+};
+
+/**
+ * GET /auth/:provider/callback
+ * Link OAuth provider.
+ */
+
+var getOauthLink = function(req, res, next) {
+    if (!req.xhr) {
+        res.redirect('/');
+    }
+    else {
+        authConf.setTokenCookie(req, res);
+    }
 };
 
 /**
@@ -271,7 +500,7 @@ var getOauthUnlink = function(req, res, next) {
  * Reset Password page.
  */
 
-var getReset = function(req, res) {
+var getReset = function(req, res, next) {
     if (req.isAuthenticated()) {
         return res.redirect('/');
     }
@@ -281,6 +510,9 @@ var getReset = function(req, res) {
         })
         .where('resetPasswordExpires').gt(Date.now())
         .exec(function(err, user) {
+            if (err) {
+                return next(err);
+            }
             if (!user) {
                 req.flash('errors', {
                     msg: 'Password reset token is invalid or has expired.'
@@ -387,7 +619,94 @@ var getForgot = function(req, res) {
 var postForgot = function(req, res, next) {
     req.assert('email', 'Please enter a valid email address.').isEmail();
 
-    var errors = req.validationErrors();
+    var errors = req.validationErrors();<% if (useJwt) { %>
+
+    if (errors) {
+        if (!req.xhr) {
+            req.flash('errors', errors);
+            return res.redirect('/forgot');
+        }
+        else {
+            res.json({
+                errors: errors
+            });
+        }
+    }
+
+    async.waterfall([
+        function(done) {
+            crypto.randomBytes(16, function(err, buf) {
+                var token = buf.toString('hex');
+                done(err, token);
+            });
+        },
+        function(token, done) {
+            User.findOne({
+                email: req.body.email.toLowerCase()
+            }, function(err, user) {
+                if (err) {
+                    return next(err);
+                }
+
+                if (!user) {
+                    if (!req.xhr) {
+                        req.flash('errors', {
+                            msg: 'No account with that email address exists.'
+                        });
+                        return res.redirect('/forgot');
+                    }
+                    else {
+                        res.json({
+                            errors: [{
+                                msg: 'No account with that email address exists.'
+                            }]
+                        });
+                    }
+                }
+
+                user.resetPasswordToken = token;
+                user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+                user.save(function(err) {
+                    done(err, token, user);
+                });
+            });
+        },
+        function(token, user, done) {
+            var transporter = nodemailer.createTransport();
+            var mailOptions = {
+                to: user.email,
+                from: 'yeogurt@yoururl.com',
+                subject: 'Reset your password on Yeogurt',
+                text: 'You are receiving this email because you (or someone else) have requested the reset of the password for your account.\n\n' +
+                    'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+                    'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+                    'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+            };
+            transporter.sendMail(mailOptions, function(err) {
+                if (!req.xhr) {
+                    req.flash('info', {
+                        msg: 'An e-mail has been sent to ' + user.email + ' with further instructions.'
+                    });
+                }
+                else {
+                    res.json({
+                        info: [{
+                            msg: 'An e-mail has been sent to ' + user.email + ' with further instructions.'
+                        }]
+                    });
+                }
+                done(err, 'done');
+            });
+        }
+    ], function(err) {
+        if (err) {
+            return next(err);
+        }
+        if (!req.xhr) {
+            res.redirect('/forgot');
+        }
+    });<% } else { %>
 
     if (errors) {
         req.flash('errors', errors);
@@ -444,7 +763,7 @@ var postForgot = function(req, res, next) {
             return next(err);
         }
         res.redirect('/forgot');
-    });
+    });<% } %>
 };
 
 module.exports = {
@@ -457,6 +776,7 @@ module.exports = {
     postUpdateProfile: postUpdateProfile,
     postUpdatePassword: postUpdatePassword,
     postDeleteAccount: postDeleteAccount,
+    getOauthLink: getOauthLink,
     getOauthUnlink: getOauthUnlink,
     getReset: getReset,
     postReset: postReset,

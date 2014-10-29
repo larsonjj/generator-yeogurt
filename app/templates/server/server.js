@@ -28,7 +28,34 @@ db.sequelize.authenticate().complete(function(err) {
 });<% } else if (dbOption === 'mongodb') { %>
 var db = require('./server/config/database')(app);<% } %><% } %>
 
-require('./server/config/express')(app, express<% if (dbOption !== 'none') { %>,  db<% } %>);
+// Express configuration
+require('./server/config/express')(app, express<% if (dbOption !== 'none') { %>, db<% } %>);
+
+// Load routes
+require('./server/routes')(app);
+
+/**
+ * 500 Error Handler.
+ * As of Express 4.0 it must be placed at the end of all routes.
+ */
+app.use(errorHandler());
+
+<% if (dbOption === 'mysql') { %>
+// Verify DB connection
+db.sequelize.authenticate().complete(function(err) {
+    if (!!err) {
+        console.error('✗ Database Connection Error: \n'.red, err);
+    }
+    else {
+        console.log('✔ MySQL Connection Success!'.green);
+        db.sequelize.sync()
+            .success(function() {
+                console.log('✔ Database Synced!'.green);
+            }).error(function() {
+                console.error('✗ Database Not Synced!'.red);
+            })
+    }
+});<% } %>
 
 /**
  * Start Express server.

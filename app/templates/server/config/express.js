@@ -12,7 +12,7 @@ var errorHandler = require('errorhandler');<% if (useAuth) { %>
 var flash = require('express-flash');
 var expressValidator = require('express-validator');
 var passport = require('passport');
-var authConf = require('./auth');
+var authConf = require('../auth');
 var session = require('express-session');<% } %>
 
 // Configuration files<% if (useAuth) { %>
@@ -28,6 +28,9 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
 
     var env = app.get('env');
 
+    // Remove x-powered-by header (doesn't let clients know we are using Express)
+    app.disable('x-powered-by');
+
     // Setup port for server to run on
     app.set('port', settings.server.port);
 
@@ -37,37 +40,11 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     app.engine('<%= htmlOption === 'jade' ? 'jade' : '' %><%= htmlOption === 'swig' ? 'swig' : '' %>', require('<%= htmlOption %>').renderFile);
     app.set('view engine', '<%= htmlOption === 'jade' ? 'jade' : '' %><%= htmlOption === 'swig' ? 'swig' : '' %>');<% } %>
 
-    // Remove x-powered-by header (doesn't let clients know we are using Express)
-    app.disable('x-powered-by');
-
     // Setup path where all server templates will reside
     app.set('views', path.join(settings.root, 'server/templates'));
 
-    if ('production' === env) {
-        // Enable GZip compression for all static assets
-        app.use(compress());
-    }
-    else if ('development' === env) {
-        // Include livereload script
-        app.use(require('connect-livereload')());
-
-        // Disable caching for easier testing
-        app.use(function noCache(req, res, next) {
-            res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
-            res.header('Pragma', 'no-cache');
-            res.header('Expires', 0);
-            next();
-        });
-    }
-
-    // Initialize server validation flash messages
-    app.use(flash());
-
-    // Load favicon
-    app.use(favicon((settings.root + '/' + settings.staticAssets + '/favicon.ico')));
-
-    // Setup log level for server console output
-    app.use(logger('dev'));
+    // Enable GZip compression for all static assets
+    app.use(compress());
 
     // Returns middleware that parses both json and urlencoded.
     app.use(bodyParser.json());
@@ -91,7 +68,10 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     // Initialize Authentication
     authConf.auth(db.user, passport);
     app.use(passport.initialize());
-    app.use(passport.session());<% if ( useAuth && useSecurity) { %>
+    app.use(passport.session());
+
+    // Initialize server validation flash messages
+    app.use(flash());<% if (useSecurity) { %>
 
     // Initialize Lusca Security
     app.use(security);<% } %>
@@ -102,10 +82,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
         // Make user object available in templates.
         res.locals.user = req.user;
         next();
-    });<% } %>
-
-    // Setup static assets
-    app.use(express.static(path.join(settings.root, settings.staticAssets), {maxAge: week}));<% if (useAuth) { %>
+    });
 
     app.use(function(req, res, next) {
         // Remember original destination before login.
@@ -117,14 +94,31 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
         next();
     });<% } %>
 
-    // Load routes
-    require('../routes')(app);
+    if ('production' === env) {
+        // Setup log level for server console output
+        app.use(logger('dev'));
+    }
 
-    /**
-     * 500 Error Handler.
-     * As of Express 4.0 it must be placed at the end of all routes.
-     */
-    app.use(errorHandler());
+    if ('development' === env) {
+        // Include livereload script
+        app.use(require('connect-livereload')());
+
+        // Setup log level for server console output
+        app.use(logger('dev'));
+
+        // Disable caching for easier testing
+        app.use(function noCache(req, res, next) {
+            res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
+            res.header('Pragma', 'no-cache');
+            res.header('Expires', 0);
+            next();
+        });
+    }
+    // Load favicon
+    app.use(favicon((settings.root + '/' + settings.staticAssets + '/favicon.ico')));
+
+    // Setup static assets
+    app.use(express.static(path.join(settings.root, settings.staticAssets), {maxAge: week}));
 
 };
 

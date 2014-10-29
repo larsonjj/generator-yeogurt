@@ -6,7 +6,8 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var strategy = function(passport, User) {
     passport.use(new LocalStrategy({
-        usernameField: 'email'
+        usernameField: 'email',
+        passwordField: 'password'
     }, function(email, password, done) {
         User.find({
             where: {

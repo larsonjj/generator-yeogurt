@@ -20,7 +20,12 @@ var securityConfig = function(req, res, next) {
             settings.security.config[prop.replace('Whitelist', '')] = false;
             console.log('"' + req.path + '" is white-listed for: ' + prop.replace('Whitelist', ''));
         }
-    }
+    }<% if (useJwt) { %>
+
+    // allow XHR requests to bypass CSRF
+    if (req.xhr) {
+        settings.security.config.csrf = false;
+    }<% } %>
 
     var init = lusca(settings.security.config);
 

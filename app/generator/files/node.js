@@ -34,33 +34,33 @@ var nodeFiles = function nodeFiles() {
 
         if (this.useAuth) {
             this.template('server/config/secrets.js', 'server/config/secrets.js');
-            this.template('server/config/auth.js', 'server/config/auth.js');
+            this.template('server/auth/index.js', 'server/auth/index.js');
 
             if (this.dbOption === 'mongodb') {
                 this.template('server/controllers/mongodb/user.js', 'server/controllers/user.js');
                 this.template('server/models/mongodb/user.js', 'server/models/user.js');
 
                 if (this.authTypes.indexOf('local') > -1) {
-                    this.template('server/config/strategies/mongodb/local.js', 'server/config/strategies/local.js');
+                    this.template('server/auth/strategies/mongodb/local.js', 'server/auth/strategies/local.js');
                 }
                 if (this.authTypes.indexOf('facebook') > -1) {
-                    this.template('server/config/strategies/mongodb/facebook.js', 'server/config/strategies/facebook.js');
+                    this.template('server/auth/strategies/mongodb/facebook.js', 'server/auth/strategies/facebook.js');
                 }
                 if (this.authTypes.indexOf('twitter') > -1) {
-                    this.template('server/config/strategies/mongodb/twitter.js', 'server/config/strategies/twitter.js');
+                    this.template('server/auth/strategies/mongodb/twitter.js', 'server/auth/strategies/twitter.js');
                 }
             }
             if (this.dbOption === 'mysql') {
                 this.template('server/controllers/sql/user.js', 'server/controllers/user.js');
                 this.template('server/models/sql/user.js', 'server/models/user.js');
                 if (this.authTypes.indexOf('local') > -1) {
-                    this.template('server/config/strategies/sql/local.js', 'server/config/strategies/local.js');
+                    this.template('server/auth/strategies/sql/local.js', 'server/auth/strategies/local.js');
                 }
                 if (this.authTypes.indexOf('facebook') > -1) {
-                    this.template('server/config/strategies/sql/facebook.js', 'server/config/strategies/facebook.js');
+                    this.template('server/auth/strategies/sql/facebook.js', 'server/auth/strategies/facebook.js');
                 }
                 if (this.authTypes.indexOf('twitter') > -1) {
-                    this.template('server/config/strategies/sql/twitter.js', 'server/config/strategies/twitter.js');
+                    this.template('server/auth/strategies/sql/twitter.js', 'server/auth/strategies/twitter.js');
                 }
             }
 
