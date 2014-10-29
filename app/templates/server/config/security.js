@@ -22,8 +22,8 @@ var securityConfig = function(req, res, next) {
         }
     }<% if (useJwt) { %>
 
-    // allow access_token header/query parameter to bypass CSRF
-    if (req.body && req.body.hasOwnProperty('access_token') || req.headers.authorization) {
+    // allow XHR requests to bypass CSRF
+    if (req.xhr) {
         settings.security.config.csrf = false;
     }<% } %>
 

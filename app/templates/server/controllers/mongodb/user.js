@@ -42,51 +42,51 @@ var postLogin = function(req, res, next) {
 
     var errors = req.validationErrors();<% if (useJwt) { %>
 
-    if (!req.xhr) {
-        if (errors) {
+    if (errors) {
+        if (!req.xhr) {
             req.flash('errors', errors);
             return res.redirect('/login');
         }
+        else {
+            return res.json(401, error);
+        }
+    }
 
-        passport.authenticate('local', function(err, user, info) {
-            if (err) {
-                return next(err);
-            }
-            if (!user) {
+    passport.authenticate('local', function(err, user, info) {
+        if (err) {
+            return next(err);
+        }
+        if (!user) {
+            if (!req.xhr) {
                 req.flash('errors', {
                     msg: info.message
                 });
                 return res.redirect('/login');
             }
-            req.logIn(user, function(err) {
-                if (err) {
-                    return next(err);
-                }
-                req.flash('success', {
-                    msg: 'Success! You are logged in.'
-                });
-                res.redirect(req.session.returnTo || '/');
-            });
-        })(req, res, next);
-    }
-    else {
-        passport.authenticate('local', function(err, user, info) {
-            var error = err || info;
-            if (error) {
-                return res.json(401, error);
-            }
-            if (!user) {
+            else {
                 return res.json(404, {
                     message: 'Something went wrong, please try again.'
                 });
             }
-
-            var token = authConf.signToken(user.id, user.role);
-            res.json({
-                token: token
-            });
-        })(req, res, next);
-    }<% } else { %>
+        }
+        req.logIn(user, function(err) {
+            if (err) {
+                return next(err);
+            }
+            if (!req.xhr) {
+                req.flash('success', {
+                    msg: 'Success! You are logged in.'
+                });
+                res.redirect(req.session.returnTo || '/');
+            }
+            else {
+                var token = authConf.signToken(user.id, user.role);
+                res.json({
+                    token: token
+                });
+            }
+        });
+    })(req, res, next);<% } else { %>
     if (errors) {
         req.flash('errors', errors);
         return res.redirect('/login');
