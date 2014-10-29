@@ -1,6 +1,5 @@
 'use strict';
 var bcrypt = require('bcrypt-nodejs');
-var crypto = require('crypto');
 var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({
@@ -8,6 +7,10 @@ var userSchema = new mongoose.Schema({
         type: String,
         unique: true,
         lowercase: true
+    },
+    role: {
+        type: String,
+        default: 'user'
     },
     password: String,
 

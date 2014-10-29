@@ -1,7 +1,7 @@
 'use strict';
 
 var TwitterStrategy = require('passport-twitter').Strategy;
-var secrets = require('../secrets');
+var secrets = require('../../config/secrets');
 
 /**
  * OAuth Strategy Overview

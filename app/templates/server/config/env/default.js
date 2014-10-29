@@ -15,9 +15,11 @@ var defaults = {
         host: process.env.HOSTNAME || '127.0.0.1'
     },
     database: {
-        url: '<%= dbURL %>'
+        url: process.env.DBURL || '<%= dbURL %>'
     },
-    root: path.normalize(__dirname + '/../../..'),
+    root: path.normalize(__dirname + '/../../..'),<% if (useAuth) { %>
+    // List of user roles in order of lowest privileges
+    userRoles: ['guest', 'user', 'admin'],<% } %>
     staticAssets: 'client/.serve'<% if (useSecurity) { %>,
     security: {
         whitelists: {

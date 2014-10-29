@@ -8,7 +8,7 @@
 var mainController = require('./controllers/main');<% if (useAuth) { %>
 var userController = require('./controllers/user');
 var passport = require('passport');
-var authConf = require('./config/auth');<% } %>
+var authConf = require('./auth');<% } %>
 
 var routes = function (app) {<% if (useAuth) { %>
     app.get('/login', userController.getLogin);
@@ -28,20 +28,16 @@ var routes = function (app) {<% if (useAuth) { %>
 
     // Facebook routes
     app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
-    app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), function(req, res) {
-        res.redirect('/');
-    });
+    app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), userController.getOauthLink);
     <% } %><% if (authTypes.indexOf('twitter') > -1) { %>
     // Twitter routes
     app.get('/auth/twitter', passport.authenticate('twitter'));
-    app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/login' }), function(req, res) {
-        res.redirect('/');
-    });
+    app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/login' }), userController.getOauthLink);
     <% } %><% } %><% if (!singlePageApplication || useServerTemplates) { %>
     app.get('/', mainController.index);<% } else { %>
     // Catch All: Matches all routes to let HTML5 pushState work
     // Place all routes above this one
-    app.get('*', mainController.index);<% } %>
+    app.get('/*', mainController.index);<% } %>
 };
 
 module.exports = routes;
