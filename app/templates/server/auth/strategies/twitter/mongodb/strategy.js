@@ -1,5 +1,6 @@
 'use strict';
 
+var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
 var secrets = require('../../config/secrets');
 
@@ -19,7 +20,7 @@ var secrets = require('../../config/secrets');
  */
 
 // Sign in with Twitter.
-var strategy = function(passport, User) {
+var strategy = function(User) {
     passport.use(new TwitterStrategy(secrets.twitter, function(req, accessToken, tokenSecret, profile, done) {
         if (req.user) {
             User.findOne({

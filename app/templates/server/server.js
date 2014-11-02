@@ -32,7 +32,7 @@ var db = require('./server/config/database')(app);<% } %><% } %>
 require('./server/config/express')(app, express<% if (dbOption !== 'none') { %>, db<% } %>);
 
 // Load routes
-require('./server/routes')(app);
+require('./server/routes');
 
 /**
  * 500 Error Handler.

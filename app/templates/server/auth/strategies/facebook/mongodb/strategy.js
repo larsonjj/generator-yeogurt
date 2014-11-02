@@ -1,5 +1,6 @@
 'use strict';
 
+var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var secrets = require('../../config/secrets');
 
@@ -19,7 +20,7 @@ var secrets = require('../../config/secrets');
  */
 
 // Sign in with Facebook.
-var strategy = function(passport, User) {
+var strategy = function(User) {
     passport.use(new FacebookStrategy(secrets.facebook, function(req, accessToken, refreshToken, profile, done) {
         if (req.user) {
             User.findOne({

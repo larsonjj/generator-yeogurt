@@ -64,7 +64,7 @@ var options = {
 };
 
 // Connect to database
-var sequelize = new Sequelize(settings.database.url, options);
+var sequelize = new Sequelize(settings.database.url, options);<% if (useAuth) { %>
 
 // Import all models (optionally create associations)
 fs
@@ -79,7 +79,7 @@ Object.keys(db).forEach(function(modelName) {
     if ('associate' in db[modelName]) {
         db[modelName].associate(db);
     }
-});
+});< } %>
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

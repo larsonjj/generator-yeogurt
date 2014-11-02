@@ -12,7 +12,7 @@ var errorHandler = require('errorhandler');<% if (useAuth) { %>
 var flash = require('express-flash');
 var expressValidator = require('express-validator');
 var passport = require('passport');
-var authConf = require('../auth');
+var auth = require('../auth');
 var session = require('express-session');<% } %>
 
 // Configuration files<% if (useAuth) { %>
@@ -66,7 +66,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     }));
 
     // Initialize Authentication
-    authConf.auth(db.user, passport);
+    auth.init(db.user);
     app.use(passport.initialize());
     app.use(passport.session());
 

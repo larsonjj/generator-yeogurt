@@ -4,53 +4,37 @@
 
 'use strict';
 
-// Load controller.
-var mainController = require('./controllers/main');<% if (useAuth) { %>
+var express = require('express');
+// var auth = require('./auth');
+var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
-var passport = require('passport');
-var authConf = require('./auth');<% } %>
+var authController = require('./controllers/auth');
+var router = express.Router();
 
-var routes = function (app) {<% if (useAuth) { %>
-    // Login
-    app.get('/login', userController.getLogin);
-    app.post('/login', userController.postLogin);
+var routes = function () {
+    // Account
+    router.get('/login', authController.login);
+    router.get('/logout', authController.logout);
+    router.get('/forgot', authController.forgot);
+    router.post('/forgot', authController.postForgot);
+    router.get('/reset/:token', authController.reset);
+    router.post('/reset/:token', authController.postReset);
+    router.get('/signup', authController.signup);
 
-    // Logout
-    app.get('/logout', userController.logout);
+    // Users
+    router.post('/user', authController.isAuthenticated, userController.create);
+    router.get('/user/:id', authController.isAuthenticated, userController.show);
+    router.put('/user/:id/profile', authController.isAuthenticated, userController.updateProfile);
+    router.put('/user/:id/password', authController.isAuthenticated, userController.updatePassword);
+    router.delete('/user/:id', authController.isAuthenticated, userController.destroy);<% if (authTypes.length > 0) { %>
 
-    // Forgot Password
-    app.get('/forgot', userController.getForgot);
-    app.post('/forgot', userController.postForgot);
+    // Authentication
+    router.use('/auth', require('./auth'));<% } %><% if (!singlePageApplication || useServerTemplates) { %>
 
-    // Reset Password
-    app.get('/reset/:token', userController.getReset);
-    app.post('/reset/:token', userController.postReset);
-
-    // Sign up for Account
-    app.get('/signup', userController.getSignup);
-    app.post('/signup', userController.postSignup);
-
-    // User Account
-    app.get('/account', authConf.isAuthenticated, userController.getAccount);
-    app.post('/account/profile', authConf.isAuthenticated, userController.postUpdateProfile);
-    app.post('/account/password', authConf.isAuthenticated, userController.postUpdatePassword);
-    app.post('/account/delete', authConf.isAuthenticated, userController.postDeleteAccount);<% if (authTypes.indexOf('facebook') > -1) { %>
-
-    // Facebook routes
-    app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
-    app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), userController.getOauthLink);
-    <% } %><% if (authTypes.indexOf('twitter') > -1) { %>
-
-    // Twitter routes
-    app.get('/auth/twitter', passport.authenticate('twitter'));
-    app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/login' }), userController.getOauthLink);
-    <% } %><% if (authTypes.indexOf(['facebook', 'twitter']) > -1) { %>
-    // Unlink OAuth Provider
-    app.get('/account/unlink/:provider', authConf.isAuthenticated, userController.getOauthUnlink);<% } %><% } %><% if (!singlePageApplication || useServerTemplates) { %>
-    app.get('/', mainController.index);<% } else { %>
+    router.get('/', homeController.index);<% } else { %>
     // Catch All: Matches all routes to let HTML5 pushState work
     // Place all routes above this one
-    app.get('/*', mainController.index);<% } %>
+    router.get('/*', homeController.index);<% } %>
 };
 
 module.exports = routes;

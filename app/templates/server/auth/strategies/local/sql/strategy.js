@@ -1,16 +1,20 @@
 'use strict';
 
+var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 // Sign in using Email and Password.
 
-var strategy = function(passport, User) {
+var strategy = function(User) {
     passport.use(new LocalStrategy({
-        usernameField: 'email'
+        usernameField: 'email',
+        passwordField: 'password'
     }, function(email, password, done) {
-        User.findOne({
-            email: email
-        }, function(err, user) {
+        User.find({
+            where: {
+                email: email
+            }
+        }).success(function(user) {
             if (!user) {
                 return done(null, false, {
                     message: 'Email ' + email + ' not found'
@@ -25,6 +29,10 @@ var strategy = function(passport, User) {
                     });
                 }
             });
+        }).error(function(err) {
+            if (err) {
+                return done(err);
+            }
         });
     }));
 };

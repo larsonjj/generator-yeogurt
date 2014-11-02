@@ -6,7 +6,7 @@
 <% if (jsFramework === 'react') { %>
 var reactRender = require('../modules/react-render');<% } %><% } %>
 
-var mainController = function(req, res) {<% if (singlePageApplication) { %><% if (useServerTemplates) { %><% if (jsFramework === 'react') { %><% if (useJsx) { %>
+var homeController = function(req, res) {<% if (singlePageApplication) { %><% if (useServerTemplates) { %><% if (jsFramework === 'react') { %><% if (useJsx) { %>
     var html = reactRender({}, 'main.jsx');<% } else { %>
     var html = reactRender({}, 'main.js');<% } %><% } %><% } %>
     res.render('index', {
@@ -22,5 +22,5 @@ var mainController = function(req, res) {<% if (singlePageApplication) { %><% if
 };
 
 module.exports = {
-    index: mainController
+    index: homeController
 };

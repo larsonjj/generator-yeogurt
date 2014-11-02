@@ -1,5 +1,6 @@
 'use strict';
 
+var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
 var secrets = require('../../config/secrets');
 
@@ -19,7 +20,7 @@ var secrets = require('../../config/secrets');
  */
 
 // Sign in with Twitter.
-var strategy = function(passport, User) {
+var strategy = function(User) {
     passport.use(new TwitterStrategy(secrets.twitter, function(req, accessToken, tokenSecret, profile, done) {
         if (req.user) {
             User.find({
@@ -31,7 +32,7 @@ var strategy = function(passport, User) {
                     req.flash('errors', {
                         msg: 'There is already a Twitter account that belongs to you. Sign in with that account or delete it, then link it with your current account.'
                     });
-                    done(err);
+                    done(null);
                 } else {
                     User.find({
                         where: {
@@ -52,13 +53,13 @@ var strategy = function(passport, User) {
                         });
                     }).error(function(err) {
                         if (err) {
-                            return next(err);
+                            return done(err);
                         }
                     });
                 }
             }).error(function(err) {
                 if (err) {
-                    return next(err);
+                    return done(err);
                 }
             });
         } else {
@@ -86,7 +87,7 @@ var strategy = function(passport, User) {
                 });
             }).error(function(err) {
                 if (err) {
-                    return next(err);
+                    return done(err);
                 }
             });
         }
