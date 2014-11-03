@@ -17,7 +17,7 @@ var secrets = require('../config/secrets');
 var auth = require('../auth');
 
 /**
- * GET /user:id
+ * GET /user:username
  * Profile page.
  */
 
@@ -157,18 +157,19 @@ var create = function(req, res, next) {
 };
 
 /**
- * PUT /user:id/profile
+ * PUT /user:username/profile
  * Update profile information.
  */
 
 var updateProfile = function(req, res, next) {<% if (useJwt) { %>
     User.find({
         where: {
-            username: req.user.username
+            username: req.params.username
         }
     }).success(function(user) {
         user.email = req.body.email || '';
-        user.name = req.body.name || '';
+        user.firstName = req.body.firstName || '';
+        user.lastName = req.body.lastName || '';
         user.gender = req.body.gender || '';
         user.location = req.body.location || '';
         user.website = req.body.website || '';
@@ -200,11 +201,12 @@ var updateProfile = function(req, res, next) {<% if (useJwt) { %>
     });<% } else { %>
     User.find({
         where: {
-            username: req.user.username
+            username: req.params.username
         }
     }).success(function(user) {
         user.email = req.body.email || '';
-        user.name = req.body.name || '';
+        user.firstName = req.body.firstName || '';
+        user.lastName = req.body.lastName || '';
         user.gender = req.body.gender || '';
         user.location = req.body.location || '';
         user.website = req.body.website || '';
@@ -227,7 +229,7 @@ var updateProfile = function(req, res, next) {<% if (useJwt) { %>
 };
 
 /**
- * PUT /user:id/password
+ * PUT /user:username/password
  * Update current password.
  * @param password
  */
@@ -252,7 +254,7 @@ var updatePassword = function(req, res, next) {
 
     User.find({
         where: {
-            username: req.user.username
+            username: req.params.username
         }
     }).success(function(user) {
         user.password = req.body.password;
@@ -289,7 +291,7 @@ var updatePassword = function(req, res, next) {
 
     User.find({
         where: {
-            username: req.user.username
+            username: req.params.username
         }
     }).success(function(user) {
         user.password = req.body.password;
@@ -318,7 +320,7 @@ var updatePassword = function(req, res, next) {
 
 var destroy = function(req, res, next) {<% if (useJwt) { %>
     User.destroy({
-        username: req.user.username
+        username: req.params.username
     }).success(function() {
         if (!req.xhr) {
             req.logout();
@@ -340,7 +342,7 @@ var destroy = function(req, res, next) {<% if (useJwt) { %>
         }
     });<% } else { %>
     User.destroy({
-        username: req.user.username
+        username: req.params.username
     }).success(function() {
         req.logout();
         req.flash('info', {

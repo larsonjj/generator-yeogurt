@@ -16,7 +16,7 @@ var secrets = require('../config/secrets');
 var auth = require('../auth');
 
 /**
- * GET /user:id
+ * GET /user:username
  * Profile page.
  */
 
@@ -169,20 +169,21 @@ var create = function(req, res, next) {
 };
 
 /**
- * PUT /user:id/profile
+ * PUT /user:username/profile
  * Update profile information.
  */
 
 var updateProfile = function(req, res, next) {<% if (useJwt) { %>
     User.findOne({
-        username: req.body.username
+        username: req.params.username
     }, function(err, user) {
         if (err) {
             return next(err);
         }
 
         user.email = req.body.email || '';
-        user.name = req.body.name || '';
+        user.firstName = req.body.firstName || '';
+        user.lastName = req.body.lastName || '';
         user.gender = req.body.gender || '';
         user.location = req.body.location || '';
         user.website = req.body.website || '';
@@ -207,13 +208,14 @@ var updateProfile = function(req, res, next) {<% if (useJwt) { %>
         });
     });<% } else { %>
     User.findOne({
-        username: req.body.username
+        username: req.params.username
     }, function(err, user) {
         if (err) {
             return next(err);
         }
         user.email = req.body.email || '';
-        user.name = req.body.name || '';
+        user.firstName = req.body.firstName || '';
+        user.lastName = req.body.lastName || '';
         user.gender = req.body.gender || '';
         user.location = req.body.location || '';
         user.website = req.body.website || '';
@@ -231,7 +233,7 @@ var updateProfile = function(req, res, next) {<% if (useJwt) { %>
 };
 
 /**
- * PUT /user:id/password
+ * PUT /user:username/password
  * Update current password.
  * @param password
  */
@@ -254,7 +256,7 @@ var updatePassword = function(req, res, next) {
     }
 
     User.findOne({
-        username: req.body.username
+        username: req.params.username
     }, function(err, user) {
         if (err) {
             return next(err);
@@ -287,7 +289,7 @@ var updatePassword = function(req, res, next) {
     }
 
     User.findOne({
-        username: req.body.username
+        username: req.params.username
     }, function(err, user) {
         if (err) {
             return next(err);
@@ -308,13 +310,13 @@ var updatePassword = function(req, res, next) {
 };
 
 /**
- * DELETE /user:id
+ * DELETE /user:username
  * Delete user account.
  */
 
 var destroy = function(req, res, next) {<% if (useJwt) { %>
     User.remove({
-        id: req.user.username
+        id: req.params.username
     }, function(err) {
         if (err) {
             return next(err);
@@ -335,7 +337,7 @@ var destroy = function(req, res, next) {<% if (useJwt) { %>
         }
     });<% } else { %>
     User.remove({
-        id: req.user.username
+        id: req.params.username
     }, function(err) {
         if (err) {
             return next(err);

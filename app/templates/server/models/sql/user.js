@@ -15,7 +15,6 @@ var UserModel = function(sequelize, DataTypes) {
             unique: true,
             allowNull: true,
             validate: {
-                isEmail: true,
                 isLowercase: true
             }
         },

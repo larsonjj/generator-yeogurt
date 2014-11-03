@@ -64,7 +64,8 @@ var strategy = function(User) {
                         done(err);
                     } else {
                         var user = new User();
-                        user.username = profile.username;
+                        // Use email if no username is found
+                        user.username = profile.username || profile._json.email;
                         user.email = profile._json.email;
                         user.facebook = profile.id;
                         user.facebookToken = accessToken;
