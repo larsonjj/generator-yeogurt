@@ -3,6 +3,15 @@ var bcrypt = require('bcrypt-nodejs');
 
 var UserModel = function(sequelize, DataTypes) {
     var User = sequelize.define('user', {
+        username: {
+            type: DataTypes.STRING,
+            unique: true,
+            validate: {
+                isEmail: true,
+                isLowercase: true,
+                notNull: true
+            }
+        },
         email: {
             type: DataTypes.STRING,
             unique: true,

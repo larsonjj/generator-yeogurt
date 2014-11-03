@@ -72,10 +72,8 @@ var strategy = function(User) {
                     return done(null, existingUser);
                 }
                 var user = {};
-                // Twitter will not provide an email address.  Period.
-                // But a person’s twitter username is guaranteed to be unique
-                // so we can "fake" a twitter email address as follows:
-                user.email = profile.username + '@twitter.com';
+                // Twitter does not provide an email address.
+                user.username = profile.username;
                 user.twitter = profile.id;
                 user.twitterToken = accessToken;
                 user.twitterSecret = tokenSecret;

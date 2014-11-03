@@ -1,12 +1,12 @@
 /**
- * Main Controller
+ * Index Controller
  */
 
 'use strict';<% if (singlePageApplication && useServerTemplates) { %>
 <% if (jsFramework === 'react') { %>
 var reactRender = require('../modules/react-render');<% } %><% } %>
 
-var homeController = function(req, res) {<% if (singlePageApplication) { %><% if (useServerTemplates) { %><% if (jsFramework === 'react') { %><% if (useJsx) { %>
+var indexController = function(req, res) {<% if (singlePageApplication) { %><% if (useServerTemplates) { %><% if (jsFramework === 'react') { %><% if (useJsx) { %>
     var html = reactRender({}, 'main.jsx');<% } else { %>
     var html = reactRender({}, 'main.js');<% } %><% } %><% } %>
     res.render('index', {
@@ -22,5 +22,5 @@ var homeController = function(req, res) {<% if (singlePageApplication) { %><% if
 };
 
 module.exports = {
-    index: homeController
+    index: indexController
 };

@@ -14,8 +14,12 @@ block content
             .page-header
                 h3 Profile Information
 
-            form.form-horizontal(action='/account/profile', method='post')<% if (useSecurity) { %>
+            form.form-horizontal(action='/user/#{user.username}/profile?_method=PUT', method='post')<% if (useSecurity) { %>
                 input(type='hidden', name='_csrf', value=_csrf)<% } %>
+                .form-group
+                    label.col-sm-2.control-label(for='email') Username
+                    .col-sm-4
+                        p.form-control-static #{user.username}
                 .form-group
                     label.col-sm-2.control-label(for='email') Email
                     .col-sm-4
@@ -54,8 +58,8 @@ block content
             .page-header
                 h3 Change Password
 
-            form.form-horizontal(action='/account/password', method='POST')
-                input(type='hidden', name='_csrf', value=_csrf)
+            form.form-horizontal(action='/user/#{user.username}/password?_method=PUT', method='post')<% if (useSecurity) { %>
+                input(type='hidden', name='_csrf', value=_csrf)<% } %>
                 .form-group
                     label.col-sm-3.control-label(for='password') New Password
                     .col-sm-4
@@ -74,9 +78,9 @@ block content
                 h3 Delete Account
 
             p You can delete your account, but keep in mind this action is irreversible.
-            form(action='/account/delete', method='post')<% if (useAuth) { %>
+            form(action='/user/#{user.username}?_method=DELETE', method='post')<% if (useAuth) { %>
                 input(type='hidden', name='_csrf', value=_csrf)<% } %>
-                button.btn.btn-danger(type='submit')
+                button.btn.btn-danger(type='subfmit')
                     span.ion-trash-b
                     | Delete my account<% if (authTypes.indexOf('facebook') > -1 || authTypes.indexOf('twitter') > -1) { %>
 
@@ -84,11 +88,11 @@ block content
                 h3 Linked Accounts<% if (authTypes.indexOf('facebook') > -1) { %>
 
             if user.facebook
-                p: a.text-danger(href='/account/unlink/facebook') Unlink your Facebook account
+                p: a.text-danger(href='/auth/unlink/facebook') Unlink your Facebook account
             else
                 p: a(href='/auth/facebook') Link your Facebook account
 
             <% } %><% if (authTypes.indexOf('facebook') > -1) { %>if user.twitter
-                p: a.text-danger(href='/account/unlink/twitter') Unlink your Twitter account
+                p: a.text-danger(href='/auth/unlink/twitter') Unlink your Twitter account
             else
                 p: a(href='/auth/twitter') Link your Twitter account<% } %><% } %>

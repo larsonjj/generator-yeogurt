@@ -40,11 +40,11 @@ mixin navbar()
                                     img.nav-profile-image(src='#{user.picture}', width='30')
                                 else
                                     img.nav-profile-image(src='#{user.picture || "https://gravatar.com/avatar/?s=200&d=retro"}', width='30')
-                                | #{user.name || user.email || user.id}&nbsp;
+                                | #{user.username} &nbsp;
                                 i.caret
                             ul.dropdown-menu
                                 li
-                                    a(href='/account')
+                                    a(href='/user/#{user.username}')
                                         span.ion-person
                                         | My Account
                                 li.divider

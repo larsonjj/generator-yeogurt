@@ -13,7 +13,7 @@ var nodemailer = require('nodemailer');
 var passport = require('passport');
 var User = require('mongoose').model('user');
 var secrets = require('../config/secrets');
-var authConf = require('../auth');
+var auth = require('../auth');
 
 /**
  * GET /user:id
@@ -24,6 +24,148 @@ var show = function(req, res) {
     res.render('account/profile', {
         title: 'Account Management'
     });
+};
+
+/**
+ * POST /user
+ * Create a new local account.
+ * @param username
+ * @param email
+ * @param password
+ */
+
+var create = function(req, res, next) {
+    req.assert('username', 'Username cannot be blank and must not contain symbols').notEmpty().isAlphanumeric();
+    req.assert('email', 'Email is not valid').isEmail();
+    req.assert('password', 'Password must be at least 6 characters long').len(6);
+    req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
+
+    var errors = req.validationErrors();<% if (useJwt) { %>
+
+    if (errors) {
+        if (!req.xhr) {
+            req.flash('errors', errors);
+            return res.redirect('/signup');
+        }
+        else {
+            res.json({
+                errors: errors
+            });
+        }
+    }
+
+    var user = new User({
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+    });
+
+    User.findOne({
+        username: req.body.username
+    }, function(err, existingUser) {
+        if (err) {
+            if (!req.xhr) {
+                req.flash('errors', {
+                    msg: 'Error trying to find user'
+                });
+                return res.redirect('/signup');
+            }
+            else {
+                res.json({
+                    errors: [{
+                        param: 'email',
+                        msg: 'Error trying to find user'
+                    }]
+                });
+            }
+        }
+        if (existingUser) {
+            if (!req.xhr) {
+                req.flash('errors', {
+                    msg: 'Account with that email address already exists.'
+                });
+                return res.redirect('/signup');
+            }
+            else {
+                res.json({
+                    errors: [{
+                        param: 'email',
+                        msg: 'Account with that email address already exists.'
+                    }]
+                });
+            }
+        }
+        user.save(function(err) {
+            if (err) {
+                return next(err);
+            }
+            if (!req.xhr) {
+                req.logIn(user, function(err) {
+                    if (err) {
+                        return next(err);
+                    }
+                    req.flash('success', {
+                        msg: 'Account created successfully.'
+                    });
+                    res.redirect('/');
+                });
+            }
+            else {
+                var token = auth.signToken(user.id, user.role);
+                res.json({
+                    token: token,
+                    success: [{
+                        msg: 'Account created successfully.'
+                    }]
+                });
+            }
+        });
+    });<% } else { %>
+    if (errors) {
+        req.flash('errors', errors);
+        return res.redirect('/signup');
+    }
+
+    var user = new User({
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+    });
+
+    User.findOne({
+        username: req.body.username
+    }, function(err, existingUser) {
+        if (existingUser) {
+            if (!req.xhr) {
+                req.flash('errors', {
+                    msg: 'Account with that username already exists.'
+                });
+                return res.redirect('/signup');
+            }
+            else {
+                res.json({
+                    errors: [{
+                        param: 'email',
+                        msg: 'Account with that username already exists.'
+                    }]
+                });
+            }
+        }
+        user.save(function(err) {
+            if (err) {
+                return next(err);
+            }
+            req.logIn(user, function(err) {
+                if (err) {
+                    return next(err);
+                }
+                req.flash('success', {
+                    msg: 'Account created successfully.'
+                });
+                res.redirect('/');
+            });
+        });
+    });<% } %>
 };
 
 /**
@@ -51,7 +193,7 @@ var updateProfile = function(req, res, next) {<% if (useJwt) { %>
                 req.flash('success', {
                     msg: 'Profile information updated.'
                 });
-                res.redirect('/account');
+                res.redirect('/user/' + req.user.username);
             }
             else {
                 res.json({
@@ -79,7 +221,7 @@ var updateProfile = function(req, res, next) {<% if (useJwt) { %>
             req.flash('success', {
                 msg: 'Profile information updated.'
             });
-            res.redirect('/account');
+            res.redirect('/user/' + req.user.username);
         });
     });<% } %>
 };
@@ -91,14 +233,14 @@ var updateProfile = function(req, res, next) {<% if (useJwt) { %>
  */
 
 var updatePassword = function(req, res, next) {
-    req.assert('password', 'Password must be at least 4 characters long').len(4);
+    req.assert('password', 'Password must be at least 6 characters long').len(6);
     req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
     var errors = req.validationErrors();<% if (useJwt) { %>
     if (errors) {
         if (!req.xhr) {
             req.flash('errors', errors);
-            return res.redirect('/account');
+            return res.redirect('/user/' + req.user.username);
         }
         else {
             res.json({
@@ -122,7 +264,7 @@ var updatePassword = function(req, res, next) {
                 req.flash('success', {
                     msg: 'Password has been changed.'
                 });
-                res.redirect('/account');
+                res.redirect('/user/' + req.user.username);
             }
             else {
                 res.json({
@@ -135,7 +277,7 @@ var updatePassword = function(req, res, next) {
     });<% } else { %>
     if (errors) {
         req.flash('errors', errors);
-        return res.redirect('/account');
+        return res.redirect('/user/' + req.user.username);
     }
 
     User.findById(req.user.id, function(err, user) {
@@ -152,7 +294,7 @@ var updatePassword = function(req, res, next) {
             req.flash('success', {
                 msg: 'Password has been changed.'
             });
-            res.redirect('/account');
+            res.redirect('/user/' + req.user.username);
         });
     });<% } %>
 };
@@ -200,7 +342,8 @@ var destroy = function(req, res, next) {<% if (useJwt) { %>
 
 module.exports = {
     show: show,
-    postUpdateProfile: postUpdateProfile,
-    postUpdatePassword: postUpdatePassword,
+    create: create,
+    updateProfile: updateProfile,
+    updatePassword: updatePassword,
     destroy: destroy
 };

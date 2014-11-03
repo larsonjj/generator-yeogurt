@@ -2,8 +2,7 @@
  * Main Controller
  */
 
-'use strict';<% if (singlePageApplication && useServerTemplates) { %>
-<% if (jsFramework === 'react') { %>
+'use strict';<% if (singlePageApplication && useServerTemplates) { %><% if (jsFramework === 'react') { %>
 var reactRender = require('../modules/react-render');<% } %><% } %>
 
 var _ = require('lodash');
@@ -13,17 +12,14 @@ var nodemailer = require('nodemailer');
 var passport = require('passport');
 var User = require('mongoose').model('user');
 var secrets = require('../config/secrets');
-var authConf = require('../auth');<% if (useJwt) { %>
-var jwt = require('jsonwebtoken');
-var expressJwt = require('express-jwt');
-var validateJwt = expressJwt({ secret: secrets.sessionSecret });<% } %>
+var auth = require('../auth');
 
 /**
  * GET /login
  * Login page.
  */
 
-var getLogin = function(req, res) {
+var login = function(req, res) {
     if (req.user) {
         return res.redirect('/');
     }
@@ -40,8 +36,17 @@ var getLogin = function(req, res) {
  */
 
 var postLogin = function(req, res, next) {
-    req.assert('email', 'Email is not valid').isEmail();
-    req.assert('password', 'Password cannot be blank').notEmpty();
+
+    var context = (req.body.username.indexOf('@') > -1) ? 'email' : 'username';
+
+    req.assert('username', 'Username cannot be blank').notEmpty();
+
+    if (context === 'email') {
+        req.assert('username', 'Please enter a valid email address.').isEmail();
+    }
+    else {
+        req.assert('username', 'Incorrect username or password').isAlphanumeric();
+    }
 
     var errors = req.validationErrors();<% if (useJwt) { %>
 
@@ -51,7 +56,7 @@ var postLogin = function(req, res, next) {
             return res.redirect('/login');
         }
         else {
-            return res.json(401, error);
+            return res.json(401, errors);
         }
     }
 
@@ -83,7 +88,7 @@ var postLogin = function(req, res, next) {
                 res.redirect(req.session.returnTo || '/');
             }
             else {
-                var token = authConf.signToken(user.id, user.role);
+                var token = auth.signToken(user.id, user.role);
                 res.json({
                     token: token
                 });
@@ -142,134 +147,6 @@ var signup = function(req, res) {
 };
 
 /**
- * POST /signup
- * Create a new local account.
- * @param email
- * @param password
- */
-
-var postSignup = function(req, res, next) {
-    req.assert('email', 'Email is not valid').isEmail();
-    req.assert('password', 'Password must be at least 4 characters long').len(4);
-    req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
-
-    var errors = req.validationErrors();<% if (useJwt) { %>
-
-    if (errors) {
-        if (!req.xhr) {
-            req.flash('errors', errors);
-            return res.redirect('/signup');
-        }
-        else {
-            res.json({
-                errors: errors
-            });
-        }
-    }
-
-    var user = new User({
-        email: req.body.email,
-        password: req.body.password
-    });
-
-    User.findOne({
-        email: req.body.email
-    }, function(err, existingUser) {
-        if (err) {
-            if (!req.xhr) {
-                req.flash('errors', {
-                    msg: 'Error trying to find user'
-                });
-                return res.redirect('/signup');
-            }
-            else {
-                res.json({
-                    errors: [{
-                        param: 'email',
-                        msg: 'Error trying to find user'
-                    }]
-                });
-            }
-        }
-        if (existingUser) {
-            if (!req.xhr) {
-                req.flash('errors', {
-                    msg: 'Account with that email address already exists.'
-                });
-                return res.redirect('/signup');
-            }
-            else {
-                res.json({
-                    errors: [{
-                        param: 'email',
-                        msg: 'Account with that email address already exists.'
-                    }]
-                });
-            }
-        }
-        user.save(function(err) {
-            if (err) {
-                return next(err);
-            }
-            if (!req.xhr) {
-                req.logIn(user, function(err) {
-                    if (err) {
-                        return next(err);
-                    }
-                    req.flash('success', {
-                        msg: 'Account created successfully.'
-                    });
-                    res.redirect('/');
-                });
-            }
-            else {
-                var token = authConf.signToken(user.id, user.role);
-                res.json({
-                    token: token,
-                    success: [{
-                        msg: 'Account created successfully.'
-                    }]
-                });
-            }
-        });
-    });<% } else { %>
-    if (errors) {
-        req.flash('errors', errors);
-        return res.redirect('/signup');
-    }
-
-    var user = new User({
-        email: req.body.email,
-        password: req.body.password
-    });
-
-    User.findOne({
-        email: req.body.email
-    }, function(err, existingUser) {
-        if (existingUser) {
-            req.flash('errors', {
-                msg: 'Account with that email address already exists.'
-            });
-            return res.redirect('/signup');
-        }
-        user.save(function(err) {
-            if (err) {
-                return next(err);
-            }
-            req.logIn(user, function(err) {
-                if (err) {
-                    return next(err);
-                }
-                req.flash('success', {
-                    msg: 'Account created successfully.'
-                });
-                res.redirect('/');
-            });
-        });
-    });<% } %>
-};
-
-/**
  * GET /reset/:token
  * Reset Password page.
  */
@@ -306,7 +183,7 @@ var reset = function(req, res, next) {
  */
 
 var postReset = function(req, res, next) {
-    req.assert('password', 'Password must be at least 4 characters long.').len(4);
+    req.assert('password', 'Password must be at least 6 characters long.').len(6);
     req.assert('confirm', 'Passwords must match.').equals(req.body.password);
 
     var errors = req.validationErrors();
@@ -317,7 +194,6 @@ var postReset = function(req, res, next) {
     }
 
     async.waterfall([
-
         function(done) {
             User
                 .findOne({
@@ -391,7 +267,16 @@ var forgot = function(req, res) {
  */
 
 var postForgot = function(req, res, next) {
-    req.assert('email', 'Please enter a valid email address.').isEmail();
+    var context = (req.body.username.indexOf('@') > -1) ? 'email' : 'username';
+
+    req.assert('username', 'Username cannot be blank').notEmpty();
+
+    if (context === 'email') {
+        req.assert('username', 'Please enter a valid email address.').isEmail();
+    }
+    else {
+        req.assert('username', 'Incorrect username or password').isAlphanumeric();
+    }
 
     var errors = req.validationErrors();<% if (useJwt) { %>
 
@@ -415,9 +300,9 @@ var postForgot = function(req, res, next) {
             });
         },
         function(token, done) {
-            User.findOne({
-                email: req.body.email.toLowerCase()
-            }, function(err, user) {
+            // Check to see whether to search for email or username
+            var searchInput = (context === 'email') ? {email: req.body.email.toLowerCase()} : {username: req.body.username.toLowerCase()};
+            User.findOne(searchInput, function(err, user) {
                 if (err) {
                     return next(err);
                 }
@@ -550,7 +435,7 @@ var linkOAuth = function(req, res, next) {
         res.redirect('/');
     }
     else {
-        authConf.setTokenCookie(req, res);
+        auth.setTokenCookie(req, res);
     }
 };
 
@@ -562,7 +447,9 @@ var linkOAuth = function(req, res, next) {
 
 var unlinkOAuth = function(req, res, next) {
     var provider = req.params.provider;
-    User.findById(req.user.id, function(err, user) {
+    User.findOne({
+            username: req.user.username
+        }, function(err, user) {
         if (err) {
             return next(err);
         }
@@ -581,104 +468,20 @@ var unlinkOAuth = function(req, res, next) {
             req.flash('info', {
                 msg: provider + ' account has been unlinked.'
             });
-            res.redirect('/account');
+            res.redirect('/user/' + req.user.username);
         });
     });
 };
-
-var isAuthenticated = function(req, res, next) {
-    if (!req.xhr) {
-        if (req.isAuthenticated()) {
-            return next();
-        }
-        res.redirect('/login');
-    }
-    else {
-        // allow access_token to be passed through query parameter as well
-        if (req.body && req.body.hasOwnProperty('access_token')) {
-            req.headers.authorization = 'Bearer ' + req.body.access_token;
-        }
-        // Validate jwt token
-        return validateJwt(req, res, next);
-    }
-};
-
-// Check to see if user is authorized for specific provider.
-
-var isAuthorized = function(req, res, next) {
-    var provider = req.path.split('/').slice(-1)[0];
-
-    if (req.user[provider + 'Token']) {
-        next();
-    }
-    else {
-        res.redirect('/auth/' + provider);
-    }
-};
-
-/**
- * Checks if the user role meets the minimum requirements of the route
- */
-var hasRole = function(roleRequired) {
-    if (!roleRequired) {
-        throw new Error('Required role needs to be set');
-    }
-
-    function meetsRequirements(req, res, next) {
-        if (secrets.userRoles.indexOf(req.user.role) >= secrets.userRoles.indexOf(roleRequired)) {
-            next();
-        } else {
-            if (!req.xhr) {
-                res.redirect('/login');
-            }
-            else {
-                res.send(403);
-            }
-        }
-    };
-    return meetsRequirements;
-}<% if (useJwt) { %>
-
-/**
- * Returns a jwt token signed by the app secret
- */
-var signToken = function(id) {
-    return jwt.sign({
-        id: id
-    }, secrets.sessionSecret, {
-        expiresInMinutes: 60 * 24 // 24 hours
-    });
-}
-
-/**
- * Set token cookie directly for oAuth strategies
- */
-var setTokenCookie = function(req, res) {
-    if (!req.user) {
-        return res.json(404, {
-            message: 'Something went wrong, please try again.'
-        });
-    }
-    var token = signToken(req.user.id, req.user.role);
-    res.cookie('token', JSON.stringify(token));
-    res.redirect('/');
-}<% } %>
 
 module.exports = {
     login: login,
     postLogin: postLogin,
     logout: logout,
     signup: signup,
-    postSignup: postSignup,
     reset: reset,
     postReset: postReset,
     forgot: forgot,
     postForgot: postForgot,
     linkOAuth: linkOAuth,
-    unlinkOAuth: unlinkOAuth,
-    isAuthenticated: isAuthenticated,
-    isAuthorized: isAuthorized,
-    hasRole: hasRole,<% if (useJwt) { %>
-    signToken: signToken,
-    setTokenCookie: setTokenCookie<% } %>
+    unlinkOAuth: unlinkOAuth
 };

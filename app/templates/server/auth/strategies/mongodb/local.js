@@ -7,17 +7,14 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var strategy = function(User) {
     passport.use(new LocalStrategy({
-        usernameField: 'email',
-        passwordField: 'password'
-    }, function(email, password, done) {
-        User.find({
-            where: {
-                email: email
-            }
-        }).success(function(user) {
+        usernameField: 'username'
+    }, function(username, password, done) {
+        // Check to see whether to search for email or username
+        var searchInput = (username.indexOf('@') > -1) ? {email: username.toLowerCase()} : {username: username.toLowerCase()};
+        User.findOne(searchInput, function(err, user) {
             if (!user) {
                 return done(null, false, {
-                    message: 'Email ' + email + ' not found'
+                    message: 'Invalid email or password.'
                 });
             }
             user.comparePassword(password, function(err, isMatch) {
@@ -25,14 +22,10 @@ var strategy = function(User) {
                     return done(null, user);
                 } else {
                     return done(null, false, {
-                        message: 'Invalid email or password.'
+                        message: 'Invalid username or password.'
                     });
                 }
             });
-        }).error(function(err) {
-            if (err) {
-                return done(err);
-            }
         });
     }));
 };

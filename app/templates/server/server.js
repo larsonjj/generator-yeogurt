@@ -7,6 +7,7 @@
 var express = require('express');
 var errorHandler = require('errorhandler');
 var path = require('path');
+var fs = require('fs');
 
 // Add coloring for console output
 require('colors');
@@ -32,7 +33,10 @@ var db = require('./server/config/database')(app);<% } %><% } %>
 require('./server/config/express')(app, express<% if (dbOption !== 'none') { %>, db<% } %>);
 
 // Load routes
-require('./server/routes');
+fs.readdirSync('./server/routes').forEach(function(file) {
+    var route = './server/routes/' + file;
+    require(route)(app);
+});
 
 /**
  * 500 Error Handler.

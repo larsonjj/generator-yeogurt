@@ -13,12 +13,16 @@ block content
         .row
             .page-header
                 h3 Sign up
-            form.form-horizontal(id='signup-form', method='post')<% if (useSecurity) { %>
+            form.form-horizontal(id='signup-form', method='post', action='/user')<% if (useSecurity) { %>
                 input(type='hidden', name='_csrf', value=_csrf)<% } %>
+                .form-group
+                    label.col-sm-3.control-label(for='username') Username
+                    .col-sm-7
+                        input.form-control(type='username', name='username', id='username', placeholder='Username', autofocus)
                 .form-group
                     label.col-sm-3.control-label(for='email') Email
                     .col-sm-7
-                        input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus)
+                        input.form-control(type='email', name='email', id='email', placeholder='Email')
                 .form-group
                     label.col-sm-3.control-label(for='password') Password
                     .col-sm-7

@@ -7,24 +7,10 @@ var expressJwt = require('express-jwt');<% if (dbOption === 'mongodb') { %>
 var User = require('mongoose').model('user');<% } else if (dbOption === 'mysql') { %>
 var db = require('../config/database');
 var User = db.user;<% } %><% } %>
-var validateJwt = expressJwt({ secret: secrets.sessionSecret });<% if (authTypes.length > 0) { %>
-var router = express.Router();<% } %><% if (authTypes.indexOf('local') > -1) { %>
-var localStrategy = require('./strategies/local/strategy');<% } %><% if (authTypes.indexOf('facebook') > -1) { %>
-var facebookStrategy = require('./strategies/facebook/strategy');<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
-var twitterStrategy = require('./strategies/twitter/strategy');<% } %>
-
-<% if (authTypes.indexOf('local') > -1) { %>
-
-// Setup Passport strategies
-localStrategy(User);<% } %><% if (authTypes.indexOf('facebook') > -1) { %>
-facebookStrategy(User);<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
-twitterStrategy(User);<% } %><% if (authTypes.indexOf('local') > -1) { %>
-
-// Setup Authentication Routes
-router.use('/local', require('./strategies/local'));<% } %><% if (authTypes.indexOf('facebook') > -1) { %>
-router.use('/facebook', require('./strategies/facebook'));<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
-router.use('/twitter', require('./strategies/twitter'));<% } %><% if (authTypes.length > 0) { %>
-router.use('/unlink:provider', require('./auth.controller').unlinkOAuth);<% } %>
+var validateJwt = expressJwt({ secret: secrets.sessionSecret });<% if (authTypes.indexOf('local') > -1) { %>
+var localStrategy = require('./strategies/local');<% } %><% if (authTypes.indexOf('facebook') > -1) { %>
+var facebookStrategy = require('./strategies/facebook');<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
+var twitterStrategy = require('./strategies/twitter');<% } %>
 
 var init = function(User) {
     passport.serializeUser(function(user, done) {
@@ -43,9 +29,98 @@ var init = function(User) {
             done(null, user);
         });<% } %>
     });
+
+    <% if (authTypes.indexOf('local') > -1) { %>
+
+    // Setup Passport strategies
+    localStrategy(User);<% } %><% if (authTypes.indexOf('facebook') > -1) { %>
+    facebookStrategy(User);<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
+    twitterStrategy(User);<% } %>
 };
+
+var isAuthenticated = function(req, res, next) {
+    if (!req.xhr) {
+        if (req.isAuthenticated()) {
+            return next();
+        }
+        res.redirect('/login');
+    }
+    else {
+        // allow access_token to be passed through query parameter as well
+        if (req.body && req.body.hasOwnProperty('access_token')) {
+            req.headers.authorization = 'Bearer ' + req.body.access_token;
+        }
+        // Validate jwt token
+        return validateJwt(req, res, next);
+    }
+};
+
+// Check to see if user is authorized for specific provider.
+
+var isAuthorized = function(req, res, next) {
+    var provider = req.path.split('/').slice(-1)[0];
+
+    if (req.user[provider + 'Token']) {
+        next();
+    }
+    else {
+        res.redirect('/auth/' + provider);
+    }
+};
+
+/**
+ * Checks if the user role meets the minimum requirements of the route
+ */
+var hasRole = function(roleRequired) {
+    if (!roleRequired) {
+        throw new Error('Required role needs to be set');
+    }
+
+    function meetsRequirements(req, res, next) {
+        if (secrets.userRoles.indexOf(req.user.role) >= secrets.userRoles.indexOf(roleRequired)) {
+            next();
+        } else {
+            if (!req.xhr) {
+                res.redirect('/login');
+            }
+            else {
+                res.send(403);
+            }
+        }
+    }
+    return meetsRequirements;
+};<% if (useJwt) { %>
+
+/**
+ * Returns a jwt token signed by the app secret
+ */
+var signToken = function(id) {
+    return jwt.sign({
+        id: id
+    }, secrets.sessionSecret, {
+        expiresInMinutes: 60 * 24 // 24 hours
+    });
+};
+
+/**
+ * Set token cookie directly for oAuth strategies
+ */
+var setTokenCookie = function(req, res) {
+    if (!req.user) {
+        return res.json(404, {
+            message: 'Something went wrong, please try again.'
+        });
+    }
+    var token = signToken(req.user.id, req.user.role);
+    res.cookie('token', JSON.stringify(token));
+    res.redirect('/');
+};<% } %>
 
 module.exports = {
     init: init,
-    router: router
+    isAuthenticated: isAuthenticated,
+    isAuthorized: isAuthorized,
+    hasRole: hasRole,<% if (useJwt) { %>
+    signToken: signToken,
+    setTokenCookie: setTokenCookie<% } %>
 };

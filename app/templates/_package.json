@@ -7,6 +7,7 @@
         "colors": "^0.6.2",
         "async": "^0.7.0",
         "body-parser": "^1.0.2",
+        "method-override": "~2.3.0",
         "compression": "^1.0.1",
         "serve-favicon": "2.0.1",
         "errorhandler": "^1.0.0",
