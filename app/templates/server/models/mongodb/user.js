@@ -28,7 +28,11 @@ var userSchema = new mongoose.Schema({
     twitterSecret: String,
 
     // Profile info
-    name: {
+    firstName: {
+        type: String,
+        default: ''
+    },
+    lastName: {
         type: String,
         default: ''
     },

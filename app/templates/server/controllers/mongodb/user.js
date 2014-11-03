@@ -111,7 +111,7 @@ var create = function(req, res, next) {
                 });
             }
             else {
-                var token = auth.signToken(user.id, user.role);
+                var token = auth.signToken(user.username, user.role);
                 res.json({
                     token: token,
                     success: [{
@@ -174,7 +174,9 @@ var create = function(req, res, next) {
  */
 
 var updateProfile = function(req, res, next) {<% if (useJwt) { %>
-    User.findById(req.user.id, function(err, user) {
+    User.findOne({
+        username: req.body.username
+    }, function(err, user) {
         if (err) {
             return next(err);
         }
@@ -204,7 +206,9 @@ var updateProfile = function(req, res, next) {<% if (useJwt) { %>
             }
         });
     });<% } else { %>
-    User.findById(req.user.id, function(err, user) {
+    User.findOne({
+        username: req.body.username
+    }, function(err, user) {
         if (err) {
             return next(err);
         }
@@ -249,7 +253,9 @@ var updatePassword = function(req, res, next) {
         }
     }
 
-    User.findById(req.user.id, function(err, user) {
+    User.findOne({
+        username: req.body.username
+    }, function(err, user) {
         if (err) {
             return next(err);
         }
@@ -280,7 +286,9 @@ var updatePassword = function(req, res, next) {
         return res.redirect('/user/' + req.user.username);
     }
 
-    User.findById(req.user.id, function(err, user) {
+    User.findOne({
+        username: req.body.username
+    }, function(err, user) {
         if (err) {
             return next(err);
         }
@@ -306,7 +314,7 @@ var updatePassword = function(req, res, next) {
 
 var destroy = function(req, res, next) {<% if (useJwt) { %>
     User.remove({
-        id: req.user.id
+        id: req.user.username
     }, function(err) {
         if (err) {
             return next(err);
@@ -327,7 +335,7 @@ var destroy = function(req, res, next) {<% if (useJwt) { %>
         }
     });<% } else { %>
     User.remove({
-        id: req.user.id
+        id: req.user.username
     }, function(err) {
         if (err) {
             return next(err);

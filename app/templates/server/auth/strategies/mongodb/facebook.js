@@ -64,10 +64,12 @@ var strategy = function(User) {
                         done(err);
                     } else {
                         var user = new User();
+                        user.username = profile.username;
                         user.email = profile._json.email;
                         user.facebook = profile.id;
                         user.facebookToken = accessToken;
-                        user.name = profile.displayName;
+                        user.firstName = profile._json.first_name;
+                        user.lastName = profile._json.last_name;
                         user.gender = profile._json.gender;
                         user.picture = 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
                         user.location = (profile._json.location) ? profile._json.location.name : '';

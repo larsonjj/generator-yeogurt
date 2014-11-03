@@ -94,9 +94,9 @@ var hasRole = function(roleRequired) {
 /**
  * Returns a jwt token signed by the app secret
  */
-var signToken = function(id) {
+var signToken = function(username) {
     return jwt.sign({
-        id: id
+        username: username
     }, secrets.sessionSecret, {
         expiresInMinutes: 60 * 24 // 24 hours
     });
@@ -111,7 +111,7 @@ var setTokenCookie = function(req, res) {
             message: 'Something went wrong, please try again.'
         });
     }
-    var token = signToken(req.user.id, req.user.role);
+    var token = signToken(req.user.username, req.user.role);
     res.cookie('token', JSON.stringify(token));
     res.redirect('/');
 };<% } %>

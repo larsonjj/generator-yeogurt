@@ -39,10 +39,13 @@ var strategy = function(User) {
                             id: req.user.id
                         }
                     }).success(function(user) {
+                        var name = profile._json.name.split(' ');
+                        user.username = profile._json.screen_name;
+                        user.firstName = name[0];
+                        user.lastName = name[name.length - 1];
                         user.twitter = profile.id;
                         user.twitterToken = accessToken;
                         user.twitterSecret = tokenSecret;
-                        user.name = user.name || profile.displayName;
                         user.location = user.location || profile._json.location;
                         user.picture = user.picture || profile._json.profile_image_url_https;
                         user.save().success(function() {
@@ -71,13 +74,15 @@ var strategy = function(User) {
                 if (existingUser) {
                     return done(null, existingUser);
                 }
+                var name = profile._json.name.split(' ');
                 var user = {};
                 // Twitter does not provide an email address.
-                user.username = profile.username;
+                user.username = profile._json.screen_name;
+                user.firstName = name[0];
+                user.lastName = name[name.length - 1];
                 user.twitter = profile.id;
                 user.twitterToken = accessToken;
                 user.twitterSecret = tokenSecret;
-                user.name = profile.displayName;
                 user.location = profile._json.location;
                 user.picture = profile._json.profile_image_url_https;
                 User.build(user).save().success(function(user) {

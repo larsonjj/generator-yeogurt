@@ -7,18 +7,16 @@ var UserModel = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             unique: true,
             validate: {
-                isEmail: true,
-                isLowercase: true,
-                notNull: true
+                isLowercase: true
             }
         },
         email: {
             type: DataTypes.STRING,
             unique: true,
+            allowNull: true,
             validate: {
                 isEmail: true,
-                isLowercase: true,
-                notNull: true
+                isLowercase: true
             }
         },
         role: {
@@ -36,7 +34,10 @@ var UserModel = function(sequelize, DataTypes) {
         twitterSecret: DataTypes.STRING,
 
         // Profile info
-        name: {
+        firstName: {
+            type: DataTypes.STRING,
+        },
+        lastName: {
             type: DataTypes.STRING,
         },
         gender: {

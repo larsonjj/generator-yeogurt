@@ -2,8 +2,7 @@
  * Main Controller
  */
 
-'use strict';<% if (singlePageApplication && useServerTemplates) { %>
-<% if (jsFramework === 'react') { %>
+'use strict';<% if (singlePageApplication && useServerTemplates) { %><% if (jsFramework === 'react') { %>
 var reactRender = require('../modules/react-render');<% } %><% } %>
 
 var _ = require('lodash');
@@ -95,7 +94,7 @@ var create = function(req, res, next) {
                 });
             }
             else {
-                var token = auth.signToken(user.id, user.role);
+                var token = auth.signToken(user.username, user.role);
                 res.json({
                     token: token,
                     success: [{
@@ -165,7 +164,7 @@ var create = function(req, res, next) {
 var updateProfile = function(req, res, next) {<% if (useJwt) { %>
     User.find({
         where: {
-            id: req.user.id
+            username: req.user.username
         }
     }).success(function(user) {
         user.email = req.body.email || '';
@@ -201,7 +200,7 @@ var updateProfile = function(req, res, next) {<% if (useJwt) { %>
     });<% } else { %>
     User.find({
         where: {
-            id: req.user.id
+            username: req.user.username
         }
     }).success(function(user) {
         user.email = req.body.email || '';
@@ -253,7 +252,7 @@ var updatePassword = function(req, res, next) {
 
     User.find({
         where: {
-            id: req.user.id
+            username: req.user.username
         }
     }).success(function(user) {
         user.password = req.body.password;
@@ -290,7 +289,7 @@ var updatePassword = function(req, res, next) {
 
     User.find({
         where: {
-            id: req.user.id
+            username: req.user.username
         }
     }).success(function(user) {
         user.password = req.body.password;
@@ -319,7 +318,7 @@ var updatePassword = function(req, res, next) {
 
 var destroy = function(req, res, next) {<% if (useJwt) { %>
     User.destroy({
-        id: req.user.id
+        username: req.user.username
     }).success(function() {
         if (!req.xhr) {
             req.logout();
@@ -341,7 +340,7 @@ var destroy = function(req, res, next) {<% if (useJwt) { %>
         }
     });<% } else { %>
     User.destroy({
-        id: req.user.id
+        username: req.user.username
     }).success(function() {
         req.logout();
         req.flash('info', {
