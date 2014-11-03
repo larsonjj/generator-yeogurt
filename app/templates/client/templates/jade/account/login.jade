@@ -23,7 +23,7 @@ block content
                         label.control-label(for='password') Password
                         input.form-control(type='password', name='password', id='password', placeholder='Password')
                     .form-group
-                        button.btn.btn-primary(type='submit')
+                        button.btn.btn-primary
                             span.ion-android-hand
                             | Login
                         a.btn.btn-link(href='/forgot') Forgot your password?<% if (authTypes.indexOf('facebook') > -1 || authTypes.indexOf('twitter') > -1) { %>

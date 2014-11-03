@@ -39,9 +39,10 @@ var strategy = function(User) {
                             id: req.user.id
                         }
                     }).success(function(user) {
+                        user.firstName = profile._json.first_name;
+                        user.lastName = profile._json.last_name;
                         user.facebook = profile.id;
                         user.facebookToken = accessToken;
-                        user.name = user.name || profile.displayName;
                         user.gender = user.gender || profile._json.gender;
                         user.picture = user.picture || 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
                         user.save().success(function() {
@@ -84,11 +85,11 @@ var strategy = function(User) {
                         var user = {};
                         // Use email if no username is found
                         user.username = profile.username || profile._json.email;
+                        user.firstName = profile._json.first_name;
+                        user.lastName = profile._json.last_name;
                         user.email = profile._json.email;
                         user.facebook = profile.id;
                         user.facebookToken = accessToken;
-                        user.firstName = profile._json.first_name;
-                        user.lastName = profile._json.last_name;
                         user.gender = profile._json.gender;
                         user.picture = 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
                         user.location = (profile._json.location) ? profile._json.location.name : '';

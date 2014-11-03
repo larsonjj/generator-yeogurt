@@ -10,11 +10,11 @@ var auth = require('../auth');
 var routes = function (app) {
 
     app.post('/user', userController.create);
-    app.get('/user/:id', auth.isAuthenticated, userController.show);
-    app.put('/user/:id/profile', auth.isAuthenticated, userController.updateProfile);
-    app.patch('/user/:id/profile', auth.isAuthenticated, userController.updateProfile);
-    app.put('/user/:id/password', auth.isAuthenticated, userController.updatePassword);
-    app.delete('/user/:id', auth.isAuthenticated, userController.destroy);
+    app.get('/user/:username', auth.isAuthenticated, userController.show);
+    app.put('/user/:username/profile', auth.isAuthenticated, userController.updateProfile);
+    app.patch('/user/:username/profile', auth.isAuthenticated, userController.updateProfile);
+    app.put('/user/:username/password', auth.isAuthenticated, userController.updatePassword);
+    app.delete('/user/:username', auth.isAuthenticated, userController.destroy);
 
 };
 
