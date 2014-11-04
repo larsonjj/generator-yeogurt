@@ -17,14 +17,34 @@ var secrets = require('../config/secrets');
 var auth = require('../auth');
 
 /**
- * GET /user:username
+ * GET /user/:username
  * Profile page.
  */
 
 var show = function(req, res) {
-    res.render('account/profile', {
-        title: 'Account Management'
-    });
+    if (!req.xhr) {
+        res.render('account/profile', {
+            title: 'Account Management'
+        });
+    }
+    else {
+        User.find({
+            where: {
+                username: req.params.username
+            }
+        }).success(function(user) {
+            if (user) {
+                res.json(user);
+            }
+        }).error(function(err) {
+            res.json({
+                errors: [{
+                    param: 'email',
+                    msg: 'Error querying database to find user'
+                }]
+            });
+        });
+    }
 };
 
 /**
@@ -157,7 +177,7 @@ var create = function(req, res, next) {
 };
 
 /**
- * PUT /user:username/profile
+ * PUT /user/:username/profile
  * Update profile information.
  */
 
@@ -229,7 +249,7 @@ var updateProfile = function(req, res, next) {<% if (useJwt) { %>
 };
 
 /**
- * PUT /user:username/password
+ * PUT /user/:username/password
  * Update current password.
  * @param password
  */
@@ -314,7 +334,7 @@ var updatePassword = function(req, res, next) {
 };
 
 /**
- * DELETE /user/:id
+ * DELETE /user/:username
  * Delete user account.
  */
 
