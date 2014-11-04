@@ -39,12 +39,12 @@ var strategy = function(User) {
                             id: req.user.id
                         }
                     }).success(function(user) {
-                        user.firstName = profile._json.first_name;
-                        user.lastName = profile._json.last_name;
-                        user.facebook = profile.id;
-                        user.facebookToken = accessToken;
+                        user.firstName = user.firstName || profile._json.first_name;
+                        user.lastName = user.lastName || profile._json.last_name;
                         user.gender = user.gender || profile._json.gender;
                         user.picture = user.picture || 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
+                        user.facebook = profile.id;
+                        user.facebookToken = accessToken;
                         user.save().success(function() {
                             req.flash('info', {
                                 msg: 'Facebook account has been linked.'

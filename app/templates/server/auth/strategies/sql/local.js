@@ -10,7 +10,7 @@ var strategy = function(User) {
         usernameField: 'username'
     }, function(username, password, done) {
         // Check to see whether to search for email or username
-        var searchInput = (username.indexOf('@') > -1) ? {username: username.toLowerCase()} : {username: username.toLowerCase()};
+        var searchInput = (username.indexOf('@') > -1) ? {email: username.toLowerCase()} : {username: username.toLowerCase()};
         User.find({
             where: searchInput
         }).success(function(user) {

@@ -14,7 +14,7 @@ var secrets = require('../../config/secrets');
  * - User is not logged in.
  *   - Check if it's a returning user.
  *     - If returning user, sign in and we are done.
- *     - Else check if there is an existing account with user's email.
+ *     - Else check if there is an existing account with user's username.
  *       - If there is, return an error message.
  *       - Else create a new account.
  */
@@ -36,14 +36,13 @@ var strategy = function(User) {
                         username: req.user.username
                     }, function(err, user) {
                         var name = profile._json.name.split(' ');
-                        user.username = profile._json.screen_name;
-                        user.firstName = name[0];
-                        user.lastName = name[name.length - 1];
+                        user.firstName = user.firstName || name[0];
+                        user.lastName = user.lastName || name[name.length - 1];
+                        user.location = user.location || profile._json.location;
+                        user.picture = user.picture || profile._json.profile_image_url_https;
                         user.twitter = profile.id;
                         user.twitterToken = accessToken;
                         user.twitterSecret = tokenSecret;
-                        user.location = user.location || profile._json.location;
-                        user.picture = user.picture || profile._json.profile_image_url_https;
                         user.save(function(err) {
                             req.flash('info', {
                                 msg: 'Twitter account has been linked.'
@@ -61,19 +60,30 @@ var strategy = function(User) {
                 if (existingUser) {
                     return done(null, existingUser);
                 }
-                var name = profile._json.name.split(' ');
-                var user = new User();
-                // Twitter does not provide an email address.
-                user.username = profile._json.screen_name;
-                user.firstName = name[0];
-                user.lastName = name[name.length - 1];
-                user.twitter = profile.id;
-                user.twitterToken = accessToken;
-                user.twitterSecret = tokenSecret;
-                user.location = profile._json.location;
-                user.picture = profile._json.profile_image_url_https;
-                user.save(function(err) {
-                    done(err, user);
+                User.findOne({
+                    username: profile._json.screen_name
+                }, function(err, existingEmailUser) {
+                    if (existingEmailUser) {
+                        req.flash('errors', {
+                            msg: 'There is already an account using this username. Sign in to that account and link it with Twitter manually from Account Settings.'
+                        });
+                        done(err);
+                    } else {
+                        var name = profile._json.name.split(' ');
+                        var user = new User();
+                        // Twitter does not provide an email address, so assign a new username.
+                        user.username = profile._json.screen_name;
+                        user.firstName = name[0];
+                        user.lastName = name[name.length - 1];
+                        user.location = profile._json.location;
+                        user.picture = profile._json.profile_image_url_https;
+                        user.twitter = profile.id;
+                        user.twitterToken = accessToken;
+                        user.twitterSecret = tokenSecret;
+                        user.save(function(err) {
+                            done(err, user);
+                        });
+                    }
                 });
             });
         }

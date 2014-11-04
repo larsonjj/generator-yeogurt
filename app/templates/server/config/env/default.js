@@ -19,9 +19,11 @@ var defaults = {
         options: {
             server: {
                 socketOptions: {
+                    // Keep connection alive while server is running
                     keepAlive: 1
                 }
             },
+            // Attempt to reconnect if connection is lost
             auto_reconnect: true
         }<% } %><% if (dbOption === 'mysql') { %>
         options: {
@@ -56,7 +58,7 @@ var defaults = {
 
             // similiar for sync: you can define this to always force sync for models
             sync: {
-                force: true
+                force: false
             },
 
             // sync after each association (see below). If set to false, you need to sync manually after setting all associations. Default: true
@@ -79,6 +81,7 @@ var defaults = {
     userRoles: ['guest', 'user', 'admin'],<% } %>
     staticAssets: 'client/.serve'<% if (useSecurity) { %>,
     security: {
+        // Arrays of URLs to whitelist from security policies
         whitelists: {
             csrfWhitelist: [],
             cspWhitelist: [],
@@ -87,6 +90,7 @@ var defaults = {
             hstsWhitelist: [],
             xssProtectionWhitelist: []
         },
+        // Lusca security configuration
         config: {
             csrf: true,
             csp: false,
