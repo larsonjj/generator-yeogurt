@@ -8,6 +8,7 @@ var indexController = require('../controllers/index');
 
 var routes = function (app) {<% if (!singlePageApplication) { %>
 
+    // Home
     app.get('/', indexController.index);<% } else { %>
     // Catch All: Matches all routes to let HTML5 pushState work
     // Place all routes above this one

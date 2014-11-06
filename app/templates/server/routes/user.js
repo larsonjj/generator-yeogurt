@@ -9,6 +9,7 @@ var auth = require('../auth');
 
 var routes = function (app) {
 
+    // User REST Endpoints
     app.post('/user', userController.create);
     app.get('/user/:username', auth.isAuthenticated, userController.show);
     app.put('/user/:username/profile', auth.isAuthenticated, userController.updateProfile);

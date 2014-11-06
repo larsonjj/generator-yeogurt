@@ -160,6 +160,7 @@ Congratulations! You should now have successfully created a Yeogurt project and 
     - Facebook
     - Twitter
 - [JSON Web Tokens](http://jwt.io/) authentication support (For IOS/Android/Mobile apps)
+    - Not optional for Single Page Applications
 - Jade, Swig, and React server-side template rendering
 
 ### Automatic File Injection

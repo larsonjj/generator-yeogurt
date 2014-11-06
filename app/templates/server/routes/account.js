@@ -36,6 +36,7 @@ var routes = function (app) {
         failureRedirect: '/login'
     }), accountController.linkOAuth);<% } %><% if (authTypes.length > 0) { %>
 
+    // Unlink Social Account
     app.get('/auth/unlink/:provider', accountController.unlinkOAuth);<% } %>
 };
 
