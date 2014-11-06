@@ -1,18 +1,18 @@
 'use strict';
 
-var _ = require('lodash');
+var passport = require('passport');
 var secrets = require('../config/secrets');<% if (useJwt) { %>
 var jwt = require('jsonwebtoken');
-var expressJwt = require('express-jwt');<% if (dbOption === 'mongodb') { %>
+var expressJwt = require('express-jwt');
+var validateJwt = expressJwt({ secret: secrets.sessionSecret });<% if (dbOption === 'mongodb') { %>
 var User = require('mongoose').model('user');<% } else if (dbOption === 'mysql') { %>
 var db = require('../config/database');
-var User = db.user;<% } %><% } %>
-var validateJwt = expressJwt({ secret: secrets.sessionSecret });<% if (authTypes.indexOf('local') > -1) { %>
+var User = db.user;<% } %><% } %><% if (authTypes.indexOf('local') > -1) { %>
 var localStrategy = require('./strategies/local');<% } %><% if (authTypes.indexOf('facebook') > -1) { %>
 var facebookStrategy = require('./strategies/facebook');<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
 var twitterStrategy = require('./strategies/twitter');<% } %>
 
-var auth = function(User, passport) {
+var init = function(User) {
     passport.serializeUser(function(user, done) {
         done(null, user.id);
     });
@@ -28,14 +28,15 @@ var auth = function(User, passport) {
         }).success(function(user) {
             done(null, user);
         });<% } %>
-    });<% if (authTypes.indexOf('local') > -1) { %>
+    });
 
-    localStrategy(passport, User);<% } %><% if (authTypes.indexOf('facebook') > -1) { %>
-    facebookStrategy(passport, User);<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
-    twitterStrategy(passport, User);<% } %>
+    <% if (authTypes.indexOf('local') > -1) { %>
+
+    // Setup Passport strategies
+    localStrategy(User);<% } %><% if (authTypes.indexOf('facebook') > -1) { %>
+    facebookStrategy(User);<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
+    twitterStrategy(User);<% } %>
 };
-
-// Login Required middleware.
 
 var isAuthenticated = function(req, res, next) {
     if (!req.xhr) {
@@ -51,8 +52,7 @@ var isAuthenticated = function(req, res, next) {
         }
         // Validate jwt token
         return validateJwt(req, res, next);
-    };
-
+    }
 };
 
 // Check to see if user is authorized for specific provider.
@@ -87,20 +87,20 @@ var hasRole = function(roleRequired) {
                 res.send(403);
             }
         }
-    };
+    }
     return meetsRequirements;
-}<% if (useJwt) { %>
+};<% if (useJwt) { %>
 
 /**
  * Returns a jwt token signed by the app secret
  */
-var signToken = function(id) {
+var signToken = function(username) {
     return jwt.sign({
-        id: id
+        username: username
     }, secrets.sessionSecret, {
-        expiresInMinutes: 60 * 5
+        expiresInMinutes: 60 * 24 // 24 hours
     });
-}
+};
 
 /**
  * Set token cookie directly for oAuth strategies
@@ -111,13 +111,13 @@ var setTokenCookie = function(req, res) {
             message: 'Something went wrong, please try again.'
         });
     }
-    var token = signToken(req.user.id, req.user.role);
+    var token = signToken(req.user.username, req.user.role);
     res.cookie('token', JSON.stringify(token));
     res.redirect('/');
-}<% } %>
+};<% } %>
 
 module.exports = {
-    auth: auth,
+    init: init,
     isAuthenticated: isAuthenticated,
     isAuthorized: isAuthorized,
     hasRole: hasRole,<% if (useJwt) { %>

@@ -17,19 +17,8 @@ var databaseConfig = function(app) {
 
     var env = app.get('env');
 
-    var connect = function() {
-        var options = {
-            server: {
-                socketOptions: {
-                    keepAlive: 1
-                }
-            },
-            auto_reconnect: true
-        };
-        // Connect to database
-        mongoose.connect(settings.database.url, options);
-    };
-    connect();
+    // Connect to database
+    mongoose.connect(settings.database.url, settings.database.options);
 
     if ('development' === env) {
         mongoose.set('debug', true);

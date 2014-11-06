@@ -1,5 +1,6 @@
 'use strict';
 
+var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var secrets = require('../../config/secrets');
 
@@ -19,7 +20,7 @@ var secrets = require('../../config/secrets');
  */
 
 // Sign in with Facebook.
-var strategy = function(passport, User) {
+var strategy = function(User) {
     passport.use(new FacebookStrategy(secrets.facebook, function(req, accessToken, refreshToken, profile, done) {
         if (req.user) {
             User.find({
@@ -38,11 +39,12 @@ var strategy = function(passport, User) {
                             id: req.user.id
                         }
                     }).success(function(user) {
-                        user.facebook = profile.id;
-                        user.facebookToken = accessToken;
-                        user.name = user.name || profile.displayName;
+                        user.firstName = user.firstName || profile._json.first_name;
+                        user.lastName = user.lastName || profile._json.last_name;
                         user.gender = user.gender || profile._json.gender;
                         user.picture = user.picture || 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
+                        user.facebook = profile.id;
+                        user.facebookToken = accessToken;
                         user.save().success(function() {
                             req.flash('info', {
                                 msg: 'Facebook account has been linked.'
@@ -51,13 +53,13 @@ var strategy = function(passport, User) {
                         });
                     }).error(function(err) {
                         if (err) {
-                            return next(err);
+                            return done(err);
                         }
                     });
                 }
             }).error(function(err) {
                 if (err) {
-                    return next(err);
+                    return done(err);
                 }
             });
         } else {
@@ -81,10 +83,13 @@ var strategy = function(passport, User) {
                         done(null);
                     } else {
                         var user = {};
+                        // Use email if no username is found
+                        user.username = profile.username || profile._json.email;
+                        user.firstName = profile._json.first_name;
+                        user.lastName = profile._json.last_name;
                         user.email = profile._json.email;
                         user.facebook = profile.id;
                         user.facebookToken = accessToken;
-                        user.name = profile.displayName;
                         user.gender = profile._json.gender;
                         user.picture = 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
                         user.location = (profile._json.location) ? profile._json.location.name : '';
@@ -94,12 +99,12 @@ var strategy = function(passport, User) {
                     }
                 }).error(function(err) {
                     if (err) {
-                        return next(err);
+                        return done(err);
                     }
                 });
             }).error(function(err) {
                 if (err) {
-                    return next(err);
+                    return done(err);
                 }
             });
         }

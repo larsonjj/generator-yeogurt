@@ -48,7 +48,7 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 ## What can I create with Yeogurt?
 - Build out static sites using [Jade](http://jade-lang.com/) or [Swig](http://paularmstrong.github.io/swig/).
 - Create Single Page Applications using [Backbone](http://backbonejs.org/) or [React](http://facebook.github.io/react/) (optionally with [Flux](http://facebook.github.io/react/docs/flux-overview.html)).
-- Make your site/app full-stack by adding an [Express](http://expressjs.com/) Server with optional database, cookie session, and security support .
+- Make your site/app full-stack by adding an [Express](http://expressjs.com/) Server with optional database, cookie session, user authentication, and security support .
 
 Check out the [features](#features) section to see everything this generator has to offer.
 
@@ -121,7 +121,7 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 - Built in preview server with LiveReload
 - [.editorconfig](http://editorconfig.org/) for consistent coding styles within text editors
 - Automated build process that includes: compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, optimization of images, and processing of [usemin blocks](Usemin blocks)
-- [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets
+- [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets (Except Stylus. [Waiting on PR](https://github.com/gruntjs/grunt-contrib-stylus/pull/121))
 
 ### Available Options
 
@@ -144,7 +144,7 @@ Congratulations! You should now have successfully created a Yeogurt project and 
     - Only available for Static Sites that are not using an Express server
 
 ### Single Page Application Options
-- Facebook's [React](http://facebook.github.io/react/) with [Flux](http://facebook.github.io/react/docs/flux-overview.html) (Optional)
+- Facebook's [React](http://facebook.github.io/react/) with optional [Flux](http://facebook.github.io/react/docs/flux-overview.html) architecture
 
 > IMPORTANT: You can only use Browserify with React (no RequireJS support)
 
@@ -155,12 +155,30 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 - Database support for [MySQL](http://www.mysql.com/) and [MongoDB](http://www.mongodb.org/) using [Sequelize](http://sequelizejs.com/) and [Mongoose](http://mongoosejs.com/) respectively.
 - Cookie Session Storage with [express-session](https://github.com/expressjs/session)
 - Security with Paypal's [Lusca](https://github.com/krakenjs/lusca) module
+- User authentication using [Passport](http://passportjs.org/) with the following strategies
+    - Local (Email & Password)
+    - Facebook
+    - Twitter
+- [JSON Web Tokens](http://jwt.io/) authentication support (For IOS/Android/Mobile apps)
+    - Not optional for Single Page Applications
 - Jade, Swig, and React server-side template rendering
 
 ### Automatic File Injection
-A grunt task looks for new/updated files in your project and automatically injects imports/includes in the appropriate places based on an injection block.
+A grunt task, using the [grunt-injector](https://www.npmjs.org/package/grunt-injector) plugin, looks for new/updated files in your project and automatically injects imports/includes in the appropriate places based on an injection block.
 
-|Filetype(s) |Project Type (Static/Single Page Application File to be injected into
+Example injection blocks:
+
+|Filetype(s) | Start Injection Block| End Injection Block
+|------------|----------------|-----
+|Sass,Scss,Less,Stylus | ```// [injector]```| ```// [endinjector]```
+|Jade | ```//- [injector:jade]```| ```//- [endinjector]```
+|Swig | ```{# [injector:swig] #}```| ```{# [endinjector] #}```
+|HTML(JS) | ```<!-- [injector:js] -->```| ```<!-- [endinjector] -->```
+|HTML(CSS) | ```<!-- [injector:css] -->```| ```<!-- [endinjector] -->```
+
+Files to be injected into:
+
+|Filetype(s) |Project Type |Static/Single Page Application File to be injected into
 |---------|---------------|---------
 |Less| Any | `client/styles/main.less`
 |Sass | Any | `client/styles/main.scss`
@@ -169,7 +187,6 @@ A grunt task looks for new/updated files in your project and automatically injec
 |Swig | Static |`client/templates/layouts/base.swig` or `server/templates/layouts/base.swig` if using express server
 |CSS, JS | Static | `client/templates/layouts/base.{jade,swig}` or `server/templates/layouts/base.{jade,swig}` if using express server
 |CSS, JS | Single Page Application | `client/index.html` or `server/templates/index.html` if using express server
-
 
 
 ## Grunt Workflow
@@ -545,6 +562,8 @@ yo yeogurt:collection mycollection --delete
 
 ## Automated Documentation
 ### Dashboard
+***NOTE: Only available for static sites***
+
 If you chose to create a Dashboard, a dashboard will be automatically generated from reading your Jade/Swig files. After running `grunt serve` or `grunt serve:dist`, it can be accessed at `/docs/dashboard/index.html`.
 
 For more information and usage, please refer to the `grunt-dashboard` plugin [documentation](https://github.com/larsonjj/grunt-dashboard).
@@ -614,7 +633,7 @@ Your library should now load correctly (assuming your source path is correct).
 
 ## Deployment
 ### FTP Server
-If you are deploying to an FTP server, you will need to make sure that you fill out the generated `.ftppass` file. It is located in the root folder of your Yeogurt project.
+If you are deploying to an FTP (not SFTP) server, you will need to make sure that you fill out the generated `.ftppass` file. It is located in the root folder of your Yeogurt project.
 
 This file looks like this:
 
@@ -641,7 +660,7 @@ If you would like to use Yeogurt with [Vagrant](https://www.vagrantup.com/), hea
 ## Guides
 Check out the [Guides](docs/guides/README.md) section to learn how to integrate other technologies like Ruby Sass
 
-## Common Gotchas
+## Common Issues
 ### Bower not installing dependencies using Git
 ##### Typical error message:
 > fatal: unable to connect to github.com: github.com

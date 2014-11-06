@@ -8,11 +8,12 @@ var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var path = require('path');
+var methodOverride = require('method-override');
 var errorHandler = require('errorhandler');<% if (useAuth) { %>
 var flash = require('express-flash');
 var expressValidator = require('express-validator');
 var passport = require('passport');
-var authConf = require('../auth');
+var auth = require('../auth');
 var session = require('express-session');<% } %>
 
 // Configuration files<% if (useAuth) { %>
@@ -46,12 +47,23 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     // Enable GZip compression for all static assets
     app.use(compress());
 
+    // Load favicon
+    app.use(favicon((settings.root + '/' + settings.staticAssets + '/favicon.ico')));
+
+    // Setup static assets
+    app.use(express.static(path.join(settings.root, settings.staticAssets), {maxAge: week}));
+
     // Returns middleware that parses both json and urlencoded.
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));<% if (useAuth) { %>
 
     // Initialize form validation
     app.use(expressValidator());
+
+    // Enable HTTP Method Overrides (POST, GET, DELETE, PUT, etc)
+    // Override HTML forms with method="POST" using ?_method=PUT at the end of action URLs
+    // ex <form method="POST" action="/someurl?_method=PUT">
+    app.use(methodOverride('_method'));
 
     // Create cookie that keeps track of user sessions
     // And store it in the Database
@@ -66,7 +78,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     }));
 
     // Initialize Authentication
-    authConf.auth(db.user, passport);
+    auth.init(db.user);
     app.use(passport.initialize());
     app.use(passport.session());
 
@@ -78,7 +90,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
 
     app.use(function(req, res, next) {
         // Make Node environment available in templates
-        res.locals.env = process.env.NODE_ENV || 'development';
+        res.locals.env = env;
         // Make user object available in templates.
         res.locals.user = req.user;
         next();
@@ -87,7 +99,19 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     app.use(function(req, res, next) {
         // Remember original destination before login.
         var path = req.path.split('/')[1];
-        if (/auth|login|logout|signup|fonts|favicon/i.test(path)) {
+        var ignorePaths = [
+            'auth',
+            'login',
+            'logout',
+            'signup',
+            'favicon',
+            'images',
+            'scripts',
+            'styles',
+            'bower_components'
+        ];
+        var regExp = new RegExp(ignorePaths.join('|'), 'i');
+        if (regExp.test(path)) {
             return next();
         }
         req.session.returnTo = req.path;
@@ -114,11 +138,6 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
             next();
         });
     }
-    // Load favicon
-    app.use(favicon((settings.root + '/' + settings.staticAssets + '/favicon.ico')));
-
-    // Setup static assets
-    app.use(express.static(path.join(settings.root, settings.staticAssets), {maxAge: week}));
 
 };
 

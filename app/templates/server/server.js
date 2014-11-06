@@ -7,6 +7,7 @@
 var express = require('express');
 var errorHandler = require('errorhandler');
 var path = require('path');
+var fs = require('fs');
 
 // Add coloring for console output
 require('colors');
@@ -15,24 +16,17 @@ require('colors');
 var app = express();
 <% if (dbOption !== 'none') { %>
 // Database Configuration<% if (dbOption === 'mysql') { %>
-var db = require('./server/config/database');
-
-// Verify DB connection
-db.sequelize.authenticate().complete(function(err) {
-    if (!!err) {
-        console.error('✗ Database Connection Error: \n'.red, err);
-    }
-    else {
-        console.log('✔ MySQL Connection Success!'.green);
-    }
-});<% } else if (dbOption === 'mongodb') { %>
+var db = require('./server/config/database');<% } else if (dbOption === 'mongodb') { %>
 var db = require('./server/config/database')(app);<% } %><% } %>
 
 // Express configuration
 require('./server/config/express')(app, express<% if (dbOption !== 'none') { %>, db<% } %>);
 
 // Load routes
-require('./server/routes')(app);
+fs.readdirSync('./server/routes').forEach(function(file) {
+    var route = './server/routes/' + file;
+    require(route)(app);
+});
 
 /**
  * 500 Error Handler.
@@ -53,7 +47,7 @@ db.sequelize.authenticate().complete(function(err) {
                 console.log('✔ Database Synced!'.green);
             }).error(function() {
                 console.error('✗ Database Not Synced!'.red);
-            })
+            });
     }
 });<% } %>
 

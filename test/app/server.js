@@ -26,23 +26,260 @@ describe('Yeogurt generator using Server', function () {
                 'grunt/config/util/open.js',
                 'grunt/config/server/express.js',
                 'grunt/config/server/env.js',
-                'server/controllers/main.js',
+                'server/controllers/index.js',
                 'server/config/express.js',
                 'server/config/env',
                 'server/config/env/default.js',
                 'server/config/env/development.js',
                 'server/config/env/production.js',
-                'server/routes.js',
+                'server/routes',
+                'server/routes/index.js',
                 'server.js'
             ];
 
             helpers.mockPrompt(this.app, {
                 useServer: true,
-                dbOption: 'none'
+                dbOption: 'none',
+                useAuth: false,
+                useJwt: false
             });
             this.app.run([], function () {
                 assert.file(expected);
                 done();
+            });
+        });
+    });
+    describe('With Authentication', function () {
+        describe('With MongoDB', function () {
+            describe('With Defaults', function () {
+                it('Creates expected files', function (done) {
+                    var expected = [
+                        'server/controllers/user.js',
+                        'server/controllers/account.js',
+                        'server/routes/user.js',
+                        'server/routes/account.js',
+                        'server/auth/index.js',
+                    ];
+
+                    helpers.mockPrompt(this.app, {
+                        useServer: true,
+                        dbOption: 'mongodb',
+                        useAuth: true,
+                        useJwt: false
+                    });
+                    this.app.run([], function () {
+                        assert.file(expected);
+                        done();
+                    });
+                });
+            });
+            describe('With Local Authentication', function () {
+                it('Creates expected files', function (done) {
+                    var expected = [
+                        'server/auth/strategies/local.js',
+                    ];
+                    var fileContentToTest = [
+                        ['server/auth/strategies/local.js', /findOne/i]
+                    ];
+
+                    helpers.mockPrompt(this.app, {
+                        useServer: true,
+                        dbOption: 'mongodb',
+                        useAuth: true,
+                        authTypes: ['local'],
+                        useJwt: false
+                    });
+                    this.app.run([], function () {
+                        assert.file(expected);
+                        assert.fileContent(fileContentToTest);
+                        done();
+                    });
+                });
+            });
+            describe('With Twitter Authentication', function () {
+                it('Creates expected files', function (done) {
+                    var expected = [
+                        'server/auth/strategies/twitter.js',
+                    ];
+                    var fileContentToTest = [
+                        ['server/auth/strategies/twitter.js', /findOne/i]
+                    ];
+
+                    helpers.mockPrompt(this.app, {
+                        useServer: true,
+                        dbOption: 'mongodb',
+                        useAuth: true,
+                        authTypes: ['twitter'],
+                        useJwt: false
+                    });
+                    this.app.run([], function () {
+                        assert.file(expected);
+                        assert.fileContent(fileContentToTest);
+                        done();
+                    });
+                });
+            });
+            describe('With Facebook Authentication', function () {
+                it('Creates expected files', function (done) {
+                    var expected = [
+                        'server/auth/strategies/facebook.js',
+                    ];
+                    var fileContentToTest = [
+                        ['server/auth/strategies/facebook.js', /findOne/i]
+                    ];
+
+                    helpers.mockPrompt(this.app, {
+                        useServer: true,
+                        dbOption: 'mongodb',
+                        useAuth: true,
+                        authTypes: ['facebook'],
+                        useJwt: false
+                    });
+                    this.app.run([], function () {
+                        assert.file(expected);
+                        assert.fileContent(fileContentToTest);
+                        done();
+                    });
+                });
+            });
+            describe('With JWT', function () {
+                it('Creates expected files', function (done) {
+                    var fileContentToTest = [
+                        ['server/auth/index.js', /express\-jwt/i],
+                        ['server/auth/index.js', /signToken/i],
+                        ['server/auth/index.js', /setTokenCookie/i],
+                        ['server/controllers/user.js', /\!req.xhr/i],
+                        ['server/controllers/account.js', /\!req.xhr/i]
+                    ];
+
+                    helpers.mockPrompt(this.app, {
+                        useServer: true,
+                        dbOption: 'mongodb',
+                        useAuth: true,
+                        authTypes: ['facebook'],
+                        useJwt: true
+                    });
+                    this.app.run([], function () {
+                        assert.fileContent(fileContentToTest);
+                        done();
+                    });
+                });
+            });
+        });
+        describe('With MySQL', function () {
+            describe('With Defaults', function () {
+                it('Creates expected files', function (done) {
+                    var expected = [
+                        'server/controllers/user.js',
+                        'server/controllers/account.js',
+                        'server/routes/user.js',
+                        'server/routes/account.js',
+                        'server/auth/index.js',
+                    ];
+
+                    helpers.mockPrompt(this.app, {
+                        useServer: true,
+                        dbOption: 'mysql',
+                        useAuth: true,
+                        useJwt: false
+                    });
+                    this.app.run([], function () {
+                        assert.file(expected);
+                        done();
+                    });
+                });
+            });
+            describe('With Local Authentication', function () {
+                it('Creates expected files', function (done) {
+                    var expected = [
+                        'server/auth/strategies/local.js',
+                    ];
+                    var fileContentToTest = [
+                        ['server/auth/strategies/local.js', /\.success/i]
+                    ];
+
+                    helpers.mockPrompt(this.app, {
+                        useServer: true,
+                        dbOption: 'mysql',
+                        useAuth: true,
+                        authTypes: ['local'],
+                        useJwt: false
+                    });
+                    this.app.run([], function () {
+                        assert.file(expected);
+                        assert.fileContent(fileContentToTest);
+                        done();
+                    });
+                });
+            });
+            describe('With Twitter Authentication', function () {
+                it('Creates expected files', function (done) {
+                    var expected = [
+                        'server/auth/strategies/twitter.js',
+                    ];
+                    var fileContentToTest = [
+                        ['server/auth/strategies/twitter.js', /\.success/i]
+                    ];
+
+                    helpers.mockPrompt(this.app, {
+                        useServer: true,
+                        dbOption: 'mysql',
+                        useAuth: true,
+                        authTypes: ['twitter'],
+                        useJwt: false
+                    });
+                    this.app.run([], function () {
+                        assert.file(expected);
+                        assert.fileContent(fileContentToTest);
+                        done();
+                    });
+                });
+            });
+            describe('With Facebook Authentication', function () {
+                it('Creates expected files', function (done) {
+                    var expected = [
+                        'server/auth/strategies/facebook.js',
+                    ];
+                    var fileContentToTest = [
+                        ['server/auth/strategies/facebook.js', /\.success/i]
+                    ];
+
+                    helpers.mockPrompt(this.app, {
+                        useServer: true,
+                        dbOption: 'mysql',
+                        useAuth: true,
+                        authTypes: ['facebook'],
+                        useJwt: false
+                    });
+                    this.app.run([], function () {
+                        assert.file(expected);
+                        assert.fileContent(fileContentToTest);
+                        done();
+                    });
+                });
+            });
+            describe('With JWT', function () {
+                it('Creates expected files', function (done) {
+                    var fileContentToTest = [
+                        ['server/auth/index.js', /express\-jwt/i],
+                        ['server/auth/index.js', /signToken/i],
+                        ['server/auth/index.js', /setTokenCookie/i],
+                        ['server/controllers/user.js', /\!req.xhr/i],
+                        ['server/controllers/account.js', /\!req.xhr/i]
+                    ];
+
+                    helpers.mockPrompt(this.app, {
+                        useServer: true,
+                        dbOption: 'mysql',
+                        useAuth: true,
+                        authTypes: ['facebook'],
+                        useJwt: true
+                    });
+                    this.app.run([], function () {
+                        assert.fileContent(fileContentToTest);
+                        done();
+                    });
+                });
             });
         });
     });
@@ -73,7 +310,6 @@ describe('Yeogurt generator using Server', function () {
             ];
             var fileContentToTest = [
                 ['server/config/database.js', /sequelize/i],
-                ['server/config/express.js', /sequelize/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -94,11 +330,11 @@ describe('Yeogurt generator using Server', function () {
                 'server/templates/index.jade',
             ];
             var expectedContent = [
-                ['server/routes.js', /app\.get\('\/'/i]
+                ['server/routes/index.js', /app\.get\('\/'/i]
             ];
 
             helpers.mockPrompt(this.app, {
-                useSinglePageApplication: false,
+                singlePageApplication: false,
                 htmlOption: 'jade',
                 useServer: true
             });
@@ -116,11 +352,11 @@ describe('Yeogurt generator using Server', function () {
                 'server/templates/index.swig',
             ];
             var expectedContent = [
-                ['server/routes.js', /app\.get\('\/'/i]
+                ['server/routes/index.js', /app\.get\('\/'/i]
             ];
 
             helpers.mockPrompt(this.app, {
-                useSinglePageApplication: false,
+                singlePageApplication: false,
                 htmlOption: 'swig',
                 useServer: true
             });
@@ -139,7 +375,7 @@ describe('Yeogurt generator using Server', function () {
                 ];
 
                 helpers.mockPrompt(this.app, {
-                    useSinglePageApplication: true,
+                    singlePageApplication: true,
                     useServer: true
                 });
                 this.app.run([], function () {
@@ -156,7 +392,7 @@ describe('Yeogurt generator using Server', function () {
                 ];
 
                 helpers.mockPrompt(this.app, {
-                    useSinglePageApplication: true,
+                    singlePageApplication: true,
                     useServer: true,
                     useServerTemplates: true,
                     jsFramework: 'react'
@@ -171,11 +407,11 @@ describe('Yeogurt generator using Server', function () {
             it('Creates expected files', function (done) {
                 var fileContentToTest = [
                     ['server/templates/index.html', /<\%\- body \%\>/i],
-                    ['server/controllers/main.js', /reactRender/i]
+                    ['server/controllers/index.js', /reactRender/i]
                 ];
 
                 helpers.mockPrompt(this.app, {
-                    useSinglePageApplication: true,
+                    singlePageApplication: true,
                     useServer: true,
                     useServerTemplates: true,
                     jsFramework: 'react'
@@ -189,15 +425,15 @@ describe('Yeogurt generator using Server', function () {
         describe('Without Server templates', function () {
             it('Creates expected files', function (done) {
                 var expectedContent = [
-                    ['server/routes.js', /app\.get\('\*'/i]
+                    ['server/routes/index.js', /app\.get\('\/\*'/i]
                 ];
                 var fileContentToTest = [
                     ['server/templates/index.html', /<\%\- body \%\>/i],
-                    ['server/controllers/main.js', /reactRender/i]
+                    ['server/controllers/index.js', /reactRender/i]
                 ];
 
                 helpers.mockPrompt(this.app, {
-                    useSinglePageApplication: true,
+                    singlePageApplication: true,
                     useServer: true,
                     useServerTemplates: false,
                     jsFramework: 'react'

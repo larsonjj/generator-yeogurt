@@ -231,7 +231,7 @@ describe('Yeogurt generator using React', function () {
                         ];
                         var fileContentNotThere = [
                             ['server/modules/react-render.js', /node-jsx/i],
-                            ['server/controllers/main.js', /node-jsx/i],
+                            ['server/controllers/index.js', /node-jsx/i],
                         ];
 
                         helpers.mockPrompt(this.app, {
@@ -299,7 +299,7 @@ describe('Yeogurt generator using React', function () {
                         ];
                         var fileContentNotThere = [
                             ['server/modules/react-render.js', /node-jsx/i],
-                            ['server/controllers/main.js', /node-jsx/i],
+                            ['server/controllers/index.js', /node-jsx/i],
                         ];
 
                         helpers.mockPrompt(this.app, {

@@ -12,14 +12,14 @@ block content
     .container
         .row
             .col-sm-8.col-sm-offset-2
-                form(method='post')
+                form(method='post', action='/forgot')
                     legend Forgot Password<% if (useSecurity) { %>
                     input(type='hidden', name='_csrf', value=_csrf)<% } %>
                     .form-group
-                        p Enter your email address below and we will send you password reset instructions.
-                        label.control-label(for='email') Email
-                        input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus=true)
+                        p Enter your Username or email address below and we will send you password reset instructions.
+                        label.control-label(for='username') Username or Email
+                        input.form-control(type='username', name='username', id='username', placeholder='Enter your username or email', autofocus)
                     .form-group
-                        button.btn.btn-primary(type='submit')
+                        button.btn.btn-primary
                             i.fa.fa-key
                             | Reset Password
