@@ -3,11 +3,11 @@
 var passport = require('passport');
 var secrets = require('../config/secrets');<% if (useJwt) { %>
 var jwt = require('jsonwebtoken');
-var expressJwt = require('express-jwt');<% if (dbOption === 'mongodb') { %>
+var expressJwt = require('express-jwt');
+var validateJwt = expressJwt({ secret: secrets.sessionSecret });<% if (dbOption === 'mongodb') { %>
 var User = require('mongoose').model('user');<% } else if (dbOption === 'mysql') { %>
 var db = require('../config/database');
-var User = db.user;<% } %><% } %>
-var validateJwt = expressJwt({ secret: secrets.sessionSecret });<% if (authTypes.indexOf('local') > -1) { %>
+var User = db.user;<% } %><% } %><% if (authTypes.indexOf('local') > -1) { %>
 var localStrategy = require('./strategies/local');<% } %><% if (authTypes.indexOf('facebook') > -1) { %>
 var facebookStrategy = require('./strategies/facebook');<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
 var twitterStrategy = require('./strategies/twitter');<% } %>

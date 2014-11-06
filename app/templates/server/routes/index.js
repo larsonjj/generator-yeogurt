@@ -6,7 +6,7 @@
 
 var indexController = require('../controllers/index');
 
-var routes = function (app) {<% if (!singlePageApplication || useServerTemplates) { %>
+var routes = function (app) {<% if (!singlePageApplication) { %>
 
     app.get('/', indexController.index);<% } else { %>
     // Catch All: Matches all routes to let HTML5 pushState work

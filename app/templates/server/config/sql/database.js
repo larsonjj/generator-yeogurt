@@ -12,7 +12,7 @@ var db = {};
 // Connect to database
 var sequelize = new Sequelize(settings.database.url, settings.database.options);<% if (useAuth) { %>
 
-// Import all models (optionally create associations)
+// Import all models
 fs
     .readdirSync(path.join(__dirname, '../models'))
     .forEach(function(file) {
