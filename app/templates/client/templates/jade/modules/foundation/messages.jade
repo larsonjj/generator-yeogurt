@@ -1,0 +1,16 @@
+mixin messages()
+    if messages.errors
+        .alert-box.alert.radius(data-alert)
+            a.close(href="#") &times
+            for error in messages.errors
+                div= error.msg
+    if messages.info
+        .alert-box.info.radius(data-alert)
+            a.close(href="#") &times
+            for info in messages.info
+                div= info.msg
+    if messages.success
+        .alert-box.success.radius(data-alert)
+            a.close(href="#") &times
+            for success in messages.success
+                div= success.msg

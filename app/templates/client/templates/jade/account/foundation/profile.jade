@@ -1,0 +1,67 @@
+extends ../layouts/one-column
+
+block content
+    .row
+        .medium-8.medium-offset-2
+            h3 Profile Information
+            form(action='/user/#{user.username}/profile?_method=PUT', method='post')<% if (useSecurity) { %>
+                input(type='hidden', name='_csrf', value=_csrf)<% } %>
+                label(for='email') Username
+                p= user.username
+                label(for='email') Email
+                    input(type='email', name='email', id='email', value=user.email)
+                label(for='firstName') First Name
+                    input(type='text', name='firstName', id='firstName', value=user.firstName)
+                label(for='lastName') Last Name
+                    input(type='text', name='lastName', id='lastName', value=user.lastName)
+                label(for='gender') Gender
+                input(type='radio', checked=user.gender=='male', name='gender', value='male', data-toggle='radio')
+                label Male
+                input(type='radio', checked=user.gender=='female', name='gender', value='female', data-toggle='radio')
+                label Female
+                label(for='location') Location
+                    input(type='text', name='location', id='location', value=user.location)
+                label(for='website') Website
+                    input(type='text', name='website', id='website', value=user.website)
+                label(for='gravatar') Gravatar
+                p
+                    img(src=user.picture || 'https://gravatar.com/avatar/?s=200&d=retro', class='profile', width='100', height='100')
+                button.button
+                    span
+                    | Update Profile
+
+        .medium-8.medium-offset-2
+            h3 Change Password
+
+            form(action='/user/#{user.username}/password?_method=PUT', method='post')<% if (useSecurity) { %>
+                input(type='hidden', name='_csrf', value=_csrf)<% } %>
+                label(for='password') New Password
+                    input(type='password', name='password', id='password')
+                label(for='confirmPassword') Confirm Password
+                    input(type='password', name='confirmPassword', id='confirmPassword')
+                button.button
+                    span
+                    | Change Password
+
+        .medium-8.medium-offset-2
+            h3 Delete Account
+
+            p You can delete your account, but keep in mind this action is irreversible.
+            form(action='/user/#{user.username}?_method=DELETE', method='post')<% if (useSecurity) { %>
+                input(type='hidden', name='_csrf', value=_csrf)<% } %>
+                button.button.alert
+                    span
+                    | Delete my account
+
+        .medium-8.medium-offset-2
+            h3 Linked Accounts
+
+            if user.facebook
+                p: a(href='/auth/unlink/facebook') Unlink your Facebook account
+            else
+                p: a(href='/auth/facebook') Link your Facebook account
+
+            if user.twitter
+                p: a(href='/auth/unlink/twitter') Unlink your Twitter account
+            else
+                p: a(href='/auth/twitter') Link your Twitter account

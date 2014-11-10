@@ -28,7 +28,7 @@
         "lusca": "^1.0.0",<% if (dbOption === 'mongodb') { %>
         "mongoose": "^3.8.8",<% } %>
         "morgan": "^1.0.0",
-        "ejs": "~0.8.4",<% if (dbOption === 'mysql') { %>
+        "ejs": "~0.8.4"<% if (dbOption === 'mysql') { %>,
         "mysql": "2.3.2",
         "sequelize": "1.7.9"<% } %><% if (htmlOption === 'swig') { %>,
         "swig": "1.4.1"<% } %><% if (jsTemplate === 'jade' || htmlOption === 'jade') { %>,

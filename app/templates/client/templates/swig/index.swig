@@ -1,12 +1,4 @@
-<% if (useDashboard) { %>{# [dash:data]
-    {
-        "status": "development",
-        "category": "page",
-        "label": "Home",
-        "link": "../../index.html"
-    }
-    [/dash] #}
-<% } %>{# Homepage Markup #}
+{# Homepage Markup #}
 {% extends './layouts/base.swig' %}
 
 {% block content %}

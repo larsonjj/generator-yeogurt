@@ -1,0 +1,19 @@
+extends ../layouts/one-column
+
+block content
+    .container
+        .row
+            .col-sm-8.col-sm-offset-2
+                form(method='post')
+                    legend Reset Password<% if (useSecurity) { %>
+                    input(type='hidden', name='_csrf', value=_csrf)<% } %>
+                    .form-group
+                        label(for='password') New Password
+                        input.form-control(type='password', name='password', value='', placeholder='New password', autofocus=true)
+                    .form-group
+                        label(for='confirm') Confirm Password
+                        input.form-control(type='password', name='confirm', value='', placeholder='Confirm password')
+                    .form-group
+                        button.btn.btn-primary.btn-reset
+                            i
+                            | Change Password

@@ -373,7 +373,7 @@ Produces:
 client/templates/mytemplate.{jst,hbs,jade}
 ```
 
-***NOTE: `{jst,hbs,jade}` means that the file extension template will match the template engine you chose: `underscore, handlebars, or jade` respectively***
+***NOTE: `{jst,hbs,jade}` means that the file extension template will match the template engine you chose: `lo-dash, handlebars, or jade` respectively***
 
 There is also an option that can be used to change the default behavior:
 

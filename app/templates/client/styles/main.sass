@@ -1,7 +1,8 @@
 // Main Stylesheet
 
 <% if (useBourbon) { %>// Import Bourbon Mixins
-@import ../bower_components/bourbon/dist/_bourbon<% } %><% if (!useBootstrap && !useFoundation) { %>
+@import ../bower_components/bourbon/dist/_bourbon
+<% } %><% if (!useBootstrap && !useFoundation) { %>
 // Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
 @import ../bower_components/normalize-scss/normalize
 <% } %><% if (!useBootstrap) { %>
@@ -22,97 +23,11 @@ $fa-font-path: "../bower_components/font-awesome/fonts"
 @import ../bower_components/font-awesome/scss/font-awesome
 <% } %><% if (useBootstrap) { %>
 // Import All Bootstrap Styles
-
-// Core variables and mixins
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/variables
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins
-
-// Reset
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/normalize
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/print
-
-// Core CSS
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/scaffolding
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/type
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/code
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/grid
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/tables
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/forms
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/buttons
-
-// Components
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/component-animations
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/glyphicons
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/dropdowns
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/button-groups
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/input-groups
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/navs
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/navbar
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/breadcrumbs
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/pagination
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/pager
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/labels
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/badges
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/jumbotron
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/thumbnails
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/alerts
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/progress-bars
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/media
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/list-group
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/panels
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/wells
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/close
-
-// Components w/ JavaScript
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/modals
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/tooltip
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/popovers
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/carousel
-
-// Utility classes
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/utilities
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/responsive-utilities<% } %><% if (useFoundation) { %>
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap";<% } %><% if (useFoundation) { %>
 
 // Import All Foundation Styles
-
 @import ../bower_components/foundation/scss/normalize
-
-@import ../bower_components/foundation/scss/foundation/components/grid
-@import ../bower_components/foundation/scss/foundation/components/accordion
-@import ../bower_components/foundation/scss/foundation/components/alert-boxes
-@import ../bower_components/foundation/scss/foundation/components/block-grid
-@import ../bower_components/foundation/scss/foundation/components/breadcrumbs
-@import ../bower_components/foundation/scss/foundation/components/button-groups
-@import ../bower_components/foundation/scss/foundation/components/buttons
-@import ../bower_components/foundation/scss/foundation/components/clearing
-@import ../bower_components/foundation/scss/foundation/components/dropdown
-@import ../bower_components/foundation/scss/foundation/components/dropdown-buttons
-@import ../bower_components/foundation/scss/foundation/components/flex-video
-@import ../bower_components/foundation/scss/foundation/components/forms
-@import ../bower_components/foundation/scss/foundation/components/inline-lists
-@import ../bower_components/foundation/scss/foundation/components/joyride
-@import ../bower_components/foundation/scss/foundation/components/keystrokes
-@import ../bower_components/foundation/scss/foundation/components/labels
-@import ../bower_components/foundation/scss/foundation/components/magellan
-@import ../bower_components/foundation/scss/foundation/components/orbit
-@import ../bower_components/foundation/scss/foundation/components/pagination
-@import ../bower_components/foundation/scss/foundation/components/panels
-@import ../bower_components/foundation/scss/foundation/components/pricing-tables
-@import ../bower_components/foundation/scss/foundation/components/progress-bars
-@import ../bower_components/foundation/scss/foundation/components/range-slider
-@import ../bower_components/foundation/scss/foundation/components/reveal
-@import ../bower_components/foundation/scss/foundation/components/side-nav
-@import ../bower_components/foundation/scss/foundation/components/split-buttons
-@import ../bower_components/foundation/scss/foundation/components/sub-nav
-@import ../bower_components/foundation/scss/foundation/components/switch
-@import ../bower_components/foundation/scss/foundation/components/tables
-@import ../bower_components/foundation/scss/foundation/components/tabs
-@import ../bower_components/foundation/scss/foundation/components/thumbs
-@import ../bower_components/foundation/scss/foundation/components/tooltips
-@import ../bower_components/foundation/scss/foundation/components/top-bar
-@import ../bower_components/foundation/scss/foundation/components/type
-@import ../bower_components/foundation/scss/foundation/components/offcanvas
-@import ../bower_components/foundation/scss/foundation/components/visibility<% } %>
+@import ../bower_components/foundation/scss/foundation<% } %>
 
 // Injects all imports files automatically (ex. _mypartial)
 // [injector]
@@ -131,7 +46,7 @@ body
     font-size: 14px
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace
     position: absolute
-    top: 10px
+    bottom: 10px
     right: 10px
 
 .logo

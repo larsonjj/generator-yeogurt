@@ -1,0 +1,15 @@
+extends ../layouts/one-column
+
+block content
+    .row
+        .medium-8.medium-offset-2
+            h3 Forgot Password
+            p Enter your Username or email address below and we will send you password reset instructions.
+            form(method='post', action='/forgot')<% if (useSecurity) { %>
+                input(type='hidden', name='_csrf', value=_csrf)<% } %>
+                label(for='username') Username or Email
+                    input(type='text', name='username', id='username', placeholder='Enter your username or email', autofocus)
+                button.button
+                    i
+                    |  Reset Password
+

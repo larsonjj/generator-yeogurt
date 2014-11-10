@@ -1,0 +1,15 @@
+//- One Column Template
+
+include ../modules/navbar
+include ../modules/messages
+
+extend base
+
+block layout
+    //- Navigation Bar
+    +navbar()
+    //- Provides layout level markup
+    .one-column
+        //- Include flash messages
+        +messages()
+        block content
