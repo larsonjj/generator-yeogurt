@@ -1,4 +1,12 @@
-//- Homepage Markup<% if (useAuth) { %>
+<% if (useDashboard) { %>//- [dash:data]
+    {
+        "status": "development",
+        "category": "page",
+        "label": "Home",
+        "link": "../../index.html"
+    }
+    [/dash]
+<% } %>//- Homepage Markup<% if (useAuth) { %>
 extends ./layouts/one-column<% } else { %>
 extends ./layouts/base<% } %>
 

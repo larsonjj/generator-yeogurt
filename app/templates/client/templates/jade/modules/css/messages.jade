@@ -1,16 +1,3 @@
-<% if (useDashboard) { %>//- [dash:data]
-    {
-        "status": "development",
-        "category": "module",
-        "label": "Messages",
-        "link": "generated/messages.html"
-    }
-    [/dash]
-//- [dash:jade]
-    include client/templates/modules/messages
-
-    +messages()
-    [/dash]<% } %>
 mixin messages()
     if messages.errors
         .alert.alert-danger.fade.in

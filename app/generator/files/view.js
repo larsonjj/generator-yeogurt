@@ -43,7 +43,7 @@ var viewFiles = function viewFiles() {
                 // Layouts
                 this.template('client/templates/jade/layouts/foundation/one-column.jade', viewRoot + 'templates/layouts/one-column.jade');
             }
-            else if (this.cssFramework === 'css') {
+            else if (this.cssFramework === 'none') {
                 // Account
                 this.template('client/templates/jade/account/css/forgot.jade', viewRoot + 'templates/account/forgot.jade');
                 this.template('client/templates/jade/account/css/login.jade', viewRoot + 'templates/account/login.jade');
