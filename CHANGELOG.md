@@ -1,3 +1,8 @@
+### v0.12.2:
+#### date: 2014-11-11
+##### changes:
+* Solidified grunt-dashboard version to avoid issue with new version.
+
 ### v0.12.1:
 #### date: 2014-10-01
 ##### changes:
