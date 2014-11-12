@@ -23,10 +23,8 @@
 
         {% if env == 'development' %}<% } else { %>
 
-        <% } %><!-- build:css(client) styles/global.css --><% if (useBootstrap) { %>
-        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"><% } %><% if (useFoundation) { %>
-        <link rel="stylesheet" href="/bower_components/foundation/css/normalize.css">
-        <link rel="stylesheet" href="/bower_components/foundation/css/foundation.css"><% } %><% if (useFontAwesome) { %>
+        <% } %><!-- build:css(client) styles/global.css --><% if (useNormalize) { %>
+        <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css"><% } %><% if (useFontAwesome) { %>
         <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css"><% } %>
             <!-- [injector:css] -->
             <!-- [endinjector] -->
@@ -96,40 +94,8 @@
 
 <% if (useServer) { %>        {% if env == 'development' %}<% } %>
         <!-- build:js(client) scripts/global.js -->
-        <script src="/bower_components/jquery/dist/jquery.js"></script><% if  (useBootstrap) { %>
-        <script src="/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>affix.js"></script>
-        <script src="/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>alert.js"></script>
-        <script src="/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>button.js"></script>
-        <script src="/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>carousel.js"></script>
-        <script src="/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>collapse.js"></script>
-        <script src="/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>dropdown.js"></script>
-        <script src="/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>modal.js"></script>
-        <script src="/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>scrollspy.js"></script>
-        <script src="/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>tab.js"></script>
-        <script src="/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>tooltip.js"></script>
-        <script src="/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>popover.js"></script>
-        <script src="/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>transition.js"></script>
-        <% } %><% if (useFoundation) { %><script src="/bower_components/foundation/js/vendor/fastclick.js"></script>
-        <script src="/bower_components/foundation/js/vendor/jquery.cookie.js"></script>
-        <script src="/bower_components/foundation/js/vendor/placeholder.js"></script>
-        <script src="/bower_components/foundation/js/foundation/foundation.js"></script>
-        <script src="/bower_components/foundation/js/foundation/foundation.abide.js"></script>
-        <script src="/bower_components/foundation/js/foundation/foundation.accordion.js"></script>
-        <script src="/bower_components/foundation/js/foundation/foundation.alert.js"></script>
-        <script src="/bower_components/foundation/js/foundation/foundation.clearing.js"></script>
-        <script src="/bower_components/foundation/js/foundation/foundation.dropdown.js"></script>
-        <script src="/bower_components/foundation/js/foundation/foundation.equalizer.js"></script>
-        <script src="/bower_components/foundation/js/foundation/foundation.interchange.js"></script>
-        <script src="/bower_components/foundation/js/foundation/foundation.joyride.js"></script>
-        <script src="/bower_components/foundation/js/foundation/foundation.magellan.js"></script>
-        <script src="/bower_components/foundation/js/foundation/foundation.offcanvas.js"></script>
-        <script src="/bower_components/foundation/js/foundation/foundation.orbit.js"></script>
-        <script src="/bower_components/foundation/js/foundation/foundation.reveal.js"></script>
-        <script src="/bower_components/foundation/js/foundation/foundation.slider.js"></script>
-        <script src="/bower_components/foundation/js/foundation/foundation.tab.js"></script>
-        <script src="/bower_components/foundation/js/foundation/foundation.tooltip.js"></script>
-        <script src="/bower_components/foundation/js/foundation/foundation.topbar.js"></script>
-        <% } %><!-- endbuild --><% if (useServer) { %>
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+        <!-- endbuild --><% if (useServer) { %>
         {% else %}
         <script src="/scripts/globals.js"></script>
         {% endif %}<% } %><% if  (jsOption === 'requirejs') { %>

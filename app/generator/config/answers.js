@@ -88,9 +88,7 @@ var answersConfig = function answersConfig() {
     this.sassSyntax            = this.answers.sassSyntax;
     this.useBourbon            = this.answers.useBourbon;
     this.useLesshat            = this.answers.useLesshat;
-    this.cssFramework          = this.answers.cssFramework;
     this.ieSupport             = this.answers.ieSupport;
-    this.useGA                 = this.answers.useGA;
     this.jshint                = this.answers.jshint;
     this.extras                = this.answers.extras;
 
@@ -119,23 +117,10 @@ var answersConfig = function answersConfig() {
     // Default jsOption to Browserify
     this.jsOption = this.answers.jsOption || 'browserify';
 
-    // Intially set flags to false
-    this.useBootstrap  = this.answers.useBootstrap ? this.answers.useBootstrap : false;
-    this.responsive    = false;
-    this.useFoundation = false;
-
-    if (this.cssFramework === 'bootstrap') {
-        this.useBootstrap = true;
-        if (this.ieSupport) {
-            this.responsive = true;
-        }
-    }
-    else if (this.cssFramework === 'foundation') {
-        this.useFoundation = true;
-    }
-
     this.useFontAwesome = hasFeature('useFontAwesome', this.extras);
     this.useModernizr   = hasFeature('useModernizr', this.extras);
+    this.useNormalize   = hasFeature('useNormalize', this.extras);
+    this.useGA          = hasFeature('useGA', this.extras);
 
 };
 

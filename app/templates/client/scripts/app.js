@@ -22,8 +22,7 @@ define(function(require) {
         if (!pushState && window.location.pathname !== '/') {
             window.location.replace('/#' + window.location.pathname);
         }<% } else { %>
-        Backbone.history.start();<% } %><% } %><% if (useFoundation) { %>
-        $(document).foundation();<% } %>
+        Backbone.history.start();<% } %><% } %>
         console.log('Welcome to Yeogurt');
     };
 
@@ -55,15 +54,13 @@ Backbone.history.start();<% } %><% if (jsFramework === 'react') { %>
 
 // Enable React dev tools
 window.React = require('react');<% } %>
-<% } %><% if (useFoundation) { %>
-$(document).foundation();<% } %>
+<% } %>
 console.log('Welcome to Yeogurt');<% } else if (jsOption === 'none') { %>
 'use strict';<% if (jsFramework === 'backbone') { %>
 
 // Create global namespaces for Models, Collections, and Views
 window.<%= _.classify(projectName) %> = {
-    init: function () {<% if (useFoundation) { %>
-        $(document).foundation();<% } %>
+    init: function () {
         console.log('Welcome to Yeogurt');
     }
 };
@@ -71,6 +68,5 @@ window.<%= _.classify(projectName) %> = {
 $(document).ready(function () {
     <%= _.classify(projectName) %>.init();
 });
-<% } else { %><% if (useFoundation) { %>
-$(document).foundation();<% } %>
+<% } else { %>
 console.log('Welcome to Yeogurt');<% } %><% } %>

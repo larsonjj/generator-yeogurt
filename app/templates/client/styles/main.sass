@@ -2,10 +2,7 @@
 
 <% if (useBourbon) { %>// Import Bourbon Mixins
 @import ../bower_components/bourbon/dist/_bourbon
-<% } %><% if (!useBootstrap && !useFoundation) { %>
-// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
-@import ../bower_components/normalize-scss/normalize
-<% } %><% if (!useBootstrap) { %>
+<% } %>
 // Box sizing partial styles:
 // Apply a natural box layout model to all elements
 
@@ -15,19 +12,12 @@
     -moz-box-sizing: border-box
     -webkit-box-sizing: border-box
     box-sizing: border-box
-}
-<% } %><% if (useFontAwesome) { %>
+}<% if (useFontAwesome) { %>
 
 //  Import Font Awesome Library
 $fa-font-path: "../bower_components/font-awesome/fonts"
 @import ../bower_components/font-awesome/scss/font-awesome
-<% } %><% if (useBootstrap) { %>
-// Import All Bootstrap Styles
-@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";<% } %><% if (useFoundation) { %>
-
-// Import All Foundation Styles
-@import ../bower_components/foundation/scss/normalize
-@import ../bower_components/foundation/scss/foundation<% } %>
+<% } %>
 
 // Injects all imports files automatically (ex. _mypartial)
 // [injector]
