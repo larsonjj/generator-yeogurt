@@ -46,16 +46,12 @@ describe('Yeogurt generator using Styles', function () {
                 'grunt/config',
                 'grunt/config/compile/sass.js'
             ];
-            var fileContentToTest = [
-                ['client/styles/main.scss', /sass/i]
-            ];
 
             helpers.mockPrompt(this.app, {
                 cssOption: 'sass'
             });
             this.app.run([], function () {
                 assert.file(expected);
-                assert.fileContent(fileContentToTest);
                 done();
             });
         });
@@ -152,9 +148,6 @@ describe('Yeogurt generator using Styles', function () {
                 'grunt/config',
                 'grunt/config/compile/stylus.js'
             ];
-            var fileContentToTest = [
-                ['client/styles/main.styl', /nib/i]
-            ];
 
             helpers.mockPrompt(this.app, {
                 cssOption: 'stylus',
@@ -163,7 +156,6 @@ describe('Yeogurt generator using Styles', function () {
             });
             this.app.run([], function () {
                 assert.file(expected);
-                assert.fileContent(fileContentToTest);
                 done();
             });
         });

@@ -50,6 +50,58 @@ describe('Yeogurt generator using Server', function () {
         });
     });
     describe('With Authentication', function () {
+        describe('With Jade', function () {
+            it('Creates expected files', function (done) {
+                var expected = [
+                    'server/templates/account/forgot.jade',
+                    'server/templates/account/login.jade',
+                    'server/templates/account/profile.jade',
+                    'server/templates/account/reset.jade',
+                    'server/templates/account/signup.jade',
+                    'server/templates/modules/navbar.jade',
+                    'server/templates/modules/messages.jade',
+                    'server/templates/layouts/one-column.jade'
+                ];
+
+                helpers.mockPrompt(this.app, {
+                    useServer: true,
+                    htmlOption: 'jade',
+                    dbOption: 'mongodb',
+                    useAuth: true,
+                    useJwt: false
+                });
+                this.app.run([], function () {
+                    assert.file(expected);
+                    done();
+                });
+            });
+        });
+        // describe('With Swig', function () {
+        //     it('Creates expected files', function (done) {
+        //         var expected = [
+        //             'server/templates/account/forgot.swig',
+        //             'server/templates/account/login.swig',
+        //             'server/templates/account/profile.swig',
+        //             'server/templates/account/reset.swig',
+        //             'server/templates/account/signup.swig',
+        //             'server/templates/modules/navbar.swig',
+        //             'server/templates/modules/messages.swig',
+        //             'server/templates/layouts/one-column.swig'
+        //         ];
+
+        //         helpers.mockPrompt(this.app, {
+        //             useServer: true,
+        //             htmlOption: 'swig',
+        //             dbOption: 'mongodb',
+        //             useAuth: true,
+        //             useJwt: false
+        //         });
+        //         this.app.run([], function () {
+        //             assert.file(expected);
+        //             done();
+        //         });
+        //     });
+        // });
         describe('With MongoDB', function () {
             describe('With Defaults', function () {
                 it('Creates expected files', function (done) {

@@ -3,17 +3,8 @@
 // Import Bourbon Mixins
 @import '../bower_components/bourbon/dist/_bourbon';<% } %><% if (useLesshat) { %>// Import Lesshat Library
 
-@import '../bower_components/lesshat/build/lesshat';<% } %><% if (!useBootstrap && !useFoundation) { %>
-<% if (cssOption === 'sass') { %>// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
-@import '../bower_components/normalize-scss/normalize';<% } %><% if (cssOption === 'less') { %>
-// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
-@import (less) '../bower_components/normalize.css/normalize.css';<% } %><% if (cssOption === 'stylus') { %>
-// Import Nib mixin library
-@import '../../node_modules/nib'
+@import '../bower_components/lesshat/build/lesshat';<% } %>
 
-// Normalize Styles based from Nick Gallagher's Reset (http://nicolasgallagher.com/)
-global-reset()<% } %>
-<% } %><% if (!useBootstrap) { %>
 // Box sizing partial styles:
 // Apply a natural box layout model to all elements
 
@@ -23,27 +14,14 @@ global-reset()<% } %>
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-}
-<% } %><% if (cssOption === 'less') { %><% if (useFontAwesome) { %>
+}<% if (cssOption === 'less') { %><% if (useFontAwesome) { %>
 // Import Font Awesome Library
 
 @import '../bower_components/font-awesome/less/font-awesome';
-@fa-font-path: '../bower_components/font-awesome/fonts';<% } %><% } %><% if (cssOption === 'sass') { %><% if (useFontAwesome) { %>
+@fa-font-path: '../bower_components/font-awesome/fonts';<% } %><% } %><% if (cssOption === 'sass' && useFontAwesome) { %>
 //  Import Font Awesome Library
 $fa-font-path: '../bower_components/font-awesome/fonts';
-@import '../bower_components/font-awesome/scss/font-awesome';<% } %><% } %><% if (cssOption === 'less' && useBootstrap) { %>
-
-// Import All Bootstrap Styles
-@import "../bower_components/bootstrap/less/boostrap.less";<% } %><% if (cssOption === 'sass' && useBootstrap) { %>
-
-// Import All Bootstrap Styles
-@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";<% } %><% if (useFoundation) { %>
-
-// Import All Foundation Styles
-@import "../bower_components/foundation/scss/normalize";
-@import "../bower_components/foundation/scss/foundation";
-
-<% } %>
+@import '../bower_components/font-awesome/scss/font-awesome';<% } %>
 
 // Injects all imports files automatically (ex. _mypartial)
 // [injector]

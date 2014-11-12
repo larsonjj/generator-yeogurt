@@ -137,36 +137,9 @@ var clientPrompts = function clientPrompts() {
         message: 'Would you like to use the ' + 'Lesshat Mixin Library'.blue + '?',
         default: true
     }, {
-        when: function(answers) { return answers.cssOption === 'sass' || answers.cssOption === 'css'; },
-        type: 'list',
-        name: 'cssFramework',
-        message: 'Which CSS ' + 'framework'.blue + ' would you like to use?',
-        choices: ['Bootstrap', 'Foundation', 'None'],
-        filter: function(val) {
-            var filterMap = {
-                'Bootstrap': 'bootstrap',
-                'Foundation': 'foundation',
-                'None': 'none'
-            };
-
-            return filterMap[val];
-        }
-    }, {
-        when: function(answers) { return answers.cssOption === 'less'; },
-        type: 'confirm',
-        name: 'useBootstrap',
-        message: 'Would you like to use the ' + 'Bootstrap'.blue + ' CSS framework?',
-        default: true
-    }, {
-        when: function(answers) { return answers.cssFramework !== 'foundation'; },
         type: 'confirm',
         name: 'ieSupport',
         message: 'Do you need to ' + 'support IE8+'.blue + '?',
-        default: true
-    }, {
-        type: 'confirm',
-        name: 'useGA',
-        message: 'Will you be using ' + 'Google Analytics'.blue + '?',
         default: true
     }, {
         type: 'confirm',
@@ -181,9 +154,17 @@ var clientPrompts = function clientPrompts() {
             name: 'Font Awesome',
             value: 'useFontAwesome',
             checked: true
-        },  {
+        }, {
             name: 'Modernizr',
             value: 'useModernizr',
+            checked: true
+        }, {
+            name: 'Normalize.css',
+            value: 'useNormalize',
+            checked: true
+        }, {
+            name: 'Google Analytics',
+            value: 'useGA',
             checked: true
         }],
     }], function(answers) {
