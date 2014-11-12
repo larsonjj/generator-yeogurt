@@ -98,23 +98,7 @@ html<% if (useModernizr) { %>.no-js<% } %>(lang='en')<% if (ieSupport) { %>
         <% if (useServer) { %>    <% } %>script(src='/bower_components/<% if (cssOption === 'sass') { %>bootstrap-sass-official/assets/javascripts/bootstrap/<% } else if (cssOption === 'less' || cssOption === 'css') { %>bootstrap/js/<% } %>transition.js')<% } %><% if (useFoundation) { %><% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/vendor/fastclick.js')
         <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/vendor/jquery.cookie.js')
         <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/vendor/placeholder.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/foundation/foundation.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/foundation/foundation.abide.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/foundation/foundation.accordion.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/foundation/foundation.alert.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/foundation/foundation.clearing.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/foundation/foundation.dropdown.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/foundation/foundation.equalizer.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/foundation/foundation.interchange.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/foundation/foundation.joyride.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/foundation/foundation.magellan.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/foundation/foundation.offcanvas.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/foundation/foundation.orbit.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/foundation/foundation.reveal.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/foundation/foundation.slider.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/foundation/foundation.tab.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/foundation/foundation.tooltip.js')
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/foundation/foundation.topbar.js')<% } %>
+        <% if (useServer) { %>    <% } %>script(src='/bower_components/foundation/js/foundation/foundation.js')<% } %>
         <% if (useServer) { %>    <% } %>// endbuild<% if (useServer) { %>
         else
             script(src='/scripts/global.js')<% } %><% if (jsOption === 'requirejs') { %>
