@@ -1,7 +1,7 @@
-### v0.13.0:
-#### date: 2014-10-17
+### v0.12.2:
+#### date: 2014-11-11
 ##### changes:
-* Removed `HTML` option for Static Sites
+* Solidified grunt-dashboard version to avoid issue with new version.
 
 ### v0.12.1:
 #### date: 2014-10-01
