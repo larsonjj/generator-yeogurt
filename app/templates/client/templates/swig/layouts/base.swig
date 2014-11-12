@@ -42,8 +42,7 @@
         <script src="/bower_components/modernizr/modernizr.js"></script><% } %><% if (ieSupport) { %>
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]><% if (responsive) { %>
-        <script src="/bower_components/respond/respond.min.js"></script><% } %>
+        <!--[if lt IE 9]>
         <script src="/bower_components/html5shiv/dist/html5shiv-printshiv.js"></script>
         <script>
             // Protect window.console method calls, e.g. console is not defined on IE

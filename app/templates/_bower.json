@@ -14,8 +14,7 @@
         "lesshat": "~3.0.0"<% } %><% if (cssOption === 'sass' && useBourbon) { %>,
         "bourbon": "~3.2.1"<% } %><% if (useFontAwesome) { %>,
         "font-awesome": "~4.1.0"<% } %><% if (ieSupport) { %>,
-        "html5shiv": "~3.7.2",
-        "respond": "~1.4.2"<% } %><% if (jsOption === 'requirejs') { %>,
+        "html5shiv": "~3.7.2"<% } %><% if (jsOption === 'requirejs') { %>,
         "requirejs": "~2.1.11"<% } %>
     },
   "devDependencies": {}
