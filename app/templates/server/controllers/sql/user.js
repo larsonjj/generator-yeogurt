@@ -26,22 +26,25 @@ var show = function(req, res, next) {
         where: {
             username: req.params.username
         }
-    }).success(function(user) {<% if (useJwt) { %>
-        if (!req.xhr) {
+    }).success(function(user) {
+        if (user) {<% if (useJwt) { %>
+            if (!req.xhr) {
+                res.render('account/profile', {
+                    title: 'Profile',
+                    publicInfo: user
+                });
+            }
+            else {
+                res.json(user);
+            }<% } else { %>
             res.render('account/profile', {
                 title: 'Profile',
                 publicInfo: user
-            });
+            });<% } %>
         }
         else {
-            if (user) {
-                res.json(user);
-            }
-        }<% } else { %>
-        res.render('account/profile', {
-            title: 'Profile',
-            publicInfo: user
-        });<% } %>
+            res.send(404);
+        }
     }).error(function(err) {
         return next(err);
     });

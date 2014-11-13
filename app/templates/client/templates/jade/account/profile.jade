@@ -3,7 +3,28 @@ extends ../layouts/one-column
 block content
 
     img(src="#{publicInfo.picture || 'https://gravatar.com/avatar/?s=200&d=retro'}" alt="profile image")
-    h3 #{publicInfo.firstName} #{publicInfo.lastName}
-    h4 #{publicInfo.username}
+    p
+        if publicInfo.firstName && publicInfo.lastName
+            h3 #{publicInfo.firstName} #{publicInfo.lastName}
+        else if publicInfo.firstName
+            h3 #{publicInfo.firstName}
+        h4 #{publicInfo.username}
+
+    hr
+
+    p
+        | Email: #{publicInfo.email}
+
+    p
+        if publicInfo.location
+            | Location: #{publicInfo.location}
+
+    p
+        if publicInfo.gender
+            | Gender: #{publicInfo.gender}
+
+    p
+        if publicInfo.website
+            | Website: #{publicInfo.website}
 
 

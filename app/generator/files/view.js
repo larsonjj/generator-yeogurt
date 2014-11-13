@@ -12,6 +12,7 @@ var viewFiles = function viewFiles() {
         this.mkdir(viewRoot + 'templates/layouts');
         this.template('client/templates/jade/index.jade', viewRoot + 'templates/index.jade');
         this.template('client/templates/jade/layouts/base.jade', viewRoot + 'templates/layouts/base.jade');
+        this.template('client/templates/jade/errors/404.jade', viewRoot + 'templates/errors/404.jade');
         if (this.useAuth) {
             // Account
             this.template('client/templates/jade/account/forgot.jade', viewRoot + 'templates/account/forgot.jade');

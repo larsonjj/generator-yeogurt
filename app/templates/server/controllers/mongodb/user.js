@@ -23,23 +23,28 @@ var auth = require('../auth');
 var show = function(req, res, next) {
     User.findOne({
         username: req.params.username
-    }, function(err, user) {<% if (useJwt) { %>
-        if (!req.xhr) {
+    }, function(err, user) {
+        if (user) {<% if (useJwt) { %>
+            if (!req.xhr) {
+                res.render('account/profile', {
+                    title: 'Profile',
+                    publicInfo: user
+                });
+            }
+            else {
+                if (user) {
+                    res.json(user);
+                }
+            }<% } else { %>
             res.render('account/profile', {
                 title: 'Profile',
                 publicInfo: user
             });
+            <% } %>
         }
         else {
-            if (user) {
-                res.json(user);
-            }
-        }<% } else { %>
-        res.render('account/profile', {
-            title: 'Profile',
-            publicInfo: user
-        });
-        <% } %>
+            res.send(404);
+        }
     });
 };
 
