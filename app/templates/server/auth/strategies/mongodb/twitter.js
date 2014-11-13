@@ -32,9 +32,7 @@ var strategy = function(User) {
                     });
                     done(err);
                 } else {
-                    User.find({
-                        username: req.user.username
-                    }, function(err, user) {
+                    User.findById(req.user.id, function(err, user) {
                         var name = profile._json.name.split(' ');
                         user.firstName = user.firstName || name[0];
                         user.lastName = user.lastName || name[name.length - 1];
@@ -62,10 +60,11 @@ var strategy = function(User) {
                 }
                 User.findOne({
                     username: profile._json.screen_name
-                }, function(err, existingEmailUser) {
-                    if (existingEmailUser) {
+                }, function(err, existingUsernameUser) {
+                    if (existingUsernameUser) {
                         req.flash('errors', {
-                            msg: 'There is already an account using this username. Sign in to that account and link it with Twitter manually from Account Settings.'
+                            msg: 'There is already an account using the username "' + existingUsernameUser.username +
+                                 '". If it is your account, sign in below or click on "Forgot you password?" to reset your password.'
                         });
                         done(err);
                     } else {

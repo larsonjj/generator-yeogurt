@@ -1,17 +1,14 @@
 extends ../layouts/one-column
 
 block content
-    .container
-        .row
-            .col-sm-8.col-sm-offset-2
-                form(method='post', action='/forgot')
-                    legend Forgot Password<% if (useSecurity) { %>
-                    input(type='hidden', name='_csrf', value=_csrf)<% } %>
-                    .form-group
-                        p Enter your Username or email address below and we will send you password reset instructions.
-                        label.control-label(for='username') Username or Email
-                        input.form-control(type='username', name='username', id='username', placeholder='Enter your username or email', autofocus)
-                    .form-group
-                        button.btn.btn-primary
-                            i.fa.fa-key
-                            | Reset Password
+    h3 Forgot Password
+    form(method='post', action='/forgot')
+        input(type='hidden', name='_csrf', value=_csrf)
+
+        p Enter your Username or email address below and we will send you password reset instructions.
+
+        p
+            label(for='username') Username or Email:
+            input(type='username', name='username', id='username', placeholder='Enter your username or email', autofocus)
+
+        button Reset Password

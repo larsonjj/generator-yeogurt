@@ -55,7 +55,6 @@ var show = function(req, res) {
 
 var create = function(req, res, next) {
     req.assert('username', 'Username cannot be blank').notEmpty();
-    req.assert('username', 'Username cannot contain symbols').isAlphanumeric();
     req.assert('email', 'Email is not valid').isEmail();
     req.assert('password', 'Password must be at least 6 characters long').len(6);
     req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);

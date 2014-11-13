@@ -1,5 +1,3 @@
-//- One Column Template
-
 include ../modules/navbar
 include ../modules/messages
 
@@ -10,7 +8,7 @@ block layout
     +navbar()
     //- Provides layout level markup
     .one-column
-        .container
+        .main-container
             //- Include flash messages
             +messages()
-        block content
+            block content

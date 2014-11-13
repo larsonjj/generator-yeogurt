@@ -1,3 +1,9 @@
+### v0.13.0:
+#### date: 2014-11-14
+##### changes:
+* Removed HTML Option for static sites
+* Removed Bootstrap and Foundation prompts and added [Guides](https://github.com/larsonjj/generator-yeogurt/tree/master/docs/guides) for them instead
+
 ### v0.12.3:
 #### date: 2014-11-12
 ##### changes:

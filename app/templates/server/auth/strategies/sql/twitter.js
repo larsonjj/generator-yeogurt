@@ -77,11 +77,11 @@ var strategy = function(User) {
                     where: {
                         username: profile._json.screen_name
                     }
-                }).success(function(existingEmailUser) {
-                    if (existingEmailUser) {
+                }).success(function(existingUsernameUser) {
+                    if (existingUsernameUser) {
                         req.flash('errors', {
-                            msg: 'There is already an account with a username that matches your Twitter username. ' +
-                                 'Create a new account and link it with Twitter manually from Account Settings.'
+                            msg: 'There is already an account using the username "' + existingUsernameUser.username +
+                                 '". If it is your account, sign in below or click on "Forgot you password?" to reset your password.'
                         });
                         done(null);
                     } else {

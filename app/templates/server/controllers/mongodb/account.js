@@ -39,13 +39,11 @@ var postLogin = function(req, res, next) {
 
     var context = (req.body.username.indexOf('@') > -1) ? 'email' : 'username';
 
-    req.assert('username', 'Username cannot be blank').notEmpty();
-
     if (context === 'email') {
         req.assert('username', 'Please enter a valid email address.').isEmail();
     }
     else {
-        req.assert('username', 'Incorrect username or password').isAlphanumeric();
+        req.assert('username', 'Username cannot be blank').notEmpty();
     }
 
     var errors = req.validationErrors();<% if (useJwt) { %>
@@ -263,19 +261,17 @@ var forgot = function(req, res) {
 /**
  * POST /forgot
  * Create a random token, then the send user an email with a reset link.
- * @param email
+ * @param username
  */
 
 var postForgot = function(req, res, next) {
     var context = (req.body.username.indexOf('@') > -1) ? 'email' : 'username';
 
-    req.assert('username', 'Username cannot be blank').notEmpty();
-
     if (context === 'email') {
         req.assert('username', 'Please enter a valid email address.').isEmail();
     }
     else {
-        req.assert('username', 'Incorrect username or password').isAlphanumeric();
+        req.assert('username', 'Username cannot be blank').notEmpty();
     }
 
     var errors = req.validationErrors();<% if (useJwt) { %>
@@ -301,7 +297,7 @@ var postForgot = function(req, res, next) {
         },
         function(token, done) {
             // Check to see whether to search for email or username
-            var searchInput = (context === 'email') ? {email: req.body.email.toLowerCase()} : {username: req.body.username.toLowerCase()};
+            var searchInput = (context === 'email') ? {email: req.body.username.toLowerCase()} : {username: req.body.username.toLowerCase()};
             User.findOne(searchInput, function(err, user) {
                 if (err) {
                     return next(err);
@@ -381,9 +377,8 @@ var postForgot = function(req, res, next) {
             });
         },
         function(token, done) {
-            User.findOne({
-                email: req.body.email.toLowerCase()
-            }, function(err, user) {
+            var searchInput = (context === 'email') ? {email: req.body.username.toLowerCase()} : {username: req.body.username.toLowerCase()};
+            User.findOne(searchInput, function(err, user) {
                 if (!user) {
                     req.flash('errors', {
                         msg: 'No account with that email address exists.'

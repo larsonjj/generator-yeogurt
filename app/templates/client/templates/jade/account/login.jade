@@ -1,28 +1,26 @@
 extends ../layouts/one-column
 
 block content
-    .container
-        .row
-            .page-header
-                h3 Sign in
-            form(method='post', action='/login')<% if (useSecurity) { %>
-                input(type='hidden', name='_csrf', value=_csrf)<% } %>
-                .col-sm-8.col-sm-offset-2
-                    .form-group
-                        label.control-label(for='username') Username or Email
-                        input.form-control(type='text', name='username', id='username', placeholder='Enter your username or email', autofocus)
-                    .form-group
-                        label.control-label(for='password') Password
-                        input.form-control(type='password', name='password', id='password', placeholder='Password')
-                    .form-group
-                        button.btn.btn-primary
-                            span.ion-android-hand
-                            | Login
-                        a.btn.btn-link(href='/forgot') Forgot your password?<% if (authTypes.indexOf('facebook') > -1 || authTypes.indexOf('twitter') > -1) { %>
-                    hr<% if (authTypes.indexOf('facebook') > -1) { %>
-                    a.btn.btn-block.btn-facebook.btn-social(href='/auth/facebook')
-                        i.fa.fa-facebook
-                        | Sign in with Facebook
-                    <% } %><% if (authTypes.indexOf('twitter') > -1) { %>a.btn.btn-block.btn-twitter.btn-social(href='/auth/twitter')
-                        i.fa.fa-twitter
-                        | Sign in with Twitter<% } %><% } %>
+    h3 Sign in
+    form(method='post', action='/login')
+        input(type='hidden', name='_csrf', value=_csrf)
+
+        p
+            label(for='username') Username or Email:
+            input(type='text', name='username', id='username', placeholder='Enter your username or email', autofocus)
+
+        p
+            label(for='password') Password:
+            input(type='password', name='password', id='password', placeholder='Password')
+
+        button Login
+
+        p
+            a(href='/forgot') Forgot your password?
+
+        hr
+
+        p
+            a(href='/auth/facebook') Sign in with Facebook
+        p
+            a(href='/auth/twitter') Sign in with Twitter
