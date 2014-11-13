@@ -1,18 +1,26 @@
 extends ../layouts/one-column
 
 block content
+
+    h3 Account Information
+
+    form(action='/user/#{user.username}/username', method='post')
+        input(type='hidden', name='_csrf', value=_csrf)
+
+        p
+            label(for='username') Username:
+            input(type='text', name='username', id='username', value=user.username)
+
+        button Change username
+
     h3 Profile Information
 
     form(action='/user/#{user.username}/profile?_method=PUT', method='post')
         input(type='hidden', name='_csrf', value=_csrf)
 
         p
-            label(for='email') Username:
-            p-static= user.username
-
-        p
             label(for='email') Email:
-            input(type='email', name='email', id='email', value=user.email)
+            input(type='text', name='email', id='email', value=user.email)
 
         p
             label(for='firstName') First Name:
@@ -63,7 +71,7 @@ block content
     h3 Delete Account
 
     p You can delete your account, but keep in mind this action is irreversible.
-    form(action='/user/#{user.username}?_method=DELETE', method='post')
+    form(action='/user/?_method=DELETE', method='post')
         input(type='hidden', name='_csrf', value=_csrf)
 
         button Delete my account

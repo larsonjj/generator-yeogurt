@@ -19,6 +19,7 @@ var viewFiles = function viewFiles() {
             this.template('client/templates/jade/account/profile.jade', viewRoot + 'templates/account/profile.jade');
             this.template('client/templates/jade/account/reset.jade', viewRoot + 'templates/account/reset.jade');
             this.template('client/templates/jade/account/signup.jade', viewRoot + 'templates/account/signup.jade');
+            this.template('client/templates/jade/account/social-signup.jade', viewRoot + 'templates/account/social-signup.jade');
 
             // Modules
             this.template('client/templates/jade/modules/navbar.jade', viewRoot + 'templates/modules/navbar.jade');

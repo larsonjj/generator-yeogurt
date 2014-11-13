@@ -16,7 +16,9 @@ var routes = function (app) {
     app.post('/forgot', accountController.postForgot);
     app.get('/reset/:token', accountController.reset);
     app.post('/reset/:token', accountController.postReset);
-    app.get('/signup', accountController.signup);<% if (authTypes.indexOf('facebook') > -1) { %>
+    app.get('/signup', accountController.signup);
+    app.get('/social/signup', accountController.socialSignup);
+    app.post('/social/signup', accountController.postSocialSignup);<% if (authTypes.indexOf('facebook') > -1) { %>
 
     // Facebook
     app.get('/auth/facebook', passport.authenticate('facebook', {
@@ -29,7 +31,6 @@ var routes = function (app) {
 
     // Twitter
     app.get('/auth/twitter', passport.authenticate('twitter', {
-        scope: ['email'],
         failureRedirect: '/login'
     }));
     app.get('/auth/twitter/callback', passport.authenticate('twitter', {

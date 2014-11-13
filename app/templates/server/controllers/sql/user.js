@@ -37,12 +37,9 @@ var show = function(req, res) {
                 res.json(user);
             }
         }).error(function(err) {
-            res.json({
-                errors: [{
-                    param: 'email',
-                    msg: 'Error querying database to find user'
-                }]
-            });
+            if (err) {
+                return next(err);
+            }
         });
     }
 };
@@ -177,11 +174,161 @@ var create = function(req, res, next) {
 };
 
 /**
+ * POST /user/:username/username
+ * Update username.
+ */
+
+var updateUsername = function(req, res, next) {
+    req.assert('username', 'Username cannot be blank').notEmpty();
+
+    var errors = req.validationErrors();<% if (useJwt) { %>
+
+    if (errors) {
+        if (!req.xhr) {
+            req.flash('errors', errors);
+            return res.redirect('/user/' + req.user.username);
+        }
+        else {
+            res.json({
+                errors: errors
+            });
+        }
+    }
+
+    User.find({
+        where: {
+            username: req.params.username
+        }
+    }).success(function(user) {
+        User.find({
+            where: {
+                username: req.body.username
+            }
+        }).success(function(existingUser) {
+            if (existingUser) {
+                if (!req.xhr) {
+                    req.flash('errors', {
+                        msg: 'Account with that username already exists.'
+                    });
+                    return res.redirect('/user/' + req.user.username);
+                }
+                else {
+                    return res.json({
+                        errors: [{
+                            param: 'username',
+                            msg: 'Account with that username already exists.'
+                        }]
+                    });
+                }
+            }
+
+            user.username = req.body.username;
+
+            user.save().success(function(err) {
+                if (err) {
+                    return next(err);
+                }
+                if (!req.xhr) {
+                    req.flash('success', {
+                        msg: 'Username information updated.'
+                    });
+                    res.redirect('/user/' + req.user.username);
+                }
+                else {
+                    res.json({
+                        success: [{
+                            msg: 'Username information updated.'
+                        }]
+                    });
+                }
+            }).error(function(err) {
+                if (err) {
+                    return next(err);
+                }
+            });
+        }).error(function(err) {
+            if (err) {
+                return next(err);
+            }
+        });
+    }).error(function(err) {
+        if (err) {
+            return next(err);
+        }
+    });<% } else { %>
+    if (errors) {
+        req.flash('errors', errors);
+        return res.redirect('/user/' + req.user.username);
+    }
+    User.find({
+        where: {
+            username: req.params.username
+        }
+    }).success(function(user) {
+        User.find({
+            where: {
+                username: req.body.username
+            }
+        }).success(function(existingUser) {
+            if (err) {
+                return next(err);
+            }
+            if (existingUser) {
+                req.flash('errors', {
+                    msg: 'Account with that username already exists.'
+                });
+                return res.redirect('/user/' + req.user.username);
+            }
+
+            user.username = req.body.username;
+
+            user.save().success(function(err) {
+                if (err) {
+                    return next(err);
+                }
+                req.flash('success', {
+                    msg: 'Username information updated.'
+                });
+                res.redirect('/user/' + req.user.username);
+            }).error(function(error) {
+                if (err) {
+                    return next(err);
+                }
+            });
+        }).error(function(error) {
+            if (err) {
+                return next(err);
+            }
+        });
+    }).error(function(error) {
+        if (err) {
+            return next(err);
+        }
+    });<% } %>
+};
+
+/**
  * PUT /user/:username/profile
  * Update profile information.
  */
 
-var updateProfile = function(req, res, next) {<% if (useJwt) { %>
+var updateProfile = function(req, res, next) {
+    req.assert('email', 'Email is not valid').isEmail();
+
+    var errors = req.validationErrors();<% if (useJwt) { %>
+
+    if (errors) {
+        if (!req.xhr) {
+            req.flash('errors', errors);
+            return res.redirect('/user/' + req.user.username);
+        }
+        else {
+            res.json({
+                errors: errors
+            });
+        }
+    }
+
     User.find({
         where: {
             username: req.params.username
@@ -219,6 +366,11 @@ var updateProfile = function(req, res, next) {<% if (useJwt) { %>
             return next(err);
         }
     });<% } else { %>
+    if (errors) {
+        req.flash('errors', errors);
+        return res.redirect('/user/' + req.user.username);
+    }
+
     User.find({
         where: {
             username: req.params.username
@@ -336,11 +488,55 @@ var updatePassword = function(req, res, next) {
 /**
  * DELETE /user/:username
  * Delete user account.
+ * @param {string} username
  */
 
 var destroy = function(req, res, next) {<% if (useJwt) { %>
     User.destroy({
         username: req.params.username
+    }).success(function() {
+        if (!req.xhr) {
+            req.logout();
+            req.flash('info', {
+                msg: 'Account with username "' + req.params.username + '" has been deleted.'
+            });
+            res.redirect('/');
+        }
+        else {
+            res.json({
+                info: [{
+                    msg: 'Account with username "' + req.params.username + '" has been deleted.'
+                }]
+            });
+        }
+    }).error(function(err) {
+        if (err) {
+            return next(err);
+        }
+    });<% } else { %>
+    User.destroy({
+        username: req.params.username
+    }).success(function() {
+        req.logout();
+        req.flash('info', {
+            msg: 'Account with username "' + req.params.username + '" has been deleted.'
+        });
+        res.redirect('/');
+    }).error(function(err) {
+        if (err) {
+            return next(err);
+        }
+    });<% } %>
+};
+
+/**
+ * DELETE /user
+ * Delete current user account.
+ */
+
+var deleteAccount = function(req, res, next) {<% if (useJwt) { %>
+    User.destroy({
+        id: req.user.id
     }).success(function() {
         if (!req.xhr) {
             req.logout();
@@ -362,7 +558,7 @@ var destroy = function(req, res, next) {<% if (useJwt) { %>
         }
     });<% } else { %>
     User.destroy({
-        username: req.params.username
+        id: req.user.id
     }).success(function() {
         req.logout();
         req.flash('info', {
@@ -379,7 +575,9 @@ var destroy = function(req, res, next) {<% if (useJwt) { %>
 module.exports = {
     show: show,
     create: create,
+    updateUsername: updateUsername,
     updateProfile: updateProfile,
     updatePassword: updatePassword,
-    destroy: destroy
+    destroy: destroy,
+    deleteAccount: deleteAccount
 };

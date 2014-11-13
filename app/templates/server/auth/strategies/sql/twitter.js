@@ -96,9 +96,9 @@ var strategy = function(User) {
                         user.twitter = profile.id;
                         user.twitterToken = accessToken;
                         user.twitterSecret = tokenSecret;
-                        User.build(user).save().success(function(user) {
-                            done(null, user);
-                        });
+
+                        req.newUser = true;
+                        done(null, user);
                     }
                 });
             }).error(function(err) {

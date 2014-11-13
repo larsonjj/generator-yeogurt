@@ -79,9 +79,9 @@ var strategy = function(User) {
                         user.twitter = profile.id;
                         user.twitterToken = accessToken;
                         user.twitterSecret = tokenSecret;
-                        user.save(function(err) {
-                            done(err, user);
-                        });
+
+                        req.newUser = true;
+                        done(null, user);
                     }
                 });
             });

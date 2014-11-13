@@ -443,16 +443,237 @@ var postForgot = function(req, res, next) {
 
 /**
  * GET /auth/:provider/callback
- * Link OAuth provider.
+ * Link OAuth provider or request more information
  */
 
-var linkOAuth = function(req, res, next) {
-    if (!req.xhr) {
+var linkOAuth = function(req, res, next) {<% if (useJwt) { %>
+    if (!req.newUser) {
+        if (!req.xhr) {
+            res.redirect('/');
+        }
+        else {
+            auth.setTokenCookie(req, res);
+        }
+    }
+    else {
+        if (!req.xhr) {
+            // perserve user data through redirect
+            req.session.newUser = req.user;
+            res.redirect('/social/signup');
+        }
+    }<% } else { %>
+    if (!req.newUser) {
         res.redirect('/');
     }
     else {
-        auth.setTokenCookie(req, res);
+        // perserve user data through redirect
+        req.session.newUser = req.user;
+        res.redirect('/social/signup');
+    }<% } %>
+};
+
+/**
+ * GET /social/signup
+ * Form to gather username and email for social account
+ */
+
+var socialSignup = function(req, res, next) {<% if (useJwt) { %>
+    if (!req.xhr) {
+        res.render('account/social-signup', {
+            newUser: req.session.newUser
+        });
+        // Cleanup session data
+        req.session.newUser = null;
     }
+    else {
+        res.json({
+            newUser: req.session.newUser
+        });
+        // Cleanup session data
+        req.session.newUser = null;
+    }<% } else { %>
+    res.render('account/social-signup', {
+        newUser: req.session.newUser
+    });
+    // Cleanup session data
+    req.session.newUser = null;<% } %>
+};
+
+/**
+ * POST /social/signup
+ * Link OAuth provider.
+ */
+
+var postSocialSignup = function(req, res, next) {
+    req.assert('email', 'Please enter a valid email address.').isEmail();
+    req.assert('username', 'Username cannot be blank').notEmpty();
+
+    var errors = req.validationErrors();<% if (useJwt) { %>
+
+    if (errors) {
+        if (!req.xhr) {
+            req.flash('errors', errors);
+            return res.redirect('/social/signup');
+        }
+        else {
+            res.json({
+                errors: errors
+            });
+        }
+    }
+    User.find({
+        where: {
+            email: req.body.email
+        }
+    }).success(function(existingEmail) {
+        if (existingEmail) {
+            if (!req.xhr) {
+                req.flash('errors', {
+                    msg: 'There is already an account using this email address.'
+                });
+            }
+            else {
+                res.json({
+                    errors: {
+                        msg: 'There is already an account using this email address.'
+                    }
+                });
+            }
+        }
+        else {
+            User.find({
+                where: {
+                    username: req.body.username
+                }
+            }).success(function(existingUsername) {
+                if (existingUsername) {
+                    if (!req.xhr) {
+                        req.flash('errors', {
+                            msg: 'There is already an account using this username.'
+                        });
+                    }
+                    else {
+                        res.json({
+                            errors: {
+                                msg: 'There is already an account using this username.'
+                            }
+                        });
+                    }
+                } else {
+                    var user = {};
+
+                    user.username = req.body.username;
+                    user.email = req.body.email;
+                    user.firstName = req.body.firstName;
+                    user.lastName = req.body.lastName;
+                    user.location = req.body.location;
+                    user.picture = req.body.picture;
+                    user.gender = req.body.gender;
+
+                    if (req.body.facebook) {
+                        user.facebook = req.body.facebook;
+                        user.facebookToken = req.body.facebookToken;
+                    }
+                    else if (req.body.twitter) {
+                        user.twitter = req.body.twitter;
+                        user.twitterToken = req.body.twitterToken;
+                        user.twitterSecret = req.body.twitterSecret;
+                    }
+
+                    User.build(user).save().success(function(user) {
+                        if (!req.xhr) {
+                            req.logIn(user, function(err) {
+                                if (err) {
+                                    req.flash('errors', {
+                                        msg: 'Error logging in, please try signing up again.'
+                                    });
+                                }
+                                res.redirect('/');
+                            });
+                        }
+                        else {
+                            auth.setTokenCookie(req, res);
+                        }
+                    }).error(function(err) {
+                        if (err) {
+                            return next(err);
+                        }
+                    });
+                }
+            });
+        }
+    }).error(function(err) {
+        if (err) {
+            return next(err);
+        }
+    });<% } else { %>
+    if (errors) {
+        req.flash('errors', errors);
+        return res.redirect('/social/signup');
+    }
+    User.find({
+        where: {
+            email: req.body.email
+        }
+    }).success(function(existingEmail) {
+        if (existingEmail) {
+            req.flash('errors', {
+                msg: 'There is already an account using this email address.'
+            });
+        }
+        else {
+            User.find({
+                where: {
+                    username: req.body.username
+                }
+            }).success(function(existingUsername) {
+                if (existingUsername) {
+                    req.flash('errors', {
+                        msg: 'There is already an account using this username.'
+                    });
+                } else {
+                    var user = {};
+
+                    user.username = req.body.username;
+                    user.email = req.body.email;
+                    user.firstName = req.body.firstName;
+                    user.lastName = req.body.lastName;
+                    user.location = req.body.location;
+                    user.picture = req.body.picture;
+                    user.gender = req.body.gender;
+
+                    if (req.body.facebook) {
+                        user.facebook = req.body.facebook;
+                        user.facebookToken = req.body.facebookToken;
+                    }
+                    else if (req.body.twitter) {
+                        user.twitter = req.body.twitter;
+                        user.twitterToken = req.body.twitterToken;
+                        user.twitterSecret = req.body.twitterSecret;
+                    }
+
+                    User.build(user).save().success(function(user) {
+                        req.logIn(user, function(err) {
+                            if (err) {
+                                req.flash('errors', {
+                                    msg: 'Error logging in, please try signing up again.'
+                                });
+                            }
+                            res.redirect('/');
+                        });
+                    }).error(function(err) {
+                        if (err) {
+                            return next(err);
+                        }
+                    });
+                }
+            });
+        }
+    }).error(function(err) {
+        if (err) {
+            return next(err);
+        }
+    });<% } %>
 };
 
 /**
@@ -497,6 +718,8 @@ module.exports = {
     postLogin: postLogin,
     logout: logout,
     signup: signup,
+    socialSignup: socialSignup,
+    postSocialSignup: postSocialSignup,
     reset: reset,
     postReset: postReset,
     forgot: forgot,

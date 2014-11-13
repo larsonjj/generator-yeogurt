@@ -30,7 +30,7 @@ var strategy = function(User) {
             }).success(function(existingUser) {
                 if (existingUser) {
                     req.flash('errors', {
-                        msg: 'There is already a Facebook account that belongs to you. Sign in with that account or delete it, then link it with your current account.'
+                        msg: 'Your Facebook account is already linked to another account. Sign in with that account below or click on "Forgot you password?" to reset your password.'
                     });
                     done(null);
                 } else {
@@ -78,13 +78,11 @@ var strategy = function(User) {
                 }).success(function(existingEmailUser) {
                     if (existingEmailUser) {
                         req.flash('errors', {
-                            msg: 'There is already an account using this email address. Sign in to that account and link it with Facebook manually from Account Settings.'
+                            msg: 'There is already an account using the email "' + existingEmailUser.email + '". If it is your account, sign in below or click on "Forgot you password?" to reset your password.'
                         });
                         done(null);
                     } else {
                         var user = {};
-                        // Use email if no username is found
-                        user.username = profile.username || profile._json.email;
                         user.firstName = profile._json.first_name;
                         user.lastName = profile._json.last_name;
                         user.email = profile._json.email;
@@ -93,9 +91,9 @@ var strategy = function(User) {
                         user.gender = profile._json.gender;
                         user.picture = 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
                         user.location = (profile._json.location) ? profile._json.location.name : '';
-                        User.build(user).save().success(function(user) {
-                            done(null, user);
-                        });
+
+                        req.newUser = true;
+                        done(null, user);
                     }
                 }).error(function(err) {
                     if (err) {
