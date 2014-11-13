@@ -224,15 +224,12 @@ var updateUsername = function(req, res, next) {
 
             user.username = req.body.username;
 
-            user.save().success(function(err) {
-                if (err) {
-                    return next(err);
-                }
+            user.save().success(function() {
                 if (!req.xhr) {
                     req.flash('success', {
                         msg: 'Username information updated.'
                     });
-                    res.redirect('/user/' + req.user.username);
+                    res.redirect('/user/' + req.body.username);
                 }
                 else {
                     res.json({
@@ -282,10 +279,7 @@ var updateUsername = function(req, res, next) {
 
             user.username = req.body.username;
 
-            user.save().success(function(err) {
-                if (err) {
-                    return next(err);
-                }
+            user.save().success(function() {
                 req.flash('success', {
                     msg: 'Username information updated.'
                 });
