@@ -563,9 +563,7 @@ var postSocialSignup = function(req, res, next) {
 
                     user.save(function(err) {
                         if (err) {
-                            if (err) {
-                                return next(err);
-                            }
+                            return next(err);
                         }
                         if (!req.xhr) {
                             req.logIn(user, function(err) {
@@ -603,9 +601,7 @@ var postSocialSignup = function(req, res, next) {
             }, function(err, existingUsername) {
                 if (existingUsername) {
                     if (err) {
-                        if (err) {
-                            return next(err);
-                        }
+                        return next(err);
                     }
                     req.flash('errors', {
                         msg: 'There is already an account using this username.'
@@ -685,6 +681,26 @@ var unlinkOAuth = function(req, res, next) {
     });
 };
 
+/**
+ * GET /settings
+ * Settings page.
+ */
+
+var settings = function(req, res) {<% if (useJwt) { %>
+    if (!req.xhr) {
+        res.render('account/settings', {
+            title: 'Account Management'
+        });
+    }
+    else {
+        res.json(req.user);
+    }<% } else { %>
+    res.render('account/settings', {
+        title: 'Account Management'
+    });
+    <% } %>
+};
+
 module.exports = {
     login: login,
     postLogin: postLogin,
@@ -697,5 +713,6 @@ module.exports = {
     forgot: forgot,
     postForgot: postForgot,
     linkOAuth: linkOAuth,
-    unlinkOAuth: unlinkOAuth
+    unlinkOAuth: unlinkOAuth,
+    settings: settings
 };

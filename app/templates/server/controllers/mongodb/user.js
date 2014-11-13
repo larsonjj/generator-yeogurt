@@ -20,29 +20,27 @@ var auth = require('../auth');
  * Profile page.
  */
 
-var show = function(req, res) {
-    if (!req.xhr) {
-        res.render('account/profile', {
-            title: 'Account Management'
-        });
-    }
-    else {
-        User.findOne({
-            username: req.params.username
-        }, function(err, user) {
-            if (err) {
-                res.json({
-                    errors: [{
-                        param: 'email',
-                        msg: 'Error trying to find user'
-                    }]
-                });
-            }
+var show = function(req, res, next) {
+    User.findOne({
+        username: req.params.username
+    }, function(err, user) {<% if (useJwt) { %>
+        if (!req.xhr) {
+            res.render('account/profile', {
+                title: 'Profile',
+                publicInfo: user
+            });
+        }
+        else {
             if (user) {
                 res.json(user);
             }
+        }<% } else { %>
+        res.render('account/profile', {
+            title: 'Profile',
+            publicInfo: user
         });
-    }
+        <% } %>
+    });
 };
 
 /**
@@ -83,20 +81,7 @@ var create = function(req, res, next) {
         username: req.body.username
     }, function(err, existingUser) {
         if (err) {
-            if (!req.xhr) {
-                req.flash('errors', {
-                    msg: 'Error trying to find user'
-                });
-                return res.redirect('/signup');
-            }
-            else {
-                res.json({
-                    errors: [{
-                        param: 'email',
-                        msg: 'Error trying to find user'
-                    }]
-                });
-            }
+            return next(err);
         }
         if (existingUser) {
             if (!req.xhr) {
@@ -200,7 +185,7 @@ var updateUsername = function(req, res, next) {
     if (errors) {
         if (!req.xhr) {
             req.flash('errors', errors);
-            return res.redirect('/user/' + req.user.username);
+            return res.redirect('/settings');
         }
         else {
             res.json({
@@ -227,7 +212,7 @@ var updateUsername = function(req, res, next) {
                     req.flash('errors', {
                         msg: 'Account with that username already exists.'
                     });
-                    return res.redirect('/user/' + req.user.username);
+                    return res.redirect('/settings');
                 }
                 else {
                     return res.json({
@@ -249,7 +234,7 @@ var updateUsername = function(req, res, next) {
                     req.flash('success', {
                         msg: 'Username information updated.'
                     });
-                    res.redirect('/user/' + req.user.username);
+                    res.redirect('/settings');
                 }
                 else {
                     res.json({
@@ -263,7 +248,7 @@ var updateUsername = function(req, res, next) {
     });<% } else { %>
     if (errors) {
         req.flash('errors', errors);
-        return res.redirect('/user/' + req.user.username);
+        return res.redirect('/settings');
     }
     User.findOne({
         username: req.params.username
@@ -281,7 +266,7 @@ var updateUsername = function(req, res, next) {
                 req.flash('errors', {
                     msg: 'Account with that username already exists.'
                 });
-                return res.redirect('/user/' + req.user.username);
+                return res.redirect('/settings');
             }
 
             user.username = req.body.username;
@@ -293,7 +278,7 @@ var updateUsername = function(req, res, next) {
                 req.flash('success', {
                     msg: 'Username information updated.'
                 });
-                res.redirect('/user/' + req.user.username);
+                res.redirect('/settings');
             });
         });
     });<% } %>
@@ -312,7 +297,7 @@ var updateProfile = function(req, res, next) {
     if (errors) {
         if (!req.xhr) {
             req.flash('errors', errors);
-            return res.redirect('/user/' + req.user.username);
+            return res.redirect('/settings');
         }
         else {
             res.json({
@@ -343,7 +328,7 @@ var updateProfile = function(req, res, next) {
                 req.flash('success', {
                     msg: 'Profile information updated.'
                 });
-                res.redirect('/user/' + req.user.username);
+                res.redirect('/settings');
             }
             else {
                 res.json({
@@ -356,7 +341,7 @@ var updateProfile = function(req, res, next) {
     });<% } else { %>
     if (errors) {
         req.flash('errors', errors);
-        return res.redirect('/user/' + req.user.username);
+        return res.redirect('/settings');
     }
 
     User.findOne({
@@ -379,7 +364,7 @@ var updateProfile = function(req, res, next) {
             req.flash('success', {
                 msg: 'Profile information updated.'
             });
-            res.redirect('/user/' + req.user.username);
+            res.redirect('/settings');
         });
     });<% } %>
 };
@@ -398,7 +383,7 @@ var updatePassword = function(req, res, next) {
     if (errors) {
         if (!req.xhr) {
             req.flash('errors', errors);
-            return res.redirect('/user/' + req.user.username);
+            return res.redirect('/settings');
         }
         else {
             res.json({
@@ -424,7 +409,7 @@ var updatePassword = function(req, res, next) {
                 req.flash('success', {
                     msg: 'Password has been changed.'
                 });
-                res.redirect('/user/' + req.user.username);
+                res.redirect('/settings');
             }
             else {
                 res.json({
@@ -437,7 +422,7 @@ var updatePassword = function(req, res, next) {
     });<% } else { %>
     if (errors) {
         req.flash('errors', errors);
-        return res.redirect('/user/' + req.user.username);
+        return res.redirect('/settings');
     }
 
     User.findOne({
@@ -456,7 +441,7 @@ var updatePassword = function(req, res, next) {
             req.flash('success', {
                 msg: 'Password has been changed.'
             });
-            res.redirect('/user/' + req.user.username);
+            res.redirect('/settings');
         });
     });<% } %>
 };

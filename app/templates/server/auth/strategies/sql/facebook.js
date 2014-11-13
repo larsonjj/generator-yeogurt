@@ -3,6 +3,7 @@
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var secrets = require('../../config/secrets');
+var uuid = require('node-uuid');
 
 /**
  * OAuth Strategy Overview
@@ -91,6 +92,8 @@ var strategy = function(User) {
                         user.gender = profile._json.gender;
                         user.picture = 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
                         user.location = (profile._json.location) ? profile._json.location.name : '';
+                        // Build unique ID to appease passport's serializer
+                        user.id = uuid.v1();
 
                         req.newUser = true;
                         done(null, user);

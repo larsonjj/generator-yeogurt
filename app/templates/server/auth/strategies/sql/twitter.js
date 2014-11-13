@@ -3,6 +3,7 @@
 var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
 var secrets = require('../../config/secrets');
+var uuid = require('node-uuid');
 
 /**
  * OAuth Strategy Overview
@@ -96,6 +97,8 @@ var strategy = function(User) {
                         user.twitter = profile.id;
                         user.twitterToken = accessToken;
                         user.twitterSecret = tokenSecret;
+                        // Build unique ID to appease passport's serializer
+                        user.id = uuid.v1();
 
                         req.newUser = true;
                         done(null, user);

@@ -10,7 +10,7 @@ var auth = require('../auth');
 var routes = function (app) {
 
     app.post('/user', userController.create);
-    app.get('/user/:username', auth.isAuthenticated, userController.show);
+    app.get('/user/:username', userController.show);
     app.post('/user/:username/username', auth.isAuthenticated, userController.updateUsername);
     app.put('/user/:username/profile', auth.isAuthenticated, userController.updateProfile);
     app.patch('/user/:username/profile', auth.isAuthenticated, userController.updateProfile);

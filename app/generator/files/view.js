@@ -20,6 +20,7 @@ var viewFiles = function viewFiles() {
             this.template('client/templates/jade/account/reset.jade', viewRoot + 'templates/account/reset.jade');
             this.template('client/templates/jade/account/signup.jade', viewRoot + 'templates/account/signup.jade');
             this.template('client/templates/jade/account/social-signup.jade', viewRoot + 'templates/account/social-signup.jade');
+            this.template('client/templates/jade/account/settings.jade', viewRoot + 'templates/account/settings.jade');
 
             // Modules
             this.template('client/templates/jade/modules/navbar.jade', viewRoot + 'templates/modules/navbar.jade');
@@ -41,6 +42,8 @@ var viewFiles = function viewFiles() {
         //     this.template('client/templates/swig/account/profile.swig', viewRoot + 'templates/account/profile.swig');
         //     this.template('client/templates/swig/account/reset.swig', viewRoot + 'templates/account/reset.swig');
         //     this.template('client/templates/swig/account/signup.swig', viewRoot + 'templates/account/signup.swig');
+        //     this.template('client/templates/swig/account/social-signup.swig', viewRoot + 'templates/account/social-signup.swig');
+        //     this.template('client/templates/swig/account/settings.swig', viewRoot + 'templates/account/settings.swig');
 
         //     // Modules
         //     this.template('client/templates/swig/modules/navbar.swig', viewRoot + 'templates/modules/navbar.swig');

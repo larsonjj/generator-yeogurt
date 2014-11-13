@@ -6,6 +6,7 @@
 
 var passport = require('passport');
 var accountController = require('../controllers/account');
+var auth = require('../auth');
 
 var routes = function (app) {
     // Account
@@ -18,7 +19,8 @@ var routes = function (app) {
     app.post('/reset/:token', accountController.postReset);
     app.get('/signup', accountController.signup);
     app.get('/social/signup', accountController.socialSignup);
-    app.post('/social/signup', accountController.postSocialSignup);<% if (authTypes.indexOf('facebook') > -1) { %>
+    app.post('/social/signup', accountController.postSocialSignup);
+    app.get('/settings', auth.isAuthenticated, accountController.settings);<% if (authTypes.indexOf('facebook') > -1) { %>
 
     // Facebook
     app.get('/auth/facebook', passport.authenticate('facebook', {

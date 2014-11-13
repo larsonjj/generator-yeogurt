@@ -21,27 +21,30 @@ var auth = require('../auth');
  * Profile page.
  */
 
-var show = function(req, res) {
-    if (!req.xhr) {
-        res.render('account/profile', {
-            title: 'Account Management'
-        });
-    }
-    else {
-        User.find({
-            where: {
-                username: req.params.username
-            }
-        }).success(function(user) {
+var show = function(req, res, next) {
+    User.find({
+        where: {
+            username: req.params.username
+        }
+    }).success(function(user) {<% if (useJwt) { %>
+        if (!req.xhr) {
+            res.render('account/profile', {
+                title: 'Profile',
+                publicInfo: user
+            });
+        }
+        else {
             if (user) {
                 res.json(user);
             }
-        }).error(function(err) {
-            if (err) {
-                return next(err);
-            }
-        });
-    }
+        }<% } else { %>
+        res.render('account/profile', {
+            title: 'Profile',
+            publicInfo: user
+        });<% } %>
+    }).error(function(err) {
+        return next(err);
+    });
 };
 
 /**
@@ -186,7 +189,7 @@ var updateUsername = function(req, res, next) {
     if (errors) {
         if (!req.xhr) {
             req.flash('errors', errors);
-            return res.redirect('/user/' + req.user.username);
+            return res.redirect('/settings');
         }
         else {
             res.json({
@@ -210,7 +213,7 @@ var updateUsername = function(req, res, next) {
                     req.flash('errors', {
                         msg: 'Account with that username already exists.'
                     });
-                    return res.redirect('/user/' + req.user.username);
+                    return res.redirect('/settings');
                 }
                 else {
                     return res.json({
@@ -229,7 +232,7 @@ var updateUsername = function(req, res, next) {
                     req.flash('success', {
                         msg: 'Username information updated.'
                     });
-                    res.redirect('/user/' + req.body.username);
+                    res.redirect('/settings');
                 }
                 else {
                     res.json({
@@ -255,7 +258,7 @@ var updateUsername = function(req, res, next) {
     });<% } else { %>
     if (errors) {
         req.flash('errors', errors);
-        return res.redirect('/user/' + req.user.username);
+        return res.redirect('/settings');
     }
     User.find({
         where: {
@@ -274,7 +277,7 @@ var updateUsername = function(req, res, next) {
                 req.flash('errors', {
                     msg: 'Account with that username already exists.'
                 });
-                return res.redirect('/user/' + req.user.username);
+                return res.redirect('/settings');
             }
 
             user.username = req.body.username;
@@ -283,7 +286,7 @@ var updateUsername = function(req, res, next) {
                 req.flash('success', {
                     msg: 'Username information updated.'
                 });
-                res.redirect('/user/' + req.user.username);
+                res.redirect('/settings');
             }).error(function(error) {
                 if (err) {
                     return next(err);
@@ -314,7 +317,7 @@ var updateProfile = function(req, res, next) {
     if (errors) {
         if (!req.xhr) {
             req.flash('errors', errors);
-            return res.redirect('/user/' + req.user.username);
+            return res.redirect('/settings');
         }
         else {
             res.json({
@@ -340,7 +343,7 @@ var updateProfile = function(req, res, next) {
                 req.flash('success', {
                     msg: 'Profile information updated.'
                 });
-                res.redirect('/user/' + user.username);
+                res.redirect('/settings');
             }
             else {
                 res.json({
@@ -362,7 +365,7 @@ var updateProfile = function(req, res, next) {
     });<% } else { %>
     if (errors) {
         req.flash('errors', errors);
-        return res.redirect('/user/' + req.user.username);
+        return res.redirect('/settings');
     }
 
     User.find({
@@ -381,7 +384,7 @@ var updateProfile = function(req, res, next) {
             req.flash('success', {
                 msg: 'Profile information updated.'
             });
-            res.redirect('/user/' + user.username);
+            res.redirect('/settings');
         }).error(function(err) {
             if (err) {
                 return next(err);
@@ -409,7 +412,7 @@ var updatePassword = function(req, res, next) {
     if (errors) {
         if (!req.xhr) {
             req.flash('errors', errors);
-            return res.redirect('/user/' + req.user.username);
+            return res.redirect('/settings');
         }
         else {
             res.json({
@@ -430,7 +433,7 @@ var updatePassword = function(req, res, next) {
                 req.flash('success', {
                     msg: 'Password has been changed.'
                 });
-                res.redirect('/user/' + user.username);
+                res.redirect('/settings');
             }
             else {
                 res.json({
@@ -452,7 +455,7 @@ var updatePassword = function(req, res, next) {
 
     if (errors) {
         req.flash('errors', errors);
-        return res.redirect('/user/' + req.user.username);
+        return res.redirect('/settings');
     }
 
     User.find({
@@ -466,7 +469,7 @@ var updatePassword = function(req, res, next) {
             req.flash('success', {
                 msg: 'Password has been changed.'
             });
-            res.redirect('/user/' + req.user.username);
+            res.redirect('/settings');
         }).error(function(err) {
             if (err) {
                 return next(err);
