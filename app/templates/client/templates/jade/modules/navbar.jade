@@ -6,9 +6,9 @@ mixin navbar()
                     a(href='/') Home
             ul.nav-list.pull-right
                 if !user
-                    li.nav-item(class=title=='Login'?'active':undefined)
+                    li.nav-item
                         a(href='/login') Login
-                    li.nav-item(class=title=='Create Account'?'active':undefined)
+                    li.nav-item
                         a(href='/signup') Create Account
                 else
                     li.nav-item

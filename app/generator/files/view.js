@@ -39,27 +39,27 @@ var viewFiles = function viewFiles() {
         this.mkdir(viewRoot + 'templates/layouts');
         this.template('client/templates/swig/index.swig', viewRoot + 'templates/index.swig');
         this.template('client/templates/swig/layouts/base.swig', viewRoot + 'templates/layouts/base.swig');
-        // this.template('client/templates/jade/errors/404.jade', viewRoot + 'templates/errors/404.jade');
-        // if (!this.singlePageApplication) {
-        //     this.template('client/templates/jade/errors/500.jade', viewRoot + 'templates/errors/500.jade');
-        // }
-        // if (this.useAuth) {
-        //     // Account
-        //     this.template('client/templates/swig/account/forgot.swig', viewRoot + 'templates/account/forgot.swig');
-        //     this.template('client/templates/swig/account/login.swig', viewRoot + 'templates/account/login.swig');
-        //     this.template('client/templates/swig/account/profile.swig', viewRoot + 'templates/account/profile.swig');
-        //     this.template('client/templates/swig/account/reset.swig', viewRoot + 'templates/account/reset.swig');
-        //     this.template('client/templates/swig/account/signup.swig', viewRoot + 'templates/account/signup.swig');
-        //     this.template('client/templates/swig/account/social-signup.swig', viewRoot + 'templates/account/social-signup.swig');
-        //     this.template('client/templates/swig/account/settings.swig', viewRoot + 'templates/account/settings.swig');
+        this.template('client/templates/swig/errors/404.swig', viewRoot + 'templates/errors/404.swig');
+        if (!this.singlePageApplication) {
+            this.template('client/templates/swig/errors/500.swig', viewRoot + 'templates/errors/500.swig');
+        }
+        if (this.useAuth) {
+            // Account
+            this.template('client/templates/swig/account/forgot.swig', viewRoot + 'templates/account/forgot.swig');
+            this.template('client/templates/swig/account/login.swig', viewRoot + 'templates/account/login.swig');
+            this.template('client/templates/swig/account/profile.swig', viewRoot + 'templates/account/profile.swig');
+            this.template('client/templates/swig/account/reset.swig', viewRoot + 'templates/account/reset.swig');
+            this.template('client/templates/swig/account/signup.swig', viewRoot + 'templates/account/signup.swig');
+            this.template('client/templates/swig/account/social-signup.swig', viewRoot + 'templates/account/social-signup.swig');
+            this.template('client/templates/swig/account/settings.swig', viewRoot + 'templates/account/settings.swig');
 
-        //     // Modules
-        //     this.template('client/templates/swig/modules/navbar.swig', viewRoot + 'templates/modules/navbar.swig');
-        //     this.template('client/templates/swig/modules/messages.swig', viewRoot + 'templates/modules/messages.swig');
+            // Modules
+            this.template('client/templates/swig/modules/navbar.swig', viewRoot + 'templates/modules/navbar.swig');
+            this.template('client/templates/swig/modules/messages.swig', viewRoot + 'templates/modules/messages.swig');
 
-        //     // Layouts
-        //     this.template('client/templates/swig/layouts/one-column.swig', viewRoot + 'templates/layouts/one-column.swig');
-        // }
+            // Layouts
+            this.template('client/templates/swig/layouts/one-column.swig', viewRoot + 'templates/layouts/one-column.swig');
+        }
     }
 
     if (this.singlePageApplication) {

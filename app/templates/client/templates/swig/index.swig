@@ -1,5 +1,6 @@
-{# Homepage Markup #}
-{% extends './layouts/base.swig' %}
+{# Homepage Markup #}<% if (useAuth) { %>
+{% extends './layouts/one-column.swig' %}<% } else { %>
+{% extends './layouts/base.swig' %}<% } %>
 
 {% block content %}
 <div class="main-container">

@@ -15,16 +15,16 @@ block content
     p
         | Email: #{publicInfo.email}
 
-    p
-        if publicInfo.location
+    if publicInfo.location
+        p
             | Location: #{publicInfo.location}
 
-    p
-        if publicInfo.gender
+    if publicInfo.gender
+        p
             | Gender: #{publicInfo.gender}
 
-    p
-        if publicInfo.website
+    if publicInfo.website
+        p
             | Website: #{publicInfo.website}
 
 
