@@ -5,16 +5,17 @@
 
 // Module dependencies.
 var express = require('express');
+var mongoose = require('mongoose');
 
 // Add coloring for console output
 require('colors');
 
 // Create Express server.
 var app = express();
-<% if (dbOption !== 'none') { %>
+
 /**
  * Database configuration
- */
+ */<% if (dbOption === 'mysql') { %>
 var db = require('./server/config/database');<% } else if (dbOption === 'mongodb') { %>
 var db = require('./server/config/database')(app);<% } %>
 
