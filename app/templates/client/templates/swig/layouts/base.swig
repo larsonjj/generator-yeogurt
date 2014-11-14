@@ -96,7 +96,7 @@
         <script src="/bower_components/jquery/dist/jquery.js"></script>
         <!-- endbuild --><% if (useServer) { %>
         {% else %}
-        <script src="/scripts/globals.js"></script>
+        <script src="/scripts/global.js"></script>
         {% endif %}<% } %><% if  (jsOption === 'requirejs') { %>
 
         <script data-main="scripts/main", src="bower_components/requirejs/require.js"></script><% } else if (jsOption === 'browserify') { %>

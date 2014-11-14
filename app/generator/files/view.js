@@ -26,9 +26,9 @@ var viewFiles = function viewFiles() {
             this.template('client/templates/jade/account/social-signup.jade', viewRoot + 'templates/account/social-signup.jade');
             this.template('client/templates/jade/account/settings.jade', viewRoot + 'templates/account/settings.jade');
 
-            // Modules
-            this.template('client/templates/jade/modules/navbar.jade', viewRoot + 'templates/modules/navbar.jade');
-            this.template('client/templates/jade/modules/messages.jade', viewRoot + 'templates/modules/messages.jade');
+            // Partials
+            this.template('client/templates/jade/partials/navbar.jade', viewRoot + 'templates/partials/navbar.jade');
+            this.template('client/templates/jade/partials/messages.jade', viewRoot + 'templates/partials/messages.jade');
 
             // Layouts
             this.template('client/templates/jade/layouts/one-column.jade', viewRoot + 'templates/layouts/one-column.jade');
@@ -53,9 +53,9 @@ var viewFiles = function viewFiles() {
             this.template('client/templates/swig/account/social-signup.swig', viewRoot + 'templates/account/social-signup.swig');
             this.template('client/templates/swig/account/settings.swig', viewRoot + 'templates/account/settings.swig');
 
-            // Modules
-            this.template('client/templates/swig/modules/navbar.swig', viewRoot + 'templates/modules/navbar.swig');
-            this.template('client/templates/swig/modules/messages.swig', viewRoot + 'templates/modules/messages.swig');
+            // Partials
+            this.template('client/templates/swig/partials/navbar.swig', viewRoot + 'templates/partials/navbar.swig');
+            this.template('client/templates/swig/partials/messages.swig', viewRoot + 'templates/partials/messages.swig');
 
             // Layouts
             this.template('client/templates/swig/layouts/one-column.swig', viewRoot + 'templates/layouts/one-column.swig');

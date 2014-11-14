@@ -26,7 +26,8 @@ var taskConfig = function(grunt) {
                 client: false,
                 data: {
                     debug: false<% if (useServer) { %>,
-                    env: 'development'<% } %>
+                    env: 'development',
+                    messages: {} // Avoid errors with navbar<% } %>
                 }
             },
             expand: true,

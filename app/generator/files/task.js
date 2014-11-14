@@ -42,7 +42,7 @@ var taskFiles = function taskFiles() {
     this.template('grunt/config/optimize/autoprefixer.js', 'grunt/config/optimize/autoprefixer.js');
     this.template('grunt/config/optimize/imagemin.js', 'grunt/config/optimize/imagemin.js');
     this.template('grunt/config/optimize/pngmin.js', 'grunt/config/optimize/pngmin.js');
-    if (this.htmlOption === 'jade' && !this.useServer || this.jsTemplate === 'jade') {
+    if (this.htmlOption === 'jade' || this.jsTemplate === 'jade') {
         this.template('grunt/config/compile/jade.js', 'grunt/config/compile/jade.js');
     }
     else if (this.htmlOption === 'swig') {
