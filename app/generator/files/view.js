@@ -13,6 +13,9 @@ var viewFiles = function viewFiles() {
         this.template('client/templates/jade/index.jade', viewRoot + 'templates/index.jade');
         this.template('client/templates/jade/layouts/base.jade', viewRoot + 'templates/layouts/base.jade');
         this.template('client/templates/jade/errors/404.jade', viewRoot + 'templates/errors/404.jade');
+        if (!this.singlePageApplication) {
+            this.template('client/templates/jade/errors/500.jade', viewRoot + 'templates/errors/500.jade');
+        }
         if (this.useAuth) {
             // Account
             this.template('client/templates/jade/account/forgot.jade', viewRoot + 'templates/account/forgot.jade');
@@ -36,6 +39,10 @@ var viewFiles = function viewFiles() {
         this.mkdir(viewRoot + 'templates/layouts');
         this.template('client/templates/swig/index.swig', viewRoot + 'templates/index.swig');
         this.template('client/templates/swig/layouts/base.swig', viewRoot + 'templates/layouts/base.swig');
+        // this.template('client/templates/jade/errors/404.jade', viewRoot + 'templates/errors/404.jade');
+        // if (!this.singlePageApplication) {
+        //     this.template('client/templates/jade/errors/500.jade', viewRoot + 'templates/errors/500.jade');
+        // }
         // if (this.useAuth) {
         //     // Account
         //     this.template('client/templates/swig/account/forgot.swig', viewRoot + 'templates/account/forgot.swig');

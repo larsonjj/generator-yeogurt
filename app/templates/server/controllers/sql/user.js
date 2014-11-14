@@ -43,7 +43,7 @@ var show = function(req, res, next) {
             });<% } %>
         }
         else {
-            res.send(404);
+            next();
         }
     }).error(function(err) {
         return next(err);

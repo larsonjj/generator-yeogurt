@@ -26,7 +26,33 @@ require('./server/config/express')(app, express<% if (dbOption !== 'none') { %>,
 fs.readdirSync('./server/routes').forEach(function(file) {
     var route = './server/routes/' + file;
     require(route)(app);
+});<% if (!singlePageApplication) { %>
+
+// Handle 404
+app.use(function(req, res) {
+    res.status(400);
+    res.format({
+        html: function() {
+            res.render('errors/404');
+        },
+        json: function() {
+            res.json({error: '404 Not Found'});
+        }
+    })
 });
+
+// Handle 500
+app.use(function(error, req, res, next) {
+    res.status(500);
+    res.format({
+        html: function() {
+            res.render('errors/500');
+        },
+        json: function() {
+            res.json({error: '500 Internal Server Error'});
+        }
+    })
+});<% } %>
 
 /**
  * 500 Error Handler.
