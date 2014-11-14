@@ -8,7 +8,9 @@ var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var path = require('path');
+var fs = require('fs');
 var methodOverride = require('method-override');
+var errorHandler = require('errorhandler');
 var errorHandler = require('errorhandler');<% if (useAuth) { %>
 var flash = require('express-flash');
 var expressValidator = require('express-validator');
@@ -60,19 +62,23 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     // Initialize form validation
     app.use(expressValidator());
 
-    // Enable HTTP Method Overrides (POST, GET, DELETE, PUT, etc)
-    // Override HTML forms with method="POST" using ?_method=PUT at the end of action URLs
-    // ex <form method="POST" action="/someurl?_method=PUT">
+    /**
+     * Enable HTTP Method Overrides (POST, GET, DELETE, PUT, etc)
+     * Override HTML forms with method="POST" using ?_method=PUT at the end of action URLs
+     * ex <form method="POST" action="/someurl?_method=PUT">
+     */
     app.use(methodOverride('_method'));
 
-    // Create cookie that keeps track of user sessions
-    // And store it in the Database
+    /**
+     * Create cookie that keeps track of user sessions
+     * and store it in the Database
+     */
     app.use(session({
         secret: secrets.sessionSecret,
         saveUninitialized: true,
         resave: true,
         cookie: {
-            httpOnly: true, /*, secure: true for HTTPS*/
+            httpOnly: true, // Only server can manipulate cookies
             maxAge: day
         }
     }));
@@ -96,8 +102,12 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
         next();
     });
 
+    /**
+     * Remember original destination before login.
+     * Go back to that original destination once successfully logged in
+     * (Unless specified in the ignoredPaths array)
+     */
     app.use(function(req, res, next) {
-        // Remember original destination before login.
         var path = req.path.split('/')[1];
         var ignorePaths = [
             'auth',
@@ -124,7 +134,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     }
 
     if ('development' === env) {
-        // Include livereload script
+        // Include livereload script on all pages
         app.use(require('connect-livereload')());
 
         // Setup log level for server console output
@@ -137,6 +147,53 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
             res.header('Expires', 0);
             next();
         });
+    }
+
+    /**
+     * Dynamically load all routes
+     */
+    fs.readdirSync(settings.root + '/server/routes').forEach(function(file) {
+        var route = settings.root + '/server/routes/' + file;
+        require(route)(app);
+    });<% if (!singlePageApplication) { %>
+
+    /**
+     * 404 Error Handler
+     */
+    app.use(function(req, res) {
+        res.status(400);
+        res.format({
+            html: function() {
+                res.render('errors/404');
+            },
+            json: function() {
+                res.json({error: '404 Not Found'});
+            }
+        });
+    });
+
+    if ('production' === env) {
+        /**
+         * Production 500 Error Handler.
+         */
+        app.use(function(error, req, res, next) {
+            res.status(500);
+            res.format({
+                html: function() {
+                    res.render('errors/500');
+                },
+                json: function() {
+                    res.json({error: '500 Internal Server Error'});
+                }
+            });
+        });
+    }<% } %>
+
+    if ('development' === env) {
+        /**
+         * Development 500 Error Handler.
+         */
+        app.use(errorHandler());
     }
 
 };

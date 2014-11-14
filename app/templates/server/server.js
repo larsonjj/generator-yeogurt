@@ -5,9 +5,6 @@
 
 // Module dependencies.
 var express = require('express');
-var errorHandler = require('errorhandler');
-var path = require('path');
-var fs = require('fs');
 
 // Add coloring for console output
 require('colors');
@@ -15,56 +12,23 @@ require('colors');
 // Create Express server.
 var app = express();
 <% if (dbOption !== 'none') { %>
-// Database Configuration<% if (dbOption === 'mysql') { %>
+/**
+ * Database configuration
+ */
 var db = require('./server/config/database');<% } else if (dbOption === 'mongodb') { %>
-var db = require('./server/config/database')(app);<% } %><% } %>
-
-// Express configuration
-require('./server/config/express')(app, express<% if (dbOption !== 'none') { %>, db<% } %>);
-
-// Load routes
-fs.readdirSync('./server/routes').forEach(function(file) {
-    var route = './server/routes/' + file;
-    require(route)(app);
-});<% if (!singlePageApplication) { %>
-
-// Handle 404
-app.use(function(req, res) {
-    res.status(400);
-    res.format({
-        html: function() {
-            res.render('errors/404');
-        },
-        json: function() {
-            res.json({error: '404 Not Found'});
-        }
-    })
-});
-
-// Handle 500
-app.use(function(error, req, res, next) {
-    res.status(500);
-    res.format({
-        html: function() {
-            res.render('errors/500');
-        },
-        json: function() {
-            res.json({error: '500 Internal Server Error'});
-        }
-    })
-});<% } %>
+var db = require('./server/config/database')(app);<% } %>
 
 /**
- * 500 Error Handler.
- * As of Express 4.0 it must be placed at the end of all routes.
+ * Express configuration
  */
-app.use(errorHandler());
-
+require('./server/config/express')(app, express<% if (dbOption !== 'none') { %>, db<% } %>);
 <% if (dbOption === 'mysql') { %>
-// Verify DB connection
+/**
+ * Verify database connection and sync tables
+ */
 db.sequelize.authenticate().complete(function(err) {
     if (!!err) {
-        console.error('✗ Database Connection Error: \n'.red, err);
+        throw '✗ Database Connection Error: '.red + err;
     }
     else {
         console.log('✔ MySQL Connection Success!'.green);
@@ -72,9 +36,19 @@ db.sequelize.authenticate().complete(function(err) {
             .success(function() {
                 console.log('✔ Database Synced!'.green);
             }).error(function() {
-                console.error('✗ Database Not Synced!'.red);
+                throw '✗ Database Not Synced!'.red;
             });
     }
+});<% } else if (dbOption === 'mongodb') { %>
+/**
+ * Verify database connection
+ */
+mongoose.connection.on('connected', function() {
+    console.log('✔ MongoDB Connection Success!'.green);
+});
+
+mongoose.connection.on('error', function() {
+    throw '✗ MongoDB Connection Error. Please make sure MongoDB is running.'.red;
 });<% } %>
 
 /**
@@ -84,5 +58,4 @@ app.listen(app.get('port'), function() {
     console.log('✔ Express server listening on port '.green + '%d'.blue + ' in '.green + '%s'.blue + ' mode'.green, app.get('port'), app.get('env'));
 });
 
-// Expose App
 module.exports = app;

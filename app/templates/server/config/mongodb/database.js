@@ -12,7 +12,6 @@ var db = {};
 // Add coloring for console output
 require('colors');
 
-// Database Connection.
 var databaseConfig = function(app) {
 
     var env = app.get('env');
@@ -30,16 +29,6 @@ var databaseConfig = function(app) {
         var model = mongoose.model(name, require(path.join(__dirname, '../models', file)));
         db[name] = model;
     });<% } %>
-
-    // Success handler
-    mongoose.connection.on('connected', function() {
-        console.log('✔ MongoDB Connection Success!'.green);
-    });
-
-    // Error handler
-    mongoose.connection.on('error', function() {
-        console.error('✗ MongoDB Connection Error. Please make sure MongoDB is running.'.red);
-    });
 
     return db;
 };
