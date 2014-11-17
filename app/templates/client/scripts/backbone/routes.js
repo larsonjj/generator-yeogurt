@@ -24,7 +24,7 @@ define(function(require) {
 'use strict';
 <% if (jsFramework === 'react') { %>
 var React = require('react');<% if (useJsx) { %>
-var MainComponent = require('./components/main.jsx');<% } else { %>
+var MainComponent = React.createFactory(require('./components/main.jsx'));<% } else { %>
 var MainComponent = require('./components/main.js');<% } %>
 <% } else if (jsFramework === 'backbone') { %>
 var MainView = require('./views/main');<% } %>
@@ -36,7 +36,7 @@ var MainRouter = Backbone.Router.extend({
     },
 
     main: function() {<% if (jsFramework === 'react') { %>
-        React.renderComponent(new MainComponent(), document.getElementById('app-wrapper'));<% } else if (jsFramework === 'backbone') { %>
+        React.render(new MainComponent(), document.getElementById('app-wrapper'));<% } else if (jsFramework === 'backbone') { %>
         // Initialize the main view
         new MainView();<% } %>
     }

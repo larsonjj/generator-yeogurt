@@ -35,7 +35,8 @@ var taskConfig = function(grunt) {
                 exclude: [
                     '/html5shiv/',
                     '/modernizr/',<% if (jsOption === 'requirejs') { %>
-                    '/requirejs/'<% } %>
+                    '/requirejs/'<% } %><% if (jsFramework === 'react') { %>
+                    '/es5-shim/'<% } %>
                 ],
                 overrides: {<% if (jsTemplate === 'handlebars') { %>
                     'handlebars': {

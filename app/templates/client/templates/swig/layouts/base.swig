@@ -25,18 +25,18 @@
 
         <% } %><!-- build:css(client) styles/global.css -->
             <!-- bower:css --><% if (useNormalize) { %>
-        <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css"><% } %><% if (useFontAwesome) { %>
-        <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css"><% } %>
+        <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css" /><% } %><% if (useFontAwesome) { %>
+        <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" /><% } %>
             <!-- endbower -->
         <!-- endbuild --><% if (cssOption === 'css') { %>
 
         <!-- build:css(client) styles/main.css -->
             <!-- [injector:css] -->
             <!-- [endinjector] -->
-        <link rel="stylesheet" href="/styles/main.css">
+        <link rel="stylesheet" href="/styles/main.css" />
         <!-- endbuild --><% if (useServer) { %>
         {% else %}
-        <link rel="stylesheet" href="/styles/main.css">
+        <link rel="stylesheet" href="/styles/main.css" />
         {% endif %}<% } %><% } else { %>
 
         <link rel="stylesheet" href="/styles/main.css"><% } %><% if (useModernizr) { %>
