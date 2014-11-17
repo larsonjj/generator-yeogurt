@@ -12,8 +12,8 @@ var indexController = function(req, res) {<% if (singlePageApplication) { %><% i
     res.render('index', {
         title: 'Home',
         env: process.env.NODE_ENV || 'development'<% if (useServerTemplates) { %>,
-        body: html || ''
-    }<% } %>);
+        body: html || ''<% } %>
+    });
     <% } %><% if (!singlePageApplication) { %>
     res.render('index', {
         title: 'Home',
