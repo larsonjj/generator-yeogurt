@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 /**
 *   Main Component Description
 */
