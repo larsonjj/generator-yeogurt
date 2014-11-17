@@ -191,13 +191,13 @@ describe('Yeogurt generator using React', function () {
                         var expected = [
                             // add files and folders you expect to exist here.
                             'client/scripts/components/main.jsx',
-                            'server/templates/index.html',
+                            'client/index.html',
                             'client/scripts/routes.js',
                         ];
                         var fileContentToTest = [
                             ['client/scripts/components/main.jsx', /<div>/i],
                             ['client/scripts/routes.js', /module\.exports/i],
-                            ['server/templates/index.html', /app\-wrapper/i]
+                            ['client/index.html', /app\-wrapper/i]
                         ];
 
                         helpers.mockPrompt(this.app, {
@@ -221,16 +221,15 @@ describe('Yeogurt generator using React', function () {
                         var expected = [
                             // add files and folders you expect to exist here.
                             'client/scripts/components/main.js',
-                            'server/templates/index.html',
+                            'client/index.html',
                             'client/scripts/routes.js',
                         ];
                         var fileContentToTest = [
                             ['client/scripts/components/main.js', /React\.DOM/i],
                             ['client/scripts/routes.js', /module\.exports/i],
-                            ['server/templates/index.html', /app\-wrapper/i]
+                            ['client/index.html', /app\-wrapper/i]
                         ];
                         var fileContentNotThere = [
-                            ['server/modules/react-render.js', /node-jsx/i],
                             ['server/controllers/index.js', /node-jsx/i],
                         ];
 
@@ -259,13 +258,13 @@ describe('Yeogurt generator using React', function () {
                         var expected = [
                             // add files and folders you expect to exist here.
                             'client/scripts/components/main.jsx',
-                            'server/templates/index.html',
+                            'client/index.html',
                             'client/scripts/routes.js',
                         ];
                         var fileContentToTest = [
                             ['client/scripts/components/main.jsx', /<div>/i],
                             ['client/scripts/routes.js', /module\.exports/i],
-                            ['server/templates/index.html', /app\-wrapper/i]
+                            ['client/index.html', /app\-wrapper/i]
                         ];
 
                         helpers.mockPrompt(this.app, {
@@ -289,16 +288,15 @@ describe('Yeogurt generator using React', function () {
                         var expected = [
                             // add files and folders you expect to exist here.
                             'client/scripts/components/main.js',
-                            'server/templates/index.html',
+                            'client/index.html',
                             'client/scripts/routes.js',
                         ];
                         var fileContentToTest = [
                             ['client/scripts/components/main.js', /React\.DOM/i],
                             ['client/scripts/routes.js', /module\.exports/i],
-                            ['server/templates/index.html', /app\-wrapper/i]
+                            ['client/index.html', /app\-wrapper/i]
                         ];
                         var fileContentNotThere = [
-                            ['server/modules/react-render.js', /node-jsx/i],
                             ['server/controllers/index.js', /node-jsx/i],
                         ];
 

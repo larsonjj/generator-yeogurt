@@ -423,7 +423,7 @@ describe('Yeogurt generator using Server', function () {
         describe('With Defaults', function () {
             it('Creates expected files', function (done) {
                 var expected = [
-                    'server/templates/index.html'
+                    'client/index.html'
                 ];
 
                 helpers.mockPrompt(this.app, {
@@ -436,51 +436,13 @@ describe('Yeogurt generator using Server', function () {
                 });
             });
         });
-        describe('With React', function () {
-            it('Creates expected files', function (done) {
-                var expected = [
-                    'server/modules/react-render.js',
-                    'server/modules'
-                ];
-
-                helpers.mockPrompt(this.app, {
-                    singlePageApplication: true,
-                    useServer: true,
-                    useServerTemplates: true,
-                    jsFramework: 'react'
-                });
-                this.app.run([], function () {
-                    assert.file(expected);
-                    done();
-                });
-            });
-        });
-        describe('With Server templates', function () {
-            it('Creates expected files', function (done) {
-                var fileContentToTest = [
-                    ['server/templates/index.html', /<\%\- body \%\>/i],
-                    ['server/controllers/index.js', /reactRender/i]
-                ];
-
-                helpers.mockPrompt(this.app, {
-                    singlePageApplication: true,
-                    useServer: true,
-                    useServerTemplates: true,
-                    jsFramework: 'react'
-                });
-                this.app.run([], function () {
-                    assert.fileContent(fileContentToTest);
-                    done();
-                });
-            });
-        });
         describe('Without Server templates', function () {
             it('Creates expected files', function (done) {
                 var expectedContent = [
                     ['server/routes/index.js', /app\.get\('\/\*'/i]
                 ];
                 var fileContentToTest = [
-                    ['server/templates/index.html', /<\%\- body \%\>/i],
+                    ['client/index.html', /<\%\- body \%\>/i],
                     ['server/controllers/index.js', /reactRender/i]
                 ];
 

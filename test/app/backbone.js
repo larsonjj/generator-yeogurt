@@ -447,13 +447,13 @@ describe('Yeogurt generator using Backbone', function () {
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
-                            'server/templates/index.html'
+                            'client/index.html'
                         ];
                         var fileContentToTest = [
                             ['client/scripts/views/main.js', /module\.exports/i],
                             ['client/templates/main.hbs', /<\/div>/i],
                             ['client/scripts/routes.js', /module\.exports/i],
-                            ['server/templates/index.html', /app\-wrapper/i]
+                            ['client/index.html', /app\-wrapper/i]
                         ];
 
                         helpers.mockPrompt(this.app, {
@@ -480,13 +480,13 @@ describe('Yeogurt generator using Backbone', function () {
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
-                            'server/templates/index.html'
+                            'client/index.html'
                         ];
                         var fileContentToTest = [
                             ['client/scripts/views/main.js', /module\.exports/i],
                             ['client/templates/main.hbs', /<\/div>/i],
                             ['client/scripts/routes.js', /module\.exports/i],
-                            ['server/templates/index.html', /app\-wrapper/i]
+                            ['client/index.html', /app\-wrapper/i]
                         ];
 
                         helpers.mockPrompt(this.app, {
@@ -515,13 +515,13 @@ describe('Yeogurt generator using Backbone', function () {
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
-                            'server/templates/index.html'
+                            'client/index.html'
                         ];
                         var fileContentToTest = [
                             ['client/scripts/views/main.js', /module\.exports/i],
                             ['client/templates/main.jst', /<\/div>/i],
                             ['client/scripts/routes.js', /module\.exports/i],
-                            ['server/templates/index.html', /app\-wrapper/i]
+                            ['client/index.html', /app\-wrapper/i]
                         ];
 
                         helpers.mockPrompt(this.app, {
@@ -548,13 +548,13 @@ describe('Yeogurt generator using Backbone', function () {
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
-                            'server/templates/index.html'
+                            'client/index.html'
                         ];
                         var fileContentToTest = [
                             ['client/scripts/views/main.js', /module\.exports/i],
                             ['client/templates/main.jst', /<\/div>/i],
                             ['client/scripts/routes.js', /module\.exports/i],
-                            ['server/templates/index.html', /app\-wrapper/i]
+                            ['client/index.html', /app\-wrapper/i]
                         ];
 
                         helpers.mockPrompt(this.app, {
@@ -583,13 +583,13 @@ describe('Yeogurt generator using Backbone', function () {
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
-                            'server/templates/index.html'
+                            'client/index.html'
                         ];
                         var fileContentToTest = [
                             ['client/scripts/views/main.js', /module\.exports/i],
                             ['client/templates/main.jade', /.main\-container/i],
                             ['client/scripts/routes.js', /module\.exports/i],
-                            ['server/templates/index.html', /app\-wrapper/i]
+                            ['client/index.html', /app\-wrapper/i]
                         ];
 
                         helpers.mockPrompt(this.app, {
@@ -616,13 +616,13 @@ describe('Yeogurt generator using Backbone', function () {
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
-                            'server/templates/index.html'
+                            'client/index.html'
                         ];
                         var fileContentToTest = [
                             ['client/scripts/views/main.js', /module\.exports/i],
                             ['client/templates/main.jade', /.main\-container/i],
                             ['client/scripts/routes.js', /module\.exports/i],
-                            ['server/templates/index.html', /app\-wrapper/i]
+                            ['client/index.html', /app\-wrapper/i]
                         ];
 
                         helpers.mockPrompt(this.app, {
@@ -653,13 +653,13 @@ describe('Yeogurt generator using Backbone', function () {
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
-                            'server/templates/index.html'
+                            'client/index.html'
                         ];
                         var fileContentToTest = [
                             ['client/scripts/views/main.js', /define\(function\(require\)/i],
                             ['client/templates/main.hbs', /<\/div>/i],
                             ['client/scripts/routes.js', /define\(function\(require\)/i],
-                            ['server/templates/index.html', /app\-wrapper/i]
+                            ['client/index.html', /app\-wrapper/i]
                         ];
 
                         helpers.mockPrompt(this.app, {
@@ -686,13 +686,13 @@ describe('Yeogurt generator using Backbone', function () {
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
-                            'server/templates/index.html'
+                            'client/index.html'
                         ];
                         var fileContentToTest = [
                             ['client/scripts/views/main.js', /define\(function\(require\)/i],
                             ['client/templates/main.hbs', /<\/div>/i],
                             ['client/scripts/routes.js', /define\(function\(require\)/i],
-                            ['server/templates/index.html', /app\-wrapper/i]
+                            ['client/index.html', /app\-wrapper/i]
                         ];
 
                         helpers.mockPrompt(this.app, {
@@ -721,13 +721,13 @@ describe('Yeogurt generator using Backbone', function () {
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
-                            'server/templates/index.html'
+                            'client/index.html'
                         ];
                         var fileContentToTest = [
                             ['client/scripts/views/main.js', /define\(function\(require\)/i],
                             ['client/templates/main.jst', /<\/div>/i],
                             ['client/scripts/routes.js', /define\(function\(require\)/i],
-                            ['server/templates/index.html', /app\-wrapper/i]
+                            ['client/index.html', /app\-wrapper/i]
                         ];
 
                         helpers.mockPrompt(this.app, {
@@ -754,13 +754,13 @@ describe('Yeogurt generator using Backbone', function () {
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
-                            'server/templates/index.html'
+                            'client/index.html'
                         ];
                         var fileContentToTest = [
                             ['client/scripts/views/main.js', /define\(function\(require\)/i],
                             ['client/templates/main.jst', /<\/div>/i],
                             ['client/scripts/routes.js', /define\(function\(require\)/i],
-                            ['server/templates/index.html', /app\-wrapper/i]
+                            ['client/index.html', /app\-wrapper/i]
                         ];
 
                         helpers.mockPrompt(this.app, {
@@ -789,13 +789,13 @@ describe('Yeogurt generator using Backbone', function () {
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
-                            'server/templates/index.html'
+                            'client/index.html'
                         ];
                         var fileContentToTest = [
                             ['client/scripts/views/main.js', /define\(function\(require\)/i],
                             ['client/templates/main.jade', /.main\-container/i],
                             ['client/scripts/routes.js', /define\(function\(require\)/i],
-                            ['server/templates/index.html', /app\-wrapper/i]
+                            ['client/index.html', /app\-wrapper/i]
                         ];
 
                         helpers.mockPrompt(this.app, {
@@ -822,13 +822,13 @@ describe('Yeogurt generator using Backbone', function () {
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
-                            'server/templates/index.html'
+                            'client/index.html'
                         ];
                         var fileContentToTest = [
                             ['client/scripts/views/main.js', /define\(function\(require\)/i],
                             ['client/templates/main.jade', /.main\-container/i],
                             ['client/scripts/routes.js', /define\(function\(require\)/i],
-                            ['server/templates/index.html', /app\-wrapper/i]
+                            ['client/index.html', /app\-wrapper/i]
                         ];
 
                         helpers.mockPrompt(this.app, {
