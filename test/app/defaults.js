@@ -42,6 +42,7 @@ describe('Yeogurt generator using Default Configuration', function () {
             'grunt/',
             'grunt/config',
             'grunt/tasks',
+            'grunt/config/util/wiredep.js',
             'grunt/config/util/clean.js',
             'grunt/config/util/copy.js',
             'grunt/config/server/express.js',

@@ -2,9 +2,7 @@
  * Main Controller
  */
 
-'use strict';<% if (singlePageApplication && useServerTemplates) { %>
-<% if (jsFramework === 'react') { %>
-var reactRender = require('../modules/react-render');<% } %><% } %>
+'use strict';
 
 var _ = require('lodash');
 var async = require('async');

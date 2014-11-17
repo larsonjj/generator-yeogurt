@@ -19,25 +19,21 @@
         <title><%= projectName %></title>
         <meta name="description" content=""/>
         <meta name="author" content=""/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/><% if (useServer && useAuth && useSecurity) { %>
-        <meta name="csrf-token" content=<%%= _csrf %> /><% } %><% if (useGA) { %>
-        <link href="//www.google-analytics.com" rel="dns-prefetch"><% } %><% if (cssOption === 'css') { %><% if (useServer) { %>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/><% if (useGA) { %>
+        <link href="//www.google-analytics.com" rel="dns-prefetch"><% } %>
 
-        <%% if (env === 'development') { %><% } else { %>
-
-        <% } %><!-- build:css(client) styles/global.css --><% if (useNormalize) { %>
-        <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css"><% } %><% if (useFontAwesome) { %>
-        <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css"><% } %>
-            <!-- [injector:css] -->
-            <!-- [endinjector] -->
-        <!-- endbuild -->
+        <!-- build:css(client) styles/global.css -->
+            <!-- bower:css --><% if (useNormalize) { %>
+            <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css"><% } %><% if (useFontAwesome) { %>
+            <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css"><% } %>
+            <!-- endbower -->
+        <!-- endbuild --><% if (cssOption === 'css') { %>
 
         <!-- build:css(client) styles/main.css -->
+            <!-- [injector:css] -->
+            <!-- [endinjector] -->
         <link rel="stylesheet" href="/styles/main.css">
-        <!-- endbuild --><% if (useServer) { %>
-        <%% } else { %>
-        <link rel="stylesheet" href="styles/main.css">
-        <%% } %><% } %><% } else { %>
+        <!-- endbuild --><% } else { %>
 
         <link rel="stylesheet" href="styles/main.css"><% } %><% if (useModernizr) { %>
 
@@ -91,9 +87,7 @@
         </div>
         <code class="version">v<%= pkg.version %></code><% } else if (singlePageApplication) { %>
 
-        <div id="app-wrapper"><% if (useServer && useServerTemplates) { %>
-            <%%- body %>
-        <% } %></div><% } %><% if (useGA) { %>
+        <div id="app-wrapper"></div><% } %><% if (useGA) { %>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
@@ -110,24 +104,24 @@
         <script src="/bower_components/es5-shim/es5-sham.js"></script>
         <![endif]--><% } %>
 
-<% if (useServer) { %>        <%% if (env === 'development') { %><% } %>
         <!-- build:js(<% if (jsFramework === 'backbone') { %>{client,.tmp}<% } else { %>client<% } %>) scripts/global.js -->
-        <script src="/bower_components/jquery/dist/jquery.js"></script><% if (jsFramework === 'backbone' || jsFramework === 'react') { %>
-        <script src="/bower_components/lodash/dist/lodash.js"></script>
-        <script src="/bower_components/backbone/backbone.js"></script><% } %><% if (jsTemplate === 'handlebars') { %>
-        <script src="/bower_components/handlebars/handlebars.runtime.js"></script>
-        <% } else if (jsTemplate === 'jade') { %><script src="/bower_components/jade/runtime.js"></script><% } %><% if (singlePageApplication && jsFramework !== 'react') { %>
+            <!-- bower:js -->
+            <script src="/bower_components/jquery/dist/jquery.js"></script><% if (jsFramework === 'backbone' || jsFramework === 'react') { %>
+            <script src="/bower_components/underscore/underscore.js"></script>
+            <script src="/bower_components/backbone/backbone.js"></script><% } %><% if (jsTemplate === 'handlebars') { %>
+            <script src="/bower_components/handlebars/handlebars.runtime.js"></script><% } else if (jsTemplate === 'jade') { %>
+            <script src="/bower_components/jade/runtime.js"></script><% } %>
+            <!-- endbower --><% if (singlePageApplication && jsFramework !== 'react') { %>
         <script src="/templates/templates.js"></script><% } %>
-        <!-- endbuild --><% if (useServer) { %>
-        <%% } else { %>
-        <script src="/scripts/global.js"></script>
-        <%% } %><% } %><% if (jsOption === 'requirejs') { %>
+        <!-- endbuild --><% if (jsOption === 'requirejs') { %>
 
         <script data-main="/scripts/main", src="/bower_components/requirejs/require.js"></script><% } else if (jsOption === 'browserify') { %>
 
         <script src="/scripts/app.js"></script><% } else { %>
 
         <!-- build:js(client) scripts/app.js -->
+            <!-- bower:js -->
+            <!-- endbower -->
             <!-- [injector:js] -->
             <!-- [endinjector] --><% if (jsFramework === 'backbone') { %>
         <script src="/scripts/routes.js"></script><% } %>

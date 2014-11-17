@@ -2,19 +2,13 @@
  * Index Controller
  */
 
-'use strict';<% if (singlePageApplication && useServerTemplates) { %>
-<% if (jsFramework === 'react') { %>
-var reactRender = require('../modules/react-render');<% } %><% } %>
+'use strict';
 
-var indexController = function(req, res) {<% if (singlePageApplication) { %><% if (useServerTemplates) { %><% if (jsFramework === 'react') { %><% if (useJsx) { %>
-    var html = reactRender({}, 'main.jsx');<% } else { %>
-    var html = reactRender({}, 'main.js');<% } %><% } %><% } %>
-    res.render('index', {
-        title: 'Home',
-        env: process.env.NODE_ENV || 'development'<% if (useServerTemplates) { %>,
-        body: html || ''<% } %>
-    });
-    <% } %><% if (!singlePageApplication) { %>
+var settings = require('../config/env/default');
+var path = require('path');
+
+var indexController = function(req, res) {<% if (singlePageApplication) { %>
+    res.sendfile(path.join(settings.staticAssets, '/index.html'));<% } else { %>
     res.render('index', {
         title: 'Home',
         env: process.env.NODE_ENV || 'development'

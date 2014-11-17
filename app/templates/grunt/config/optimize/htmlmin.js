@@ -8,7 +8,15 @@ var taskConfig = function(grunt) {
     grunt.config.set('htmlmin', {
         dist: {
             options: {
-                removeEmptyAttributes: true
+                collapseBooleanAttributes: true,
+                collapseWhitespace: true,
+                conservativeCollapse: true,
+                removeAttributeQuotes: true,
+                removeCommentsFromCDATA: true,
+                removeEmptyAttributes: true,
+                removeOptionalTags: true,
+                removeRedundantAttributes: true,
+                useShortDoctype: true
             },
             files: [{
                 expand: true,

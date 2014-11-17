@@ -17,7 +17,8 @@ var taskConfig = function(grunt) {
                     '!scripts/app.js',
                     '!scripts/main.js',<% } %>
                     'bower_components/**/*.{js,map,css,woff,otf,ttf,eot,svg}',<% if (useKss) { %>
-                    'docs/styleguide/public/images',<% } %>
+                    'docs/styleguide/public/images',<% } %><% if (singlePageApplication) { %>
+                    '*.html',<% } %>
                     'styles/**/*.css',
                     'images/**',
                     '*.{ico,png,txt}',
@@ -35,7 +36,7 @@ var taskConfig = function(grunt) {
                     'bower_components/requirejs/require.js',<% } %><% if (useModernizr) { %>
                     'bower_components/modernizr/modernizr.js',<% } %>
                     'bower_components/**/*.{woff,otf,ttf,eot,svg}',<% if (useDashboard) { %>
-                    'dashboard/**/*.*',<% } %><% if (jsFramework === 'backbone' && !useServer || jsFramework === 'react' && !useServer) { %>
+                    'dashboard/**/*.*',<% } %><% if (singlePageApplication) { %>
                     '*.html',<% } %><% if (useKss) { %>
                     'docs/styleguide/public/images',<% } %>
                     '!*.js',

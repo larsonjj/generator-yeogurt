@@ -60,12 +60,6 @@ var clientPrompts = function clientPrompts() {
         message: 'Would you like to use ' + 'Flux'.blue + ' with your React application?',
         default: true
     }, {
-        when: function(answers) { return self.serverPrompts.useServer && answers.jsFramework === 'react'; },
-        type: 'confirm',
-        name: 'useServerTemplates',
-        message: 'Would you like to render ' + 'templates on the server'.blue + '?',
-        default: true
-    }, {
         when: function(answers) {return answers.jsFramework === 'backbone' || false;},
         type: 'list',
         name: 'jsTemplate',

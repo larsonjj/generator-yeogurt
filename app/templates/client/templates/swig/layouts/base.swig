@@ -19,18 +19,20 @@
         <meta name="description" content=""/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/><% if (useServer && useAuth && useSecurity) { %>
         <meta name="csrf-token" content="{{_csrf}}" /><% } %><% if (useGA) { %>
-        <link href="//www.google-analytics.com" rel="dns-prefetch"><% } %><% if (cssOption === 'css') { %><% if (useServer) { %>
+        <link href="//www.google-analytics.com" rel="dns-prefetch"><% } %><% if (useServer) { %>
 
         {% if env == 'development' %}<% } else { %>
 
-        <% } %><!-- build:css(client) styles/global.css --><% if (useNormalize) { %>
+        <% } %><!-- build:css(client) styles/global.css -->
+            <!-- bower:css --><% if (useNormalize) { %>
         <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css"><% } %><% if (useFontAwesome) { %>
         <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css"><% } %>
-            <!-- [injector:css] -->
-            <!-- [endinjector] -->
-        <!-- endbuild -->
+            <!-- endbower -->
+        <!-- endbuild --><% if (cssOption === 'css') { %>
 
         <!-- build:css(client) styles/main.css -->
+            <!-- [injector:css] -->
+            <!-- [endinjector] -->
         <link rel="stylesheet" href="/styles/main.css">
         <!-- endbuild --><% if (useServer) { %>
         {% else %}
@@ -89,11 +91,13 @@
         <!--[if lt IE 9]>
         <script src="/bower_components/es5-shim/es5-shim.js"></script>
         <script src="/bower_components/es5-shim/es5-sham.js"></script>
-        <![endif]--><% } %>
+        <![endif]--><% } %><% if (useServer) { %>
 
-<% if (useServer) { %>        {% if env == 'development' %}<% } %>
+        {% if env == 'development' %}<% } %>
         <!-- build:js(client) scripts/global.js -->
-        <script src="/bower_components/jquery/dist/jquery.js"></script>
+            <!-- bower:js -->
+            <script src="/bower_components/jquery/dist/jquery.js"></script>
+            <!-- endbower -->
         <!-- endbuild --><% if (useServer) { %>
         {% else %}
         <script src="/scripts/global.js"></script>

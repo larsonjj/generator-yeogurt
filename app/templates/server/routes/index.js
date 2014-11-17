@@ -22,7 +22,7 @@ var routes = function (app) {<% if (!singlePageApplication) { %>
         });
     });
 
-    // Catch All: Matches all routes to let HTML5 pushState work
+    // Catch All: Matches all routes
     // Place all routes above this one
     app.get('/*', indexController.index);<% } %>
 

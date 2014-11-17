@@ -63,9 +63,7 @@ var viewFiles = function viewFiles() {
     }
 
     if (this.singlePageApplication) {
-        if (!this.useServer) {
-            this.template('client/templates/html/index.html', 'client/index.html');
-        }
+        this.template('client/templates/html/index.html', 'client/index.html');
     }
 };
 

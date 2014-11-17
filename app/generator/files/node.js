@@ -10,18 +10,6 @@ var nodeFiles = function nodeFiles() {
         this.mkdir('server/controllers');
         this.mkdir('server/config');
         this.mkdir('server/config/env');
-        if (this.useServer && this.singlePageApplication) {
-            this.mkdir('server/templates');
-        }
-        if (this.singlePageApplication) {
-            if (this.useServerTemplates) {
-                if (this.jsFramework === 'react') {
-                    this.mkdir('server/modules');
-                    this.template('server/modules/react-render.js','server/modules/react-render.js');
-                }
-            }
-            this.template('client/templates/html/index.html', 'server/templates/index.html');
-        }
 
         if (this.dbOption === 'mongodb') {
             this.template('server/config/mongodb/database.js', 'server/config/database.js');

@@ -119,12 +119,6 @@ var serverPrompts = function serverPrompts() {
         name: 'useSecurity',
         message: 'Would you like to use ' + 'Paypal\'s Lusca security module'.blue + '?',
         default: true
-    }, {
-        when: function(answers) { return answers.useAuth && answers.useServer; },
-        type: 'confirm',
-        name: 'useJwt',
-        message: 'Would you like to ' + 'authenticate with JWT tokens'.blue + '?',
-        default: true
     }], function(answers) {
         this.serverPrompts = answers;
 

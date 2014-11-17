@@ -39,7 +39,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
 
      // Setup view engine for server side templating<% if (singlePageApplication) { %>
     app.engine('.html', require('ejs').__express);
-    app.set('view engine', 'html');<% } %><% if (!singlePageApplication && htmlOption !== 'html') { %>
+    app.set('view engine', 'html');<% } %><% if (!singlePageApplication) { %>
     app.engine('<%= htmlOption === 'jade' ? 'jade' : '' %><%= htmlOption === 'swig' ? 'swig' : '' %>', require('<%= htmlOption %>').renderFile);
     app.set('view engine', '<%= htmlOption === 'jade' ? 'jade' : '' %><%= htmlOption === 'swig' ? 'swig' : '' %>');<% } %>
 
@@ -50,7 +50,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     app.use(compress());
 
     // Load favicon
-    app.use(favicon((settings.root + '/' + settings.staticAssets + '/favicon.ico')));
+    app.use(favicon(path.join(settings.root, settings.staticAssets, '/favicon.ico')));
 
     // Setup static assets
     app.use(express.static(path.join(settings.root, settings.staticAssets), {maxAge: week}));

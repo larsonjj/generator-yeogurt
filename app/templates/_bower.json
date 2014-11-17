@@ -4,8 +4,7 @@
     "dependencies": {<% if (!ieSupport) { %>
         "jquery": "~2.1.0"<% } else { %>
         "jquery": "~1.11.1"<% } %><% if (jsFramework === 'backbone' || jsFramework === 'react') { %>,
-        "backbone": "~1.1.2",
-        "lodash": "~2.4.1"<% } %><% if (jsFramework === 'react') { %>,
+        "backbone": "~1.1.2"<% } %><% if (jsFramework === 'react') { %>,
         "es5-shim": "~3.4.0"<% } %><% if (jsTemplate === 'handlebars') { %>,
         "handlebars": "~2.0.0"<% } else if (jsTemplate === 'jade') { %>,
         "jade": "~1.5.0"<% } %><% if (useModernizr) { %>,

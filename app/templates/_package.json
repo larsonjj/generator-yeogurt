@@ -59,6 +59,7 @@
         "grunt-contrib-handlebars": "~0.9.0",<% } else if (jsFramework === 'react') { %>
         "grunt-react": "~0.9.0",<% } %>
         "grunt-contrib-concat": "~0.5.0",
+        "grunt-wiredep": "~1.9.0",
         "grunt-contrib-cssmin": "~0.10.0",
         "grunt-contrib-imagemin": "~0.9.1",
         "grunt-pngmin": "~0.6.1",<% if (jshint) { %>

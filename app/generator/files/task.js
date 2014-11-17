@@ -74,6 +74,7 @@ var taskFiles = function taskFiles() {
     this.template('grunt/config/optimize/cssmin.js', 'grunt/config/optimize/cssmin.js');
     this.template('grunt/config/optimize/usemin.js', 'grunt/config/optimize/usemin.js');
     this.template('grunt/config/util/watch.js', 'grunt/config/util/watch.js');
+    this.template('grunt/config/util/wiredep.js', 'grunt/config/util/wiredep.js');
     if (this.useServer) {
         this.template('grunt/config/server/express.js', 'grunt/config/server/express.js');
         this.template('grunt/config/server/env.js', 'grunt/config/server/env.js');

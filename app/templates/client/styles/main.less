@@ -14,14 +14,7 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-}<% if (cssOption === 'less') { %><% if (useFontAwesome) { %>
-// Import Font Awesome Library
-
-@import '../bower_components/font-awesome/less/font-awesome';
-@fa-font-path: '../bower_components/font-awesome/fonts';<% } %><% } %><% if (cssOption === 'sass' && useFontAwesome) { %>
-//  Import Font Awesome Library
-$fa-font-path: '../bower_components/font-awesome/fonts';
-@import '../bower_components/font-awesome/scss/font-awesome';<% } %>
+}
 
 // Injects all imports files automatically (ex. _mypartial)
 // [injector]

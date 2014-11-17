@@ -19,6 +19,7 @@ var taskConfig = function(grunt) {
             'clean:server',<% if (useServer) { %>
             'env:all',<% } %>
             'injector',
+            'wiredep:all',
             'copy:server',<% if (jsOption === 'browserify') { %>
             'browserify:server',
             'exorcise:server',<% } %><% if (jsTemplate === 'lodash') { %>

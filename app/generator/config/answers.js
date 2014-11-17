@@ -43,8 +43,7 @@ var answersConfig = function answersConfig() {
     this.useAuth            = this.answers.useAuth;
     this.authTypes          = this.answers.authTypes || [];
     this.useSecurity        = this.answers.useSecurity;
-    this.useJwt             = this.answers.useJwt;
-    this.useServerTemplates = this.answers.useServerTemplates;
+    this.useJwt             = true; // Default to true for now
 
     this.answers.dbUser = this.answers.dbUser === 'nouser' ? '' : this.answers.dbUser;
     this.answers.dbPass = this.answers.dbPass === 'nopass' ? '' : this.answers.dbPass;
