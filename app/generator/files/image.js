@@ -5,7 +5,6 @@
 'use strict';
 
 var imageFiles = function imageFiles() {
-    this.mkdir('client/images');
     // client/images
     this.copy('client/images/yeogurt-swirl.png', 'client/images/yeogurt-swirl.png');
 };

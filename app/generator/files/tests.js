@@ -6,8 +6,6 @@
 
 var testingFiles = function testingFiles() {
     if (this.useTesting) {
-        this.mkdir('test');
-        this.mkdir('test/spec');
         if (this.jsOption === 'requirejs') {
             this.copy('test/test-main.js', 'test/test-main.js');
         }

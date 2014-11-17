@@ -46,14 +46,14 @@ FluxGenerator.prototype.ask = function ask() {
     var prompts = [{
         name: 'fluxFile',
         message: 'Where would you like to ' + createOrDelete + ' flux files?',
-        default: 'client/scripts/flux'
+        default: 'client/scripts'
     }, {
         when: function() {
             return self.useTesting;
         },
         name: 'testFile',
         message: 'Where would you like to ' + createOrDelete + ' flux file tests?',
-        default: 'test/spec/flux'
+        default: 'test/spec'
     }];
 
     this.prompt(prompts, function(answers) {

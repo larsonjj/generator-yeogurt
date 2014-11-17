@@ -6,7 +6,6 @@
 
 var scriptFiles = function scriptFiles() {
     // client/scripts
-    this.mkdir('client/scripts');
 
     this.template('client/scripts/app.js', 'client/scripts/app.js');
 
@@ -15,8 +14,6 @@ var scriptFiles = function scriptFiles() {
     }
 
     if (this.jsFramework === 'backbone') {
-        this.mkdir('client/templates');
-        this.mkdir('client/scripts/views');
 
         this.template('client/scripts/backbone/routes.js', 'client/scripts/routes.js');
         if (this.jsTemplate === 'lodash') {
@@ -32,8 +29,6 @@ var scriptFiles = function scriptFiles() {
         this.template('client/scripts/backbone/views/main.js', 'client/scripts/views/main.js');
     }
     else if (this.jsFramework === 'react') {
-        this.mkdir('client/scripts/components');
-
         this.template('client/scripts/backbone/routes.js', 'client/scripts/routes.js');
         if (this.useJsx) {
             this.template('client/scripts/react/main.jsx', 'client/scripts/components/main.jsx');
@@ -45,7 +40,7 @@ var scriptFiles = function scriptFiles() {
             this.template('test/helpers/phantomjs-shims.js', 'test/helpers/phantomjs-shims.js');
         }
         if (this.useFlux) {
-            this.directory('client/scripts/flux', 'client/scripts/flux');
+            this.template('client/scripts/flux/dispatchers/app.js', 'client/scripts/flux/dispatchers/app.js');
         }
     }
 };

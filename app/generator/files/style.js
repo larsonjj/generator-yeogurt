@@ -6,7 +6,6 @@
 
 var styleFiles = function styleFiles() {
     // client/styles
-    this.mkdir('client/styles');
 
     if (this.useKss) {
         this.template('client/styles/styleguide.md', 'client/styles/styleguide.md');

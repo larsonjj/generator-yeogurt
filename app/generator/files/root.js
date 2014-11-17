@@ -39,8 +39,6 @@ var rootFiles = function rootFiles() {
         this.template('jshintrc', '.jshintrc');
     }
 
-    // client/
-    this.mkdir('client');
 };
 
 module.exports = rootFiles;

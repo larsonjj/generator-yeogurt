@@ -6,11 +6,6 @@
 
 var nodeFiles = function nodeFiles() {
     if (this.useServer) {
-        this.mkdir('server');
-        this.mkdir('server/controllers');
-        this.mkdir('server/config');
-        this.mkdir('server/config/env');
-
         if (this.dbOption === 'mongodb') {
             this.template('server/config/mongodb/database.js', 'server/config/database.js');
         }

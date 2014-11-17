@@ -6,8 +6,6 @@
 
 var docFiles = function docFiles() {
     if (this.useKss) {
-        this.mkdir('client/docs');
-        this.mkdir('client/docs/styleguide');
         this.template('client/docs/styleguide/index.html', 'client/docs/styleguide/index.html');
         this.template('client/docs/styleguide/public/kss.js', 'client/docs/styleguide/public/kss.js');
         this.template('client/docs/styleguide/public/kss.less', 'client/docs/styleguide/public/kss.less');
@@ -23,10 +21,6 @@ var docFiles = function docFiles() {
         this.template('client/docs/shared/scripts/jquery.js', 'client/docs/api/theme/static/scripts/jquery.js');
     }
     if (this.useDashboard) {
-        this.mkdir('client/docs/dashboard');
-        this.mkdir('client/docs/dashboard/images');
-        this.mkdir('client/docs/dashboard/scripts');
-        this.mkdir('client/docs/dashboard/styles');
         this.template('client/docs/dashboard/styles/dashboard.less', 'client/docs/dashboard/styles/dashboard.less');
         this.template('client/docs/shared/scripts/less.js', 'client/docs/dashboard/scripts/less.js');
         this.template('client/docs/shared/scripts/jquery.js', 'client/docs/dashboard/scripts/jquery.js');

@@ -6,9 +6,6 @@
 
 var taskFiles = function taskFiles() {
     // Folders
-    this.mkdir('grunt');
-    this.mkdir('grunt/config');
-    this.mkdir('grunt/tasks');
 
     // Config
     if (this.jsOption === 'browserify') {
