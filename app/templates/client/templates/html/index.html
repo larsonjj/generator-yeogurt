@@ -8,11 +8,9 @@
     }
     [/dash] -->
 <% } %><% if (ieSupport) { %>
-<!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->
-<!--[if IE 9]><html lang="en" class="ie9 no-js"><![endif]-->
-<!--[if !IE]><!--><% } %>
-<html<% if (useModernizr) { %> class="no-js"<% } %> lang="en"><% if (ieSupport) { %>
-    <!--<![endif]--><% } %>
+<!--[if lte IE 8]><html class="lt-ie9<% if (useModernizr) { %> no-js<% } %>" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--><html lang="en" class="ie9<% if (useModernizr) { %> no-js<% } %>"><!--<![endif]--><% } else { %>
+<html<% if (useModernizr) { %> class="no-js"<% } %> lang="en"><% } %>
     <head>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -42,26 +40,7 @@
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
         <script src="/bower_components/html5shiv/dist/html5shiv-printshiv.js"></script>
-        <script>
-            // Protect window.console method calls, e.g. console is not defined on IE
-            (function() {
-                if (!window.console) {
-                    window.console = {};
-                }
-                // union of Chrome, FF, IE, and Safari console methods
-                var m = [
-                    "log", "info", "warn", "error", "debug", "trace", "dir", "group",
-                    "groupCollapsed", "groupEnd", "time", "timeEnd", "profile", "profileEnd",
-                    "dirxml", "assert", "count", "markTimeline", "timeStamp", "clear"
-                ];
-                // define undefined methods as noops to prevent errors
-                for (var i = 0; i < m.length; i++) {
-                    if (!window.console[m[i]]) {
-                        window.console[m[i]] = function() {};
-                    }
-                }
-            })();
-        </script>
+        <script src="/bower_components/consolelog/consolelog.js"></script>
         <![endif]--><% } %>
     </head>
     <body>
