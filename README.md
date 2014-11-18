@@ -579,9 +579,31 @@ If you chose to use [KSS (Knyle Style Sheets)](http://warpspire.com/posts/kss/),
 Knyle Style Sheets (KSS) is used at Github to create their [styleguide](https://github.com/styleguide) and is used in this generator via [kss-node](https://github.com/hughsk/kss-node). Be sure to look up [documentation](http://warpspire.com/posts/kss/) to see how to write KSS comments in your stylesheets.
 
 ## Adding third-party libraries
-Odds are that you will need to add some third party libraries to your project at some point. To do so, it is strongly recommended that you install them using bower ([usage](http://bower.io/)). If you can't [find the package on bower](http://bower.io/search/) (very rare) or you have your own in-house libraries that you like to use, you should put your scripts within a `client/scripts/vendor` folder (jshint is setup to ignore this folder), styles within a `client/styles/vendor` folder, and all other file types can go where-ever you want within the `client` folder (This will make sure that your base template can access them).
+Odds are that you will need to add some third party libraries to your project at some point. To do so, it is strongly recommended that you install them using bower ([usage](http://bower.io/)):
 
-Once you have your library installed, you will want to add it to your project. To do this, you'll need to add a new `<script>` or `<link>` tag to your base template file:
+```
+bower install [package name] --save
+``` 
+
+Once installed, take a look at your base template and you will notice the following comments:
+
+```
+<!-- bower:js -->
+<!-- endbower -->
+
+<!-- bower:css -->
+<!-- endbower -->
+```
+
+These comments will ensure all libraries and their dependencies found in your `bower.json` file are correctly ordered and injected into your base template file via [grunt-wiredep](https://github.com/stephenplusplus/grunt-wiredep) using the following comments:. Then you are all set, no need to worry about linking your libraries manually.
+
+If you can't [find the package on bower](http://bower.io/search/) (very rare), or you have your own in-house libraries that you like to use, then you should:
+ 
+- Put your scripts within a `client/scripts/vendor` folder (jshint is setup to ignore this folder)
+- Put your stylesheets within a `client/styles/vendor` folder
+- Place all other file types somewhere within the `client` folder (This will make sure that your base template can access them).
+
+If you decided to remove `<!-- bower:js -->` and/or `<!-- bower:css -->` comments from your base template (i.e. not use grunt-wiredep) and have your new library installed, you will want to add it to your project. To do this, you'll need to add a new `<script>` or `<link>` tag to your base template file:
 
 ***Static Sites***
 
@@ -599,7 +621,7 @@ Once you have your library installed, you will want to add it to your project. T
 |Any | No  | `client/index.html`
 |Any | Yes | `server/templates/index.html`
 
-Within your base template file, you will want to locate the `build:js({client,.tmp}) scripts/global.js` comment for scripts and the `build:css(client) styles/global.css` comment for styles. Once located, add your `<script>` or `<link>` after the comment and make sure it is also located before the `endbuild` comment:
+Within your base template file, you will want to locate the `build:js(client) scripts/global.js` comment for scripts and the `build:css(client) styles/global.css` comment for styles. Once located, add your `<script>` or `<link>` after the comment and make sure it is also located before the `endbuild` comment:
 
 ***Styles***
 ```
@@ -629,7 +651,6 @@ This does a couple things:
 Your library should now load correctly (assuming your source path is correct).
 
 > IMPORTANT: If you have third-party script that will be referenced within your own code (ex. using jQuery), you need to make sure that JSHint is aware it. Check out [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts) to see how to make this happen.
-
 
 ## Deployment
 ### FTP Server

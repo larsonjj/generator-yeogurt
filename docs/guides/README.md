@@ -5,7 +5,7 @@ This section contains information on how to implement extra libraries and plugin
 - [Ruby Sass](ruby-sass.md)
 
 ## JavaScript Libraries
-- [Underscore](underscore.md)
+- [Lo-dash](lodash.md)
 - [Underscore.string](underscore-string.md)
 
 ## CSS Libraries/Frameworks

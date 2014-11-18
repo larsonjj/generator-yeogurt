@@ -14,6 +14,14 @@ This will download the library and place it in the `client/bower_components` fol
 
 ### 2. Add library to your base template
 
+#### Using default dependency injection via [grunt-wiredep](https://github.com/stephenplusplus/grunt-wiredep)
+
+No futher action is required. Note that the bootstrap css will be automatically injected into your base template between the `<!-- bower:css -->` and `<!-- endbower -->` comments and the bootstrap javascript will be injected between the `<!-- bower:js -->` and `<!-- endbower -->` comments
+
+#### Without dependency injection
+
+If you decided to not use the `<!-- bower:css -->` or `<!-- bower:js -->` comments to auto-inject your bower dependencies via [grunt-wiredep](https://github.com/stephenplusplus/grunt-wiredep), then follow the steps below.
+
 Locate your base template with the following table:
 
 ***Static Sites***
