@@ -12,6 +12,10 @@ var localStrategy = require('./strategies/local');<% } %><% if (authTypes.indexO
 var facebookStrategy = require('./strategies/facebook');<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
 var twitterStrategy = require('./strategies/twitter');<% } %>
 
+/**
+ * Initialize passport serialization/deserialization<% if (authTypes.indexOf('local') > -1) { %>
+ * and load up any additional strategies<% } %>
+ */
 var init = function(User) {
     passport.serializeUser(function(user, done) {
         done(null, user.id);
@@ -38,7 +42,10 @@ var init = function(User) {
     twitterStrategy(User);<% } %>
 };
 
-var isAuthenticated = function(req, res, next) {
+/**
+ * Check to see if user is authenticated
+ */
+var isAuthenticated = function(req, res, next) {<% if (useJwt) { %>
     if (!req.xhr) {
         if (req.isAuthenticated()) {
             return next();
@@ -52,20 +59,12 @@ var isAuthenticated = function(req, res, next) {
         }
         // Validate jwt token
         return validateJwt(req, res, next);
+    }<% } else { %>
+    if (req.isAuthenticated()) {
+        return next();
     }
-};
-
-// Check to see if user is authorized for specific provider.
-
-var isAuthorized = function(req, res, next) {
-    var provider = req.path.split('/').slice(-1)[0];
-
-    if (req.user[provider + 'Token']) {
-        next();
-    }
-    else {
-        res.redirect('/auth/' + provider);
-    }
+    res.redirect('/login');
+    <% } %>
 };
 
 /**

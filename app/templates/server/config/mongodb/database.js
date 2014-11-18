@@ -14,16 +14,18 @@ require('colors');
 
 var databaseConfig = function(app) {
 
+    // Get current server environment
     var env = app.get('env');
 
     // Connect to database
     mongoose.connect(settings.database.url, settings.database.options);
 
     if ('development' === env) {
+        // Log database actions
         mongoose.set('debug', true);
     }<% if (useAuth) { %>
 
-    // Import all models
+    // Import all database models
     fs.readdirSync(path.join(__dirname, '../models')).forEach(function(file) {
         var name = path.basename(file, '.js');
         var model = mongoose.model(name, require(path.join(__dirname, '../models', file)));

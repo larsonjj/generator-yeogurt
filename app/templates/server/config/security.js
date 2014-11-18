@@ -9,8 +9,7 @@ var lusca = require('lusca');
 var settings = require('./env/default');
 
 /**
- * Takes in express req, res, and next parameters and sets up
- * Paypal lusca module with white-listed routes
+ * Set's up Paypal's lusca security module with white-listed routes
  */
 var securityConfig = function(req, res, next) {
 

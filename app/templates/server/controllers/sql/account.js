@@ -271,7 +271,7 @@ var forgot = function(req, res) {
 /**
  * POST /forgot
  * Create a random token, then the send user an email with a reset link.
- * @param username
+ * @param email/username
  */
 
 var postForgot = function(req, res, next) {
@@ -472,7 +472,7 @@ var linkOAuth = function(req, res, next) {<% if (useJwt) { %>
 
 /**
  * GET /social/signup
- * Form to gather username and email for social account
+ * Form to gather username and email to complete social account registration
  */
 
 var socialSignup = function(req, res, next) {<% if (useJwt) { %>
@@ -499,7 +499,9 @@ var socialSignup = function(req, res, next) {<% if (useJwt) { %>
 
 /**
  * POST /social/signup
- * Link OAuth provider.
+ * Link OAuth provider and create new account
+ * @param email
+ * @param username
  */
 
 var postSocialSignup = function(req, res, next) {

@@ -52,8 +52,10 @@ var show = function(req, res, next) {
 /**
  * POST /user
  * Create a new local account.
+ * @param username
  * @param email
  * @param password
+ * @param confirmPassword
  */
 
 var create = function(req, res, next) {
@@ -179,7 +181,7 @@ var create = function(req, res, next) {
 };
 
 /**
- * POST /user/:username/username
+ * PUT /user/:username/username
  * Update username.
  */
 
@@ -403,6 +405,7 @@ var updateProfile = function(req, res, next) {
  * PUT /user/:username/password
  * Update current password.
  * @param password
+ * @param confirmPassword
  */
 
 var updatePassword = function(req, res, next) {
@@ -487,7 +490,7 @@ var updatePassword = function(req, res, next) {
 /**
  * DELETE /user/:username
  * Delete user account.
- * @param {string} username
+ * @param username
  */
 
 var destroy = function(req, res, next) {<% if (useJwt) { %>

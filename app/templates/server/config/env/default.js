@@ -11,11 +11,15 @@ var envConfig = require('./' + env);
 // All configurations will extend these options
 var defaults = {
     server: {
+        // Port to run server on
         port: process.env.PORT || 9010,
+        // Host/URL to run server on
         host: process.env.HOSTNAME || '127.0.0.1'
     },
     database: {
+        // URL to connect to database
         url: process.env.DBURL || '<%= dbURL %>',<% if (dbOption === 'mongodb') { %>
+        // Mongoose database options
         options: {
             server: {
                 socketOptions: {
@@ -26,6 +30,7 @@ var defaults = {
             // Attempt to reconnect if connection is lost
             auto_reconnect: true
         }<% } %><% if (dbOption === 'mysql') { %>
+        // Sequelize database options
         options: {
             // Database Type
             dialect: 'mysql',

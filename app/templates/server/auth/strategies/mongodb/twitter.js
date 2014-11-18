@@ -4,33 +4,22 @@ var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
 var secrets = require('../../config/secrets');
 
-/**
- * OAuth Strategy Overview
- *
- * - User is already logged in.
- *   - Check if there is an existing account with a <provider> id.
- *     - If there is, return an error message. (Account merging not supported)
- *     - Else link new OAuth account with currently logged-in user.
- * - User is not logged in.
- *   - Check if it's a returning user.
- *     - If returning user, sign in and we are done.
- *     - Else check if there is an existing account with user's username.
- *       - If there is, return an error message.
- *       - Else create a new account.
- */
-
 // Sign in with Twitter.
 var strategy = function(User) {
     passport.use(new TwitterStrategy(secrets.twitter, function(req, accessToken, tokenSecret, profile, done) {
+        // If user is already logged in.
         if (req.user) {
+            // Check if there is an existing account with a twitter id.
             User.findOne({
                 twitter: profile.id
             }, function(err, existingUser) {
+                // If there is an existing account, return an error message.
                 if (existingUser) {
                     req.flash('errors', {
                         msg: 'There is already a Twitter account that belongs to you. Sign in with that account or delete it, then link it with your current account.'
                     });
                     done(err);
+                // Otherwise link the facebook account with currently logged-in user.
                 } else {
                     User.findById(req.user.id, function(err, user) {
                         var name = profile._json.name.split(' ');
@@ -50,23 +39,28 @@ var strategy = function(User) {
                     });
                 }
             });
-
+        // If user is not logged in.
         } else {
+            // Check if it's a user who already has a twitter account linked.
             User.findOne({
                 twitter: profile.id
             }, function(err, existingUser) {
+                // If user already has a twitter account linked, sign in and we are done.
                 if (existingUser) {
                     return done(null, existingUser);
                 }
+                // Otherwise check if there is an existing account with the twitter account's email.
                 User.findOne({
                     username: profile._json.screen_name
                 }, function(err, existingUsernameUser) {
+                    // If there is an existing email account, return an error message
                     if (existingUsernameUser) {
                         req.flash('errors', {
                             msg: 'There is already an account using the username "' + existingUsernameUser.username +
                                  '". If it is your account, sign in below or click on "Forgot you password?" to reset your password.'
                         });
                         done(err);
+                    // Otherwise create a new account
                     } else {
                         var name = profile._json.name.split(' ');
                         var user = new User();
@@ -80,6 +74,7 @@ var strategy = function(User) {
                         user.twitterToken = accessToken;
                         user.twitterSecret = tokenSecret;
 
+                        // Set flag to let passport callback know a new user needs to be created
                         req.newUser = true;
                         done(null, user);
                     }

@@ -30,7 +30,7 @@ var login = function(req, res) {
 /**
  * POST /login
  * Sign in using email and password.
- * @param email
+ * @param email/username
  * @param password
  */
 
@@ -175,7 +175,7 @@ var reset = function(req, res, next) {
 
 /**
  * POST /reset/:token
- * Process the reset password request.
+ * Process reset password request.
  * @param token
  */
 
@@ -260,7 +260,7 @@ var forgot = function(req, res) {
 /**
  * POST /forgot
  * Create a random token, then the send user an email with a reset link.
- * @param username
+ * @param email/username
  */
 
 var postForgot = function(req, res, next) {
@@ -455,7 +455,7 @@ var linkOAuth = function(req, res, next) {<% if (useJwt) { %>
 
 /**
  * GET /social/signup
- * Form to gather username and email for social account
+ * Form to gather username and email to complete social account registration
  */
 
 var socialSignup = function(req, res, next) {<% if (useJwt) { %>
@@ -482,7 +482,9 @@ var socialSignup = function(req, res, next) {<% if (useJwt) { %>
 
 /**
  * POST /social/signup
- * Link OAuth provider.
+ * Link OAuth provider and create new account
+ * @param email
+ * @param username
  */
 
 var postSocialSignup = function(req, res, next) {

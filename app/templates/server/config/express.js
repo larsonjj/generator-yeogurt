@@ -29,6 +29,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     var day = hour * 24;
     var week = day * 7;
 
+    // Get current server environment
     var env = app.get('env');
 
     // Remove x-powered-by header (doesn't let clients know we are using Express)
@@ -149,17 +150,13 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
         });
     }
 
-    /**
-     * Dynamically load all routes
-     */
-    fs.readdirSync(settings.root + '/server/routes').forEach(function(file) {
-        var route = settings.root + '/server/routes/' + file;
+    // Dynamically load all routes
+    fs.readdirSync(path.join(settings.root, '/server/routes')).forEach(function(file) {
+        var route = path.join(settings.root, '/server/routes/', file);
         require(route)(app);
     });<% if (!singlePageApplication) { %>
 
-    /**
-     * 404 Error Handler
-     */
+    // 404 Error Handler
     app.use(function(req, res) {
         res.status(400);
         res.format({
@@ -173,9 +170,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     });
 
     if ('production' === env) {
-        /**
-         * Production 500 Error Handler.
-         */
+         // Production 500 Error Handler.
         app.use(function(error, req, res, next) {
             res.status(500);
             res.format({
@@ -190,9 +185,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     }<% } %>
 
     if ('development' === env) {
-        /**
-         * Development 500 Error Handler.
-         */
+        // Development 500 Error Handler.
         app.use(errorHandler());
     }
 
