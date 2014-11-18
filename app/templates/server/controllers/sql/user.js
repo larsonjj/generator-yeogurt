@@ -18,15 +18,17 @@ var auth = require('../auth');
 /**
  * GET /user/:username
  * Profile page.
+ * @param username
  */
 
 var show = function(req, res, next) {
+    // Find user information
     User.find({
         where: {
             username: req.params.username
         }
     }).success(function(user) {
-        if (user) {<% if (useJwt) { %>
+        if (user) {<% if (singlePageApplication) { %>
             if (!req.xhr) {
                 res.render('account/profile', {
                     title: 'Profile',
@@ -42,6 +44,7 @@ var show = function(req, res, next) {
             });<% } %>
         }
         else {
+            // Will allow route to continue leading to 404 error
             next();
         }
     }).error(function(err) {
@@ -64,7 +67,7 @@ var create = function(req, res, next) {
     req.assert('password', 'Password must be at least 6 characters long').len(6);
     req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
-    var errors = req.validationErrors();<% if (useJwt) { %>
+    var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
         if (!req.xhr) {
@@ -188,7 +191,7 @@ var create = function(req, res, next) {
 var updateUsername = function(req, res, next) {
     req.assert('username', 'Username cannot be blank').notEmpty();
 
-    var errors = req.validationErrors();<% if (useJwt) { %>
+    var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
         if (!req.xhr) {
@@ -316,7 +319,7 @@ var updateUsername = function(req, res, next) {
 var updateProfile = function(req, res, next) {
     req.assert('email', 'Email is not valid').isEmail();
 
-    var errors = req.validationErrors();<% if (useJwt) { %>
+    var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
         if (!req.xhr) {
@@ -412,7 +415,7 @@ var updatePassword = function(req, res, next) {
     req.assert('password', 'Password must be at least 6 characters long').len(6);
     req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
-    var errors = req.validationErrors();<% if (useJwt) { %>
+    var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
         if (!req.xhr) {
@@ -493,7 +496,7 @@ var updatePassword = function(req, res, next) {
  * @param username
  */
 
-var destroy = function(req, res, next) {<% if (useJwt) { %>
+var destroy = function(req, res, next) {<% if (singlePageApplication) { %>
     User.destroy({
         username: req.params.username
     }).success(function() {
@@ -536,7 +539,7 @@ var destroy = function(req, res, next) {<% if (useJwt) { %>
  * Delete current user account.
  */
 
-var deleteAccount = function(req, res, next) {<% if (useJwt) { %>
+var deleteAccount = function(req, res, next) {<% if (singlePageApplication) { %>
     User.destroy({
         id: req.user.id
     }).success(function() {

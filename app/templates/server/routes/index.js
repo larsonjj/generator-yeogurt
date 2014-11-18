@@ -10,7 +10,7 @@ var routes = function (app) {<% if (!singlePageApplication) { %>
 
     // Home
     app.get('/', indexController.index);<% } else { %>
-    // 404 Routes for anything undefined
+    // 404 page for any undefined route
     app.get('/:url(user|auth|settings|bower_components|images|scripts|styles)/*', function(req, res){
         res.format({
             html: function() {
@@ -22,7 +22,7 @@ var routes = function (app) {<% if (!singlePageApplication) { %>
         });
     });
 
-    // Catch All: Matches all routes
+    // Allow single page application to handle routing
     // Place all routes above this one
     app.get('/*', indexController.index);<% } %>
 

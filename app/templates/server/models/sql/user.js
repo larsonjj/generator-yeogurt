@@ -52,10 +52,15 @@ var UserModel = function(sequelize, DataTypes) {
             type: DataTypes.STRING
         },
 
+        // Reset token
         resetPasswordToken: DataTypes.STRING,
         resetPasswordExpires: DataTypes.DATE
     }, {
         instanceMethods: {
+            /**
+             * Validate user's password.
+             * Used by Passport-Local Strategy for password validation.
+             */
             comparePassword: function(candidatePassword, done) {
                 bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
                     if (err) {
@@ -67,6 +72,7 @@ var UserModel = function(sequelize, DataTypes) {
         }
     });
 
+    // Run before validating any data
     User.hook('beforeValidate', function(user, done) {
 
         // Check to see if password has changed
@@ -74,7 +80,7 @@ var UserModel = function(sequelize, DataTypes) {
             return done(null, user);
         }
 
-        // Salt password
+        // Salt and Hash password
         bcrypt.genSalt(5, function(err, salt) {
             if (err) {
               return done(err);

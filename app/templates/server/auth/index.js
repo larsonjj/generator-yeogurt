@@ -1,7 +1,7 @@
 'use strict';
 
 var passport = require('passport');
-var secrets = require('../config/secrets');<% if (useJwt) { %>
+var secrets = require('../config/secrets');<% if (singlePageApplication) { %>
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var validateJwt = expressJwt({ secret: secrets.sessionSecret });<% if (dbOption === 'mongodb') { %>
@@ -45,7 +45,7 @@ var init = function(User) {
 /**
  * Check to see if user is authenticated
  */
-var isAuthenticated = function(req, res, next) {<% if (useJwt) { %>
+var isAuthenticated = function(req, res, next) {<% if (singlePageApplication) { %>
     if (!req.xhr) {
         if (req.isAuthenticated()) {
             return next();
@@ -88,7 +88,7 @@ var hasRole = function(roleRequired) {
         }
     }
     return meetsRequirements;
-};<% if (useJwt) { %>
+};<% if (singlePageApplication) { %>
 
 /**
  * Returns a jwt token signed by the app secret
@@ -112,14 +112,13 @@ var setTokenCookie = function(req, res) {
     }
     var token = signToken(req.user.username, req.user.role);
     res.cookie('token', JSON.stringify(token));
-    res.redirect('/');
 };<% } %>
 
 module.exports = {
     init: init,
     isAuthenticated: isAuthenticated,
     isAuthorized: isAuthorized,
-    hasRole: hasRole,<% if (useJwt) { %>
+    hasRole: hasRole,<% if (singlePageApplication) { %>
     signToken: signToken,
     setTokenCookie: setTokenCookie<% } %>
 };

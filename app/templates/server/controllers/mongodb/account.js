@@ -11,7 +11,7 @@ var nodemailer = require('nodemailer');
 var passport = require('passport');
 var User = require('mongoose').model('user');
 var secrets = require('../config/secrets');
-var auth = require('../auth');
+var auth = require('../auth');<% if (!singlePageApplication) { %>
 
 /**
  * GET /login
@@ -25,7 +25,7 @@ var login = function(req, res) {
     res.render('account/login', {
         title: 'Login'
     });
-};
+};<% } %>
 
 /**
  * POST /login
@@ -36,6 +36,7 @@ var login = function(req, res) {
 
 var postLogin = function(req, res, next) {
 
+    // Check to see if data is email or username
     var context = (req.body.username.indexOf('@') > -1) ? 'email' : 'username';
 
     if (context === 'email') {
@@ -45,58 +46,33 @@ var postLogin = function(req, res, next) {
         req.assert('username', 'Username cannot be blank').notEmpty();
     }
 
-    var errors = req.validationErrors();<% if (useJwt) { %>
+    // Run validation
+    var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        if (!req.xhr) {
-            req.flash('errors', errors);
-            return res.redirect('/login');
-        }
-        else {
-            return res.json(401, errors);
-        }
+        return res.json(400, errors);
     }
 
+    // Authenticate using local strategy
     passport.authenticate('local', function(err, user, info) {
         if (err) {
             return next(err);
         }
         if (!user) {
-            if (!req.xhr) {
-                req.flash('errors', {
-                    msg: info.message
-                });
-                return res.redirect('/login');
-            }
-            else {
-                return res.json(404, {
-                    message: 'Something went wrong, please try again.'
-                });
-            }
+            return res.json(404, {
+                message: 'Something went wrong, please try again.'
+            });
         }
-        req.logIn(user, function(err) {
-            if (err) {
-                return next(err);
-            }
-            if (!req.xhr) {
-                req.flash('success', {
-                    msg: 'Success! You are logged in.'
-                });
-                res.redirect(req.session.returnTo || '/');
-            }
-            else {
-                var token = auth.signToken(user.id, user.role);
-                res.json({
-                    token: token
-                });
-            }
-        });
+
+        // Send user authentication token
+        auth.setTokenCookie(req, res);
     })(req, res, next);<% } else { %>
     if (errors) {
         req.flash('errors', errors);
         return res.redirect('/login');
     }
 
+    // Authenticate using local strategy
     passport.authenticate('local', function(err, user, info) {
         if (err) {
             return next(err);
@@ -117,7 +93,7 @@ var postLogin = function(req, res, next) {
             res.redirect(req.session.returnTo || '/');
         });
     })(req, res, next);<% } %>
-};
+};<% if (!singlePageApplication) { %>
 
 /**
  * GET /logout
@@ -152,10 +128,12 @@ var reset = function(req, res, next) {
     if (req.isAuthenticated()) {
         return res.redirect('/');
     }
+    // Find user with assigned reset token
     User
         .findOne({
             resetPasswordToken: req.params.token
         })
+        // Make sure token hasn't expired
         .where('resetPasswordExpires').gt(Date.now())
         .exec(function(err, user) {
             if (err) {
@@ -171,7 +149,7 @@ var reset = function(req, res, next) {
                 title: 'Password Reset'
             });
         });
-};
+};<% } %>
 
 /**
  * POST /reset/:token
@@ -183,19 +161,84 @@ var postReset = function(req, res, next) {
     req.assert('password', 'Password must be at least 6 characters long.').len(6);
     req.assert('confirm', 'Passwords must match.').equals(req.body.password);
 
-    var errors = req.validationErrors();
+    // Run validation
+    var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
+    if (errors) {
+        return res.json(400, errors);
+    }
+
+    // Run asnyc operations in a synchronous fashion
+    async.waterfall([
+        function(done) {
+            // Find user with assigned reset token
+            User
+                .findOne({
+                    resetPasswordToken: req.params.token
+                })
+                // Make sure token hasn't expired
+                .where('resetPasswordExpires').gt(Date.now())
+                .exec(function(err, user) {
+                    if (!user) {
+                        return res.json(400, {
+                            errors: [{
+                                msg: 'Password reset token is invalid or has expired.'
+                            }]
+                        });
+                    }
+
+                    user.password = req.body.password;
+
+                    // Delete token
+                    user.resetPasswordToken = undefined;
+                    user.resetPasswordExpires = undefined;
+
+                    // Save new password
+                    user.save(function(err) {
+                        if (err) {
+                            return next(err);
+                        }
+                        done(null);
+                    });
+                });
+        },
+        function(user, done) {
+            // Setup email transport
+            var transporter = nodemailer.createTransport();
+            // Create email message
+            var mailOptions = {
+                to: user.email,
+                from: 'yeogurt@yoururl.com',
+                subject: 'Your Yeogurt password has been changed',
+                text: 'Hello,\n\n' +
+                    'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+            };
+            // Send email
+            transporter.sendMail(mailOptions, function(err) {
+                // Send user authentication token
+                auth.setTokenCookie(req, res);
+                done(err, 'done');
+            });
+        }
+    ], function(err) {
+        if (err) {
+            return next(err);
+        }
+    });<% } else { %>
     if (errors) {
         req.flash('errors', errors);
         return res.redirect('back');
     }
 
+    // Run asnyc operations in a synchronous fashion
     async.waterfall([
         function(done) {
+            // Find user with assigned reset token
             User
                 .findOne({
                     resetPasswordToken: req.params.token
                 })
+                // Make sure token hasn't expired
                 .where('resetPasswordExpires').gt(Date.now())
                 .exec(function(err, user) {
                     if (!user) {
@@ -206,13 +249,17 @@ var postReset = function(req, res, next) {
                     }
 
                     user.password = req.body.password;
+
+                    // Delete token
                     user.resetPasswordToken = undefined;
                     user.resetPasswordExpires = undefined;
 
+                    // Save new password
                     user.save(function(err) {
                         if (err) {
                             return next(err);
                         }
+                        // Login user
                         req.logIn(user, function(err) {
                             done(err, user);
                         });
@@ -220,7 +267,9 @@ var postReset = function(req, res, next) {
                 });
         },
         function(user, done) {
+            // Setup email transport
             var transporter = nodemailer.createTransport();
+            // Create email message
             var mailOptions = {
                 to: user.email,
                 from: 'yeogurt@yoururl.com',
@@ -228,11 +277,12 @@ var postReset = function(req, res, next) {
                 text: 'Hello,\n\n' +
                     'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
             };
+            // Send email
             transporter.sendMail(mailOptions, function(err) {
                 req.flash('success', {
                     msg: 'Success! Your password has been changed.'
                 });
-                done(err);
+                done(err, 'done');
             });
         }
     ], function(err) {
@@ -240,8 +290,8 @@ var postReset = function(req, res, next) {
             return next(err);
         }
         res.redirect('/');
-    });
-};
+    });<% } %>
+};<% if (!singlePageApplication) { %>
 
 /**
  * GET /forgot
@@ -255,7 +305,7 @@ var forgot = function(req, res) {
     res.render('account/forgot', {
         title: 'Forgot Password'
     });
-};
+};<% } %>
 
 /**
  * POST /forgot
@@ -264,6 +314,7 @@ var forgot = function(req, res) {
  */
 
 var postForgot = function(req, res, next) {
+    // Check to see if data is email or username
     var context = (req.body.username.indexOf('@') > -1) ? 'email' : 'username';
 
     if (context === 'email') {
@@ -273,22 +324,17 @@ var postForgot = function(req, res, next) {
         req.assert('username', 'Username cannot be blank').notEmpty();
     }
 
-    var errors = req.validationErrors();<% if (useJwt) { %>
+    // Run validation
+    var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        if (!req.xhr) {
-            req.flash('errors', errors);
-            return res.redirect('/forgot');
-        }
-        else {
-            res.json({
-                errors: errors
-            });
-        }
+        return res.json(400, errors);
     }
 
+    // Run asnyc operations in a synchronous fashion
     async.waterfall([
         function(done) {
+            // Create token
             crypto.randomBytes(16, function(err, buf) {
                 var token = buf.toString('hex');
                 done(err, token);
@@ -297,37 +343,33 @@ var postForgot = function(req, res, next) {
         function(token, done) {
             // Check to see whether to search for email or username
             var searchInput = (context === 'email') ? {email: req.body.username.toLowerCase()} : {username: req.body.username.toLowerCase()};
+            // Search for user
             User.findOne(searchInput, function(err, user) {
                 if (err) {
                     return next(err);
                 }
 
                 if (!user) {
-                    if (!req.xhr) {
-                        req.flash('errors', {
+                    res.json(404, {
+                        errors: [{
                             msg: 'No account with that email address exists.'
-                        });
-                        return res.redirect('/forgot');
-                    }
-                    else {
-                        res.json({
-                            errors: [{
-                                msg: 'No account with that email address exists.'
-                            }]
-                        });
-                    }
+                        }]
+                    });
                 }
 
                 user.resetPasswordToken = token;
                 user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
+                // Save token to user account
                 user.save(function(err) {
                     done(err, token, user);
                 });
             });
         },
         function(token, user, done) {
+            // Setup email transport
             var transporter = nodemailer.createTransport();
+            // Create email message
             var mailOptions = {
                 to: user.email,
                 from: 'yeogurt@yoururl.com',
@@ -337,19 +379,13 @@ var postForgot = function(req, res, next) {
                     'http://' + req.headers.host + '/reset/' + token + '\n\n' +
                     'If you did not request this, please ignore this email and your password will remain unchanged.\n'
             };
+            // Send email
             transporter.sendMail(mailOptions, function(err) {
-                if (!req.xhr) {
-                    req.flash('info', {
+                res.json(200, {
+                    info: [{
                         msg: 'An e-mail has been sent to ' + user.email + ' with further instructions.'
-                    });
-                }
-                else {
-                    res.json({
-                        info: [{
-                            msg: 'An e-mail has been sent to ' + user.email + ' with further instructions.'
-                        }]
-                    });
-                }
+                    }]
+                });
                 done(err, 'done');
             });
         }
@@ -357,9 +393,9 @@ var postForgot = function(req, res, next) {
         if (err) {
             return next(err);
         }
-        if (!req.xhr) {
-            res.redirect('/forgot');
-        }
+        res.json(301, {
+            path: '/forgot'
+        });
     });<% } else { %>
 
     if (errors) {
@@ -367,16 +403,19 @@ var postForgot = function(req, res, next) {
         return res.redirect('/forgot');
     }
 
+    // Run asnyc operations in a synchronous fashion
     async.waterfall([
-
         function(done) {
+            // Create token
             crypto.randomBytes(16, function(err, buf) {
                 var token = buf.toString('hex');
                 done(err, token);
             });
         },
         function(token, done) {
+            // Check to see whether to search for email or
             var searchInput = (context === 'email') ? {email: req.body.username.toLowerCase()} : {username: req.body.username.toLowerCase()};
+            // Search for user
             User.findOne(searchInput, function(err, user) {
                 if (err) {
                     return done(err);
@@ -391,13 +430,16 @@ var postForgot = function(req, res, next) {
                 user.resetPasswordToken = token;
                 user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
+               // Save token to user account
                 user.save(function(err) {
                     done(err, token, user);
                 });
             });
         },
         function(token, user, done) {
+            // Setup email transport
             var transporter = nodemailer.createTransport();
+            // Create email message
             var mailOptions = {
                 to: user.email,
                 from: 'yeogurt@yoururl.com',
@@ -407,6 +449,7 @@ var postForgot = function(req, res, next) {
                     'http://' + req.headers.host + '/reset/' + token + '\n\n' +
                     'If you did not request this, please ignore this email and your password will remain unchanged.\n'
             };
+            // Send email
             transporter.sendMail(mailOptions, function(err) {
                 req.flash('info', {
                     msg: 'An e-mail has been sent to ' + user.email + ' with further instructions.'
@@ -427,58 +470,40 @@ var postForgot = function(req, res, next) {
  * Link OAuth provider or request more information
  */
 
-var linkOAuth = function(req, res, next) {<% if (useJwt) { %>
+var linkOAuth = function(req, res, next) {<% if (singlePageApplication) { %>
     if (!req.newUser) {
-        if (!req.xhr) {
-            res.redirect('/');
-        }
-        else {
-            auth.setTokenCookie(req, res);
-        }
+        res.json(301, {
+            path: '/'
+        })
     }
     else {
-        if (!req.xhr) {
-            // perserve user data through redirect
-            req.session.newUser = req.user;
-            res.redirect('/social/signup');
-        }
+        res.json(301, {
+            path: '/social/signup',
+            newUser: req.user
+        })
     }<% } else { %>
     if (!req.newUser) {
-        auth.setTokenCookie(req, res);
+        res.redirect('/');
     }
     else {
-        // perserve user data through redirect
+        // Perserve user data through redirect
         req.session.newUser = req.user;
         res.redirect('/social/signup');
     }<% } %>
-};
+};<% if (!singlePageApplication) { %>
 
 /**
  * GET /social/signup
  * Form to gather username and email to complete social account registration
  */
 
-var socialSignup = function(req, res, next) {<% if (useJwt) { %>
-    if (!req.xhr) {
-        res.render('account/social-signup', {
-            newUser: req.session.newUser
-        });
-        // Cleanup session data
-        req.session.newUser = null;
-    }
-    else {
-        res.json({
-            newUser: req.session.newUser
-        });
-        // Cleanup session data
-        req.session.newUser = null;
-    }<% } else { %>
+var socialSignup = function(req, res, next) {
     res.render('account/social-signup', {
         newUser: req.session.newUser
     });
     // Cleanup session data
-    req.session.newUser = null;<% } %>
-};
+    req.session.newUser = null;
+};<% } %>
 
 /**
  * POST /social/signup
@@ -491,56 +516,40 @@ var postSocialSignup = function(req, res, next) {
     req.assert('email', 'Please enter a valid email address.').isEmail();
     req.assert('username', 'Username cannot be blank').notEmpty();
 
-    var errors = req.validationErrors();<% if (useJwt) { %>
+    // Run validation
+    var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        if (!req.xhr) {
-            req.flash('errors', errors);
-            return res.redirect('/social/signup');
-        }
-        else {
-            res.json({
-                errors: errors
-            });
-        }
+        res.json(400, errors);
     }
+    // Check to see if email account already exists
     User.findOne({
         email: req.body.email
     }, function(err, existingEmail) {
+        // If there is an existing email account, return an error message
         if (existingEmail) {
-            if (!req.xhr) {
-                req.flash('errors', {
+            res.json(409, {
+                errors: [{
                     msg: 'There is already an account using this email address.'
-                });
-            }
-            else {
-                res.json({
-                    errors: {
-                        msg: 'There is already an account using this email address.'
-                    }
-                });
-            }
+                }]
+            });
         }
         else {
+            // Check to see if username already exists
             User.findOne({
                 username: req.body.username
             }, function(err, existingUsername) {
                 if (err) {
                     return next(err);
                 }
+                // If there is an existing username account, return an error message
                 if (existingUsername) {
-                    if (!req.xhr) {
-                        req.flash('errors', {
+                    res.json(409, {
+                        errors: [{
                             msg: 'There is already an account using this username.'
-                        });
-                    }
-                    else {
-                        res.json({
-                            errors: {
-                                msg: 'There is already an account using this username.'
-                            }
-                        });
-                    }
+                        }]
+                    });
+                // Otherwise create new user account
                 } else {
                     var user = new User();
 
@@ -562,23 +571,13 @@ var postSocialSignup = function(req, res, next) {
                         user.twitterSecret = req.body.twitterSecret;
                     }
 
+                    // Save new user
                     user.save(function(err) {
                         if (err) {
                             return next(err);
                         }
-                        if (!req.xhr) {
-                            req.logIn(user, function(err) {
-                                if (err) {
-                                    req.flash('errors', {
-                                        msg: 'Error logging in, please try signing up again.'
-                                    });
-                                }
-                                res.redirect('/');
-                            });
-                        }
-                        else {
-                            auth.setTokenCookie(req, res);
-                        }
+                        // Send new user authentication token
+                        auth.setTokenCookie(req, res);
                     });
                 }
             });
@@ -588,18 +587,22 @@ var postSocialSignup = function(req, res, next) {
         req.flash('errors', errors);
         return res.redirect('/social/signup');
     }
+    // Check to see if email account already exists
     User.findOne({
         email: req.body.email
     }, function(err, existingEmail) {
+        // If there is an existing email account, return an error message
         if (existingEmail) {
             req.flash('errors', {
                 msg: 'There is already an account using this email address.'
             });
         }
         else {
+            // Check to see if username already exists
             User.findOne({
                 username: req.body.username
             }, function(err, existingUsername) {
+                // If there is an existing username account, return an error message
                 if (existingUsername) {
                     if (err) {
                         return next(err);
@@ -607,6 +610,7 @@ var postSocialSignup = function(req, res, next) {
                     req.flash('errors', {
                         msg: 'There is already an account using this username.'
                     });
+                // Otherwise create new user account
                 } else {
                     var user = new User();
 
@@ -628,10 +632,12 @@ var postSocialSignup = function(req, res, next) {
                         user.twitterSecret = req.body.twitterSecret;
                     }
 
+                    // Save new user
                     user.save(function(err) {
                         if (err) {
                             return next(err);
                         }
+                        // Login new user
                         req.logIn(user, function(err) {
                             if (err) {
                                 req.flash('errors', {
@@ -673,11 +679,17 @@ var unlinkOAuth = function(req, res, next) {
         user.save(function(err) {
             if (err) {
                 return next(err);
-            }
+            }<% if (singlePageApplication) { %>
+            res.json(301, {
+                path: '/user/' + req.user.username,
+                info: [{
+                    msg: provider + ' account has been unlinked.'
+                }]
+            });<% } else { %>
             req.flash('info', {
                 msg: provider + ' account has been unlinked.'
             });
-            res.redirect('/user/' + req.user.username);
+            res.redirect('/user/' + req.user.username);<% } %>
         });
     });
 };
@@ -687,19 +699,11 @@ var unlinkOAuth = function(req, res, next) {
  * Settings page.
  */
 
-var settings = function(req, res) {<% if (useJwt) { %>
-    if (!req.xhr) {
-        res.render('account/settings', {
-            title: 'Account Management'
-        });
-    }
-    else {
-        res.json(req.user);
-    }<% } else { %>
+var settings = function(req, res) {<% if (singlePageApplication) { %>
+    res.json(req.user);<% } else { %>
     res.render('account/settings', {
         title: 'Account Management'
-    });
-    <% } %>
+    });<% } %>
 };
 
 module.exports = {

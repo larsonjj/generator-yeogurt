@@ -53,22 +53,21 @@ var userSchema = new mongoose.Schema({
         default: ''
     },
 
+    // Reset token
     resetPasswordToken: String,
     resetPasswordExpires: Date
 });
 
-/**
- * Hash the password for security.
- * "Pre" is a Mongoose middleware that executes before each user.save() call.
- */
-
+// Run before saving any data
 userSchema.pre('save', function(next) {
     var user = this;
 
+    // Check to see if password has changed
     if (!user.isModified('password')) {
       return next();
     }
 
+    // Salt and Hash password
     bcrypt.genSalt(5, function(err, salt) {
         if (err) {
           return next(err);
@@ -88,7 +87,6 @@ userSchema.pre('save', function(next) {
  * Validate user's password.
  * Used by Passport-Local Strategy for password validation.
  */
-
 userSchema.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) {
