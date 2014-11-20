@@ -32,9 +32,7 @@ var init = function(User) {
         }).success(function(user) {
             done(null, user);
         });<% } %>
-    });
-
-    <% if (authTypes.indexOf('local') > -1) { %>
+    });<% if (authTypes.indexOf('local') > -1) { %>
 
     // Setup Passport strategies
     localStrategy(User);<% } %><% if (authTypes.indexOf('facebook') > -1) { %>
@@ -46,20 +44,12 @@ var init = function(User) {
  * Check to see if user is authenticated
  */
 var isAuthenticated = function(req, res, next) {<% if (singlePageApplication) { %>
-    if (!req.xhr) {
-        if (req.isAuthenticated()) {
-            return next();
-        }
-        res.redirect('/login');
+    // allow access_token to be passed through query parameter as well
+    if (req.body && req.body.hasOwnProperty('access_token')) {
+        req.headers.authorization = 'Bearer ' + req.body.access_token;
     }
-    else {
-        // allow access_token to be passed through query parameter as well
-        if (req.body && req.body.hasOwnProperty('access_token')) {
-            req.headers.authorization = 'Bearer ' + req.body.access_token;
-        }
-        // Validate jwt token
-        return validateJwt(req, res, next);
-    }<% } else { %>
+    // Validate jwt token
+    return validateJwt(req, res, next);<% } else { %>
     if (req.isAuthenticated()) {
         return next();
     }
@@ -78,13 +68,9 @@ var hasRole = function(roleRequired) {
     function meetsRequirements(req, res, next) {
         if (secrets.userRoles.indexOf(req.user.role) >= secrets.userRoles.indexOf(roleRequired)) {
             next();
-        } else {
-            if (!req.xhr) {
-                res.redirect('/login');
-            }
-            else {
-                res.send(403);
-            }
+        } else {<% if (singlePageApplication) { %>
+            res.send(403);<% } else { %>
+            res.redirect('/login');<% } %>
         }
     }
     return meetsRequirements;
@@ -106,7 +92,7 @@ var signToken = function(username) {
  */
 var setTokenCookie = function(req, res) {
     if (!req.user) {
-        return res.json(404, {
+        return res.status(404).json({
             message: 'Something went wrong, please try again.'
         });
     }
@@ -117,7 +103,6 @@ var setTokenCookie = function(req, res) {
 module.exports = {
     init: init,
     isAuthenticated: isAuthenticated,
-    isAuthorized: isAuthorized,
     hasRole: hasRole,<% if (singlePageApplication) { %>
     signToken: signToken,
     setTokenCookie: setTokenCookie<% } %>

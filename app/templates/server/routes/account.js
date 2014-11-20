@@ -9,18 +9,18 @@ var accountController = require('../controllers/account');
 var auth = require('../auth');
 
 var routes = function (app) {
-    // Account
-    app.get('/login', accountController.login);
-    app.post('/login', accountController.postLogin);
+    // Account<% if (!singlePageApplication) { %>
+    app.get('/login', accountController.login);<% } %>
+    app.post('/login', accountController.postLogin);<% if (!singlePageApplication) { %>
     app.get('/logout', accountController.logout);
-    app.get('/forgot', accountController.forgot);
-    app.post('/forgot', accountController.postForgot);
-    app.get('/reset/:token', accountController.reset);
-    app.post('/reset/:token', accountController.postReset);
+    app.get('/forgot', accountController.forgot);<% } %>
+    app.post('/forgot', accountController.postForgot);<% if (!singlePageApplication) { %>
+    app.get('/reset/:token', accountController.reset);<% } %>
+    app.post('/reset/:token', accountController.postReset);<% if (!singlePageApplication) { %>
     app.get('/signup', accountController.signup);
-    app.get('/social/signup', accountController.socialSignup);
-    app.post('/social/signup', accountController.postSocialSignup);
-    app.get('/settings', auth.isAuthenticated, accountController.settings);<% if (authTypes.indexOf('facebook') > -1) { %>
+    app.get('/social/signup', accountController.socialSignup);<% } %>
+    app.post('/social/signup', accountController.postSocialSignup);<% if (!singlePageApplication) { %>
+    app.get('/settings', auth.isAuthenticated, accountController.settings);<% } %><% if (authTypes.indexOf('facebook') > -1) { %>
 
     // Facebook
     app.get('/auth/facebook', passport.authenticate('facebook', {

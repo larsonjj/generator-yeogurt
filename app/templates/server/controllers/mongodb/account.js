@@ -50,7 +50,7 @@ var postLogin = function(req, res, next) {
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        return res.json(400, errors);
+        return res.status(400).json(errors);
     }
 
     // Authenticate using local strategy
@@ -59,7 +59,7 @@ var postLogin = function(req, res, next) {
             return next(err);
         }
         if (!user) {
-            return res.json(404, {
+            return res.status(404).json({
                 message: 'Something went wrong, please try again.'
             });
         }
@@ -165,7 +165,7 @@ var postReset = function(req, res, next) {
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        return res.json(400, errors);
+        return res.status(400).json(errors);
     }
 
     // Run asnyc operations in a synchronous fashion
@@ -180,7 +180,7 @@ var postReset = function(req, res, next) {
                 .where('resetPasswordExpires').gt(Date.now())
                 .exec(function(err, user) {
                     if (!user) {
-                        return res.json(400, {
+                        return res.status(400).json({
                             errors: [{
                                 msg: 'Password reset token is invalid or has expired.'
                             }]
@@ -328,7 +328,7 @@ var postForgot = function(req, res, next) {
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        return res.json(400, errors);
+        return res.status(400).json(errors);
     }
 
     // Run asnyc operations in a synchronous fashion
@@ -350,7 +350,7 @@ var postForgot = function(req, res, next) {
                 }
 
                 if (!user) {
-                    res.json(404, {
+                    res.status(404).json({
                         errors: [{
                             msg: 'No account with that email address exists.'
                         }]
@@ -381,7 +381,7 @@ var postForgot = function(req, res, next) {
             };
             // Send email
             transporter.sendMail(mailOptions, function(err) {
-                res.json(200, {
+                res.status(200).json({
                     info: [{
                         msg: 'An e-mail has been sent to ' + user.email + ' with further instructions.'
                     }]
@@ -393,7 +393,7 @@ var postForgot = function(req, res, next) {
         if (err) {
             return next(err);
         }
-        res.json(301, {
+        res.status(301).json({
             path: '/forgot'
         });
     });<% } else { %>
@@ -472,15 +472,15 @@ var postForgot = function(req, res, next) {
 
 var linkOAuth = function(req, res, next) {<% if (singlePageApplication) { %>
     if (!req.newUser) {
-        res.json(301, {
+        res.status(301).json({
             path: '/'
-        })
+        });
     }
     else {
-        res.json(301, {
+        res.status(301).json({
             path: '/social/signup',
             newUser: req.user
-        })
+        });
     }<% } else { %>
     if (!req.newUser) {
         res.redirect('/');
@@ -520,7 +520,7 @@ var postSocialSignup = function(req, res, next) {
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        res.json(400, errors);
+        res.status(400).json(errors);
     }
     // Check to see if email account already exists
     User.findOne({
@@ -528,7 +528,7 @@ var postSocialSignup = function(req, res, next) {
     }, function(err, existingEmail) {
         // If there is an existing email account, return an error message
         if (existingEmail) {
-            res.json(409, {
+            res.status(409).json({
                 errors: [{
                     msg: 'There is already an account using this email address.'
                 }]
@@ -544,7 +544,7 @@ var postSocialSignup = function(req, res, next) {
                 }
                 // If there is an existing username account, return an error message
                 if (existingUsername) {
-                    res.json(409, {
+                    res.status(409).json({
                         errors: [{
                             msg: 'There is already an account using this username.'
                         }]
@@ -680,7 +680,7 @@ var unlinkOAuth = function(req, res, next) {
             if (err) {
                 return next(err);
             }<% if (singlePageApplication) { %>
-            res.json(301, {
+            res.status(301).json({
                 path: '/user/' + req.user.username,
                 info: [{
                     msg: provider + ' account has been unlinked.'
@@ -700,22 +700,22 @@ var unlinkOAuth = function(req, res, next) {
  */
 
 var settings = function(req, res) {<% if (singlePageApplication) { %>
-    res.json(req.user);<% } else { %>
+    res.status(200).json(req.user);<% } else { %>
     res.render('account/settings', {
         title: 'Account Management'
     });<% } %>
 };
 
-module.exports = {
-    login: login,
-    postLogin: postLogin,
+module.exports = {<% if (!singlePageApplication) { %>
+    login: login,<% } %>
+    postLogin: postLogin,<% if (!singlePageApplication) { %>
     logout: logout,
     signup: signup,
-    socialSignup: socialSignup,
+    socialSignup: socialSignup,<% } %>
     postSocialSignup: postSocialSignup,
+    postReset: postReset,<% if (!singlePageApplication) { %>
     reset: reset,
-    postReset: postReset,
-    forgot: forgot,
+    forgot: forgot,<% } %>
     postForgot: postForgot,
     linkOAuth: linkOAuth,
     unlinkOAuth: unlinkOAuth,

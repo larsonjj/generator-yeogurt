@@ -17,7 +17,7 @@ var routes = function (app) {<% if (!singlePageApplication) { %>
                 res.render('errors/404');
             },
             json: function() {
-                res.json({ error: 'Not found' });
+                res.status(404).json({ errors: [{msg: 'Not found'}] });
             }
         });
     });

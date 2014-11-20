@@ -29,7 +29,7 @@ var show = function(req, res, next) {
         }
     }).success(function(user) {
         if (user) {<% if (singlePageApplication) { %>
-            res.json(user);<% } else { %>
+            res.status(200).json(user);<% } else { %>
             res.render('account/profile', {
                 title: 'Profile',
                 publicInfo: user
@@ -62,9 +62,7 @@ var create = function(req, res, next) {
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        res.json({
-            errors: errors
-        });
+        return res.status(400).json(errors);
     }
 
     var user = {
@@ -79,16 +77,16 @@ var create = function(req, res, next) {
         }
     }).success(function(existingUser) {
         if (existingUser) {
-            res.json({
+            res.status(409).json({
                 errors: [{
                     param: 'email',
-                    msg: 'Account with that username already exists.'
+                    msg: 'Account with that email address already exists.'
                 }]
             });
         }
         User.create(user).success(function(user) {
             var token = auth.signToken(user.username, user.role);
-            res.json({
+            res.status(200).json({
                 token: token,
                 success: [{
                     msg: 'Account created successfully.'
@@ -159,9 +157,7 @@ var updateUsername = function(req, res, next) {
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        res.json({
-            errors: errors
-        });
+        return res.status(400).json(errors);
     }
 
     User.find({
@@ -175,7 +171,7 @@ var updateUsername = function(req, res, next) {
             }
         }).success(function(existingUser) {
             if (existingUser) {
-                return res.json({
+                return res.status(409).json({
                     errors: [{
                         param: 'username',
                         msg: 'Account with that username already exists.'
@@ -186,7 +182,7 @@ var updateUsername = function(req, res, next) {
             user.username = req.body.username;
 
             user.save().success(function() {
-                res.json({
+                res.status(200).json({
                     success: [{
                         msg: 'Username information updated.'
                     }]
@@ -265,9 +261,7 @@ var updateProfile = function(req, res, next) {
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        res.json({
-            errors: errors
-        });
+        return res.status(400).json(errors);
     }
 
     User.find({
@@ -283,7 +277,7 @@ var updateProfile = function(req, res, next) {
         user.website = req.body.website || '';
 
         user.save().success(function() {
-            res.json({
+            res.status(200).json({
                 success: [{
                     msg: 'Profile information updated.'
                 }]
@@ -347,9 +341,7 @@ var updatePassword = function(req, res, next) {
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        res.json({
-            errors: errors
-        });
+        return res.status(400).json(errors);
     }
 
     User.find({
@@ -360,7 +352,7 @@ var updatePassword = function(req, res, next) {
         user.password = req.body.password;
 
         user.save().success(function() {
-            res.json({
+            res.status(200).json({
                 success: [{
                     msg: 'Password has been changed.'
                 }]
@@ -415,7 +407,7 @@ var destroy = function(req, res, next) {<% if (singlePageApplication) { %>
     User.destroy({
         username: req.params.username
     }).success(function() {
-        res.json({
+        res.status(200).json({
             info: [{
                 msg: 'Account with username "' + req.params.username + '" has been deleted.'
             }]
@@ -449,7 +441,7 @@ var deleteAccount = function(req, res, next) {<% if (singlePageApplication) { %>
     User.destroy({
         id: req.user.id
     }).success(function() {
-        res.json({
+        res.status(200).json({
             info: [{
                 msg: 'Your account has been deleted.'
             }]

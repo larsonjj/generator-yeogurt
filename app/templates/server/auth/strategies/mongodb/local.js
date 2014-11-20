@@ -11,12 +11,14 @@ var strategy = function(User) {
     }, function(username, password, done) {
         // Check to see whether to search for email or username
         var searchInput = (username.indexOf('@') > -1) ? {email: username.toLowerCase()} : {username: username.toLowerCase()};
+        // Search for user in Database
         User.findOne(searchInput, function(err, user) {
             if (!user) {
                 return done(null, false, {
                     message: 'Invalid email or password.'
                 });
             }
+            // Verify password for user
             user.comparePassword(password, function(err, isMatch) {
                 if (isMatch) {
                     return done(null, user);

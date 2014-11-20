@@ -29,7 +29,7 @@ var show = function(req, res, next) {
         }
         if (user) {<% if (singlePageApplication) { %>
             if (user) {
-                res.json(user);
+                res.status(200).json(user);
             }<% } else { %>
             res.render('account/profile', {
                 title: 'Profile',
@@ -62,9 +62,7 @@ var create = function(req, res, next) {
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        res.json({
-            errors: errors
-        });
+        return res.status(400).json(errors);
     }
 
     var user = new User({
@@ -80,7 +78,7 @@ var create = function(req, res, next) {
             return next(err);
         }
         if (existingUser) {
-            res.json({
+            res.status(409).json({
                 errors: [{
                     param: 'email',
                     msg: 'Account with that email address already exists.'
@@ -92,7 +90,7 @@ var create = function(req, res, next) {
                 return next(err);
             }
             var token = auth.signToken(user.username, user.role);
-            res.json({
+            res.status(200).json({
                 token: token,
                 success: [{
                     msg: 'Account created successfully.'
@@ -148,9 +146,7 @@ var updateUsername = function(req, res, next) {
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        res.json({
-            errors: errors
-        });
+        return res.status(400).json(errors);
     }
 
     User.findOne({
@@ -167,7 +163,7 @@ var updateUsername = function(req, res, next) {
                 return next(err);
             }
             if (existingUser) {
-                return res.json({
+                return res.status(409).json({
                     errors: [{
                         param: 'username',
                         msg: 'Account with that username already exists.'
@@ -181,7 +177,7 @@ var updateUsername = function(req, res, next) {
                 if (err) {
                     return next(err);
                 }
-                res.json({
+                res.status(200).json({
                     success: [{
                         msg: 'Username information updated.'
                     }]
@@ -238,9 +234,7 @@ var updateProfile = function(req, res, next) {
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        res.json({
-            errors: errors
-        });
+        return res.status(400).json(errors);
     }
 
     User.findOne({
@@ -261,7 +255,7 @@ var updateProfile = function(req, res, next) {
             if (err) {
                 return next(err);
             }
-            res.json({
+            res.status(200).json({
                 success: [{
                     msg: 'Profile information updated.'
                 }]
@@ -311,9 +305,7 @@ var updatePassword = function(req, res, next) {
 
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
     if (errors) {
-        res.json({
-            errors: errors
-        });
+        return res.status(400).json(errors);
     }
 
     User.findOne({
@@ -329,7 +321,7 @@ var updatePassword = function(req, res, next) {
             if (err) {
                 return next(err);
             }
-            res.json({
+            res.status(200).json({
                 success: [{
                     msg: 'Password has been changed.'
                 }]
@@ -375,7 +367,7 @@ var destroy = function(req, res, next) {<% if (singlePageApplication) { %>
         if (err) {
             return next(err);
         }
-        res.json({
+        res.status(200).json({
             info: [{
                 msg: 'Account with username "' + req.params.username + '" has been deleted.'
             }]
@@ -407,7 +399,7 @@ var deleteAccount = function(req, res, next) {<% if (singlePageApplication) { %>
         if (err) {
             return next(err);
         }
-        res.json({
+        res.status(200).json({
             info: [{
                 msg: 'Your account has been deleted.'
             }]
