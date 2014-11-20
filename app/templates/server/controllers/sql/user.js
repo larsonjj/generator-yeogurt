@@ -29,15 +29,7 @@ var show = function(req, res, next) {
         }
     }).success(function(user) {
         if (user) {<% if (singlePageApplication) { %>
-            if (!req.xhr) {
-                res.render('account/profile', {
-                    title: 'Profile',
-                    publicInfo: user
-                });
-            }
-            else {
-                res.json(user);
-            }<% } else { %>
+            res.json(user);<% } else { %>
             res.render('account/profile', {
                 title: 'Profile',
                 publicInfo: user
@@ -70,15 +62,9 @@ var create = function(req, res, next) {
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        if (!req.xhr) {
-            req.flash('errors', errors);
-            return res.redirect('/signup');
-        }
-        else {
-            res.json({
-                errors: errors
-            });
-        }
+        res.json({
+            errors: errors
+        });
     }
 
     var user = {
@@ -93,42 +79,21 @@ var create = function(req, res, next) {
         }
     }).success(function(existingUser) {
         if (existingUser) {
-            if (!req.xhr) {
-                req.flash('errors', {
+            res.json({
+                errors: [{
+                    param: 'email',
                     msg: 'Account with that username already exists.'
-                });
-                return res.redirect('/signup');
-            }
-            else {
-                res.json({
-                    errors: [{
-                        param: 'email',
-                        msg: 'Account with that username already exists.'
-                    }]
-                });
-            }
+                }]
+            });
         }
         User.create(user).success(function(user) {
-            if (!req.xhr) {
-                req.logIn(user, function(err) {
-                    if (err) {
-                        return next(err);
-                    }
-                    req.flash('success', {
-                        msg: 'Account created successfully.'
-                    });
-                    res.redirect('/');
-                });
-            }
-            else {
-                var token = auth.signToken(user.username, user.role);
-                res.json({
-                    token: token,
-                    success: [{
-                        msg: 'Account created successfully.'
-                    }]
-                });
-            }
+            var token = auth.signToken(user.username, user.role);
+            res.json({
+                token: token,
+                success: [{
+                    msg: 'Account created successfully.'
+                }]
+            });
         }).error(function(err) {
             if (err) {
                 return next(err);
@@ -194,15 +159,9 @@ var updateUsername = function(req, res, next) {
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        if (!req.xhr) {
-            req.flash('errors', errors);
-            return res.redirect('/settings');
-        }
-        else {
-            res.json({
-                errors: errors
-            });
-        }
+        res.json({
+            errors: errors
+        });
     }
 
     User.find({
@@ -216,38 +175,22 @@ var updateUsername = function(req, res, next) {
             }
         }).success(function(existingUser) {
             if (existingUser) {
-                if (!req.xhr) {
-                    req.flash('errors', {
+                return res.json({
+                    errors: [{
+                        param: 'username',
                         msg: 'Account with that username already exists.'
-                    });
-                    return res.redirect('/settings');
-                }
-                else {
-                    return res.json({
-                        errors: [{
-                            param: 'username',
-                            msg: 'Account with that username already exists.'
-                        }]
-                    });
-                }
+                    }]
+                });
             }
 
             user.username = req.body.username;
 
             user.save().success(function() {
-                if (!req.xhr) {
-                    req.flash('success', {
+                res.json({
+                    success: [{
                         msg: 'Username information updated.'
-                    });
-                    res.redirect('/settings');
-                }
-                else {
-                    res.json({
-                        success: [{
-                            msg: 'Username information updated.'
-                        }]
-                    });
-                }
+                    }]
+                });
             }).error(function(err) {
                 if (err) {
                     return next(err);
@@ -322,15 +265,9 @@ var updateProfile = function(req, res, next) {
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        if (!req.xhr) {
-            req.flash('errors', errors);
-            return res.redirect('/settings');
-        }
-        else {
-            res.json({
-                errors: errors
-            });
-        }
+        res.json({
+            errors: errors
+        });
     }
 
     User.find({
@@ -346,19 +283,11 @@ var updateProfile = function(req, res, next) {
         user.website = req.body.website || '';
 
         user.save().success(function() {
-            if (!req.xhr) {
-                req.flash('success', {
+            res.json({
+                success: [{
                     msg: 'Profile information updated.'
-                });
-                res.redirect('/settings');
-            }
-            else {
-                res.json({
-                    success: [{
-                        msg: 'Profile information updated.'
-                    }]
-                });
-            }
+                }]
+            });
 
         }).error(function(err) {
             if (err) {
@@ -418,15 +347,9 @@ var updatePassword = function(req, res, next) {
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        if (!req.xhr) {
-            req.flash('errors', errors);
-            return res.redirect('/settings');
-        }
-        else {
-            res.json({
-                errors: errors
-            });
-        }
+        res.json({
+            errors: errors
+        });
     }
 
     User.find({
@@ -437,19 +360,11 @@ var updatePassword = function(req, res, next) {
         user.password = req.body.password;
 
         user.save().success(function() {
-            if (!req.xhr) {
-                req.flash('success', {
+            res.json({
+                success: [{
                     msg: 'Password has been changed.'
-                });
-                res.redirect('/settings');
-            }
-            else {
-                res.json({
-                    success: [{
-                        msg: 'Password has been changed.'
-                    }]
-                });
-            }
+                }]
+            });
         }).error(function(err) {
             if (err) {
                 return next(err);
@@ -500,20 +415,11 @@ var destroy = function(req, res, next) {<% if (singlePageApplication) { %>
     User.destroy({
         username: req.params.username
     }).success(function() {
-        if (!req.xhr) {
-            req.logout();
-            req.flash('info', {
+        res.json({
+            info: [{
                 msg: 'Account with username "' + req.params.username + '" has been deleted.'
-            });
-            res.redirect('/');
-        }
-        else {
-            res.json({
-                info: [{
-                    msg: 'Account with username "' + req.params.username + '" has been deleted.'
-                }]
-            });
-        }
+            }]
+        });
     }).error(function(err) {
         if (err) {
             return next(err);
@@ -543,20 +449,11 @@ var deleteAccount = function(req, res, next) {<% if (singlePageApplication) { %>
     User.destroy({
         id: req.user.id
     }).success(function() {
-        if (!req.xhr) {
-            req.logout();
-            req.flash('info', {
+        res.json({
+            info: [{
                 msg: 'Your account has been deleted.'
-            });
-            res.redirect('/');
-        }
-        else {
-            res.json({
-                info: [{
-                    msg: 'Your account has been deleted.'
-                }]
-            });
-        }
+            }]
+        });
     }).error(function(err) {
         if (err) {
             return next(err);

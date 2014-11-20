@@ -52,13 +52,7 @@ var postLogin = function(req, res, next) {
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        if (!req.xhr) {
-            req.flash('errors', errors);
-            return res.redirect('/login');
-        }
-        else {
-            return res.json(400, errors);
-        }
+        return res.json(400, errors);
     }
 
     // Authenticate using local strategy
@@ -571,6 +565,7 @@ var postSocialSignup = function(req, res, next) {
                 }
             }).success(function(existingUsername) {
                 // If there is an existing username account, return an error message
+                if (existingUsername) {
                     res.json(409, {
                         errors: [{
                             msg: 'There is already an account using this username.'

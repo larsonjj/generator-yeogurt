@@ -28,16 +28,8 @@ var show = function(req, res, next) {
             return next(err);
         }
         if (user) {<% if (singlePageApplication) { %>
-            if (!req.xhr) {
-                res.render('account/profile', {
-                    title: 'Profile',
-                    publicInfo: user
-                });
-            }
-            else {
-                if (user) {
-                    res.json(user);
-                }
+            if (user) {
+                res.json(user);
             }<% } else { %>
             res.render('account/profile', {
                 title: 'Profile',
@@ -123,20 +115,10 @@ var create = function(req, res, next) {
         username: req.body.username
     }, function(err, existingUser) {
         if (existingUser) {
-            if (!req.xhr) {
-                req.flash('errors', {
-                    msg: 'Account with that username already exists.'
-                });
-                return res.redirect('/signup');
-            }
-            else {
-                res.json({
-                    errors: [{
-                        param: 'email',
-                        msg: 'Account with that username already exists.'
-                    }]
-                });
-            }
+            req.flash('errors', {
+                msg: 'Account with that username already exists.'
+            });
+            return res.redirect('/signup');
         }
         user.save(function(err) {
             if (err) {
