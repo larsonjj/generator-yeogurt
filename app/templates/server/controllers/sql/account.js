@@ -62,11 +62,14 @@ var postLogin = function(req, res, next) {
         }
         if (!user) {
             return res.status(404).json({
-                message: 'Something went wrong, please try again.'
+                info: [{
+                    msg: info.message
+                }]
             });
         }
         // Send user authentication token
-        auth.setTokenCookie(req, res);
+        var token = auth.signToken(user.username, user.role);
+        res.status(200).json({token: token});
     })(req, res, next);<% } else { %>
     if (errors) {
         req.flash('errors', errors);
@@ -733,7 +736,21 @@ var unlinkOAuth = function(req, res, next) {
  */
 
 var settings = function(req, res) {<% if (singlePageApplication) { %>
-    res.status(200).json(req.user);<% } else { %>
+    User.findOne({
+        username: req.user.username
+      }, '-salt -hashedPassword', function(err, user) { // don't ever give out the password or salt
+        if (err) {
+            return next(err);
+        }
+        if (!user) {
+            return res.status(401).json({
+                errors: [{
+                    msg: 'Unauthorized.'
+                }]
+            });
+        }
+        res.status(200).json(user);
+    });<% } else { %>
     res.render('account/settings', {
         title: 'Account Management'
     });<% } %>

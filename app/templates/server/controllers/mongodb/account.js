@@ -60,12 +60,15 @@ var postLogin = function(req, res, next) {
         }
         if (!user) {
             return res.status(404).json({
-                message: 'Something went wrong, please try again.'
+                info: [{
+                    msg: info.message
+                }]
             });
         }
 
         // Send user authentication token
-        auth.setTokenCookie(req, res);
+        var token = auth.signToken(user.username, user.role);
+        res.status(200).json({token: token});
     })(req, res, next);<% } else { %>
     if (errors) {
         req.flash('errors', errors);
@@ -513,144 +516,157 @@ var socialSignup = function(req, res, next) {
  */
 
 var postSocialSignup = function(req, res, next) {
-    req.assert('email', 'Please enter a valid email address.').isEmail();
-    req.assert('username', 'Username cannot be blank').notEmpty();
+    // Make sure request has some info from social login service
+    if (req.body.twitter || req.body.facebook) {
 
-    // Run validation
-    var errors = req.validationErrors();<% if (singlePageApplication) { %>
+        req.assert('email', 'Please enter a valid email address.').isEmail();
+        req.assert('username', 'Username cannot be blank').notEmpty();
 
-    if (errors) {
-        res.status(400).json(errors);
-    }
-    // Check to see if email account already exists
-    User.findOne({
-        email: req.body.email
-    }, function(err, existingEmail) {
-        // If there is an existing email account, return an error message
-        if (existingEmail) {
-            res.status(409).json({
-                errors: [{
-                    msg: 'There is already an account using this email address.'
-                }]
-            });
+        // Run validation
+        var errors = req.validationErrors();<% if (singlePageApplication) { %>
+
+        if (errors) {
+            res.status(400).json(errors);
         }
-        else {
-            // Check to see if username already exists
-            User.findOne({
-                username: req.body.username
-            }, function(err, existingUsername) {
-                if (err) {
-                    return next(err);
-                }
-                // If there is an existing username account, return an error message
-                if (existingUsername) {
-                    res.status(409).json({
-                        errors: [{
-                            msg: 'There is already an account using this username.'
-                        }]
-                    });
-                // Otherwise create new user account
-                } else {
-                    var user = new User();
-
-                    user.username = req.body.username;
-                    user.email = req.body.email;
-                    user.firstName = req.body.firstName;
-                    user.lastName = req.body.lastName;
-                    user.location = req.body.location;
-                    user.picture = req.body.picture;
-                    user.gender = req.body.gender;
-
-                    if (req.body.facebook) {
-                        user.facebook = req.body.facebook;
-                        user.facebookToken = req.body.facebookToken;
-                    }
-                    else if (req.body.twitter) {
-                        user.twitter = req.body.twitter;
-                        user.twitterToken = req.body.twitterToken;
-                        user.twitterSecret = req.body.twitterSecret;
-                    }
-
-                    // Save new user
-                    user.save(function(err) {
-                        if (err) {
-                            return next(err);
-                        }
-                        // Send new user authentication token
-                        auth.setTokenCookie(req, res);
-                    });
-                }
-            });
-        }
-    });<% } else { %>
-    if (errors) {
-        req.flash('errors', errors);
-        return res.redirect('/social/signup');
-    }
-    // Check to see if email account already exists
-    User.findOne({
-        email: req.body.email
-    }, function(err, existingEmail) {
-        // If there is an existing email account, return an error message
-        if (existingEmail) {
-            req.flash('errors', {
-                msg: 'There is already an account using this email address.'
-            });
-        }
-        else {
-            // Check to see if username already exists
-            User.findOne({
-                username: req.body.username
-            }, function(err, existingUsername) {
-                // If there is an existing username account, return an error message
-                if (existingUsername) {
+        // Check to see if email account already exists
+        User.findOne({
+            email: req.body.email
+        }, function(err, existingEmail) {
+            // If there is an existing email account, return an error message
+            if (existingEmail) {
+                res.status(409).json({
+                    errors: [{
+                        msg: 'There is already an account using this email address.'
+                    }]
+                });
+            }
+            else {
+                // Check to see if username already exists
+                User.findOne({
+                    username: req.body.username
+                }, function(err, existingUsername) {
                     if (err) {
                         return next(err);
                     }
-                    req.flash('errors', {
-                        msg: 'There is already an account using this username.'
-                    });
-                // Otherwise create new user account
-                } else {
-                    var user = new User();
+                    // If there is an existing username account, return an error message
+                    if (existingUsername) {
+                        res.status(409).json({
+                            errors: [{
+                                msg: 'There is already an account using this username.'
+                            }]
+                        });
+                    // Otherwise create new user account
+                    } else {
+                        var user = new User();
 
-                    user.username = req.body.username;
-                    user.email = req.body.email;
-                    user.firstName = req.body.firstName;
-                    user.lastName = req.body.lastName;
-                    user.location = req.body.location;
-                    user.picture = req.body.picture;
-                    user.gender = req.body.gender;
+                        user.username = req.body.username;
+                        user.email = req.body.email;
+                        user.firstName = req.body.firstName;
+                        user.lastName = req.body.lastName;
+                        user.location = req.body.location;
+                        user.picture = req.body.picture;
+                        user.gender = req.body.gender;
 
-                    if (req.body.facebook) {
-                        user.facebook = req.body.facebook;
-                        user.facebookToken = req.body.facebookToken;
+                        if (req.body.facebook) {
+                            user.facebook = req.body.facebook;
+                            user.facebookToken = req.body.facebookToken;
+                        }
+                        else if (req.body.twitter) {
+                            user.twitter = req.body.twitter;
+                            user.twitterToken = req.body.twitterToken;
+                            user.twitterSecret = req.body.twitterSecret;
+                        }
+
+                        // Save new user
+                        user.save(function(err) {
+                            if (err) {
+                                return next(err);
+                            }
+                            // Send new user authentication token
+                            auth.setTokenCookie(req, res);
+                        });
                     }
-                    else if (req.body.twitter) {
-                        user.twitter = req.body.twitter;
-                        user.twitterToken = req.body.twitterToken;
-                        user.twitterSecret = req.body.twitterSecret;
-                    }
-
-                    // Save new user
-                    user.save(function(err) {
+                });
+            }
+        });
+    } else {
+        res.status(403).json({
+            errors: [{
+                msg: 'Forbidden. Unauthorized use.'
+            }]
+        })
+    }<% } else { %>
+        if (errors) {
+            req.flash('errors', errors);
+            return res.redirect('/social/signup');
+        }
+        // Check to see if email account already exists
+        User.findOne({
+            email: req.body.email
+        }, function(err, existingEmail) {
+            // If there is an existing email account, return an error message
+            if (existingEmail) {
+                req.flash('errors', {
+                    msg: 'There is already an account using this email address.'
+                });
+            }
+            else {
+                // Check to see if username already exists
+                User.findOne({
+                    username: req.body.username
+                }, function(err, existingUsername) {
+                    // If there is an existing username account, return an error message
+                    if (existingUsername) {
                         if (err) {
                             return next(err);
                         }
-                        // Login new user
-                        req.logIn(user, function(err) {
-                            if (err) {
-                                req.flash('errors', {
-                                    msg: 'Error logging in, please try signing up again.'
-                                });
-                            }
-                            res.redirect('/');
+                        req.flash('errors', {
+                            msg: 'There is already an account using this username.'
                         });
-                    });
-                }
-            });
-        }
-    });<% } %>
+                    // Otherwise create new user account
+                    } else {
+                        var user = new User();
+
+                        user.username = req.body.username;
+                        user.email = req.body.email;
+                        user.firstName = req.body.firstName;
+                        user.lastName = req.body.lastName;
+                        user.location = req.body.location;
+                        user.picture = req.body.picture;
+                        user.gender = req.body.gender;
+
+                        if (req.body.facebook) {
+                            user.facebook = req.body.facebook;
+                            user.facebookToken = req.body.facebookToken;
+                        }
+                        else if (req.body.twitter) {
+                            user.twitter = req.body.twitter;
+                            user.twitterToken = req.body.twitterToken;
+                            user.twitterSecret = req.body.twitterSecret;
+                        }
+
+                        // Save new user
+                        user.save(function(err) {
+                            if (err) {
+                                return next(err);
+                            }
+                            // Login new user
+                            req.logIn(user, function(err) {
+                                if (err) {
+                                    req.flash('errors', {
+                                        msg: 'Error logging in, please try signing up again.'
+                                    });
+                                }
+                                res.redirect('/');
+                            });
+                        });
+                    }
+                });
+            }
+        });
+    } else {
+        res.status(403).send('Forbidden. Unauthorized use.');
+    }<% } %>
 
 };
 
@@ -699,8 +715,18 @@ var unlinkOAuth = function(req, res, next) {
  * Settings page.
  */
 
-var settings = function(req, res) {<% if (singlePageApplication) { %>
-    res.status(200).json(req.user);<% } else { %>
+var settings = function(req, res, next) {<% if (singlePageApplication) { %>
+    User.findOne({
+        username: req.user.username
+      }, '-salt -hashedPassword', function(err, user) { // don't ever give out the password or salt
+        if (err) {
+            return next(err);
+        }
+        if (!user) {
+            return res.json(401);
+        }
+        res.status(200).json(user);
+    });<% } else { %>
     res.render('account/settings', {
         title: 'Account Management'
     });<% } %>

@@ -28,9 +28,7 @@ var show = function(req, res, next) {
             return next(err);
         }
         if (user) {<% if (singlePageApplication) { %>
-            if (user) {
-                res.status(200).json(user);
-            }<% } else { %>
+            res.status(200).json(user);<% } else { %>
             res.render('account/profile', {
                 title: 'Profile',
                 publicInfo: user

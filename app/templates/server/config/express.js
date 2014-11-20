@@ -8,7 +8,6 @@ var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var path = require('path');
-var fs = require('fs');
 var methodOverride = require('method-override');
 var errorHandler = require('errorhandler');
 var errorHandler = require('errorhandler');<% if (useAuth) { %>
@@ -150,11 +149,8 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
         });
     }
 
-    // Dynamically load all routes
-    fs.readdirSync(path.join(settings.root, '/server/routes')).forEach(function(file) {
-        var route = path.join(settings.root, '/server/routes/', file);
-        require(route)(app);
-    });<% if (!singlePageApplication) { %>
+    // Load routes
+    require(path.join(settings.root,'./server/routes'))(app);<% if (!singlePageApplication) { %>
 
     // 404 Error Handler
     app.use(function(req, res) {
