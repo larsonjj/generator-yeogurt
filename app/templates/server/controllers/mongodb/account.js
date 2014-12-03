@@ -5,13 +5,15 @@
 'use strict';
 
 var _ = require('lodash');
+var path = require('path');
 var async = require('async');
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 var passport = require('passport');
 var User = require('mongoose').model('user');
 var secrets = require('../config/secrets');
-var auth = require('../auth');<% if (!singlePageApplication) { %>
+var settings = require('../config/env/default');
+var auth = require('../auth');
 
 /**
  * GET /login
@@ -21,11 +23,13 @@ var auth = require('../auth');<% if (!singlePageApplication) { %>
 var login = function(req, res) {
     if (req.user) {
         return res.redirect('/');
-    }
+    }<% if (singlePageApplication) { %>
+    // Render index.html to allow application to handle routing
+    res.sendfile(path.join(settings.staticAssets, '/index.html'));<% } else { %>
     res.render('account/login', {
         title: 'Login'
-    });
-};<% } %>
+    });<% } %>
+};
 
 /**
  * POST /login
@@ -96,7 +100,7 @@ var postLogin = function(req, res, next) {
             res.redirect(req.session.returnTo || '/');
         });
     })(req, res, next);<% } %>
-};<% if (!singlePageApplication) { %>
+};
 
 /**
  * GET /logout
@@ -116,10 +120,12 @@ var logout = function(req, res) {
 var signup = function(req, res) {
     if (req.user) {
         return res.redirect('/');
-    }
+    }<% if (singlePageApplication) { %>
+    // Render index.html to allow application to handle routing
+    res.sendfile(path.join(settings.staticAssets, '/index.html'));<% } else { %>
     res.render('account/signup', {
         title: 'Create Account'
-    });
+    });<% } %>
 };
 
 /**
@@ -142,17 +148,25 @@ var reset = function(req, res, next) {
             if (err) {
                 return next(err);
             }
-            if (!user) {
+            if (!user) {<% if (singlePageApplication) { %>
+                /**
+                 * Attach reset=invalid parameter to redirect
+                 * to inform client-side app of a failed reset
+                 */
+                return res.redirect('/forgot?reset=invalid');
+                <% } else { %>
                 req.flash('errors', {
                     msg: 'Password reset token is invalid or has expired.'
                 });
-                return res.redirect('/forgot');
-            }
+                return res.redirect('/forgot');<% } %>
+            }<% if (singlePageApplication) { %>
+            // Render index.html to allow application to handle routing
+            res.sendfile(path.join(settings.staticAssets, '/index.html'));<% } else { %>
             res.render('account/reset', {
                 title: 'Password Reset'
-            });
+            });<% } %>
         });
-};<% } %>
+};
 
 /**
  * POST /reset/:token
@@ -294,7 +308,7 @@ var postReset = function(req, res, next) {
         }
         res.redirect('/');
     });<% } %>
-};<% if (!singlePageApplication) { %>
+};
 
 /**
  * GET /forgot
@@ -304,11 +318,13 @@ var postReset = function(req, res, next) {
 var forgot = function(req, res) {
     if (req.isAuthenticated()) {
         return res.redirect('/');
-    }
+    }<% if (singlePageApplication) { %>
+    // Render index.html to allow application to handle routing
+    res.sendfile(path.join(settings.staticAssets, '/index.html'));<% } else { %>
     res.render('account/forgot', {
         title: 'Forgot Password'
-    });
-};<% } %>
+    });<% } %>
+};
 
 /**
  * POST /forgot
@@ -473,18 +489,7 @@ var postForgot = function(req, res, next) {
  * Link OAuth provider or request more information
  */
 
-var linkOAuth = function(req, res, next) {<% if (singlePageApplication) { %>
-    if (!req.newUser) {
-        res.status(301).json({
-            path: '/'
-        });
-    }
-    else {
-        res.status(301).json({
-            path: '/social/signup',
-            newUser: req.user
-        });
-    }<% } else { %>
+var linkOAuth = function(req, res, next) {
     if (!req.newUser) {
         res.redirect('/');
     }
@@ -492,21 +497,23 @@ var linkOAuth = function(req, res, next) {<% if (singlePageApplication) { %>
         // Perserve user data through redirect
         req.session.newUser = req.user;
         res.redirect('/social/signup');
-    }<% } %>
-};<% if (!singlePageApplication) { %>
+    }
+};
 
 /**
  * GET /social/signup
  * Form to gather username and email to complete social account registration
  */
 
-var socialSignup = function(req, res, next) {
+var socialSignup = function(req, res, next) {<% if (singlePageApplication) { %>
+    // Render index.html to allow application to handle routing
+    res.sendfile(path.join(settings.staticAssets, '/index.html'));<% } else { %>
     res.render('account/social-signup', {
         newUser: req.session.newUser
-    });
+    });<% } %>
     // Cleanup session data
     req.session.newUser = null;
-};<% } %>
+};
 
 /**
  * POST /social/signup
@@ -671,7 +678,7 @@ var postSocialSignup = function(req, res, next) {
 };
 
 /**
- * GET /account/unlink/:provider
+ * POST /account/unlink/:provider
  * Unlink OAuth provider.
  * @param provider
  */
@@ -715,35 +722,26 @@ var unlinkOAuth = function(req, res, next) {
  * Settings page.
  */
 
-var settings = function(req, res, next) {<% if (singlePageApplication) { %>
-    User.findOne({
-        username: req.user.username
-      }, '-salt -hashedPassword', function(err, user) { // don't ever give out the password or salt
-        if (err) {
-            return next(err);
-        }
-        if (!user) {
-            return res.json(401);
-        }
-        res.status(200).json(user);
-    });<% } else { %>
+var settingsPage = function(req, res, next) {<% if (singlePageApplication) { %>
+    // Render index.html to allow application to handle routing
+    res.sendfile(path.join(settings.staticAssets, '/index.html'));<% } else { %>
     res.render('account/settings', {
         title: 'Account Management'
     });<% } %>
 };
 
-module.exports = {<% if (!singlePageApplication) { %>
-    login: login,<% } %>
-    postLogin: postLogin,<% if (!singlePageApplication) { %>
+module.exports = {
+    login: login,
+    postLogin: postLogin,
     logout: logout,
     signup: signup,
-    socialSignup: socialSignup,<% } %>
+    socialSignup: socialSignup,
     postSocialSignup: postSocialSignup,
-    postReset: postReset,<% if (!singlePageApplication) { %>
+    postReset: postReset,
     reset: reset,
-    forgot: forgot,<% } %>
+    forgot: forgot,
     postForgot: postForgot,
     linkOAuth: linkOAuth,
     unlinkOAuth: unlinkOAuth,
-    settings: settings
+    settings: settingsPage
 };

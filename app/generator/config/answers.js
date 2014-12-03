@@ -84,9 +84,6 @@ var answersConfig = function answersConfig() {
     this.jsOption              = this.answers.jsOption;
     this.cssOption             = this.answers.cssOption;
     this.sassSyntax            = this.answers.sassSyntax;
-    this.useBourbon            = this.answers.useBourbon;
-    this.useLesshat            = this.answers.useLesshat;
-    this.ieSupport             = this.answers.ieSupport;
     this.jshint                = this.answers.jshint;
     this.extras                = this.answers.extras;
 
@@ -118,7 +115,6 @@ var answersConfig = function answersConfig() {
     this.useFontAwesome = hasFeature('useFontAwesome', this.extras);
     this.useModernizr   = hasFeature('useModernizr', this.extras);
     this.useNormalize   = hasFeature('useNormalize', this.extras);
-    this.useGA          = hasFeature('useGA', this.extras);
 
 };
 

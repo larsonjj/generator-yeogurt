@@ -13,7 +13,53 @@ var User = require('mongoose').model('user');<% } else if (dbOption === 'mysql')
 var db = require('../config/database');
 var User = db.user;<% } %>
 var secrets = require('../config/secrets');
-var auth = require('../auth');
+var auth = require('../auth');<% if (singlePageApplication) { %>
+
+/**
+ * GET /user/me
+ * Get currently logged in user's info
+ */
+var me = function(req, res, next) {
+    User.find({
+        where: {
+            username: req.user.username
+        }
+    }).success(function(user) {
+        if (user) {
+            res.status(200).json(user);
+        }
+        else {
+            return res.status(401).json({
+                errors: [{
+                    msg: 'Unauthorized'
+                }]
+            });
+        }
+    }).error(function(err) {
+        return next(err);
+    });
+};
+
+/**
+ * GET /user/session
+ * Get currently logged in user's session info
+ */
+var sessionInfo = function(req, res, next) {
+    if (req.user) {
+        // Don't expose sensitive info
+        var sessionInfo = _.clone(req.session);
+        delete sessionInfo.cookie;
+        delete sessionInfo.passport;
+
+        res.status(200).json(sessionInfo);
+    } else {
+        return res.status(401).json({
+            errors: [{
+                msg: 'Unauthorized'
+            }]
+        });
+    }
+};<% } %>
 
 /**
  * GET /user/:username
@@ -466,7 +512,9 @@ var deleteAccount = function(req, res, next) {<% if (singlePageApplication) { %>
     });<% } %>
 };
 
-module.exports = {
+module.exports = {<% if (singlePageApplication) { %>
+    me: me,
+    sessionInfo: sessionInfo,<% } %>
     show: show,
     create: create,
     updateUsername: updateUsername,

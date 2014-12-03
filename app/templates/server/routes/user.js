@@ -13,7 +13,11 @@ var routes = function (app) {
     app.post('/user', userController.create);
 
     // Public user profile
-    app.get('/user/:username', userController.show);
+    app.get('/user/:username', userController.show);<% if (singlePageApplication) { %>
+
+    // Private User info
+    app.get('/user/me', auth.isAuthenticated, userController.me);
+    app.get('/user/session', auth.isAuthenticated, userController.sessionInfo);<% } %>
 
     // Update profile
     app.post('/user/:username/username', auth.isAuthenticated, userController.updateUsername);

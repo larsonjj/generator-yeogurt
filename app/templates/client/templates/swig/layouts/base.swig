@@ -6,18 +6,16 @@
 {# [injector:swig] #}
 {# [endinjector] #}
 
-<!DOCTYPE html><% if (ieSupport) { %>
+<!DOCTYPE html>
 <!--[if lte IE 8]><html class="lt-ie9<% if (useModernizr) { %> no-js<% } %>" lang="en"><![endif]-->
-<!--[if gt IE 8]><!--><html lang="en" class="ie9<% if (useModernizr) { %> no-js<% } %>"><!--<![endif]--><% } else { %>
-<html<% if (useModernizr) { %> class="no-js"<% } %> lang="en"><% } %>
+<!--[if gt IE 8]><!--><html lang="en" class="ie9<% if (useModernizr) { %> no-js<% } %>"><!--<![endif]-->
     <head>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
         <title><%= projectName %></title>
         <meta name="description" content=""/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/><% if (useServer && useAuth && useSecurity) { %>
-        <meta name="csrf-token" content="{{_csrf}}" /><% } %><% if (useGA) { %>
-        <link href="//www.google-analytics.com" rel="dns-prefetch"><% } %><% if (useServer) { %>
+        <meta name="csrf-token" content="{{_csrf}}" /><% } %><% if (useServer) { %>
 
         {% if env == 'development' %}<% } else { %>
 
@@ -39,13 +37,13 @@
 
         <link rel="stylesheet" href="/styles/main.css"><% } %><% if (useModernizr) { %>
 
-        <script src="/bower_components/modernizr/modernizr.js"></script><% } %><% if (ieSupport) { %>
+        <script src="/bower_components/modernizr/modernizr.js"></script><% } %>
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
-        <script src="/bower_components/html5shiv/dist/html5shiv-printshiv.js"></script>
         <script src="/bower_components/consolelog/consolelog.js"></script>
-        <![endif]--><% } %>
+        <script src="/bower_components/html5shiv/dist/html5shiv-printshiv.js"></script>
+        <![endif]-->
     </head>
     <body>
         <!--[if lte IE 7]>
@@ -54,18 +52,7 @@
 
         {% block layout %}
         {% block content %}{% endblock %}
-        {% endblock %}<% if (useGA) { %>
-
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script><% } %><% if (jsFramework === 'react') { %>
+        {% endblock %}<% if (jsFramework === 'react') { %>
 
         <!--[if lt IE 9]>
         <script src="/bower_components/es5-shim/es5-shim.js"></script>

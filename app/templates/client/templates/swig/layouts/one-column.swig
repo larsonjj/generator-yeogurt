@@ -6,10 +6,14 @@
     {# Provides layout level markup #}
     <div class="one-column">
         <div class="main-container">
-            {# Include flash messages #}
-            {% include '../partials/messages.swig' %}
-            {% block content %}
-            {% endblock %}
+            <div class="messages">
+                {# Include flash messages #}
+                {% include '../partials/messages.swig' %}
+            </div>
+            <div class="content">
+                {% block content %}
+                {% endblock %}
+            </div>
         </div>
     </div>
 {% endblock %}

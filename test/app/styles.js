@@ -55,22 +55,6 @@ describe('Yeogurt generator using Styles', function () {
                 done();
             });
         });
-        describe('With Bourbon', function () {
-            it('Creates expected content', function (done) {
-                var fileContentToTest = [
-                    ['bower.json', /bourbon/i]
-                ];
-
-                helpers.mockPrompt(this.app, {
-                    cssOption: 'sass',
-                    useBourbon: true
-                });
-                this.app.run([], function () {
-                    assert.fileContent(fileContentToTest);
-                    done();
-                });
-            });
-        });
         describe('With Sass (not Scss) syntax', function () {
             it('Creates expected content', function (done) {
                 var expected = [
@@ -119,22 +103,6 @@ describe('Yeogurt generator using Styles', function () {
                 assert.file(expected);
                 assert.fileContent(fileContentToTest);
                 done();
-            });
-        });
-        describe('With Lesshat', function () {
-            it('Creates expected content', function (done) {
-                var fileContentToTest = [
-                    ['bower.json', /lesshat/i]
-                ];
-
-                helpers.mockPrompt(this.app, {
-                    cssOption: 'less',
-                    useLesshat: true
-                });
-                this.app.run([], function () {
-                    assert.fileContent(fileContentToTest);
-                    done();
-                });
             });
         });
     });

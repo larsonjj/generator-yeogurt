@@ -71,7 +71,7 @@ CollectionGenerator.prototype.ask = function ask() {
         this.collectionFile = path.join(answers.collectionFile, this._.slugify(this.name.toLowerCase()));
         this.modelFile = path.join(answers.existingModelLocation, this._.slugify(answers.existingModelName.toLowerCase()));
 
-        if (this.useTesting) {
+        if (this.testFile) {
             this.testFile = path.join(answers.testFile, this._.slugify(this.name.toLowerCase()));
         }
         done();

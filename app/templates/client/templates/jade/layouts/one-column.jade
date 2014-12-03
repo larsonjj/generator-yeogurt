@@ -6,6 +6,8 @@ block layout
     //- Provides layout level markup
     .one-column
         .main-container
-            //- Include flash messages
-            include ../partials/messages
-            block content
+            .messages
+                //- Include flash messages
+                include ../partials/messages
+            .content
+                block content

@@ -9,16 +9,16 @@ var accountController = require('../controllers/account');
 var auth = require('../auth');
 
 var routes = function (app) {
-    // Account<% if (!singlePageApplication) { %>
-    app.get('/login', accountController.login);<% } %>
-    app.post('/login', accountController.postLogin);<% if (!singlePageApplication) { %>
+    // Account
+    app.get('/login', accountController.login);
+    app.post('/login', accountController.postLogin);
     app.get('/logout', accountController.logout);
-    app.get('/forgot', accountController.forgot);<% } %>
-    app.post('/forgot', accountController.postForgot);<% if (!singlePageApplication) { %>
-    app.get('/reset/:token', accountController.reset);<% } %>
-    app.post('/reset/:token', accountController.postReset);<% if (!singlePageApplication) { %>
+    app.get('/forgot', accountController.forgot);
+    app.post('/forgot', accountController.postForgot);
+    app.get('/reset/:token', accountController.reset);
+    app.post('/reset/:token', accountController.postReset);
     app.get('/signup', accountController.signup);
-    app.get('/social/signup', accountController.socialSignup);<% } %>
+    app.get('/social/signup', accountController.socialSignup);
     app.post('/social/signup', accountController.postSocialSignup);
     app.get('/settings', auth.isAuthenticated, accountController.settings);<% if (authTypes.indexOf('facebook') > -1) { %>
 
@@ -40,7 +40,7 @@ var routes = function (app) {
     }), accountController.linkOAuth);<% } %><% if (authTypes.length > 0) { %>
 
     // Unlink Social Account
-    app.get('/auth/unlink/:provider', accountController.unlinkOAuth);<% } %>
+    app.post('/auth/unlink/:provider', accountController.unlinkOAuth);<% } %>
 };
 
 module.exports = routes;

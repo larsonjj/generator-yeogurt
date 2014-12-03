@@ -8,7 +8,7 @@ define(function(require) {
 
     var init = function(msg) {<% if (jsFramework === 'backbone') { %>
         // Initialize route(s)
-        new Router();<% if (ieSupport) { %>
+        new Router();
         // Enable pushState for compatible browsers
         var enablePushState = true;
 
@@ -21,8 +21,7 @@ define(function(require) {
         // Handle pushState for incompatible browsers
         if (!pushState && window.location.pathname !== '/') {
             window.location.replace('/#' + window.location.pathname);
-        }<% } else { %>
-        Backbone.history.start();<% } %><% } %>
+        }<% } %>
         console.log('Welcome to Yeogurt');
     };
 
@@ -36,7 +35,7 @@ var Router = require('./routes');
 
 // Initialize route(s)
 new Router();
-<% if (ieSupport) { %>
+
 // Enable pushState for compatible browsers
 var enablePushState = true;
 
@@ -49,8 +48,7 @@ Backbone.history.start({ pushState : pushState, root : '/' });
 // Handle pushState for incompatible browsers
 if (!pushState && window.location.pathname !== '/') {
     window.location.replace('/#' + window.location.pathname);
-}<% } else { %>
-Backbone.history.start();<% } %><% if (jsFramework === 'react') { %>
+}<% if (jsFramework === 'react') { %>
 
 // Enable React dev tools
 window.React = require('react');<% } %>

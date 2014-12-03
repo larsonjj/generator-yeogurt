@@ -33,9 +33,9 @@ var taskConfig = function(grunt) {
                     }<% } %>
                 },
                 // packages to ignore
-                exclude: [<% if (ieSupport) { %>
+                exclude: [
                     '/html5shiv/',
-                    '/consolelog/',<% } %>
+                    '/consolelog/',
                     '/modernizr/',<% if (jsOption === 'requirejs') { %>
                     '/requirejs/'<% } %><% if (jsFramework === 'react') { %>
                     '/es5-shim/'<% } %>

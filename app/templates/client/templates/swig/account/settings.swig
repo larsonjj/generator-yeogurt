@@ -92,13 +92,21 @@
 <h3>Linked Accounts</h3>
 
 {% if user.facebook %}
-<p><a href="/auth/unlink/facebook">Unlink your Facebook account</a></p>
+<p>
+    <form id="facebook-unlink" action="/auth/unlink/facebook" method="post">
+        <button>Unlink your Facebook account</button>
+    </form>
+</p>
 {% else %}
 <p><a href="/auth/facebook">Link your Facebook account</a></p>
 {% endif %}
 
 {% if user.twitter %}
-<p><a href="/auth/unlink/twitter">Unlink your Twitter account</a></p>
+<p>
+    <form id="twitter-unlink" action="/auth/unlink/twitter" method="post">
+        <button>Unlink your Twitter account</button>
+    </form>
+</p>
 {% else %}
 <p><a href="/auth/twitter">Link your Twitter account</a></p>
 {% endif %}

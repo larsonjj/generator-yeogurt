@@ -8,7 +8,7 @@ var taskConfig = function(grunt) {
     grunt.config.set('autoprefixer', {
         server: {
             options: {
-                browsers: ['last 2 versions'<% if (ieSupport) { %>, 'ie 8'<% } %>, 'ie 9'],
+                browsers: ['last 2 versions','ie 8', 'ie 9'],
                 map: true
             },
             files: [{
@@ -20,7 +20,7 @@ var taskConfig = function(grunt) {
         },
         dist: {
             options: {
-                browsers: ['last 2 versions'<% if (ieSupport) { %>, 'ie 8'<% } %>, 'ie 9'],
+                browsers: ['last 2 versions', 'ie 8', 'ie 9'],
                 map: true
             },
             files: [{

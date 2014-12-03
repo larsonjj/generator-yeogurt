@@ -150,7 +150,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     }
 
     // Load routes
-    require(path.join(settings.root,'./server/routes'))(app);<% if (!singlePageApplication) { %>
+    require(path.join(settings.root,'./server/routes'))(app);
 
     // 404 Error Handler
     app.use(function(req, res) {
@@ -161,6 +161,9 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
             },
             json: function() {
                 res.json({error: '404 Not Found'});
+            },
+            text: function() {
+                res.send('404 Not Found');
             }
         });
     });
@@ -175,10 +178,13 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
                 },
                 json: function() {
                     res.json({error: '500 Internal Server Error'});
+                },
+                text: function() {
+                    res.send('500 Internal Server Error');
                 }
             });
         });
-    }<% } %>
+    }
 
     if ('development' === env) {
         // Development 500 Error Handler.

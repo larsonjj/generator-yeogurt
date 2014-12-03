@@ -119,23 +119,6 @@ var clientPrompts = function clientPrompts() {
             return filterMap[val];
         }
     }, {
-        when: function(answers) { return answers.cssOption === 'sass'; },
-        type: 'confirm',
-        name: 'useBourbon',
-        message: 'Would you like to use the ' + 'Bourbon Mixin Library'.blue + '?',
-        default: true
-    }, {
-        when: function(answers) { return answers.cssOption === 'less'; },
-        type: 'confirm',
-        name: 'useLesshat',
-        message: 'Would you like to use the ' + 'Lesshat Mixin Library'.blue + '?',
-        default: true
-    }, {
-        type: 'confirm',
-        name: 'ieSupport',
-        message: 'Do you need to ' + 'support IE8+'.blue + '?',
-        default: true
-    }, {
         type: 'confirm',
         name: 'jshint',
         message: 'Would you like to lint your Javascript with ' + 'JSHint'.blue + '?',
@@ -155,10 +138,6 @@ var clientPrompts = function clientPrompts() {
         }, {
             name: 'Normalize.css',
             value: 'useNormalize',
-            checked: true
-        }, {
-            name: 'Google Analytics',
-            value: 'useGA',
             checked: true
         }],
     }], function(answers) {

@@ -66,7 +66,6 @@ var <%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
     // Instantiate Main Router
     new <%= _.camelize(projectName) %>.MainRouter();
 
-    <% if (ieSupport) { %>
     // Enable pushState for compatible browsers
     var enablePushState = true;
 
@@ -79,10 +78,7 @@ var <%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
     // Handle pushState for incompatibl browsers
     if (!pushState && window.location.pathname !== '/') {
         window.location.replace('/#' + window.location.pathname);
-    }<% } else { %>
-    // Start route handling
-    Backbone.history.start();
-    <% } %>
+    }
 
 })();
 <% } %>

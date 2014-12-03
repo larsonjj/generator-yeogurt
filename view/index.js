@@ -78,11 +78,11 @@ ViewGenerator.prototype.ask = function ask() {
 
     this.prompt(prompts, function(answers) {
         // Get root directory
-        this.rootDir = getRootDir(answers.testFile);
+        this.rootDir = getRootDir(answers.viewFile);
 
         this.viewFile = path.join(answers.viewFile, this._.slugify(this.name.toLowerCase()));
         this.templateFile = path.join(answers.templateFile, this._.slugify(this.name.toLowerCase()));
-        if (this.useTesting) {
+        if (this.testFile) {
             this.testFile = path.join(answers.testFile, this._.slugify(this.name.toLowerCase()));
         }
         done();
