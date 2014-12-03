@@ -10,8 +10,8 @@ var taskConfig = function(grunt) {
             grunt.config.set('karma.options.hostname', '0.0.0.0');
         }<% } %>
 
-        grunt.task.run([<% if (jshint) { %>
-            'jshint:test',<% } %><% if (useTesting) { %><% if (jsTemplate === 'lodash') { %>
+        grunt.task.run([
+            'jshint:test',<% if (useTesting) { %><% if (jsTemplate === 'lodash') { %>
             'jst:test',<% } else if (jsTemplate === 'handlebars') { %>
             'handlebars:test',<% } else if (jsTemplate === 'jade') { %>
             'jade:test',<% } %><% if (jsOption === 'browserify') { %>

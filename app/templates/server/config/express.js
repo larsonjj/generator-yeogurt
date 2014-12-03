@@ -92,10 +92,10 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     app.use(passport.session());
 
     // Initialize server validation flash messages
-    app.use(flash());<% if (useSecurity) { %>
+    app.use(flash());
 
-    // Initialize Lusca Security
-    app.use(security);<% } %>
+    // Initialize Security
+    app.use(security);
 
     app.use(function(req, res, next) {
         // Make Node environment available in templates

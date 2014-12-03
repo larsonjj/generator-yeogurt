@@ -345,13 +345,11 @@ describe('Yeogurt generator using Server', function () {
                 'server/config/security.js'
             ];
             var fileContentToTest = [
-                ['server/config/express.js', /lusca/i],
                 ['server/config/env/default.js', /security/i]
             ];
 
             helpers.mockPrompt(this.app, {
-                useServer: true,
-                useSecurity: true
+                useServer: true
             });
             this.app.run([], function () {
                 assert.file(expected);

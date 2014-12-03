@@ -115,8 +115,8 @@ var taskConfig = function(grunt) {
                 '<%%= yeogurt.client %>/scripts/**/*.js'<% if (jsFramework === 'react' && !useJsx) { %>,
                 '!<%%= yeogurt.client %>/scripts/**/components/*.js'<% } %>
             ],
-            tasks: [<% if (jshint) { %>
-                'newer:jshint',<% } %><% if (jsOption === 'browserify') { %>
+            tasks: [
+                'newer:jshint',<% if (jsOption === 'browserify') { %>
                 'exorcise:server',<% } %>
                 'newer:copy:server'
             ]

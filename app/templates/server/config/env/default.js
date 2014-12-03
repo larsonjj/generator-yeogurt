@@ -83,8 +83,8 @@ var defaults = {
     },
     root: path.normalize(__dirname + '/../../..'),<% if (useAuth) { %>
     // List of user roles in order of lowest privileges
-    userRoles: ['guest', 'user', 'admin'],<% } %>
-    staticAssets: 'client/.serve'<% if (useSecurity) { %>,
+    userRoles: ['guest', 'user'],<% } %>
+    staticAssets: 'client/.serve',
     security: {
         // Arrays of URLs to whitelist from security policies
         whitelists: {
@@ -104,7 +104,7 @@ var defaults = {
             hsts: false,
             xssProtection: true
         }
-    }<% } %>
+    }
 };
 
 // Export the config object based on the NODE_ENV

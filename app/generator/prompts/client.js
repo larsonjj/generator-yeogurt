@@ -117,11 +117,6 @@ var clientPrompts = function clientPrompts() {
 
             return filterMap[val];
         }
-    }, {
-        type: 'confirm',
-        name: 'jshint',
-        message: 'Would you like to lint your Javascript with ' + 'JSHint'.blue + '?',
-        default: true
     }], function(answers) {
         this.clientPrompts = answers;
 

@@ -61,9 +61,9 @@
         "grunt-wiredep": "~1.9.0",
         "grunt-contrib-cssmin": "~0.10.0",
         "grunt-contrib-imagemin": "~0.9.1",
-        "grunt-pngmin": "~0.6.1",<% if (jshint) { %>
+        "grunt-pngmin": "~0.6.1",
         "grunt-contrib-jshint": "~0.10.0",
-        "jshint-stylish": "~1.0.0",<% } %>
+        "jshint-stylish": "~1.0.0",
         "grunt-contrib-copy": "~0.7.0",
         "grunt-contrib-uglify": "~0.6.0",<% if (cssOption === 'sass') { %>
         "grunt-sass": "~0.14.2",<% } %><% if (cssOption === 'less') { %>

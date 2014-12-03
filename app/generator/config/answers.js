@@ -41,7 +41,6 @@ var answersConfig = function answersConfig() {
     this.useServer          = this.answers.useServer;
     this.dbOption           = this.answers.dbOption;
     this.useAuth            = this.answers.useAuth;
-    this.useSecurity        = this.answers.useSecurity;
 
     this.answers.dbUser = this.answers.dbUser === 'nouser' ? '' : this.answers.dbUser;
     this.answers.dbPass = this.answers.dbPass === 'nopass' ? '' : this.answers.dbPass;
@@ -83,7 +82,6 @@ var answersConfig = function answersConfig() {
     this.jsOption              = this.answers.jsOption;
     this.cssOption             = this.answers.cssOption;
     this.sassSyntax            = this.answers.sassSyntax;
-    this.jshint                = this.answers.jshint;
     this.extras                = this.answers.extras;
 
     // Testing

@@ -45,9 +45,7 @@ var taskFiles = function taskFiles() {
     else if (this.htmlOption === 'swig') {
         this.template('grunt/config/compile/swig.js', 'grunt/config/compile/swig.js');
     }
-    if (this.jshint) {
-        this.template('grunt/config/util/jshint.js', 'grunt/config/util/jshint.js');
-    }
+    this.template('grunt/config/util/jshint.js', 'grunt/config/util/jshint.js');
     if (this.cssOption === 'less') {
         this.template('grunt/config/compile/less.js', 'grunt/config/compile/less.js');
     }
