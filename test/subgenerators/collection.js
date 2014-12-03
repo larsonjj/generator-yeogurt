@@ -139,8 +139,8 @@ describe('Collection sub-generator', function () {
             var collection = 'mycollection';
             var folder = '/////folder/////';
             var filesToTest = [
-                'test/spec/collections/folder/' + collection + '.js',
-                'client/scripts/collections/folder/' + collection + '.js'
+                'test/spec/collections/' + folder + collection + '.js',
+                'client/scripts/collections/' + folder + collection + '.js'
             ];
             this.app.run([], function() {
                 createSubGenerator('collection', collection, {}, {}, function() {
@@ -236,6 +236,7 @@ describe('Collection sub-generator', function () {
                 singlePageApplication: true,
                 jsTemplate: 'lodash',
                 jsOption: 'browserify',
+                useTesting: true,
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {

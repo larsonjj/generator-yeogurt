@@ -133,52 +133,7 @@ describe('Yeogurt generator using Server', function () {
                     helpers.mockPrompt(this.app, {
                         useServer: true,
                         dbOption: 'mongodb',
-                        useAuth: true,
-                        authTypes: ['local']
-                    });
-                    this.app.run([], function () {
-                        assert.file(expected);
-                        assert.fileContent(fileContentToTest);
-                        done();
-                    });
-                });
-            });
-            describe('With Twitter Authentication', function () {
-                it('Creates expected files', function (done) {
-                    var expected = [
-                        'server/auth/strategies/twitter.js',
-                    ];
-                    var fileContentToTest = [
-                        ['server/auth/strategies/twitter.js', /findOne/i]
-                    ];
-
-                    helpers.mockPrompt(this.app, {
-                        useServer: true,
-                        dbOption: 'mongodb',
-                        useAuth: true,
-                        authTypes: ['twitter']
-                    });
-                    this.app.run([], function () {
-                        assert.file(expected);
-                        assert.fileContent(fileContentToTest);
-                        done();
-                    });
-                });
-            });
-            describe('With Facebook Authentication', function () {
-                it('Creates expected files', function (done) {
-                    var expected = [
-                        'server/auth/strategies/facebook.js',
-                    ];
-                    var fileContentToTest = [
-                        ['server/auth/strategies/facebook.js', /findOne/i]
-                    ];
-
-                    helpers.mockPrompt(this.app, {
-                        useServer: true,
-                        dbOption: 'mongodb',
-                        useAuth: true,
-                        authTypes: ['facebook']
+                        useAuth: true
                     });
                     this.app.run([], function () {
                         assert.file(expected);
@@ -222,8 +177,7 @@ describe('Yeogurt generator using Server', function () {
                     helpers.mockPrompt(this.app, {
                         useServer: true,
                         dbOption: 'mysql',
-                        useAuth: true,
-                        authTypes: ['local']
+                        useAuth: true
                     });
                     this.app.run([], function () {
                         assert.file(expected);
@@ -232,65 +186,19 @@ describe('Yeogurt generator using Server', function () {
                     });
                 });
             });
-            describe('With Twitter Authentication', function () {
-                it('Creates expected files', function (done) {
-                    var expected = [
-                        'server/auth/strategies/twitter.js',
-                    ];
-                    var fileContentToTest = [
-                        ['server/auth/strategies/twitter.js', /\.success/i]
-                    ];
-
-                    helpers.mockPrompt(this.app, {
-                        useServer: true,
-                        dbOption: 'mysql',
-                        useAuth: true,
-                        authTypes: ['twitter']
-                    });
-                    this.app.run([], function () {
-                        assert.file(expected);
-                        assert.fileContent(fileContentToTest);
-                        done();
-                    });
-                });
-            });
-            describe('With Facebook Authentication', function () {
-                it('Creates expected files', function (done) {
-                    var expected = [
-                        'server/auth/strategies/facebook.js',
-                    ];
-                    var fileContentToTest = [
-                        ['server/auth/strategies/facebook.js', /\.success/i]
-                    ];
-
-                    helpers.mockPrompt(this.app, {
-                        useServer: true,
-                        dbOption: 'mysql',
-                        useAuth: true,
-                        authTypes: ['facebook']
-                    });
-                    this.app.run([], function () {
-                        assert.file(expected);
-                        assert.fileContent(fileContentToTest);
-                        done();
-                    });
-                });
-            });
-            describe('With JWT', function () {
+            describe('With Single Page Application', function () {
                 it('Creates expected files', function (done) {
                     var fileContentToTest = [
                         ['server/auth/index.js', /express\-jwt/i],
                         ['server/auth/index.js', /signToken/i],
-                        ['server/auth/index.js', /setTokenCookie/i],
-                        ['server/controllers/user.js', /\!req.xhr/i],
-                        ['server/controllers/account.js', /\!req.xhr/i]
+                        ['server/auth/index.js', /setTokenCookie/i]
                     ];
 
                     helpers.mockPrompt(this.app, {
                         useServer: true,
                         dbOption: 'mysql',
                         useAuth: true,
-                        authTypes: ['facebook']
+                        singlePageApplication: true
                     });
                     this.app.run([], function () {
                         assert.fileContent(fileContentToTest);
@@ -394,7 +302,7 @@ describe('Yeogurt generator using Server', function () {
                     ['server/auth/index.js', /express\-jwt/i],
                     ['server/auth/index.js', /signToken/i],
                     ['server/auth/index.js', /setTokenCookie/i]
-                ]
+                ];
 
                 helpers.mockPrompt(this.app, {
                     singlePageApplication: true,
@@ -410,7 +318,7 @@ describe('Yeogurt generator using Server', function () {
         describe('Without Server templates', function () {
             it('Creates expected files', function (done) {
                 var expectedContent = [
-                    ['server/routes/index.js', /app\.get\('\/\*'/i]
+                    ['server/routes/index.js', /app\.get\('\/'/i]
                 ];
                 var fileContentToTest = [
                     ['client/index.html', /<\%\- body \%\>/i],

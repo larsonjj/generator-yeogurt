@@ -4,7 +4,6 @@
 
 'use strict';
 
-var passport = require('passport');
 var accountController = require('../controllers/account');
 var auth = require('../auth');
 
@@ -20,27 +19,7 @@ var routes = function (app) {
     app.get('/signup', accountController.signup);
     app.get('/social/signup', accountController.socialSignup);
     app.post('/social/signup', accountController.postSocialSignup);
-    app.get('/settings', auth.isAuthenticated, accountController.settings);<% if (authTypes.indexOf('facebook') > -1) { %>
-
-    // Facebook
-    app.get('/auth/facebook', passport.authenticate('facebook', {
-        scope: ['email'],
-        failureRedirect: '/login'
-    }));
-    app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-        failureRedirect: '/login'
-    }), accountController.linkOAuth);<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
-
-    // Twitter
-    app.get('/auth/twitter', passport.authenticate('twitter', {
-        failureRedirect: '/login'
-    }));
-    app.get('/auth/twitter/callback', passport.authenticate('twitter', {
-        failureRedirect: '/login'
-    }), accountController.linkOAuth);<% } %><% if (authTypes.length > 0) { %>
-
-    // Unlink Social Account
-    app.post('/auth/unlink/:provider', accountController.unlinkOAuth);<% } %>
+    app.get('/settings', auth.isAuthenticated, accountController.settings);
 };
 
 module.exports = routes;

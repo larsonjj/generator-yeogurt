@@ -84,36 +84,6 @@ var serverPrompts = function serverPrompts() {
         message: 'Would you like to ' + 'authenticate users'.blue + '?',
         default: true
     }, {
-        when: function(answers) { return answers.useServer && answers.useAuth; },
-        type: 'checkbox',
-        name: 'authTypes',
-        message: 'What ' + 'types of authentication'.blue + ' would you like to use?',
-        choices: [
-            {
-                name: 'Local (Email & Password)',
-                value: 'local',
-                checked: true
-            },
-            {
-                name: 'Facebook',
-                value: 'facebook',
-                checked: true
-            },
-            {
-                name: 'Twitter',
-                value: 'twitter',
-                checked: true
-            }
-        ],
-        validate: function(val) {
-            if (val && val.length > 0) {
-                return true;
-            }
-            else {
-                return 'You must select at least one option.';
-            }
-        }
-    }, {
         when: function(answers) { return answers.useAuth && answers.useServer; },
         type: 'confirm',
         name: 'useSecurity',

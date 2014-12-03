@@ -93,7 +93,7 @@ describe('Yeogurt generator using Styles', function () {
                 'grunt/config/compile/less.js'
             ];
             var fileContentToTest = [
-                ['client/styles/main.less', /less/i]
+                ['package.json', /less/i]
             ];
 
             helpers.mockPrompt(this.app, {

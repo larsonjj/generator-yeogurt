@@ -59,7 +59,7 @@ ModelGenerator.prototype.ask = function ask() {
         this.rootDir = getRootDir(answers.modelFile);
         this.modelFile = path.join(answers.modelFile, this._.slugify(this.name.toLowerCase()));
 
-        if (this.testFile) {
+        if (answers.testFile) {
             this.testFile = path.join(answers.testFile, this._.slugify(this.name.toLowerCase()));
         }
         done();

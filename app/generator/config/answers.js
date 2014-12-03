@@ -41,7 +41,6 @@ var answersConfig = function answersConfig() {
     this.useServer          = this.answers.useServer;
     this.dbOption           = this.answers.dbOption;
     this.useAuth            = this.answers.useAuth;
-    this.authTypes          = this.answers.authTypes || [];
     this.useSecurity        = this.answers.useSecurity;
 
     this.answers.dbUser = this.answers.dbUser === 'nouser' ? '' : this.answers.dbUser;

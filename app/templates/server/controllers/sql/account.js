@@ -323,7 +323,7 @@ var postReset = function(req, res, next) {
         }
         res.redirect('/');
     });
-};<% if (!singlePageApplication) { %>
+};<% } %><% if (!singlePageApplication) { %>
 
 /**
  * GET /forgot

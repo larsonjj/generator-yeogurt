@@ -7,14 +7,11 @@ var expressJwt = require('express-jwt');
 var validateJwt = expressJwt({ secret: secrets.sessionSecret });<% if (dbOption === 'mongodb') { %>
 var User = require('mongoose').model('user');<% } else if (dbOption === 'mysql') { %>
 var db = require('../config/database');
-var User = db.user;<% } %><% } %><% if (authTypes.indexOf('local') > -1) { %>
-var localStrategy = require('./strategies/local');<% } %><% if (authTypes.indexOf('facebook') > -1) { %>
-var facebookStrategy = require('./strategies/facebook');<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
-var twitterStrategy = require('./strategies/twitter');<% } %>
+var User = db.user;<% } %><% } %>
+var localStrategy = require('./strategies/local');
 
 /**
- * Initialize passport serialization/deserialization<% if (authTypes.indexOf('local') > -1) { %>
- * and load up any additional strategies<% } %>
+ * Initialize passport serialization/deserialization
  */
 var init = function(User) {
     passport.serializeUser(function(user, done) {
@@ -32,12 +29,10 @@ var init = function(User) {
         }).success(function(user) {
             done(null, user);
         });<% } %>
-    });<% if (authTypes.indexOf('local') > -1) { %>
+    });
 
     // Setup Passport strategies
-    localStrategy(User);<% } %><% if (authTypes.indexOf('facebook') > -1) { %>
-    facebookStrategy(User);<% } %><% if (authTypes.indexOf('twitter') > -1) { %>
-    twitterStrategy(User);<% } %>
+    localStrategy(User);
 };
 
 /**

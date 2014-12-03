@@ -54,7 +54,7 @@ ReactGenerator.prototype.ask = function ask() {
         this.rootDir = getRootDir(answers.reactFile);
         this.reactFile = path.join(answers.reactFile, this._.slugify(this.name.toLowerCase()));
 
-        if (this.testFile) {
+        if (answers.testFile) {
             this.testFile = path.join(answers.testFile, this._.slugify(this.name.toLowerCase()));
         }
         done();

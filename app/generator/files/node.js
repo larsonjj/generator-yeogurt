@@ -26,15 +26,7 @@ var nodeFiles = function nodeFiles() {
                 this.template('server/models/mongodb/user.js', 'server/models/user.js');
                 this.template('server/controllers/mongodb/account.js', 'server/controllers/account.js');
 
-                if (this.authTypes.indexOf('local') > -1) {
-                    this.template('server/auth/strategies/mongodb/local.js', 'server/auth/strategies/local.js');
-                }
-                if (this.authTypes.indexOf('facebook') > -1) {
-                    this.template('server/auth/strategies/mongodb/facebook.js', 'server/auth/strategies/facebook.js');
-                }
-                if (this.authTypes.indexOf('twitter') > -1) {
-                    this.template('server/auth/strategies/mongodb/twitter.js', 'server/auth/strategies/twitter.js');
-                }
+                this.template('server/auth/strategies/mongodb/local.js', 'server/auth/strategies/local.js');
             }
             if (this.dbOption === 'mysql') {
                 this.template('server/controllers/sql/user.js', 'server/controllers/user.js');
@@ -42,15 +34,7 @@ var nodeFiles = function nodeFiles() {
                 this.template('server/controllers/sql/account.js', 'server/controllers/account.js');
 
                 this.template('server/controllers/sql/account.js', 'server/controllers/account.js');
-                if (this.authTypes.indexOf('local') > -1) {
-                    this.template('server/auth/strategies/sql/local.js', 'server/auth/strategies/local.js');
-                }
-                if (this.authTypes.indexOf('facebook') > -1) {
-                    this.template('server/auth/strategies/sql/facebook.js', 'server/auth/strategies/facebook.js');
-                }
-                if (this.authTypes.indexOf('twitter') > -1) {
-                    this.template('server/auth/strategies/sql/twitter.js', 'server/auth/strategies/twitter.js');
-                }
+                this.template('server/auth/strategies/sql/local.js', 'server/auth/strategies/local.js');
             }
 
         }
