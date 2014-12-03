@@ -54,7 +54,6 @@ describe('Yeogurt generator using Server', function () {
                 var expected = [
                     'server/templates/account/forgot.jade',
                     'server/templates/account/login.jade',
-                    'server/templates/account/profile.jade',
                     'server/templates/account/reset.jade',
                     'server/templates/account/signup.jade',
                     'server/templates/partials/navbar.jade',
@@ -79,7 +78,6 @@ describe('Yeogurt generator using Server', function () {
                 var expected = [
                     'server/templates/account/forgot.swig',
                     'server/templates/account/login.swig',
-                    'server/templates/account/profile.swig',
                     'server/templates/account/reset.swig',
                     'server/templates/account/signup.swig',
                     'server/templates/partials/navbar.swig',
