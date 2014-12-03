@@ -3,15 +3,14 @@
     "version": "0.0.1",
     "dependencies": {
         "consolelog": "~2.0.1",
+        "html5shiv": "~3.7.2",
+        "modernizr": "~2.8.1",
+        "normalize.css": "~3.0.1",
         "jquery": "~1.11.1"<% if (jsFramework === 'backbone' || jsFramework === 'react') { %>,
         "backbone": "~1.1.2"<% } %><% if (jsFramework === 'react') { %>,
         "es5-shim": "~3.4.0"<% } %><% if (jsTemplate === 'handlebars') { %>,
         "handlebars": "~2.0.0"<% } else if (jsTemplate === 'jade') { %>,
-        "jade": "~1.5.0"<% } %><% if (useModernizr) { %>,
-        "modernizr": "~2.8.1"<% } %><% if (useNormalize) { %>,
-        "normalize.css": "~3.0.1"<% } %><% if (useFontAwesome) { %>,
-        "font-awesome": "~4.1.0"<% } %>
-        "html5shiv": "~3.7.2"<% if (jsOption === 'requirejs') { %>,
+        "jade": "~1.5.0"<% } %><% if (jsOption === 'requirejs') { %>,
         "requirejs": "~2.1.11"<% } %>
     },
   "devDependencies": {}

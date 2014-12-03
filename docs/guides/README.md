@@ -13,6 +13,7 @@ This section contains information on how to implement extra libraries and plugin
 - [Foundation](foundation.md)
 - [Pure.css](pure-css.md)
 - [Animate.css](animate-css.md)
+- [Font Awesome](font-awesome.md)
 
 ###Can't find a guide for your favorite library or plugin?
 

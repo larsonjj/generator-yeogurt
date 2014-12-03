@@ -6,6 +6,7 @@
 var compress = require('compression');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var path = require('path');
 var methodOverride = require('method-override');
@@ -57,7 +58,9 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
 
     // Returns middleware that parses both json and urlencoded.
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: true }));<% if (useAuth) { %>
+    app.use(bodyParser.urlencoded({ extended: true }));
+
+    app.use(cookieParser())<% if (useAuth) { %>
 
     // Initialize form validation
     app.use(expressValidator());

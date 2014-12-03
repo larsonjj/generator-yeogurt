@@ -112,14 +112,14 @@
     ],
     "globals": {
         "$": true,
+        "Modernizr": true,
         "jQuery": true<% if (jsOption === 'requirejs') { %>,
         "requirejs": true<% } %><% if (jsFramework === 'backbone' || jsFramework === 'react') { %>,
         "Backbone": true,
         "<%= _.classify(projectName) %>": true,
         "_": true<% } %><% if (jsTemplate === 'lodash' || jsTemplate === 'handlebars' || jsTemplate === 'jade') { %>,
         "JST": true<% } %><% if (useServer) { %>,
-        "__dirname": true<% } %><% if (useModernizr) { %>,
-        "Modernizr": true<% } %>
+        "__dirname": true<% } %>
     },
     "indent"        : 4         // Specify indentation spacing
 }

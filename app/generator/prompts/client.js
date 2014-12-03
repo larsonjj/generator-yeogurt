@@ -10,7 +10,6 @@ var clientPrompts = function clientPrompts() {
     }
 
     var cb = this.async();
-    var self = this;
 
     this.log('\n---- ' + 'Client'.red.underline + ' ----\n');
 
@@ -123,23 +122,6 @@ var clientPrompts = function clientPrompts() {
         name: 'jshint',
         message: 'Would you like to lint your Javascript with ' + 'JSHint'.blue + '?',
         default: true
-    }, {
-        type: 'checkbox',
-        name: 'extras',
-        message: 'Select any extras you would like:',
-        choices: [{
-            name: 'Font Awesome',
-            value: 'useFontAwesome',
-            checked: true
-        }, {
-            name: 'Modernizr',
-            value: 'useModernizr',
-            checked: true
-        }, {
-            name: 'Normalize.css',
-            value: 'useNormalize',
-            checked: true
-        }],
     }], function(answers) {
         this.clientPrompts = answers;
 

@@ -111,11 +111,6 @@ var answersConfig = function answersConfig() {
 
     // Default jsOption to Browserify
     this.jsOption = this.answers.jsOption || 'browserify';
-
-    this.useFontAwesome = hasFeature('useFontAwesome', this.extras);
-    this.useModernizr   = hasFeature('useModernizr', this.extras);
-    this.useNormalize   = hasFeature('useNormalize', this.extras);
-
 };
 
 module.exports = answersConfig;

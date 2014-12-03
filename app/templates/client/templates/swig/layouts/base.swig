@@ -7,8 +7,8 @@
 {# [endinjector] #}
 
 <!DOCTYPE html>
-<!--[if lte IE 8]><html class="lt-ie9<% if (useModernizr) { %> no-js<% } %>" lang="en"><![endif]-->
-<!--[if gt IE 8]><!--><html lang="en" class="ie9<% if (useModernizr) { %> no-js<% } %>"><!--<![endif]-->
+<!--[if lte IE 8]><html class="lt-ie9 no-js" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--><html lang="en" class="ie9 no-js"><!--<![endif]-->
     <head>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -20,9 +20,8 @@
         {% if env == 'development' %}<% } else { %>
 
         <% } %><!-- build:css(client) styles/global.css -->
-            <!-- bower:css --><% if (useNormalize) { %>
-        <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css" /><% } %><% if (useFontAwesome) { %>
-        <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" /><% } %>
+            <!-- bower:css -->
+        <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css" />
             <!-- endbower -->
         <!-- endbuild --><% if (cssOption === 'css') { %>
 
@@ -35,9 +34,9 @@
         <link rel="stylesheet" href="/styles/main.css" />
         {% endif %}<% } %><% } else { %>
 
-        <link rel="stylesheet" href="/styles/main.css"><% } %><% if (useModernizr) { %>
+        <link rel="stylesheet" href="/styles/main.css"><% } %>
 
-        <script src="/bower_components/modernizr/modernizr.js"></script><% } %>
+        <script src="/bower_components/modernizr/modernizr.js"></script>
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
