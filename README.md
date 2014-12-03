@@ -34,7 +34,7 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 - [Deployment](#deployment)
     - [FTP Server](#ftp-server)
 - [Vagrant Setup](#vagrant-setup)
-- [Guides](#guides)
+- [Extend Yeogurt](#extend-yeogurt)
 - [Common Gotchas](#common-gotchas)
     - [Bower not installing dependencies using Git](#bower-not-installing-dependencies-using-git)
     - [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts)
@@ -122,6 +122,9 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 - [.editorconfig](http://editorconfig.org/) for consistent coding styles within text editors
 - Automated build process that includes: compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, optimization of images, and processing of [usemin blocks](Usemin blocks)
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets (Except Stylus. [Waiting on PR](https://github.com/gruntjs/grunt-contrib-stylus/pull/121))
+- IE8+ Support via [HTML5shiv](https://github.com/aFarkas/html5shiv) and [consolelog](https://github.com/patik/console.log-wrapper)
+- JavaScript Linting with [JSHint](http://www.jshint.com/)
+- Feature detection with [Modernizr](http://modernizr.com/)
 
 ### Available Options
 
@@ -129,9 +132,6 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 - Default ignores for [Git](http://git-scm.com/) or [SVN](http://subversion.apache.org/)
 - Stylesheets with [Less](http://lesscss.org/), [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass)), [Stylus](http://learnboost.github.io/stylus/), or CSS
 - Modular JavaScript with [RequireJS](http://requirejs.org/) or [Browserify](http://browserify.org/)
-- IE8 Support via [HTML5shiv](https://github.com/aFarkas/html5shiv) and [RespondJS](https://github.com/scottjehl/Respond)
-- JavaScript Linting with [JSHint](http://www.jshint.com/)
-- Feature detection with [Modernizr](http://modernizr.com/)
 - Styleguide - auto-generated styleguide for your stylesheets with [Knyle Style Sheets](http://warpspire.com/posts/kss/)
 - JavaScript Documentation - auto-generated API for your scripts with [JSDoc](http://usejsdoc.org/)
 - JavaScript unit testing with [Jasmine](http://jasmine.github.io/) or [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/)
@@ -155,13 +155,11 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 - Database support for [MySQL](http://www.mysql.com/) and [MongoDB](http://www.mongodb.org/) using [Sequelize](http://sequelizejs.com/) and [Mongoose](http://mongoosejs.com/) respectively.
 - Cookie Session Storage with [express-session](https://github.com/expressjs/session)
 - Security with Paypal's [Lusca](https://github.com/krakenjs/lusca) module
-- User authentication using [Passport](http://passportjs.org/) with the following strategies
-    - Local (Email & Password)
-    - Facebook
-    - Twitter
+- User authentication (Email & Password) using [Passport](http://passportjs.org/)
 - [JSON Web Tokens](http://jwt.io/) authentication support (For IOS/Android/Mobile apps)
-    - Not optional for Single Page Applications
-- Jade, Swig, and React server-side template rendering
+    - Only for Single Page Applications
+- Jade, Swig server-side template rendering
+    - Only for Non-Single Page Applications
 
 ### Automatic File Injection
 A grunt task, using the [grunt-injector](https://www.npmjs.org/package/grunt-injector) plugin, looks for new/updated files in your project and automatically injects imports/includes in the appropriate places based on an injection block.
@@ -678,8 +676,8 @@ For more info on setting up the `.ftppass` file, refer to the [grunt-ftpush](htt
 ## Vagrant Setup
 If you would like to use Yeogurt with [Vagrant](https://www.vagrantup.com/), head over to the [yeogurt-vagrant](https://github.com/larsonjj/yeogurt-vagrant) repository for installation and setup instructions.
 
-## Guides
-Check out the [Guides](docs/guides/README.md) section to learn how to integrate other technologies like Ruby Sass
+## Extend Yeogurt
+Check out the [Guides](docs/guides/README.md) section to learn how to integrate other technologies like Ruby Sass, Bootstrap, Animate.css, etc
 
 ## Common Issues
 ### Bower not installing dependencies using Git
