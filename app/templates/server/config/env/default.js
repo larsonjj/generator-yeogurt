@@ -81,9 +81,7 @@ var defaults = {
             language: 'en'
         }<% } %>
     },
-    root: path.normalize(__dirname + '/../../..'),<% if (useAuth) { %>
-    // List of user roles in order of lowest privileges
-    userRoles: ['guest', 'user'],<% } %>
+    root: path.normalize(__dirname + '/../../..'),
     staticAssets: 'client/.serve',
     security: {
         // Arrays of URLs to whitelist from security policies

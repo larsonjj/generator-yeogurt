@@ -14,20 +14,19 @@ var localStrategy = require('./strategies/local');
  * Initialize passport serialization/deserialization
  */
 var init = function(User) {
-    passport.serializeUser(function(user, done) {
-        done(null, user.id);
+    passport.serializeUser(function(user, done) {<% if (dbOption === 'mongodb') { %>
+        done(null, user._id);<% } else if (dbOption === 'mysql') { %>
+        done(null, user.id);<% } %>
     });
 
     passport.deserializeUser(function(id, done) {<% if (dbOption === 'mongodb') { %>
         User.findById(id, function(err, user) {
             done(err, user);
         });<% } else if (dbOption === 'mysql') { %>
-        User.find({
-            where: {
-                id: id
-            }
-        }).success(function(user) {
+        User.find(id).success(function(user) {
             done(null, user);
+        }).error(function(err) {
+            done(err);
         });<% } %>
     });
 
@@ -75,8 +74,9 @@ var hasRole = function(roleRequired) {
  * Returns a jwt token signed by the app secret
  */
 var signToken = function(username) {
-    return jwt.sign({
-        username: username
+    return jwt.sign({<% if (dbOption === 'mongodb') { %>
+        _id: _id,<% } else if (dbOption === 'mysql') { %>
+        id: id,<% } %>
     }, secrets.sessionSecret, {
         expiresInMinutes: 60 * 24 // 24 hours
     });
@@ -90,8 +90,9 @@ var setTokenCookie = function(req, res) {
         return res.status(404).json({
             message: 'Something went wrong, please try again.'
         });
-    }
-    var token = signToken(req.user.username, req.user.role);
+    }<% if (dbOption === 'mongodb') { %>
+    var token = signToken(req.user._id, req.user.role);<% } else if (dbOption === 'mysql') { %>
+    var token = signToken(req.user.id, req.user.role);<% } %>
     res.cookie('token', JSON.stringify(token));
 };<% } %>
 

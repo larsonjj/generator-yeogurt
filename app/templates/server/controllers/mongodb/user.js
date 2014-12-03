@@ -14,82 +14,36 @@ var secrets = require('../config/secrets');
 var auth = require('../auth');<% if (singlePageApplication) { %>
 
 /**
- * GET /user/me
- * Get currently logged in user's info
+ * GET /user
+ * Read user data.
  */
-var me = function(req, res, next) {
-    User.findOne({
-        username: req.user.username
-    }, function(err, user) {
+var readAccount = function(req, res, next) {
+    User.findById(req.user._id, '-password', function(err, user) {
         if (err) {
             return next(err);
         }
-        if (user) {
-            res.status(200).json(user);
-        }
-        else {
-            return res.status(401).json({
+        if (!user) {
+            return res.status(400).json({
                 errors: [{
-                    msg: 'Unauthorized'
+                    msg: 'Failed to authenticate'
                 }]
             });
         }
+        res.status(200).json({
+            user: user
+        });
     });
-};
-
-/**
- * GET /user/session
- * Get currently logged in user's session info
- */
-var sessionInfo = function(req, res, next) {
-    // Don't expose sensitive info
-    var sessionInfo = _.clone(req.session);
-    delete sessionInfo.cookie;
-    delete sessionInfo.passport;
-
-    res.status(200).json(sessionInfo);
 };<% } %>
-
-/**
- * GET /user/:username
- * Profile page.
- * @param username
- */
-
-var show = function(req, res, next) {
-    // Find user information
-    User.findOne({
-        username: req.params.username
-    }, function(err, user) {
-        if (err) {
-            return next(err);
-        }
-        if (user) {<% if (singlePageApplication) { %>
-            res.status(200).json(user);<% } else { %>
-            res.render('account/profile', {
-                title: 'Profile',
-                publicInfo: user
-            });
-            <% } %>
-        }
-        else {
-            // Will allow route to continue leading to 404 error
-            next();
-        }
-    });
-};
 
 /**
  * POST /user
  * Create a new local account.
- * @param username
  * @param email
  * @param password
  * @param confirmPassword
  */
 
-var create = function(req, res, next) {
-    req.assert('username', 'Username cannot be blank').notEmpty();
+var createAccount = function(req, res, next) {
     req.assert('email', 'Email is not valid').isEmail();
     req.assert('password', 'Password must be at least 6 characters long').len(6);
     req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
@@ -97,18 +51,19 @@ var create = function(req, res, next) {
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        return res.status(400).json(errors);
+        return res.status(400).json({
+            errors: errors
+        });
     }
 
     var user = new User({
-        username: req.body.username,
         email: req.body.email,
         password: req.body.password
     });
 
     User.findOne({
-        username: req.body.username
-    }, function(err, existingUser) {
+        email: req.body.email
+    }, '-password', function(err, existingUser) {
         if (err) {
             return next(err);
         }
@@ -124,9 +79,11 @@ var create = function(req, res, next) {
             if (err) {
                 return next(err);
             }
-            var token = auth.signToken(user.username, user.role);
+            // Send user and authentication token
+            var token = auth.signToken(user._id, user.role);
             res.status(200).json({
                 token: token,
+                user: user,
                 success: [{
                     msg: 'Account created successfully.'
                 }]
@@ -139,17 +96,16 @@ var create = function(req, res, next) {
     }
 
     var user = new User({
-        username: req.body.username,
         email: req.body.email,
         password: req.body.password
     });
 
     User.findOne({
-        username: req.body.username
+        email: req.body.email
     }, function(err, existingUser) {
         if (existingUser) {
             req.flash('errors', {
-                msg: 'Account with that username already exists.'
+                msg: 'Account with that email address already exists.'
             });
             return res.redirect('/signup');
         }
@@ -171,95 +127,7 @@ var create = function(req, res, next) {
 };
 
 /**
- * PUT /user/:username/username
- * Update username.
- */
-
-var updateUsername = function(req, res, next) {
-    req.assert('username', 'Username cannot be blank').notEmpty();
-
-    var errors = req.validationErrors();<% if (singlePageApplication) { %>
-
-    if (errors) {
-        return res.status(400).json(errors);
-    }
-
-    User.findOne({
-        username: req.params.username
-    }, function(err, user) {
-        if (err) {
-            return next(err);
-        }
-
-        User.findOne({
-            username: req.body.username
-        }, function(err, existingUser) {
-            if (err) {
-                return next(err);
-            }
-            if (existingUser) {
-                return res.status(409).json({
-                    errors: [{
-                        param: 'username',
-                        msg: 'Account with that username already exists.'
-                    }]
-                });
-            }
-
-            user.username = req.body.username;
-
-            user.save(function(err) {
-                if (err) {
-                    return next(err);
-                }
-                res.status(200).json({
-                    success: [{
-                        msg: 'Username information updated.'
-                    }]
-                });
-            });
-        });
-    });<% } else { %>
-    if (errors) {
-        req.flash('errors', errors);
-        return res.redirect('/settings');
-    }
-    User.findOne({
-        username: req.params.username
-    }, function(err, user) {
-        if (err) {
-            return next(err);
-        }
-        User.findOne({
-            username: req.body.username
-        }, function(err, existingUser) {
-            if (err) {
-                return next(err);
-            }
-            if (existingUser) {
-                req.flash('errors', {
-                    msg: 'Account with that username already exists.'
-                });
-                return res.redirect('/settings');
-            }
-
-            user.username = req.body.username;
-
-            user.save(function(err) {
-                if (err) {
-                    return next(err);
-                }
-                req.flash('success', {
-                    msg: 'Username information updated.'
-                });
-                res.redirect('/settings');
-            });
-        });
-    });<% } %>
-};
-
-/**
- * PUT /user/:username/profile
+ * PUT /user
  * Update profile information.
  */
 
@@ -269,12 +137,12 @@ var updateProfile = function(req, res, next) {
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        return res.status(400).json(errors);
+        return res.status(400).json({
+            errors: errors
+        });
     }
 
-    User.findOne({
-        username: req.params.username
-    }, function(err, user) {
+    User.findById(req.user._id, '-password', function(err, user) {
         if (err) {
             return next(err);
         }
@@ -282,9 +150,6 @@ var updateProfile = function(req, res, next) {
         user.email = req.body.email || '';
         user.firstName = req.body.firstName || '';
         user.lastName = req.body.lastName || '';
-        user.gender = req.body.gender || '';
-        user.location = req.body.location || '';
-        user.website = req.body.website || '';
 
         user.save(function(err) {
             if (err) {
@@ -293,7 +158,8 @@ var updateProfile = function(req, res, next) {
             res.status(200).json({
                 success: [{
                     msg: 'Profile information updated.'
-                }]
+                }],
+                user: user
             });
         });
     });<% } else { %>
@@ -302,18 +168,14 @@ var updateProfile = function(req, res, next) {
         return res.redirect('/settings');
     }
 
-    User.findOne({
-        username: req.params.username
-    }, function(err, user) {
+    User.findById(req.user._id, function(err, user) {
         if (err) {
             return next(err);
         }
+
         user.email = req.body.email || '';
         user.firstName = req.body.firstName || '';
         user.lastName = req.body.lastName || '';
-        user.gender = req.body.gender || '';
-        user.location = req.body.location || '';
-        user.website = req.body.website || '';
 
         user.save(function(err) {
             if (err) {
@@ -328,7 +190,7 @@ var updateProfile = function(req, res, next) {
 };
 
 /**
- * PUT /user/:username/password
+ * PUT /user/password
  * Update current password.
  * @param password
  * @param confirmPassword
@@ -339,13 +201,14 @@ var updatePassword = function(req, res, next) {
     req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
+
     if (errors) {
-        return res.status(400).json(errors);
+        return res.status(400).json({
+            errors: errors
+        });
     }
 
-    User.findOne({
-        username: req.params.username
-    }, function(err, user) {
+    User.findById(req.user._id, function(err, user) {
         if (err) {
             return next(err);
         }
@@ -368,9 +231,7 @@ var updatePassword = function(req, res, next) {
         return res.redirect('/settings');
     }
 
-    User.findOne({
-        username: req.params.username
-    }, function(err, user) {
+    User.findById(req.user._id, function(err, user) {
         if (err) {
             return next(err);
         }
@@ -390,27 +251,22 @@ var updatePassword = function(req, res, next) {
 };
 
 /**
- * DELETE /user/:username
- * Delete user account.
- * @param username
+ * DELETE /user
+ * Delete current user account.
  */
 
 var destroy = function(req, res, next) {<% if (singlePageApplication) { %>
-    User.remove({
-        username: req.params.username
-    }, function(err) {
+    User.findByIdAndRemove(req.user._id, function(err) {
         if (err) {
             return next(err);
         }
         res.status(200).json({
             info: [{
-                msg: 'Account with username "' + req.params.username + '" has been deleted.'
+                msg: 'Your account has been deleted.'
             }]
         });
     });<% } else { %>
-    User.remove({
-        username: req.params.username
-    }, function(err) {
+    User.findByIdAndRemove(req.user._id, function(err) {
         if (err) {
             return next(err);
         }
@@ -422,46 +278,10 @@ var destroy = function(req, res, next) {<% if (singlePageApplication) { %>
     });<% } %>
 };
 
-/**
- * DELETE /user
- * Delete current user account.
- */
-
-var deleteAccount = function(req, res, next) {<% if (singlePageApplication) { %>
-    User.remove({
-        _id: req.user.id
-    }, function(err) {
-        if (err) {
-            return next(err);
-        }
-        res.status(200).json({
-            info: [{
-                msg: 'Your account has been deleted.'
-            }]
-        });
-    });<% } else { %>
-    User.remove({
-        _id: req.user.id
-    }, function(err) {
-        if (err) {
-            return next(err);
-        }
-        req.logout();
-        req.flash('info', {
-            msg: 'Your account has been deleted.'
-        });
-        res.redirect('/');
-    });<% } %>
-};
-
 module.exports = {<% if (singlePageApplication) { %>
-    me: me,
-    sessionInfo: sessionInfo,<% } %>
-    show: show,
-    create: create,
-    updateUsername: updateUsername,
+    readAccount: readAccount,<% } %>
+    createAccount: createAccount,
     updateProfile: updateProfile,
     updatePassword: updatePassword,
-    destroy: destroy,
     deleteAccount: deleteAccount
 };

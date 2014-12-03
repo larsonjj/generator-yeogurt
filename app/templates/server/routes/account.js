@@ -10,8 +10,8 @@ var auth = require('../auth');
 var routes = function (app) {
     // Account
     app.get('/login', accountController.login);
-    app.post('/login', accountController.postLogin);
-    app.get('/logout', accountController.logout);
+    app.post('/login', accountController.postLogin);<% if (!singlePageApplication) { %>
+    app.get('/logout', accountController.logout);<% } %>
     app.get('/forgot', accountController.forgot);
     app.post('/forgot', accountController.postForgot);
     app.get('/reset/:token', accountController.reset);

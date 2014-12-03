@@ -10,7 +10,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var path = require('path');
 var methodOverride = require('method-override');
-var errorHandler = require('errorhandler');
 var errorHandler = require('errorhandler');<% if (useAuth) { %>
 var flash = require('express-flash');
 var expressValidator = require('express-validator');
@@ -72,6 +71,9 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
      */
     app.use(methodOverride('_method'));
 
+    // override with the X-HTTP-Method-Override header in the request
+    app.use(methodOverride('X-HTTP-Method-Override'));
+
     /**
      * Create cookie that keeps track of user sessions
      * and store it in the Database
@@ -131,12 +133,12 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
         next();
     });<% } %>
 
-    if ('production' === env) {
+    if (env === 'production') {
         // Setup log level for server console output
         app.use(logger('dev'));
     }
 
-    if ('development' === env) {
+    if (env === 'development') {
         // Include livereload script on all pages
         app.use(require('connect-livereload')());
 
@@ -171,28 +173,27 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
         });
     });
 
-    if ('production' === env) {
-         // Production 500 Error Handler.
-        app.use(function(error, req, res, next) {
-            res.status(500);
-            res.format({
-                html: function() {
-                    res.render('errors/500');
-                },
-                json: function() {
-                    res.json({error: '500 Internal Server Error'});
-                },
-                text: function() {
-                    res.send('500 Internal Server Error');
-                }
-            });
-        });
-    }
-
-    if ('development' === env) {
+    if (env === 'development') {
         // Development 500 Error Handler.
         app.use(errorHandler());
     }
+
+    // Production 500 Error Handler.
+    app.use(function(error, req, res, next) {
+        res.status(500);
+        res.format({
+            html: function() {
+                res.render('errors/500');
+            },
+            json: function() {
+                res.json({error: '500 Internal Server Error'});
+            },
+            text: function() {
+                res.send('500 Internal Server Error');
+            }
+        });
+    });
+
 
 };
 

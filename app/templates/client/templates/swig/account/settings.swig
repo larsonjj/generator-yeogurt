@@ -35,30 +35,6 @@
         <input type="text" name="lastName" id="lastName" value="{{user.lastName}}" />
     </p>
 
-    <p>
-        <label for="gender">Gender:</label>
-        <label>
-            <input type="radio" name="gender" value="male" {% if user.gender == 'male' %}checked="true"{% endif %} /><span>Male</span>
-        </label>
-        <label>
-            <input type="radio" name="gender" value="female" {% if user.gender == 'female' %}checked="true"{% endif %} /><span>Female</span>
-        </label>
-    </p>
-
-    <p>
-        <label for="location">Location:</label>
-        <input type="text" name="location" id="location" value="{{user.location}}" />
-    </p>
-
-    <p>
-        <label for="website">Website:</label>
-        <input type="text" name="website" id="website" value="{{user.website}}" />
-    </p>
-
-    <p>
-        <label for="gravatar">Gravatar:</label><img width="100" height="100" class="profile" src="{{user.picture || 'https://gravatar.com/avatar/?s=200&d=retro'}}" />
-    </p>
-
     <button>Update Profile</button>
 </form>
 
@@ -88,27 +64,5 @@
     <input type="hidden" name="_csrf" value="{{_csrf}}" />
     <button>Delete my account</button>
 </form>
-
-<h3>Linked Accounts</h3>
-
-{% if user.facebook %}
-<p>
-    <form id="facebook-unlink" action="/auth/unlink/facebook" method="post">
-        <button>Unlink your Facebook account</button>
-    </form>
-</p>
-{% else %}
-<p><a href="/auth/facebook">Link your Facebook account</a></p>
-{% endif %}
-
-{% if user.twitter %}
-<p>
-    <form id="twitter-unlink" action="/auth/unlink/twitter" method="post">
-        <button>Unlink your Twitter account</button>
-    </form>
-</p>
-{% else %}
-<p><a href="/auth/twitter">Link your Twitter account</a></p>
-{% endif %}
 
 {% endblock %}

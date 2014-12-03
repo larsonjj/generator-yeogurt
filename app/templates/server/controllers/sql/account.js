@@ -22,12 +22,12 @@ var auth = require('../auth');
  * Login page.
  */
 
-var login = function(req, res) {
-    if (req.user) {
-        return res.redirect('/');
-    }<% if (singlePageApplication) { %>
+var login = function(req, res) {<% if (singlePageApplication) { %>
     // Render index.html to allow application to handle routing
     res.sendfile(path.join(settings.staticAssets, '/index.html'));<% } else { %>
+    if (req.user) {
+        return res.redirect('/');
+    }
     res.render('account/login', {
         title: 'Login'
     });<% } %>
@@ -42,21 +42,15 @@ var login = function(req, res) {
 
 var postLogin = function(req, res, next) {
 
-    // Check to see if data is email or username
-    var context = (req.body.username.indexOf('@') > -1) ? 'email' : 'username';
-
-    if (context === 'email') {
-        req.assert('username', 'Please enter a valid email address.').isEmail();
-    }
-    else {
-        req.assert('username', 'Username cannot be blank').notEmpty();
-    }
+    req.assert('email', 'Please enter a valid email address.').isEmail();
 
     // Run validation
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        return res.status(400).json(errors);
+        return res.status(400).json({
+            errors: errors
+        });
     }
 
     // Authenticate using local strategy
@@ -71,9 +65,14 @@ var postLogin = function(req, res, next) {
                 }]
             });
         }
-        // Send user authentication token
-        var token = auth.signToken(user.username, user.role);
-        res.status(200).json({token: token});
+
+         // Send user and authentication token
+        var token = auth.signToken(user._id, user.role);
+        res.status(200).json({
+            token: token,
+            // Don't send password hash
+            user: _.omit(user.toObject(), 'password')
+        });
     })(req, res, next);<% } else { %>
     if (errors) {
         req.flash('errors', errors);
@@ -101,7 +100,7 @@ var postLogin = function(req, res, next) {
             res.redirect(req.session.returnTo || '/');
         });
     })(req, res, next);<% } %>
-};
+};<% if (!singlePageApplication) { %>
 
 /**
  * GET /logout
@@ -111,19 +110,19 @@ var postLogin = function(req, res, next) {
 var logout = function(req, res) {
     req.logout();
     res.redirect('/');
-};
+};<% } %>
 
 /**
  * GET /signup
  * Signup page.
  */
 
-var signup = function(req, res) {
-    if (req.user) {
-        return res.redirect('/');
-    }<% if (singlePageApplication) { %>
+var signup = function(req, res) {<% if (singlePageApplication) { %>
     // Render index.html to allow application to handle routing
     res.sendfile(path.join(settings.staticAssets, '/index.html'));<% } else { %>
+    if (req.user) {
+        return res.redirect('/');
+    }
     res.render('account/signup', {
         title: 'Create Account'
     });<% } %>
@@ -148,10 +147,10 @@ var reset = function(req, res, next) {
     }).success(function(user) {
          if (!user) {<% if (singlePageApplication) { %>
             /**
-             * Attach reset=invalid parameter to redirect
+             * Attach error=invalid parameter to redirect
              * to inform client-side app of a failed reset
              */
-            return res.redirect('/forgot?reset=invalid');
+            return res.redirect('/forgot?error=invalid');
             <% } else { %>
             req.flash('errors', {
                 msg: 'Password reset token is invalid or has expired.'
@@ -184,7 +183,9 @@ var postReset = function(req, res, next) {
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        return res.status(400).json(errors);
+        return res.status(400).json({
+            errors: errors
+        });
     }
 
     // Run asnyc operations in a synchronous fashion
@@ -214,7 +215,7 @@ var postReset = function(req, res, next) {
 
                 // Save new password
                 user.save().success(function() {
-                done(null);
+                    done(null);
                 }).error(function(err) {
                     if (err) {
                         return next(err);
@@ -239,8 +240,6 @@ var postReset = function(req, res, next) {
             };
             // Send email
             transporter.sendMail(mailOptions, function(err) {
-                // Send user authentication token
-                auth.setTokenCookie(req, res);
                 done(err, 'done');
             });
         }
@@ -248,6 +247,11 @@ var postReset = function(req, res, next) {
         if (err) {
             return next(err);
         }
+        res.status(200).json({
+            success: [{
+                msg: 'Success! Your password has been changed.'
+            }]
+        });
     });<% } else { %>
     if (errors) {
         req.flash('errors', errors);
@@ -330,12 +334,12 @@ var postReset = function(req, res, next) {
  * Forgot Password page.
  */
 
-var forgot = function(req, res) {
-    if (req.isAuthenticated()) {
-        return res.redirect('/');
-    }<% if (singlePageApplication) { %>
+var forgot = function(req, res) {<% if (singlePageApplication) { %>
     // Render index.html to allow application to handle routing
     res.sendfile(path.join(settings.staticAssets, '/index.html'));<% } else { %>
+    if (req.isAuthenticated()) {
+        return res.redirect('/');
+    }
     res.render('account/forgot', {
         title: 'Forgot Password'
     });<% } %>
@@ -349,21 +353,15 @@ var forgot = function(req, res) {
 
 var postForgot = function(req, res, next) {
 
-    // Check to see if data is email or username
-    var context = (req.body.username.indexOf('@') > -1) ? 'email' : 'username';
-
-    if (context === 'email') {
-        req.assert('username', 'Please enter a valid email address.').isEmail();
-    }
-    else {
-        req.assert('username', 'Username cannot be blank').notEmpty();
-    }
+    req.assert('email', 'Please enter a valid email address.').isEmail();
 
     // Run validation
     var errors = req.validationErrors();<% if (singlePageApplication) { %>
 
     if (errors) {
-        return res.status(400).json(errors);
+        return res.status(400).json({
+            errors: errors
+        });
     }
 
     // Run asnyc operations in a synchronous fashion
@@ -577,14 +575,12 @@ var settingsPage = function(req, res) {<% if (singlePageApplication) { %>
 
 module.exports = {
     login: login,
-    postLogin: postLogin,
-    logout: logout,
+    postLogin: postLogin,<% if (!singlePageApplication) { %>
+    logout: logout,<% } %>
     signup: signup,
     postReset: postReset,
     reset: reset,
     forgot: forgot,
     postForgot: postForgot,
-    linkOAuth: linkOAuth,
-    unlinkOAuth: unlinkOAuth,
     settings: settingsPage
 };

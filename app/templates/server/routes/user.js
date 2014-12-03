@@ -10,23 +10,19 @@ var auth = require('../auth');
 var routes = function (app) {
 
     // Create
-    app.post('/user', userController.create);
+    app.post('/user', userController.createAccount);<% if (singlePageApplication) { %>
 
-    // Public user profile
-    app.get('/user/:username', userController.show);<% if (singlePageApplication) { %>
-
-    // Private User info
-    app.get('/user/me', auth.isAuthenticated, userController.me);
-    app.get('/user/session', auth.isAuthenticated, userController.sessionInfo);<% } %>
+    // Read
+    app.get('/user', auth.isAuthenticated, userController.readAccount);<% } %>
 
     // Update profile
-    app.post('/user/:username/username', auth.isAuthenticated, userController.updateUsername);
-    app.put('/user/:username/profile', auth.isAuthenticated, userController.updateProfile);
-    app.patch('/user/:username/profile', auth.isAuthenticated, userController.updateProfile);
-    app.put('/user/:username/password', auth.isAuthenticated, userController.updatePassword);
+    app.put('/user', auth.isAuthenticated, userController.updateProfile);
+    app.patch('/user', auth.isAuthenticated, userController.updateProfile);
+
+    // Update Password
+    app.put('/user/password', auth.isAuthenticated, userController.updatePassword);
 
     // Delete
-    app.delete('/user/:username', auth.isAuthenticated, auth.hasRole('admin'), userController.destroy);
     app.delete('/user', auth.isAuthenticated, userController.deleteAccount);
 
 };

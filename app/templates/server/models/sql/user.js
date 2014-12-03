@@ -39,18 +39,6 @@ var UserModel = function(sequelize, DataTypes) {
         lastName: {
             type: DataTypes.STRING,
         },
-        gender: {
-            type: DataTypes.STRING
-        },
-        location: {
-            type: DataTypes.STRING,
-        },
-        website: {
-            type: DataTypes.STRING,
-        },
-        picture: {
-            type: DataTypes.STRING
-        },
 
         // Reset token
         resetPasswordToken: DataTypes.STRING,

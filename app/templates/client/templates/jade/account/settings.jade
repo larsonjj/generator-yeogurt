@@ -30,27 +30,6 @@ block content
             label(for='lastName') Last Name:
             input(type='text', name='lastName', id='lastName', value=user.lastName)
 
-        p
-            label(for='gender') Gender:
-            label
-                input(type='radio', checked=user.gender=='male', name='gender', value='male')
-                span Male
-            label
-                input(type='radio', checked=user.gender=='female', name='gender', value='female')
-                span Female
-
-        p
-            label(for='location') Location:
-            input(type='text', name='location', id='location', value=user.location)
-
-        p
-            label(for='website') Website:
-            input(type='text', name='website', id='website', value=user.website)
-
-        p
-            label(for='gravatar') Gravatar:
-            img(src=user.picture || 'https://gravatar.com/avatar/?s=200&d=retro', class='profile', width='100', height='100')
-
         button Update Profile
 
     h3 Change Password
@@ -75,19 +54,3 @@ block content
         input(type='hidden', name='_csrf', value=_csrf)
 
         button Delete my account
-
-    h3 Linked Accounts
-
-    if user.facebook
-        p
-            form(id='facebook-unlink', action='/auth/unlink/facebook', method='post')
-                button Unlink your Facebook account
-    else
-        p: a(href='/auth/facebook') Link your Facebook account
-
-    if user.twitter
-        p
-            form(id='twitter-unlink', action='/auth/unlink/twitter', method='post')
-                button Unlink your Twitter account
-    else
-        p: a(href='/auth/twitter') Link your Twitter account
