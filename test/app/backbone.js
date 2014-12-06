@@ -28,16 +28,16 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.hbs',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.hbs',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /module\.exports/i],
-                            ['client/templates/main.hbs', /<\/div>/i],
+                            ['client/scripts/views/index.js', /module\.exports/i],
+                            ['client/templates/index.hbs', /<\/div>/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -61,16 +61,16 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.hbs',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.hbs',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /module\.exports/i],
-                            ['client/templates/main.hbs', /<\/div>/i],
+                            ['client/scripts/views/index.js', /module\.exports/i],
+                            ['client/templates/index.hbs', /<\/div>/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -96,16 +96,16 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.jst',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.jst',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /module\.exports/i],
-                            ['client/templates/main.jst', /<\/div>/i],
+                            ['client/scripts/views/index.js', /module\.exports/i],
+                            ['client/templates/index.jst', /<\/div>/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -129,16 +129,16 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.jst',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.jst',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /module\.exports/i],
-                            ['client/templates/main.jst', /<\/div>/i],
+                            ['client/scripts/views/index.js', /module\.exports/i],
+                            ['client/templates/index.jst', /<\/div>/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -164,16 +164,16 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.jade',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.jade',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /module\.exports/i],
-                            ['client/templates/main.jade', /.main\-container/i],
+                            ['client/scripts/views/index.js', /module\.exports/i],
+                            ['client/templates/index.jade', /.main\-container/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -197,16 +197,16 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.jade',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.jade',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /module\.exports/i],
-                            ['client/templates/main.jade', /.main\-container/i],
+                            ['client/scripts/views/index.js', /module\.exports/i],
+                            ['client/templates/index.jade', /.main\-container/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -234,17 +234,17 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.hbs',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.hbs',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /define\(function\(require\)/i],
-                            ['client/templates/main.hbs', /<\/div>/i],
-                            ['client/scripts/routes.js', /define\(function\(require\)/i],
+                            ['client/scripts/views/index.js', /define\(function/i],
+                            ['client/templates/index.hbs', /<\/div>/i],
+                            ['client/scripts/routes.js', /define\(function/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
 
@@ -267,17 +267,17 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.hbs',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.hbs',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /define\(function\(require\)/i],
-                            ['client/templates/main.hbs', /<\/div>/i],
-                            ['client/scripts/routes.js', /define\(function\(require\)/i],
+                            ['client/scripts/views/index.js', /define\(function/i],
+                            ['client/templates/index.hbs', /<\/div>/i],
+                            ['client/scripts/routes.js', /define\(function/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
 
@@ -302,17 +302,17 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.jst',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.jst',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /define\(function\(require\)/i],
-                            ['client/templates/main.jst', /<\/div>/i],
-                            ['client/scripts/routes.js', /define\(function\(require\)/i],
+                            ['client/scripts/views/index.js', /define\(function/i],
+                            ['client/templates/index.jst', /<\/div>/i],
+                            ['client/scripts/routes.js', /define\(function/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
 
@@ -335,17 +335,17 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.jst',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.jst',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /define\(function\(require\)/i],
-                            ['client/templates/main.jst', /<\/div>/i],
-                            ['client/scripts/routes.js', /define\(function\(require\)/i],
+                            ['client/scripts/views/index.js', /define\(function/i],
+                            ['client/templates/index.jst', /<\/div>/i],
+                            ['client/scripts/routes.js', /define\(function/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
 
@@ -370,17 +370,17 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.jade',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.jade',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /define\(function\(require\)/i],
-                            ['client/templates/main.jade', /.main\-container/i],
-                            ['client/scripts/routes.js', /define\(function\(require\)/i],
+                            ['client/scripts/views/index.js', /define\(function/i],
+                            ['client/templates/index.jade', /.main\-container/i],
+                            ['client/scripts/routes.js', /define\(function/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
 
@@ -403,17 +403,17 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.jade',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.jade',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /define\(function\(require\)/i],
-                            ['client/templates/main.jade', /.main\-container/i],
-                            ['client/scripts/routes.js', /define\(function\(require\)/i],
+                            ['client/scripts/views/index.js', /define\(function/i],
+                            ['client/templates/index.jade', /.main\-container/i],
+                            ['client/scripts/routes.js', /define\(function/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
 
@@ -442,16 +442,16 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.hbs',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.hbs',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /module\.exports/i],
-                            ['client/templates/main.hbs', /<\/div>/i],
+                            ['client/scripts/views/index.js', /module\.exports/i],
+                            ['client/templates/index.hbs', /<\/div>/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -475,16 +475,16 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.hbs',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.hbs',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /module\.exports/i],
-                            ['client/templates/main.hbs', /<\/div>/i],
+                            ['client/scripts/views/index.js', /module\.exports/i],
+                            ['client/templates/index.hbs', /<\/div>/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -510,16 +510,16 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.jst',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.jst',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /module\.exports/i],
-                            ['client/templates/main.jst', /<\/div>/i],
+                            ['client/scripts/views/index.js', /module\.exports/i],
+                            ['client/templates/index.jst', /<\/div>/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -543,16 +543,16 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.jst',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.jst',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /module\.exports/i],
-                            ['client/templates/main.jst', /<\/div>/i],
+                            ['client/scripts/views/index.js', /module\.exports/i],
+                            ['client/templates/index.jst', /<\/div>/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -578,16 +578,16 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.jade',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.jade',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /module\.exports/i],
-                            ['client/templates/main.jade', /.main\-container/i],
+                            ['client/scripts/views/index.js', /module\.exports/i],
+                            ['client/templates/index.jade', /.main\-container/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -611,16 +611,16 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.jade',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.jade',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /module\.exports/i],
-                            ['client/templates/main.jade', /.main\-container/i],
+                            ['client/scripts/views/index.js', /module\.exports/i],
+                            ['client/templates/index.jade', /.main\-container/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -648,17 +648,17 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.hbs',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.hbs',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /define\(function\(require\)/i],
-                            ['client/templates/main.hbs', /<\/div>/i],
-                            ['client/scripts/routes.js', /define\(function\(require\)/i],
+                            ['client/scripts/views/index.js', /define\(function/i],
+                            ['client/templates/index.hbs', /<\/div>/i],
+                            ['client/scripts/routes.js', /define\(function/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
 
@@ -681,17 +681,17 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.hbs',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.hbs',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /define\(function\(require\)/i],
-                            ['client/templates/main.hbs', /<\/div>/i],
-                            ['client/scripts/routes.js', /define\(function\(require\)/i],
+                            ['client/scripts/views/index.js', /define\(function/i],
+                            ['client/templates/index.hbs', /<\/div>/i],
+                            ['client/scripts/routes.js', /define\(function/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
 
@@ -716,17 +716,17 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.jst',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.jst',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /define\(function\(require\)/i],
-                            ['client/templates/main.jst', /<\/div>/i],
-                            ['client/scripts/routes.js', /define\(function\(require\)/i],
+                            ['client/scripts/views/index.js', /define\(function/i],
+                            ['client/templates/index.jst', /<\/div>/i],
+                            ['client/scripts/routes.js', /define\(function/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
 
@@ -749,17 +749,17 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.jst',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.jst',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /define\(function\(require\)/i],
-                            ['client/templates/main.jst', /<\/div>/i],
-                            ['client/scripts/routes.js', /define\(function\(require\)/i],
+                            ['client/scripts/views/index.js', /define\(function/i],
+                            ['client/templates/index.jst', /<\/div>/i],
+                            ['client/scripts/routes.js', /define\(function/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
 
@@ -784,17 +784,17 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.jade',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.jade',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /define\(function\(require\)/i],
-                            ['client/templates/main.jade', /.main\-container/i],
-                            ['client/scripts/routes.js', /define\(function\(require\)/i],
+                            ['client/scripts/views/index.js', /define\(function/i],
+                            ['client/templates/index.jade', /.main\-container/i],
+                            ['client/scripts/routes.js', /define\(function/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
 
@@ -817,17 +817,17 @@ describe('Yeogurt generator using Backbone', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/views/main.js',
-                            'client/templates/main.jade',
+                            'client/scripts/views/index.js',
+                            'client/templates/index.jade',
                             'client/scripts/routes.js',
                             'client/templates',
                             'client/scripts/views',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/views/main.js', /define\(function\(require\)/i],
-                            ['client/templates/main.jade', /.main\-container/i],
-                            ['client/scripts/routes.js', /define\(function\(require\)/i],
+                            ['client/scripts/views/index.js', /define\(function/i],
+                            ['client/templates/index.jade', /.main\-container/i],
+                            ['client/scripts/routes.js', /define\(function/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
 

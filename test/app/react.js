@@ -50,12 +50,12 @@ describe('Yeogurt generator using React', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/components/main.jsx',
+                            'client/scripts/components/index.jsx',
                             'client/scripts/routes.js',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/components/main.jsx', /<div>/i],
+                            ['client/scripts/components/index.jsx', /<div>/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -80,12 +80,12 @@ describe('Yeogurt generator using React', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/components/main.js',
+                            'client/scripts/components/index.js',
                             'client/scripts/routes.js',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/components/main.js', /React\.DOM/i],
+                            ['client/scripts/components/index.js', /React\.DOM/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -118,12 +118,12 @@ describe('Yeogurt generator using React', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/components/main.jsx',
+                            'client/scripts/components/index.jsx',
                             'client/scripts/routes.js',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/components/main.jsx', /<div>/i],
+                            ['client/scripts/components/index.jsx', /<div>/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -148,12 +148,12 @@ describe('Yeogurt generator using React', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/components/main.js',
+                            'client/scripts/components/index.js',
                             'client/scripts/routes.js',
                             'client/index.html'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/components/main.js', /React\.DOM/i],
+                            ['client/scripts/components/index.js', /React\.DOM/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -190,12 +190,12 @@ describe('Yeogurt generator using React', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/components/main.jsx',
+                            'client/scripts/components/index.jsx',
                             'client/index.html',
                             'client/scripts/routes.js',
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/components/main.jsx', /<div>/i],
+                            ['client/scripts/components/index.jsx', /<div>/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -220,12 +220,12 @@ describe('Yeogurt generator using React', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/components/main.js',
+                            'client/scripts/components/index.js',
                             'client/index.html',
                             'client/scripts/routes.js',
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/components/main.js', /React\.DOM/i],
+                            ['client/scripts/components/index.js', /React\.DOM/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -257,12 +257,12 @@ describe('Yeogurt generator using React', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/components/main.jsx',
+                            'client/scripts/components/index.jsx',
                             'client/index.html',
                             'client/scripts/routes.js',
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/components/main.jsx', /<div>/i],
+                            ['client/scripts/components/index.jsx', /<div>/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -287,12 +287,12 @@ describe('Yeogurt generator using React', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
-                            'client/scripts/components/main.js',
+                            'client/scripts/components/index.js',
                             'client/index.html',
                             'client/scripts/routes.js',
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/components/main.js', /React\.DOM/i],
+                            ['client/scripts/components/index.js', /React\.DOM/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
