@@ -4,7 +4,9 @@
 
 'use strict';
 
-var OneColumn = Backbone.View.extend({
+<%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
+
+<%= _.camelize(projectName) %>.OneColumnView = Backbone.View.extend({
 
     // Compiled template
     template: JST['client/templates/layouts/one-column.hbs'],
@@ -30,5 +32,3 @@ var OneColumn = Backbone.View.extend({
     }
 
 });
-
-module.exports = OneColumn;

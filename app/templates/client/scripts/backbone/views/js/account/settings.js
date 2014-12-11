@@ -4,7 +4,9 @@
 
 'use strict';
 
-var Settings = Backbone.View.extend({
+<%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
+
+<%= _.camelize(projectName) %>.SettingsView = Backbone.View.extend({
 
     el: '.content',
 
@@ -69,5 +71,3 @@ var Settings = Backbone.View.extend({
     }
 
 });
-
-module.exports = Settings;

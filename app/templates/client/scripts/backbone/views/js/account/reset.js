@@ -1,15 +1,17 @@
 /**
-*   Login View
+*   Reset View
 */
 
 'use strict';
 
-var Login = Backbone.View.extend({
+<%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
+
+<%= _.camelize(projectName) %>.ResetView = Backbone.View.extend({
 
     el: '.content',
 
     // Compiled template
-    template: JST['client/templates/account/login.hbs'],
+    template: JST['client/templates/account/reset.hbs'],
 
     // Delegated events
     events: {
@@ -23,16 +25,14 @@ var Login = Backbone.View.extend({
 
     formSubmit: function(e) {
         e.preventDefault();
-        var data = {
-            formData: $(e.currentTarget).serialize()
-        };
-        app.account.login(data, {
-            success: function(res){
+        var $form = $(e.currentTarget);
+        app.account.reset($form, {
+            success: function(res) {
                 Backbone.history.navigate('/', true);
             },
-            error: function(err){
-                Backbone.history.navigate('/login', true);
-            }
+            error: function(err) {
+                Backbone.history.navigate(window.location.pathname, true);
+            },
         });
     },
 
@@ -42,5 +42,3 @@ var Login = Backbone.View.extend({
     }
 
 });
-
-module.exports = Login;

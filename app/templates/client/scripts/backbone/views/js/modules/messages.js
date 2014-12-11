@@ -4,7 +4,9 @@
 
 'use strict';
 
-var Messages = Backbone.View.extend({
+<%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
+
+<%= _.camelize(projectName) %>.MessagesView = Backbone.View.extend({
 
     el: '.messages',
 
@@ -29,5 +31,3 @@ var Messages = Backbone.View.extend({
     }
 
 });
-
-module.exports = Messages;

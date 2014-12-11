@@ -42,4 +42,3 @@ var Reset = Backbone.View.extend({
 });
 
 module.exports = Reset;
-

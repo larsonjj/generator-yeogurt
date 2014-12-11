@@ -42,4 +42,3 @@ var Forgot = Backbone.View.extend({
 });
 
 module.exports = Forgot;
-

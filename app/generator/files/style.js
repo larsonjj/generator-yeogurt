@@ -24,7 +24,7 @@ var styleFiles = function styleFiles() {
             }
         }
         if (this.cssOption === 'stylus') {
-            this.template('client/styles/main.less', 'client/styles/main.styl');
+            this.template('client/styles/main.styl', 'client/styles/main.styl');
         }
     }
     else {

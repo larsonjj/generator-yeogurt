@@ -44,4 +44,3 @@ var Signup = Backbone.View.extend({
 });
 
 module.exports = Signup;
-

@@ -4,7 +4,9 @@
 
 'use strict';
 
-var Login = Backbone.View.extend({
+<%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
+
+<%= _.camelize(projectName) %>.LoginView = Backbone.View.extend({
 
     el: '.content',
 
@@ -42,5 +44,3 @@ var Login = Backbone.View.extend({
     }
 
 });
-
-module.exports = Login;

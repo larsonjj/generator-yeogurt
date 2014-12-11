@@ -1,15 +1,17 @@
 /**
-*   Login View
+*   Signup View
 */
 
 'use strict';
 
-var Login = Backbone.View.extend({
+<%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
+
+<%= _.camelize(projectName) %>.SignupView = Backbone.View.extend({
 
     el: '.content',
 
     // Compiled template
-    template: JST['client/templates/account/login.hbs'],
+    template: JST['client/templates/account/signup.hbs'],
 
     // Delegated events
     events: {
@@ -26,12 +28,12 @@ var Login = Backbone.View.extend({
         var data = {
             formData: $(e.currentTarget).serialize()
         };
-        app.account.login(data, {
-            success: function(res){
+        app.account.signup(data, {
+            success: function(res) {
                 Backbone.history.navigate('/', true);
             },
-            error: function(err){
-                Backbone.history.navigate('/login', true);
+            error: function(err) {
+                Backbone.history.navigate('/signup', true);
             }
         });
     },
@@ -42,5 +44,3 @@ var Login = Backbone.View.extend({
     }
 
 });
-
-module.exports = Login;

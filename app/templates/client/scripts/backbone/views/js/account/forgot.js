@@ -1,15 +1,17 @@
 /**
-*   Login View
+*   Forgot View
 */
 
 'use strict';
 
-var Login = Backbone.View.extend({
+<%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
+
+<%= _.camelize(projectName) %>.ForgotView = Backbone.View.extend({
 
     el: '.content',
 
     // Compiled template
-    template: JST['client/templates/account/login.hbs'],
+    template: JST['client/templates/account/forgot.hbs'],
 
     // Delegated events
     events: {
@@ -23,24 +25,20 @@ var Login = Backbone.View.extend({
 
     formSubmit: function(e) {
         e.preventDefault();
-        var data = {
-            formData: $(e.currentTarget).serialize()
-        };
-        app.account.login(data, {
-            success: function(res){
+        var $form = $(e.currentTarget);
+        app.account.forgot($form, {
+            success: function(res) {
                 Backbone.history.navigate('/', true);
             },
-            error: function(err){
-                Backbone.history.navigate('/login', true);
-            }
+            error: function(err) {
+                Backbone.history.navigate('/reset', true);
+            },
         });
     },
 
-    render: function () {
+    render: function() {
         this.$el.html(this.template);
         return this;
     }
 
 });
-
-module.exports = Login;
