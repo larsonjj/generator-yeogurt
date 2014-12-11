@@ -1,0 +1,12 @@
+.yeogurt-info
+    h1 Welcome to Yeogurt!
+    p
+        | Take a look at the
+        a(href='https://github.com/larsonjj/generator-yeogurt#yeogurt-generator---') documentation
+        | and start mixing up something awesome.
+    p
+        img.logo(src='/images/yeogurt-swirl.png', width='75px')<% if (useJsdoc || useKss) { %>
+    p.links<% if (useKss) { %>
+        a(href="/docs/styleguide/index.html") Styleguide<% } %><% if (useJsdoc) { %>
+        a(href="/docs/api/index.html") API<% } %><% } %>
+code.version v<%= pkg.version %>

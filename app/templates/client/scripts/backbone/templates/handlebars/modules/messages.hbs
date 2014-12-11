@@ -1,0 +1,17 @@
+{{#if messages.errors }}
+    {{#each messages.errors }}
+        <div>{{msg}}</div>
+    {{/each}}
+{{/if}}
+
+{{#if messages.info }}
+    {{#each messages.info }}
+        <div>{{msg}}</div>
+    {{/each}}
+{{/if}}
+
+{{#if messages.success }}
+    {{#each messages.success }}
+        <div>{{msg}}</div>
+    {{/each}}
+{{/if}}

@@ -4,38 +4,37 @@
 
 'use strict';
 
-var <%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
+<%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
 
-(function () {
+// Router
+<%= _.camelize(projectName) %>.Router = Backbone.Router.extend({
+    // Defined routes
+    routes: {<% if (useAuth) { %>
+        'login': 'login',
+        'logout': 'logout',
+        'forgot': 'forgot',
+        'reset/:token': 'reset',
+        'signup': 'signup',
+        'settings': 'settings',<% } %>
+        '': 'index'
+    },<% if (!useAuth) { %>
 
-    // Router
-    <%= _.camelize(projectName) %>.Router = Backbone.Router.extend({
-        // Defined routes
-        routes: {
-            '': 'index'
-        },
+    index: function() {
+        // Initialize the view
+        new <%= _.camelize(projectName) %>.IndexView();
+    }<% } else { %>
 
-        index: function() {
-            // Initialize the view
-            new <%= _.camelize(projectName) %>.IndexView();
-        }
-    });
+    login: <%= _.camelize(projectName) %>.accountController.login,
 
-    // Instantiate Router
-    new <%= _.camelize(projectName) %>.Router();
+    logout: <%= _.camelize(projectName) %>.accountController.logout,
 
-    // Enable pushState for compatible browsers
-    var enablePushState = true;
+    forgot: <%= _.camelize(projectName) %>.accountController.forgot,
 
-    // Disable for older browsers (IE8, IE9 etc)
-    var pushState = !!(enablePushState && window.history && window.history.pushState);
+    reset: <%= _.camelize(projectName) %>.accountController.reset,
 
-    // Start route handling
-    Backbone.history.start({ pushState : pushState, root : '/' });
+    signup: <%= _.camelize(projectName) %>.accountController.signup,
 
-    // Handle pushState for incompatibl browsers
-    if (!pushState && window.location.pathname !== '/') {
-        window.location.replace('/#' + window.location.pathname);
-    }
+    settings: <%= _.camelize(projectName) %>.accountController.settings,
 
-})();
+    index: <%= _.camelize(projectName) %>.indexController.index<% } %>
+});
