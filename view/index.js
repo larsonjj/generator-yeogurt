@@ -99,7 +99,7 @@ ViewGenerator.prototype.files = function files() {
         if (this.useTesting) {
             this.template('view-spec.js', this.testFile + '-spec.js');
         }
-        if (this.jsTemplate === 'lodash') {
+        if (this.jsTemplate === 'underscore') {
             this.template('view.html', this.templateFile + '.jst');
         }
         else if (this.jsTemplate === 'handlebars') {
@@ -114,7 +114,7 @@ ViewGenerator.prototype.files = function files() {
         if (this.useTesting) {
             deleteFile(this.testFile + '-spec.js', this);
         }
-        if (this.jsTemplate === 'lodash') {
+        if (this.jsTemplate === 'underscore') {
             deleteFile(this.templateFile + '.jst', this);
         }
         else if (this.jsTemplate === 'handlebars') {

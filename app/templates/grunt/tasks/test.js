@@ -11,7 +11,7 @@ var taskConfig = function(grunt) {
         }<% } %>
 
         grunt.task.run([
-            'jshint:test',<% if (useTesting) { %><% if (jsTemplate === 'lodash') { %>
+            'jshint:test',<% if (useTesting) { %><% if (jsTemplate === 'underscore') { %>
             'jst:test',<% } else if (jsTemplate === 'handlebars') { %>
             'handlebars:test',<% } else if (jsTemplate === 'jade') { %>
             'jade:test',<% } %><% if (jsOption === 'browserify') { %>

@@ -5,11 +5,11 @@
 'use strict';
 <% if (useAuth) { %>
 var indexController = require('./controllers/index');
-var accountController = require('./controllers/account');<% } else { %><% if (jsFramework === 'react') { %>
+var accountController = require('./controllers/account');<% } %><% if (jsFramework === 'react') { %>
 var React = require('react');<% if (useJsx) { %>
 var IndexComponent = React.createFactory(require('./components/index.jsx'));<% } else { %>
 var IndexComponent = require('./components/index.js');<% } %><% } else if (jsFramework === 'backbone') { %>
-var IndexView = require('./views/index');<% } %><% } %>
+var IndexView = require('./views/index');<% } %>
 
 var Router = Backbone.Router.extend({
     // Defined routes

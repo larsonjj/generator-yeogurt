@@ -51,7 +51,7 @@
         "requirejs": true<% } %><% if (jsFramework === 'backbone' || jsFramework === 'react') { %>,
         "Backbone": true,
         "<%= _.classify(projectName) %>": true,
-        "_": true<% } %><% if (jsTemplate === 'lodash' || jsTemplate === 'handlebars' || jsTemplate === 'jade') { %>,
+        "_": true<% } %><% if (jsTemplate === 'underscore' || jsTemplate === 'handlebars' || jsTemplate === 'jade') { %>,
         "JST": true<% } %><% if (useServer) { %>,
         "__dirname": true<% } %>
     },

@@ -91,7 +91,7 @@ describe('Yeogurt generator using Backbone', function () {
                     });
                 });
             });
-            describe('With Lo-dash', function () {
+            describe('With Underscore', function () {
                 describe('Using Jasmine', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
@@ -113,7 +113,7 @@ describe('Yeogurt generator using Backbone', function () {
                         helpers.mockPrompt(this.app, {
                             singlePageApplication: true,
                             jsFramework: 'backbone',
-                            jsTemplate: 'lodash',
+                            jsTemplate: 'underscore',
                             jsOption: 'browserify',
                             useServer: false,
                             testFramework: 'jasmine'
@@ -146,7 +146,7 @@ describe('Yeogurt generator using Backbone', function () {
                         helpers.mockPrompt(this.app, {
                             singlePageApplication: true,
                             jsFramework: 'backbone',
-                            jsTemplate: 'lodash',
+                            jsTemplate: 'underscore',
                             jsOption: 'browserify',
                             useServer: false,
                             testFramework: 'mocha'
@@ -173,7 +173,7 @@ describe('Yeogurt generator using Backbone', function () {
                         ];
                         var fileContentToTest = [
                             ['client/scripts/views/index.js', /module\.exports/i],
-                            ['client/templates/index.jade', /.main\-container/i],
+                            ['client/templates/index.jade', /code\.version/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -206,7 +206,7 @@ describe('Yeogurt generator using Backbone', function () {
                         ];
                         var fileContentToTest = [
                             ['client/scripts/views/index.js', /module\.exports/i],
-                            ['client/templates/index.jade', /.main\-container/i],
+                            ['client/templates/index.jade', /code\.version/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -297,7 +297,7 @@ describe('Yeogurt generator using Backbone', function () {
                     });
                 });
             });
-            describe('With Lo-dash', function () {
+            describe('With Underscore', function () {
                 describe('Using Jasmine', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
@@ -319,7 +319,7 @@ describe('Yeogurt generator using Backbone', function () {
                         helpers.mockPrompt(this.app, {
                             singlePageApplication: true,
                             jsFramework: 'backbone',
-                            jsTemplate: 'lodash',
+                            jsTemplate: 'underscore',
                             jsOption: 'requirejs',
                             useServer: false,
                             testFramework: 'jasmine'
@@ -352,7 +352,7 @@ describe('Yeogurt generator using Backbone', function () {
                         helpers.mockPrompt(this.app, {
                             singlePageApplication: true,
                             jsFramework: 'backbone',
-                            jsTemplate: 'lodash',
+                            jsTemplate: 'underscore',
                             jsOption: 'requirejs',
                             useServer: false,
                             testFramework: 'mocha'
@@ -379,7 +379,7 @@ describe('Yeogurt generator using Backbone', function () {
                         ];
                         var fileContentToTest = [
                             ['client/scripts/views/index.js', /define\(function/i],
-                            ['client/templates/index.jade', /.main\-container/i],
+                            ['client/templates/index.jade', /code\.version/i],
                             ['client/scripts/routes.js', /define\(function/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -412,7 +412,7 @@ describe('Yeogurt generator using Backbone', function () {
                         ];
                         var fileContentToTest = [
                             ['client/scripts/views/index.js', /define\(function/i],
-                            ['client/templates/index.jade', /.main\-container/i],
+                            ['client/templates/index.jade', /code\.version/i],
                             ['client/scripts/routes.js', /define\(function/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -505,7 +505,7 @@ describe('Yeogurt generator using Backbone', function () {
                     });
                 });
             });
-            describe('With Lo-dash', function () {
+            describe('With Underscore', function () {
                 describe('Using Jasmine', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
@@ -527,7 +527,7 @@ describe('Yeogurt generator using Backbone', function () {
                         helpers.mockPrompt(this.app, {
                             singlePageApplication: true,
                             jsFramework: 'backbone',
-                            jsTemplate: 'lodash',
+                            jsTemplate: 'underscore',
                             jsOption: 'browserify',
                             useServer: true,
                             testFramework: 'jasmine'
@@ -560,7 +560,7 @@ describe('Yeogurt generator using Backbone', function () {
                         helpers.mockPrompt(this.app, {
                             singlePageApplication: true,
                             jsFramework: 'backbone',
-                            jsTemplate: 'lodash',
+                            jsTemplate: 'underscore',
                             jsOption: 'browserify',
                             useServer: true,
                             testFramework: 'mocha'
@@ -587,7 +587,7 @@ describe('Yeogurt generator using Backbone', function () {
                         ];
                         var fileContentToTest = [
                             ['client/scripts/views/index.js', /module\.exports/i],
-                            ['client/templates/index.jade', /.main\-container/i],
+                            ['client/templates/index.jade', /code\.version/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -620,7 +620,7 @@ describe('Yeogurt generator using Backbone', function () {
                         ];
                         var fileContentToTest = [
                             ['client/scripts/views/index.js', /module\.exports/i],
-                            ['client/templates/index.jade', /.main\-container/i],
+                            ['client/templates/index.jade', /code\.version/i],
                             ['client/scripts/routes.js', /module\.exports/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -711,7 +711,7 @@ describe('Yeogurt generator using Backbone', function () {
                     });
                 });
             });
-            describe('With Lo-dash', function () {
+            describe('With Underscore', function () {
                 describe('Using Jasmine', function () {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
@@ -733,7 +733,7 @@ describe('Yeogurt generator using Backbone', function () {
                         helpers.mockPrompt(this.app, {
                             singlePageApplication: true,
                             jsFramework: 'backbone',
-                            jsTemplate: 'lodash',
+                            jsTemplate: 'underscore',
                             jsOption: 'requirejs',
                             useServer: true,
                             testFramework: 'jasmine'
@@ -766,7 +766,7 @@ describe('Yeogurt generator using Backbone', function () {
                         helpers.mockPrompt(this.app, {
                             singlePageApplication: true,
                             jsFramework: 'backbone',
-                            jsTemplate: 'lodash',
+                            jsTemplate: 'underscore',
                             jsOption: 'requirejs',
                             useServer: true,
                             testFramework: 'mocha'
@@ -793,7 +793,7 @@ describe('Yeogurt generator using Backbone', function () {
                         ];
                         var fileContentToTest = [
                             ['client/scripts/views/index.js', /define\(function/i],
-                            ['client/templates/index.jade', /.main\-container/i],
+                            ['client/templates/index.jade', /code\.version/i],
                             ['client/scripts/routes.js', /define\(function/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];
@@ -826,7 +826,7 @@ describe('Yeogurt generator using Backbone', function () {
                         ];
                         var fileContentToTest = [
                             ['client/scripts/views/index.js', /define\(function/i],
-                            ['client/templates/index.jade', /.main\-container/i],
+                            ['client/templates/index.jade', /code\.version/i],
                             ['client/scripts/routes.js', /define\(function/i],
                             ['client/index.html', /app\-wrapper/i]
                         ];

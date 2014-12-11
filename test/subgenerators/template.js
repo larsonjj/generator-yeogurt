@@ -1070,7 +1070,7 @@ describe('Template sub-generator', function () {
     });
 
     describe('Create template files when using Backbone', function () {
-        it('Handles defaults with Lo-dash', function(done) {
+        it('Handles defaults with Underscore', function(done) {
             // Filename
             var template = 'mytemplate';
             var filesToTest = [
@@ -1083,7 +1083,7 @@ describe('Template sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
@@ -1166,7 +1166,7 @@ describe('Template sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
@@ -1191,7 +1191,7 @@ describe('Template sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });

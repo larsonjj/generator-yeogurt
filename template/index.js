@@ -121,7 +121,7 @@ TemplateGenerator.prototype.files = function files() {
 
     if (this.singlePageApplication) {
         if (!this.delete) {
-            if (this.jsTemplate === 'lodash') {
+            if (this.jsTemplate === 'underscore') {
                 this.template('template.html', this.templateFile + '.jst');
             }
             else if (this.jsTemplate === 'handlebars') {
@@ -132,7 +132,7 @@ TemplateGenerator.prototype.files = function files() {
             }
         }
         else {
-            if (this.jsTemplate === 'lodash') {
+            if (this.jsTemplate === 'underscore') {
                 deleteFile(this.templateFile + '.jst', this);
             }
             else if (this.jsTemplate === 'handlebars') {

@@ -27,16 +27,16 @@ var scriptFiles = function scriptFiles() {
 
             if (this.useAuth) {
                 // Views
-                this.template('client/scripts/backbone/views/requirejs/views/account/forgot.js', 'client/scripts/views/account/forgot.js');
-                this.template('client/scripts/backbone/views/requirejs/views/account/login.js', 'client/scripts/views/account/login.js');
-                this.template('client/scripts/backbone/views/requirejs/views/account/reset.js', 'client/scripts/views/account/reset.js');
-                this.template('client/scripts/backbone/views/requirejs/views/account/settings.js', 'client/scripts/views/account/settings.js');
-                this.template('client/scripts/backbone/views/requirejs/views/account/signup.js', 'client/scripts/views/account/signup.js');
+                this.template('client/scripts/backbone/views/requirejs/account/forgot.js', 'client/scripts/views/account/forgot.js');
+                this.template('client/scripts/backbone/views/requirejs/account/login.js', 'client/scripts/views/account/login.js');
+                this.template('client/scripts/backbone/views/requirejs/account/reset.js', 'client/scripts/views/account/reset.js');
+                this.template('client/scripts/backbone/views/requirejs/account/settings.js', 'client/scripts/views/account/settings.js');
+                this.template('client/scripts/backbone/views/requirejs/account/signup.js', 'client/scripts/views/account/signup.js');
 
-                this.template('client/scripts/backbone/views/requirejs/views/layouts/one-column.js', 'client/scripts/views/layouts/one-column.js');
+                this.template('client/scripts/backbone/views/requirejs/layouts/one-column.js', 'client/scripts/views/layouts/one-column.js');
 
-                this.template('client/scripts/backbone/views/requirejs/views/modules/messages.js', 'client/scripts/views/modules/messages.js');
-                this.template('client/scripts/backbone/views/requirejs/views/modules/navbar.js', 'client/scripts/views/modules/navbar.js');
+                this.template('client/scripts/backbone/views/requirejs/modules/messages.js', 'client/scripts/views/modules/messages.js');
+                this.template('client/scripts/backbone/views/requirejs/modules/navbar.js', 'client/scripts/views/modules/navbar.js');
 
                 // Controllers
                 this.template('client/scripts/backbone/controllers/requirejs/account.js', 'client/scripts/controllers/account.js');

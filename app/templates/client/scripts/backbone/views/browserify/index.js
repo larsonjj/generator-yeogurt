@@ -12,7 +12,7 @@ var IndexView = Backbone.View.extend({
     el: '#app-wrapper',
 
     // Load up JST template
-    template: JST['client/templates/index<% if (jsTemplate === 'lodash') { %>.jst<% } else if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'jade') { %><% } %>'],
+    template: JST['client/templates/index<% if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'jade') { %><% } %>'],
 
     // Delegated events
     events: {},

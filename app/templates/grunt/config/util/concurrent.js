@@ -16,7 +16,7 @@ var taskConfig = function(grunt) {
             'swig:dist',<% } %><% if (cssOption === 'less') { %>
             'less:dist',<% } %><% if (cssOption === 'sass') { %>
             'sass:dist',<% } %><% if (cssOption === 'stylus') { %>
-            'stylus:dist',<% } %><% if (jsTemplate === 'lodash') { %>
+            'stylus:dist',<% } %><% if (jsTemplate === 'underscore') { %>
             'jst:dist',<% } else if (jsTemplate === 'handlebars') { %>
             'handlebars:dist',<% } %><% if (jsOption === 'requirejs') { %>
             'requirejs'<% } %><% if (jsOption === 'browserify') { %>

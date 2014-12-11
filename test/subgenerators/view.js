@@ -264,7 +264,7 @@ describe('View sub-generator', function () {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
                 useTesting: false,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
@@ -280,7 +280,7 @@ describe('View sub-generator', function () {
                 });
             });
         });
-        describe('Handles defaults with Lo-dash', function () {
+        describe('Handles defaults with Underscore', function () {
             describe('Using Browserify', function() {
                 it('Using Jasmine', function(done) {
                     // Filename
@@ -299,7 +299,7 @@ describe('View sub-generator', function () {
                     helpers.mockPrompt(this.app, {
                         jsFramework: 'backbone',
                         singlePageApplication: true,
-                        jsTemplate: 'lodash',
+                        jsTemplate: 'underscore',
                         jsOption: 'browserify',
                         testFramework: 'jasmine'
                     });
@@ -334,7 +334,7 @@ describe('View sub-generator', function () {
                     helpers.mockPrompt(this.app, {
                         jsFramework: 'backbone',
                         singlePageApplication: true,
-                        jsTemplate: 'lodash',
+                        jsTemplate: 'underscore',
                         jsOption: 'browserify',
                         testFramework: 'mocha'
                     });
@@ -370,7 +370,7 @@ describe('View sub-generator', function () {
                     helpers.mockPrompt(this.app, {
                         jsFramework: 'backbone',
                         singlePageApplication: true,
-                        jsTemplate: 'lodash',
+                        jsTemplate: 'underscore',
                         jsOption: 'requirejs',
                         testFramework: 'jasmine'
                     });
@@ -405,7 +405,7 @@ describe('View sub-generator', function () {
                     helpers.mockPrompt(this.app, {
                         jsFramework: 'backbone',
                         singlePageApplication: true,
-                        jsTemplate: 'lodash',
+                        jsTemplate: 'underscore',
                         jsOption: 'requirejs',
                         testFramework: 'mocha'
                     });
@@ -736,7 +736,7 @@ describe('View sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
@@ -765,7 +765,7 @@ describe('View sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });

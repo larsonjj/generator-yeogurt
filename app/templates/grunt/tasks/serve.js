@@ -22,7 +22,7 @@ var taskConfig = function(grunt) {
             'wiredep:all',
             'copy:server',<% if (jsOption === 'browserify') { %>
             'browserify:server',
-            'exorcise:server',<% } %><% if (jsTemplate === 'lodash') { %>
+            'exorcise:server',<% } %><% if (jsTemplate === 'underscore') { %>
             'jst:server',<% } else if (jsTemplate === 'handlebars') { %>
             'handlebars:server',<% } else if (jsTemplate === 'jade') { %>
             'jade:server',<% } %><% if (htmlOption === 'jade' && !useServer ) { %>

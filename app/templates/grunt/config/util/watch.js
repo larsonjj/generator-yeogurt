@@ -134,7 +134,7 @@ var taskConfig = function(grunt) {
             tasks: [
                 'handlebars:server'
             ]
-        },<% } %><% if (jsTemplate === 'lodash') { %>
+        },<% } %><% if (jsTemplate === 'underscore') { %>
         jst: {
             files: ['<%%= yeogurt.client %>/templates/**/*.jst'],
             tasks: [

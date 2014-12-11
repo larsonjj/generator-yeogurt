@@ -58,7 +58,7 @@ var taskFiles = function taskFiles() {
     if (this.cssOption === 'stylus') {
         this.template('grunt/config/compile/stylus.js', 'grunt/config/compile/stylus.js');
     }
-    if (this.jsTemplate === 'lodash') {
+    if (this.jsTemplate === 'underscore') {
         this.template('grunt/config/compile/jst.js', 'grunt/config/compile/jst.js');
     }
     else if (this.jsTemplate === 'handlebars') {
