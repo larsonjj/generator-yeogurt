@@ -18,11 +18,6 @@ require(['app'], function (app) {
             }
         })
         .ready(function () {
-            // Enable pushState for compatible browsers
-            var enablePushState = true;
-
-            // Detect is pushState is available
-            var pushState = !!(enablePushState && window.history && window.history.pushState);
 
             // Use GET and POST to support all browsers
             // Also adds '_method' parameter with correct HTTP headers

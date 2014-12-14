@@ -11,7 +11,7 @@
     el: '.content',
 
     // Compiled template
-    template: JST['client/templates/account/reset.hbs'],
+    template: JST['client/templates/account/reset<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
 
     // Delegated events
     events: {
@@ -26,7 +26,7 @@
     formSubmit: function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        app.account.reset($form, {
+        <%= _.classify(projectName) %>.account.reset($form, {
             success: function(res) {
                 Backbone.history.navigate('/', true);
             },

@@ -22,11 +22,11 @@ var login = function() {
             '.content': new LoginView()
         }
     });
-    app.showView(loginPage);
+    <%= _.classify(projectName) %>.showView(loginPage);
 };
 
 var logout = function() {
-    app.account.logout();
+    <%= _.classify(projectName) %>.account.logout();
 };
 
 var signup = function() {
@@ -38,7 +38,7 @@ var signup = function() {
             '.content': new SignupView()
         }
     });
-    app.showView(signupPage);
+    <%= _.classify(projectName) %>.showView(signupPage);
 };
 
 var reset = function() {
@@ -50,7 +50,7 @@ var reset = function() {
             '.content': new ResetView()
         }
     });
-    app.showView(resetPage);
+    <%= _.classify(projectName) %>.showView(resetPage);
 };
 
 var forgot = function() {
@@ -62,7 +62,7 @@ var forgot = function() {
             '.content': new ForgotView()
         }
     });
-    app.showView(forgotPage);
+    <%= _.classify(projectName) %>.showView(forgotPage);
 };
 
 var settingsPage = function() {
@@ -74,7 +74,7 @@ var settingsPage = function() {
             '.content': new SettingsView()
         }
     });
-    app.showView(settingsPage);
+    <%= _.classify(projectName) %>.showView(settingsPage);
 };
 
 module.exports = {

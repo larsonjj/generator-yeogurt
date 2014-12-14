@@ -9,7 +9,7 @@ var Signup = Backbone.View.extend({
     el: '.content',
 
     // Compiled template
-    template: JST['client/templates/account/signup.hbs'],
+    template: JST['client/templates/account/signup<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
 
     // Delegated events
     events: {
@@ -26,7 +26,7 @@ var Signup = Backbone.View.extend({
         var data = {
             formData: $(e.currentTarget).serialize()
         };
-        app.account.signup(data, {
+        <%= _.classify(projectName) %>.account.signup(data, {
             success: function(res) {
                 Backbone.history.navigate('/', true);
             },

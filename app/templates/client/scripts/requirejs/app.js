@@ -17,6 +17,12 @@ define(function(require) {
             // Start backbone routing once we have captured a user's auth status
             complete: function() {
 
+                // Enable pushState for compatible browsers
+                var enablePushState = true;
+
+                // Detect is pushState is available
+                var pushState = !!(enablePushState && window.history && window.history.pushState);
+
                 if (pushState) {
                     Backbone.history.start({ pushState: true, root: '/' });
                 } else {

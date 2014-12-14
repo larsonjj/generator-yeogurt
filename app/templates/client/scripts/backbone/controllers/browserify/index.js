@@ -18,7 +18,7 @@ var index = function() {
             '.content': new IndexView()
         }
     });
-    app.showView(homePage);
+    <%= _.classify(projectName) %>.showView(homePage);
 };
 
 module.exports = {

@@ -44,7 +44,7 @@ var readAccount = function(req, res, next) {
  * @param confirmPassword
  */
 
-var create = function(req, res, next) {
+var createAccount = function(req, res, next) {
     req.assert('email', 'Email is not valid').isEmail();
     req.assert('password', 'Password must be at least 6 characters long').len(6);
     req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
@@ -274,11 +274,11 @@ var updatePassword = function(req, res, next) {
  * Delete current user account.
  */
 
-var destroy = function(req, res, next) {<% if (singlePageApplication) { %>
+var deleteAccount = function(req, res, next) {<% if (singlePageApplication) { %>
     User.destroy(req.user.id).success(function() {
         res.status(200).json({
             info: [{
-                msg: 'Account with username "' + req.params.username + '" has been deleted.'
+                msg: 'Your account has been deleted.'
             }]
         });
     }).error(function(err) {
@@ -289,7 +289,7 @@ var destroy = function(req, res, next) {<% if (singlePageApplication) { %>
     User.destroy(req.user.id).success(function() {
         req.logout();
         req.flash('info', {
-            msg: 'Account with username "' + req.params.username + '" has been deleted.'
+            msg: 'Your account has been deleted.'
         });
         res.redirect('/');
     }).error(function(err) {

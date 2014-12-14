@@ -1,27 +1,27 @@
 h3 Profile Information
-    form#profile-form(action='/user?_method=PUT', method='post')
-        p
-            label(for='email') Email:
-            input#email(type='text', name='email', value='{{user.email}}')
-        p
-            label(for='firstName') First Name:
-            input#firstName(type='text', name='firstName', value='{{user.firstName}}')
-        p
-            label(for='lastName') Last Name:
-            input#lastName(type='text', name='lastName', value='{{user.lastName}}')
-        button Update Profile
+form#profile-form(action='/user?_method=PUT', method='post')
+    p
+        label(for='email') Email:
+        input#email(type='text', name='email', value=user.email)
+    p
+        label(for='firstName') First Name:
+        input#firstName(type='text', name='firstName', value=user.firstName)
+    p
+        label(for='lastName') Last Name:
+        input#lastName(type='text', name='lastName', value=user.lastName)
+    button Update Profile
 
-        h3 Change Password
-        form#password-form(action='/user/password?_method=PUT', method='post')
-            p
-                label(for='password') New Password:
-                input#password(type='password', name='password', value='')
-            p
-                label(for='confirmPassword') Confirm Password:
-                input#confirmPassword(type='password', name='confirmPassword', value='')
-            button Change Password
+    h3 Change Password
+    form#password-form(action='/user/password?_method=PUT', method='post')
+        p
+            label(for='password') New Password:
+            input#password(type='password', name='password', value='')
+        p
+            label(for='confirmPassword') Confirm Password:
+            input#confirmPassword(type='password', name='confirmPassword', value='')
+        button Change Password
 
-        h3 Delete Account
-        p You can delete your account, but keep in mind this action is irreversible.
-        form#delete-form(action='/user', method='post')
-            button Delete my account
+    h3 Delete Account
+    p You can delete your account, but keep in mind this action is irreversible.
+    form#delete-form(action='/user', method='post')
+        button Delete my account

@@ -6,6 +6,7 @@
 
 define(function(require) {
 
+    var app = require('app');
     var IndexView = require('../views/index');
     var OneColumnView = require('../views/layouts/one-column');
     var NavbarView = require('../views/modules/navbar');

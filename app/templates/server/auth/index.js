@@ -73,7 +73,7 @@ var hasRole = function(roleRequired) {
 /**
  * Returns a jwt token signed by the app secret
  */
-var signToken = function(username) {
+var signToken = function(<% if (dbOption === 'mongodb') { %>_id<% } else if (dbOption === 'mysql') { %>id<% } %>) {
     return jwt.sign({<% if (dbOption === 'mongodb') { %>
         _id: _id,<% } else if (dbOption === 'mysql') { %>
         id: id,<% } %>

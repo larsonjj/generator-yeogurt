@@ -24,7 +24,7 @@ var auth = require('../auth');
 
 var login = function(req, res) {<% if (singlePageApplication) { %>
     // Render index.html to allow application to handle routing
-    res.sendfile(path.join(settings.staticAssets, '/index.html'));<% } else { %>
+    res.sendFile(path.join(settings.staticAssets, '/index.html'), { root: settings.root });<% } else { %>
     if (req.user) {
         return res.redirect('/');
     }
@@ -67,11 +67,11 @@ var postLogin = function(req, res, next) {
         }
 
          // Send user and authentication token
-        var token = auth.signToken(user._id, user.role);
+        var token = auth.signToken(user.id, user.role);
         res.status(200).json({
             token: token,
             // Don't send password hash
-            user: _.omit(user.toObject(), 'password')
+            user: _.omit(user, 'password')
         });
     })(req, res, next);<% } else { %>
     if (errors) {
@@ -119,7 +119,7 @@ var logout = function(req, res) {
 
 var signup = function(req, res) {<% if (singlePageApplication) { %>
     // Render index.html to allow application to handle routing
-    res.sendfile(path.join(settings.staticAssets, '/index.html'));<% } else { %>
+    res.sendFile(path.join(settings.staticAssets, '/index.html'), { root: settings.root });<% } else { %>
     if (req.user) {
         return res.redirect('/');
     }
@@ -158,7 +158,7 @@ var reset = function(req, res, next) {
             return res.redirect('/forgot');<% } %>
         }<% if (singlePageApplication) { %>
         // Render index.html to allow application to handle routing
-        res.sendfile(path.join(settings.staticAssets, '/index.html'));<% } else { %>
+        res.sendFile(path.join(settings.staticAssets, '/index.html'), { root: settings.root });<% } else { %>
         res.render('account/reset', {
             title: 'Password Reset'
         });<% } %>
@@ -215,7 +215,7 @@ var postReset = function(req, res, next) {
 
                 // Save new password
                 user.save().success(function() {
-                    done(null);
+                    done(null, user);
                 }).error(function(err) {
                     if (err) {
                         return next(err);
@@ -287,7 +287,7 @@ var postReset = function(req, res, next) {
                     // Login user
                     req.logIn(user, function(err) {
                         if (err) {
-                            return done(err);
+                            return next(err);
                         }
                         done(null, user);
                     });
@@ -326,8 +326,8 @@ var postReset = function(req, res, next) {
             return next(err);
         }
         res.redirect('/');
-    });
-};<% } %><% if (!singlePageApplication) { %>
+    });<% } %>
+};
 
 /**
  * GET /forgot
@@ -336,14 +336,14 @@ var postReset = function(req, res, next) {
 
 var forgot = function(req, res) {<% if (singlePageApplication) { %>
     // Render index.html to allow application to handle routing
-    res.sendfile(path.join(settings.staticAssets, '/index.html'));<% } else { %>
+    res.sendFile(path.join(settings.staticAssets, '/index.html'), { root: settings.root });<% } else { %>
     if (req.isAuthenticated()) {
         return res.redirect('/');
     }
     res.render('account/forgot', {
         title: 'Forgot Password'
     });<% } %>
-};<% } %>
+};
 
 /**
  * POST /forgot
@@ -374,10 +374,10 @@ var postForgot = function(req, res, next) {
             });
         },
         function(token, done) {
-            // Check to see whether to search for email or username
-            var searchInput = (context === 'email') ? {email: req.body.username.toLowerCase()} : {username: req.body.username.toLowerCase()};
             User.find({
-                where: searchInput
+                where: {
+                    email: req.body.email
+                }
             }).success(function(user) {
                 if (!user) {
                     res.status(404).json({
@@ -415,20 +415,17 @@ var postForgot = function(req, res, next) {
             };
             // Send email
             transporter.sendMail(mailOptions, function(err) {
-                res.status(200).json({
-                    info: [{
-                        msg: 'An e-mail has been sent to ' + user.email + ' with further instructions.'
-                    }]
-                });
-                done(err, 'done');
+                done(err, user);
             });
         }
-    ], function(err) {
+    ], function(err, user) {
         if (err) {
             return next(err);
         }
-        res.status(301).json({
-            path: '/forgot'
+        res.status(200).json({
+            info: [{
+                msg: 'An e-mail has been sent to ' + user.email + ' with further instructions.'
+            }]
         });
     });<% } else { %>
 
@@ -447,10 +444,10 @@ var postForgot = function(req, res, next) {
             });
         },
         function(token, done) {
-            // Check to see whether to search for email or username
-            var searchInput = (context === 'email') ? {email: req.body.username.toLowerCase()} : {username: req.body.username.toLowerCase()};
             User.find({
-                where: searchInput
+                where: {
+                    email: req.body.email
+                }
             }).success(function(user) {
                 if (!user) {
                     req.flash('errors', {
@@ -567,7 +564,7 @@ var unlinkOAuth = function(req, res, next) {
 
 var settingsPage = function(req, res) {<% if (singlePageApplication) { %>
     // Render index.html to allow application to handle routing
-    res.sendfile(path.join(settings.staticAssets, '/index.html'));<% } else { %>
+    res.sendFile(path.join(settings.staticAssets, '/index.html'), { root: settings.root });<% } else { %>
     res.render('account/settings', {
         title: 'Account Management'
     });<% } %>

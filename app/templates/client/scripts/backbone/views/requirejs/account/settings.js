@@ -2,19 +2,20 @@
 *   Settings View
 */
 
-define(function() {
+define(function(require) {
     'use strict';
 
+    var app = require('app');
     var Settings = Backbone.View.extend({
 
         el: '.content',
 
         // Compiled template
-        template: JST['client/templates/account/settings.hbs'],
+        template: JST['client/templates/account/settings<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
 
         // Delegated events
         events: {
-            'submit #profile-form, #password-form': 'formInfo',
+            'submit #profile-form': 'formInfo',
             'submit #password-form': 'formPassword',
             'submit #delete-form': 'formDelete',
         },

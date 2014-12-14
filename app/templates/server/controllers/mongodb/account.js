@@ -22,7 +22,7 @@ var auth = require('../auth');
 
 var login = function(req, res) {<% if (singlePageApplication) { %>
     // Render index.html to allow application to handle routing
-    res.sendfile(path.join(settings.staticAssets, '/index.html'));<% } else { %>
+    res.sendFile(path.join(settings.staticAssets, '/index.html'), { root: settings.root });<% } else { %>
     if (req.user) {
         return res.redirect('/');
     }
@@ -117,7 +117,7 @@ var logout = function(req, res) {
 
 var signup = function(req, res) {<% if (singlePageApplication) { %>
     // Render index.html to allow application to handle routing
-    res.sendfile(path.join(settings.staticAssets, '/index.html'));<% } else { %>
+    res.sendFile(path.join(settings.staticAssets, '/index.html'), { root: settings.root });<% } else { %>
     if (req.user) {
         return res.redirect('/');
     }
@@ -159,7 +159,7 @@ var reset = function(req, res, next) {
                 return res.redirect('/forgot');<% } %>
             }<% if (singlePageApplication) { %>
             // Render index.html to allow application to handle routing
-            res.sendfile(path.join(settings.staticAssets, '/index.html'));<% } else { %>
+            res.sendFile(path.join(settings.staticAssets, '/index.html'), { root: settings.root });<% } else { %>
             res.render('account/reset', {
                 title: 'Password Reset'
             });<% } %>
@@ -215,7 +215,7 @@ var postReset = function(req, res, next) {
                         if (err) {
                             return next(err);
                         }
-                        done(null);
+                        done(null, user);
                     });
                 });
         },
@@ -232,7 +232,7 @@ var postReset = function(req, res, next) {
             };
             // Send email
             transporter.sendMail(mailOptions, function(err) {
-                done(err);
+                done(err, 'done');
             });
         }
     ], function(err) {
@@ -320,7 +320,7 @@ var postReset = function(req, res, next) {
 
 var forgot = function(req, res) {<% if (singlePageApplication) { %>
     // Render index.html to allow application to handle routing
-    res.sendfile(path.join(settings.staticAssets, '/index.html'));<% } else { %>
+    res.sendFile(path.join(settings.staticAssets, '/index.html'), { root: settings.root });<% } else { %>
     if (req.isAuthenticated()) {
         return res.redirect('/');
     }
@@ -332,7 +332,7 @@ var forgot = function(req, res) {<% if (singlePageApplication) { %>
 /**
  * POST /forgot
  * Create a random token, then the send user an email with a reset link.
- * @param email/username
+ * @param email
  */
 
 var postForgot = function(req, res, next) {
@@ -398,10 +398,10 @@ var postForgot = function(req, res, next) {
             };
             // Send email
             transporter.sendMail(mailOptions, function(err) {
-                done(err, 'done');
+                done(err, user);
             });
         }
-    ], function(err) {
+    ], function(err, user) {
         if (err) {
             return next(err);
         }
@@ -432,7 +432,7 @@ var postForgot = function(req, res, next) {
                 email: req.body.email
             }, function(err, user) {
                 if (err) {
-                    return done(err);
+                    return next(err);
                 }
                 if (!user) {
                     req.flash('errors', {
@@ -486,7 +486,7 @@ var postForgot = function(req, res, next) {
 
 var settingsPage = function(req, res, next) {<% if (singlePageApplication) { %>
     // Render index.html to allow application to handle routing
-    res.sendfile(path.join(settings.staticAssets, '/index.html'));<% } else { %>
+    res.sendFile(path.join(settings.staticAssets, '/index.html'), { root: settings.root });<% } else { %>
     res.render('account/settings', {
         title: 'Account Management'
     });<% } %>

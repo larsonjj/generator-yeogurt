@@ -59,7 +59,8 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
 
-    app.use(cookieParser())<% if (useAuth) { %>
+    // Returns middleware that parses cookies
+    app.use(cookieParser());<% if (useAuth) { %>
 
     // Initialize form validation
     app.use(expressValidator());

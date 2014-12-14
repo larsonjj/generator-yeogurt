@@ -17,7 +17,7 @@ var routes = function (app) {
     app.get('/reset/:token', accountController.reset);
     app.post('/reset/:token', accountController.postReset);
     app.get('/signup', accountController.signup);
-    app.get('/settings', auth.isAuthenticated, accountController.settings);
+    app.get('/settings', accountController.settings);
 };
 
 module.exports = routes;

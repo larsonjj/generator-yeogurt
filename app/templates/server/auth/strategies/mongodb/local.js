@@ -7,7 +7,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var strategy = function(User) {
     passport.use(new LocalStrategy({
-        usernameField: 'username'
+        usernameField: 'email'
     }, function(username, password, done) {
         // Check to see whether to search for email or username
         var searchInput = (username.indexOf('@') > -1) ? {email: username.toLowerCase()} : {username: username.toLowerCase()};

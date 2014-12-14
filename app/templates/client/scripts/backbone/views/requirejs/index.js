@@ -13,7 +13,7 @@ define(function() {
         el: '#app-wrapper',
 
         // Compile our stats template
-        template: JST['client/templates/index<% if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'jade') { %><% } %>'],
+        template: JST['client/templates/index<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
 
         // Delegated events
         events: {},

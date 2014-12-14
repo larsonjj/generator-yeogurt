@@ -2,15 +2,16 @@
 *   Messages View
 */
 
-define(function() {
+define(function(require) {
     'use strict';
 
+    var app = require('app');
     var Messages = Backbone.View.extend({
 
         el: '.messages',
 
         // Compiled template
-        template: JST['client/templates/modules/messages.hbs'],
+        template: JST['client/templates/modules/messages<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
 
         // Delegated events
         events: {},

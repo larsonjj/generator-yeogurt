@@ -7,9 +7,10 @@
 
 <%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
 
-<%= _.camelize(projectName) %>.UserModel = Backbone.Model.extend({
+<%= _.camelize(projectName) %>.UserModel = Backbone.Model.extend({<% if (dbOption === 'mongodb') { %>
 
-    idAttribute: '_id',
+    idAttribute: '_id',<% } else if (dbOption === 'sql') { %>
+    idAttribute: 'id',<% } %>
 
     url: '/user',
 

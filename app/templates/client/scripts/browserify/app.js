@@ -19,6 +19,12 @@ var <%= _.classify(projectName) %> = {};
         // Start backbone routing once we have captured a user's auth status
         complete: function() {
 
+            // Enable pushState for compatible browsers
+            var enablePushState = true;
+
+            // Detect is pushState is available
+            var pushState = !!(enablePushState && window.history && window.history.pushState);
+
             if (pushState) {
                 Backbone.history.start({ pushState: true, root: '/' });
             } else {
@@ -62,17 +68,12 @@ var <%= _.classify(projectName) %> = {};
 $(document)<% if (useAuth) { %>
     // Send authorization header on each AJAX request
     .ajaxSend(function(event, request) {
-        var token = app.account.getToken();
+        var token = <%= _.classify(projectName) %>.account.getToken();
         if (token) {
             request.setRequestHeader('authorization', 'Bearer ' + token);
         }
     })<% } %>
     .ready(function () {
-        // Enable pushState for compatible browsers
-        var enablePushState = true;
-
-        // Detect is pushState is available
-        var pushState = !!(enablePushState && window.history && window.history.pushState);
 
         // Use GET and POST to support all browsers
         // Also adds '_method' parameter with correct HTTP headers
@@ -117,7 +118,7 @@ $(document)<% if (useAuth) { %>
 
             if (href.slice(protocol.length) !== protocol) {
                 event.preventDefault();
-                app.router.navigate(href, true);
+                <%= _.classify(projectName) %>.router.navigate(href, true);
             }
 
         });
@@ -126,4 +127,3 @@ $(document)<% if (useAuth) { %>
 // Give access to app globally
 window.<%= _.classify(projectName) %> = <%= _.classify(projectName) %>;
 <% } %>
-console.log('Welcome to Yeogurt');

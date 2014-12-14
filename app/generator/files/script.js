@@ -76,8 +76,8 @@ var scriptFiles = function scriptFiles() {
         }
 
         if (this.jsOption === 'none') {
-            this.template('client/scripts/backbone/routes/routes.js', 'client/scripts/routes.js');
-            this.template('client/scripts/backbone/views/index.js', 'client/scripts/views/index.js');
+            this.template('client/scripts/backbone/routes/js/routes.js', 'client/scripts/routes.js');
+            this.template('client/scripts/backbone/views/js/index.js', 'client/scripts/views/index.js');
 
             if (this.useAuth) {
                 // Views

@@ -9,11 +9,11 @@ var Settings = Backbone.View.extend({
     el: '.content',
 
     // Compiled template
-    template: JST['client/templates/account/settings.hbs'],
+    template: JST['client/templates/account/settings<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
 
     // Delegated events
     events: {
-        'submit #profile-form, #password-form': 'formInfo',
+        'submit #profile-form': 'formInfo',
         'submit #password-form': 'formPassword',
         'submit #delete-form': 'formDelete',
     },
@@ -26,9 +26,9 @@ var Settings = Backbone.View.extend({
     formInfo: function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        app.account.updateInfo($form, {
+        <%= _.classify(projectName) %>.account.updateInfo($form, {
             success: function(res) {
-                app.account.set({
+                <%= _.classify(projectName) %>.account.set({
                     email: res.user.email,
                     firstName: res.user.firstName,
                     lastName: res.user.lastName
@@ -41,7 +41,7 @@ var Settings = Backbone.View.extend({
     formPassword: function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        app.account.updatePassword($form, {
+        <%= _.classify(projectName) %>.account.updatePassword($form, {
             success: function(res) {
                 Backbone.history.navigate('/settings', true);
             }
@@ -50,20 +50,20 @@ var Settings = Backbone.View.extend({
 
     formDelete: function(e) {
         e.preventDefault();
-        app.account.destroy({
+        <%= _.classify(projectName) %>.account.destroy({
             success: function(res) {
-                app.account.logout();
+                <%= _.classify(projectName) %>.account.logout();
                 Backbone.history.navigate('/', true);
             },
             complete: function(res) {
-                app.messages.showMessages(res.responseJSON);
+                <%= _.classify(projectName) %>.messages.showMessages(res.responseJSON);
             }
         });
     },
 
     render: function () {
         this.$el.html(this.template({
-            user: app.account.toJSON()
+            user: <%= _.classify(projectName) %>.account.toJSON()
         }));
         return this;
     }

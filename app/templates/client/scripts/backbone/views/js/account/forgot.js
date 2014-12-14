@@ -11,7 +11,7 @@
     el: '.content',
 
     // Compiled template
-    template: JST['client/templates/account/forgot.hbs'],
+    template: JST['client/templates/account/forgot<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
 
     // Delegated events
     events: {
@@ -26,7 +26,7 @@
     formSubmit: function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        app.account.forgot($form, {
+        <%= _.classify(projectName) %>.account.forgot($form, {
             success: function(res) {
                 Backbone.history.navigate('/', true);
             },

@@ -1,9 +1,10 @@
-if messages.errors
-    for error in messages.errors
-      div= error.msg
-if messages.info
-    for info in messages.info
-      div= info.msg
-if messages.success
-    for success in messages.success
-      div= success.msg
+if messages
+    if messages.errors
+        for error in messages.errors
+          div= error.msg
+    if messages.info
+        for info in messages.info
+          div= info.msg
+    if messages.success
+        for success in messages.success
+          div= success.msg

@@ -6,6 +6,7 @@
 define(function(require) {
     'use strict';
 
+    var app = require('app');
     var Messages = Backbone.Model.extend({
 
         initialize: function() {

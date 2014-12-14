@@ -59,7 +59,7 @@ var clientPrompts = function clientPrompts() {
         message: 'Would you like to use ' + 'Flux'.blue + ' with your React application?',
         default: true
     }, {
-        when: function(answers) {return answers.jsFramework === 'backbone' || false;},
+        when: function(answers) {return answers.jsFramework === 'backbone';},
         type: 'list',
         name: 'jsTemplate',
         message: 'Which ' + 'JavaScript templating library'.blue + ' would you like to use?',

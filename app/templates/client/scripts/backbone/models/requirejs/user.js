@@ -6,6 +6,7 @@
 define(function(require) {
     'use strict';
 
+    var app = require('app');
     var User = Backbone.Model.extend({<% if (dbOption === 'mongodb') { %>
 
         idAttribute: '_id',<% } else if (dbOption === 'sql') { %>

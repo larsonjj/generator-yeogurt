@@ -6,6 +6,7 @@
 
 define(function(require) {
 
+    var app = require('app');
     var LoginView = require('../views/account/login');
     var SignupView = require('../views/account/signup');
     var ResetView = require('../views/account/reset');

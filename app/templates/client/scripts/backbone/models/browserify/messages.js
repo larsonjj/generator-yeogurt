@@ -16,7 +16,7 @@ var Messages = Backbone.Model.extend({
 
     showMessages: function(data) {
         if (!_.isEmpty(data)) {
-            app.messages.set({
+            <%= _.classify(projectName) %>.messages.set({
                 messages: data
             });
         }

@@ -255,7 +255,7 @@ var updatePassword = function(req, res, next) {
  * Delete current user account.
  */
 
-var destroy = function(req, res, next) {<% if (singlePageApplication) { %>
+var deleteAccount = function(req, res, next) {<% if (singlePageApplication) { %>
     User.findByIdAndRemove(req.user._id, function(err) {
         if (err) {
             return next(err);
@@ -272,7 +272,7 @@ var destroy = function(req, res, next) {<% if (singlePageApplication) { %>
         }
         req.logout();
         req.flash('info', {
-            msg: 'Account with username "' + req.params.username + '" has been deleted.'
+            msg: 'Your account has been deleted.'
         });
         res.redirect('/');
     });<% } %>

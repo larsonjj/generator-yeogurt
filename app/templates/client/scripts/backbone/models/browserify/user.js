@@ -1,13 +1,14 @@
 /**
 *   User Model
-*   Access this model through the app.account object
+*   Access this model through the <%= _.classify(projectName) %>.account object
 */
 
 'use strict';
 
-var User = Backbone.Model.extend({
+var User = Backbone.Model.extend({<% if (dbOption === 'mongodb') { %>
 
-    idAttribute: '_id',
+    idAttribute: '_id',<% } else if (dbOption === 'sql') { %>
+    idAttribute: 'id',<% } %>
 
     url: '/user',
 
@@ -107,7 +108,7 @@ var User = Backbone.Model.extend({
                 }
             }
         }).complete(function(res) {
-            app.messages.showMessages(res.responseJSON);
+            <%= _.classify(projectName) %>.messages.showMessages(res.responseJSON);
             if (callback && 'complete' in callback) {
                 callback.complete(res);
             }
@@ -140,7 +141,7 @@ var User = Backbone.Model.extend({
                 }
             }
         }).complete(function(res) {
-            app.messages.showMessages(res.responseJSON);
+            <%= _.classify(projectName) %>.messages.showMessages(res.responseJSON);
             if (callback && 'complete' in callback) {
                 callback.complete(res);
             }

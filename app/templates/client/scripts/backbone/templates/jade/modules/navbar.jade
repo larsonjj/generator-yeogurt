@@ -4,18 +4,18 @@
             li.nav-item
                 a(href='/') Home
         ul.nav-list.pull-right
-          if loggedIn
-            li.nav-item
-                a(href='/login') Login
-            li.nav-item
-                a(href='/signup') Create Account
-          else
-            li.nav-item
-                if user.firstName
-                    | Hello #{user.firstName}
-                else
-                    | Hello #{user.email}
-            li.nav-item
-                a(href='/settings') My Account
-            li.nav-item
-                a(href='/logout') Logout
+            if !loggedIn
+                li.nav-item
+                    a(href='/login') Login
+                li.nav-item
+                    a(href='/signup') Create Account
+            else
+                li.nav-item
+                    if user.firstName
+                        | Hello #{user.firstName}
+                    else
+                        | Hello #{user.email}
+                li.nav-item
+                    a(href='/settings') My Account
+                li.nav-item
+                    a(href='/logout') Logout

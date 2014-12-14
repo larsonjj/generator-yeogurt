@@ -2,15 +2,16 @@
 *   Signup View
 */
 
-define(function() {
+define(function(require) {
     'use strict';
 
+    var app = require('app');
     var Signup = Backbone.View.extend({
 
         el: '.content',
 
         // Compiled template
-        template: JST['client/templates/account/signup.hbs'],
+        template: JST['client/templates/account/signup<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
 
         // Delegated events
         events: {
