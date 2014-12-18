@@ -9,10 +9,12 @@ var strategy = function(User) {
     passport.use(new LocalStrategy({
         usernameField: 'email'
     }, function(username, password, done) {
-        // Check to see whether to search for email or username
-        var searchInput = (username.indexOf('@') > -1) ? {email: username.toLowerCase()} : {username: username.toLowerCase()};
         // Search for user in Database
-        User.findOne(searchInput, function(err, user) {
+        User.findOne({
+            where: {
+                email: username
+            }
+        }, function(err, user) {
             if (!user) {
                 return done(null, false, {
                     message: 'Invalid email or password.'

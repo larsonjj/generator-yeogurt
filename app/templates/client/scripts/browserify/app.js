@@ -9,38 +9,49 @@ var UserModel = require('./models/user');
 var MessagesModel = require('./models/messages');
 
 // Create application namspace
-var <%= _.classify(projectName) %> = {};
+var <%= _.classify(projectName) %> = {};<% if (useAuth) { %>
 
-<%= _.classify(projectName) %>.init = function () {<% if (useAuth) { %>
-    // Check the auth status upon initialization,
-    // should happen before rendering any templates
-    this.account.isAuthenticated({
+// Use GET and POST to support all browsers
+// Also adds '_method' parameter with correct HTTP headers
+Backbone.emulateHTTP = true;
 
-        // Start backbone routing once we have captured a user's auth status
-        complete: function() {
+// Create cleanup logic for Backbone views
+Backbone.View.prototype.close = function() {
+    this.remove();
+    this.unbind();
+    // Allows user to create OnClose callback within view
+    // Should be used to cleanup bind', and 'on' events
+    if (this.onClose) {
+        this.onClose();
+    }
+};
 
-            // Enable pushState for compatible browsers
-            var enablePushState = true;
+// Create subview logic for Backbone views
+// Allows the ability to attach views as subviews
+Backbone.View.prototype.assign = function(selector, view) {
+    var selectors;
+    if (_.isObject(selector)) {
+        selectors = selector;
+    } else {
+        selectors = {};
+        selectors[selector] = view;
+    }
+    if (!selectors) {return;}
+    _.each(selectors, function(view, selector) {
+        view.setElement(this.$(selector)).render();
+    }, this);
+};
 
-            // Detect is pushState is available
-            var pushState = !!(enablePushState && window.history && window.history.pushState);
+// Cache document
+var $document = $(document);
 
-            if (pushState) {
-                Backbone.history.start({ pushState: true, root: '/' });
-            } else {
-                Backbone.history.start();
-            }
-
-            // Handle pushState for incompatible browsers (IE9 and below)
-            if (!pushState && window.location.pathname !== '/') {
-                window.location.replace('/#' + window.location.pathname);
-            }
-
-        }
-
-    });<% } %>
-    console.log('Welcome to Yeogurt');
-};<% if (useAuth) { %>
+// Send authorization header on each AJAX request
+$document.ajaxSend(function(event, request) {
+    var token = <%= _.classify(projectName) %>.account.getToken();
+    if (token) {
+        request.setRequestHeader('authorization', 'Bearer ' + token);
+    }
+});
 
 // Handle displaying and cleaning up views
 <%= _.classify(projectName) %>.showView = function(view) {
@@ -65,65 +76,52 @@ var <%= _.classify(projectName) %> = {};
 // Setup flash messages
 <%= _.classify(projectName) %>.messages = new MessagesModel();<% } %>
 
-$(document)<% if (useAuth) { %>
-    // Send authorization header on each AJAX request
-    .ajaxSend(function(event, request) {
-        var token = <%= _.classify(projectName) %>.account.getToken();
-        if (token) {
-            request.setRequestHeader('authorization', 'Bearer ' + token);
+// Check the auth status upon initialization,
+// should happen before rendering any templates
+<%= _.classify(projectName) %>.account.isAuthenticated({
+
+    // Start backbone routing once we have captured a user's auth status
+    complete: function() {
+
+        // Enable pushState for compatible browsers
+        var enablePushState = true;
+
+        // Detect is pushState is available
+        var pushState = !!(enablePushState && window.history && window.history.pushState);
+
+        if (pushState) {
+            Backbone.history.start({ pushState: true, root: '/' });
+        } else {
+            Backbone.history.start();
         }
-    })<% } %>
-    .ready(function () {
 
-        // Use GET and POST to support all browsers
-        // Also adds '_method' parameter with correct HTTP headers
-        Backbone.emulateHTTP = true;<% if (useAuth) { %>
+        // Handle pushState for incompatible browsers (IE9 and below)
+        if (!pushState && window.location.pathname !== '/') {
+            window.location.replace('/#' + window.location.pathname);
+        }
 
-        // Create cleanup logic for Backbone views
-        Backbone.View.prototype.close = function() {
-            this.remove();
-            this.unbind();
-            // Allows user to create OnClose callback within view
-            // Should be used to cleanup bind', and 'on' events
-            if (this.onClose) {
-                this.onClose();
-            }
-        };
+    }
 
-        // Create subview logic for Backbone views
-        // Allows the ability to attach views as subviews
-        Backbone.View.prototype.assign = function(selector, view) {
-            var selectors;
-            if (_.isObject(selector)) {
-                selectors = selector;
-            } else {
-                selectors = {};
-                selectors[selector] = view;
-            }
-            if (!selectors) {return;}
-            _.each(selectors, function(view, selector) {
-                view.setElement(this.$(selector)).render();
-            }, this);
-        };<% } %>
+});
 
-        // Start Application
-        <%= _.classify(projectName) %>.init();
+// Set up global click event handler to use pushState for links
+// use 'data-bypass' attribute on anchors to allow normal link behavior
+$document.on('click', 'a:not([data-bypass])', function(event) {
 
-        // Set up global click event handler to use pushState for links
-        // use 'data-bypass' attribute on anchors to allow normal link behavior
-        $(this).on('click', 'a:not([data-bypass])', function(event) {
+    var href = $(this).attr('href');
+    var protocol = this.protocol + '//';
 
-            var href = $(this).attr('href');
-            var protocol = this.protocol + '//';
+    if (href.slice(protocol.length) !== protocol) {
+        event.preventDefault();
+        <%= _.classify(projectName) %>.router.navigate(href, true);
+    }
 
-            if (href.slice(protocol.length) !== protocol) {
-                event.preventDefault();
-                <%= _.classify(projectName) %>.router.navigate(href, true);
-            }
+});
 
-        });
-    });
+console.log('Welcome to Yeogurt');
 
 // Give access to app globally
 window.<%= _.classify(projectName) %> = <%= _.classify(projectName) %>;
+<% } else { %>
+console.log('Welcome to Yeogurt');
 <% } %>

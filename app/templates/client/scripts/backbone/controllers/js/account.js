@@ -4,7 +4,7 @@
 
 'use strict';
 
-<%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
+var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
 
 <%= _.camelize(projectName) %>.accountController = (function() {
 
@@ -17,15 +17,15 @@
                 '.content': new <%= _.camelize(projectName) %>.LoginView()
             }
         });
-        app.showView(loginPage);
+        <%= _.classify(projectName) %>.showView(loginPage);
     };
 
     var logout = function() {
-        app.account.logout();
+        <%= _.classify(projectName) %>.account.logout();
     };
 
     var signup = function() {
-        var signupPage = new <%= _.camelize(projectName) %>.<%= _.camelize(projectName) %>.OneColumnView({
+        var signupPage = new <%= _.camelize(projectName) %>.OneColumnView({
             layout: true,
             subviews: {
                 '.navbar': new <%= _.camelize(projectName) %>.NavbarView(),
@@ -33,7 +33,7 @@
                 '.content': new <%= _.camelize(projectName) %>.SignupView()
             }
         });
-        app.showView(signupPage);
+        <%= _.classify(projectName) %>.showView(signupPage);
     };
 
     var reset = function() {
@@ -45,7 +45,7 @@
                 '.content': new <%= _.camelize(projectName) %>.ResetView()
             }
         });
-        app.showView(resetPage);
+        <%= _.classify(projectName) %>.showView(resetPage);
     };
 
     var forgot = function() {
@@ -57,7 +57,7 @@
                 '.content': new <%= _.camelize(projectName) %>.ForgotView()
             }
         });
-        app.showView(forgotPage);
+        <%= _.classify(projectName) %>.showView(forgotPage);
     };
 
     var settingsPage = function() {
@@ -69,10 +69,10 @@
                 '.content': new <%= _.camelize(projectName) %>.SettingsView()
             }
         });
-        app.showView(settingsPage);
+        <%= _.classify(projectName) %>.showView(settingsPage);
     };
 
-    return = {
+    return {
         login: login,
         logout: logout,
         signup: signup,

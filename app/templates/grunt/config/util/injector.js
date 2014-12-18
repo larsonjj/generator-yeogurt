@@ -55,7 +55,7 @@ var taskConfig = function(grunt) {
             options: {
                 transform: function(filePath) {
                     filePath = filePath.replace('/client/', '');
-                    return '<script src="' + filePath + '"></script>';
+                    return '<script src="/' + filePath + '"></script>';
                 },<% if (htmlOption === 'jade') { %>
                 starttag: '// [injector:js]',
                 endtag: '// [endinjector]'<% } else { %>
@@ -134,8 +134,8 @@ var taskConfig = function(grunt) {
             options: {
                 transform: function(filePath) {
                     filePath = filePath.replace('/client/', '');<% if (htmlOption === 'jade') { %>
-                    return 'link(rel=\'stylesheet\', href=\'' + filePath + '\')';<% } else { %>
-                    return '<link rel="stylesheet" href="' + filePath + '">';<% } %>
+                    return 'link(rel=\'stylesheet\', href=\'/' + filePath + '\')';<% } else { %>
+                    return '<link rel="stylesheet" href="/' + filePath + '">';<% } %>
                 },<% if (htmlOption === 'jade') { %>
                 starttag: '// [injector:css]',
                 endtag: '// [endinjector]'<% } else { %>

@@ -49,6 +49,11 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     // Enable GZip compression for all static assets
     app.use(compress());
 
+    if (env === 'development') {
+        // Include livereload script on all pages
+        app.use(require('connect-livereload')());
+    }
+
     // Load favicon
     app.use(favicon(path.join(settings.root, settings.staticAssets, '/favicon.ico')));
 
@@ -77,7 +82,6 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
 
     /**
      * Create cookie that keeps track of user sessions
-     * and store it in the Database
      */
     app.use(session({
         secret: secrets.sessionSecret,
@@ -135,15 +139,12 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     });<% } %>
 
     if (env === 'production') {
-        // Setup log level for server console output
-        app.use(logger('dev'));
+        // Setup log level for production server console output
+        app.use(logger('short'));
     }
 
     if (env === 'development') {
-        // Include livereload script on all pages
-        app.use(require('connect-livereload')());
-
-        // Setup log level for server console output
+        // Setup log level for developer server console output
         app.use(logger('dev'));
 
         // Disable caching for easier testing
@@ -166,7 +167,10 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
                 res.render('errors/404');
             },
             json: function() {
-                res.json({error: '404 Not Found'});
+                res.json({
+                    status: 404,
+                    message: 'Not Found'
+                });
             },
             text: function() {
                 res.send('404 Not Found');
@@ -176,7 +180,8 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
 
     if (env === 'development') {
         // Development 500 Error Handler.
-        app.use(errorHandler());
+        // Log out stack trace
+        return app.use(errorHandler());
     }
 
     // Production 500 Error Handler.
@@ -187,7 +192,10 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
                 res.render('errors/500');
             },
             json: function() {
-                res.json({error: '500 Internal Server Error'});
+                res.json({
+                    status: 500,
+                    message: 'Internal Server Error'
+                });
             },
             text: function() {
                 res.send('500 Internal Server Error');

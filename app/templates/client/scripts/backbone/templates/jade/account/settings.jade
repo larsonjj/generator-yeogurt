@@ -11,17 +11,17 @@ form#profile-form(action='/user?_method=PUT', method='post')
         input#lastName(type='text', name='lastName', value=user.lastName)
     button Update Profile
 
-    h3 Change Password
-    form#password-form(action='/user/password?_method=PUT', method='post')
-        p
-            label(for='password') New Password:
-            input#password(type='password', name='password', value='')
-        p
-            label(for='confirmPassword') Confirm Password:
-            input#confirmPassword(type='password', name='confirmPassword', value='')
-        button Change Password
+h3 Change Password
+form#password-form(action='/user/password?_method=PUT', method='post')
+    p
+        label(for='password') New Password:
+        input#password(type='password', name='password', value='')
+    p
+        label(for='confirmPassword') Confirm Password:
+        input#confirmPassword(type='password', name='confirmPassword', value='')
+    button Change Password
 
-    h3 Delete Account
-    p You can delete your account, but keep in mind this action is irreversible.
-    form#delete-form(action='/user', method='post')
-        button Delete my account
+h3 Delete Account
+p You can delete your account, but keep in mind this action is irreversible.
+form#delete-form(action='/user', method='post')
+    button Delete my account

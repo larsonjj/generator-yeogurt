@@ -4,7 +4,7 @@
 
 'use strict';
 
-<%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
+var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
 
 <%= _.camelize(projectName) %>.IndexView  = Backbone.View.extend({
     // Instead of generating a new element, bind to the existing skeleton of

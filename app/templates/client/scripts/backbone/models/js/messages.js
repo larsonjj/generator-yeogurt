@@ -5,7 +5,7 @@
 
 'use strict';
 
-<%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
+var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
 
 <%= _.camelize(projectName) %>.MessagesModel = Backbone.Model.extend({
 
@@ -18,7 +18,7 @@
 
     showMessages: function(data) {
         if (!_.isEmpty(data)) {
-            app.messages.set({
+            <%= _.classify(projectName) %>.messages.set({
                 messages: data
             });
         }

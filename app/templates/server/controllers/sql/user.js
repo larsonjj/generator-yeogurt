@@ -77,7 +77,7 @@ var createAccount = function(req, res, next) {
         }
         User.create(user).success(function(user) {
             // Send user and authentication token
-            var token = auth.signToken(user._id, user.role);
+            var token = auth.signToken(user.id, user.role);
             res.status(200).json({
                 token: token,
                 user: user,

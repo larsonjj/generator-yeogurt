@@ -9,10 +9,10 @@ var strategy = function(User) {
     passport.use(new LocalStrategy({
         usernameField: 'email'
     }, function(username, password, done) {
-        // Check to see whether to search for email or username
-        var searchInput = (username.indexOf('@') > -1) ? {email: username.toLowerCase()} : {username: username.toLowerCase()};
         User.find({
-            where: searchInput
+            where: {
+                email: username
+            }
         }).success(function(user) {
             if (!user) {
                 return done(null, false, {

@@ -1,11 +1,11 @@
 /**
 *   User Model
-*   Access this model through the app.account object
+*   Access this model through the <%= _.classify(projectName) %>.account object
 */
 
 'use strict';
 
-<%= _.camelize(projectName) %> = <%= _.camelize(projectName) %> || {};
+var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
 
 <%= _.camelize(projectName) %>.UserModel = Backbone.Model.extend({<% if (dbOption === 'mongodb') { %>
 
@@ -110,7 +110,7 @@
                 }
             }
         }).complete(function(res) {
-            app.messages.showMessages(res.responseJSON);
+            <%= _.classify(projectName) %>.messages.showMessages(res.responseJSON);
             if (callback && 'complete' in callback) {
                 callback.complete(res);
             }
@@ -143,7 +143,7 @@
                 }
             }
         }).complete(function(res) {
-            app.messages.showMessages(res.responseJSON);
+            <%= _.classify(projectName) %>.messages.showMessages(res.responseJSON);
             if (callback && 'complete' in callback) {
                 callback.complete(res);
             }
