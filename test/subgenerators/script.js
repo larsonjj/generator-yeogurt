@@ -27,7 +27,7 @@ describe('Script sub-generator', function () {
             // Filename
             var script = 'myscript';
             var filesToTest = [
-                'test/spec/' + script + '-spec.js',
+                'test/spec/' + script + '.spec.js',
                 'client/scripts/' + script + '.js'
             ];
 
@@ -53,7 +53,7 @@ describe('Script sub-generator', function () {
                 'client/scripts/' + script + '.js'
             ];
             var filesNotCreated = [
-                'test/spec/' + script + '-spec.js',
+                'test/spec/' + script + '.spec.js',
             ];
 
             helpers.mockPrompt(this.app, {
@@ -77,7 +77,7 @@ describe('Script sub-generator', function () {
             // Filename
             var script = 'myscript';
             var fileContentToTest = [
-                ['test/spec/' + script + '-spec.js', /describe/i],
+                ['test/spec/' + script + '.spec.js', /describe/i],
                 ['client/scripts/' + script + '.js', /module\.exports/i]
             ];
 
@@ -99,7 +99,7 @@ describe('Script sub-generator', function () {
             // Filename
             var script = 'myscript';
             var fileContentToTest = [
-                ['test/spec/' + script + '-spec.js', /define\(function\(require\)/i],
+                ['test/spec/' + script + '.spec.js', /define\(function\(require\)/i],
                 ['client/scripts/' + script + '.js', /define\(function\(require\)/i]
             ];
 
@@ -122,7 +122,7 @@ describe('Script sub-generator', function () {
             // Filename
             var script = 'myscript';
             var fileContentToTest = [
-                ['test/spec/' + script + '-spec.js', /jshint expr/i]
+                ['test/spec/' + script + '.spec.js', /jshint expr/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -144,7 +144,7 @@ describe('Script sub-generator', function () {
             // Filename
             var script = 'myscript';
             var fileContentToTest = [
-                ['test/spec/' + script + '-spec.js', /jshint expr/i]
+                ['test/spec/' + script + '.spec.js', /jshint expr/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -167,7 +167,7 @@ describe('Script sub-generator', function () {
             var script = 'myscript';
             var folder = 'folder/';
             var filesToTest = [
-                'test/spec/' + folder + script + '-spec.js',
+                'test/spec/' + folder + script + '.spec.js',
                 'client/scripts/' + folder + script + '.js'
             ];
 
@@ -190,7 +190,7 @@ describe('Script sub-generator', function () {
             var script = 'myscript';
             var folder = '/////folder/////';
             var filesToTest = [
-                'test/spec/folder/' + script + '-spec.js',
+                'test/spec/folder/' + script + '.spec.js',
                 'client/scripts/folder/' + script + '.js'
             ];
 

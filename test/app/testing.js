@@ -26,7 +26,7 @@ describe('Yeogurt generator unit testing', function () {
                 'test',
                 'test/spec',
                 'grunt/config/test/karma.js',
-                'test/spec/app-spec.js'
+                'test/spec/app.spec.js'
             ];
 
             helpers.mockPrompt(this.app, {
@@ -64,7 +64,7 @@ describe('Yeogurt generator unit testing', function () {
                 'test',
                 'test/spec',
                 'grunt/config/test/karma.js',
-                'test/spec/app-spec.js'
+                'test/spec/app.spec.js'
             ];
 
             helpers.mockPrompt(this.app, {

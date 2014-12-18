@@ -3,8 +3,9 @@
 
 // Folder paths for:
 // - dev (location for development source files)
-// - server (location for files created when running 'grunt serve')
+// - staticServer (location for files created when running 'grunt serve')
 // - dist (location for files created when running 'grunt' or 'grunt build')
+// - server (location for files pertaining to server folder)
 var config = {
     client: 'client',
     staticServer: 'client/.serve',

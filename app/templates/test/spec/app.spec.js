@@ -36,8 +36,7 @@ describe('app', function() {
         document.body.insertBefore(appWrapper, document.body.firstChild);<% } %>
     });
 
-});
-<% } else { %>'use strict';
+});<% } else { %>'use strict';
 
 describe('app', function() {
 

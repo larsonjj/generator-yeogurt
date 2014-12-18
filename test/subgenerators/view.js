@@ -257,7 +257,7 @@ describe('View sub-generator', function () {
             // Filename
             var view = 'myview';
             var filesNotCreated = [
-                'test/spec/views/' + view + '-spec.js',
+                'test/spec/views/' + view + '.spec.js',
             ];
 
             helpers.mockPrompt(this.app, {
@@ -286,14 +286,14 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.jst'
                     ];
                     var fileContentToTest = [
                         ['client/templates/' + view + '.jst', /<div>/i],
                         ['client/scripts/views/' + view + '.js', /module\.exports/i],
-                        ['test/spec/views/' + view + '-spec.js', /describe/i]
+                        ['test/spec/views/' + view + '.spec.js', /describe/i]
                     ];
 
                     helpers.mockPrompt(this.app, {
@@ -320,15 +320,15 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.jst'
                     ];
                     var fileContentToTest = [
                         ['client/templates/' + view + '.jst', /<div>/i],
                         ['client/scripts/views/' + view + '.js', /module\.exports/i],
-                        ['test/spec/views/' + view + '-spec.js', /describe/i],
-                        ['test/spec/views/' + view + '-spec.js', /jshint expr/i]
+                        ['test/spec/views/' + view + '.spec.js', /describe/i],
+                        ['test/spec/views/' + view + '.spec.js', /jshint expr/i]
                     ];
 
                     helpers.mockPrompt(this.app, {
@@ -357,14 +357,14 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.jst'
                     ];
                     var fileContentToTest = [
                         ['client/templates/' + view + '.jst', /<div>/i],
                         ['client/scripts/views/' + view + '.js', /define\(function\(require\)/i],
-                        ['test/spec/views/' + view + '-spec.js', /define\(function\(require\)/i]
+                        ['test/spec/views/' + view + '.spec.js', /define\(function\(require\)/i]
                     ];
 
                     helpers.mockPrompt(this.app, {
@@ -391,15 +391,15 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.jst'
                     ];
                     var fileContentToTest = [
                         ['client/templates/' + view + '.jst', /<div>/i],
                         ['client/scripts/views/' + view + '.js', /define\(function\(require\)/i],
-                        ['test/spec/views/' + view + '-spec.js', /define\(function\(require\)/i],
-                        ['test/spec/views/' + view + '-spec.js', /jshint expr/i]
+                        ['test/spec/views/' + view + '.spec.js', /define\(function\(require\)/i],
+                        ['test/spec/views/' + view + '.spec.js', /jshint expr/i]
                     ];
 
                     helpers.mockPrompt(this.app, {
@@ -430,14 +430,14 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.hbs'
                     ];
                     var fileContentToTest = [
                         ['client/templates/' + view + '.hbs', /<div>/i],
                         ['client/scripts/views/' + view + '.js', /module\.exports/i],
-                        ['test/spec/views/' + view + '-spec.js', /describe/i]
+                        ['test/spec/views/' + view + '.spec.js', /describe/i]
                     ];
 
                     helpers.mockPrompt(this.app, {
@@ -464,15 +464,15 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.hbs'
                     ];
                     var fileContentToTest = [
                         ['client/templates/' + view + '.hbs', /<div>/i],
                         ['client/scripts/views/' + view + '.js', /module\.exports/i],
-                        ['test/spec/views/' + view + '-spec.js', /describe/i],
-                        ['test/spec/views/' + view + '-spec.js', /jshint expr/i]
+                        ['test/spec/views/' + view + '.spec.js', /describe/i],
+                        ['test/spec/views/' + view + '.spec.js', /jshint expr/i]
                     ];
 
                     helpers.mockPrompt(this.app, {
@@ -501,14 +501,14 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.hbs'
                     ];
                     var fileContentToTest = [
                         ['client/templates/' + view + '.hbs', /<div>/i],
                         ['client/scripts/views/' + view + '.js', /define\(function\(require\)/i],
-                        ['test/spec/views/' + view + '-spec.js', /define\(function\(require\)/i]
+                        ['test/spec/views/' + view + '.spec.js', /define\(function\(require\)/i]
                     ];
 
                     helpers.mockPrompt(this.app, {
@@ -535,15 +535,15 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.hbs'
                     ];
                     var fileContentToTest = [
                         ['client/templates/' + view + '.hbs', /<div>/i],
                         ['client/scripts/views/' + view + '.js', /define\(function\(require\)/i],
-                        ['test/spec/views/' + view + '-spec.js', /define\(function\(require\)/i],
-                        ['test/spec/views/' + view + '-spec.js', /jshint expr/i]
+                        ['test/spec/views/' + view + '.spec.js', /define\(function\(require\)/i],
+                        ['test/spec/views/' + view + '.spec.js', /jshint expr/i]
                     ];
 
                     helpers.mockPrompt(this.app, {
@@ -574,13 +574,13 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.jade'
                     ];
                     var fileContentToTest = [
                         ['client/scripts/views/' + view + '.js', /module\.exports/i],
-                        ['test/spec/views/' + view + '-spec.js', /describe/i]
+                        ['test/spec/views/' + view + '.spec.js', /describe/i]
                     ];
                     var fileContentToNotFind = [
                         ['client/templates/' + view + '.jade', /<div>/i]
@@ -611,14 +611,14 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.jade'
                     ];
                     var fileContentToTest = [
                         ['client/scripts/views/' + view + '.js', /module\.exports/i],
-                        ['test/spec/views/' + view + '-spec.js', /describe/i],
-                        ['test/spec/views/' + view + '-spec.js', /jshint expr/i]
+                        ['test/spec/views/' + view + '.spec.js', /describe/i],
+                        ['test/spec/views/' + view + '.spec.js', /jshint expr/i]
                     ];
                     var fileContentToNotFind = [
                         ['client/templates/' + view + '.jade', /<div>/i]
@@ -651,13 +651,13 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.jade'
                     ];
                     var fileContentToTest = [
                         ['client/scripts/views/' + view + '.js', /define\(function\(require\)/i],
-                        ['test/spec/views/' + view + '-spec.js', /define\(function\(require\)/i]
+                        ['test/spec/views/' + view + '.spec.js', /define\(function\(require\)/i]
                     ];
                     var fileContentToNotFind = [
                         ['client/templates/' + view + '.jade', /<div>/i]
@@ -688,14 +688,14 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.jade'
                     ];
                     var fileContentToTest = [
                         ['client/scripts/views/' + view + '.js', /define\(function\(require\)/i],
-                        ['test/spec/views/' + view + '-spec.js', /define\(function\(require\)/i],
-                        ['test/spec/views/' + view + '-spec.js', /jshint expr/i]
+                        ['test/spec/views/' + view + '.spec.js', /define\(function\(require\)/i],
+                        ['test/spec/views/' + view + '.spec.js', /jshint expr/i]
                     ];
                     var fileContentToNotFind = [
                         ['client/templates/' + view + '.jade', /<div>/i]
@@ -729,7 +729,7 @@ describe('View sub-generator', function () {
             var view = 'myview';
             var folder = 'folder/';
             var filesToTest = [
-                'test/spec/views/' + folder + view + '-spec.js',
+                'test/spec/views/' + folder + view + '.spec.js',
                 'client/scripts/views/' + folder + view + '.js'
             ];
 
@@ -758,7 +758,7 @@ describe('View sub-generator', function () {
             var view = 'myview';
             var folder = '/////folder/////';
             var filesToTest = [
-                'test/spec/views/folder/' + view + '-spec.js',
+                'test/spec/views/folder/' + view + '.spec.js',
                 'client/scripts/views/folder/' + view + '.js'
             ];
 

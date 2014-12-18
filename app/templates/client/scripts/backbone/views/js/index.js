@@ -5,8 +5,9 @@
 'use strict';
 
 var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
+<%= _.classify(projectName) %>.Views = <%= _.classify(projectName) %>.Views || {};
 
-<%= _.camelize(projectName) %>.IndexView  = Backbone.View.extend({
+<%= _.camelize(projectName) %>.Views.Index  = Backbone.View.extend({
     // Instead of generating a new element, bind to the existing skeleton of
     // the App already present in the HTML.
     el: '#app-wrapper',

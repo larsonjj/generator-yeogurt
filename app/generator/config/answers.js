@@ -42,8 +42,8 @@ var answersConfig = function answersConfig() {
     this.dbOption           = this.answers.dbOption;
     this.useAuth            = this.answers.useAuth;
 
-    this.answers.dbUser = this.answers.dbUser === 'nouser' ? '' : this.answers.dbUser;
-    this.answers.dbPass = this.answers.dbPass === 'nopass' ? '' : this.answers.dbPass;
+    this.dbUser = this.answers.dbUser === 'nouser' ? '' : this.answers.dbUser;
+    this.dbPass = this.answers.dbPass === 'nopass' ? '' : this.answers.dbPass;
 
     // Setup Database URLs
     var username = this.answers.dbUser || '';

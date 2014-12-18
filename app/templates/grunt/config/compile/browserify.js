@@ -45,7 +45,7 @@ var taskConfig = function(grunt) {
                 watch: true
             },
             files: {
-                'test/scripts/bundle.js': ['test/spec/**/*-spec.js']
+                'test/scripts/bundle.js': ['test/spec/**/*.spec.js']
             }
         }<% } %>
     });

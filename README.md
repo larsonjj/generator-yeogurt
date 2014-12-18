@@ -264,19 +264,7 @@ Produces:
 
 ```
 client/scripts/myscript.js
-test/spec/myscript-spec.js
-```
-
-There is also an option that can be used to change the default behavior:
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--delete | [n/a] |  Deletes specified file(s)
-
-Example:
-
-```
-yo yeogurt:script myscript --delete
+test/spec/myscript.spec.js
 ```
 
 ### Style
@@ -293,18 +281,6 @@ Produces:
 
 ```
 client/styles/_mystyle.scss
-```
-
-There is also an option that can be used to change the default behavior:
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--delete | [n/a] |  Deletes specified file(s)
-
-Example:
-
-```
-yo yeogurt:style mystyle --delete
 ```
 
 ## Static Site and Backbone Sub-generators
@@ -349,12 +325,6 @@ Produces:
 
 ***NOTE: `{client,server}` means that the Jade file will be created in the `client` folder, or in the `server` folder if using an Express server***
 
-There is also an option that can be used to change the default behavior:
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--delete | [n/a] |  Deletes specified file(s)
-
 ##### For Backbone applications
 Creates a new template file (Jade, Handlebars, or Lo-dash depending on which you chose).
 
@@ -372,18 +342,6 @@ client/templates/mytemplate.{jst,hbs,jade}
 ```
 
 ***NOTE: `{jst,hbs,jade}` means that the file extension template will match the template engine you chose: `lo-dash, handlebars, or jade` respectively***
-
-There is also an option that can be used to change the default behavior:
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--delete | [n/a] |  Deletes specified file(s)
-
-Example:
-
-```
-yo yeogurt:template mytemplate --delete
-```
 
 ## React Sub-generator
 ***Note: (The following sub-generator can only be used with React applications)***
@@ -404,19 +362,7 @@ Produces:
 
 ```
 client/scripts/components/mycomponent.jsx
-test/spec/components/mycomponent-spec.js
-```
-
-There is also an option that can be used to change the default behavior:
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--delete | [n/a] |  Deletes specified file(s)
-
-Example:
-
-```
-yo yeogurt:react mycomponent --delete
+test/spec/components/mycomponent.spec.js
 ```
 
 ## Flux Sub-generator
@@ -440,21 +386,9 @@ Produces:
 client/scripts/flux/constants/myflux.js
 client/scripts/flux/actions/myflux.js
 client/scripts/flux/stores/myflux.js
-test/spec/flux/constants/myflux-spec.js
-test/spec/flux/actions/myflux-spec.js
-test/spec/flux/stores/myflux-spec.js
-```
-
-There is also an option that can be used to change the default behavior:
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--delete | [n/a] |  Deletes specified file(s)
-
-Example:
-
-```
-yo yeogurt:flux myflux --delete
+test/spec/flux/constants/myflux.spec.js
+test/spec/flux/actions/myflux.spec.js
+test/spec/flux/stores/myflux.spec.js
 ```
 
 ## Backbone Sub-generators
@@ -477,22 +411,10 @@ Produces:
 ```
 client/scripts/views/myview.js
 client/templates/myview.{jst,hbs,jade}
-test/spec/views/myview-spec.js
+test/spec/views/myview.spec.js
 ```
 
 ***NOTE: `{jst,hbs,jade}` means that the file extension template will match the template engine you chose: `underscore, handlebars, or jade` respectively***
-
-There is also an option that can be used to change the default behavior:
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--delete | [n/a] |  Deletes specified file(s)
-
-Example:
-
-```
-yo yeogurt:view myview --delete
-```
 
 ### Model
 
@@ -510,19 +432,7 @@ Produces:
 
 ```
 client/scripts/models/mymodel.js
-test/spec/models/mymodel-spec.js
-```
-
-There is also an option that can be used to change the default behavior:
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--delete | [n/a] |  Deletes specified file(s)
-
-Example:
-
-```
-yo yeogurt:model mymodel --delete
+test/spec/models/mymodel.spec.js
 ```
 
 ### Collection
@@ -543,19 +453,7 @@ Produces:
 
 ```
 client/scripts/collections/mycollection.js
-test/spec/collections/mycollection-spec.js
-```
-
-There is also an option that can be used to change the default behavior:
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--delete | [n/a] |  Deletes specified file(s)
-
-Example:
-
-```
-yo yeogurt:collection mycollection --delete
+test/spec/collections/mycollection.spec.js
 ```
 
 ## Automated Documentation
@@ -581,7 +479,7 @@ Odds are that you will need to add some third party libraries to your project at
 
 ```
 bower install [package name] --save
-``` 
+```
 
 Once installed, take a look at your base template and you will notice the following comments:
 
@@ -596,7 +494,7 @@ Once installed, take a look at your base template and you will notice the follow
 These comments will ensure all libraries and their dependencies found in your `bower.json` file are correctly ordered and injected into your base template file via [grunt-wiredep](https://github.com/stephenplusplus/grunt-wiredep) using the following comments:. Then you are all set, no need to worry about linking your libraries manually.
 
 If you can't [find the package on bower](http://bower.io/search/) (very rare), or you have your own in-house libraries that you like to use, then you should:
- 
+
 - Put your scripts within a `client/scripts/vendor` folder (jshint is setup to ignore this folder)
 - Put your stylesheets within a `client/styles/vendor` folder
 - Place all other file types somewhere within the `client` folder (This will make sure that your base template can access them).

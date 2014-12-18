@@ -5,8 +5,8 @@
 define(function(require) {
     'use strict';<% if (useAuth) { %>
 
-    var indexController = require('./controllers/index');
-    var accountController = require('./controllers/account');<% } %>
+    var IndexController = require('./controllers/index');
+    var AccountController = require('./controllers/account');<% } %>
 
     var IndexView = require('./views/index');
 
@@ -27,19 +27,19 @@ define(function(require) {
             new IndexView();
         }<% } else { %>
 
-        login: accountController.login,
+        login: AccountController.login,
 
-        logout: accountController.logout,
+        logout: AccountController.logout,
 
-        forgot: accountController.forgot,
+        forgot: AccountController.forgot,
 
-        reset: accountController.reset,
+        reset: AccountController.reset,
 
-        signup: accountController.signup,
+        signup: AccountController.signup,
 
-        settings: accountController.settings,
+        settings: AccountController.settings,
 
-        index: indexController.index<% } %>
+        index: IndexController.index<% } %>
     });
 
     return Router;

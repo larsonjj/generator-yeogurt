@@ -1,7 +1,6 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var deleteFile = require('../helpers/delete-file');
 var getRootDir = require('../helpers/get-root-dir');
 var path = require('path');
 
@@ -13,7 +12,6 @@ var TemplateGenerator = module.exports = function TemplateGenerator() {
     var fileJSON = this.config.get('config');
 
     // options
-    this.delete = this.options.delete || '';
     this.useDashboard = fileJSON.useDashboard;
     this.projectName = fileJSON.projectName;
     this.jsTemplate = fileJSON.jsTemplate;
@@ -41,7 +39,6 @@ TemplateGenerator.prototype.ask = function ask() {
     }
 
     var self = this;
-    var createOrDelete = this.delete ? 'delete' : 'create';
     var rootPath;
     if (!this.singlePageApplication && this.useServer) {
         rootPath = 'server';
@@ -80,21 +77,21 @@ TemplateGenerator.prototype.ask = function ask() {
             return answers.type === 'module';
         },
         name: 'templateFile',
-        message: 'Where would you like to ' + createOrDelete + ' this template?',
+        message: 'Where would you like to create this template?',
         default: rootPath + '/templates/modules'
     }, {
         when: function(answers) {
             return answers.type === 'layout';
         },
         name: 'templateFile',
-        message: 'Where would you like to ' + createOrDelete + ' this template?',
+        message: 'Where would you like to create this template?',
         default: rootPath + '/templates/layouts'
     }, {
         when: function() {
             return self.singlePageApplication;
         },
         name: 'templateFile',
-        message: 'Where would you like to ' + createOrDelete + ' this template?',
+        message: 'Where would you like to create this template?',
         default: rootPath + '/templates'
     }];
 

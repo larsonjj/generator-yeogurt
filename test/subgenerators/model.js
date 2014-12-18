@@ -266,7 +266,7 @@ describe('Model sub-generator', function () {
             // Filename
             var model = 'mymodel';
             var filesToTest = [
-                'test/spec/models/' + model + '-spec.js',
+                'test/spec/models/' + model + '.spec.js',
                 'client/scripts/models/' + model + '.js'
             ];
 
@@ -295,7 +295,7 @@ describe('Model sub-generator', function () {
                 'client/scripts/models/' + model + '.js'
             ];
             var filesNotCreated = [
-                'test/spec/models/' + model + '-spec.js',
+                'test/spec/models/' + model + '.spec.js',
             ];
 
             helpers.mockPrompt(this.app, {
@@ -322,7 +322,7 @@ describe('Model sub-generator', function () {
             // Filename
             var model = 'mymodel';
             var fileContentToTest = [
-                ['test/spec/models/' + model + '-spec.js', /describe/i],
+                ['test/spec/models/' + model + '.spec.js', /describe/i],
                 ['client/scripts/models/' + model + '.js', /module\.exports/i]
             ];
 
@@ -348,7 +348,7 @@ describe('Model sub-generator', function () {
             // Filename
             var model = 'mymodel';
             var fileContentToTest = [
-                ['test/spec/models/' + model + '-spec.js', /define\(function\(require\)/i],
+                ['test/spec/models/' + model + '.spec.js', /define\(function\(require\)/i],
                 ['client/scripts/models/' + model + '.js', /define\(function\(require\)/i]
             ];
 
@@ -374,7 +374,7 @@ describe('Model sub-generator', function () {
             // Filename
             var model = 'mymodel';
             var fileContentToTest = [
-                ['test/spec/models/' + model + '-spec.js', /jshint expr/i],
+                ['test/spec/models/' + model + '.spec.js', /jshint expr/i],
             ];
 
             helpers.mockPrompt(this.app, {
@@ -399,7 +399,7 @@ describe('Model sub-generator', function () {
             // Filename
             var model = 'mymodel';
             var fileContentToTest = [
-                ['test/spec/models/' + model + '-spec.js', /jshint expr/i],
+                ['test/spec/models/' + model + '.spec.js', /jshint expr/i],
             ];
 
             helpers.mockPrompt(this.app, {
@@ -425,7 +425,7 @@ describe('Model sub-generator', function () {
             var model = 'mymodel';
             var folder = 'folder/';
             var filesToTest = [
-                'test/spec/models/' + folder + model + '-spec.js',
+                'test/spec/models/' + folder + model + '.spec.js',
                 'client/scripts/models/' + folder + model + '.js'
             ];
 
@@ -452,7 +452,7 @@ describe('Model sub-generator', function () {
             var model = 'mymodel';
             var folder = '/////folder/////';
             var filesToTest = [
-                'test/spec/models/folder/' + model + '-spec.js',
+                'test/spec/models/folder/' + model + '.spec.js',
                 'client/scripts/models/folder/' + model + '.js'
             ];
 

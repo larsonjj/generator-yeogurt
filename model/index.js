@@ -1,7 +1,6 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var deleteFile = require('../helpers/delete-file');
 var getRootDir = require('../helpers/get-root-dir');
 var path = require('path');
 
@@ -13,7 +12,6 @@ var ModelGenerator = module.exports = function ModelGenerator() {
     var fileJSON = this.config.get('config');
 
     // options
-    this.delete = this.options.delete || '';
     this.jsFramework = fileJSON.jsFramework;
     this.jsOption = fileJSON.jsOption;
     this.singlePageApplication = fileJSON.singlePageApplication;
@@ -37,20 +35,18 @@ ModelGenerator.prototype.ask = function ask() {
         return;
     }
 
-    var createOrDelete = this.delete ? 'delete' : 'create';
-
     var self = this;
     var done = this.async();
     var prompts = [{
         name: 'modelFile',
-        message: 'Where would you like to ' + createOrDelete + ' this model?',
+        message: 'Where would you like to create this model?',
         default: 'client/scripts/models'
     }, {
         when: function() {
             return self.useTesting;
         },
         name: 'testFile',
-        message: 'Where would you like to ' + createOrDelete + ' this model\'s test?',
+        message: 'Where would you like to create this model\'s test?',
         default: 'test/spec/models'
     }];
 
@@ -71,16 +67,9 @@ ModelGenerator.prototype.files = function files() {
     if (this.abort) {
         return;
     }
-    if (!this.delete) {
-        this.template('model.js', this.modelFile + '.js');
-        if (this.useTesting) {
-            this.template('model-spec.js', this.testFile + '-spec.js');
-        }
-    }
-    else {
-        deleteFile(this.modelFile + '.js', this);
-        if (this.useTesting) {
-            deleteFile(this.testFile + '-spec.js', this);
-        }
+
+    this.template('model.js', this.modelFile + '.js');
+    if (this.useTesting) {
+        this.template('model.spec.js', this.testFile + '.spec.js');
     }
 };

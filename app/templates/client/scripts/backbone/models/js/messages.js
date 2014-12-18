@@ -6,8 +6,9 @@
 'use strict';
 
 var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
+<%= _.classify(projectName) %>.Models = <%= _.classify(projectName) %>.Models || {};
 
-<%= _.camelize(projectName) %>.MessagesModel = Backbone.Model.extend({
+<%= _.camelize(projectName) %>.Models.Messages = Backbone.Model.extend({
 
     initialize: function() {
     },

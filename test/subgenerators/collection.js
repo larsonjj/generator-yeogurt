@@ -27,7 +27,7 @@ describe('Collection sub-generator', function () {
             // Filename
             var collection = 'mycollection';
             var filesToTest = [
-                'test/spec/collections/' + collection + '.js',
+                'test/spec/collections/' + collection + '.spec.js',
                 'client/scripts/collections/' + collection + '.js'
             ];
 
@@ -96,7 +96,7 @@ describe('Collection sub-generator', function () {
             // Filename
             var collection = 'mycollection';
             var filesToTest = [
-                'test/spec/collections/' + collection + '.js',
+                'test/spec/collections/' + collection + '.spec.js',
                 'client/scripts/collections/' + collection + '.js'
             ];
 
@@ -160,7 +160,7 @@ describe('Collection sub-generator', function () {
             // Filename
             var collection = 'mycollection';
             var filesToTest = [
-                'test/spec/collections/' + collection + '.js',
+                'test/spec/collections/' + collection + '.spec.js',
                 'client/scripts/collections/' + collection + '.js'
             ];
             this.app.run([], function() {
@@ -227,7 +227,7 @@ describe('Collection sub-generator', function () {
             // Filename
             var collection = 'mycollection';
             var filesToTest = [
-                'test/spec/collections/' + collection + '-spec.js',
+                'test/spec/collections/' + collection + '.spec.js',
                 'client/scripts/collections/' + collection + '.js'
             ];
 
@@ -257,7 +257,7 @@ describe('Collection sub-generator', function () {
                 'client/scripts/collections/' + collection + '.js'
             ];
             var filesNotCreated = [
-                'test/spec/collections/' + collection + '-spec.js',
+                'test/spec/collections/' + collection + '.spec.js',
             ];
 
             helpers.mockPrompt(this.app, {
@@ -283,7 +283,7 @@ describe('Collection sub-generator', function () {
             // Filename
             var collection = 'mycollection';
             var fileContentToTest = [
-                ['test/spec/collections/' + collection + '-spec.js', /describe/i],
+                ['test/spec/collections/' + collection + '.spec.js', /describe/i],
                 ['client/scripts/collections/' + collection + '.js', /module\.exports/i]
             ];
 
@@ -309,7 +309,7 @@ describe('Collection sub-generator', function () {
             // Filename
             var collection = 'mycollection';
             var fileContentToTest = [
-                ['test/spec/collections/' + collection + '-spec.js', /define\(function\(require\)/i],
+                ['test/spec/collections/' + collection + '.spec.js', /define\(function\(require\)/i],
                 ['client/scripts/collections/' + collection + '.js', /define\(function\(require\)/i]
             ];
 
@@ -335,7 +335,7 @@ describe('Collection sub-generator', function () {
             // Filename
             var collection = 'mycollection';
             var fileContentToTest = [
-                ['test/spec/collections/' + collection + '-spec.js', /jshint expr/i],
+                ['test/spec/collections/' + collection + '.spec.js', /jshint expr/i],
             ];
 
             helpers.mockPrompt(this.app, {
@@ -360,7 +360,7 @@ describe('Collection sub-generator', function () {
             // Filename
             var collection = 'mycollection';
             var fileContentToTest = [
-                ['test/spec/collections/' + collection + '-spec.js', /jshint expr/i],
+                ['test/spec/collections/' + collection + '.spec.js', /jshint expr/i],
             ];
 
             helpers.mockPrompt(this.app, {
@@ -386,7 +386,7 @@ describe('Collection sub-generator', function () {
             var collection = 'mycollection';
             var folder = 'folder/';
             var filesToTest = [
-                'test/spec/collections/' + folder + collection + '-spec.js',
+                'test/spec/collections/' + folder + collection + '.spec.js',
                 'client/scripts/collections/' + folder + collection + '.js'
             ];
 
@@ -413,7 +413,7 @@ describe('Collection sub-generator', function () {
             var collection = 'mycollection';
             var folder = '/////folder/////';
             var filesToTest = [
-                'test/spec/collections/folder/' + collection + '-spec.js',
+                'test/spec/collections/folder/' + collection + '.spec.js',
                 'client/scripts/collections/folder/' + collection + '.js'
             ];
 

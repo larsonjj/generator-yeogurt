@@ -4,8 +4,8 @@
 
 'use strict';
 <% if (useAuth) { %>
-var indexController = require('./controllers/index');
-var accountController = require('./controllers/account');<% } %><% if (jsFramework === 'react') { %>
+var IndexController = require('./controllers/index');
+var AccountController = require('./controllers/account');<% } %><% if (jsFramework === 'react') { %>
 var React = require('react');<% if (useJsx) { %>
 var IndexComponent = React.createFactory(require('./components/index.jsx'));<% } else { %>
 var IndexComponent = require('./components/index.js');<% } %><% } else if (jsFramework === 'backbone') { %>
@@ -29,19 +29,19 @@ var Router = Backbone.Router.extend({
         new IndexView();<% } %>
     }<% } else { %>
 
-    login: accountController.login,
+    login: AccountController.login,
 
-    logout: accountController.logout,
+    logout: AccountController.logout,
 
-    forgot: accountController.forgot,
+    forgot: AccountController.forgot,
 
-    reset: accountController.reset,
+    reset: AccountController.reset,
 
-    signup: accountController.signup,
+    signup: AccountController.signup,
 
-    settings: accountController.settings,
+    settings: AccountController.settings,
 
-    index: indexController.index<% } %>
+    index: IndexController.index<% } %>
 });
 
 module.exports = Router;

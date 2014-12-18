@@ -5,7 +5,6 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var deleteFile = require('../helpers/delete-file');
 var getRootDir = require('../helpers/get-root-dir');
 var path = require('path');
 
@@ -18,7 +17,6 @@ var ViewGenerator = module.exports = function ViewGenerator() {
 
     // options
     this.view = this.options.type || 'page';
-    this.delete = this.options.delete || '';
     this.useDashboard = fileJSON.useDashboard;
     this.projectName = fileJSON.projectName;
     this.jsTemplate = fileJSON.jsTemplate;
@@ -53,18 +51,16 @@ ViewGenerator.prototype.ask = function ask() {
         return;
     }
 
-    var createOrDelete = this.delete ? 'delete' : 'create';
-
     var self = this;
     var done = this.async();
     var prompts = [{
         name: 'viewFile',
-        message: 'Where would you like to ' + createOrDelete + ' this view?',
+        message: 'Where would you like to create this view?',
         default: 'client/scripts/views'
     },
     {
         name: 'templateFile',
-        message: 'Where would you like to ' + createOrDelete + ' this view\'s template?',
+        message: 'Where would you like to create this view\'s template?',
         default: 'client/templates'
     },
     {
@@ -72,7 +68,7 @@ ViewGenerator.prototype.ask = function ask() {
             return self.useTesting;
         },
         name: 'testFile',
-        message: 'Where would you like to ' + createOrDelete + ' this view\'s test?',
+        message: 'Where would you like to create this view\'s test?',
         default: 'test/spec/views'
     }];
 
@@ -94,34 +90,19 @@ ViewGenerator.prototype.files = function files() {
     if (this.abort) {
         return;
     }
-    if (!this.delete) {
-        this.template('view.js', this.viewFile + '.js');
-        if (this.useTesting) {
-            this.template('view-spec.js', this.testFile + '-spec.js');
-        }
-        if (this.jsTemplate === 'underscore') {
-            this.template('view.html', this.templateFile + '.jst');
-        }
-        else if (this.jsTemplate === 'handlebars') {
-            this.template('view.html', this.templateFile + '.hbs');
-        }
-        else if (this.jsTemplate === 'jade') {
-            this.template('view.html', this.templateFile + '.jade');
-        }
+
+    this.template('view.js', this.viewFile + '.js');
+    if (this.useTesting) {
+        this.template('view.spec.js', this.testFile + '.spec.js');
     }
-    else {
-        deleteFile(this.viewFile + '.js', this);
-        if (this.useTesting) {
-            deleteFile(this.testFile + '-spec.js', this);
-        }
-        if (this.jsTemplate === 'underscore') {
-            deleteFile(this.templateFile + '.jst', this);
-        }
-        else if (this.jsTemplate === 'handlebars') {
-            deleteFile(this.templateFile + '.hbs', this);
-        }
-        else if (this.jsTemplate === 'jade') {
-            deleteFile(this.templateFile + '.jade', this);
-        }
+    if (this.jsTemplate === 'underscore') {
+        this.template('view.html', this.templateFile + '.jst');
     }
+    else if (this.jsTemplate === 'handlebars') {
+        this.template('view.html', this.templateFile + '.hbs');
+    }
+    else if (this.jsTemplate === 'jade') {
+        this.template('view.html', this.templateFile + '.jade');
+    }
+
 };

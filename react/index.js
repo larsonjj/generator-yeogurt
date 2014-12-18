@@ -1,7 +1,6 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var deleteFile = require('../helpers/delete-file');
 var getRootDir = require('../helpers/get-root-dir');
 var path = require('path');
 
@@ -13,7 +12,6 @@ var ReactGenerator = module.exports = function ReactGenerator() {
     var fileJSON = this.config.get('config');
 
     // options
-    this.delete = this.options.delete || '';
     this.jsFramework = fileJSON.jsFramework;
     this.testFramework = fileJSON.testFramework;
     this.useJsx = fileJSON.useJsx;
@@ -32,20 +30,18 @@ ReactGenerator.prototype.ask = function ask() {
         return;
     }
 
-    var createOrDelete = this.delete ? 'delete' : 'create';
-
     var self = this;
     var done = this.async();
     var prompts = [{
         name: 'reactFile',
-        message: 'Where would you like to ' + createOrDelete + ' this react component?',
+        message: 'Where would you like to create this react component?',
         default: 'client/scripts/components'
     }, {
         when: function() {
             return self.useTesting;
         },
         name: 'testFile',
-        message: 'Where would you like to ' + createOrDelete + ' this react component\'s test?',
+        message: 'Where would you like to create this react component\'s test?',
         default: 'test/spec/components'
     }];
 
@@ -74,7 +70,7 @@ ReactGenerator.prototype.files = function files() {
             this.template('react.js', this.reactFile + '.js');
         }
         if (this.useTesting) {
-            this.template('react-spec.js', this.testFile + '-spec.js');
+            this.template('react.spec.js', this.testFile + '.spec.js');
         }
     }
     else {
@@ -85,7 +81,7 @@ ReactGenerator.prototype.files = function files() {
             deleteFile(this.reactFile + '.js', this);
         }
         if (this.useTesting) {
-            deleteFile(this.testFile + '-spec.js', this);
+            deleteFile(this.testFile + '.spec.js', this);
         }
     }
 

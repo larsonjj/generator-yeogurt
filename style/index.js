@@ -1,7 +1,6 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var deleteFile = require('../helpers/delete-file');
 var path = require('path');
 
 var StyleGenerator = module.exports = function StyleGenerator() {
@@ -13,7 +12,6 @@ var StyleGenerator = module.exports = function StyleGenerator() {
 
     // options
     this.useDashboard = this.options.dashboard || false;
-    this.delete = this.options.delete || '';
     this.cssOption = fileJSON.cssOption;
     this.sassSyntax = fileJSON.sassSyntax || 'scss';
     this.testFramework = fileJSON.testFramework;
@@ -25,13 +23,12 @@ util.inherits(StyleGenerator, yeoman.generators.NamedBase);
 // Prompts
 StyleGenerator.prototype.ask = function ask() {
 
-    var createOrDelete = this.delete ? 'delete' : 'create';
     var prefix = this.cssOption === 'css' ? '' : '_';
 
     var done = this.async();
     var prompts = [{
         name: 'styleFile',
-        message: 'Where would you like to ' + createOrDelete + ' this stylesheet?',
+        message: 'Where would you like to create this stylesheet?',
         default: 'client/styles'
     }];
 
@@ -44,32 +41,18 @@ StyleGenerator.prototype.ask = function ask() {
 
 // Create files
 StyleGenerator.prototype.files = function files() {
-    if (!this.delete) {
-        if (this.cssOption === 'less') {
-            this.template('style.less', this.styleFile + '.less');
-        }
-        else if (this.cssOption === 'sass') {
-            this.template('style.less', this.styleFile + '.' + this.sassSyntax);
-        }
-        else if (this.cssOption === 'stylus') {
-            this.template('style.less', this.styleFile + '.styl');
-        }
-        else {
-            this.template('style.less', this.styleFile + '.css');
-        }
+
+    if (this.cssOption === 'less') {
+        this.template('style.css', this.styleFile + '.less');
+    }
+    else if (this.cssOption === 'sass') {
+        this.template('style.css', this.styleFile + '.' + this.sassSyntax);
+    }
+    else if (this.cssOption === 'stylus') {
+        this.template('style.css', this.styleFile + '.styl');
     }
     else {
-        if (this.cssOption === 'less') {
-            deleteFile(this.styleFile + '.less', this);
-        }
-        else if (this.cssOption === 'sass') {
-            deleteFile(this.styleFile + '.' + this.sassSyntax, this);
-        }
-        else if (this.cssOption === 'stylus') {
-            deleteFile(this.styleFile + '.styl', this);
-        }
-        else {
-            deleteFile(this.styleFile + '.css', this);
-        }
+        this.template('style.css', this.styleFile + '.css');
     }
+
 };

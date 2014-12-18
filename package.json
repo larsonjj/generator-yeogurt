@@ -37,6 +37,7 @@
     "url": "git://github.com/larsonjj/generator-yeogurt.git"
   },
   "scripts": {
+    "clean": "rimraf node_modules client/bower_components client/.serve client/.tmp dist",
     "test": "istanbul cover _mocha -- test/**/*.js --reporter list --timeout 100000 && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "localtest": "mocha test/**/*.js -b --reporter spec",
     "localtest-report": "istanbul cover _mocha test/**/*.js && open ./coverage/lcov-report/index.html"

@@ -13,8 +13,9 @@ module.exports = function(config) {
         // list of files / patterns to load in the browser
         files: [
             'client/bower_components/jquery/dist/jquery.js',<% if (jsFramework === 'backbone' || jsFramework === 'react') { %>
-            'client/bower_components/lodash/dist/lodash.js',
-            'client/bower_components/backbone/backbone.js',<% if (jsFramework === 'react') { %>
+            'client/bower_components/underscore/underscore.js',
+            'client/bower_components/backbone/backbone.js',<% if (useAuth) { %>
+            'client/bower_components/jquery.cookie/jquery.cookie.js',<% } %><% if (jsFramework === 'react') { %>
             'test/helpers/phantomjs-shims.js',<% } %><% } %><% if (jsTemplate === 'handlebars') { %>
             'client/bower_components/handlebars/handlebars.runtime.js',<% } else if (jsTemplate === 'jade') { %>'client/bower_components/jade/runtime.js',<% } %><% if (jsFramework === 'backbone') { %>
             'test/scripts/templates.js',<% } %><% if (jsOption === 'requirejs') { %>
@@ -25,15 +26,17 @@ module.exports = function(config) {
                 pattern: 'client/scripts/**/*.js',
                 included: false
             }, {
-                pattern: 'test/**/*-spec.js',
+                pattern: 'test/**/*.spec.js',
                 included: false
             },
             'node_modules/requirejs/require.js',
             'node_modules/karma-requirejs/lib/adapter.js',
             'test/test-main.js',<% } else if (jsOption === 'browserify') { %>
             'test/scripts/bundle.js'<% } else { %>
-            'client/scripts/*.js',
-            'test/**/*-spec.js'<% } %>
+            'client/scripts/**/!(app|routes).js',
+            'client/scripts/routes.js',
+            'client/scripts/app.js',
+            'test/**/*.spec.js'<% } %>
         ],
 
         // list of files to exclude

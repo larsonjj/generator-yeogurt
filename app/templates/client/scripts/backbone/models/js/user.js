@@ -6,8 +6,9 @@
 'use strict';
 
 var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
+<%= _.classify(projectName) %>.Models = <%= _.classify(projectName) %>.Models || {};
 
-<%= _.camelize(projectName) %>.UserModel = Backbone.Model.extend({<% if (dbOption === 'mongodb') { %>
+<%= _.camelize(projectName) %>.Models.User = Backbone.Model.extend({<% if (dbOption === 'mongodb') { %>
 
     idAttribute: '_id',<% } else if (dbOption === 'sql') { %>
     idAttribute: 'id',<% } %>

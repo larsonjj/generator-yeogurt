@@ -5,8 +5,9 @@
 'use strict';
 
 var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
+<%= _.classify(projectName) %>.Views = <%= _.classify(projectName) %>.Views || {};
 
-<%= _.camelize(projectName) %>.ResetView = Backbone.View.extend({
+<%= _.camelize(projectName) %>.Views.Reset = Backbone.View.extend({
 
     el: '.content',
 

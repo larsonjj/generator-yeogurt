@@ -236,14 +236,14 @@ describe('React sub-generator', function () {
             // Filename
             var react = 'myreact';
             var filesToTest = [
-                'test/spec/components/' + react + '-spec.js',
+                'test/spec/components/' + react + '.spec.js',
                 'client/scripts/components/' + react + '.js'
             ];
             var fileContentToTest = [
                 ['client/scripts/components/' + react + '.js', /React\.DOM/i]
             ];
             var fileContentNotThere = [
-                ['test/spec/components/' + react + '-spec.js', /\jsx/i]
+                ['test/spec/components/' + react + '.spec.js', /\jsx/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -267,11 +267,11 @@ describe('React sub-generator', function () {
             // Filename
             var react = 'myreact';
             var filesToTest = [
-                'test/spec/components/' + react + '-spec.js',
+                'test/spec/components/' + react + '.spec.js',
                 'client/scripts/components/' + react + '.jsx'
             ];
             var fileContentToTest = [
-                ['test/spec/components/' + react + '-spec.js', /\@jsx React\.DOM /i],
+                ['test/spec/components/' + react + '.spec.js', /\@jsx React\.DOM /i],
                 ['client/scripts/components/' + react + '.jsx', /\@jsx React\.DOM /i]
             ];
 
@@ -300,7 +300,7 @@ describe('React sub-generator', function () {
                 ['client/scripts/components/' + react + '.jsx', /\@jsx React\.DOM /i]
             ];
             var filesNotCreated = [
-                'test/spec/components/' + react + '-spec.js',
+                'test/spec/components/' + react + '.spec.js',
             ];
 
             helpers.mockPrompt(this.app, {
@@ -324,7 +324,7 @@ describe('React sub-generator', function () {
             // Filename
             var react = 'myreact';
             var fileContentToTest = [
-                ['test/spec/components/' + react + '-spec.js', /jshint expr/i],
+                ['test/spec/components/' + react + '.spec.js', /jshint expr/i],
             ];
 
             helpers.mockPrompt(this.app, {
@@ -347,7 +347,7 @@ describe('React sub-generator', function () {
             var react = 'myreact';
             var folder = 'folder/';
             var filesToTest = [
-                'test/spec/components/' + folder + react + '-spec.js',
+                'test/spec/components/' + folder + react + '.spec.js',
                 'client/scripts/components/' + folder + react + '.jsx'
             ];
 
@@ -370,7 +370,7 @@ describe('React sub-generator', function () {
             var react = 'myreact';
             var folder = '/////folder/////';
             var filesToTest = [
-                'test/spec/components/folder/' + react + '-spec.js',
+                'test/spec/components/folder/' + react + '.spec.js',
                 'client/scripts/components/folder/' + react + '.jsx'
             ];
 

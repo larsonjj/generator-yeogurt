@@ -263,11 +263,11 @@ describe('Flux sub-generator', function () {
             // Filename
             var flux = 'myflux';
             var filesToTest = [
-                'test/spec/flux/stores/' + flux + '-spec.js',
+                'test/spec/flux/stores/' + flux + '.spec.js',
                 'client/scripts/flux/stores/' + flux + '.js',
-                'test/spec/flux/actions/' + flux + '-spec.js',
+                'test/spec/flux/actions/' + flux + '.spec.js',
                 'client/scripts/flux/actions/' + flux + '.js',
-                'test/spec/flux/constants/' + flux + '-spec.js',
+                'test/spec/flux/constants/' + flux + '.spec.js',
                 'client/scripts/flux/constants/' + flux + '.js'
             ];
             var fileContentToTest = [
@@ -307,9 +307,9 @@ describe('Flux sub-generator', function () {
                 ['client/scripts/flux/constants/' + flux + '.js', /Constant/i]
             ];
             var filesNotCreated = [
-                'test/spec/flux/stores/' + flux + '-spec.js',
-                'test/spec/flux/actions/' + flux + '-spec.js',
-                'test/spec/flux/constants/' + flux + '-spec.js',
+                'test/spec/flux/stores/' + flux + '.spec.js',
+                'test/spec/flux/actions/' + flux + '.spec.js',
+                'test/spec/flux/constants/' + flux + '.spec.js',
             ];
 
             helpers.mockPrompt(this.app, {
@@ -334,9 +334,9 @@ describe('Flux sub-generator', function () {
             // Filename
             var flux = 'myflux';
             var fileContentToTest = [
-                ['test/spec/flux/stores/' + flux + '-spec.js', /jshint expr/i],
-                ['test/spec/flux/actions/' + flux + '-spec.js', /jshint expr/i],
-                ['test/spec/flux/constants/' + flux + '-spec.js', /jshint expr/i],
+                ['test/spec/flux/stores/' + flux + '.spec.js', /jshint expr/i],
+                ['test/spec/flux/actions/' + flux + '.spec.js', /jshint expr/i],
+                ['test/spec/flux/constants/' + flux + '.spec.js', /jshint expr/i],
             ];
 
             helpers.mockPrompt(this.app, {

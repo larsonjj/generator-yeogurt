@@ -5,7 +5,13 @@
 'use strict';
 <% if (jsFramework === 'backbone') { %>
 // Create application namspace
-var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
+var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {
+    Views: {},
+    Models: {},
+    Collections: {},
+    Controllers: {},
+    Routers: {}
+};
 
 (function() {<% if (useAuth) { %>
 
@@ -63,13 +69,13 @@ var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
     };<% } %>
 
     // Initialize routes
-    <%= _.classify(projectName) %>.router = new <%= _.classify(projectName) %>.Router();<% if (useAuth) { %>
+    <%= _.classify(projectName) %>.router = new <%= _.classify(projectName) %>.Routers.Main();<% if (useAuth) { %>
 
     // Setup user account
-    <%= _.classify(projectName) %>.account = new <%= _.classify(projectName) %>.UserModel();
+    <%= _.classify(projectName) %>.account = new <%= _.classify(projectName) %>.Models.User();
 
     // Setup flash messages
-    <%= _.classify(projectName) %>.messages = new <%= _.classify(projectName) %>.MessagesModel();
+    <%= _.classify(projectName) %>.messages = new <%= _.classify(projectName) %>.Models.Messages();
 
     // Check the auth status upon initialization,
     // should happen before rendering any templates
