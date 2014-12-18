@@ -117,27 +117,14 @@ TemplateGenerator.prototype.files = function files() {
     }
 
     if (this.singlePageApplication) {
-        if (!this.delete) {
-            if (this.jsTemplate === 'underscore') {
-                this.template('template.html', this.templateFile + '.jst');
-            }
-            else if (this.jsTemplate === 'handlebars') {
-                this.template('template.html', this.templateFile + '.hbs');
-            }
-            else if (this.jsTemplate === 'jade') {
-                this.template('template.html', this.templateFile + '.jade');
-            }
+        if (this.jsTemplate === 'underscore') {
+            this.template('template.html', this.templateFile + '.jst');
         }
-        else {
-            if (this.jsTemplate === 'underscore') {
-                deleteFile(this.templateFile + '.jst', this);
-            }
-            else if (this.jsTemplate === 'handlebars') {
-                deleteFile(this.templateFile + '.hbs', this);
-            }
-            else if (this.jsTemplate === 'jade') {
-                deleteFile(this.templateFile + '.jade', this);
-            }
+        else if (this.jsTemplate === 'handlebars') {
+            this.template('template.html', this.templateFile + '.hbs');
+        }
+        else if (this.jsTemplate === 'jade') {
+            this.template('template.html', this.templateFile + '.jade');
         }
     }
     else {
@@ -146,51 +133,25 @@ TemplateGenerator.prototype.files = function files() {
         }
 
         if (this.htmlOption === 'jade') {
-            if (!this.delete) {
-                if (this.type === 'page') {
-                    this.template('template.jade', this.templateFile + '.jade');
-                }
-                else if (this.type === 'module') {
-                    this.template('template.jade', this.templateFile + '.jade');
-                }
-                else if (this.type === 'layout') {
-                    this.template('template.jade', this.templateFile + '.jade');
-                }
+            if (this.type === 'page') {
+                this.template('template.jade', this.templateFile + '.jade');
             }
-            else {
-                if (this.type === 'page') {
-                    deleteFile(this.templateFile + '.jade', this);
-                }
-                else if (this.type === 'module') {
-                    deleteFile(this.templateFile + '.jade', this);
-                }
-                else if (this.type === 'layout') {
-                    deleteFile(this.templateFile + '.jade', this);
-                }
+            else if (this.type === 'module') {
+                this.template('template.jade', this.templateFile + '.jade');
+            }
+            else if (this.type === 'layout') {
+                this.template('template.jade', this.templateFile + '.jade');
             }
         }
         else if (this.htmlOption === 'swig') {
-            if (!this.delete) {
-                if (this.type === 'page') {
-                    this.template('template.swig', this.templateFile + '.swig');
-                }
-                else if (this.type === 'module') {
-                    this.template('template.swig', this.templateFile + '.swig');
-                }
-                else if (this.type === 'layout') {
-                    this.template('template.swig', this.templateFile + '.swig');
-                }
+            if (this.type === 'page') {
+                this.template('template.swig', this.templateFile + '.swig');
             }
-            else {
-                if (this.type === 'page') {
-                    deleteFile(this.templateFile + '.swig', this);
-                }
-                else if (this.type === 'module') {
-                    deleteFile(this.templateFile + '.swig', this);
-                }
-                else if (this.type === 'layout') {
-                    deleteFile(this.templateFile + '.swig', this);
-                }
+            else if (this.type === 'module') {
+                this.template('template.swig', this.templateFile + '.swig');
+            }
+            else if (this.type === 'layout') {
+                this.template('template.swig', this.templateFile + '.swig');
             }
         }
     }
