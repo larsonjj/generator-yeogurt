@@ -3,17 +3,10 @@ var bcrypt = require('bcrypt-nodejs');
 
 var UserModel = function(sequelize, DataTypes) {
     var User = sequelize.define('user', {
-        username: {
-            type: DataTypes.STRING,
-            unique: true,
-            validate: {
-                isLowercase: true
-            }
-        },
         email: {
             type: DataTypes.STRING,
             unique: true,
-            allowNull: true,
+            allowNull: false,
             validate: {
                 isLowercase: true
             }
@@ -23,14 +16,6 @@ var UserModel = function(sequelize, DataTypes) {
             defaultValue: 'user'
         },
         password: DataTypes.STRING,
-
-        // Social login info
-        facebook: DataTypes.STRING,
-        facebookToken: DataTypes.STRING,
-
-        twitter: DataTypes.STRING,
-        twitterToken: DataTypes.STRING,
-        twitterSecret: DataTypes.STRING,
 
         // Profile info
         firstName: {
