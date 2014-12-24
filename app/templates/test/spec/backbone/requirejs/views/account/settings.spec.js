@@ -15,8 +15,8 @@ define(function(require) {
             this.settingsView = new SettingsView();
         });
 
-        it('provides the "Settings View" object', function() {
-            // Expect exists and is an object.
+        it('provides the "Settings View" instance', function() {
+            // Expect it to exist
             expect(this.settingsView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
         });
 

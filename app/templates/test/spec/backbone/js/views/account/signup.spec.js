@@ -12,8 +12,8 @@ describe('Signup View Namespace', function() {
         this.signupView = new App.Views.Signup();
     });
 
-    it('provides the "Signup View" object', function() {
-        // Expect exists and is an object.
+    it('provides the "Signup View" instance', function() {
+        // Expect it to exist
         expect(this.signupView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
     });
 

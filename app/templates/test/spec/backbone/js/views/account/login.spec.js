@@ -12,8 +12,8 @@ describe('Login View Namespace', function() {
         this.loginView = new App.Views.Login();
     });
 
-    it('provides the "Login View" object', function() {
-        // Expect exists and is an object.
+    it('provides the "Login View" instance', function() {
+        // Expect it to exist
         expect(this.loginView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
     });
 

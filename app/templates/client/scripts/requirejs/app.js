@@ -3,10 +3,10 @@
 */
 
 define(function(require, exports, module) {
-    'use strict';
+    'use strict';<% if (useAuth) { %>
 
     var UserModel = require('./models/user');
-    var MessagesModel = require('./models/messages');
+    var MessagesModel = require('./models/messages');<% } %>
     var Router = require('./routes');
 
     // Alias the module for easier identification.
@@ -20,7 +20,7 @@ define(function(require, exports, module) {
 
     // Define your master router on the application namespace and trigger all
     // navigation from this instance.
-    app.router = new Router();
+    app.router = new Router();<% if (useAuth) { %>
 
     // Setup user account
     app.user = new UserModel();
@@ -37,6 +37,6 @@ define(function(require, exports, module) {
         this.currentView = view;
 
         $('#app-wrapper').html(this.currentView.render().$el);
-    };
+    };<% } %>
 
 });

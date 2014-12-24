@@ -9,7 +9,7 @@ App.Views = App.Views || {};
 
 App.Views.Index  = Backbone.View.extend({
 
-    el: '.content',
+    el: <% if (useAuth) { %>'.content'<% } else { %>'#app-wrapper'<% } %>,
 
     // Load up JST template
     template: JST['client/templates/index<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],

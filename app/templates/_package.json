@@ -35,6 +35,7 @@
         "handlebars": "1.3.0"<% } %><% } %>
     },
     "devDependencies": {
+        "rimraf": "~2.2.8",
         "grunt": "~0.4.2",<% if (useServer) { %>
         "grunt-open": "~0.2.0",<% } else { %>
         "grunt-contrib-connect": "~0.9.0",<% } %>
@@ -57,7 +58,7 @@
         "grunt-contrib-handlebars": "~0.9.0",<% } else if (jsFramework === 'react') { %>
         "grunt-react": "~0.10.0",<% } %>
         "grunt-contrib-concat": "~0.5.0",
-        "grunt-wiredep": "~1.9.0",
+        "grunt-wiredep": "~2.0.0",
         "grunt-contrib-cssmin": "~0.10.0",
         "grunt-contrib-imagemin": "~0.9.1",
         "grunt-pngmin": "~0.6.1",
@@ -93,7 +94,8 @@
         "connect-livereload": "~0.5.2",
         "grunt-express-server": "~0.4.5"<% } %>
     },
-    "scripts": {<% if (useServer) { %>
+    "scripts": {
+        "clean": "rimraf node_modules client/bower_components client/.serve client/.tmp dist"<% if (useServer) { %>,
         "start": "grunt build && NODE_ENV=production node server.js"<% } %>
     },
     "engines": {

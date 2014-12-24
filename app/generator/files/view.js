@@ -52,8 +52,10 @@ var viewFiles = function viewFiles() {
 
     if (this.singlePageApplication) {
         this.template('client/templates/html/index.html', 'client/index.html');
-        this.template('client/templates/html/errors/404.html', 'server/templates/errors/404.html');
-        this.template('client/templates/html/errors/500.html', 'server/templates/errors/500.html');
+        if (this.useServer) {
+            this.template('client/templates/html/errors/404.html', 'server/templates/errors/404.html');
+            this.template('client/templates/html/errors/500.html', 'server/templates/errors/500.html');
+        }
     }
 };
 

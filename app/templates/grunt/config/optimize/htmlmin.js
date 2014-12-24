@@ -9,7 +9,6 @@ var taskConfig = function(grunt) {
         dist: {
             options: {
                 collapseBooleanAttributes: true,
-                collapseWhitespace: true,
                 conservativeCollapse: true,
                 removeAttributeQuotes: true,
                 removeCommentsFromCDATA: true,

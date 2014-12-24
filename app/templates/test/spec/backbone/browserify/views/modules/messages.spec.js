@@ -14,8 +14,8 @@ describe('Messages View', function() {
         this.messagesView = new MessagesView();
     });
 
-    it('provides the "Messages View" object', function() {
-        // Expect exists and is an object.
+    it('provides the "Messages View" instance', function() {
+        // Expect it to exist
         expect(this.messagesView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
     });
 

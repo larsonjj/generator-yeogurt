@@ -3,10 +3,10 @@
 */
 
 'use strict';
-<% if (jsFramework === 'backbone' || jsFramework === 'react') { %>
-var Router = require('./routes');
+<% if (jsFramework === 'backbone' || jsFramework === 'react') { %><% if (useAuth) { %>
 var UserModel = require('./models/user');
-var MessagesModel = require('./models/messages');
+var MessagesModel = require('./models/messages');<% } %>
+var Router = require('./routes');
 
 // Alias the module for easier identification.
 var app = module.exports;
@@ -18,7 +18,7 @@ app.root = '/';
 app.events = _.extend({}, Backbone.Events);
 
 // Initialize routes
-app.router = new Router();
+app.router = new Router();<% if (useAuth) { %>
 
 // Setup user account
 app.account = new UserModel();
@@ -35,6 +35,6 @@ app.showView = function(view) {
     this.currentView = view;
 
     $('#app-wrapper').html(this.currentView.render().$el);
-};<% } else { %>
+};<% } %><% } else { %>
 console.log('Welcome to Yeogurt');
 <% } %>

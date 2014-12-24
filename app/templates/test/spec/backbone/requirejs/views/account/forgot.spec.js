@@ -15,8 +15,8 @@ define(function(require) {
             this.forgotView = new ForgotView();
         });
 
-        it('provides the "Forgot View" object', function() {
-            // Expect exists and is an object.
+        it('provides the "Forgot View" instance', function() {
+            // Expect it to exist
             expect(this.forgotView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
         });
 

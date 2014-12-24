@@ -12,7 +12,7 @@ define(function(require) {
     describe('<%= _.classify(name) %> Model', function () {
 
         beforeEach(function () {
-            this.<%= _.classify(name) %> = new <%= _.classify(name) %>();
+            this.<%= _.camelize(name) %> = new <%= _.classify(name) %>();
         });
 
         it('Should run a few assertions', function() {
@@ -29,7 +29,7 @@ var <%= _.classify(name) %> = require('<%= rootDir %><%= modelFile %>.js');
 describe('<%= _.classify(name) %> Model', function () {
 
     beforeEach(function () {
-        this.<%= _.classify(name) %> = new <%= _.classify(name) %>();
+        this.<%= _.camelize(name) %> = new <%= _.classify(name) %>();
     });
 
     it('Should run a few assertions', function(){

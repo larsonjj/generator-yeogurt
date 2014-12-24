@@ -12,8 +12,8 @@ describe('Navbar View Namespace', function() {
         this.navbarView = new App.Views.Navbar();
     });
 
-    it('provides the "Navbar View" object', function() {
-        // Expect exists and is an object.
+    it('provides the "Navbar View" instance', function() {
+        // Expect it to exist
         expect(this.navbarView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
     });
 

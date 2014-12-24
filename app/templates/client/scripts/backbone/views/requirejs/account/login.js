@@ -12,7 +12,7 @@ define(function(require) {
         el: '.content',
 
         // Compiled template
-        template: JST['client/templates/account/login.hbs'],
+        template: JST['client/templates/account/login<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
 
         // Delegated events
         events: {

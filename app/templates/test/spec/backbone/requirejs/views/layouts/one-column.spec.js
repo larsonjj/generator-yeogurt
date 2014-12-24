@@ -15,8 +15,8 @@ define(function(require) {
             this.oneColumnView = new OneColumnView();
         });
 
-        it('provides the "OneColumn View" object', function() {
-            // Expect exists and is an object.
+        it('provides the "OneColumn View" instance', function() {
+            // Expect it to exist
             expect(this.oneColumnView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
         });
 

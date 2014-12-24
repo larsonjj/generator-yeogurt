@@ -49,8 +49,9 @@
         "Modernizr": true,
         "jQuery": true<% if (jsOption === 'requirejs') { %>,
         "requirejs": true<% } %><% if (jsFramework === 'backbone' || jsFramework === 'react') { %>,
-        "Backbone": true,
-        "app": true,
+        "Backbone": true,<% if (jsOption === 'none') { %>
+        "App": true,<% } else { %>
+        "app": true,<% } %>
         "_": true<% } %><% if (jsTemplate === 'underscore' || jsTemplate === 'handlebars' || jsTemplate === 'jade') { %>,
         "JST": true<% } %><% if (useServer) { %>,
         "__dirname": true<% } %>

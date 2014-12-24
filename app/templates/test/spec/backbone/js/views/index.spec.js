@@ -12,8 +12,8 @@ describe('Index View Namespace', function() {
         this.indexView = new App.Views.Index();
     });
 
-    it('provides the "Index View" object', function() {
-        // Expect exists and is an object.
+    it('provides the "Index View" instance', function() {
+        // Expect it to exist
         expect(this.indexView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
     });
 

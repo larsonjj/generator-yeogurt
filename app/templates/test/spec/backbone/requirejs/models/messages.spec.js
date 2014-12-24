@@ -15,8 +15,8 @@ define(function(require) {
             this.messagesModel = new MessagesModel();
         });
 
-        it('provides the "Messages Model" object', function() {
-            // Expect exists and is an object.
+        it('provides the "Messages Model" instance', function() {
+            // Expect it to exist
             expect(this.messagesModel)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
         });
 

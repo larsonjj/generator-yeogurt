@@ -6,7 +6,9 @@ define(function(require) {
     'use strict';<% if (useAuth) { %>
 
     var IndexController = require('./controllers/index');
-    var AccountController = require('./controllers/account');<% } %>
+    var AccountController = require('./controllers/account');<% } %><% if (!useAuth) { %>
+
+    var IndexView = require('./views/index');<% } %>
 
     var Router = Backbone.Router.extend({
         // Defined routes

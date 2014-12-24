@@ -12,7 +12,7 @@ define(function(require) {
     describe('Index Controller', function() {
 
         it('provides the "Index Controller" object', function() {
-            // Expect exists and is an object.
+            // Expect it to exist
             expect(IndexController)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
         });
 

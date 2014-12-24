@@ -66,11 +66,8 @@ var App = App || {
     // Setup flash messages
     App.messages = new App.Models.Messages();
 
-    // Cache document
-    var $document = $(document);
-
     // Send authorization header on each AJAX request
-    $document.ajaxSend(function(event, request) {
+    $(document).ajaxSend(function(event, request) {
         var token = App.account.getToken();
         if (token) {
             request.setRequestHeader('authorization', 'Bearer ' + token);
@@ -103,11 +100,27 @@ var App = App || {
 
         }
 
-    });
+    });<% } else { %>
+    // Enable pushState for compatible browsers
+    var enablePushState = true;
+
+    // Detect is pushState is available
+    var pushState = !!(enablePushState && window.history && window.history.pushState);
+
+    if (pushState) {
+        Backbone.history.start({ pushState: true, root: '/' });
+    } else {
+        Backbone.history.start();
+    }
+
+    // Handle pushState for incompatible browsers (IE9 and below)
+    if (!pushState && window.location.pathname !== '/') {
+        window.location.replace('/#' + window.location.pathname);
+    }<% } %>
 
     // Set up global click event handler to use pushState for links
     // use 'data-bypass' attribute on anchors to allow normal link behavior
-    $document.on('click', 'a:not([data-bypass])', function(event) {
+    $(document).on('click', 'a:not([data-bypass])', function(event) {
 
         var href = $(this).attr('href');
         var protocol = this.protocol + '//';
@@ -117,7 +130,7 @@ var App = App || {
             App.router.navigate(href, true);
         }
 
-    });<% } %><% } %>
+    });<% } %>
 
     console.log('Welcome to Yeogurt');
 

@@ -12,8 +12,8 @@ describe('Reset View Namespace', function() {
         this.resetView = new App.Views.Reset();
     });
 
-    it('provides the "Reset View" object', function() {
-        // Expect exists and is an object.
+    it('provides the "Reset View" instance', function() {
+        // Expect it to exist
         expect(this.resetView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
     });
 

@@ -34,11 +34,11 @@ var taskConfig = function(grunt) {
                 },
                 // packages to ignore
                 exclude: [
-                    '/html5shiv/',
-                    '/consolelog/',
-                    '/modernizr/',<% if (jsOption === 'requirejs') { %>
-                    '/requirejs/'<% } %><% if (jsFramework === 'react') { %>
-                    '/es5-shim/'<% } %>
+                    'bower_components/html5shiv/',
+                    'bower_components/consolelog/',
+                    'bower_components/modernizr/',<% if (jsOption === 'requirejs') { %>
+                    'bower_components/requirejs/'<% } %><% if (jsFramework === 'react') { %>
+                    'bower_components/es5-shim/'<% } %>
                 ],
                 overrides: {<% if (jsTemplate === 'handlebars') { %>
                     'handlebars': {
