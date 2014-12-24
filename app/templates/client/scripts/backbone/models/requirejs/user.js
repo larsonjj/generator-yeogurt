@@ -1,16 +1,14 @@
 /**
 *   User Model
-*   Access this model through the app.account object
+*   Access this model through the app.user object
 */
 
 define(function(require) {
     'use strict';
 
-    var app = require('app');
-    var User = Backbone.Model.extend({<% if (dbOption === 'mongodb') { %>
+    var app = require('../app');
 
-        idAttribute: '_id',<% } else if (dbOption === 'sql') { %>
-        idAttribute: 'id',<% } %>
+    var User = Backbone.Model.extend({
 
         url: '/user',
 
@@ -44,14 +42,14 @@ define(function(require) {
 
                         self.set(userData);
 
-                        if (callback && 'success' in callback) {
+                        if (callback && callback.success) {
                             callback.success(res);
                         }
                     } else {
                         self.set({
                             loggedIn: false
                         });
-                        if (callback && 'error' in callback) {
+                        if (callback && callback.error) {
                             callback.error(res);
                         }
                     }
@@ -60,12 +58,12 @@ define(function(require) {
                     self.set({
                         loggedIn: false
                     });
-                    if (callback && 'error' in callback) {
+                    if (callback && callback.error) {
                         callback.error(res);
                     }
                 }
             }).complete(function() {
-                if (callback && 'complete' in callback) {
+                if (callback && callback.complete) {
                     callback.complete();
                 }
             });
@@ -94,24 +92,24 @@ define(function(require) {
 
                         self.set(userData);
 
-                        if (callback && 'success' in callback) {
+                        if (callback && callback.success) {
                             callback.success(res);
                         }
 
                     } else {
-                        if (callback && 'error' in callback) {
+                        if (callback && callback.error) {
                             callback.error(res);
                         }
                     }
                 },
                 error: function(res) {
-                    if (callback && 'error' in callback) {
+                    if (callback && callback.error) {
                         callback.error(res);
                     }
                 }
             }).complete(function(res) {
                 app.messages.showMessages(res.responseJSON);
-                if (callback && 'complete' in callback) {
+                if (callback && callback.complete) {
                     callback.complete(res);
                 }
             });
@@ -128,23 +126,23 @@ define(function(require) {
                 success: function(res) {
 
                     if (!res.error) {
-                        if (callback && 'success' in callback) {
+                        if (callback && callback.success) {
                             callback.success(res);
                         }
                     } else {
-                        if (callback && 'error' in callback) {
+                        if (callback && callback.error) {
                             callback.error(res);
                         }
                     }
                 },
                 error: function(res) {
-                    if (callback && 'error' in callback) {
+                    if (callback && callback.error) {
                         callback.error(res);
                     }
                 }
             }).complete(function(res) {
                 app.messages.showMessages(res.responseJSON);
-                if (callback && 'complete' in callback) {
+                if (callback && callback.complete) {
                     callback.complete(res);
                 }
             });

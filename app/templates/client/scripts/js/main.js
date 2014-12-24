@@ -5,7 +5,7 @@
 'use strict';
 <% if (jsFramework === 'backbone') { %>
 // Create application namspace
-var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {
+var App = App || {
     Views: {},
     Models: {},
     Collections: {},
@@ -46,19 +46,8 @@ var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {
         }, this);
     };
 
-    // Cache document
-    var $document = $(document);
-
-    // Send authorization header on each AJAX request
-    $document.ajaxSend(function(event, request) {
-        var token = <%= _.classify(projectName) %>.account.getToken();
-        if (token) {
-            request.setRequestHeader('authorization', 'Bearer ' + token);
-        }
-    });
-
     // Handle displaying and cleaning up views
-    <%= _.classify(projectName) %>.showView = function(view) {
+    App.showView = function(view) {
         if (this.currentView) {
             this.currentView.close();
         }
@@ -69,17 +58,28 @@ var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {
     };<% } %>
 
     // Initialize routes
-    <%= _.classify(projectName) %>.router = new <%= _.classify(projectName) %>.Routers.Main();<% if (useAuth) { %>
+    App.router = new App.Routers.Main();<% if (useAuth) { %>
 
     // Setup user account
-    <%= _.classify(projectName) %>.account = new <%= _.classify(projectName) %>.Models.User();
+    App.account = new App.Models.User();
 
     // Setup flash messages
-    <%= _.classify(projectName) %>.messages = new <%= _.classify(projectName) %>.Models.Messages();
+    App.messages = new App.Models.Messages();
+
+    // Cache document
+    var $document = $(document);
+
+    // Send authorization header on each AJAX request
+    $document.ajaxSend(function(event, request) {
+        var token = App.account.getToken();
+        if (token) {
+            request.setRequestHeader('authorization', 'Bearer ' + token);
+        }
+    });
 
     // Check the auth status upon initialization,
     // should happen before rendering any templates
-    <%= _.classify(projectName) %>.account.isAuthenticated({
+    App.account.isAuthenticated({
 
         // Start backbone routing once we have captured a user's auth status
         complete: function() {
@@ -114,7 +114,7 @@ var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {
 
         if (href.slice(protocol.length) !== protocol) {
             event.preventDefault();
-            <%= _.classify(projectName) %>.router.navigate(href, true);
+            App.router.navigate(href, true);
         }
 
     });<% } %><% } %>

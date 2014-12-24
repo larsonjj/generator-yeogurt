@@ -2,11 +2,34 @@
 *   Application Logic
 */
 
-define(function(require) {
+define(function(require, exports, module) {
     'use strict';
 
+    var UserModel = require('./models/user');
+    var MessagesModel = require('./models/messages');
+    var Router = require('./routes');
+
+    // Alias the module for easier identification.
+    var app = module.exports;
+
+    // The root path to run the application through.
+    app.root = '/';
+
+    // Global event aggregator
+    app.events = _.extend({}, Backbone.Events);
+
+    // Define your master router on the application namespace and trigger all
+    // navigation from this instance.
+    app.router = new Router();
+
+    // Setup user account
+    app.user = new UserModel();
+
+    // Setup global flash messages
+    app.messages = new MessagesModel();
+
     // Handle displaying and cleaning up views
-    var showView = function(view) {
+    app.showView = function(view) {
         if (this.currentView) {
             this.currentView.close();
         }
@@ -16,12 +39,4 @@ define(function(require) {
         $('#app-wrapper').html(this.currentView.render().$el);
     };
 
-    // Create global event aggregator
-    var events = _.extend({}, Backbone.Events);
-
-
-    return {
-        showView: showView,
-        events: events
-    };
 });

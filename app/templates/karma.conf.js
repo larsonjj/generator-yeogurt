@@ -33,9 +33,10 @@ module.exports = function(config) {
             'node_modules/karma-requirejs/lib/adapter.js',
             'test/test-main.js',<% } else if (jsOption === 'browserify') { %>
             'test/scripts/bundle.js'<% } else { %>
-            'client/scripts/**/!(app|routes).js',
+            // Load all scripts except ones that require a specific order (ie. 'main' and 'routes')
+            'client/scripts/**/!(main|routes).js',
             'client/scripts/routes.js',
-            'client/scripts/app.js',
+            'client/scripts/main.js',
             'test/**/*.spec.js'<% } %>
         ],
 

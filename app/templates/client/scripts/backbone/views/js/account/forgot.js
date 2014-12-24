@@ -4,10 +4,10 @@
 
 'use strict';
 
-var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
-<%= _.classify(projectName) %>.Views = <%= _.classify(projectName) %>.Views || {};
+var App = App || {};
+App.Views = App.Views || {};
 
-<%= _.camelize(projectName) %>.Views.Forgot = Backbone.View.extend({
+App.Views.Forgot = Backbone.View.extend({
 
     el: '.content',
 
@@ -27,7 +27,7 @@ var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
     formSubmit: function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        <%= _.classify(projectName) %>.account.forgot($form, {
+        App.account.forgot($form, {
             success: function(res) {
                 Backbone.history.navigate('/', true);
             },

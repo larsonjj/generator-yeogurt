@@ -5,10 +5,10 @@
 
 'use strict';
 
-var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
-<%= _.classify(projectName) %>.Models = <%= _.classify(projectName) %>.Models || {};
+var App = App || {};
+App.Models = App.Models || {};
 
-<%= _.camelize(projectName) %>.Models.Messages = Backbone.Model.extend({
+App.Models.Messages = Backbone.Model.extend({
 
     initialize: function() {
     },
@@ -19,7 +19,7 @@ var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
 
     showMessages: function(data) {
         if (!_.isEmpty(data)) {
-            <%= _.classify(projectName) %>.messages.set({
+            this.set({
                 messages: data
             });
         }

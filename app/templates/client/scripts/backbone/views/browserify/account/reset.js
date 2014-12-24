@@ -4,6 +4,8 @@
 
 'use strict';
 
+var app = require('../../app');
+
 var Reset = Backbone.View.extend({
 
     el: '.content',
@@ -24,7 +26,7 @@ var Reset = Backbone.View.extend({
     formSubmit: function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        <%= _.classify(projectName) %>.account.reset($form, {
+        app.account.reset($form, {
             success: function(res) {
                 Backbone.history.navigate('/', true);
             },

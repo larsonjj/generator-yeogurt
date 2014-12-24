@@ -4,10 +4,10 @@
 
 'use strict';
 
-var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
-<%= _.classify(projectName) %>.Views = <%= _.classify(projectName) %>.Views || {};
+var App = App || {};
+App.Views = App.Views || {};
 
-<%= _.camelize(projectName) %>.Views.OneColumn = Backbone.View.extend({
+App.Views.OneColumn = Backbone.View.extend({
 
     // Compiled template
     template: JST['client/templates/layouts/one-column<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],

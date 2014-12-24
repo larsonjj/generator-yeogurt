@@ -4,6 +4,7 @@
 
 'use strict';
 
+var app = require('../app');
 var LoginView = require('../views/account/login');
 var SignupView = require('../views/account/signup');
 var ResetView = require('../views/account/reset');
@@ -17,64 +18,64 @@ var login = function() {
     var loginPage = new OneColumnView({
         layout: true,
         subviews: {
-            '.navbar': new NavbarView(),
+            '.main-nav': new NavbarView(),
             '.messages': new MessagesView(),
             '.content': new LoginView()
         }
     });
-    <%= _.classify(projectName) %>.showView(loginPage);
+    app.showView(loginPage);
 };
 
 var logout = function() {
-    <%= _.classify(projectName) %>.account.logout();
+    app.account.logout();
 };
 
 var signup = function() {
     var signupPage = new OneColumnView({
         layout: true,
         subviews: {
-            '.navbar': new NavbarView(),
+            '.main-nav': new NavbarView(),
             '.messages': new MessagesView(),
             '.content': new SignupView()
         }
     });
-    <%= _.classify(projectName) %>.showView(signupPage);
+    app.showView(signupPage);
 };
 
 var reset = function() {
     var resetPage = new OneColumnView({
         layout: true,
         subviews: {
-            '.navbar': new NavbarView(),
+            '.main-nav': new NavbarView(),
             '.messages': new MessagesView(),
             '.content': new ResetView()
         }
     });
-    <%= _.classify(projectName) %>.showView(resetPage);
+    app.showView(resetPage);
 };
 
 var forgot = function() {
     var forgotPage = new OneColumnView({
         layout: true,
         subviews: {
-            '.navbar': new NavbarView(),
+            '.main-nav': new NavbarView(),
             '.messages': new MessagesView(),
             '.content': new ForgotView()
         }
     });
-    <%= _.classify(projectName) %>.showView(forgotPage);
+    app.showView(forgotPage);
 };
 
 var settingsPage = function() {
     var settingsPage = new OneColumnView({
         layout: true,
         subviews: {
-            '.navbar': new NavbarView(),
+            '.main-nav': new NavbarView(),
             '.messages': new MessagesView(),
             '.content': new SettingsView()
         }
     });
-    <%= _.classify(projectName) %>.showView(settingsPage);
+    app.showView(settingsPage);
 };
 
 module.exports = {

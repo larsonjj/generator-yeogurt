@@ -10,7 +10,7 @@ describe('Index Controller Namespace', function() {
 
     it('provides the "Index Controller" object', function() {
         // Expect exists and is an object.
-        expect(<%= _.classify(projectName) %>.Controllers.Index)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+        expect(App.Controllers.Index)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
     });
 
 });

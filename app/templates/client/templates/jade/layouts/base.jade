@@ -65,11 +65,11 @@ doctype html
 
         script(data-main='/scripts/main', src='/bower_components/requirejs/require.js')<% } else if (jsOption === 'browserify') { %>
 
-        script(src='/scripts/app.js')<% } else { %>
+        script(src='/scripts/main.js')<% } else { %>
 
-        // build:js(client) scripts/app.js
+        // build:js(client) scripts/main.js
         // [injector:js]
         // [endinjector]<% if (jsFramework === 'backbone') { %>
         script(src='/scripts/routes.js')<% } %>
-        script(src='/scripts/app.js')
+        script(src='/scripts/main.js')
         // endbuild<% } %>

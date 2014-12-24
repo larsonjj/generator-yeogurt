@@ -70,13 +70,13 @@
 
         <script data-main="scripts/main", src="bower_components/requirejs/require.js"></script><% } else if (jsOption === 'browserify') { %>
 
-        <script src="/scripts/app.js"></script><% } else { %>
+        <script src="/scripts/main.js"></script><% } else { %>
 
-        <!-- build:js(client) scripts/app.js -->
+        <!-- build:js(client) scripts/main.js -->
             <!-- [injector:js] -->
             <!-- [endinjector] --><% if (jsFramework === 'backbone') { %>
         <script src="/scripts/routes.js"></script><% } %>
-        <script src="/scripts/app.js"></script>
+        <script src="/scripts/main.js"></script>
         <!-- endbuild --><% } %>
     </body>
 </html>

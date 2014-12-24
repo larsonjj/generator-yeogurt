@@ -4,21 +4,21 @@
 
 'use strict';
 
-var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
-<%= _.classify(projectName) %>.Controllers = <%= _.classify(projectName) %>.Controllers || {};
+var App = App || {};
+App.Controllers = App.Controllers || {};
 
-<%= _.camelize(projectName) %>.Controllers.Index = (function() {
+App.Controllers.Index = (function() {
 
     var index = function() {
-        var homePage = new <%= _.camelize(projectName) %>.Views.OneColumn({
+        var homePage = new App.Views.OneColumn({
             layout: true,
             subviews: {
-                '.navbar': new <%= _.camelize(projectName) %>.Views.Navbar(),
-                '.messages': new <%= _.camelize(projectName) %>.Views.Messages(),
-                '.content': new <%= _.camelize(projectName) %>.Views.Index()
+                '.main-nav': new App.Views.Navbar(),
+                '.messages': new App.Views.Messages(),
+                '.content': new App.Views.Index()
             }
         });
-        <%= _.classify(projectName) %>.showView(homePage);
+        App.showView(homePage);
     };
 
     return {

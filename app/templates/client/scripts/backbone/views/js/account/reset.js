@@ -4,10 +4,10 @@
 
 'use strict';
 
-var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
-<%= _.classify(projectName) %>.Views = <%= _.classify(projectName) %>.Views || {};
+var App = App || {};
+App.Views = App.Views || {};
 
-<%= _.camelize(projectName) %>.Views.Reset = Backbone.View.extend({
+App.Views.Reset = Backbone.View.extend({
 
     el: '.content',
 
@@ -27,7 +27,7 @@ var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
     formSubmit: function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        <%= _.classify(projectName) %>.account.reset($form, {
+        App.account.reset($form, {
             success: function(res) {
                 Backbone.history.navigate('/', true);
             },

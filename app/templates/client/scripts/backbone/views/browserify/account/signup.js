@@ -4,6 +4,8 @@
 
 'use strict';
 
+var app = require('../../app');
+
 var Signup = Backbone.View.extend({
 
     el: '.content',
@@ -26,7 +28,7 @@ var Signup = Backbone.View.extend({
         var data = {
             formData: $(e.currentTarget).serialize()
         };
-        <%= _.classify(projectName) %>.account.signup(data, {
+        app.account.signup(data, {
             success: function(res) {
                 Backbone.history.navigate('/', true);
             },

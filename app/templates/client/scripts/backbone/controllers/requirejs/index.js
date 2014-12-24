@@ -2,11 +2,11 @@
  * Index Controller
  */
 
-'use strict';
 
 define(function(require) {
+    'use strict';
 
-    var app = require('app');
+    var app = require('../app');
     var IndexView = require('../views/index');
     var OneColumnView = require('../views/layouts/one-column');
     var NavbarView = require('../views/modules/navbar');
@@ -16,7 +16,7 @@ define(function(require) {
         var homePage = new OneColumnView({
             layout: true,
             subviews: {
-                '.navbar': new NavbarView(),
+                '.main-nav': new NavbarView(),
                 '.messages': new MessagesView(),
                 '.content': new IndexView()
             }

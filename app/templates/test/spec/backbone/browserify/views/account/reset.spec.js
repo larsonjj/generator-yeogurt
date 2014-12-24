@@ -6,15 +6,17 @@
 
 'use strict';
 
-describe('Reset View Namespace', function() {
+var ResetView = require('../../../../client/scripts/views/account/reset');
+
+describe('Reset View', function() {
 
     beforeEach(function () {
-        this.resetView = new <%= _.classify(projectName) %>.Views.Reset();
+        this.resetView = new ResetView();
     });
 
     it('provides the "Reset View" object', function() {
         // Expect exists and is an object.
-        expect(<%= _.classify(projectName) %>.Views.Reset)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+        expect(this.resetView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
     });
 
 });

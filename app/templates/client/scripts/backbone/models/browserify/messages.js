@@ -5,6 +5,8 @@
 
 'use strict';
 
+var app = require('../app');
+
 var Messages = Backbone.Model.extend({
 
     initialize: function() {
@@ -16,7 +18,7 @@ var Messages = Backbone.Model.extend({
 
     showMessages: function(data) {
         if (!_.isEmpty(data)) {
-            <%= _.classify(projectName) %>.messages.set({
+            this.set({
                 messages: data
             });
         }

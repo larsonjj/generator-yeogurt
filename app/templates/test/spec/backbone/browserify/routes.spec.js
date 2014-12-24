@@ -6,10 +6,12 @@
 
 'use strict';
 
-describe('Router Namespace', function() {
+var MainRouter = require('../../client/scripts/routes');
+
+describe('Router', function() {
 
     beforeEach(function () {
-        this.router = new <%= _.classify(projectName) %>.Routers.Main();
+        this.router = new MainRouter();
     });
 
     it('provides the "Router" object', function() {

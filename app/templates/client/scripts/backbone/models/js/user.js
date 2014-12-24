@@ -1,14 +1,14 @@
 /**
 *   User Model
-*   Access this model through the <%= _.classify(projectName) %>.account object
+*   Access this model through the App.account object
 */
 
 'use strict';
 
-var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
-<%= _.classify(projectName) %>.Models = <%= _.classify(projectName) %>.Models || {};
+var App = App || {};
+App.Models = App.Models || {};
 
-<%= _.camelize(projectName) %>.Models.User = Backbone.Model.extend({<% if (dbOption === 'mongodb') { %>
+App.Models.User = Backbone.Model.extend({<% if (dbOption === 'mongodb') { %>
 
     idAttribute: '_id',<% } else if (dbOption === 'sql') { %>
     idAttribute: 'id',<% } %>
@@ -111,7 +111,7 @@ var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
                 }
             }
         }).complete(function(res) {
-            <%= _.classify(projectName) %>.messages.showMessages(res.responseJSON);
+            App.messages.showMessages(res.responseJSON);
             if (callback && 'complete' in callback) {
                 callback.complete(res);
             }
@@ -144,7 +144,7 @@ var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
                 }
             }
         }).complete(function(res) {
-            <%= _.classify(projectName) %>.messages.showMessages(res.responseJSON);
+            App.messages.showMessages(res.responseJSON);
             if (callback && 'complete' in callback) {
                 callback.complete(res);
             }

@@ -105,7 +105,7 @@ var taskConfig = function(grunt) {
         injectJs: {
             files: [
                 '<%%= yeogurt.client %>/scripts/**/*.js',
-                '!<%%= yeogurt.client %>/scripts/app.js'<% if (jsFramework === 'backbone') { %>,
+                '!<%%= yeogurt.client %>/scripts/{main,app}.js'<% if (jsFramework === 'backbone') { %>,
                 '!<%%= yeogurt.client %>/scripts/routes.js'<% } %>
             ],
             tasks: ['injector:scripts']

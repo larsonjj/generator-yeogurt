@@ -4,10 +4,10 @@
 
 'use strict';
 
-var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
-<%= _.classify(projectName) %>.Views = <%= _.classify(projectName) %>.Views || {};
+var App = App || {};
+App.Views = App.Views || {};
 
-<%= _.camelize(projectName) %>.Views.Login = Backbone.View.extend({
+App.Views.Login = Backbone.View.extend({
 
     el: '.content',
 
@@ -29,7 +29,7 @@ var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
         var data = {
             formData: $(e.currentTarget).serialize()
         };
-        <%= _.classify(projectName) %>.account.login(data, {
+        App.account.login(data, {
             success: function(res){
                 Backbone.history.navigate('/', true);
             },

@@ -10,10 +10,10 @@ define(function() {
 
         // Instead of generating a new element, bind to the existing skeleton of
         // the App already present in the HTML.
-        el: '#app-wrapper',
+        el: '.content',
 
         // Compile our stats template
-        template: JST['client/templates/index<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
+        template: JST['client/templates/index.hbs'],
 
         // Delegated events
         events: {},

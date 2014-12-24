@@ -4,13 +4,17 @@
 <% if (testFramework === 'mocha') { %>
 /*jshint expr: true*/<% } %>
 
-'use strict';
+define(function(require) {
+    'use strict';
 
-describe('Index Controller Namespace', function() {
+    var IndexController = require('client/scripts/controllers/account');
 
-    it('provides the "Index Controller" object', function() {
-        // Expect exists and is an object.
-        expect(<%= _.classify(projectName) %>.Controllers.Index)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+    describe('Index Controller', function() {
+
+        it('provides the "Index Controller" object', function() {
+            // Expect exists and is an object.
+            expect(IndexController)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+        });
+
     });
-
 });

@@ -9,7 +9,7 @@
 describe('Router Namespace', function() {
 
     beforeEach(function () {
-        this.router = new <%= _.classify(projectName) %>.Routers.Main();
+        this.router = new App.Routers.Main();
     });
 
     it('provides the "Router" object', function() {

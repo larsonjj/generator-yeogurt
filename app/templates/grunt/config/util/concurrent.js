@@ -23,8 +23,8 @@ var taskConfig = function(grunt) {
             'browserify:dist'<% } %>
         ],<% if (useDashboard || useJsdoc || useKss) { %>
         docs: [<% if (useDashboard) { %>
-            'dashboard:dist'<% } %><% if (useJsdoc) { %>,
-            'jsdoc:dist'<% } %><% if (useKss) { %>,
+            'dashboard:dist',<% } %><% if (useJsdoc) { %>
+            'jsdoc:dist',<% } %><% if (useKss) { %>
             'kss:dist'<% } %>
         ]<% } %>
     });

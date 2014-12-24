@@ -6,15 +6,17 @@
 
 'use strict';
 
-describe('Forgot View Namespace', function() {
+var ForgotView = require('../../../../client/scripts/views/account/forgot');
+
+describe('Forgot View', function() {
 
     beforeEach(function () {
-        this.forgotView = new <%= _.classify(projectName) %>.Views.Forgot();
+        this.forgotView = new ForgotView();
     });
 
     it('provides the "Forgot View" object', function() {
         // Expect exists and is an object.
-        expect(<%= _.classify(projectName) %>.Views.Forgot)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+        expect(this.forgotView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
     });
 
 });

@@ -4,17 +4,21 @@
 <% if (testFramework === 'mocha') { %>
 /*jshint expr: true*/<% } %>
 
-'use strict';
+define(function(require) {
+    'use strict';
 
-describe('Signup View Namespace', function() {
+    var SignupView = require('client/scripts/views/account/signup');
 
-    beforeEach(function () {
-        this.signupView = new <%= _.classify(projectName) %>.Views.Signup();
+    describe('Signup View', function() {
+
+        beforeEach(function () {
+            this.signupView = new SignupView();
+        });
+
+        it('provides the "Signup View" object', function() {
+            // Expect exists and is an object.
+            expect(this.signupView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+        });
+
     });
-
-    it('provides the "Signup View" object', function() {
-        // Expect exists and is an object.
-        expect(<%= _.classify(projectName) %>.Views.Signup)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
-    });
-
 });

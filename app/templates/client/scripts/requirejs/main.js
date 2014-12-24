@@ -6,11 +6,12 @@
 
 // RequireJS configuration
 require.config({
-    baseUrl: '/scripts',
+    paths: {}
 });
 
-require(['app', 'routes', 'models/user', 'models/messages'],
-    function(app, Router, UserModel, MessagesModel) {
+define('init', function(require) {
+
+    var app = require('./app');
 
     // Use GET and POST to support all browsers
     // Also adds '_method' parameter with correct HTTP headers
@@ -48,24 +49,15 @@ require(['app', 'routes', 'models/user', 'models/messages'],
 
     // Send authorization header on each AJAX request
     $document.ajaxSend(function(event, request) {
-        var token = app.account.getToken();
+        var token = app.user.getToken();
         if (token) {
             request.setRequestHeader('authorization', 'Bearer ' + token);
         }
     });
 
-    // Initialize routes
-    app.router = new Router();
-
-    // Setup user account
-    app.account = new UserModel();
-
-    // Setup flash messages
-    app.messages = new MessagesModel();
-
     // Check the auth status upon initialization,
     // should happen before rendering any templates
-    app.account.isAuthenticated({
+    app.user.isAuthenticated({
 
         // Start backbone routing once we have captured a user's auth status
         complete: function() {
@@ -77,7 +69,7 @@ require(['app', 'routes', 'models/user', 'models/messages'],
             var pushState = !!(enablePushState && window.history && window.history.pushState);
 
             if (pushState) {
-                Backbone.history.start({ pushState: true, root: '/' });
+                Backbone.history.start({ pushState: true, root: app.root });
             } else {
                 Backbone.history.start();
             }
@@ -107,3 +99,6 @@ require(['app', 'routes', 'models/user', 'models/messages'],
 
     console.log('Welcome to Yeogurt');
 });
+
+// Initialize the application.
+require(['init']);

@@ -6,15 +6,17 @@
 
 'use strict';
 
-describe('Navbar View Namespace', function() {
+var NavbarView = require('../../../../client/scripts/views/modules/navbar');
+
+describe('Navbar View', function() {
 
     beforeEach(function () {
-        this.navbarView = new <%= _.classify(projectName) %>.Views.Navbar();
+        this.navbarView = new NavbarView();
     });
 
     it('provides the "Navbar View" object', function() {
         // Expect exists and is an object.
-        expect(<%= _.classify(projectName) %>.Views.Navbar)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+        expect(this.navbarView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
     });
 
 });

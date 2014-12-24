@@ -4,10 +4,10 @@
 
 'use strict';
 
-var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
-<%= _.classify(projectName) %>.Views = <%= _.classify(projectName) %>.Views || {};
+var App = App || {};
+App.Views = App.Views || {};
 
-<%= _.camelize(projectName) %>.Views.Settings = Backbone.View.extend({
+App.Views.Settings = Backbone.View.extend({
 
     el: '.content',
 
@@ -29,9 +29,9 @@ var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
     formInfo: function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        <%= _.classify(projectName) %>.account.updateInfo($form, {
+        App.account.updateInfo($form, {
             success: function(res) {
-                <%= _.classify(projectName) %>.account.set({
+                App.account.set({
                     email: res.user.email,
                     firstName: res.user.firstName,
                     lastName: res.user.lastName
@@ -44,7 +44,7 @@ var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
     formPassword: function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        <%= _.classify(projectName) %>.account.updatePassword($form, {
+        App.account.updatePassword($form, {
             success: function(res) {
                 Backbone.history.navigate('/settings', true);
             }
@@ -53,20 +53,20 @@ var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
 
     formDelete: function(e) {
         e.preventDefault();
-        <%= _.classify(projectName) %>.account.destroy({
+        App.account.destroy({
             success: function(res) {
-                <%= _.classify(projectName) %>.account.logout();
+                App.account.logout();
                 Backbone.history.navigate('/', true);
             },
             complete: function(res) {
-                <%= _.classify(projectName) %>.messages.showMessages(res.responseJSON);
+                App.messages.showMessages(res.responseJSON);
             }
         });
     },
 
     render: function () {
         this.$el.html(this.template({
-            user: <%= _.classify(projectName) %>.account.toJSON()
+            user: App.account.toJSON()
         }));
         return this;
     }

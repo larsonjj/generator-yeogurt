@@ -4,12 +4,12 @@
 
 'use strict';
 
-var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
-<%= _.classify(projectName) %>.Views = <%= _.classify(projectName) %>.Views || {};
+var App = App || {};
+App.Views = App.Views || {};
 
-<%= _.camelize(projectName) %>.Views.Navbar = Backbone.View.extend({
+App.Views.Navbar = Backbone.View.extend({
 
-    el: '.navbar',
+    el: '.main-nav',
 
     // Compiled template
     template: JST['client/templates/modules/navbar<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
@@ -20,14 +20,14 @@ var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
     // Code that runs when View is initialized
     initialize: function () {
         // Re-render template when data changes
-        this.listenTo(<%= _.classify(projectName) %>.account, 'change', this.render);
+        this.listenTo(App.account, 'change', this.render);
         this.render();
     },
 
     render: function () {
         this.$el.html(this.template({
-            loggedIn: <%= _.classify(projectName) %>.account.get('loggedIn'),
-            user: <%= _.classify(projectName) %>.account.toJSON()
+            loggedIn: App.account.get('loggedIn'),
+            user: App.account.toJSON()
         }));
         return this;
     }

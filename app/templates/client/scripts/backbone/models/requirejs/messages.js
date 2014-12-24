@@ -6,7 +6,6 @@
 define(function(require) {
     'use strict';
 
-    var app = require('app');
     var Messages = Backbone.Model.extend({
 
         initialize: function() {
@@ -18,7 +17,7 @@ define(function(require) {
 
         showMessages: function(data) {
             if (!_.isEmpty(data)) {
-                app.messages.set({
+                this.set({
                     messages: data
                 });
             }

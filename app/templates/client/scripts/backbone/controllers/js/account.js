@@ -4,73 +4,73 @@
 
 'use strict';
 
-var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
-<%= _.classify(projectName) %>.Controllers = <%= _.classify(projectName) %>.Controllers || {};
+var App = App || {};
+App.Controllers = App.Controllers || {};
 
-<%= _.camelize(projectName) %>.Controllers.Account = (function() {
+App.Controllers.Account = (function() {
 
     var login = function() {
-        var loginPage = new <%= _.camelize(projectName) %>.Views.OneColumn({
+        var loginPage = new App.Views.OneColumn({
             layout: true,
             subviews: {
-                '.navbar': new <%= _.camelize(projectName) %>.Views.Navbar(),
-                '.messages': new <%= _.camelize(projectName) %>.Views.Messages(),
-                '.content': new <%= _.camelize(projectName) %>.Views.Login()
+                '.main-nav': new App.Views.Navbar(),
+                '.messages': new App.Views.Messages(),
+                '.content': new App.Views.Login()
             }
         });
-        <%= _.classify(projectName) %>.showView(loginPage);
+        App.showView(loginPage);
     };
 
     var logout = function() {
-        <%= _.classify(projectName) %>.account.logout();
+        App.account.logout();
     };
 
     var signup = function() {
-        var signupPage = new <%= _.camelize(projectName) %>.Views.OneColumn({
+        var signupPage = new App.Views.OneColumn({
             layout: true,
             subviews: {
-                '.navbar': new <%= _.camelize(projectName) %>.Views.Navbar(),
-                '.messages': new <%= _.camelize(projectName) %>.Views.Messages(),
-                '.content': new <%= _.camelize(projectName) %>.Views.Signup()
+                '.main-nav': new App.Views.Navbar(),
+                '.messages': new App.Views.Messages(),
+                '.content': new App.Views.Signup()
             }
         });
-        <%= _.classify(projectName) %>.showView(signupPage);
+        App.showView(signupPage);
     };
 
     var reset = function() {
-        var resetPage = new <%= _.camelize(projectName) %>.Views.OneColumn({
+        var resetPage = new App.Views.OneColumn({
             layout: true,
             subviews: {
-                '.navbar': new <%= _.camelize(projectName) %>.Views.Navbar(),
-                '.messages': new <%= _.camelize(projectName) %>.Views.Messages(),
-                '.content': new <%= _.camelize(projectName) %>.Views.Reset()
+                '.main-nav': new App.Views.Navbar(),
+                '.messages': new App.Views.Messages(),
+                '.content': new App.Views.Reset()
             }
         });
-        <%= _.classify(projectName) %>.showView(resetPage);
+        App.showView(resetPage);
     };
 
     var forgot = function() {
-        var forgotPage = new <%= _.camelize(projectName) %>.Views.OneColumn({
+        var forgotPage = new App.Views.OneColumn({
             layout: true,
             subviews: {
-                '.navbar': new <%= _.camelize(projectName) %>.Views.Navbar(),
-                '.messages': new <%= _.camelize(projectName) %>.Views.Messages(),
-                '.content': new <%= _.camelize(projectName) %>.Views.Forgot()
+                '.main-nav': new App.Views.Navbar(),
+                '.messages': new App.Views.Messages(),
+                '.content': new App.Views.Forgot()
             }
         });
-        <%= _.classify(projectName) %>.showView(forgotPage);
+        App.showView(forgotPage);
     };
 
-    var settingsPage = function() {
-        var settingsPage = new <%= _.camelize(projectName) %>.Views.OneColumn({
+    var settings = function() {
+        var settings = new App.Views.OneColumn({
             layout: true,
             subviews: {
-                '.navbar': new <%= _.camelize(projectName) %>.Views.Navbar(),
-                '.messages': new <%= _.camelize(projectName) %>.Views.Messages(),
-                '.content': new <%= _.camelize(projectName) %>.Views.Settings()
+                '.main-nav': new App.Views.Navbar(),
+                '.messages': new App.Views.Messages(),
+                '.content': new App.Views.Settings()
             }
         });
-        <%= _.classify(projectName) %>.showView(settingsPage);
+        App.showView(settings);
     };
 
     return {
@@ -79,7 +79,7 @@ var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
         signup: signup,
         reset: reset,
         forgot: forgot,
-        settings: settingsPage
+        settings: settings
     };
 
 })();

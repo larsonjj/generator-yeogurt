@@ -5,13 +5,14 @@
 define(function(require) {
     'use strict';
 
-    var app = require('app');
+    var app = require('../../app');
+
     var Signup = Backbone.View.extend({
 
         el: '.content',
 
         // Compiled template
-        template: JST['client/templates/account/signup<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
+        template: JST['client/templates/account/signup.hbs'],
 
         // Delegated events
         events: {
@@ -28,7 +29,7 @@ define(function(require) {
             var data = {
                 formData: $(e.currentTarget).serialize()
             };
-            app.account.signup(data, {
+            app.user.signup(data, {
                 success: function(res) {
                     Backbone.history.navigate('/', true);
                 },

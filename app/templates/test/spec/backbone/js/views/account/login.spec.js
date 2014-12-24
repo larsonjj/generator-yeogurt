@@ -9,12 +9,12 @@
 describe('Login View Namespace', function() {
 
     beforeEach(function () {
-        this.loginView = new <%= _.classify(projectName) %>.Views.Login();
+        this.loginView = new App.Views.Login();
     });
 
     it('provides the "Login View" object', function() {
         // Expect exists and is an object.
-        expect(<%= _.classify(projectName) %>.Views.Login)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+        expect(this.loginView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
     });
 
 });

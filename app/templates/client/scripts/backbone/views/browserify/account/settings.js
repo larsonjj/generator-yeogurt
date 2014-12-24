@@ -4,6 +4,8 @@
 
 'use strict';
 
+var app = require('../../app');
+
 var Settings = Backbone.View.extend({
 
     el: '.content',
@@ -26,9 +28,9 @@ var Settings = Backbone.View.extend({
     formInfo: function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        <%= _.classify(projectName) %>.account.updateInfo($form, {
+        app.account.updateInfo($form, {
             success: function(res) {
-                <%= _.classify(projectName) %>.account.set({
+                app.account.set({
                     email: res.user.email,
                     firstName: res.user.firstName,
                     lastName: res.user.lastName
@@ -41,7 +43,7 @@ var Settings = Backbone.View.extend({
     formPassword: function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        <%= _.classify(projectName) %>.account.updatePassword($form, {
+        app.account.updatePassword($form, {
             success: function(res) {
                 Backbone.history.navigate('/settings', true);
             }
@@ -50,20 +52,20 @@ var Settings = Backbone.View.extend({
 
     formDelete: function(e) {
         e.preventDefault();
-        <%= _.classify(projectName) %>.account.destroy({
+        app.account.destroy({
             success: function(res) {
-                <%= _.classify(projectName) %>.account.logout();
+                app.account.logout();
                 Backbone.history.navigate('/', true);
             },
             complete: function(res) {
-                <%= _.classify(projectName) %>.messages.showMessages(res.responseJSON);
+                app.messages.showMessages(res.responseJSON);
             }
         });
     },
 
     render: function () {
         this.$el.html(this.template({
-            user: <%= _.classify(projectName) %>.account.toJSON()
+            user: app.account.toJSON()
         }));
         return this;
     }

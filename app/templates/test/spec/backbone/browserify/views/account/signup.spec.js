@@ -6,15 +6,17 @@
 
 'use strict';
 
-describe('Signup View Namespace', function() {
+var SignupView = require('../../../../client/scripts/views/account/signup');
+
+describe('Signup View', function() {
 
     beforeEach(function () {
-        this.signupView = new <%= _.classify(projectName) %>.Views.Signup();
+        this.signupView = new SignupView();
     });
 
     it('provides the "Signup View" object', function() {
         // Expect exists and is an object.
-        expect(<%= _.classify(projectName) %>.Views.Signup)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+        expect(this.signupView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
     });
 
 });

@@ -50,7 +50,7 @@
         "jQuery": true<% if (jsOption === 'requirejs') { %>,
         "requirejs": true<% } %><% if (jsFramework === 'backbone' || jsFramework === 'react') { %>,
         "Backbone": true,
-        "<%= _.classify(projectName) %>": true,
+        "app": true,
         "_": true<% } %><% if (jsTemplate === 'underscore' || jsTemplate === 'handlebars' || jsTemplate === 'jade') { %>,
         "JST": true<% } %><% if (useServer) { %>,
         "__dirname": true<% } %>

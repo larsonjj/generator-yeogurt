@@ -5,13 +5,14 @@
 define(function(require) {
     'use strict';
 
-    var app = require('app');
+    var app = require('../../app');
+
     var Forgot = Backbone.View.extend({
 
         el: '.content',
 
         // Compiled template
-        template: JST['client/templates/account/forgot<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
+        template: JST['client/templates/account/forgot.hbs'],
 
         // Delegated events
         events: {
@@ -26,7 +27,7 @@ define(function(require) {
         formSubmit: function(e) {
             e.preventDefault();
             var $form = $(e.currentTarget);
-            app.account.forgot($form, {
+            app.user.forgot($form, {
                 success: function(res) {
                     Backbone.history.navigate('/', true);
                 },

@@ -6,15 +6,17 @@
 
 'use strict';
 
-describe('Messages Model Namespace', function() {
+var MessagesModel = require('../../../client/scripts/models/messages');
+
+describe('Messages Model', function() {
 
     beforeEach(function () {
-        this.messagesModel = new <%= _.classify(projectName) %>.Models.Messages();
+        this.messagesModel = new MessagesModel();
     });
 
     it('provides the "Messages Model" object', function() {
         // Expect exists and is an object.
-        expect(<%= _.classify(projectName) %>.Models.Messages)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+        expect(this.messagesModel)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
     });
 
 });

@@ -6,15 +6,17 @@
 
 'use strict';
 
-describe('Login View Namespace', function() {
+var LoginView = require('../../../../client/scripts/views/account/login');
+
+describe('Login View', function() {
 
     beforeEach(function () {
-        this.loginView = new <%= _.classify(projectName) %>.Views.Login();
+        this.loginView = new LoginView();
     });
 
     it('provides the "Login View" object', function() {
         // Expect exists and is an object.
-        expect(<%= _.classify(projectName) %>.Views.Login)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+        expect(this.loginView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
     });
 
 });

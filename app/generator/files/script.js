@@ -13,11 +13,12 @@ var scriptFiles = function scriptFiles() {
     }
 
     if (this.jsOption === 'browserify') {
+        this.template('client/scripts/browserify/main.js', 'client/scripts/main.js');
         this.template('client/scripts/browserify/app.js', 'client/scripts/app.js');
     }
 
     if (this.jsOption === 'none') {
-        this.template('client/scripts/js/app.js', 'client/scripts/app.js');
+        this.template('client/scripts/js/main.js', 'client/scripts/main.js');
     }
 
     if (this.jsFramework === 'backbone') {

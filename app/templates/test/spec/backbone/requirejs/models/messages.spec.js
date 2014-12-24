@@ -4,17 +4,21 @@
 <% if (testFramework === 'mocha') { %>
 /*jshint expr: true*/<% } %>
 
-'use strict';
+define(function(require) {
+    'use strict';
 
-describe('Messages Model Namespace', function() {
+    var MessagesModel = require('client/scripts/models/messages');
 
-    beforeEach(function () {
-        this.messagesModel = new <%= _.classify(projectName) %>.Models.Messages();
+    describe('Messages Model', function() {
+
+        beforeEach(function () {
+            this.messagesModel = new MessagesModel();
+        });
+
+        it('provides the "Messages Model" object', function() {
+            // Expect exists and is an object.
+            expect(this.messagesModel)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+        });
+
     });
-
-    it('provides the "Messages Model" object', function() {
-        // Expect exists and is an object.
-        expect(<%= _.classify(projectName) %>.Models.Messages)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
-    });
-
 });

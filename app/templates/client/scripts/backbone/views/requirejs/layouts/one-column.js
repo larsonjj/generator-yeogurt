@@ -8,7 +8,7 @@ define(function() {
     var OneColumn = Backbone.View.extend({
 
         // Compiled template
-        template: JST['client/templates/layouts/one-column<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
+        template: JST['client/templates/layouts/one-column.hbs'],
 
         // Delegated events
         events: {},

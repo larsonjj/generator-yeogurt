@@ -6,15 +6,17 @@
 
 'use strict';
 
-describe('User Model Namespace', function() {
+var UserModel = require('../../../client/scripts/models/user');
+
+describe('User Model', function() {
 
     beforeEach(function () {
-        this.userModel = new <%= _.classify(projectName) %>.Models.User();
+        this.userModel = new UserModel();
     });
 
     it('provides the "User Model" object', function() {
         // Expect exists and is an object.
-        expect(<%= _.classify(projectName) %>.Models.User)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+        expect(this.userModel)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
     });
 
 });

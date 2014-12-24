@@ -9,12 +9,12 @@
 describe('Signup View Namespace', function() {
 
     beforeEach(function () {
-        this.signupView = new <%= _.classify(projectName) %>.Views.Signup();
+        this.signupView = new App.Views.Signup();
     });
 
     it('provides the "Signup View" object', function() {
         // Expect exists and is an object.
-        expect(<%= _.classify(projectName) %>.Views.Signup)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+        expect(this.signupView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
     });
 
 });

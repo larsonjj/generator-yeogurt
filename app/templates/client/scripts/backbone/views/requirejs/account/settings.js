@@ -5,13 +5,14 @@
 define(function(require) {
     'use strict';
 
-    var app = require('app');
+    var app = require('../../app');
+
     var Settings = Backbone.View.extend({
 
         el: '.content',
 
         // Compiled template
-        template: JST['client/templates/account/settings<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
+        template: JST['client/templates/account/settings.hbs'],
 
         // Delegated events
         events: {
@@ -28,9 +29,9 @@ define(function(require) {
         formInfo: function(e) {
             e.preventDefault();
             var $form = $(e.currentTarget);
-            app.account.updateInfo($form, {
+            app.user.updateInfo($form, {
                 success: function(res) {
-                    app.account.set({
+                    app.user.set({
                         email: res.user.email,
                         firstName: res.user.firstName,
                         lastName: res.user.lastName
@@ -43,7 +44,7 @@ define(function(require) {
         formPassword: function(e) {
             e.preventDefault();
             var $form = $(e.currentTarget);
-            app.account.updatePassword($form, {
+            app.user.updatePassword($form, {
                 success: function(res) {
                     Backbone.history.navigate('/settings', true);
                 }
@@ -52,9 +53,9 @@ define(function(require) {
 
         formDelete: function(e) {
             e.preventDefault();
-            app.account.destroy({
+            app.user.destroy({
                 success: function(res) {
-                    app.account.logout();
+                    app.user.logout();
                     Backbone.history.navigate('/', true);
                 },
                 complete: function(res) {
@@ -65,7 +66,7 @@ define(function(require) {
 
         render: function () {
             this.$el.html(this.template({
-                user: app.account.toJSON()
+                user: app.user.toJSON()
             }));
             return this;
         }

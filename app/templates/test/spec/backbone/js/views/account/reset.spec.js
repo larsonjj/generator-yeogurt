@@ -9,12 +9,12 @@
 describe('Reset View Namespace', function() {
 
     beforeEach(function () {
-        this.resetView = new <%= _.classify(projectName) %>.Views.Reset();
+        this.resetView = new App.Views.Reset();
     });
 
     it('provides the "Reset View" object', function() {
         // Expect exists and is an object.
-        expect(<%= _.classify(projectName) %>.Views.Reset)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+        expect(this.resetView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
     });
 
 });

@@ -9,12 +9,12 @@
 describe('Index View Namespace', function() {
 
     beforeEach(function () {
-        this.indexView = new <%= _.classify(projectName) %>.Views.Index();
+        this.indexView = new App.Views.Index();
     });
 
     it('provides the "Index View" object', function() {
         // Expect exists and is an object.
-        expect(<%= _.classify(projectName) %>.Views.Index)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+        expect(this.indexView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
     });
 
 });

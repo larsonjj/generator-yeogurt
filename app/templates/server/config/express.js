@@ -161,7 +161,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
 
     // 404 Error Handler
     app.use(function(req, res) {
-        res.status(400);
+        res.status(404);
         res.format({
             html: function() {
                 res.render('errors/404');
@@ -185,20 +185,29 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     }
 
     // Production 500 Error Handler.
-    app.use(function(error, req, res, next) {
-        res.status(500);
+    app.use(function(err, req, res, next) {
+
+        req.unhandledError = err;
+
+        var message = err.message;
+        var error = err.error || err;
+        var status = err.status || 500;
+
+        res.status(status);
         res.format({
             html: function() {
-                res.render('errors/500');
+                res.render('errors/' + status, {
+                    message: message
+                });
             },
             json: function() {
                 res.json({
-                    status: 500,
-                    message: 'Internal Server Error'
+                    status: status,
+                    message: message
                 });
             },
             text: function() {
-                res.send('500 Internal Server Error');
+                res.send(status + ': ' + message);
             }
         });
     });

@@ -5,13 +5,14 @@
 define(function(require) {
     'use strict';
 
-    var app = require('app');
+    var app = require('../../app');
+
     var Messages = Backbone.View.extend({
 
         el: '.messages',
 
         // Compiled template
-        template: JST['client/templates/modules/messages<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
+        template: JST['client/templates/modules/messages.hbs'],
 
         // Delegated events
         events: {},

@@ -4,6 +4,8 @@
 
 'use strict';
 
+var app = require('../../app');
+
 var Messages = Backbone.View.extend({
 
     el: '.messages',
@@ -17,14 +19,14 @@ var Messages = Backbone.View.extend({
     // Code that runs when View is initialized
     initialize: function () {
         // Remove messages data when navigating to a different page
-        <%= _.classify(projectName) %>.messages.clear();
+        app.messages.clear();
         // Re-render template when data changes
-        this.listenTo(<%= _.classify(projectName) %>.messages, 'change', this.render);
+        this.listenTo(app.messages, 'change', this.render);
         this.render();
     },
 
     render: function () {
-        this.$el.html(this.template(<%= _.classify(projectName) %>.messages.toJSON()));
+        this.$el.html(this.template(app.messages.toJSON()));
         return this;
     }
 

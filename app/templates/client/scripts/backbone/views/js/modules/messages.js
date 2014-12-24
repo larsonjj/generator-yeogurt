@@ -4,10 +4,10 @@
 
 'use strict';
 
-var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
-<%= _.classify(projectName) %>.Views = <%= _.classify(projectName) %>.Views || {};
+var App = App || {};
+App.Views = App.Views || {};
 
-<%= _.camelize(projectName) %>.Views.Messages = Backbone.View.extend({
+App.Views.Messages = Backbone.View.extend({
 
     el: '.messages',
 
@@ -20,14 +20,14 @@ var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
     // Code that runs when View is initialized
     initialize: function () {
         // Remove messages data when navigating to a different page
-        <%= _.classify(projectName) %>.messages.clear();
+        App.messages.clear();
         // Re-render template when data changes
-        this.listenTo(<%= _.classify(projectName) %>.messages, 'change', this.render);
+        this.listenTo(App.messages, 'change', this.render);
         this.render();
     },
 
     render: function () {
-        this.$el.html(this.template(<%= _.classify(projectName) %>.messages.toJSON()));
+        this.$el.html(this.template(App.messages.toJSON()));
         return this;
     }
 

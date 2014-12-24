@@ -4,6 +4,8 @@
 
 'use strict';
 
+var app = require('../../app');
+
 var Forgot = Backbone.View.extend({
 
     el: '.content',
@@ -24,7 +26,7 @@ var Forgot = Backbone.View.extend({
     formSubmit: function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        <%= _.classify(projectName) %>.account.forgot($form, {
+        app.account.forgot($form, {
             success: function(res) {
                 Backbone.history.navigate('/', true);
             },

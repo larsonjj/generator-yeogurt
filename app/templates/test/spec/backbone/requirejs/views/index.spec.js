@@ -4,17 +4,21 @@
 <% if (testFramework === 'mocha') { %>
 /*jshint expr: true*/<% } %>
 
-'use strict';
+define(function(require) {
+    'use strict';
 
-describe('Index View Namespace', function() {
+    var IndexView = require('client/scripts/views/index');
 
-    beforeEach(function () {
-        this.indexView = new <%= _.classify(projectName) %>.Views.Index();
+    describe('Index View', function() {
+
+        beforeEach(function () {
+            this.indexView = new IndexView();
+        });
+
+        it('provides the "Index View" object', function() {
+            // Expect exists and is an object.
+            expect(this.indexView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+        });
+
     });
-
-    it('provides the "Index View" object', function() {
-        // Expect exists and is an object.
-        expect(<%= _.classify(projectName) %>.Views.Index)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
-    });
-
 });

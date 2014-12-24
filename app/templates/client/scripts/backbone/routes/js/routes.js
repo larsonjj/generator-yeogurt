@@ -4,11 +4,11 @@
 
 'use strict';
 
-var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
-<%= _.classify(projectName) %>.Routers = <%= _.classify(projectName) %>.Routers || {};
+var App = App || {};
+App.Routers = App.Routers || {};
 
 // Router
-<%= _.camelize(projectName) %>.Routers.Main = Backbone.Router.extend({
+App.Routers.Main = Backbone.Router.extend({
     // Defined routes
     routes: {<% if (useAuth) { %>
         'login': 'login',
@@ -22,20 +22,20 @@ var <%= _.classify(projectName) %> = <%= _.classify(projectName) %> || {};
 
     index: function() {
         // Initialize the view
-        new <%= _.camelize(projectName) %>.Views.Index();
+        new App.Views.Index();
     }<% } else { %>
 
-    login: <%= _.camelize(projectName) %>.Controllers.Account.login,
+    login: App.Controllers.Account.login,
 
-    logout: <%= _.camelize(projectName) %>.Controllers.Account.logout,
+    logout: App.Controllers.Account.logout,
 
-    forgot: <%= _.camelize(projectName) %>.Controllers.Account.forgot,
+    forgot: App.Controllers.Account.forgot,
 
-    reset: <%= _.camelize(projectName) %>.Controllers.Account.reset,
+    reset: App.Controllers.Account.reset,
 
-    signup: <%= _.camelize(projectName) %>.Controllers.Account.signup,
+    signup: App.Controllers.Account.signup,
 
-    settings: <%= _.camelize(projectName) %>.Controllers.Account.settings,
+    settings: App.Controllers.Account.settings,
 
-    index: <%= _.camelize(projectName) %>.Controllers.Index.index<% } %>
+    index: App.Controllers.Index.index<% } %>
 });

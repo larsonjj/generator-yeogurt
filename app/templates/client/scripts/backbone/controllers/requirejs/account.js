@@ -2,11 +2,11 @@
  * Index Controller
  */
 
-'use strict';
 
 define(function(require) {
+    'use strict';
 
-    var app = require('app');
+    var app = require('../app');
     var LoginView = require('../views/account/login');
     var SignupView = require('../views/account/signup');
     var ResetView = require('../views/account/reset');
@@ -17,67 +17,67 @@ define(function(require) {
     var MessagesView = require('../views/modules/messages');
 
     var login = function() {
-        var loginPage = new OneColumnView({
+        var login = new OneColumnView({
             layout: true,
             subviews: {
-                '.navbar': new NavbarView(),
+                '.main-nav': new NavbarView(),
                 '.messages': new MessagesView(),
                 '.content': new LoginView()
             }
         });
-        app.showView(loginPage);
+        app.showView(login);
     };
 
     var logout = function() {
-        app.account.logout();
+        app.user.logout();
     };
 
     var signup = function() {
-        var signupPage = new OneColumnView({
+        var signup = new OneColumnView({
             layout: true,
             subviews: {
-                '.navbar': new NavbarView(),
+                '.main-nav': new NavbarView(),
                 '.messages': new MessagesView(),
                 '.content': new SignupView()
             }
         });
-        app.showView(signupPage);
+        app.showView(signup);
     };
 
     var reset = function() {
-        var resetPage = new OneColumnView({
+        var reset = new OneColumnView({
             layout: true,
             subviews: {
-                '.navbar': new NavbarView(),
+                '.main-nav': new NavbarView(),
                 '.messages': new MessagesView(),
                 '.content': new ResetView()
             }
         });
-        app.showView(resetPage);
+        app.showView(reset);
     };
 
     var forgot = function() {
-        var forgotPage = new OneColumnView({
+        var forgot = new OneColumnView({
             layout: true,
             subviews: {
-                '.navbar': new NavbarView(),
+                '.main-nav': new NavbarView(),
                 '.messages': new MessagesView(),
                 '.content': new ForgotView()
             }
         });
-        app.showView(forgotPage);
+        app.showView(forgot);
     };
 
-    var settingsPage = function() {
-        var settingsPage = new OneColumnView({
+    var settings = function() {
+        var settings = new OneColumnView({
             layout: true,
             subviews: {
-                '.navbar': new NavbarView(),
+                '.main-nav': new NavbarView(),
                 '.messages': new MessagesView(),
                 '.content': new SettingsView()
             }
         });
-        app.showView(settingsPage);
+        app.showView(settings);
     };
 
     return {
@@ -86,7 +86,7 @@ define(function(require) {
         signup: signup,
         reset: reset,
         forgot: forgot,
-        settings: settingsPage
+        settings: settings
     };
 
 });

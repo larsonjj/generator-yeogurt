@@ -4,17 +4,21 @@
 <% if (testFramework === 'mocha') { %>
 /*jshint expr: true*/<% } %>
 
-'use strict';
+define(function(require) {
+    'use strict';
 
-describe('OneColumn View Namespace', function() {
+    var OneColumnView = require('client/scripts/views/layouts/one-column');
 
-    beforeEach(function () {
-        this.oneColumnView = new <%= _.classify(projectName) %>.Views.OneColumn();
+    describe('OneColumn View', function() {
+
+        beforeEach(function () {
+            this.oneColumnView = new OneColumnView();
+        });
+
+        it('provides the "OneColumn View" object', function() {
+            // Expect exists and is an object.
+            expect(this.oneColumnView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+        });
+
     });
-
-    it('provides the "OneColumn View" object', function() {
-        // Expect exists and is an object.
-        expect(<%= _.classify(projectName) %>.Views.OneColumn)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
-    });
-
 });

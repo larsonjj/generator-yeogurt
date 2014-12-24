@@ -8,8 +8,6 @@ define(function(require) {
     var IndexController = require('./controllers/index');
     var AccountController = require('./controllers/account');<% } %>
 
-    var IndexView = require('./views/index');
-
     var Router = Backbone.Router.extend({
         // Defined routes
         routes: {<% if (useAuth) { %>

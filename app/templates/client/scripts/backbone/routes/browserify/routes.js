@@ -8,7 +8,7 @@ var IndexController = require('./controllers/index');
 var AccountController = require('./controllers/account');<% } %><% if (jsFramework === 'react') { %>
 var React = require('react');<% if (useJsx) { %>
 var IndexComponent = React.createFactory(require('./components/index.jsx'));<% } else { %>
-var IndexComponent = require('./components/index.js');<% } %><% } else if (jsFramework === 'backbone') { %>
+var IndexComponent = require('./components/index.js');<% } %><% } else if (jsFramework === 'backbone' && !useAuth) { %>
 var IndexView = require('./views/index');<% } %>
 
 var Router = Backbone.Router.extend({
