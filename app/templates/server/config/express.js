@@ -119,18 +119,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
      */
     app.use(function(req, res, next) {
         var path = req.path.split('/')[1];
-        var ignorePaths = [
-            'auth',
-            'login',
-            'logout',
-            'signup',
-            'favicon',
-            'images',
-            'scripts',
-            'styles',
-            'bower_components'
-        ];
-        var regExp = new RegExp(ignorePaths.join('|'), 'i');
+        var regExp = new RegExp(settings.server.loginIgnorePaths.join('|'), 'i');
         if (regExp.test(path)) {
             return next();
         }
@@ -156,54 +145,61 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
         });
     }
 
-    // Load routes
-    require(path.join(settings.root,'./server/routes'))(app);
-
     // 404 Error Handler
     app.use(function(req, res) {
         res.status(404);
         res.format({
             html: function() {
-                res.render('errors/404');
+                res.render('error', {
+                    status: 404,
+                    message: 'Page not found',
+                    error: {}
+                });
             },
             json: function() {
                 res.json({
                     status: 404,
-                    message: 'Not Found'
+                    message: 'Page not found',
+                    error: {}
                 });
             },
             text: function() {
-                res.send('404 Not Found');
+                res.send(404 + ': ' + 'Page not found');
             }
         });
     });
 
+
+    // Load routes
+    require(path.join(settings.root,'./server/routes'))(app);
+
     if (env === 'development') {
-        // Development 500 Error Handler.
+        // Development Error Handler.
         // Log out stack trace
         return app.use(errorHandler());
     }
 
-    // Production 500 Error Handler.
+    // Production Error Handler.
     app.use(function(err, req, res, next) {
 
-        req.unhandledError = err;
-
-        var message = err.message;
         var error = err.error || err;
+        var message = err.message;
         var status = err.status || 500;
 
         res.status(status);
         res.format({
             html: function() {
-                res.render('errors/' + status, {
-                    message: message
+                res.render('error', {
+                    status: status,
+                    message: message,
+                    error: {}
                 });
             },
             json: function() {
                 res.json({
                     status: status,
-                    message: message
+                    message: message,
+                    error: {}
                 });
             },
             text: function() {

@@ -10,8 +10,7 @@ var viewFiles = function viewFiles() {
     if (this.htmlOption === 'jade') {
         this.template('client/templates/jade/index.jade', viewRoot + 'templates/index.jade');
         this.template('client/templates/jade/layouts/base.jade', viewRoot + 'templates/layouts/base.jade');
-        this.template('client/templates/jade/errors/404.jade', viewRoot + 'templates/errors/404.jade');
-        this.template('client/templates/jade/errors/500.jade', viewRoot + 'templates/errors/500.jade');
+        this.template('client/templates/jade/errors/error.jade', viewRoot + 'templates/error.jade');
         if (this.useAuth) {
             // Account
             this.template('client/templates/jade/account/forgot.jade', viewRoot + 'templates/account/forgot.jade');
@@ -31,8 +30,7 @@ var viewFiles = function viewFiles() {
     else if (this.htmlOption === 'swig') {
         this.template('client/templates/swig/index.swig', viewRoot + 'templates/index.swig');
         this.template('client/templates/swig/layouts/base.swig', viewRoot + 'templates/layouts/base.swig');
-        this.template('client/templates/swig/errors/404.swig', viewRoot + 'templates/errors/404.swig');
-        this.template('client/templates/swig/errors/500.swig', viewRoot + 'templates/errors/500.swig');
+        this.template('client/templates/swig/errors/error.swig', viewRoot + 'templates/error.swig');
         if (this.useAuth) {
             // Account
             this.template('client/templates/swig/account/forgot.swig', viewRoot + 'templates/account/forgot.swig');
@@ -53,8 +51,7 @@ var viewFiles = function viewFiles() {
     if (this.singlePageApplication) {
         this.template('client/templates/html/index.html', 'client/index.html');
         if (this.useServer) {
-            this.template('client/templates/html/errors/404.html', 'server/templates/errors/404.html');
-            this.template('client/templates/html/errors/500.html', 'server/templates/errors/500.html');
+            this.template('client/templates/html/errors/error.html', 'server/templates/error.html');
         }
     }
 };

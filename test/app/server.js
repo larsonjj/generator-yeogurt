@@ -52,6 +52,7 @@ describe('Yeogurt generator using Server', function () {
         describe('With Jade', function () {
             it('Creates expected files', function (done) {
                 var expected = [
+                    'server/templates/error.jade',
                     'server/templates/account/forgot.jade',
                     'server/templates/account/login.jade',
                     'server/templates/account/reset.jade',
@@ -76,6 +77,7 @@ describe('Yeogurt generator using Server', function () {
         describe('With Swig', function () {
             it('Creates expected files', function (done) {
                 var expected = [
+                    'server/templates/error.swig',
                     'server/templates/account/forgot.swig',
                     'server/templates/account/login.swig',
                     'server/templates/account/reset.swig',
@@ -249,6 +251,7 @@ describe('Yeogurt generator using Server', function () {
     describe('With Static Jade', function () {
         it('Creates expected files', function (done) {
             var expected = [
+                'server/templates/error.jade',
                 'server/templates/layouts/base.jade',
                 'server/templates/index.jade',
             ];
@@ -271,6 +274,7 @@ describe('Yeogurt generator using Server', function () {
     describe('With Static Swig', function () {
         it('Creates expected files', function (done) {
             var expected = [
+                'server/templates/error.swig',
                 'server/templates/layouts/base.swig',
                 'server/templates/index.swig',
             ];

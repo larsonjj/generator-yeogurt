@@ -14,7 +14,20 @@ var defaults = {
         // Port to run server on
         port: process.env.PORT || 9010,
         // Host/URL to run server on
-        host: process.env.HOSTNAME || '127.0.0.1'
+        host: process.env.HOSTNAME || '127.0.0.1',
+        // Paths to ignore when redirecting back
+        // to original location after logging in
+        loginIgnorePaths: [
+            'auth',
+            'login',
+            'logout',
+            'signup',
+            'favicon',
+            'images',
+            'scripts',
+            'styles',
+            'bower_components'
+        ]
     },
     database: {
         // URL to connect to database
