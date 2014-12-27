@@ -47,7 +47,6 @@ describe('Yeogurt generator using Default Configuration', function () {
             'grunt/config/util/copy.js',
             'grunt/config/server/express.js',
             'grunt/config/server/env.js',
-            'grunt/config/util/compress.js',
             'grunt/config/optimize/htmlmin.js',
             'grunt/config/optimize/imagemin.js',
             'grunt/config/optimize/uglify.js',
