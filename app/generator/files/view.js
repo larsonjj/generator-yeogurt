@@ -10,7 +10,9 @@ var viewFiles = function viewFiles() {
     if (this.htmlOption === 'jade') {
         this.template('client/templates/jade/index.jade', viewRoot + 'templates/index.jade');
         this.template('client/templates/jade/layouts/base.jade', viewRoot + 'templates/layouts/base.jade');
-        this.template('client/templates/jade/errors/error.jade', viewRoot + 'templates/error.jade');
+        if (this.useServer) {
+            this.template('client/templates/jade/errors/error.jade', viewRoot + 'templates/error.jade');
+        }
         if (this.useAuth) {
             // Account
             this.template('client/templates/jade/account/forgot.jade', viewRoot + 'templates/account/forgot.jade');
@@ -30,7 +32,9 @@ var viewFiles = function viewFiles() {
     else if (this.htmlOption === 'swig') {
         this.template('client/templates/swig/index.swig', viewRoot + 'templates/index.swig');
         this.template('client/templates/swig/layouts/base.swig', viewRoot + 'templates/layouts/base.swig');
-        this.template('client/templates/swig/errors/error.swig', viewRoot + 'templates/error.swig');
+        if (this.useServer) {
+            this.template('client/templates/swig/errors/error.swig', viewRoot + 'templates/error.swig');
+        }
         if (this.useAuth) {
             // Account
             this.template('client/templates/swig/account/forgot.swig', viewRoot + 'templates/account/forgot.swig');

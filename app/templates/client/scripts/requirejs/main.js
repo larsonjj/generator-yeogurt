@@ -11,7 +11,7 @@ require.config({
 
 define('init', function(require) {
 
-    var app = require('./app');
+    var app = require('./app');<% if (jsFramework === 'Backbone') { %>
 
     // Use GET and POST to support all browsers
     // Also adds '_method' parameter with correct HTTP headers
@@ -108,7 +108,7 @@ define('init', function(require) {
             app.router.navigate(href, true);
         }
 
-    });
+    });<% } %>
 
     console.log('Welcome to Yeogurt');
 });

@@ -26,6 +26,10 @@ var taskConfig = function(grunt) {
                     }<% } else if (htmlOption === 'swig') { %>
                     // Make sure everything has an absolute path
                     swig: {
+                        detect: {
+                            js: /<script.*src=['"]([^'"]+)/gi,
+                            css: /<link.*href=['"]([^'"]+)/gi
+                        },
                         replace: {
                             js: '<script src="/{{filePath}}"></script>',
                             css: '<link rel="stylesheet" href="/{{filePath}}" />'
@@ -51,10 +55,10 @@ var taskConfig = function(grunt) {
             },
             src: [<% if (singlePageApplication) { %>
                 '<%%= yeogurt.client %>/index.html'<% } else if (useServer) { %><% if (htmlOption === 'jade') { %>
-                '<%%= yeogurt.server %>/templates/index.jade'<% } else if (htmlOption === 'swig') { %>
-                '<%%= yeogurt.server %>/templates/index.swig'<% } %><% } else { %><% if (htmlOption === 'jade') { %>
-                '<%%= yeogurt.client %>/templates/index.jade'<% } else if (htmlOption === 'swig') { %>
-                '<%%= yeogurt.client %>/templates/index.swig'<% } %><% } %>
+                '<%%= yeogurt.server %>/templates/layouts/base.jade'<% } else if (htmlOption === 'swig') { %>
+                '<%%= yeogurt.server %>/templates/layouts/base.swig'<% } %><% } else { %><% if (htmlOption === 'jade') { %>
+                '<%%= yeogurt.client %>/templates/layouts/base.jade'<% } else if (htmlOption === 'swig') { %>
+                '<%%= yeogurt.client %>/templates/layouts/base.swig'<% } %><% } %>
             ]
         }
     });

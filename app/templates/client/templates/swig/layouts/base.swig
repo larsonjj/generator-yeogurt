@@ -36,13 +36,17 @@
 
         <link rel="stylesheet" href="/styles/main.css"><% } %>
 
+        <!-- build:js(client) scripts/modernizr.js -->
         <script src="/bower_components/modernizr/modernizr.js"></script>
+        <!-- endbuild -->
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- build:js(client) scripts/shims.js -->
         <!--[if lt IE 9]>
         <script src="/bower_components/consolelog/consolelog.js"></script>
         <script src="/bower_components/html5shiv/dist/html5shiv-printshiv.js"></script>
         <![endif]-->
+        <!-- endbuild -->
     </head>
     <body>
         <!--[if lte IE 7]>
@@ -53,10 +57,12 @@
         {% block content %}{% endblock %}
         {% endblock %}<% if (jsFramework === 'react') { %>
 
+        <!-- build:js(client) scripts/lt-ie9.js -->
         <!--[if lt IE 9]>
         <script src="/bower_components/es5-shim/es5-shim.js"></script>
         <script src="/bower_components/es5-shim/es5-sham.js"></script>
-        <![endif]--><% } %><% if (useServer) { %>
+        <![endif]-->
+        <!-- endbuild --><% } %><% if (useServer) { %>
 
         {% if env == 'development' %}<% } %>
         <!-- build:js(client) scripts/global.js -->

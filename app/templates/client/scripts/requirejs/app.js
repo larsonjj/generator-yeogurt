@@ -3,7 +3,7 @@
 */
 
 define(function(require, exports, module) {
-    'use strict';<% if (useAuth) { %>
+    'use strict';<% if (jsFramework === 'Backbone') { %><% if (useAuth) { %>
 
     var UserModel = require('./models/user');
     var MessagesModel = require('./models/messages');<% } %>
@@ -37,6 +37,11 @@ define(function(require, exports, module) {
         this.currentView = view;
 
         $('#app-wrapper').html(this.currentView.render().$el);
-    };<% } %>
+    };<% } %><% } else { %>
+    // Alias the module for easier identification.
+    var app = module.exports;
+
+    // Set global functionality to `app` namespace below
+    // i.e. app.root = '/'<% } %>
 
 });

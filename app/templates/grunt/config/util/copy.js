@@ -34,7 +34,6 @@ var taskConfig = function(grunt) {
                 dest: '<%%= yeogurt.dist %>/',
                 src: [<% if (jsOption === 'requirejs') { %>
                     'bower_components/requirejs/require.js',<% } %>
-                    'bower_components/modernizr/modernizr.js',
                     'bower_components/**/*.{woff,otf,ttf,eot,svg}',<% if (useDashboard) { %>
                     'dashboard/**/*.*',<% } %><% if (singlePageApplication) { %>
                     '*.html',<% } %><% if (useKss) { %>

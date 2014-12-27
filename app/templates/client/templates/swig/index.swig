@@ -1,4 +1,12 @@
-{# Homepage Markup #}<% if (useAuth) { %>
+{# Homepage Markup #}<% if (useDashboard) { %>
+{# [dash:data]
+    {
+        "status": "development",
+        "category": "page",
+        "label": "Home",
+        "link": "../../index.html"
+    }
+    [/dash] #}<% } %><% if (useAuth) { %>
 {% extends './layouts/one-column.swig' %}<% } else { %>
 {% extends './layouts/base.swig' %}<% } %>
 

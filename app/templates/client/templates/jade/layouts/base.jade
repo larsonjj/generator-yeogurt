@@ -6,70 +6,73 @@
 
 doctype html
 <!--[if lte IE 8]><html class='lt-ie9 no-js' lang='en'><![endif]-->
-<!--[if gt IE 8]><!--><html class=' no-js' lang='en' ><!--<![endif]-->
-    head
-        meta(charset='utf-8')
-        meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
-        title <%= projectName %>
-        meta(name='description', content='')
-        meta(name='viewport', content='width=device-width, initial-scale=1.0')<% if (useServer) { %>
-        meta(name='csrf-token', content=_csrf)
+<!--[if gt IE 8]><!--><html class=' no-js' lang='en'><!--<![endif]-->
+head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    title <%= projectName %>
+    meta(name='description', content='')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')<% if (useServer) { %>
+    meta(name='csrf-token', content=_csrf)
 
-        if (env == 'development')<% } %>
+    if (env == 'development')<% } %>
 
-        <% if (useServer) { %>    <% } %>// build:css(client) styles/global.css
-        <% if (useServer) { %>    <% } %>// bower:css
-        <% if (useServer) { %>    <% } %>link(rel='stylesheet', href='/bower_components/normalize.css/normalize.css')
-        <% if (useServer) { %>    <% } %>// endbower
-        <% if (useServer) { %>    <% } %>// endbuild<% if (cssOption === 'css') { %>
+    <% if (useServer) { %>    <% } %>// build:css(client) styles/global.css
+    <% if (useServer) { %>    <% } %>// bower:css
+    <% if (useServer) { %>    <% } %>link(rel='stylesheet', href='/bower_components/normalize.css/normalize.css')
+    <% if (useServer) { %>    <% } %>// endbower
+    <% if (useServer) { %>    <% } %>// endbuild<% if (cssOption === 'css') { %>
 
-        <% if (useServer) { %>    <% } %>// build:css(client) styles/main.css
-        <% if (useServer) { %>    <% } %>// [injector:css]
-        <% if (useServer) { %>    <% } %>// [endinjector]
-        <% if (useServer) { %>    <% } %>link(rel='stylesheet', href='/styles/main.css')
-        <% if (useServer) { %>    <% } %>// endbuild<% if (useServer) { %>
-        else
-            link(rel='stylesheet', href='/styles/global.css')
-            link(rel='stylesheet', href='/styles/main.css')<% } %><% } else { %>
+    <% if (useServer) { %>    <% } %>// build:css(client) styles/main.css
+    <% if (useServer) { %>    <% } %>// [injector:css]
+    <% if (useServer) { %>    <% } %>// [endinjector]
+    <% if (useServer) { %>    <% } %>link(rel='stylesheet', href='/styles/main.css')
+    <% if (useServer) { %>    <% } %>// endbuild<% if (useServer) { %>
+    else
+        link(rel='stylesheet', href='/styles/global.css')
+        link(rel='stylesheet', href='/styles/main.css')<% } %><% } else { %>
 
-        link(rel='stylesheet', href='/styles/main.css')<% } %>
+    link(rel='stylesheet', href='/styles/main.css')<% } %>
 
-        script(src='/bower_components/modernizr/modernizr.js')
+    // build:js(client) scripts/modernizr.js
+    script(src='/bower_components/modernizr/modernizr.js')
 
-        // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
-        <!--[if lt IE 9]>
-        script(src='/bower_components/consolelog/consolelog.js')
-        script(src='/bower_components/html5shiv/dist/html5shiv-printshiv.js')
-        <![endif]-->
-    body
-        <!--[if lte IE 7]>
-        <p class='browsehappy'>You are using an <strong>outdated</strong> browser. Please <a href='http://browsehappy.com/''>upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+    // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+    // build:js(client) scripts/shims.js
+    <!--[if lt IE 9]>
+    script(src='/bower_components/consolelog/consolelog.js')
+    script(src='/bower_components/html5shiv/dist/html5shiv-printshiv.js')
+    <![endif]-->
+body
+    <!--[if lte IE 7]>
+    <p class='browsehappy'>You are using an <strong>outdated</strong> browser. Please <a href='http://browsehappy.com/''>upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
-        block layout
-            block content<% if (jsFramework === 'react') { %>
+    block layout
+        block content<% if (jsFramework === 'react') { %>
 
-        <!--[if lt IE 9]>
-        script(src='/bower_components/es5-shim/es5-shim.js')
-        script (src='/bower_components/es5-shim/es5-sham.js')
-        <![endif]--><% } %><% if (useServer) { %>
+    // build:js(client) scripts/lt-ie9.js
+    <!--[if lt IE 9]>
+    script(src='/bower_components/es5-shim/es5-shim.js')
+    script (src='/bower_components/es5-shim/es5-sham.js')
+    <![endif]--><% } %><% if (useServer) { %>
 
-        if (env == 'development')<% } %>
-        <% if (useServer) { %>    <% } %>// build:js(client) scripts/global.js
-        <% if (useServer) { %>    <% } %>// bower:js
-        <% if (useServer) { %>    <% } %>script(src='/bower_components/jquery/dist/jquery.js')
-        <% if (useServer) { %>    <% } %>// endbower
-        <% if (useServer) { %>    <% } %>// endbuild<% if (useServer) { %>
-        else
-            script(src='/scripts/global.js')<% } %><% if (jsOption === 'requirejs') { %>
+    if (env == 'development')<% } %>
+    <% if (useServer) { %>    <% } %>// build:js(client) scripts/global.js
+    <% if (useServer) { %>    <% } %>// bower:js
+    <% if (useServer) { %>    <% } %>script(src='/bower_components/jquery/dist/jquery.js')
+    <% if (useServer) { %>    <% } %>// endbower
+    <% if (useServer) { %>    <% } %>// endbuild<% if (useServer) { %>
+    else
+        script(src='/scripts/global.js')<% } %><% if (jsOption === 'requirejs') { %>
 
-        script(data-main='/scripts/main', src='/bower_components/requirejs/require.js')<% } else if (jsOption === 'browserify') { %>
+    script(data-main='/scripts/main', src='/bower_components/requirejs/require.js')<% } else if (jsOption === 'browserify') { %>
 
-        script(src='/scripts/main.js')<% } else { %>
+    script(src='/scripts/main.js')<% } else { %>
 
-        // build:js(client) scripts/main.js
-        // [injector:js]
-        // [endinjector]<% if (jsFramework === 'backbone') { %>
-        script(src='/scripts/routes.js')<% } %>
-        script(src='/scripts/main.js')
-        // endbuild<% } %>
+    // build:js(client) scripts/main.js
+    // [injector:js]
+    // [endinjector]<% if (jsFramework === 'backbone') { %>
+    script(src='/scripts/routes.js')<% } %>
+    script(src='/scripts/main.js')
+    // endbuild<% } %>
