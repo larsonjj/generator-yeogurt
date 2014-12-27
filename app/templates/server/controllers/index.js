@@ -2,10 +2,10 @@
  * Index Controller
  */
 
-'use strict';
+'use strict';<% if (singlePageApplication) { %>
 
 var settings = require('../config/env/default');
-var path = require('path');
+var path = require('path');<% } %>
 
 var indexController = function(req, res) {<% if (singlePageApplication) { %>
     // Render index.html to allow application to handle routing

@@ -8,7 +8,7 @@ var taskConfig = function(grunt) {
     grunt.config.set('wiredep', {
         all: {
             options: {
-                ignorePath: /^<%%= yeogurt.client %>|\.\./,
+                ignorePath: /client\/|\.\.\//g,
                 fileTypes: {<% if (singlePageApplication) { %>
                     // Make sure everything has an absolute path
                     html: {
@@ -26,6 +26,7 @@ var taskConfig = function(grunt) {
                     }<% } else if (htmlOption === 'swig') { %>
                     // Make sure everything has an absolute path
                     swig: {
+                        block: /(([ \t]*)<!--\s*bower:*(\S*)\s*-->)(\n|\r|.)*?(<!--\s*endbower\s*-->)/gi,
                         detect: {
                             js: /<script.*src=['"]([^'"]+)/gi,
                             css: /<link.*href=['"]([^'"]+)/gi

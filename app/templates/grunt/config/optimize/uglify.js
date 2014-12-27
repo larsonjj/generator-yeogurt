@@ -13,7 +13,7 @@ var taskConfig = function(grunt) {
                 sourceMap: true,
                 sourceMapIncludeSources: true
             }
-        },
+        }<% if (jsOption === 'requirejs') { %>,
         dist: {
             options: {
                 mangle: true,
@@ -24,12 +24,11 @@ var taskConfig = function(grunt) {
             expand: true,
             cwd: '<%%= yeogurt.dist %>/bower_components/',
             dest: '<%%= yeogurt.dist %>/bower_components/',
-            src: [<% if (jsOption === 'requirejs') { %>
-                'requirejs/require.js',<% } %>
-                'modernizr/modernizr.js'
+            src: [
+                'requirejs/require.js'
             ],
             ext: '.js'
-        }<% if (singlePageApplication && jsFramework !== 'react') { %>,
+        }<% } %><% if (singlePageApplication && jsFramework !== 'react') { %>,
         distTemplates: {
             options: {
                 mangle: false,

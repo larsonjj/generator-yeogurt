@@ -17,9 +17,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/><% if (useServer) { %>
         <meta name="csrf-token" content="{{_csrf}}" />
 
-        {% if env == 'development' %}<% } else { %>
-
-        <% } %><!-- build:css(client) styles/global.css -->
+        {% if env == 'development' %}<% } %>
+        <!-- build:css(client) styles/global.css -->
             <!-- bower:css -->
         <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css" />
             <!-- endbower -->
@@ -32,13 +31,20 @@
         <!-- endbuild --><% if (useServer) { %>
         {% else %}
         <link rel="stylesheet" href="/styles/main.css" />
-        {% endif %}<% } %><% } else { %>
+        {% endif %}<% } %><% } else { %><% if (useServer) { %>
+        {% else %}
+        <link rel="stylesheet" href="/styles/global.css" />
+        {% endif %}<% } %>
 
-        <link rel="stylesheet" href="/styles/main.css"><% } %>
+        <link rel="stylesheet" href="/styles/main.css"><% } %><% if (useServer) { %>
 
+        {% if env == 'development' %}<% } %>
         <!-- build:js(client) scripts/modernizr.js -->
         <script src="/bower_components/modernizr/modernizr.js"></script>
-        <!-- endbuild -->
+        <!-- endbuild --><% if (useServer) { %>
+        {% else %}
+        <script src="/scripts/modernizr.js"></script>
+        {% endif %}<% } %>
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- build:js(client) scripts/shims.js -->

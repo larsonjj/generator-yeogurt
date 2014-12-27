@@ -145,6 +145,9 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
         });
     }
 
+    // Load routes
+    require(path.join(settings.root,'./server/routes'))(app);
+
     // 404 Error Handler
     app.use(function(req, res) {
         res.status(404);
@@ -168,10 +171,6 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
             }
         });
     });
-
-
-    // Load routes
-    require(path.join(settings.root,'./server/routes'))(app);
 
     if (env === 'development') {
         // Development Error Handler.
