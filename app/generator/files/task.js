@@ -16,7 +16,6 @@ var taskFiles = function taskFiles() {
         this.template('grunt/config/docs/jsdoc.js', 'grunt/config/docs/jsdoc.js');
     }
     this.template('grunt/config/util/clean.js', 'grunt/config/util/clean.js');
-    this.template('grunt/config/util/compress.js', 'grunt/config/util/compress.js');
     if (!this.useServer) {
         this.template('grunt/config/server/connect.js', 'grunt/config/server/connect.js');
     }
