@@ -50,7 +50,6 @@ describe('Yeogurt generator using Default Configuration', function () {
             'grunt/config/util/compress.js',
             'grunt/config/optimize/htmlmin.js',
             'grunt/config/optimize/imagemin.js',
-            'grunt/config/optimize/svgmin.js',
             'grunt/config/optimize/uglify.js',
             'grunt/config/optimize/usemin.js',
             'grunt/config/optimize/autoprefixer.js',

@@ -4,29 +4,29 @@
     "dependencies": {<% if (jsFramework === 'react') { %><% if (useJsx) { %>
         "node-jsx": "0.11.0",<% } %>
         "react": "~0.12.0"<% } %><% if (useServer) { %><% if (jsFramework === 'react') { %>,<% } %>
-        "colors": "^0.6.2",
-        "async": "^0.7.0",
-        "body-parser": "^1.0.2",
+        "colors": "~0.6.2",
+        "async": "~0.7.0",
+        "body-parser": "~1.0.2",
         "cookie-parser": "~1.3.3",
         "method-override": "~2.3.0",
-        "compression": "^1.0.1",
+        "compression": "~1.0.1",
         "serve-favicon": "2.0.1",
-        "errorhandler": "^1.0.0",
+        "errorhandler": "~1.0.0",
         "express": "~4.9.0",
         "express-session": "~1.6.0",<% if (useAuth) { %>
-        "express-flash": "^0.0.2",
+        "express-flash": "~0.0.2",
         "validator": "~3.19.1",
-        "express-validator": "^2.6.0",<% if (singlePageApplication) { %>
+        "express-validator": "~2.6.0",<% if (singlePageApplication) { %>
         "jsonwebtoken": "~1.1.2",
         "express-jwt": "~0.4.0",<% } %>
-        "bcrypt-nodejs": "^0.0.3",
+        "bcrypt-nodejs": "~0.0.3",
         "bcrypt": "~0.8.0",
         "nodemailer": "~1.3.0",
         "passport": "0.2.1",
         "passport-local": "~1.0.0",<% } %>
-        "lusca": "^1.0.0",<% if (dbOption === 'mongodb') { %>
+        "lusca": "~1.0.0",<% if (dbOption === 'mongodb') { %>
         "mongoose": "~3.8.8",<% } %>
-        "morgan": "^1.0.0",
+        "morgan": "~1.0.0",
         "ejs": "~0.8.4"<% if (dbOption === 'mysql') { %>,
         "mysql": "2.3.2",
         "sequelize": "1.7.9"<% } %><% if (htmlOption === 'swig') { %>,
@@ -61,7 +61,8 @@
         "grunt-wiredep": "~2.0.0",
         "grunt-contrib-cssmin": "~0.10.0",
         "grunt-contrib-imagemin": "~0.9.1",
-        "grunt-pngmin": "~0.6.1",
+        "imagemin-svgo": "~4.0.0",
+        "imagemin-pngquant": "~4.0.0",
         "grunt-contrib-jshint": "~0.10.0",
         "jshint-stylish": "~1.0.0",
         "grunt-contrib-copy": "~0.7.0",
@@ -70,7 +71,6 @@
         "grunt-contrib-less": "~0.12.0",<% } %><% if (cssOption === 'stylus') { %>
         "grunt-contrib-stylus": "~0.20.0",<% } %>
         "grunt-open": "~0.2.3",
-        "grunt-svgmin": "~2.0.0",
         "grunt-injector": "~0.5.3",
         "grunt-env": "~0.4.1",
         "grunt-newer": "~0.7.0",

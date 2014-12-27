@@ -38,7 +38,6 @@ var taskFiles = function taskFiles() {
     this.template('grunt/config/optimize/htmlmin.js', 'grunt/config/optimize/htmlmin.js');
     this.template('grunt/config/optimize/autoprefixer.js', 'grunt/config/optimize/autoprefixer.js');
     this.template('grunt/config/optimize/imagemin.js', 'grunt/config/optimize/imagemin.js');
-    this.template('grunt/config/optimize/pngmin.js', 'grunt/config/optimize/pngmin.js');
     if (this.htmlOption === 'jade' || this.jsTemplate === 'jade') {
         this.template('grunt/config/compile/jade.js', 'grunt/config/compile/jade.js');
     }
@@ -64,7 +63,6 @@ var taskFiles = function taskFiles() {
     else if (this.jsTemplate === 'handlebars') {
         this.template('grunt/config/compile/handlebars.js', 'grunt/config/compile/handlebars.js');
     }
-    this.template('grunt/config/optimize/svgmin.js', 'grunt/config/optimize/svgmin.js');
     this.template('grunt/config/optimize/uglify.js', 'grunt/config/optimize/uglify.js');
     this.template('grunt/config/optimize/cssmin.js', 'grunt/config/optimize/cssmin.js');
     this.template('grunt/config/optimize/usemin.js', 'grunt/config/optimize/usemin.js');
