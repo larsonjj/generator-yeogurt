@@ -8,12 +8,12 @@ var taskConfig = function(grunt) {
     grunt.config.set('jst', {
         server: {
             files: {
-                '<%%= yeogurt.staticServer %>/templates/templates.js': ['<%%= yeogurt.client %>/templates/**/*.jst']
+                '<%%= yeogurt.tmp %>/templates/templates.js': ['<%%= yeogurt.client %>/templates/**/*.jst']
             }
         },
         dist: {
             files: {
-                '.tmp/templates/templates.js': ['<%%= yeogurt.client %>/templates/**/*.jst']
+                '<%%= yeogurt.tmp %>/templates/templates.js': ['<%%= yeogurt.client %>/templates/**/*.jst']
             }
         }<% if (jsFramework === 'backbone') { %>,
         test: {

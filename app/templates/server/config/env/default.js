@@ -15,6 +15,8 @@ var defaults = {
         port: process.env.PORT || 9010,
         // Host/URL to run server on
         host: process.env.HOSTNAME || '127.0.0.1',
+        // Log level
+        logLevel: 'dev',
         // Paths to ignore when redirecting back
         // to original location after logging in
         loginIgnorePaths: [
@@ -95,7 +97,7 @@ var defaults = {
         }<% } %>
     },
     root: path.normalize(__dirname + '/../../..'),
-    staticAssets: 'client/.serve',
+    staticAssets: 'client',
     security: {
         // Arrays of URLs to whitelist from security policies
         whitelists: {

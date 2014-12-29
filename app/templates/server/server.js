@@ -11,16 +11,17 @@ var mongoose = require('mongoose');<% } %>
 require('colors');
 
 // Create Express server.
-var app = express();
+var app = express();<% if (dbOption === 'mysql') { %>
 
-// Database configuration<% if (dbOption === 'mysql') { %>
+// Database configuration
 var db = require('./server/config/database');<% } else if (dbOption === 'mongodb') { %>
+
+// Database configuration
 var db = require('./server/config/database')(app);<% } %>
 
-
 // Express configuration
-require('./server/config/express')(app, express<% if (dbOption !== 'none') { %>, db<% } %>);
-<% if (dbOption === 'mysql') { %>
+require('./server/config/express')(app, express<% if (dbOption !== 'none') { %>, db<% } %>);<% if (dbOption === 'mysql') { %>
+
 // Verify database connection and sync tables
 db.sequelize.authenticate().complete(function(err) {
     if (!!err) {

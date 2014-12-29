@@ -11,7 +11,7 @@ require.config({
 
 define('init', function(require) {
 
-    var app = require('./app');<% if (jsFramework === 'Backbone') { %>
+    var app = require('./app');<% if (jsFramework === 'backbone') { %>
 
     // Use GET and POST to support all browsers
     // Also adds '_method' parameter with correct HTTP headers

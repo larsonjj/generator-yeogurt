@@ -48,7 +48,7 @@
         "grunt-contrib-htmlmin": "~0.3.0",<% if (jsOption === 'requirejs') { %>
         "grunt-contrib-requirejs": "~0.4.4",<% } else if (jsOption === 'browserify') { %>
         "minifyify": "~4.4.0",
-        "grunt-browserify": "~3.2.0",
+        "grunt-browserify": "~3.0.0",
         "grunt-exorcise": "~0.2.0",<% } %>
         "grunt-usemin": "2.1.1",<% if (useJsdoc) { %>
         "grunt-jsdoc": "beta",<% } %>
@@ -94,8 +94,8 @@
         "grunt-express-server": "~0.4.5"<% } %>
     },
     "scripts": {
-        "clean": "rimraf node_modules client/bower_components client/.serve client/.tmp dist"<% if (useServer) { %>,
-        "start": "grunt build && NODE_ENV=production node server.js"<% } %>
+        "clean": "rimraf node_modules client/bower_components .tmp dist"<% if (useServer) { %>,
+        "start": "NODE_ENV=production node server.js"<% } %>
     },
     "engines": {
         "node": ">=0.10.0"

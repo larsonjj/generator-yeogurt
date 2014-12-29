@@ -10,20 +10,17 @@ var taskConfig = function(grunt) {
             options: {
                 collapseBooleanAttributes: true,
                 conservativeCollapse: true,
-                removeAttributeQuotes: true,
                 removeCommentsFromCDATA: true,
                 removeEmptyAttributes: true,
-                removeOptionalTags: true,
-                removeRedundantAttributes: true,
-                useShortDoctype: true
+                removeRedundantAttributes: true
             },
             files: [{
                 expand: true,
-                cwd: '<%%= yeogurt.dist %>',
+                cwd: '<%%= yeogurt.dist %>/<% if (useServer) { %>client<% } %>',
                 src: [
                     '*.html', 'views/**/*.html'
                 ],
-                dest: '<%%= yeogurt.dist %>'
+                dest: '<%%= yeogurt.dist %>/<% if (useServer) { %>client<% } %>'
             }]
         }
     });

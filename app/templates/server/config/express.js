@@ -52,12 +52,13 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     if (env === 'development') {
         // Include livereload script on all pages
         app.use(require('connect-livereload')());
+        // Load bower_components
+        app.use(express.static(path.join(settings.root, '.tmp'), {maxAge: 0}));
+        app.use('/bower_components', express.static(path.join(settings.root, 'client/bower_components'), {maxAge: 0}));
     }
-
     // Load favicon
     app.use(favicon(path.join(settings.root, settings.staticAssets, '/favicon.ico')));
-
-    // Setup static assets
+    // Load static assets
     app.use(express.static(path.join(settings.root, settings.staticAssets), {maxAge: week}));
 
     // Returns middleware that parses both json and urlencoded.
@@ -127,14 +128,10 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
         next();
     });<% } %>
 
-    if (env === 'production') {
-        // Setup log level for production server console output
-        app.use(logger('short'));
-    }
+    // Setup log level for server console output
+    app.use(logger(settings.server.logLevel));
 
     if (env === 'development') {
-        // Setup log level for developer server console output
-        app.use(logger('dev'));
 
         // Disable caching for easier testing
         app.use(function noCache(req, res, next) {

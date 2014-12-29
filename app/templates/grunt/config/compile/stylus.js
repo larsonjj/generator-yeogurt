@@ -15,7 +15,7 @@ var taskConfig = function(grunt) {
                 ]
             },
             files: {
-                '<%%= yeogurt.staticServer %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.styl'
+                '<%%= yeogurt.tmp %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.styl'
             }
         },
         dist: {
@@ -27,7 +27,7 @@ var taskConfig = function(grunt) {
                 ]
             },
             files: {
-                '<%%= yeogurt.dist %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.styl'
+                '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>styles/main.css': '<%%= yeogurt.client %>/styles/main.styl'
             }
         }
     });

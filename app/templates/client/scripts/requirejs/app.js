@@ -3,7 +3,7 @@
 */
 
 define(function(require, exports, module) {
-    'use strict';<% if (jsFramework === 'Backbone') { %><% if (useAuth) { %>
+    'use strict';<% if (jsFramework === 'backbone') { %><% if (useAuth) { %>
 
     var UserModel = require('./models/user');
     var MessagesModel = require('./models/messages');<% } %>

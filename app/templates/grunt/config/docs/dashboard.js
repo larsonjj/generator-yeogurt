@@ -10,7 +10,7 @@ var taskConfig = function(grunt) {
             options: {
                 dashTemplate: '<%%= yeogurt.client %>/docs/dashboard/template.hbs',
                 logo: 'images/yeogurt-logo.png',
-                generatedDir: '<%%= yeogurt.staticServer %>/docs/dashboard/generated',
+                generatedDir: '<%%= yeogurt.tmp %>/docs/dashboard/generated',
                 assets: [{
                     cwd: '<%%= yeogurt.client %>/docs/dashboard/',
                     src: [
@@ -20,7 +20,7 @@ var taskConfig = function(grunt) {
                 }]
             },
             files: {
-                '<%%= yeogurt.staticServer %>/docs/dashboard/index.html': [
+                '<%%= yeogurt.tmp %>/docs/dashboard/index.html': [
                     '<%%= yeogurt.client %>/**/*.<% if (htmlOption === "jade") { %>jade<% } else if (htmlOption === "swig") { %>swig<% } %>'
                 ]
             }
@@ -29,7 +29,7 @@ var taskConfig = function(grunt) {
             options: {
                 dashTemplate: '<%%= yeogurt.client %>/docs/dashboard/template.hbs',
                 logo: 'images/yeogurt-logo.png',
-                generatedDir: '<%%= yeogurt.dist %>/docs/dashboard/generated',
+                generatedDir: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>docs/dashboard/generated',
                 assets: [{
                     cwd: '<%%= yeogurt.client %>/docs/dashboard/',
                     src: [
@@ -39,7 +39,7 @@ var taskConfig = function(grunt) {
                 }]
             },
             files: {
-                '<%%= yeogurt.dist %>/docs/dashboard/index.html': [
+                '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>docs/dashboard/index.html': [
                     '<%%= yeogurt.client %>/**/*.<% if (htmlOption === "jade") { %>jade<% } else if (htmlOption === "swig") { %>swig<% } %>'
                 ]
             }

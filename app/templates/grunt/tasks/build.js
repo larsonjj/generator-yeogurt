@@ -18,7 +18,7 @@ var taskConfig = function(grunt) {
         'usemin',
         'htmlmin:dist',
         'uglify',
-        'clean:temp'
+        'clean:tmp'
     ]);
 };
 

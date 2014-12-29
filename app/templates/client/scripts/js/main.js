@@ -130,7 +130,11 @@ var App = App || {
             App.router.navigate(href, true);
         }
 
-    });<% } else { %>
+    });
+
+    console.log('Welcome to Yeogurt');
+
+})();<% } else { %>
 (function() {
 
     console.log('Welcome to Yeogurt');

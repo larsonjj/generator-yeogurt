@@ -6,32 +6,11 @@
 var taskConfig = function(grunt) {
 
     grunt.config.set('copy', {
-        server: {
-            files: [{
-                expand: true,
-                cwd: '<%%= yeogurt.client %>/',
-                dest: '<%%= yeogurt.staticServer %>/',
-                src: [
-                    'scripts/**/*.js',<% if (useDashboard) { %>
-                    'dashboard/**/*.*',<% } %><% if (jsOption === 'browserify') { %>
-                    '!scripts/app.js',
-                    '!scripts/main.js',<% } %>
-                    'bower_components/**/*.{js,map,css,woff,otf,ttf,eot,svg}',<% if (useKss) { %>
-                    'docs/styleguide/public/images',<% } %><% if (singlePageApplication) { %>
-                    '*.html',<% } %>
-                    'styles/**/*.css',
-                    'images/**',
-                    '*.{ico,png,txt}',
-                    'styles/fonts/**/*.{woff,otf,ttf,eot,svg}',<% if (jsFramework === 'backbone' && !useServer || jsFramework === 'react' && !useServer) { %>
-                    '*.html'<% } %>
-                ]
-            }]
-        },
         dist: {
             files: [{
                 expand: true,
                 cwd: '<%%= yeogurt.client %>/',
-                dest: '<%%= yeogurt.dist %>/',
+                dest: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>',
                 src: [<% if (jsOption === 'requirejs') { %>
                     'bower_components/requirejs/require.js',<% } %><% if (useDashboard) { %>
                     'dashboard/**/*.*',<% } %><% if (singlePageApplication) { %>
@@ -48,6 +27,15 @@ var taskConfig = function(grunt) {
                 dest: '.tmp',
                 src: [
                     'index.html'
+                ]
+            }<% } %><% if (useServer) { %>, {
+                expand: true,
+                cwd: './',
+                dest: '<%%= yeogurt.dist %>/',
+                src: [
+                    '<%%= yeogurt.server %>/**/*',
+                    'server.js',
+                    'package.json'
                 ]
             }<% } %>]
         }

@@ -16,11 +16,10 @@ var taskConfig = function(grunt) {
         }
 
         grunt.task.run([
-            'clean:server',<% if (useServer) { %>
+            'clean:tmp',<% if (useServer) { %>
             'env:all',<% } %>
             'injector',
-            'wiredep:all',
-            'copy:server',<% if (jsOption === 'browserify') { %>
+            'wiredep:all',<% if (jsOption === 'browserify') { %>
             'browserify:server',
             'exorcise:server',<% } %><% if (jsTemplate === 'underscore') { %>
             'jst:server',<% } else if (jsTemplate === 'handlebars') { %>
@@ -34,8 +33,7 @@ var taskConfig = function(grunt) {
             'less:server',<% } %><% if (cssOption === 'sass') { %>
             'sass:server',<% } %><% if (cssOption === 'stylus') { %>
             'stylus:server',<% } %>
-            'autoprefixer:server',
-            'clean:temp'
+            'autoprefixer:server'
         ]);
 
         if (target === 'nowatch') {

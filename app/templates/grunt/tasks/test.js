@@ -27,7 +27,7 @@ var taskConfig = function(grunt) {
 
         // Clean up temp files
         grunt.task.run([
-            'clean:temp'
+            'clean:tmp'
         ]);<% } %>
     });
 };

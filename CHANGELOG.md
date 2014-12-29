@@ -4,7 +4,8 @@
 * Removed HTML Option for static sites
 * Removed Bootstrap and Foundation prompts and added [Guides](https://github.com/larsonjj/generator-yeogurt/tree/master/docs/guides) for them instead
 * Removed the ability to use the `--delete` option on sub-generators as it could catastrophic effects if user used `sudo`
-* added `npm run clean` command to cleanup all bower and npm dependencies as well as all generated files within `.tmp`, `client/.serve`,  and `dist` folders.
+* Removed humans.txt as it is superflous for most projects and can be easily added to any project if need be
+* added `npm run clean` command to cleanup all bower and npm dependencies as well as all generated files within `.tmp`, and `dist` folders.
 
 ### v0.12.3:
 #### date: 2014-11-12

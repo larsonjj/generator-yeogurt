@@ -22,22 +22,12 @@ var taskConfig = function(grunt) {
                 sourceMapIncludeSources: true
             },
             expand: true,
-            cwd: '<%%= yeogurt.dist %>/bower_components/',
-            dest: '<%%= yeogurt.dist %>/bower_components/',
+            cwd: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>bower_components/',
+            dest: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>bower_components/',
             src: [
                 'requirejs/require.js'
             ],
             ext: '.js'
-        }<% } %><% if (singlePageApplication && jsFramework !== 'react') { %>,
-        distTemplates: {
-            options: {
-                mangle: false,
-                preserveComments: 'some'
-            },
-            expand: true,
-            cwd: '.tmp/templates/',
-            dest: '.tmp/templates/',
-            src: ['templates.js']
         }<% } %>
     });
 

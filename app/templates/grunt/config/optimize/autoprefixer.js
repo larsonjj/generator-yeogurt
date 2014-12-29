@@ -14,8 +14,8 @@ var taskConfig = function(grunt) {
             files: [{
                 expand: true,
                 flatten: true,
-                src: '<%%= yeogurt.staticServer %>/styles/*.css',
-                dest: '<%%= yeogurt.staticServer %>/styles/'
+                src: '<%%= yeogurt.tmp %>/styles/*.css',
+                dest: '<%%= yeogurt.tmp %>/styles/'
             }]
         },
         dist: {
@@ -26,8 +26,8 @@ var taskConfig = function(grunt) {
             files: [{
                 expand: true,
                 flatten: true,
-                src: '<%%= yeogurt.dist %>/styles/*.css',
-                dest: '<%%= yeogurt.dist %>/styles/'
+                src: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>styles/*.css',
+                dest: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>styles/'
             }]
         }
     });
