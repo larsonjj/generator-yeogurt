@@ -66,7 +66,6 @@ describe('Yeogurt generator using Styles', function () {
                     'grunt/config/compile/sass.js'
                 ];
                 var fileContentToTest = [
-                    ['grunt/config/compile/sass.js', /\.sass/i],
                     ['grunt/config/docs/kss.js', /main\.sass/i]
                 ];
 
