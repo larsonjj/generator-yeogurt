@@ -5,7 +5,17 @@
 
 var taskConfig = function(grunt) {
 
-    grunt.config.set('copy', {
+    grunt.config.set('copy', {<% if (useKss && cssOption !== 'css') { %>
+        server: {
+            files: [{
+                 expand: true,
+                    cwd: '<%%= yeogurt.client %>/',
+                    dest: '<%%= yeogurt.tmp %>',
+                    src: [
+                        'styles/styleguide.md'
+                    ]
+                }]
+        },<% } %>
         dist: {
             files: [{
                 expand: true,
@@ -15,6 +25,7 @@ var taskConfig = function(grunt) {
                     'bower_components/requirejs/require.js',<% } %><% if (useDashboard) { %>
                     'dashboard/**/*.*',<% } %><% if (singlePageApplication) { %>
                     '*.html',<% } %><% if (useKss) { %>
+                    'styles/styleguide.md',
                     'docs/styleguide/public/images',<% } %>
                     '!*.js',
                     '*.{ico,png,txt}',
@@ -23,8 +34,8 @@ var taskConfig = function(grunt) {
                 ]
             }<% if (useServer && singlePageApplication) { %>, {
                 expand: true,
-                cwd: 'server/templates/',
-                dest: '.tmp',
+                cwd: '<%%= yeogurt.server %>/templates/',
+                dest: '<%%= yeogurt.tmp %>',
                 src: [
                     'index.html'
                 ]

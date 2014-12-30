@@ -39,16 +39,16 @@
             <div class="styleguide-content">
             {{#if overview}}
                 <div class="styleguide-markdown">
-                    {{html overview}}
+                    {{{ overview }}}
                 </div>
             {{else}}
                 {{#eachSection rootNumber}}
                     <div class="styleguide-example">
-                        {{#whenDepth 1}}
+                        {{#ifDepth 1}}
                         <h3><span>{{reference}}.0</span> - {{header}}</h3>
                         {{else}}
                         <h3><span>{{reference}}</span> - {{header}}</h3>
-                        {{/whenDepth}}
+                        {{/ifDepth}}
                         <div class="styleguide-description styleguide-markdown">
                             {{#if description}}
                             <p>{{{description}}}</p>

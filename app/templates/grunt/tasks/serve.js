@@ -17,7 +17,8 @@ var taskConfig = function(grunt) {
 
         grunt.task.run([
             'clean:tmp',<% if (useServer) { %>
-            'env:all',<% } %>
+            'env:all',<% } %><% if (useKss && cssOption !== 'css') { %>
+            'copy:server',<% } %>
             'injector',
             'wiredep:all',<% if (jsOption === 'browserify') { %>
             'browserify:server',
@@ -26,13 +27,13 @@ var taskConfig = function(grunt) {
             'handlebars:server',<% } else if (jsTemplate === 'jade') { %>
             'jade:server',<% } %><% if (htmlOption === 'jade' && !useServer ) { %>
             'jade:server',<% } else if (htmlOption === 'swig' && !useServer ) {  %>
-            'swig:server',<% } %><% if (useDashboard) { %>
-            'dashboard:server',<% } %><% if (useKss) { %>
-            'kss:server',<% } %><% if (useJsdoc) { %>
-            'jsdoc:server',<% } %><% if (cssOption === 'less') { %>
+            'swig:server',<% } %><% if (cssOption === 'less') { %>
             'less:server',<% } %><% if (cssOption === 'sass') { %>
             'sass:server',<% } %><% if (cssOption === 'stylus') { %>
-            'stylus:server',<% } %>
+            'stylus:server',<% } %><% if (useDashboard) { %>
+            'dashboard:server',<% } %><% if (useKss) { %>
+            'styleguide:server',<% } %><% if (useJsdoc) { %>
+            'jsdoc:server',<% } %>
             'autoprefixer:server'
         ]);
 

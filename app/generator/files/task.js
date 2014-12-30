@@ -32,7 +32,7 @@ var taskFiles = function taskFiles() {
         this.template('grunt/config/deploy/ftpush.js', 'grunt/config/deploy/ftpush.js');
     }
     if (this.useKss) {
-        this.template('grunt/config/docs/kss.js', 'grunt/config/docs/kss.js');
+        this.template('grunt/config/docs/styleguide.js', 'grunt/config/docs/styleguide.js');
     }
     this.template('grunt/config/optimize/htmlmin.js', 'grunt/config/optimize/htmlmin.js');
     this.template('grunt/config/optimize/autoprefixer.js', 'grunt/config/optimize/autoprefixer.js');

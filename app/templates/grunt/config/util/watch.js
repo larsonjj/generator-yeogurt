@@ -210,12 +210,12 @@ var taskConfig = function(grunt) {
         },<% } %><% if (cssOption === 'sass' && useKss) { %>
         sass: {
             tasks: [
-                'kss:server'
+                'styleguide:server'
             ]
         },<% } %><% if (cssOption === 'less' && useKss) { %>
         less: {
             tasks: [
-                'kss:server'
+                'styleguide:server'
             ]
         },<% } %><% if (useJsdoc) { %>
         js: {
@@ -235,7 +235,7 @@ var taskConfig = function(grunt) {
             files: [
                 '<%%= yeogurt.client %>/docs/styleguide/**/*.*'
             ],
-            tasks: ['kss:server']
+            tasks: ['styleguide:server']
         },<% } %><% if (useDashboard) { %>
         dashboard: {
             files: [
