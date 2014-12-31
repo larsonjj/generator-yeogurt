@@ -26,7 +26,7 @@ var Reset = Backbone.View.extend({
     formSubmit: function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        app.account.reset($form, {
+        app.user.reset($form, {
             success: function(res) {
                 Backbone.history.navigate('/', true);
             },

@@ -21,7 +21,7 @@ app.events = _.extend({}, Backbone.Events);
 app.router = new Router();<% if (useAuth) { %>
 
 // Setup user account
-app.account = new UserModel();
+app.user = new UserModel();
 
 // Setup flash messages
 app.messages = new MessagesModel();

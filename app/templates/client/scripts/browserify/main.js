@@ -39,7 +39,7 @@ Backbone.View.prototype.assign = function(selector, view) {
 
 // Send authorization header on each AJAX request
 $(document).ajaxSend(function(event, request) {
-    var token = app.account.getToken();
+    var token = app.user.getToken();
     if (token) {
         request.setRequestHeader('authorization', 'Bearer ' + token);
     }
@@ -47,7 +47,7 @@ $(document).ajaxSend(function(event, request) {
 
 // Check the auth status upon initialization,
 // should happen before rendering any templates
-app.account.isAuthenticated({
+app.user.isAuthenticated({
 
     // Start backbone routing once we have captured a user's auth status
     complete: function() {

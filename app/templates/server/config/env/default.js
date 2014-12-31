@@ -44,11 +44,11 @@ var defaults = {
             },
             // Attempt to reconnect if connection is lost
             auto_reconnect: true
-        }<% } %><% if (dbOption === 'mysql') { %>
+        }<% } %><% if (dbOption === 'sql') { %>
         // Sequelize database options
         options: {
             // Database Type
-            dialect: 'mysql',
+            dialect: '<%= dbType %>',
 
             // max concurrent database requests; default: 50
             maxConcurrentQueries: 50,

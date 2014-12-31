@@ -1,9 +1,9 @@
 if messages.errors
     for error in messages.errors
-        div= error.msg
+        div.error= error.msg
 if messages.info
     for info in messages.info
-        div= info.msg
+        div.info= info.msg
 if messages.success
     for success in messages.success
-        div= success.msg
+        div.success= success.msg

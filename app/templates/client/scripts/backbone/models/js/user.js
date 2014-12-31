@@ -1,6 +1,6 @@
 /**
 *   User Model
-*   Access this model through the App.account object
+*   Access this model through the App.user object
 */
 
 'use strict';

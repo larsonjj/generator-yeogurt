@@ -11,7 +11,7 @@ var mongoose = require('mongoose');<% } %>
 require('colors');
 
 // Create Express server.
-var app = express();<% if (dbOption === 'mysql') { %>
+var app = express();<% if (dbOption === 'sql') { %>
 
 // Database configuration
 var db = require('./server/config/database');<% } else if (dbOption === 'mongodb') { %>
@@ -20,7 +20,7 @@ var db = require('./server/config/database');<% } else if (dbOption === 'mongodb
 var db = require('./server/config/database')(app);<% } %>
 
 // Express configuration
-require('./server/config/express')(app, express<% if (dbOption !== 'none') { %>, db<% } %>);<% if (dbOption === 'mysql') { %>
+require('./server/config/express')(app, express<% if (dbOption !== 'none') { %>, db<% } %>);<% if (dbOption === 'sql') { %>
 
 // Verify database connection and sync tables
 db.sequelize.authenticate().complete(function(err) {
@@ -28,7 +28,7 @@ db.sequelize.authenticate().complete(function(err) {
         throw '✗ Database Connection Error: '.red + err;
     }
     else {
-        console.log('✔ MySQL Connection Success!'.green);
+        console.log('✔ Database Connection Success!'.green);
         db.sequelize.sync()
             .success(function() {
                 console.log('✔ Database Synced!'.green);

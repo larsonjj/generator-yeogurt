@@ -29,7 +29,7 @@ App.Views.Signup = Backbone.View.extend({
         var data = {
             formData: $(e.currentTarget).serialize()
         };
-        App.account.signup(data, {
+        App.user.signup(data, {
             success: function(res) {
                 Backbone.history.navigate('/', true);
             },

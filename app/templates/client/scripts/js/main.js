@@ -61,14 +61,14 @@ var App = App || {
     App.router = new App.Routers.Main();<% if (useAuth) { %>
 
     // Setup user account
-    App.account = new App.Models.User();
+    App.user = new App.Models.User();
 
     // Setup flash messages
     App.messages = new App.Models.Messages();
 
     // Send authorization header on each AJAX request
     $(document).ajaxSend(function(event, request) {
-        var token = App.account.getToken();
+        var token = App.user.getToken();
         if (token) {
             request.setRequestHeader('authorization', 'Bearer ' + token);
         }
@@ -76,7 +76,7 @@ var App = App || {
 
     // Check the auth status upon initialization,
     // should happen before rendering any templates
-    App.account.isAuthenticated({
+    App.user.isAuthenticated({
 
         // Start backbone routing once we have captured a user's auth status
         complete: function() {

@@ -27,7 +27,7 @@ App.Views.Forgot = Backbone.View.extend({
     formSubmit: function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        App.account.forgot($form, {
+        App.user.forgot($form, {
             success: function(res) {
                 Backbone.history.navigate('/', true);
             },

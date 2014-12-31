@@ -15,6 +15,10 @@ var NavbarView = require('../views/modules/navbar');
 var MessagesView = require('../views/modules/messages');
 
 var login = function() {
+    // If user is logged in, redirect to settings page
+    if (app.user.get('loggedIn')) {
+        return app.router.navigate('/settings', {trigger: true});
+    }
     var loginPage = new OneColumnView({
         layout: true,
         subviews: {
@@ -27,10 +31,18 @@ var login = function() {
 };
 
 var logout = function() {
-    app.account.logout();
+    // If user is not logged in, redirect to the home page
+    if (!app.user.get('loggedIn')) {
+        return app.router.navigate('/', {trigger: true});
+    }
+    app.user.logout();
 };
 
 var signup = function() {
+    // If user is logged in, redirect to settings page
+    if (app.user.get('loggedIn')) {
+        return app.router.navigate('/settings', {trigger: true});
+    }
     var signupPage = new OneColumnView({
         layout: true,
         subviews: {
@@ -43,6 +55,10 @@ var signup = function() {
 };
 
 var reset = function() {
+    // If user is logged in, redirect to settings page
+    if (app.user.get('loggedIn')) {
+        return app.router.navigate('/settings', {trigger: true});
+    }
     var resetPage = new OneColumnView({
         layout: true,
         subviews: {
@@ -55,6 +71,10 @@ var reset = function() {
 };
 
 var forgot = function() {
+    // If user is logged in, redirect to settings page
+    if (app.user.get('loggedIn')) {
+        return app.router.navigate('/settings', {trigger: true});
+    }
     var forgotPage = new OneColumnView({
         layout: true,
         subviews: {
@@ -67,6 +87,10 @@ var forgot = function() {
 };
 
 var settingsPage = function() {
+    // If user is not logged in, redirect to login page
+    if (!app.user.get('loggedIn')) {
+        return app.router.navigate('/login', {trigger: true});
+    }
     var settingsPage = new OneColumnView({
         layout: true,
         subviews: {

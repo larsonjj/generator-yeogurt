@@ -38,18 +38,29 @@ var answersConfig = function answersConfig() {
     this.versionControl = this.answers.versionControl;
 
     // Server Info
-    this.useServer          = this.answers.useServer;
-    this.dbOption           = this.answers.dbOption;
-    this.useAuth            = this.answers.useAuth;
+    this.useServer = this.answers.useServer;
 
-    this.dbUser = this.answers.dbUser === 'nouser' ? '' : this.answers.dbUser;
-    this.dbPass = this.answers.dbPass === 'nopass' ? '' : this.answers.dbPass;
+    this.dbType = this.answers.dbType || this.answers.dbOption;
+
+    if (this.answers.dbOption === 'sql' || this.answers.dbOption === 'mysql' || this.answers.dbOption === 'postgres') {
+        this.answers.dbType = this.dbType;
+        this.dbOption = 'sql';
+        this.answers.dbOption = 'sql';
+    }
+    else {
+        this.dbOption = this.answers.dbOption;
+    }
+
+    this.useAuth = this.answers.useAuth;
+
+    this.dbUser = this.answers.dbUser;
+    this.dbPass = this.answers.dbPass;
 
     // Setup Database URLs
-    var username = this.answers.dbUser || '';
-    var password = this.answers.dbPass ? ':' + this.answers.dbPass : '';
+    var username = this.dbUser || '';
+    var password = this.dbPass ? ':' + this.dbPass : '';
     var port     = this.answers.dbPort;
-    var host     = this.answers.dbUser ? '@' + this.answers.dbHost : this.answers.dbHost;
+    var host     = this.dbUser ? '@' + this.answers.dbHost : this.answers.dbHost;
     var name     = this.answers.dbName ? this.answers.dbName : '';
 
     if (this.dbOption === 'mongodb') {
@@ -60,8 +71,16 @@ var answersConfig = function answersConfig() {
         port + '/' +
         name;
     }
-    else if (this.dbOption === 'mysql') {
+    else if (this.dbType === 'sql') {
         this.dbURL = process.env.MYSQL || 'mysql://' +
+        username +
+        password +
+        host + ':' +
+        port + '/' +
+        name;
+    }
+    else if (this.dbType === 'postgres') {
+        this.dbURL = process.env.MYSQL || 'postgres://' +
         username +
         password +
         host + ':' +
@@ -97,8 +116,9 @@ var answersConfig = function answersConfig() {
     this.useFTP                = this.answers.useFTP;
     this.ftpHost               = this.answers.ftpHost;
     this.ftpFolder             = this.answers.ftpFolder;
-    this.ftpUser               = this.answers.ftpUser === 'nouser' ? '' : this.answers.ftpUser;
-    this.ftpPass               = this.answers.ftpUser === 'nopass' ? '' : this.answers.ftpPass;
+
+    this.ftpUser = this.answers.ftpUser;
+    this.ftpPass = this.answers.ftpPass;
 
     // Default Overwrites
     if (this.jsFramework === 'react') {

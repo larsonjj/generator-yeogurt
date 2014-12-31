@@ -9,7 +9,7 @@ var nodeFiles = function nodeFiles() {
         if (this.dbOption === 'mongodb') {
             this.template('server/config/mongodb/database.js', 'server/config/database.js');
         }
-        if (this.dbOption === 'mysql') {
+        if (this.dbOption === 'sql') {
             this.template('server/config/sql/database.js', 'server/config/database.js');
         }
 
@@ -28,7 +28,7 @@ var nodeFiles = function nodeFiles() {
 
                 this.template('server/auth/strategies/mongodb/local.js', 'server/auth/strategies/local.js');
             }
-            if (this.dbOption === 'mysql') {
+            if (this.dbOption === 'sql') {
                 this.template('server/controllers/sql/user.js', 'server/controllers/user.js');
                 this.template('server/models/sql/user.js', 'server/models/user.js');
                 this.template('server/controllers/sql/account.js', 'server/controllers/account.js');

@@ -88,6 +88,18 @@
 .nav-item {
     display: inline-block;
     margin-left: 5px;
+}
+
+.error {
+    color: #c00;
+}
+
+.info {
+    color: #5280e4;
+}
+
+.success {
+    color: #58e44e;
 }<% } %>
 
 /* Styling on warning for users on IE7 or below */

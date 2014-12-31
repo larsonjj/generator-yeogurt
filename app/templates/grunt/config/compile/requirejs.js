@@ -12,7 +12,8 @@ var taskConfig = function(grunt) {
                 baseUrl: '<%%= yeogurt.client %>/scripts/',
                 mainConfigFile: '<%%= yeogurt.client %>/scripts/main.js',
                 out: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>scripts/main.js',
-                optimize: 'uglify2',generateSourceMaps: true,
+                optimize: 'uglify2',
+                generateSourceMaps: true,
                 preserveLicenseComments: false
             }
         }

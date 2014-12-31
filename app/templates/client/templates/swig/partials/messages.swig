@@ -1,17 +1,17 @@
 {% if messages.errors %}
     {% for error in messages.errors %}
-        <div>{{error.msg}}</div>
+        <div class="error">{{error.msg}}</div>
     {% endfor %}
 {% endif %}
 
 {% if messages.info %}
     {% for info in messages.info %}
-        <div>{{info.msg}}</div>
+        <div class="info">{{info.msg}}</div>
     {% endfor %}
 {% endif %}
 
 {% if messages.success %}
     {% for success in messages.success %}
-        <div>{{success.msg}}</div>
+        <div class="success">{{success.msg}}</div>
     {% endfor %}
 {% endif %}

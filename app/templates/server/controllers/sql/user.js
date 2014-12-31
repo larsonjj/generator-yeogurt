@@ -9,7 +9,7 @@ var async = require('async');
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 var passport = require('passport');<% if (dbOption === 'mongodb') { %>
-var User = require('mongoose').model('user');<% } else if (dbOption === 'mysql') { %>
+var User = require('mongoose').model('user');<% } else if (dbOption === 'sql') { %>
 var db = require('../config/database');
 var User = db.user;<% } %>
 var secrets = require('../config/secrets');

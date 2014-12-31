@@ -20,14 +20,14 @@ App.Views.Navbar = Backbone.View.extend({
     // Code that runs when View is initialized
     initialize: function () {
         // Re-render template when data changes
-        this.listenTo(App.account, 'change', this.render);
+        this.listenTo(App.user, 'change', this.render);
         this.render();
     },
 
     render: function () {
         this.$el.html(this.template({
-            loggedIn: App.account.get('loggedIn'),
-            user: App.account.toJSON()
+            loggedIn: App.user.get('loggedIn'),
+            user: App.user.toJSON()
         }));
         return this;
     }

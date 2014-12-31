@@ -9,9 +9,10 @@ var taskConfig = function(grunt) {
         generated: {
             options: {
                 mangle: true,
-                preserveComments: 'some',
+                preserveComments: 'some',<% if (jsOption === 'none') { %>
                 sourceMap: true,
-                sourceMapIncludeSources: true
+                sourceMapIncludeSources: true,
+                sourceMapIn: '<%%= yeogurt.tmp %>/concat/scripts/main.js.map'<% } %>
             }
         }<% if (jsOption === 'requirejs') { %>,
         dist: {

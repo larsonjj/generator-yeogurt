@@ -28,7 +28,7 @@ var Login = Backbone.View.extend({
         var data = {
             formData: $(e.currentTarget).serialize()
         };
-        app.account.login(data, {
+        app.user.login(data, {
             success: function(res){
                 Backbone.history.navigate('/', true);
             },

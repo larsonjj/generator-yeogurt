@@ -17,6 +17,10 @@ define(function(require) {
     var MessagesView = require('../views/modules/messages');
 
     var login = function() {
+        // If user is logged in, redirect to settings page
+        if (app.user.get('loggedIn')) {
+            return app.router.navigate('/settings', {trigger: true});
+        }
         var login = new OneColumnView({
             layout: true,
             subviews: {
@@ -29,10 +33,18 @@ define(function(require) {
     };
 
     var logout = function() {
+        // If user is not logged in, redirect to the home page
+        if (!app.user.get('loggedIn')) {
+            return app.router.navigate('/', {trigger: true});
+        }
         app.user.logout();
     };
 
     var signup = function() {
+        // If user is logged in, redirect to settings page
+        if (app.user.get('loggedIn')) {
+            return app.router.navigate('/settings', {trigger: true});
+        }
         var signup = new OneColumnView({
             layout: true,
             subviews: {
@@ -45,6 +57,10 @@ define(function(require) {
     };
 
     var reset = function() {
+        // If user is logged in, redirect to settings page
+        if (app.user.get('loggedIn')) {
+            return app.router.navigate('/settings', {trigger: true});
+        }
         var reset = new OneColumnView({
             layout: true,
             subviews: {
@@ -57,6 +73,10 @@ define(function(require) {
     };
 
     var forgot = function() {
+        // If user is logged in, redirect to settings page
+        if (app.user.get('loggedIn')) {
+            return app.router.navigate('/settings', {trigger: true});
+        }
         var forgot = new OneColumnView({
             layout: true,
             subviews: {
@@ -69,6 +89,10 @@ define(function(require) {
     };
 
     var settings = function() {
+        // If user is not logged in, redirect to login page
+        if (!app.user.get('loggedIn')) {
+            return app.router.navigate('/login', {trigger: true});
+        }
         var settings = new OneColumnView({
             layout: true,
             subviews: {

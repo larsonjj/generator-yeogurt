@@ -5,7 +5,7 @@ var secrets = require('../config/secrets');<% if (singlePageApplication) { %>
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var validateJwt = expressJwt({ secret: secrets.sessionSecret });<% if (dbOption === 'mongodb') { %>
-var User = require('mongoose').model('user');<% } else if (dbOption === 'mysql') { %>
+var User = require('mongoose').model('user');<% } else if (dbOption === 'sql') { %>
 var db = require('../config/database');
 var User = db.user;<% } %><% } %>
 var localStrategy = require('./strategies/local');
@@ -15,14 +15,14 @@ var localStrategy = require('./strategies/local');
  */
 var init = function(User) {
     passport.serializeUser(function(user, done) {<% if (dbOption === 'mongodb') { %>
-        done(null, user._id);<% } else if (dbOption === 'mysql') { %>
+        done(null, user._id);<% } else if (dbOption === 'sql') { %>
         done(null, user.id);<% } %>
     });
 
     passport.deserializeUser(function(id, done) {<% if (dbOption === 'mongodb') { %>
         User.findById(id, function(err, user) {
             done(err, user);
-        });<% } else if (dbOption === 'mysql') { %>
+        });<% } else if (dbOption === 'sql') { %>
         User.find(id).success(function(user) {
             done(null, user);
         }).error(function(err) {
@@ -73,9 +73,9 @@ var hasRole = function(roleRequired) {
 /**
  * Returns a jwt token signed by the app secret
  */
-var signToken = function(<% if (dbOption === 'mongodb') { %>_id<% } else if (dbOption === 'mysql') { %>id<% } %>) {
+var signToken = function(<% if (dbOption === 'mongodb') { %>_id<% } else if (dbOption === 'sql') { %>id<% } %>) {
     return jwt.sign({<% if (dbOption === 'mongodb') { %>
-        _id: _id,<% } else if (dbOption === 'mysql') { %>
+        _id: _id,<% } else if (dbOption === 'sql') { %>
         id: id,<% } %>
     }, secrets.sessionSecret, {
         expiresInMinutes: 60 * 24 // 24 hours
@@ -91,7 +91,7 @@ var setTokenCookie = function(req, res) {
             message: 'Something went wrong, please try again.'
         });
     }<% if (dbOption === 'mongodb') { %>
-    var token = signToken(req.user._id, req.user.role);<% } else if (dbOption === 'mysql') { %>
+    var token = signToken(req.user._id, req.user.role);<% } else if (dbOption === 'sql') { %>
     var token = signToken(req.user.id, req.user.role);<% } %>
     res.cookie('token', JSON.stringify(token));
 };<% } %>

@@ -66,6 +66,7 @@ describe('Yeogurt generator using Server', function () {
                     useServer: true,
                     htmlOption: 'jade',
                     dbOption: 'mongodb',
+                    dbType: 'mongodb',
                     useAuth: true
                 });
                 this.app.run([], function () {
@@ -91,6 +92,7 @@ describe('Yeogurt generator using Server', function () {
                     useServer: true,
                     htmlOption: 'swig',
                     dbOption: 'mongodb',
+                    dbType: 'mongodb',
                     useAuth: true
                 });
                 this.app.run([], function () {
@@ -113,6 +115,7 @@ describe('Yeogurt generator using Server', function () {
                     helpers.mockPrompt(this.app, {
                         useServer: true,
                         dbOption: 'mongodb',
+                        dbType: 'mongodb',
                         useAuth: true
                     });
                     this.app.run([], function () {
@@ -133,6 +136,7 @@ describe('Yeogurt generator using Server', function () {
                     helpers.mockPrompt(this.app, {
                         useServer: true,
                         dbOption: 'mongodb',
+                        dbType: 'mongodb',
                         useAuth: true
                     });
                     this.app.run([], function () {
@@ -156,7 +160,8 @@ describe('Yeogurt generator using Server', function () {
 
                     helpers.mockPrompt(this.app, {
                         useServer: true,
-                        dbOption: 'mysql',
+                        dbOption: 'sql',
+                        dbType: 'mysql',
                         useAuth: true
                     });
                     this.app.run([], function () {
@@ -176,7 +181,8 @@ describe('Yeogurt generator using Server', function () {
 
                     helpers.mockPrompt(this.app, {
                         useServer: true,
-                        dbOption: 'mysql',
+                        dbOption: 'sql',
+                        dbType: 'mysql',
                         useAuth: true
                     });
                     this.app.run([], function () {
@@ -196,7 +202,8 @@ describe('Yeogurt generator using Server', function () {
 
                     helpers.mockPrompt(this.app, {
                         useServer: true,
-                        dbOption: 'mysql',
+                        dbOption: 'sql',
+                        dbType: 'mysql',
                         useAuth: true,
                         singlePageApplication: true
                     });
@@ -219,6 +226,7 @@ describe('Yeogurt generator using Server', function () {
 
             helpers.mockPrompt(this.app, {
                 dbOption: 'mongodb',
+                dbType: 'mongodb',
                 useServer: true
             });
             this.app.run([], function () {
@@ -238,7 +246,8 @@ describe('Yeogurt generator using Server', function () {
             ];
 
             helpers.mockPrompt(this.app, {
-                dbOption: 'mysql',
+                dbOption: 'sql',
+                dbType: 'mysql',
                 useServer: true
             });
             this.app.run([], function () {
