@@ -55,8 +55,7 @@ describe('Yeogurt generator using Default Configuration', function () {
             'grunt/tasks/build.js',
             'grunt/tasks/default.js',
             'grunt/tasks/serve.js',
-            'grunt/tasks/test.js',
-            'grunt/tasks/zip.js'
+            'grunt/tasks/test.js'
         ];
 
         helpers.mockPrompt(this.app, {

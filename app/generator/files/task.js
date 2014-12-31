@@ -84,7 +84,6 @@ var taskFiles = function taskFiles() {
     }
     this.template('grunt/tasks/serve.js', 'grunt/tasks/serve.js');
     this.template('grunt/tasks/test.js', 'grunt/tasks/test.js');
-    this.template('grunt/tasks/zip.js', 'grunt/tasks/zip.js');
     if (this.useServer) {
         this.template('grunt/tasks/keepalive.js', 'grunt/tasks/keepalive.js');
         this.template('grunt/tasks/wait.js', 'grunt/tasks/wait.js');
