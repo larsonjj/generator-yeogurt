@@ -6,7 +6,7 @@ define(function(require) {
     'use strict';<% if (useAuth) { %>
 
     var IndexController = require('./controllers/index');
-    var AccountController = require('./controllers/account');<% } %><% if (!useAuth) { %>
+    var AccountController = require('./controllers/account');<% } else { %>
 
     var IndexView = require('./views/index');<% } %>
 

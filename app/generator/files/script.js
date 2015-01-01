@@ -7,22 +7,27 @@
 var scriptFiles = function scriptFiles() {
     // client/scripts
 
-    if (this.jsOption === 'requirejs') {
-        this.template('client/scripts/requirejs/main.js', 'client/scripts/main.js');
-        this.template('client/scripts/requirejs/app.js', 'client/scripts/app.js');
+    if (!this.jsFramework) {
+        if (this.jsOption === 'requirejs') {
+            this.template('client/scripts/noframework/requirejs/main.js', 'client/scripts/main.js');
+            this.template('client/scripts/noframework/requirejs/app.js', 'client/scripts/app.js');
+        }
+
+        if (this.jsOption === 'browserify') {
+            this.template('client/scripts/noframework/browserify/main.js', 'client/scripts/main.js');
+            this.template('client/scripts/noframework/browserify/app.js', 'client/scripts/app.js');
+        }
+
+        if (this.jsOption === 'none') {
+            this.template('client/scripts/noframework/js/main.js', 'client/scripts/main.js');
+        }
     }
 
-    if (this.jsOption === 'browserify') {
-        this.template('client/scripts/browserify/main.js', 'client/scripts/main.js');
-        this.template('client/scripts/browserify/app.js', 'client/scripts/app.js');
-    }
-
-    if (this.jsOption === 'none') {
-        this.template('client/scripts/js/main.js', 'client/scripts/main.js');
-    }
 
     if (this.jsFramework === 'backbone') {
         if (this.jsOption === 'requirejs') {
+            this.template('client/scripts/backbone/main/requirejs/main.js', 'client/scripts/main.js');
+            this.template('client/scripts/backbone/main/requirejs/app.js', 'client/scripts/app.js');
             this.template('client/scripts/backbone/routes/requirejs/routes.js', 'client/scripts/routes.js');
             this.template('client/scripts/backbone/views/requirejs/index.js', 'client/scripts/views/index.js');
 
@@ -50,6 +55,8 @@ var scriptFiles = function scriptFiles() {
         }
 
         if (this.jsOption === 'browserify') {
+            this.template('client/scripts/backbone/main/browserify/main.js', 'client/scripts/main.js');
+            this.template('client/scripts/backbone/main/browserify/app.js', 'client/scripts/app.js');
             this.template('client/scripts/backbone/routes/browserify/routes.js', 'client/scripts/routes.js');
             this.template('client/scripts/backbone/views/browserify/index.js', 'client/scripts/views/index.js');
 
@@ -77,6 +84,7 @@ var scriptFiles = function scriptFiles() {
         }
 
         if (this.jsOption === 'none') {
+            this.template('client/scripts/backbone/main/js/main.js', 'client/scripts/main.js');
             this.template('client/scripts/backbone/routes/js/routes.js', 'client/scripts/routes.js');
             this.template('client/scripts/backbone/views/js/index.js', 'client/scripts/views/index.js');
 
@@ -163,12 +171,14 @@ var scriptFiles = function scriptFiles() {
 
     }
     else if (this.jsFramework === 'react') {
-        this.template('client/scripts/backbone/routes/browserify/routes.js', 'client/scripts/routes.js');
+        this.template('client/scripts/react/routes/browserify/routes.js', 'client/scripts/routes.js');
+        this.template('client/scripts/react/controllers/browserify/account.js', 'client/scripts/controllers/account.js');
+        this.template('client/scripts/react/controllers/browserify/index.js', 'client/scripts/controllers/index.js');
         if (this.useJsx) {
-            this.template('client/scripts/react/index.jsx', 'client/scripts/components/index.jsx');
+            this.template('client/scripts/react/components/index.jsx', 'client/scripts/components/index.jsx');
         }
         else {
-            this.template('client/scripts/react/index.js', 'client/scripts/components/index.js');
+            this.template('client/scripts/react/components/index.js', 'client/scripts/components/index.js');
         }
         if (this.useTesting) {
             this.template('test/helpers/phantomjs-shims.js', 'test/helpers/phantomjs-shims.js');

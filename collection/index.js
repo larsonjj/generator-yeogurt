@@ -80,9 +80,27 @@ CollectionGenerator.prototype.files = function files() {
         return;
     }
 
-    this.template('collection.js', this.collectionFile + '.js');
-    if (this.useTesting) {
-        this.template('collection.spec.js', this.testFile + '.spec.js');
+    if (this.jsOption === 'none') {
+        this.template('js/collection.js', this.collectionFile + '.js');
+        if (this.useTesting) {
+            this.template('js/collection.spec.js', this.testFile + '.spec.js');
+        }
     }
+    else if (this.jsOption === 'requirejs') {
+        this.template('requirejs/collection.js', this.collectionFile + '.js');
+        if (this.useTesting) {
+            this.template('requirejs/collection.spec.js', this.testFile + '.spec.js');
+        }
+    }
+    else if (this.jsOption === 'browserify') {
+        this.template('browserify/collection.js', this.collectionFile + '.js');
+        if (this.useTesting) {
+            this.template('browserify/collection.spec.js', this.testFile + '.spec.js');
+        }
+    }
+    else {
+        return;
+    }
+
 
 };

@@ -68,8 +68,26 @@ ModelGenerator.prototype.files = function files() {
         return;
     }
 
-    this.template('model.js', this.modelFile + '.js');
-    if (this.useTesting) {
-        this.template('model.spec.js', this.testFile + '.spec.js');
+    if (this.jsOption === 'none') {
+        this.template('js/model.js', this.modelFile + '.js');
+        if (this.useTesting) {
+            this.template('js/model.spec.js', this.testFile + '.spec.js');
+        }
     }
+    else if (this.jsOption === 'requirejs') {
+        this.template('requirejs/model.js', this.modelFile + '.js');
+        if (this.useTesting) {
+            this.template('requirejs/model.spec.js', this.testFile + '.spec.js');
+        }
+    }
+    else if (this.jsOption === 'browserify') {
+        this.template('browserify/model.js', this.modelFile + '.js');
+        if (this.useTesting) {
+            this.template('browserify/model.spec.js', this.testFile + '.spec.js');
+        }
+    }
+    else {
+        return;
+    }
+
 };

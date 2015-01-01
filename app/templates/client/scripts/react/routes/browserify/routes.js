@@ -5,8 +5,10 @@
 'use strict';
 <% if (useAuth) { %>
 var IndexController = require('./controllers/index');
-var AccountController = require('./controllers/account');<% } %>
-var IndexView = require('./views/index');
+var AccountController = require('./controllers/account');<% } %><% if (jsFramework === 'react') { %>
+var React = require('react');<% if (useJsx) { %>
+var IndexComponent = React.createFactory(require('./components/index.jsx'));<% } else { %>
+var IndexComponent = require('./components/index.js');<% } %><% } %>
 
 var Router = Backbone.Router.extend({
     // Defined routes
@@ -21,8 +23,7 @@ var Router = Backbone.Router.extend({
     },<% if (!useAuth) { %>
 
     index: function() {
-        // Initialize the view
-        new IndexView();
+        React.render(new IndexComponent(), document.getElementById('app-wrapper'));
     }<% } else { %>
 
     login: AccountController.login,

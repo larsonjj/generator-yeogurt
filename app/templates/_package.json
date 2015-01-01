@@ -2,7 +2,7 @@
     "name": "<%= _.slugify(projectName) %>",
     "version": "0.0.1",
     "dependencies": {<% if (jsFramework === 'react') { %><% if (useJsx) { %>
-        "node-jsx": "0.11.0",<% } %>
+        "node-jsx": "~0.12.4",<% } %>
         "react": "~0.12.0"<% } %><% if (useServer) { %><% if (jsFramework === 'react') { %>,<% } %>
         "colors": "~0.6.2",
         "async": "~0.7.0",

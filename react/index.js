@@ -62,27 +62,14 @@ ReactGenerator.prototype.files = function files() {
         return;
     }
 
-    if (!this.delete) {
-        if (this.useJsx) {
-            this.template('react.jsx', this.reactFile + '.jsx');
-        }
-        else {
-            this.template('react.js', this.reactFile + '.js');
-        }
-        if (this.useTesting) {
-            this.template('react.spec.js', this.testFile + '.spec.js');
-        }
+    if (this.useJsx) {
+        this.template('react.jsx', this.reactFile + '.jsx');
     }
     else {
-        if (this.useJsx) {
-            deleteFile(this.reactFile + '.jsx', this);
-        }
-        else {
-            deleteFile(this.reactFile + '.js', this);
-        }
-        if (this.useTesting) {
-            deleteFile(this.testFile + '.spec.js', this);
-        }
+        this.template('react.js', this.reactFile + '.js');
+    }
+    if (this.useTesting) {
+        this.template('react.spec.js', this.testFile + '.spec.js');
     }
 
 };

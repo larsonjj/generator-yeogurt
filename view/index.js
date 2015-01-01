@@ -91,10 +91,28 @@ ViewGenerator.prototype.files = function files() {
         return;
     }
 
-    this.template('view.js', this.viewFile + '.js');
-    if (this.useTesting) {
-        this.template('view.spec.js', this.testFile + '.spec.js');
+    if (this.jsOption === 'none') {
+        this.template('js/view.js', this.viewFile + '.js');
+        if (this.useTesting) {
+            this.template('js/view.spec.js', this.testFile + '.spec.js');
+        }
     }
+    else if (this.jsOption === 'requirejs') {
+        this.template('requirejs/view.js', this.viewFile + '.js');
+        if (this.useTesting) {
+            this.template('requirejs/view.spec.js', this.testFile + '.spec.js');
+        }
+    }
+    else if (this.jsOption === 'browserify') {
+        this.template('browserify/view.js', this.viewFile + '.js');
+        if (this.useTesting) {
+            this.template('browserify/view.spec.js', this.testFile + '.spec.js');
+        }
+    }
+    else {
+        return;
+    }
+
     if (this.jsTemplate === 'underscore') {
         this.template('view.html', this.templateFile + '.jst');
     }

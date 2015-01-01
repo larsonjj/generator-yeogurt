@@ -51,17 +51,25 @@ ScriptGenerator.prototype.ask = function ask() {
 
 // Create Files
 ScriptGenerator.prototype.files = function files() {
-    if (!this.delete) {
-        this.template('script.js', this.scriptFile + '.js');
+    if (this.jsOption === 'none') {
+        this.template('js/script.js', this.scriptFile + '.js');
         if (this.useTesting) {
-            this.template('script.spec.js', this.testFile + '.spec.js');
+            this.template('js/script.spec.js', this.testFile + '.spec.js');
+        }
+    }
+    else if (this.jsOption === 'requirejs') {
+        this.template('requirejs/script.js', this.scriptFile + '.js');
+        if (this.useTesting) {
+            this.template('requirejs/script.spec.js', this.testFile + '.spec.js');
+        }
+    }
+    else if (this.jsOption === 'browserify') {
+        this.template('browserify/script.js', this.scriptFile + '.js');
+        if (this.useTesting) {
+            this.template('browserify/script.spec.js', this.testFile + '.spec.js');
         }
     }
     else {
-        deleteFile(this.scriptFile + '.js', this);
-        if (this.useTesting) {
-            deleteFile(this.testFile + '.spec.js', this);
-        }
+        return;
     }
-
 };
