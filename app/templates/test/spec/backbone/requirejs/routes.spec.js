@@ -11,7 +11,7 @@ define(function(require) {
 
     describe('Router', function() {
 
-        beforeEach(function () {
+        beforeEach(function() {
             this.router = new MainRouter();
         });
 

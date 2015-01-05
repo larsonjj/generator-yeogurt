@@ -8,7 +8,7 @@
 
 describe('Reset View Namespace', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.resetView = new App.Views.Reset();
     });
 

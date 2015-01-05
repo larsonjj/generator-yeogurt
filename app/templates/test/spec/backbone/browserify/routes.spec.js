@@ -10,7 +10,7 @@ var MainRouter = require('../../client/scripts/routes');
 
 describe('Router', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.router = new MainRouter();
     });
 

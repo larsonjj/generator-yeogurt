@@ -8,7 +8,7 @@
 
 describe('Signup View Namespace', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.signupView = new App.Views.Signup();
     });
 

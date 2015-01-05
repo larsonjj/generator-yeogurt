@@ -23,7 +23,7 @@ App.Views.OneColumn = Backbone.View.extend({
         }
     },
 
-    render: function () {
+    render: function() {
         this.$el.html(this.template);
         // If this is marked as a layout, then assign subview(s)
         if (this.options && this.options.layout) {

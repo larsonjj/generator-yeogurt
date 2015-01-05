@@ -8,7 +8,7 @@ var assert  = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 
 
-describe('Yeogurt generator using Documentation', function () {
+describe('Yeogurt generator using Documentation', function() {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -20,7 +20,7 @@ describe('Yeogurt generator using Documentation', function () {
             done();
         }.bind(this));
     });
-    describe('With JSDoc', function () {
+    describe('With JSDoc', function() {
         it('Creates expected files', function (done) {
             var expected = [
                 'client/docs',
@@ -33,13 +33,13 @@ describe('Yeogurt generator using Documentation', function () {
                 useJSDoc: true
             });
 
-            this.app.run([], function () {
+            this.app.run([], function() {
                 assert.file(expected);
                 done();
             });
         });
     });
-    describe('With KSS', function () {
+    describe('With KSS', function() {
         it('Creates expected files', function (done) {
             var expected = [
                 'client/docs',
@@ -57,13 +57,13 @@ describe('Yeogurt generator using Documentation', function () {
                 useKss: true
             });
 
-            this.app.run([], function () {
+            this.app.run([], function() {
                 assert.file(expected);
                 done();
             });
         });
     });
-    describe('With Dashboard', function () {
+    describe('With Dashboard', function() {
         it('Creates expected files', function (done) {
             var expected = [
                 'client/docs',
@@ -83,7 +83,7 @@ describe('Yeogurt generator using Documentation', function () {
                 useDashboard: true
             });
 
-            this.app.run([], function () {
+            this.app.run([], function() {
                 assert.file(expected);
                 done();
             });

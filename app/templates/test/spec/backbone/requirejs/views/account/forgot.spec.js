@@ -11,7 +11,7 @@ define(function(require) {
 
     describe('Forgot View', function() {
 
-        beforeEach(function () {
+        beforeEach(function() {
             this.forgotView = new ForgotView();
         });
 

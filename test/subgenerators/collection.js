@@ -9,7 +9,7 @@ var createAppGenerator = require('../helpers/create-generator').createAppGenerat
 var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
 
-describe('Collection sub-generator', function () {
+describe('Collection sub-generator', function() {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -22,7 +22,7 @@ describe('Collection sub-generator', function () {
         }.bind(this));
     });
 
-    describe('Does not create any collection files when using React', function () {
+    describe('Does not create any collection files when using React', function() {
         it('Handles defaults', function(done) {
             // Filename
             var collection = 'mycollection';
@@ -91,7 +91,7 @@ describe('Collection sub-generator', function () {
         });
     });
 
-    describe('Does not create any collection files when using Static Jade', function () {
+    describe('Does not create any collection files when using Static Jade', function() {
         it('Handles defaults', function(done) {
             // Filename
             var collection = 'mycollection';
@@ -222,7 +222,7 @@ describe('Collection sub-generator', function () {
         });
     });
 
-    describe('Create collection files when using Backbone', function () {
+    describe('Create collection files when using Backbone', function() {
         it('Handles defaults', function(done) {
             // Filename
             var collection = 'mycollection';

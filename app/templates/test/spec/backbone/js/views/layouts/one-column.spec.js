@@ -8,7 +8,7 @@
 
 describe('OneColumn View Namespace', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.oneColumnView = new App.Views.OneColumn();
     });
 

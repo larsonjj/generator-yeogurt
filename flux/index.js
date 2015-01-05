@@ -13,7 +13,6 @@ var FluxGenerator = module.exports = function FluxGenerator() {
 
     // options
     this.jsFramework = fileJSON.jsFramework;
-    this.useFlux = fileJSON.useFlux;
     this.testFramework = fileJSON.testFramework;
     this.useTesting = fileJSON.useTesting;
 
@@ -26,12 +25,6 @@ FluxGenerator.prototype.ask = function ask() {
 
     if (this.jsFramework !== 'react') {
         this.log('This subgenerator is only used for React Applications. It seems as though you are not using React');
-        this.log('Operation aborted');
-        this.abort = true;
-        return;
-    }
-    else if (!this.useFlux) {
-        this.log('This subgenerator is only used for React Applications using Flux. It seems as though you are not using Flux');
         this.log('Operation aborted');
         this.abort = true;
         return;

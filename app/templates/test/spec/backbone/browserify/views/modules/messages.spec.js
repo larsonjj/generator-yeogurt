@@ -10,7 +10,7 @@ var MessagesView = require('../../../../client/scripts/views/modules/messages');
 
 describe('Messages View', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.messagesView = new MessagesView();
     });
 

@@ -8,7 +8,7 @@
 
 describe('Forgot View Namespace', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.forgotView = new App.Views.Forgot();
     });
 

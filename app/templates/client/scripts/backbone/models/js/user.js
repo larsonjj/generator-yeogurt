@@ -35,7 +35,7 @@ App.Models.User = Backbone.Model.extend({<% if (dbOption === 'mongodb') { %>
     /*
      * Check to see if current user is authenticated
      */
-    isAuthenticated: function(callback, args) {
+    isAuthenticated: function(callback) {
         var self = this;
         this.fetch({
             success: function(model, res) {
@@ -151,7 +151,7 @@ App.Models.User = Backbone.Model.extend({<% if (dbOption === 'mongodb') { %>
         });
     },
 
-    getToken: function () {
+    getToken: function() {
         return $.cookie('token');
     },
 

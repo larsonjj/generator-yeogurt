@@ -11,7 +11,7 @@ define(function(require) {
 
     describe('Messages Model', function() {
 
-        beforeEach(function () {
+        beforeEach(function() {
             this.messagesModel = new MessagesModel();
         });
 

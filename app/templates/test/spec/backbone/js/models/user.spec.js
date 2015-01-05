@@ -8,7 +8,7 @@
 
 describe('User Model Namespace', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.userModel = new App.Models.User();
     });
 

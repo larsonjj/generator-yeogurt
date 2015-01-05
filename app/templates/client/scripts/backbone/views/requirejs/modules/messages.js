@@ -18,7 +18,7 @@ define(function(require) {
         events: {},
 
         // Code that runs when View is initialized
-        initialize: function () {
+        initialize: function() {
             // Remove messages data when navigating to a different page
             app.messages.clear();
             // Re-render template when data changes
@@ -26,7 +26,7 @@ define(function(require) {
             this.render();
         },
 
-        render: function () {
+        render: function() {
             this.$el.html(this.template(app.messages.toJSON()));
             return this;
         }

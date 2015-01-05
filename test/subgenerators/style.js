@@ -9,7 +9,7 @@ var createAppGenerator = require('../helpers/create-generator').createAppGenerat
 var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
 
-describe('Style sub-generator', function () {
+describe('Style sub-generator', function() {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -22,7 +22,7 @@ describe('Style sub-generator', function () {
         }.bind(this));
     });
 
-    describe('Create style files with Scss', function () {
+    describe('Create style files with Scss', function() {
         it('Handles defaults', function(done) {
             // Filename
             var style = 'mystyle';
@@ -109,7 +109,7 @@ describe('Style sub-generator', function () {
         });
     });
 
-    describe('Create style files with Less', function () {
+    describe('Create style files with Less', function() {
         it('Handles defaults', function(done) {
             // Filename
             var style = 'mystyle';
@@ -173,7 +173,7 @@ describe('Style sub-generator', function () {
             });
         });
     });
-    describe('Create style files with Stylus', function () {
+    describe('Create style files with Stylus', function() {
         it('Handles defaults', function(done) {
             // Filename
             var style = 'mystyle';
@@ -238,7 +238,7 @@ describe('Style sub-generator', function () {
         });
     });
 
-    describe('Create style files with CSS', function () {
+    describe('Create style files with CSS', function() {
         it('Handles defaults', function(done) {
             // Filename
             var style = 'mystyle';

@@ -8,7 +8,7 @@
 
 describe('Router Namespace', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.router = new App.Routers.Main();
     });
 

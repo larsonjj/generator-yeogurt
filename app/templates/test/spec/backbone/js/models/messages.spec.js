@@ -8,7 +8,7 @@
 
 describe('Messages Model Namespace', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.messagesModel = new App.Models.Messages();
     });
 

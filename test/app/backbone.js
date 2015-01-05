@@ -8,7 +8,7 @@ var assert  = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 
 
-describe('Yeogurt generator using Backbone', function () {
+describe('Yeogurt generator using Backbone', function() {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -21,10 +21,10 @@ describe('Yeogurt generator using Backbone', function () {
         }.bind(this));
     });
 
-    describe('On the Client', function () {
-        describe('With Vanilla JS', function () {
-            describe('With Handlebars', function () {
-                describe('Using Jasmine', function () {
+    describe('On the Client', function() {
+        describe('With Vanilla JS', function() {
+            describe('With Handlebars', function() {
+                describe('Using Jasmine', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
@@ -51,14 +51,14 @@ describe('Yeogurt generator using Backbone', function () {
                             useServer: false,
                             testFramework: 'jasmine'
                         });
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             done();
                         });
                     });
                 });
-                describe('Using Mocha', function () {
+                describe('Using Mocha', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
@@ -85,7 +85,7 @@ describe('Yeogurt generator using Backbone', function () {
                             useServer: false,
                             testFramework: 'mocha'
                         });
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -93,8 +93,8 @@ describe('Yeogurt generator using Backbone', function () {
                     });
                 });
             });
-            describe('With Underscore', function () {
-                describe('Using Jasmine', function () {
+            describe('With Underscore', function() {
+                describe('Using Jasmine', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
@@ -121,14 +121,14 @@ describe('Yeogurt generator using Backbone', function () {
                             useServer: false,
                             testFramework: 'jasmine'
                         });
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             done();
                         });
                     });
                 });
-                describe('Using Mocha', function () {
+                describe('Using Mocha', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
@@ -155,7 +155,7 @@ describe('Yeogurt generator using Backbone', function () {
                             useServer: false,
                             testFramework: 'mocha'
                         });
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -163,8 +163,8 @@ describe('Yeogurt generator using Backbone', function () {
                     });
                 });
             });
-            describe('With Jade', function () {
-                describe('Using Jasmine', function () {
+            describe('With Jade', function() {
+                describe('Using Jasmine', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
@@ -191,14 +191,14 @@ describe('Yeogurt generator using Backbone', function () {
                             useServer: false,
                             testFramework: 'jasmine'
                         });
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             done();
                         });
                     });
                 });
-                describe('Using Mocha', function () {
+                describe('Using Mocha', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
@@ -225,7 +225,7 @@ describe('Yeogurt generator using Backbone', function () {
                             useServer: false,
                             testFramework: 'mocha'
                         });
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -234,9 +234,9 @@ describe('Yeogurt generator using Backbone', function () {
                 });
             });
         });
-        describe('With Browserify', function () {
-            describe('With Handlebars', function () {
-                describe('Using Jasmine', function () {
+        describe('With Browserify', function() {
+            describe('With Handlebars', function() {
+                describe('Using Jasmine', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
@@ -262,14 +262,14 @@ describe('Yeogurt generator using Backbone', function () {
                             useServer: false,
                             testFramework: 'jasmine'
                         });
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             done();
                         });
                     });
                 });
-                describe('Using Mocha', function () {
+                describe('Using Mocha', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
@@ -295,7 +295,7 @@ describe('Yeogurt generator using Backbone', function () {
                             useServer: false,
                             testFramework: 'mocha'
                         });
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -303,8 +303,8 @@ describe('Yeogurt generator using Backbone', function () {
                     });
                 });
             });
-            describe('With Underscore', function () {
-                describe('Using Jasmine', function () {
+            describe('With Underscore', function() {
+                describe('Using Jasmine', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
@@ -330,14 +330,14 @@ describe('Yeogurt generator using Backbone', function () {
                             useServer: false,
                             testFramework: 'jasmine'
                         });
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             done();
                         });
                     });
                 });
-                describe('Using Mocha', function () {
+                describe('Using Mocha', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
@@ -363,7 +363,7 @@ describe('Yeogurt generator using Backbone', function () {
                             useServer: false,
                             testFramework: 'mocha'
                         });
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -371,8 +371,8 @@ describe('Yeogurt generator using Backbone', function () {
                     });
                 });
             });
-            describe('With Jade', function () {
-                describe('Using Jasmine', function () {
+            describe('With Jade', function() {
+                describe('Using Jasmine', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
@@ -398,14 +398,14 @@ describe('Yeogurt generator using Backbone', function () {
                             useServer: false,
                             testFramework: 'jasmine'
                         });
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             done();
                         });
                     });
                 });
-                describe('Using Mocha', function () {
+                describe('Using Mocha', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
@@ -431,7 +431,7 @@ describe('Yeogurt generator using Backbone', function () {
                             useServer: false,
                             testFramework: 'mocha'
                         });
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -440,9 +440,9 @@ describe('Yeogurt generator using Backbone', function () {
                 });
             });
         });
-        describe('With RequireJS', function () {
-            describe('With Handlebars', function () {
-                describe('Using Jasmine', function () {
+        describe('With RequireJS', function() {
+            describe('With Handlebars', function() {
+                describe('Using Jasmine', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
@@ -468,14 +468,14 @@ describe('Yeogurt generator using Backbone', function () {
                             useServer: false,
                             testFramework: 'jasmine'
                         });
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             done();
                         });
                     });
                 });
-                describe('Using Mocha', function () {
+                describe('Using Mocha', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
@@ -501,7 +501,7 @@ describe('Yeogurt generator using Backbone', function () {
                             useServer: false,
                             testFramework: 'mocha'
                         });
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -509,8 +509,8 @@ describe('Yeogurt generator using Backbone', function () {
                     });
                 });
             });
-            describe('With Underscore', function () {
-                describe('Using Jasmine', function () {
+            describe('With Underscore', function() {
+                describe('Using Jasmine', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
@@ -536,14 +536,14 @@ describe('Yeogurt generator using Backbone', function () {
                             useServer: false,
                             testFramework: 'jasmine'
                         });
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             done();
                         });
                     });
                 });
-                describe('Using Mocha', function () {
+                describe('Using Mocha', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
@@ -569,7 +569,7 @@ describe('Yeogurt generator using Backbone', function () {
                             useServer: false,
                             testFramework: 'mocha'
                         });
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -577,8 +577,8 @@ describe('Yeogurt generator using Backbone', function () {
                     });
                 });
             });
-            describe('With Jade', function () {
-                describe('Using Jasmine', function () {
+            describe('With Jade', function() {
+                describe('Using Jasmine', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
@@ -604,14 +604,14 @@ describe('Yeogurt generator using Backbone', function () {
                             useServer: false,
                             testFramework: 'jasmine'
                         });
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             done();
                         });
                     });
                 });
-                describe('Using Mocha', function () {
+                describe('Using Mocha', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
@@ -637,7 +637,7 @@ describe('Yeogurt generator using Backbone', function () {
                             useServer: false,
                             testFramework: 'mocha'
                         });
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -647,11 +647,11 @@ describe('Yeogurt generator using Backbone', function () {
             });
         });
     });
-    describe('On the Server', function () {
-        describe('With Browserify', function () {
-            describe('With Handlebars', function () {
-                describe('Using Jasmine', function () {
-                    describe('Without Auth', function () {
+    describe('On the Server', function() {
+        describe('With Browserify', function() {
+            describe('With Handlebars', function() {
+                describe('Using Jasmine', function() {
+                    describe('Without Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -677,14 +677,14 @@ describe('Yeogurt generator using Backbone', function () {
                                 useServer: true,
                                 testFramework: 'jasmine'
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
                             });
                         });
                     });
-                    describe('With Auth', function () {
+                    describe('With Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -751,7 +751,7 @@ describe('Yeogurt generator using Backbone', function () {
                                 useAuth: true,
                                 testFramework: 'jasmine'
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
@@ -759,8 +759,8 @@ describe('Yeogurt generator using Backbone', function () {
                         });
                     });
                 });
-                describe('Using Mocha', function () {
-                    describe('Without Auth', function () {
+                describe('Using Mocha', function() {
+                    describe('Without Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -786,14 +786,14 @@ describe('Yeogurt generator using Backbone', function () {
                                 useServer: true,
                                 testFramework: 'mocha'
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
                             });
                         });
                     });
-                    describe('With Auth', function () {
+                    describe('With Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -860,7 +860,7 @@ describe('Yeogurt generator using Backbone', function () {
                                 useAuth: true,
                                 testFramework: 'mocha'
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
@@ -869,9 +869,9 @@ describe('Yeogurt generator using Backbone', function () {
                     });
                 });
             });
-            describe('With Underscore', function () {
-                describe('Using Jasmine', function () {
-                    describe('Without Auth', function () {
+            describe('With Underscore', function() {
+                describe('Using Jasmine', function() {
+                    describe('Without Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -897,14 +897,14 @@ describe('Yeogurt generator using Backbone', function () {
                                 useServer: true,
                                 testFramework: 'jasmine'
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
                             });
                         });
                     });
-                    describe('With Auth', function () {
+                    describe('With Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -971,7 +971,7 @@ describe('Yeogurt generator using Backbone', function () {
                                 testFramework: 'jasmine',
                                 useAuth: true
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
@@ -979,8 +979,8 @@ describe('Yeogurt generator using Backbone', function () {
                         });
                     });
                 });
-                describe('Using Mocha', function () {
-                    describe('Without Auth', function () {
+                describe('Using Mocha', function() {
+                    describe('Without Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -1006,14 +1006,14 @@ describe('Yeogurt generator using Backbone', function () {
                                 useServer: true,
                                 testFramework: 'mocha'
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
                             });
                         });
                     });
-                    describe('With Auth', function () {
+                    describe('With Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -1080,7 +1080,7 @@ describe('Yeogurt generator using Backbone', function () {
                                 testFramework: 'mocha',
                                 useAuth: true
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
@@ -1089,9 +1089,9 @@ describe('Yeogurt generator using Backbone', function () {
                     });
                 });
             });
-            describe('With Jade', function () {
-                describe('Using Jasmine', function () {
-                    describe('Without Auth', function () {
+            describe('With Jade', function() {
+                describe('Using Jasmine', function() {
+                    describe('Without Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -1117,14 +1117,14 @@ describe('Yeogurt generator using Backbone', function () {
                                 useServer: true,
                                 testFramework: 'jasmine'
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
                             });
                         });
                     });
-                    describe('With Auth', function () {
+                    describe('With Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -1191,7 +1191,7 @@ describe('Yeogurt generator using Backbone', function () {
                                 testFramework: 'jasmine',
                                 useAuth: true
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
@@ -1199,8 +1199,8 @@ describe('Yeogurt generator using Backbone', function () {
                         });
                     });
                 });
-                describe('Using Mocha', function () {
-                    describe('Without Auth', function () {
+                describe('Using Mocha', function() {
+                    describe('Without Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -1226,14 +1226,14 @@ describe('Yeogurt generator using Backbone', function () {
                                 useServer: true,
                                 testFramework: 'mocha'
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
                             });
                         });
                     });
-                    describe('With Auth', function () {
+                    describe('With Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -1300,7 +1300,7 @@ describe('Yeogurt generator using Backbone', function () {
                                 testFramework: 'mocha',
                                 useAuth: true
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
@@ -1310,10 +1310,10 @@ describe('Yeogurt generator using Backbone', function () {
                 });
             });
         });
-        describe('With RequireJS', function () {
-            describe('With Handlebars', function () {
-                describe('Using Jasmine', function () {
-                    describe('Without Auth', function () {
+        describe('With RequireJS', function() {
+            describe('With Handlebars', function() {
+                describe('Using Jasmine', function() {
+                    describe('Without Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -1339,14 +1339,14 @@ describe('Yeogurt generator using Backbone', function () {
                                 useServer: true,
                                 testFramework: 'jasmine'
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
                             });
                         });
                     });
-                    describe('With Auth', function () {
+                    describe('With Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -1413,7 +1413,7 @@ describe('Yeogurt generator using Backbone', function () {
                                 testFramework: 'jasmine',
                                 useAuth: true
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
@@ -1421,8 +1421,8 @@ describe('Yeogurt generator using Backbone', function () {
                         });
                     });
                 });
-                describe('Using Mocha', function () {
-                    describe('Without Auth', function () {
+                describe('Using Mocha', function() {
+                    describe('Without Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -1448,14 +1448,14 @@ describe('Yeogurt generator using Backbone', function () {
                                 useServer: true,
                                 testFramework: 'mocha'
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
                             });
                         });
                     });
-                    describe('With Auth', function () {
+                    describe('With Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -1522,7 +1522,7 @@ describe('Yeogurt generator using Backbone', function () {
                                 testFramework: 'mocha',
                                 useAuth: true
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
@@ -1531,9 +1531,9 @@ describe('Yeogurt generator using Backbone', function () {
                     });
                 });
             });
-            describe('With Underscore', function () {
-                describe('Using Jasmine', function () {
-                    describe('Without Auth', function () {
+            describe('With Underscore', function() {
+                describe('Using Jasmine', function() {
+                    describe('Without Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -1559,14 +1559,14 @@ describe('Yeogurt generator using Backbone', function () {
                                 useServer: true,
                                 testFramework: 'jasmine'
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
                             });
                         });
                     });
-                    describe('With Auth', function () {
+                    describe('With Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -1633,7 +1633,7 @@ describe('Yeogurt generator using Backbone', function () {
                                 testFramework: 'jasmine',
                                 useAuth: true
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
@@ -1641,8 +1641,8 @@ describe('Yeogurt generator using Backbone', function () {
                         });
                     });
                 });
-                describe('Using Mocha', function () {
-                    describe('Without Auth', function () {
+                describe('Using Mocha', function() {
+                    describe('Without Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -1668,14 +1668,14 @@ describe('Yeogurt generator using Backbone', function () {
                                 useServer: true,
                                 testFramework: 'mocha'
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
                             });
                         });
                     });
-                    describe('With Auth', function () {
+                    describe('With Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -1742,7 +1742,7 @@ describe('Yeogurt generator using Backbone', function () {
                                 testFramework: 'mocha',
                                 useAuth: true
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
@@ -1751,9 +1751,9 @@ describe('Yeogurt generator using Backbone', function () {
                     });
                 });
             });
-            describe('With Jade', function () {
-                describe('Using Jasmine', function () {
-                    describe('Without Auth', function () {
+            describe('With Jade', function() {
+                describe('Using Jasmine', function() {
+                    describe('Without Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -1779,14 +1779,14 @@ describe('Yeogurt generator using Backbone', function () {
                                 useServer: true,
                                 testFramework: 'jasmine'
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
                             });
                         });
                     });
-                    describe('With Auth', function () {
+                    describe('With Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -1853,7 +1853,7 @@ describe('Yeogurt generator using Backbone', function () {
                                 testFramework: 'jasmine',
                                 useAuth: true
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
@@ -1861,8 +1861,8 @@ describe('Yeogurt generator using Backbone', function () {
                         });
                     });
                 });
-                describe('Using Mocha', function () {
-                    describe('Without Auth', function () {
+                describe('Using Mocha', function() {
+                    describe('Without Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -1888,14 +1888,14 @@ describe('Yeogurt generator using Backbone', function () {
                                 useServer: true,
                                 testFramework: 'mocha'
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();
                             });
                         });
                     });
-                    describe('With Auth', function () {
+                    describe('With Auth', function() {
                         it ('Creates expected files with expected content', function(done) {
                             var expected = [
                                 // add files and folders you expect to exist here.
@@ -1962,7 +1962,7 @@ describe('Yeogurt generator using Backbone', function () {
                                 testFramework: 'mocha',
                                 useAuth: true
                             });
-                            this.app.run([], function () {
+                            this.app.run([], function() {
                                 assert.file(expected);
                                 assert.fileContent(fileContentToTest);
                                 done();

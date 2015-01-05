@@ -8,7 +8,7 @@ var assert  = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 
 
-describe('Yeogurt generator using Styles', function () {
+describe('Yeogurt generator using Styles', function() {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -20,7 +20,7 @@ describe('Yeogurt generator using Styles', function () {
             done();
         }.bind(this));
     });
-    describe('With CSS', function () {
+    describe('With CSS', function() {
         it('Creates expected files', function (done) {
             var expected = [
                 'client/styles/main.css',
@@ -30,13 +30,13 @@ describe('Yeogurt generator using Styles', function () {
             helpers.mockPrompt(this.app, {
                 cssOption: 'css'
             });
-            this.app.run([], function () {
+            this.app.run([], function() {
                 assert.file(expected);
                 done();
             });
         });
     });
-    describe('With Sass', function () {
+    describe('With Sass', function() {
         it('Creates expected files', function (done) {
             var expected = [
                 'client/',
@@ -50,12 +50,12 @@ describe('Yeogurt generator using Styles', function () {
             helpers.mockPrompt(this.app, {
                 cssOption: 'sass'
             });
-            this.app.run([], function () {
+            this.app.run([], function() {
                 assert.file(expected);
                 done();
             });
         });
-        describe('With Sass (not Scss) syntax', function () {
+        describe('With Sass (not Scss) syntax', function() {
             it('Creates expected content', function (done) {
                 var expected = [
                     'client/',
@@ -73,7 +73,7 @@ describe('Yeogurt generator using Styles', function () {
                     cssOption: 'sass',
                     sassSyntax: 'sass',
                 });
-                this.app.run([], function () {
+                this.app.run([], function() {
                     assert.file(expected);
                     assert.fileContent(fileContentToTest);
                     done();
@@ -81,7 +81,7 @@ describe('Yeogurt generator using Styles', function () {
             });
         });
     });
-    describe('With Less', function () {
+    describe('With Less', function() {
         it('Creates expected files', function (done) {
             var expected = [
                 'client/',
@@ -98,14 +98,14 @@ describe('Yeogurt generator using Styles', function () {
             helpers.mockPrompt(this.app, {
                 cssOption: 'less'
             });
-            this.app.run([], function () {
+            this.app.run([], function() {
                 assert.file(expected);
                 assert.fileContent(fileContentToTest);
                 done();
             });
         });
     });
-    describe('With Stylus', function () {
+    describe('With Stylus', function() {
         it('Creates expected files', function (done) {
             var expected = [
                 'client/',
@@ -121,7 +121,7 @@ describe('Yeogurt generator using Styles', function () {
                 useBootstrap: false,
                 useFoundation: false
             });
-            this.app.run([], function () {
+            this.app.run([], function() {
                 assert.file(expected);
                 done();
             });

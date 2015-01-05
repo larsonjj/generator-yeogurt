@@ -9,9 +9,9 @@ define(function(require) {
 
     var <%= _.classify(name) %> = require('<%= modelFile %>');
 
-    describe('<%= _.classify(name) %> Model', function () {
+    describe('<%= _.classify(name) %> Model', function() {
 
-        beforeEach(function () {
+        beforeEach(function() {
             this.<%= _.camelize(name) %> = new <%= _.classify(name) %>();
         });
 

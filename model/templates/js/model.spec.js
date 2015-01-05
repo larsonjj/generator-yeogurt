@@ -6,9 +6,9 @@
 
 'use strict';
 
-describe('<%= _.classify(name) %> Model', function () {
+describe('<%= _.classify(name) %> Model', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         var App = App || {};
         App.Models = App.Models || {};
 

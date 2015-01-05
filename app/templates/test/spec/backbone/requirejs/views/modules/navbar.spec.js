@@ -11,7 +11,7 @@ define(function(require) {
 
     describe('Navbar View', function() {
 
-        beforeEach(function () {
+        beforeEach(function() {
             this.navbarView = new NavbarView();
         });
 

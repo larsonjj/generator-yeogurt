@@ -11,7 +11,7 @@ define(function(require) {
 
     describe('Reset View', function() {
 
-        beforeEach(function () {
+        beforeEach(function() {
             this.resetView = new ResetView();
         });
 

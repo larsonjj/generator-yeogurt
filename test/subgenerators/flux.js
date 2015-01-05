@@ -9,7 +9,7 @@ var createAppGenerator = require('../helpers/create-generator').createAppGenerat
 var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
 
-describe('Flux sub-generator', function () {
+describe('Flux sub-generator', function() {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -22,7 +22,7 @@ describe('Flux sub-generator', function () {
         }.bind(this));
     });
 
-    describe('Does not create any flux files when using Backbone', function () {
+    describe('Does not create any flux files when using Backbone', function() {
         it('Handles defaults', function(done) {
             // Filename
             var flux = 'myflux';
@@ -109,7 +109,7 @@ describe('Flux sub-generator', function () {
         });
     });
 
-    describe('Does not create any flux files when using Static Jade', function () {
+    describe('Does not create any flux files when using Static Jade', function() {
         it('Handles defaults', function(done) {
             // Filename
             var flux = 'myflux';
@@ -258,7 +258,7 @@ describe('Flux sub-generator', function () {
         });
     });
 
-    describe('Create flux files when using flux', function () {
+    describe('Create flux files when using flux', function() {
         it('Handles defaults', function(done) {
             // Filename
             var flux = 'myflux';

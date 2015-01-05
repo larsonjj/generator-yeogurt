@@ -22,7 +22,7 @@ define(function(require) {
         },
 
         // Code that runs when View is initialized
-        initialize: function () {
+        initialize: function() {
             this.render();
         },
 
@@ -64,7 +64,7 @@ define(function(require) {
             });
         },
 
-        render: function () {
+        render: function() {
             this.$el.html(this.template({
                 user: app.user.toJSON()
             }));

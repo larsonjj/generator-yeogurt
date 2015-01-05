@@ -11,7 +11,7 @@ define(function(require) {
 
     describe('Messages View', function() {
 
-        beforeEach(function () {
+        beforeEach(function() {
             this.messagesView = new MessagesView();
         });
 

@@ -8,7 +8,7 @@
 
 describe('Index View Namespace', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.indexView = new App.Views.Index();
     });
 

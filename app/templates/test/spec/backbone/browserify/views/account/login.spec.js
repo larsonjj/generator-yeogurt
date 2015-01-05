@@ -10,7 +10,7 @@ var LoginView = require('../../../../client/scripts/views/account/login');
 
 describe('Login View', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.loginView = new LoginView();
     });
 

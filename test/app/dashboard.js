@@ -8,7 +8,7 @@ var assert  = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 
 
-describe('Yeogurt generator using a Dashboard', function () {
+describe('Yeogurt generator using a Dashboard', function() {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -36,7 +36,7 @@ describe('Yeogurt generator using a Dashboard', function () {
             useDashboard: true
         });
 
-        this.app.run([], function () {
+        this.app.run([], function() {
             assert.file(expected);
             done();
         });

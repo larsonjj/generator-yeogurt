@@ -150,7 +150,7 @@ var User = Backbone.Model.extend({<% if (dbOption === 'mongodb') { %>
         });
     },
 
-    getToken: function () {
+    getToken: function() {
         return $.cookie('token');
     },
 

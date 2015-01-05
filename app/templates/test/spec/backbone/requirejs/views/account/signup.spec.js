@@ -11,7 +11,7 @@ define(function(require) {
 
     describe('Signup View', function() {
 
-        beforeEach(function () {
+        beforeEach(function() {
             this.signupView = new SignupView();
         });
 

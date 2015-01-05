@@ -9,7 +9,7 @@ var createAppGenerator = require('../helpers/create-generator').createAppGenerat
 var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
 
-describe('Script sub-generator', function () {
+describe('Script sub-generator', function() {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -22,7 +22,7 @@ describe('Script sub-generator', function () {
         }.bind(this));
     });
 
-    describe('Create script files', function () {
+    describe('Create script files', function() {
         it('Handles defaults', function(done) {
             // Filename
             var script = 'myscript';

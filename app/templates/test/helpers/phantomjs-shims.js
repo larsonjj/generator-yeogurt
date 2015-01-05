@@ -12,8 +12,8 @@ if (!Function.prototype.bind) {
 
         var aArgs = Array.prototype.slice.call(arguments, 1),
                 fToBind = this,
-                FNOP = function () {},
-                fBound = function () {
+                FNOP = function() {},
+                fBound = function() {
                     return fToBind.apply(this instanceof FNOP && oThis ? this
                         : oThis, aArgs.concat(Array.prototype.slice.call(arguments)));
                 };

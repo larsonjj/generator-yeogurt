@@ -19,7 +19,7 @@ var Forgot = Backbone.View.extend({
     },
 
     // Code that runs when View is initialized
-    initialize: function () {
+    initialize: function() {
         this.render();
     },
 

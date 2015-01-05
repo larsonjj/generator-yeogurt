@@ -96,7 +96,6 @@ var answersConfig = function answersConfig() {
     this.htmlOption            = this.answers.htmlOption;
     this.jsFramework           = this.answers.jsFramework;
     this.useJsx                = this.answers.useJsx;
-    this.useFlux               = this.answers.useFlux;
     this.jsTemplate            = this.answers.jsTemplate;
     this.jsOption              = this.answers.jsOption;
     this.cssOption             = this.answers.cssOption;

@@ -11,7 +11,7 @@ define(function(require) {
 
     describe('User Model', function() {
 
-        beforeEach(function () {
+        beforeEach(function() {
             this.userModel = new UserModel();
         });
 

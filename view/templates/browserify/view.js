@@ -19,11 +19,11 @@ var <%= _.classify(name) %> = Backbone.View.extend({
     events: {},
 
     // Code that runs when View is initialized
-    initialize: function () {
+    initialize: function() {
         this.render();
     },
 
-    render: function () {
+    render: function() {
         this.$el.html(this.template);
         return this;
     }

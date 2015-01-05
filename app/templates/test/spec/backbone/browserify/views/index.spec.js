@@ -10,7 +10,7 @@ var IndexView = require('../../../client/scripts/views/index');
 
 describe('Index View', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.indexView = new IndexView();
     });
 

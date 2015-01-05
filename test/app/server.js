@@ -8,7 +8,7 @@ var assert  = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 
 
-describe('Yeogurt generator using Server', function () {
+describe('Yeogurt generator using Server', function() {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -20,7 +20,7 @@ describe('Yeogurt generator using Server', function () {
             done();
         }.bind(this));
     });
-    describe('With Defaults', function () {
+    describe('With Defaults', function() {
         it('Creates expected files', function (done) {
             var expected = [
                 'grunt/config/util/open.js',
@@ -42,14 +42,14 @@ describe('Yeogurt generator using Server', function () {
                 dbOption: 'none',
                 useAuth: false
             });
-            this.app.run([], function () {
+            this.app.run([], function() {
                 assert.file(expected);
                 done();
             });
         });
     });
-    describe('With Authentication', function () {
-        describe('With Jade', function () {
+    describe('With Authentication', function() {
+        describe('With Jade', function() {
             it('Creates expected files', function (done) {
                 var expected = [
                     'server/templates/error.jade',
@@ -69,13 +69,13 @@ describe('Yeogurt generator using Server', function () {
                     dbType: 'mongodb',
                     useAuth: true
                 });
-                this.app.run([], function () {
+                this.app.run([], function() {
                     assert.file(expected);
                     done();
                 });
             });
         });
-        describe('With Swig', function () {
+        describe('With Swig', function() {
             it('Creates expected files', function (done) {
                 var expected = [
                     'server/templates/error.swig',
@@ -95,14 +95,14 @@ describe('Yeogurt generator using Server', function () {
                     dbType: 'mongodb',
                     useAuth: true
                 });
-                this.app.run([], function () {
+                this.app.run([], function() {
                     assert.file(expected);
                     done();
                 });
             });
         });
-        describe('With MongoDB', function () {
-            describe('With Defaults', function () {
+        describe('With MongoDB', function() {
+            describe('With Defaults', function() {
                 it('Creates expected files', function (done) {
                     var expected = [
                         'server/controllers/user.js',
@@ -118,13 +118,13 @@ describe('Yeogurt generator using Server', function () {
                         dbType: 'mongodb',
                         useAuth: true
                     });
-                    this.app.run([], function () {
+                    this.app.run([], function() {
                         assert.file(expected);
                         done();
                     });
                 });
             });
-            describe('With Local Authentication', function () {
+            describe('With Local Authentication', function() {
                 it('Creates expected files', function (done) {
                     var expected = [
                         'server/auth/strategies/local.js',
@@ -139,7 +139,7 @@ describe('Yeogurt generator using Server', function () {
                         dbType: 'mongodb',
                         useAuth: true
                     });
-                    this.app.run([], function () {
+                    this.app.run([], function() {
                         assert.file(expected);
                         assert.fileContent(fileContentToTest);
                         done();
@@ -147,8 +147,8 @@ describe('Yeogurt generator using Server', function () {
                 });
             });
         });
-        describe('With MySQL', function () {
-            describe('With Defaults', function () {
+        describe('With MySQL', function() {
+            describe('With Defaults', function() {
                 it('Creates expected files', function (done) {
                     var expected = [
                         'server/controllers/user.js',
@@ -164,13 +164,13 @@ describe('Yeogurt generator using Server', function () {
                         dbType: 'mysql',
                         useAuth: true
                     });
-                    this.app.run([], function () {
+                    this.app.run([], function() {
                         assert.file(expected);
                         done();
                     });
                 });
             });
-            describe('With Local Authentication', function () {
+            describe('With Local Authentication', function() {
                 it('Creates expected files', function (done) {
                     var expected = [
                         'server/auth/strategies/local.js',
@@ -185,14 +185,14 @@ describe('Yeogurt generator using Server', function () {
                         dbType: 'mysql',
                         useAuth: true
                     });
-                    this.app.run([], function () {
+                    this.app.run([], function() {
                         assert.file(expected);
                         assert.fileContent(fileContentToTest);
                         done();
                     });
                 });
             });
-            describe('With Single Page Application', function () {
+            describe('With Single Page Application', function() {
                 it('Creates expected files', function (done) {
                     var fileContentToTest = [
                         ['server/auth/index.js', /express\-jwt/i],
@@ -207,7 +207,7 @@ describe('Yeogurt generator using Server', function () {
                         useAuth: true,
                         singlePageApplication: true
                     });
-                    this.app.run([], function () {
+                    this.app.run([], function() {
                         assert.fileContent(fileContentToTest);
                         done();
                     });
@@ -215,7 +215,7 @@ describe('Yeogurt generator using Server', function () {
             });
         });
     });
-    describe('With MongoDB Database', function () {
+    describe('With MongoDB Database', function() {
         it('Creates expected files', function (done) {
             var expected = [
                 'server/config/database.js'
@@ -229,14 +229,14 @@ describe('Yeogurt generator using Server', function () {
                 dbType: 'mongodb',
                 useServer: true
             });
-            this.app.run([], function () {
+            this.app.run([], function() {
                 assert.file(expected);
                 assert.fileContent(fileContentToTest);
                 done();
             });
         });
     });
-    describe('With MySQL Database', function () {
+    describe('With MySQL Database', function() {
         it('Creates expected files', function (done) {
             var expected = [
                 'server/config/database.js'
@@ -250,14 +250,14 @@ describe('Yeogurt generator using Server', function () {
                 dbType: 'mysql',
                 useServer: true
             });
-            this.app.run([], function () {
+            this.app.run([], function() {
                 assert.file(expected);
                 assert.fileContent(fileContentToTest);
                 done();
             });
         });
     });
-    describe('With Static Jade', function () {
+    describe('With Static Jade', function() {
         it('Creates expected files', function (done) {
             var expected = [
                 'server/templates/error.jade',
@@ -273,14 +273,14 @@ describe('Yeogurt generator using Server', function () {
                 htmlOption: 'jade',
                 useServer: true
             });
-            this.app.run([], function () {
+            this.app.run([], function() {
                 assert.file(expected);
                 assert.fileContent(expectedContent);
                 done();
             });
         });
     });
-    describe('With Static Swig', function () {
+    describe('With Static Swig', function() {
         it('Creates expected files', function (done) {
             var expected = [
                 'server/templates/error.swig',
@@ -296,15 +296,15 @@ describe('Yeogurt generator using Server', function () {
                 htmlOption: 'swig',
                 useServer: true
             });
-            this.app.run([], function () {
+            this.app.run([], function() {
                 assert.file(expected);
                 assert.fileContent(expectedContent);
                 done();
             });
         });
     });
-    describe('With Single Page Application', function () {
-        describe('With Defaults', function () {
+    describe('With Single Page Application', function() {
+        describe('With Defaults', function() {
             it('Creates expected files', function (done) {
                 var expected = [
                     'client/index.html'
@@ -319,14 +319,14 @@ describe('Yeogurt generator using Server', function () {
                     singlePageApplication: true,
                     useServer: true
                 });
-                this.app.run([], function () {
+                this.app.run([], function() {
                     assert.file(expected);
                     assert.fileContent(fileContentToTest);
                     done();
                 });
             });
         });
-        describe('Without Server templates', function () {
+        describe('Without Server templates', function() {
             it('Creates expected files', function (done) {
                 var expectedContent = [
                     ['server/routes/index.js', /app\.get\('\/'/i]
@@ -342,7 +342,7 @@ describe('Yeogurt generator using Server', function () {
                     useServerTemplates: false,
                     jsFramework: 'react'
                 });
-                this.app.run([], function () {
+                this.app.run([], function() {
                     assert.noFileContent(fileContentToTest);
                     assert.fileContent(expectedContent);
                     done();
@@ -350,7 +350,7 @@ describe('Yeogurt generator using Server', function () {
             });
         });
     });
-    describe('With Paypal\'s Lucsa Security Module', function () {
+    describe('With Paypal\'s Lucsa Security Module', function() {
         it('Creates expected files', function (done) {
             var expected = [
                 'server/config/security.js'
@@ -362,14 +362,14 @@ describe('Yeogurt generator using Server', function () {
             helpers.mockPrompt(this.app, {
                 useServer: true
             });
-            this.app.run([], function () {
+            this.app.run([], function() {
                 assert.file(expected);
                 assert.fileContent(fileContentToTest);
                 done();
             });
         });
     });
-    describe('With Cookie Sessions', function () {
+    describe('With Cookie Sessions', function() {
         it('Creates expected files', function (done) {
             var expected = [
                 'server/config/secrets.js'
@@ -382,7 +382,7 @@ describe('Yeogurt generator using Server', function () {
                 useServer: true,
                 useAuth: true
             });
-            this.app.run([], function () {
+            this.app.run([], function() {
                 assert.file(expected);
                 assert.fileContent(fileContentToTest);
                 done();

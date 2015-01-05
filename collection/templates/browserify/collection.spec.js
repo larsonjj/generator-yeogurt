@@ -8,9 +8,9 @@
 
 var <%= _.classify(name) %> = require('<%= rootDir %><%= collectionFile %>');
 
-describe('<%= _.classify(name) %> Collection', function () {
+describe('<%= _.classify(name) %> Collection', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.<%= _.camelize(name) %>Collection = new <%= _.classify(name) %>();
     });
 

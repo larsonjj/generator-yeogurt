@@ -20,7 +20,7 @@ App.Views.Login = Backbone.View.extend({
     },
 
     // Code that runs when View is initialized
-    initialize: function () {
+    initialize: function() {
         this.render();
     },
 
@@ -39,7 +39,7 @@ App.Views.Login = Backbone.View.extend({
         });
     },
 
-    render: function () {
+    render: function() {
         this.$el.html(this.template);
         return this;
     }

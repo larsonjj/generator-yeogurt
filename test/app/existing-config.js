@@ -9,7 +9,7 @@ var assert  = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 
 
-describe('Yeogurt generator using existing configuration', function () {
+describe('Yeogurt generator using existing configuration', function() {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -39,7 +39,7 @@ describe('Yeogurt generator using existing configuration', function () {
             htmlOption: 'jade'
         });
 
-        this.app.run([], function () {
+        this.app.run([], function() {
             assert.file(expected);
             assert.fileContent(fileContentToTest);
             done();
@@ -47,7 +47,7 @@ describe('Yeogurt generator using existing configuration', function () {
     });
 });
 
-describe('Yeogurt generator without existing configuration', function () {
+describe('Yeogurt generator without existing configuration', function() {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -73,7 +73,7 @@ describe('Yeogurt generator without existing configuration', function () {
             htmlOption: 'jade'
         });
 
-        this.app.run([], function () {
+        this.app.run([], function() {
             assert.file(expected);
             assert.fileContent(fileContentToTest);
             done();

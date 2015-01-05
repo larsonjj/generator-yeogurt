@@ -11,7 +11,7 @@ define(function(require) {
 
     describe('Settings View', function() {
 
-        beforeEach(function () {
+        beforeEach(function() {
             this.settingsView = new SettingsView();
         });
 

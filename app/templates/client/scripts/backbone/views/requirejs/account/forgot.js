@@ -20,7 +20,7 @@ define(function(require) {
         },
 
         // Code that runs when View is initialized
-        initialize: function () {
+        initialize: function() {
             this.render();
         },
 

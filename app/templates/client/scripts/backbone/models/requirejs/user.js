@@ -148,7 +148,7 @@ define(function(require) {
             });
         },
 
-        getToken: function () {
+        getToken: function() {
             return $.cookie('token');
         },
 

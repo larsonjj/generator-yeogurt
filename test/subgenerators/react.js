@@ -9,7 +9,7 @@ var createAppGenerator = require('../helpers/create-generator').createAppGenerat
 var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
 
-describe('React sub-generator', function () {
+describe('React sub-generator', function() {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -22,7 +22,7 @@ describe('React sub-generator', function () {
         }.bind(this));
     });
 
-    describe('Does not create any react files when using Backbone', function () {
+    describe('Does not create any react files when using Backbone', function() {
         it('Handles defaults', function(done) {
             // Filename
             var react = 'myreact';
@@ -100,7 +100,7 @@ describe('React sub-generator', function () {
         });
     });
 
-    describe('Does not create any react files when using Static Jade', function () {
+    describe('Does not create any react files when using Static Jade', function() {
         it('Handles defaults', function(done) {
             // Filename
             var react = 'myreact';
@@ -231,7 +231,7 @@ describe('React sub-generator', function () {
         });
     });
 
-    describe('Create react files when using React', function () {
+    describe('Create react files when using React', function() {
         it('Handles defaults', function(done) {
             // Filename
             var react = 'myreact';

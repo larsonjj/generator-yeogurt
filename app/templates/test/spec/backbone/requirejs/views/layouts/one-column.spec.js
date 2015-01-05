@@ -11,7 +11,7 @@ define(function(require) {
 
     describe('OneColumn View', function() {
 
-        beforeEach(function () {
+        beforeEach(function() {
             this.oneColumnView = new OneColumnView();
         });
 

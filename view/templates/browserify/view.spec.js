@@ -8,9 +8,9 @@
 
 var <%= _.classify(name) %> = require('<%= rootDir %><%= viewFile %>');
 
-describe('<%= _.classify(name) %> View', function () {
+describe('<%= _.classify(name) %> View', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.<%= _.camelize(name) %> = new <%= _.classify(name) %>();
     });
 

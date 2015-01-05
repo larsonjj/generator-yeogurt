@@ -8,7 +8,7 @@ var assert  = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
-describe('View sub-generator', function () {
+describe('View sub-generator', function() {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -21,7 +21,7 @@ describe('View sub-generator', function () {
         }.bind(this));
     });
 
-    describe('Does not create any view files when using React', function () {
+    describe('Does not create any view files when using React', function() {
         it('Handles defaults', function(done) {
             // Filename
             var view = 'myview';
@@ -97,7 +97,7 @@ describe('View sub-generator', function () {
         });
     });
 
-    describe('Does not create any view files when using Static Jade', function () {
+    describe('Does not create any view files when using Static Jade', function() {
         it('Handles defaults', function(done) {
             // Filename
             var view = 'myview';
@@ -252,7 +252,7 @@ describe('View sub-generator', function () {
         });
     });
 
-    describe('Create view files when using Backbone', function () {
+    describe('Create view files when using Backbone', function() {
         it('Without testing', function(done) {
             // Filename
             var view = 'myview';
@@ -280,7 +280,7 @@ describe('View sub-generator', function () {
                 });
             });
         });
-        describe('Handles defaults with Underscore', function () {
+        describe('Handles defaults with Underscore', function() {
             describe('Using Browserify', function() {
                 it('Using Jasmine', function(done) {
                     // Filename

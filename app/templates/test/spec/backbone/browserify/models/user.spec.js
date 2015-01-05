@@ -10,7 +10,7 @@ var UserModel = require('../../../client/scripts/models/user');
 
 describe('User Model', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.userModel = new UserModel();
     });
 

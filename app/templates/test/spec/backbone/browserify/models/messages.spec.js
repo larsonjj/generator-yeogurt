@@ -10,7 +10,7 @@ var MessagesModel = require('../../../client/scripts/models/messages');
 
 describe('Messages Model', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.messagesModel = new MessagesModel();
     });
 

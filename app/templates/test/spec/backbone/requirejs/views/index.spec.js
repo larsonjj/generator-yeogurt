@@ -11,7 +11,7 @@ define(function(require) {
 
     describe('Index View', function() {
 
-        beforeEach(function () {
+        beforeEach(function() {
             this.indexView = new IndexView();
         });
 

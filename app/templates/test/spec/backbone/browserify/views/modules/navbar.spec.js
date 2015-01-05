@@ -10,7 +10,7 @@ var NavbarView = require('../../../../client/scripts/views/modules/navbar');
 
 describe('Navbar View', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.navbarView = new NavbarView();
     });
 

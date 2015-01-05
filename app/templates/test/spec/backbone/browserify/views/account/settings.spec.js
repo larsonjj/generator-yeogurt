@@ -10,7 +10,7 @@ var SettingsView = require('../../../../client/scripts/views/account/settings');
 
 describe('Settings View', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.settingsView = new SettingsView();
     });
 

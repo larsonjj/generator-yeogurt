@@ -8,7 +8,7 @@
 
 describe('Messages View Namespace', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.messagesView = new App.Views.Messages();
     });
 

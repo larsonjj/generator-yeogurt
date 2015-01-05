@@ -18,13 +18,13 @@ define(function(require) {
         events: {},
 
         // Code that runs when View is initialized
-        initialize: function () {
+        initialize: function() {
             // Re-render template when data changes
             this.listenTo(app.user, 'change', this.render);
             this.render();
         },
 
-        render: function () {
+        render: function() {
             this.$el.html(this.template({
                 loggedIn: app.user.get('loggedIn'),
                 user: app.user.toJSON()

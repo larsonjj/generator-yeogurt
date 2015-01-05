@@ -10,7 +10,7 @@ var ForgotView = require('../../../../client/scripts/views/account/forgot');
 
 describe('Forgot View', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.forgotView = new ForgotView();
     });
 

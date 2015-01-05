@@ -8,7 +8,7 @@
 
 describe('Settings View Namespace', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.settingsView = new App.Views.Settings();
     });
 

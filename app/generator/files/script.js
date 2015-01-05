@@ -171,20 +171,75 @@ var scriptFiles = function scriptFiles() {
 
     }
     else if (this.jsFramework === 'react') {
-        this.template('client/scripts/react/routes/browserify/routes.js', 'client/scripts/routes.js');
-        this.template('client/scripts/react/controllers/browserify/account.js', 'client/scripts/controllers/account.js');
-        this.template('client/scripts/react/controllers/browserify/index.js', 'client/scripts/controllers/index.js');
+        this.template('client/scripts/react/routes/routes.js', 'client/scripts/routes.js');
+        this.template('client/scripts/react/main/main.js', 'client/scripts/main.js');
+        this.template('client/scripts/react/main/app.js', 'client/scripts/app.js');
+
+        if (this.useAuth) {
+            // Controllers
+            this.template('client/scripts/react/controllers/account.js', 'client/scripts/controllers/account.js');
+            this.template('client/scripts/react/controllers/index.js', 'client/scripts/controllers/index.js');
+        }
+
+        // Constants
+        this.template('client/scripts/react/constants/action-types.js', 'client/scripts/constants/action-types.js');
+        this.template('client/scripts/react/constants/defaults.js', 'client/scripts/constants/defaults.js');
+        this.template('client/scripts/react/constants/payload-sources.js', 'client/scripts/constants/payload-sources.js');
+
+        // Stores
+        this.template('client/scripts/react/stores/default.js', 'client/scripts/stores/default.js');
+        this.template('client/scripts/react/stores/page.js', 'client/scripts/stores/page.js');
+        if (this.useAuth) {
+            this.template('client/scripts/react/stores/messages.js', 'client/scripts/stores/messages.js');
+            this.template('client/scripts/react/stores/user.js', 'client/scripts/stores/user.js');
+        }
+
         if (this.useJsx) {
-            this.template('client/scripts/react/components/index.jsx', 'client/scripts/components/index.jsx');
+            this.template('client/scripts/react/components/jsx/index.jsx', 'client/scripts/components/index.jsx');
+
+            // Modules
+            this.template('client/scripts/react/components/jsx/modules/link.jsx', 'client/scripts/components/modules/link.jsx');
+            if (this.useAuth) {
+                this.template('client/scripts/react/components/jsx/modules/messages.jsx', 'client/scripts/components/modules/messages.jsx');
+                this.template('client/scripts/react/components/jsx/modules/navbar.jsx', 'client/scripts/components/modules/navbar.jsx');
+            }
+
+            // Layouts
+            this.template('client/scripts/react/components/jsx/layouts/one-column.jsx', 'client/scripts/components/layouts/one-column.jsx');
+
+            if (this.useAuth) {
+                // Account
+                this.template('client/scripts/react/components/jsx/account/forgot.jsx', 'client/scripts/components/account/forgot.jsx');
+                this.template('client/scripts/react/components/jsx/account/login.jsx', 'client/scripts/components/account/login.jsx');
+                this.template('client/scripts/react/components/jsx/account/reset.jsx', 'client/scripts/components/account/reset.jsx');
+                this.template('client/scripts/react/components/jsx/account/settings.jsx', 'client/scripts/components/account/settings.jsx');
+                this.template('client/scripts/react/components/jsx/account/signup.jsx', 'client/scripts/components/account/signup.jsx');
+            }
         }
         else {
-            this.template('client/scripts/react/components/index.js', 'client/scripts/components/index.js');
+            this.template('client/scripts/react/components/js/index.js', 'client/scripts/components/index.js');
+
+            // Modules
+            this.template('client/scripts/react/components/js/modules/link.js', 'client/scripts/components/modules/link.js');
+            if (this.useAuth) {
+                this.template('client/scripts/react/components/js/modules/messages.js', 'client/scripts/components/modules/messages.js');
+                this.template('client/scripts/react/components/js/modules/navbar.js', 'client/scripts/components/modules/navbar.js');
+            }
+
+            // Layouts
+            this.template('client/scripts/react/components/js/layouts/one-column.js', 'client/scripts/components/layouts/one-column.js');
+
+            if (this.useAuth) {
+                // Account
+                this.template('client/scripts/react/components/js/account/forgot.js', 'client/scripts/components/account/forgot.js');
+                this.template('client/scripts/react/components/js/account/login.js', 'client/scripts/components/account/login.js');
+                this.template('client/scripts/react/components/js/account/reset.js', 'client/scripts/components/account/reset.js');
+                this.template('client/scripts/react/components/js/account/settings.js', 'client/scripts/components/account/settings.js');
+                this.template('client/scripts/react/components/js/account/signup.js', 'client/scripts/components/account/signup.js');
+            }
         }
         if (this.useTesting) {
             this.template('test/helpers/phantomjs-shims.js', 'test/helpers/phantomjs-shims.js');
-        }
-        if (this.useFlux) {
-            this.template('client/scripts/flux/dispatchers/app.js', 'client/scripts/flux/dispatchers/app.js');
         }
     }
 };

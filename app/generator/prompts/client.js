@@ -53,12 +53,6 @@ var clientPrompts = function clientPrompts() {
         message: 'Would you like to use ' + 'React\'s JSX syntax'.blue + '?',
         default: true
     }, {
-        when: function(answers) { return answers.jsFramework === 'react'; },
-        type: 'confirm',
-        name: 'useFlux',
-        message: 'Would you like to use ' + 'Flux'.blue + ' with your React application?',
-        default: true
-    }, {
         when: function(answers) {return answers.jsFramework === 'backbone';},
         type: 'list',
         name: 'jsTemplate',

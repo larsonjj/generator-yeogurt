@@ -8,7 +8,7 @@
 
 describe('Navbar View Namespace', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.navbarView = new App.Views.Navbar();
     });
 

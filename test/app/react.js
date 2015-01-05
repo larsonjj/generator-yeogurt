@@ -8,7 +8,7 @@ var assert  = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 
 
-describe('Yeogurt generator using React', function () {
+describe('Yeogurt generator using React', function() {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -21,43 +21,55 @@ describe('Yeogurt generator using React', function () {
         }.bind(this));
     });
 
-    describe('On the Client', function () {
-        describe('With Browserify', function () {
-            describe('With Flux', function() {
+    describe('On the Client', function() {
+        describe('With Browserify', function() {
+            describe('With Defaults', function() {
                 it ('Creates expected files', function(done) {
                     var expected = [
-                        'client/scripts/flux',
-                        'client/scripts/flux/dispatchers/app.js'
+                        'client/scripts',
+                        'client/scripts/main.js',
+                        'client/scripts/routes.js',
+                        'client/scripts/app.js',
+                        'client/scripts/constants/action-types.js',
+                        'client/scripts/constants/defaults.js',
+                        'client/scripts/constants/payload-sources.js',
+                        'client/scripts/stores/default.js',
+                        'client/scripts/stores/user.js'
+                    ];
+
+                    var fileContentToTest = [
+                        ['client/scripts/routes.js', /module\.exports/i],
+                        ['client/index.html', /app\-wrapper/i]
                     ];
 
                     helpers.mockPrompt(this.app, {
                         singlePageApplication: true,
                         jsFramework: 'react',
-                        useFlux: true,
                         jsTemplate: false,
                         jsOption: 'browserify',
                         useServer: false,
                     });
 
-                    this.app.run([], function () {
+                    this.app.run([], function() {
                         assert.file(expected);
+                        assert.fileContent(fileContentToTest);
                         done();
                     });
                 });
             });
-            describe('Using Jasmine', function () {
-                describe('Using JSX', function () {
+            describe('Using Jasmine', function() {
+                describe('Using JSX', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
                             'client/scripts/components/index.jsx',
-                            'client/scripts/routes.js',
-                            'client/index.html'
+                            'client/scripts/components/modules/link.jsx',
+                            'client/scripts/components/layouts/one-column.jsx'
                         ];
                         var fileContentToTest = [
                             ['client/scripts/components/index.jsx', /<div>/i],
-                            ['client/scripts/routes.js', /module\.exports/i],
-                            ['client/index.html', /app\-wrapper/i]
+                            ['package.json', /node-jsx/i],
+                            ['client/scripts/routes.js', /jsx/i]
                         ];
 
                         helpers.mockPrompt(this.app, {
@@ -69,25 +81,21 @@ describe('Yeogurt generator using React', function () {
                             testFramework: 'jasmine'
                         });
 
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             done();
                         });
                     });
                 });
-                describe('Using JS', function () {
+                describe('Using JS', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
                             'client/scripts/components/index.js',
-                            'client/scripts/routes.js',
-                            'client/index.html'
                         ];
                         var fileContentToTest = [
                             ['client/scripts/components/index.js', /React\.DOM/i],
-                            ['client/scripts/routes.js', /module\.exports/i],
-                            ['client/index.html', /app\-wrapper/i]
                         ];
                         var fileContentNotThere = [
                             ['package.json', /node-jsx/i],
@@ -104,7 +112,7 @@ describe('Yeogurt generator using React', function () {
                             testFramework: 'jasmine'
                         });
 
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             assert.noFileContent(fileContentNotThere);
@@ -113,19 +121,19 @@ describe('Yeogurt generator using React', function () {
                     });
                 });
             });
-            describe('Using Mocha', function () {
-                describe('Using JSX', function () {
+            describe('Using Mocha', function() {
+                describe('Using JSX', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
                             'client/scripts/components/index.jsx',
-                            'client/scripts/routes.js',
-                            'client/index.html'
+                            'client/scripts/components/modules/link.jsx',
+                            'client/scripts/components/layouts/one-column.jsx'
                         ];
                         var fileContentToTest = [
                             ['client/scripts/components/index.jsx', /<div>/i],
-                            ['client/scripts/routes.js', /module\.exports/i],
-                            ['client/index.html', /app\-wrapper/i]
+                            ['package.json', /node-jsx/i],
+                            ['client/scripts/routes.js', /jsx/i]
                         ];
 
                         helpers.mockPrompt(this.app, {
@@ -137,25 +145,21 @@ describe('Yeogurt generator using React', function () {
                             testFramework: 'mocha'
                         });
 
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             done();
                         });
                     });
                 });
-                describe('Using JS', function () {
+                describe('Using JS', function() {
                     it ('Creates expected files with expected content', function(done) {
                         var expected = [
                             // add files and folders you expect to exist here.
                             'client/scripts/components/index.js',
-                            'client/scripts/routes.js',
-                            'client/index.html'
                         ];
                         var fileContentToTest = [
                             ['client/scripts/components/index.js', /React\.DOM/i],
-                            ['client/scripts/routes.js', /module\.exports/i],
-                            ['client/index.html', /app\-wrapper/i]
                         ];
                         var fileContentNotThere = [
                             ['package.json', /node-jsx/i],
@@ -165,14 +169,14 @@ describe('Yeogurt generator using React', function () {
                         helpers.mockPrompt(this.app, {
                             singlePageApplication: true,
                             jsFramework: 'react',
-                            jsTemplate: false,
                             useJsx: false,
+                            jsTemplate: false,
                             jsOption: 'browserify',
                             useServer: false,
                             testFramework: 'mocha'
                         });
 
-                        this.app.run([], function () {
+                        this.app.run([], function() {
                             assert.file(expected);
                             assert.fileContent(fileContentToTest);
                             assert.noFileContent(fileContentNotThere);
@@ -183,138 +187,324 @@ describe('Yeogurt generator using React', function () {
             });
         });
     });
-    describe('On the Server', function () {
-        describe('With Browserify', function () {
-            describe('Using Jasmine', function () {
-                describe('Using JSX', function () {
-                    it ('Creates expected files with expected content', function(done) {
-                        var expected = [
-                            // add files and folders you expect to exist here.
-                            'client/scripts/components/index.jsx',
-                            'client/index.html',
-                            'client/scripts/routes.js',
-                        ];
-                        var fileContentToTest = [
-                            ['client/scripts/components/index.jsx', /<div>/i],
-                            ['client/scripts/routes.js', /module\.exports/i],
-                            ['client/index.html', /app\-wrapper/i]
-                        ];
+    describe('On the Server', function() {
+        describe('With Browserify', function() {
+            describe('Without Auth', function() {
+                describe('Using Jasmine', function() {
+                    describe('Using JSX', function() {
+                        it ('Creates expected files with expected content', function(done) {
+                            var expected = [
+                                // add files and folders you expect to exist here.
+                                'client/scripts/components/index.jsx',
+                                'client/scripts/components/modules/link.jsx',
+                                'client/scripts/components/layouts/one-column.jsx'
+                            ];
+                            var fileContentToTest = [
+                                ['client/scripts/components/index.jsx', /<div>/i],
+                                ['package.json', /node-jsx/i],
+                                ['client/scripts/routes.js', /jsx/i]
+                            ];
 
-                        helpers.mockPrompt(this.app, {
-                            singlePageApplication: true,
-                            jsFramework: 'react',
-                            jsTemplate: false,
-                            jsOption: 'browserify',
-                            useServer: true,
-                            testFramework: 'jasmine'
+                            helpers.mockPrompt(this.app, {
+                                singlePageApplication: true,
+                                jsFramework: 'react',
+                                jsTemplate: false,
+                                jsOption: 'browserify',
+                                useServer: true,
+                                testFramework: 'jasmine'
+                            });
+
+                            this.app.run([], function() {
+                                assert.file(expected);
+                                assert.fileContent(fileContentToTest);
+                                done();
+                            });
                         });
+                    });
+                    describe('Using JS', function() {
+                        it ('Creates expected files with expected content', function(done) {
+                            var expected = [
+                                // add files and folders you expect to exist here.
+                                'client/scripts/components/index.js',
+                            ];
+                            var fileContentToTest = [
+                                ['client/scripts/components/index.js', /React\.DOM/i],
+                            ];
+                            var fileContentNotThere = [
+                                ['package.json', /node-jsx/i],
+                                ['client/scripts/routes.js', /jsx/i]
+                            ];
 
-                        this.app.run([], function () {
-                            assert.file(expected);
-                            assert.fileContent(fileContentToTest);
-                            done();
+                            helpers.mockPrompt(this.app, {
+                                singlePageApplication: true,
+                                jsFramework: 'react',
+                                useJsx: false,
+                                jsTemplate: false,
+                                jsOption: 'browserify',
+                                useServer: true,
+                                testFramework: 'jasmine'
+                            });
+
+                            this.app.run([], function() {
+                                assert.file(expected);
+                                assert.fileContent(fileContentToTest);
+                                assert.noFileContent(fileContentNotThere);
+                                done();
+                            });
                         });
                     });
                 });
-                describe('Using JS', function () {
-                    it ('Creates expected files with expected content', function(done) {
-                        var expected = [
-                            // add files and folders you expect to exist here.
-                            'client/scripts/components/index.js',
-                            'client/index.html',
-                            'client/scripts/routes.js',
-                        ];
-                        var fileContentToTest = [
-                            ['client/scripts/components/index.js', /React\.DOM/i],
-                            ['client/scripts/routes.js', /module\.exports/i],
-                            ['client/index.html', /app\-wrapper/i]
-                        ];
-                        var fileContentNotThere = [
-                            ['server/controllers/index.js', /node-jsx/i],
-                        ];
+                describe('Using Mocha', function() {
+                    describe('Using JSX', function() {
+                        it ('Creates expected files with expected content', function(done) {
+                            var expected = [
+                                // add files and folders you expect to exist here.
+                                'client/scripts/components/index.jsx',
+                                'client/scripts/components/modules/link.jsx',
+                                'client/scripts/components/layouts/one-column.jsx'
+                            ];
+                            var fileContentToTest = [
+                                ['client/scripts/components/index.jsx', /<div>/i],
+                                ['package.json', /node-jsx/i],
+                                ['client/scripts/routes.js', /jsx/i]
+                            ];
 
-                        helpers.mockPrompt(this.app, {
-                            singlePageApplication: true,
-                            jsFramework: 'react',
-                            jsTemplate: false,
-                            useJsx: false,
-                            jsOption: 'browserify',
-                            useServer: true,
-                            testFramework: 'jasmine'
+                            helpers.mockPrompt(this.app, {
+                                singlePageApplication: true,
+                                jsFramework: 'react',
+                                useJsx: true,
+                                jsTemplate: false,
+                                jsOption: 'browserify',
+                                useServer: true,
+                                testFramework: 'jasmine'
+                            });
+
+                            this.app.run([], function() {
+                                assert.file(expected);
+                                assert.fileContent(fileContentToTest);
+                                done();
+                            });
                         });
+                    });
+                    describe('Using JS', function() {
+                        it ('Creates expected files with expected content', function(done) {
+                            var expected = [
+                                // add files and folders you expect to exist here.
+                                'client/scripts/components/index.js',
+                            ];
+                            var fileContentToTest = [
+                                ['client/scripts/components/index.js', /React\.DOM/i],
+                            ];
+                            var fileContentNotThere = [
+                                ['package.json', /node-jsx/i],
+                                ['client/scripts/routes.js', /jsx/i]
+                            ];
 
-                        this.app.run([], function () {
-                            assert.file(expected);
-                            assert.fileContent(fileContentToTest);
-                            assert.noFileContent(fileContentNotThere);
-                            done();
+                            helpers.mockPrompt(this.app, {
+                                singlePageApplication: true,
+                                jsFramework: 'react',
+                                useJsx: false,
+                                jsTemplate: false,
+                                jsOption: 'browserify',
+                                useServer: true,
+                                testFramework: 'jasmine'
+                            });
+
+                            this.app.run([], function() {
+                                assert.file(expected);
+                                assert.fileContent(fileContentToTest);
+                                assert.noFileContent(fileContentNotThere);
+                                done();
+                            });
                         });
                     });
                 });
             });
-            describe('Using Mocha', function () {
-                describe('Using JSX', function () {
-                    it ('Creates expected files with expected content', function(done) {
-                        var expected = [
-                            // add files and folders you expect to exist here.
-                            'client/scripts/components/index.jsx',
-                            'client/index.html',
-                            'client/scripts/routes.js',
-                        ];
-                        var fileContentToTest = [
-                            ['client/scripts/components/index.jsx', /<div>/i],
-                            ['client/scripts/routes.js', /module\.exports/i],
-                            ['client/index.html', /app\-wrapper/i]
-                        ];
+            describe('With Auth', function() {
+                it('Creates default files', function(done) {
+                    var expected = [
+                        'client/scripts/controllers/account.js',
+                        'client/scripts/controllers/index.js',
+                        'client/scripts/stores/messages.js',
+                        'client/scripts/stores/user.js'
+                    ];
+                    helpers.mockPrompt(this.app, {
+                        useAuth: true,
+                        singlePageApplication: true,
+                        jsFramework: 'react',
+                        jsTemplate: false,
+                        jsOption: 'browserify',
+                        useServer: true,
+                        testFramework: 'jasmine'
+                    });
 
-                        helpers.mockPrompt(this.app, {
-                            singlePageApplication: true,
-                            jsFramework: 'react',
-                            jsTemplate: false,
-                            jsOption: 'browserify',
-                            useServer: true,
-                            testFramework: 'mocha'
+                    this.app.run([], function() {
+                        assert.file(expected);
+                        done();
+                    });
+                });
+                describe('Using Jasmine', function() {
+                    describe('Using JSX', function() {
+                        it ('Creates expected files with expected content', function(done) {
+                            var expected = [
+                                // add files and folders you expect to exist here.
+                                'client/scripts/components/index.jsx',
+                                'client/scripts/components/modules/link.jsx',
+                                'client/scripts/components/modules/messages.jsx',
+                                'client/scripts/components/modules/navbar.jsx',
+                                'client/scripts/components/layouts/one-column.jsx',
+                                'client/scripts/components/account/forgot.jsx',
+                                'client/scripts/components/account/login.jsx',
+                                'client/scripts/components/account/reset.jsx',
+                                'client/scripts/components/account/settings.jsx',
+                                'client/scripts/components/account/signup.jsx'
+                            ];
+                            var fileContentToTest = [
+                                ['client/scripts/components/index.jsx', /<div>/i],
+                                ['package.json', /node-jsx/i],
+                                ['client/scripts/routes.js', /jsx/i]
+                            ];
+
+                            helpers.mockPrompt(this.app, {
+                                useAuth: true,
+                                singlePageApplication: true,
+                                jsFramework: 'react',
+                                jsTemplate: false,
+                                jsOption: 'browserify',
+                                useServer: true,
+                                testFramework: 'jasmine'
+                            });
+
+                            this.app.run([], function() {
+                                assert.file(expected);
+                                assert.fileContent(fileContentToTest);
+                                done();
+                            });
                         });
+                    });
+                    describe('Using JS', function() {
+                        it ('Creates expected files with expected content', function(done) {
+                            var expected = [
+                                // add files and folders you expect to exist here.
+                                'client/scripts/components/index.js',
+                                'client/scripts/components/modules/link.js',
+                                'client/scripts/components/modules/messages.js',
+                                'client/scripts/components/modules/navbar.js',
+                                'client/scripts/components/layouts/one-column.js',
+                                'client/scripts/components/account/forgot.js',
+                                'client/scripts/components/account/login.js',
+                                'client/scripts/components/account/reset.js',
+                                'client/scripts/components/account/settings.js',
+                                'client/scripts/components/account/signup.js'
+                            ];
+                            var fileContentToTest = [
+                                ['client/scripts/components/index.js', /React\.DOM/i],
+                            ];
+                            var fileContentNotThere = [
+                                ['package.json', /node-jsx/i],
+                                ['client/scripts/routes.js', /jsx/i]
+                            ];
 
-                        this.app.run([], function () {
-                            assert.file(expected);
-                            assert.fileContent(fileContentToTest);
-                            done();
+                            helpers.mockPrompt(this.app, {
+                                useAuth: true,
+                                singlePageApplication: true,
+                                jsFramework: 'react',
+                                useJsx: false,
+                                jsTemplate: false,
+                                jsOption: 'browserify',
+                                useServer: true,
+                                testFramework: 'jasmine'
+                            });
+
+                            this.app.run([], function() {
+                                assert.file(expected);
+                                assert.fileContent(fileContentToTest);
+                                assert.noFileContent(fileContentNotThere);
+                                done();
+                            });
                         });
                     });
                 });
-                describe('Using JS', function () {
-                    it ('Creates expected files with expected content', function(done) {
-                        var expected = [
-                            // add files and folders you expect to exist here.
-                            'client/scripts/components/index.js',
-                            'client/index.html',
-                            'client/scripts/routes.js',
-                        ];
-                        var fileContentToTest = [
-                            ['client/scripts/components/index.js', /React\.DOM/i],
-                            ['client/scripts/routes.js', /module\.exports/i],
-                            ['client/index.html', /app\-wrapper/i]
-                        ];
-                        var fileContentNotThere = [
-                            ['server/controllers/index.js', /node-jsx/i],
-                        ];
+                describe('Using Mocha', function() {
+                    describe('Using JSX', function() {
+                        it ('Creates expected files with expected content', function(done) {
+                            var expected = [
+                                // add files and folders you expect to exist here.
+                                'client/scripts/components/index.jsx',
+                                'client/scripts/components/modules/link.jsx',
+                                'client/scripts/components/modules/messages.jsx',
+                                'client/scripts/components/modules/navbar.jsx',
+                                'client/scripts/components/layouts/one-column.jsx',
+                                'client/scripts/components/account/forgot.jsx',
+                                'client/scripts/components/account/login.jsx',
+                                'client/scripts/components/account/reset.jsx',
+                                'client/scripts/components/account/settings.jsx',
+                                'client/scripts/components/account/signup.jsx'
+                            ];
+                            var fileContentToTest = [
+                                ['client/scripts/components/index.jsx', /<div>/i],
+                                ['package.json', /node-jsx/i],
+                                ['client/scripts/routes.js', /jsx/i]
+                            ];
 
-                        helpers.mockPrompt(this.app, {
-                            singlePageApplication: true,
-                            jsFramework: 'react',
-                            jsTemplate: false,
-                            useJsx: false,
-                            jsOption: 'browserify',
-                            useServer: true,
-                            testFramework: 'mocha'
+                            helpers.mockPrompt(this.app, {
+                                useAuth: true,
+                                singlePageApplication: true,
+                                jsFramework: 'react',
+                                useJsx: true,
+                                jsTemplate: false,
+                                jsOption: 'browserify',
+                                useServer: true,
+                                testFramework: 'jasmine'
+                            });
+
+                            this.app.run([], function() {
+                                assert.file(expected);
+                                assert.fileContent(fileContentToTest);
+                                done();
+                            });
                         });
+                    });
+                    describe('Using JS', function() {
+                        it ('Creates expected files with expected content', function(done) {
+                            var expected = [
+                                // add files and folders you expect to exist here.
+                                'client/scripts/components/index.js',
+                                'client/scripts/components/modules/link.js',
+                                'client/scripts/components/modules/messages.js',
+                                'client/scripts/components/modules/navbar.js',
+                                'client/scripts/components/layouts/one-column.js',
+                                'client/scripts/components/account/forgot.js',
+                                'client/scripts/components/account/login.js',
+                                'client/scripts/components/account/reset.js',
+                                'client/scripts/components/account/settings.js',
+                                'client/scripts/components/account/signup.js'
+                            ];
+                            var fileContentToTest = [
+                                ['client/scripts/components/index.js', /React\.DOM/i],
+                            ];
+                            var fileContentNotThere = [
+                                ['package.json', /node-jsx/i],
+                                ['client/scripts/routes.js', /jsx/i]
+                            ];
 
-                        this.app.run([], function () {
-                            assert.file(expected);
-                            assert.fileContent(fileContentToTest);
-                            assert.noFileContent(fileContentNotThere);
-                            done();
+                            helpers.mockPrompt(this.app, {
+                                useAuth: true,
+                                singlePageApplication: true,
+                                jsFramework: 'react',
+                                useJsx: false,
+                                jsTemplate: false,
+                                jsOption: 'browserify',
+                                useServer: true,
+                                testFramework: 'jasmine'
+                            });
+
+                            this.app.run([], function() {
+                                assert.file(expected);
+                                assert.fileContent(fileContentToTest);
+                                assert.noFileContent(fileContentNotThere);
+                                done();
+                            });
                         });
                     });
                 });

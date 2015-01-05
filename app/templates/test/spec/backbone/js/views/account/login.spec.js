@@ -8,7 +8,7 @@
 
 describe('Login View Namespace', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.loginView = new App.Views.Login();
     });
 

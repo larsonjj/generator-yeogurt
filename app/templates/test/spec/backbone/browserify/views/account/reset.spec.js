@@ -10,7 +10,7 @@ var ResetView = require('../../../../client/scripts/views/account/reset');
 
 describe('Reset View', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.resetView = new ResetView();
     });
 

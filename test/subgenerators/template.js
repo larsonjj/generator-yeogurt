@@ -8,7 +8,7 @@ var assert  = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
-describe('Template sub-generator', function () {
+describe('Template sub-generator', function() {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -21,7 +21,7 @@ describe('Template sub-generator', function () {
         }.bind(this));
     });
 
-    describe('Does not create any template files when using React', function () {
+    describe('Does not create any template files when using React', function() {
         it('Handles defaults', function(done) {
             // Filename
             var template = 'mytemplate';
@@ -88,7 +88,7 @@ describe('Template sub-generator', function () {
         });
     });
 
-    describe('Does not create template files when using Static HTML', function () {
+    describe('Does not create template files when using Static HTML', function() {
         it('Handles defaults with type: Page', function(done) {
             // Filename
             var template = 'mytemplate';
@@ -118,8 +118,8 @@ describe('Template sub-generator', function () {
         });
     });
 
-    describe('Create template files when using Static Jade', function () {
-        describe('Client templates', function () {
+    describe('Create template files when using Static Jade', function() {
+        describe('Client templates', function() {
             describe('Handles defaults with type: Page', function() {
                 it('Without template', function(done) {
                     // Filename
@@ -350,7 +350,7 @@ describe('Template sub-generator', function () {
                 });
             });
         });
-        describe('Client templates with Dashboard', function () {
+        describe('Client templates with Dashboard', function() {
             it('Handles defaults with type: Page', function(done) {
                 // Filename
                 var template = 'mytemplate';
@@ -427,7 +427,7 @@ describe('Template sub-generator', function () {
                 });
             });
         });
-        describe('Server templates', function () {
+        describe('Server templates', function() {
             it('Handles defaults with type: Page', function(done) {
                 // Filename
                 var template = 'mytemplate';
@@ -554,7 +554,7 @@ describe('Template sub-generator', function () {
                 });
             });
         });
-        describe('Server templates with Dashboard', function () {
+        describe('Server templates with Dashboard', function() {
             it('Handles defaults with type: Page', function(done) {
                 // Filename
                 var template = 'mytemplate';
@@ -634,7 +634,7 @@ describe('Template sub-generator', function () {
     });
 
     describe('Does not create any template files when using Static Swig', function() {
-        describe('Client templates', function () {
+        describe('Client templates', function() {
             it('Handles defaults with type: Page', function(done) {
                 // Filename
                 var template = 'mytemplate';
@@ -786,7 +786,7 @@ describe('Template sub-generator', function () {
                 });
             });
         });
-        describe('Client templates with Dashboard', function () {
+        describe('Client templates with Dashboard', function() {
             it('Handles defaults with type: Page', function(done) {
                 // Filename
                 var template = 'mytemplate';
@@ -863,7 +863,7 @@ describe('Template sub-generator', function () {
                 });
             });
         });
-        describe('Server templates', function () {
+        describe('Server templates', function() {
             it('Handles defaults with type: Page', function(done) {
                 // Filename
                 var template = 'mytemplate';
@@ -990,7 +990,7 @@ describe('Template sub-generator', function () {
                 });
             });
         });
-        describe('Server templates with Dashboard', function () {
+        describe('Server templates with Dashboard', function() {
             it('Handles defaults with type: Page', function(done) {
                 // Filename
                 var template = 'mytemplate';
@@ -1069,7 +1069,7 @@ describe('Template sub-generator', function () {
         });
     });
 
-    describe('Create template files when using Backbone', function () {
+    describe('Create template files when using Backbone', function() {
         it('Handles defaults with Underscore', function(done) {
             // Filename
             var template = 'mytemplate';

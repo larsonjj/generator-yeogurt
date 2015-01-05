@@ -6,9 +6,9 @@
 
 'use strict';
 
-describe('<%= _.classify(name) %> View', function () {
+describe('<%= _.classify(name) %> View', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         var App = App || {};
         App.Views = App.Views || {};
 

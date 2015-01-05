@@ -10,7 +10,7 @@ var OneColumnView = require('../../../../client/scripts/views/layouts/one-column
 
 describe('OneColumn View', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
         this.oneColumnView = new OneColumnView();
     });
 
