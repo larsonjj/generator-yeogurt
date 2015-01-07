@@ -7,7 +7,7 @@
         "link": "../../index.html"
     }
     [/dash] #}<% } %><% if (useAuth) { %>
-{% extends './layouts/one-column.swig' %}<% } else { %>
+{% extends './layouts/default.swig' %}<% } else { %>
 {% extends './layouts/base.swig' %}<% } %>
 
 {% block content %}

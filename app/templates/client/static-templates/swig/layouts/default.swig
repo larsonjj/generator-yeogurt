@@ -4,7 +4,7 @@
     {# Navigation Bar #}
     {% include '../partials/navbar.swig' %}
     {# Provides layout level markup #}
-    <div class="one-column">
+    <div class="default-layout">
         <div class="main-container">
             <div class="messages">
                 {# Include flash messages #}

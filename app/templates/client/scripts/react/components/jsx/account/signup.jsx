@@ -5,14 +5,14 @@
 'use strict';
 
 var React = require('react');
-var OneColumnLayout = require('../layouts/one-column.jsx');
+var DefaultLayout = require('../layouts/default.jsx');
 var userActions = require('../../actions/user')
 
 var SignupComponent = React.createClass({
     render: function() {
         return (
             /* jshint ignore:start */
-            <OneColumnLayout>
+            <DefaultLayout>
                 <h3>Sign up</h3>
                 <form id="signup-form" method="post" action="/user" onSubmit={this.handleSubmit}>
                     <p>
@@ -32,7 +32,7 @@ var SignupComponent = React.createClass({
 
                     <button>Signup</button>
                 </form>
-            </OneColumnLayout>
+            </DefaultLayout>
             /* jshint ignore:end */
         );
     },

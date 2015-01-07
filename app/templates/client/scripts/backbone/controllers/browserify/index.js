@@ -6,16 +6,11 @@
 
 var app = require('../app');
 var IndexView = require('../views/index');
-var OneColumnView = require('../views/layouts/one-column');
-var NavbarView = require('../views/modules/navbar');
-var MessagesView = require('../views/modules/messages');
+var DefaultView = require('../views/layouts/default');
 
 var index = function() {
-    var homePage = new OneColumnView({
-        layout: true,
+    var homePage = new DefaultView({
         subviews: {
-            '.main-nav': new NavbarView(),
-            '.messages': new MessagesView(),
             '.content': new IndexView()
         }
     });

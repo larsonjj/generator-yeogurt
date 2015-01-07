@@ -10,11 +10,8 @@ App.Controllers = App.Controllers || {};
 App.Controllers.Index = (function() {
 
     var index = function() {
-        var homePage = new App.Views.OneColumn({
-            layout: true,
+        var homePage = new App.Views.Default({
             subviews: {
-                '.main-nav': new App.Views.Navbar(),
-                '.messages': new App.Views.Messages(),
                 '.content': new App.Views.Index()
             }
         });

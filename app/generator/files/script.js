@@ -39,7 +39,7 @@ var scriptFiles = function scriptFiles() {
                 this.template('client/scripts/backbone/views/requirejs/account/settings.js', 'client/scripts/views/account/settings.js');
                 this.template('client/scripts/backbone/views/requirejs/account/signup.js', 'client/scripts/views/account/signup.js');
 
-                this.template('client/scripts/backbone/views/requirejs/layouts/one-column.js', 'client/scripts/views/layouts/one-column.js');
+                this.template('client/scripts/backbone/views/requirejs/layouts/default.js', 'client/scripts/views/layouts/default.js');
 
                 this.template('client/scripts/backbone/views/requirejs/modules/messages.js', 'client/scripts/views/modules/messages.js');
                 this.template('client/scripts/backbone/views/requirejs/modules/navbar.js', 'client/scripts/views/modules/navbar.js');
@@ -68,7 +68,7 @@ var scriptFiles = function scriptFiles() {
                 this.template('client/scripts/backbone/views/browserify/account/settings.js', 'client/scripts/views/account/settings.js');
                 this.template('client/scripts/backbone/views/browserify/account/signup.js', 'client/scripts/views/account/signup.js');
 
-                this.template('client/scripts/backbone/views/browserify/layouts/one-column.js', 'client/scripts/views/layouts/one-column.js');
+                this.template('client/scripts/backbone/views/browserify/layouts/default.js', 'client/scripts/views/layouts/default.js');
 
                 this.template('client/scripts/backbone/views/browserify/modules/messages.js', 'client/scripts/views/modules/messages.js');
                 this.template('client/scripts/backbone/views/browserify/modules/navbar.js', 'client/scripts/views/modules/navbar.js');
@@ -96,7 +96,7 @@ var scriptFiles = function scriptFiles() {
                 this.template('client/scripts/backbone/views/js/account/settings.js', 'client/scripts/views/account/settings.js');
                 this.template('client/scripts/backbone/views/js/account/signup.js', 'client/scripts/views/account/signup.js');
 
-                this.template('client/scripts/backbone/views/js/layouts/one-column.js', 'client/scripts/views/layouts/one-column.js');
+                this.template('client/scripts/backbone/views/js/layouts/default.js', 'client/scripts/views/layouts/default.js');
 
                 this.template('client/scripts/backbone/views/js/modules/messages.js', 'client/scripts/views/modules/messages.js');
                 this.template('client/scripts/backbone/views/js/modules/navbar.js', 'client/scripts/views/modules/navbar.js');
@@ -123,7 +123,7 @@ var scriptFiles = function scriptFiles() {
                 this.template('client/scripts/backbone/templates/underscore/account/signup.jst', 'client/templates/account/signup.jst');
 
                 // Layouts
-                this.template('client/scripts/backbone/templates/underscore/layouts/one-column.jst', 'client/templates/layouts/one-column.jst');
+                this.template('client/scripts/backbone/templates/underscore/layouts/default.jst', 'client/templates/layouts/default.jst');
 
                 // Modules
                 this.template('client/scripts/backbone/templates/underscore/modules/messages.jst', 'client/templates/modules/messages.jst');
@@ -142,7 +142,7 @@ var scriptFiles = function scriptFiles() {
                 this.template('client/scripts/backbone/templates/handlebars/account/signup.hbs', 'client/templates/account/signup.hbs');
 
                 // Layouts
-                this.template('client/scripts/backbone/templates/handlebars/layouts/one-column.hbs', 'client/templates/layouts/one-column.hbs');
+                this.template('client/scripts/backbone/templates/handlebars/layouts/default.hbs', 'client/templates/layouts/default.hbs');
 
                 // Modules
                 this.template('client/scripts/backbone/templates/handlebars/modules/messages.hbs', 'client/templates/modules/messages.hbs');
@@ -161,7 +161,7 @@ var scriptFiles = function scriptFiles() {
                 this.template('client/scripts/backbone/templates/jade/account/signup.jade', 'client/templates/account/signup.jade');
 
                 // Layouts
-                this.template('client/scripts/backbone/templates/jade/layouts/one-column.jade', 'client/templates/layouts/one-column.jade');
+                this.template('client/scripts/backbone/templates/jade/layouts/default.jade', 'client/templates/layouts/default.jade');
 
                 // Modules
                 this.template('client/scripts/backbone/templates/jade/modules/messages.jade', 'client/templates/modules/messages.jade');
@@ -209,7 +209,7 @@ var scriptFiles = function scriptFiles() {
             }
 
             // Layouts
-            this.template('client/scripts/react/components/jsx/layouts/one-column.jsx', 'client/scripts/components/layouts/one-column.jsx');
+            this.template('client/scripts/react/components/jsx/layouts/default.jsx', 'client/scripts/components/layouts/default.jsx');
 
             if (this.useAuth) {
                 // Account
@@ -231,7 +231,7 @@ var scriptFiles = function scriptFiles() {
             }
 
             // Layouts
-            this.template('client/scripts/react/components/js/layouts/one-column.js', 'client/scripts/components/layouts/one-column.js');
+            this.template('client/scripts/react/components/js/layouts/default.js', 'client/scripts/components/layouts/default.js');
 
             if (this.useAuth) {
                 // Account

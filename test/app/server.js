@@ -59,7 +59,7 @@ describe('Yeogurt generator using Server', function() {
                     'server/templates/account/signup.jade',
                     'server/templates/partials/navbar.jade',
                     'server/templates/partials/messages.jade',
-                    'server/templates/layouts/one-column.jade'
+                    'server/templates/layouts/default.jade'
                 ];
 
                 helpers.mockPrompt(this.app, {
@@ -85,7 +85,7 @@ describe('Yeogurt generator using Server', function() {
                     'server/templates/account/signup.swig',
                     'server/templates/partials/navbar.swig',
                     'server/templates/partials/messages.swig',
-                    'server/templates/layouts/one-column.swig'
+                    'server/templates/layouts/default.swig'
                 ];
 
                 helpers.mockPrompt(this.app, {

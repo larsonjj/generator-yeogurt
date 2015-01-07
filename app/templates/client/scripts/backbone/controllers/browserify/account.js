@@ -10,20 +10,15 @@ var SignupView = require('../views/account/signup');
 var ResetView = require('../views/account/reset');
 var ForgotView = require('../views/account/forgot');
 var SettingsView = require('../views/account/settings');
-var OneColumnView = require('../views/layouts/one-column');
-var NavbarView = require('../views/modules/navbar');
-var MessagesView = require('../views/modules/messages');
+var DefaultView = require('../views/layouts/default');
 
 var login = function() {
     // If user is logged in, redirect to settings page
     if (app.user.get('loggedIn')) {
         return app.router.navigate('/settings', {trigger: true});
     }
-    var loginPage = new OneColumnView({
-        layout: true,
+    var loginPage = new DefaultView({
         subviews: {
-            '.main-nav': new NavbarView(),
-            '.messages': new MessagesView(),
             '.content': new LoginView()
         }
     });
@@ -35,11 +30,8 @@ var signup = function() {
     if (app.user.get('loggedIn')) {
         return app.router.navigate('/settings', {trigger: true});
     }
-    var signupPage = new OneColumnView({
-        layout: true,
+    var signupPage = new DefaultView({
         subviews: {
-            '.main-nav': new NavbarView(),
-            '.messages': new MessagesView(),
             '.content': new SignupView()
         }
     });
@@ -51,11 +43,8 @@ var reset = function() {
     if (app.user.get('loggedIn')) {
         return app.router.navigate('/settings', {trigger: true});
     }
-    var resetPage = new OneColumnView({
-        layout: true,
+    var resetPage = new DefaultView({
         subviews: {
-            '.main-nav': new NavbarView(),
-            '.messages': new MessagesView(),
             '.content': new ResetView()
         }
     });
@@ -67,11 +56,8 @@ var forgot = function() {
     if (app.user.get('loggedIn')) {
         return app.router.navigate('/settings', {trigger: true});
     }
-    var forgotPage = new OneColumnView({
-        layout: true,
+    var forgotPage = new DefaultView({
         subviews: {
-            '.main-nav': new NavbarView(),
-            '.messages': new MessagesView(),
             '.content': new ForgotView()
         }
     });
@@ -83,11 +69,8 @@ var settingsPage = function() {
     if (!app.user.get('loggedIn')) {
         return app.router.navigate('/login', {trigger: true});
     }
-    var settingsPage = new OneColumnView({
-        layout: true,
+    var settingsPage = new DefaultView({
         subviews: {
-            '.main-nav': new NavbarView(),
-            '.messages': new MessagesView(),
             '.content': new SettingsView()
         }
     });

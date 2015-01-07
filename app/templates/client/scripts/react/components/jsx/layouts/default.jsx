@@ -1,5 +1,5 @@
 /**
-*   One Column Component Description
+*   Default Component Description
 */
 
 'use strict';
@@ -17,7 +17,7 @@ var getState = function() {
     };
 };
 
-var OneColumnComponent = React.createClass({
+var DefaultComponent = React.createClass({
     mixins: [pageStore.mixin, userStore.mixin],
     componentDidMount: function() {
         // Update page title when this layout is loaded
@@ -34,7 +34,7 @@ var OneColumnComponent = React.createClass({
                 <div className="main-nav">
                     <Navbar user={this.state.user} />
                 </div>
-                <div className="one-column">
+                <div className="default">
                     <div className="main-container">
                         <div className="messages">
                             <Messages messages={this.state.messages} />
@@ -56,4 +56,4 @@ var OneColumnComponent = React.createClass({
     }
 });
 
-module.exports = OneColumnComponent;
+module.exports = DefaultComponent;

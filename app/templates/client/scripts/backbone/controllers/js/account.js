@@ -14,11 +14,8 @@ App.Controllers.Account = (function() {
         if (App.user.get('loggedIn')) {
             return App.router.navigate('/settings', {trigger: true});
         }
-        var loginPage = new App.Views.OneColumn({
-            layout: true,
+        var loginPage = new App.Views.Default({
             subviews: {
-                '.main-nav': new App.Views.Navbar(),
-                '.messages': new App.Views.Messages(),
                 '.content': new App.Views.Login()
             }
         });
@@ -30,11 +27,8 @@ App.Controllers.Account = (function() {
         if (App.user.get('loggedIn')) {
             return App.router.navigate('/settings', {trigger: true});
         }
-        var signupPage = new App.Views.OneColumn({
-            layout: true,
+        var signupPage = new App.Views.Default({
             subviews: {
-                '.main-nav': new App.Views.Navbar(),
-                '.messages': new App.Views.Messages(),
                 '.content': new App.Views.Signup()
             }
         });
@@ -46,11 +40,8 @@ App.Controllers.Account = (function() {
         if (App.user.get('loggedIn')) {
             return App.router.navigate('/settings', {trigger: true});
         }
-        var resetPage = new App.Views.OneColumn({
-            layout: true,
+        var resetPage = new App.Views.Default({
             subviews: {
-                '.main-nav': new App.Views.Navbar(),
-                '.messages': new App.Views.Messages(),
                 '.content': new App.Views.Reset()
             }
         });
@@ -62,11 +53,8 @@ App.Controllers.Account = (function() {
         if (App.user.get('loggedIn')) {
             return App.router.navigate('/settings', {trigger: true});
         }
-        var forgotPage = new App.Views.OneColumn({
-            layout: true,
+        var forgotPage = new App.Views.Default({
             subviews: {
-                '.main-nav': new App.Views.Navbar(),
-                '.messages': new App.Views.Messages(),
                 '.content': new App.Views.Forgot()
             }
         });
@@ -78,11 +66,8 @@ App.Controllers.Account = (function() {
         if (!App.user.get('loggedIn')) {
             return App.router.navigate('/login', {trigger: true});
         }
-        var settings = new App.Views.OneColumn({
-            layout: true,
+        var settings = new App.Views.Default({
             subviews: {
-                '.main-nav': new App.Views.Navbar(),
-                '.messages': new App.Views.Messages(),
                 '.content': new App.Views.Settings()
             }
         });

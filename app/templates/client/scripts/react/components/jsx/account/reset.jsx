@@ -5,14 +5,14 @@
 'use strict';
 
 var React = require('react');
-var OneColumnLayout = require('../layouts/one-column.jsx');
+var DefaultLayout = require('../layouts/default.jsx');
 var userActions = require('../../actions/user')
 
 var ResetComponent = React.createClass({
     render: function() {
         return (
             /* jshint ignore:start */
-            <OneColumnLayout>
+            <DefaultLayout>
                 <h3>Reset Password</h3>
                 <form method="post" onSubmit={this.handleSubmit}>
                     <p>
@@ -27,7 +27,7 @@ var ResetComponent = React.createClass({
 
                     <button>Change Password</button>
                 </form>
-            </OneColumnLayout>
+            </DefaultLayout>
             /* jshint ignore:end */
         );
     },

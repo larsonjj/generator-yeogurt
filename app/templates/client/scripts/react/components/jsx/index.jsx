@@ -5,14 +5,14 @@
 'use strict';
 
 var React = require('react');
-var OneColumnLayout = require('./layouts/one-column.jsx');
+var DefaultLayout = require('./layouts/default.jsx');
 var Link = require('./modules/link.jsx');
 
 var IndexComponent = React.createClass({
     render: function() {
         return (
             /* jshint ignore:start */
-            <OneColumnLayout>
+            <DefaultLayout>
                 <div className="main-container">
                     <div className="yeogurt-info">
                         <h1>Welcome to Yeogurt!</h1>
@@ -29,7 +29,7 @@ var IndexComponent = React.createClass({
                     </div>
                 </div>
                 <code className="version">v<%= pkg.version %></code>
-            </OneColumnLayout>
+            </DefaultLayout>
             /* jshint ignore:end */
         );
     }

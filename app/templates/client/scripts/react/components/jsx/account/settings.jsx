@@ -5,7 +5,7 @@
 'use strict';
 
 var React = require('react');
-var OneColumnLayout = require('../layouts/one-column.jsx');
+var DefaultLayout = require('../layouts/default.jsx');
 var userStore = require('../../stores/user');
 var userActions = require('../../actions/user')
 
@@ -25,7 +25,7 @@ var SettingsComponent = React.createClass({
 
         return (
             /* jshint ignore:start */
-            <OneColumnLayout>
+            <DefaultLayout>
                 <h3>Profile Information</h3>
 
                 <form id="profile-form" action="/user?_method=PUT" method="post" onSubmit={this.handleSettings}>
@@ -72,7 +72,7 @@ var SettingsComponent = React.createClass({
                 <form id="delete-form" action="/user?_method=DELETE" method="post" onSubmit={this.handleDestroy}>
                     <button>Delete my account</button>
                 </form>
-            </OneColumnLayout>
+            </DefaultLayout>
             /* jshint ignore:end */
         );
     },

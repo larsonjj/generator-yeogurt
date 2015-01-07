@@ -25,7 +25,7 @@ var testingFiles = function testingFiles() {
                     this.template('test/spec/backbone/requirejs/views/account/settings.spec.js', 'test/spec/views/account/settings.spec.js');
                     this.template('test/spec/backbone/requirejs/views/account/signup.spec.js', 'test/spec/views/account/signup.spec.js');
 
-                    this.template('test/spec/backbone/requirejs/views/layouts/one-column.spec.js', 'test/spec/views/layouts/one-column.spec.js');
+                    this.template('test/spec/backbone/requirejs/views/layouts/default.spec.js', 'test/spec/views/layouts/default.spec.js');
 
                     this.template('test/spec/backbone/requirejs/views/modules/messages.spec.js', 'test/spec/views/modules/messages.spec.js');
                     this.template('test/spec/backbone/requirejs/views/modules/navbar.spec.js', 'test/spec/views/modules/navbar.spec.js');
@@ -53,7 +53,7 @@ var testingFiles = function testingFiles() {
                     this.template('test/spec/backbone/browserify/views/account/settings.spec.js', 'test/spec/views/account/settings.spec.js');
                     this.template('test/spec/backbone/browserify/views/account/signup.spec.js', 'test/spec/views/account/signup.spec.js');
 
-                    this.template('test/spec/backbone/browserify/views/layouts/one-column.spec.js', 'test/spec/views/layouts/one-column.spec.js');
+                    this.template('test/spec/backbone/browserify/views/layouts/default.spec.js', 'test/spec/views/layouts/default.spec.js');
 
                     this.template('test/spec/backbone/browserify/views/modules/messages.spec.js', 'test/spec/views/modules/messages.spec.js');
                     this.template('test/spec/backbone/browserify/views/modules/navbar.spec.js', 'test/spec/views/modules/navbar.spec.js');
@@ -81,7 +81,7 @@ var testingFiles = function testingFiles() {
                     this.template('test/spec/backbone/js/views/account/settings.spec.js', 'test/spec/views/account/settings.spec.js');
                     this.template('test/spec/backbone/js/views/account/signup.spec.js', 'test/spec/views/account/signup.spec.js');
 
-                    this.template('test/spec/backbone/js/views/layouts/one-column.spec.js', 'test/spec/views/layouts/one-column.spec.js');
+                    this.template('test/spec/backbone/js/views/layouts/default.spec.js', 'test/spec/views/layouts/default.spec.js');
 
                     this.template('test/spec/backbone/js/views/modules/messages.spec.js', 'test/spec/views/modules/messages.spec.js');
                     this.template('test/spec/backbone/js/views/modules/navbar.spec.js', 'test/spec/views/modules/navbar.spec.js');

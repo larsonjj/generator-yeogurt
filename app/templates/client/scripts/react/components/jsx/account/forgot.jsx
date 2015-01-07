@@ -5,14 +5,14 @@
 'use strict';
 
 var React = require('react');
-var OneColumnLayout = require('../layouts/one-column.jsx');
+var DefaultLayout = require('../layouts/default.jsx');
 var userActions = require('../../actions/user')
 
 var ForgotComponent = React.createClass({
     render: function() {
         return (
             /* jshint ignore:start */
-            <OneColumnLayout>
+            <DefaultLayout>
                 <h3>Forgot Password</h3>
                 <form method="post" action="/forgot" onSubmit={this.handleSubmit}>
                     <p>Enter your email address below and we will send you password reset instructions.</p>
@@ -24,7 +24,7 @@ var ForgotComponent = React.createClass({
 
                     <button>Reset Password</button>
                 </form>
-            </OneColumnLayout>
+            </DefaultLayout>
             /* jshint ignore:end */
         );
     },

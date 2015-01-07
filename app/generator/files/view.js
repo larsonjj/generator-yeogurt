@@ -26,7 +26,7 @@ var viewFiles = function viewFiles() {
             this.template('client/static-templates/jade/partials/messages.jade', viewRoot + 'templates/partials/messages.jade');
 
             // Layouts
-            this.template('client/static-templates/jade/layouts/one-column.jade', viewRoot + 'templates/layouts/one-column.jade');
+            this.template('client/static-templates/jade/layouts/default.jade', viewRoot + 'templates/layouts/default.jade');
         }
     }
     else if (this.htmlOption === 'swig') {
@@ -48,7 +48,7 @@ var viewFiles = function viewFiles() {
             this.template('client/static-templates/swig/partials/messages.swig', viewRoot + 'templates/partials/messages.swig');
 
             // Layouts
-            this.template('client/static-templates/swig/layouts/one-column.swig', viewRoot + 'templates/layouts/one-column.swig');
+            this.template('client/static-templates/swig/layouts/default.swig', viewRoot + 'templates/layouts/default.swig');
         }
     }
 

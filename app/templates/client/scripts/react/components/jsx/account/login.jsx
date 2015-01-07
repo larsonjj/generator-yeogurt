@@ -5,7 +5,7 @@
 'use strict';
 
 var React = require('react');
-var OneColumnLayout = require('../layouts/one-column.jsx');
+var DefaultLayout = require('../layouts/default.jsx');
 var Link = require('../modules/link.jsx');
 var userActions = require('../../actions/user')
 
@@ -14,7 +14,7 @@ var LoginComponent = React.createClass({
     render: function() {
         return (
             /* jshint ignore:start */
-            <OneColumnLayout>
+            <DefaultLayout>
                 <h3>Sign in</h3>
                 <form method="post" action="/login" onSubmit={this.handleSubmit}>
                     <p>
@@ -30,7 +30,7 @@ var LoginComponent = React.createClass({
                     <button>Login</button>
                     <p><Link url="/forgot">Forgot your password?</Link></p>
                 </form>
-            </OneColumnLayout>
+            </DefaultLayout>
             /* jshint ignore:end */
         );
     },

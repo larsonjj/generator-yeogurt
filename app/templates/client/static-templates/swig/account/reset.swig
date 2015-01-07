@@ -1,4 +1,4 @@
-{% extends '../layouts/one-column.swig' %}
+{% extends '../layouts/default.swig' %}
 
 {% block content %}
 

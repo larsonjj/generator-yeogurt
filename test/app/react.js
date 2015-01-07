@@ -65,7 +65,7 @@ describe('Yeogurt generator using React', function() {
                             // add files and folders you expect to exist here.
                             'client/scripts/components/index.jsx',
                             'client/scripts/components/modules/link.jsx',
-                            'client/scripts/components/layouts/one-column.jsx'
+                            'client/scripts/components/layouts/default.jsx'
                         ];
                         var fileContentToTest = [
                             ['client/scripts/components/index.jsx', /<div>/i],
@@ -129,7 +129,7 @@ describe('Yeogurt generator using React', function() {
                             // add files and folders you expect to exist here.
                             'client/scripts/components/index.jsx',
                             'client/scripts/components/modules/link.jsx',
-                            'client/scripts/components/layouts/one-column.jsx'
+                            'client/scripts/components/layouts/default.jsx'
                         ];
                         var fileContentToTest = [
                             ['client/scripts/components/index.jsx', /<div>/i],
@@ -198,7 +198,7 @@ describe('Yeogurt generator using React', function() {
                                 // add files and folders you expect to exist here.
                                 'client/scripts/components/index.jsx',
                                 'client/scripts/components/modules/link.jsx',
-                                'client/scripts/components/layouts/one-column.jsx'
+                                'client/scripts/components/layouts/default.jsx'
                             ];
                             var fileContentToTest = [
                                 ['client/scripts/components/index.jsx', /<div>/i],
@@ -262,7 +262,7 @@ describe('Yeogurt generator using React', function() {
                                 // add files and folders you expect to exist here.
                                 'client/scripts/components/index.jsx',
                                 'client/scripts/components/modules/link.jsx',
-                                'client/scripts/components/layouts/one-column.jsx'
+                                'client/scripts/components/layouts/default.jsx'
                             ];
                             var fileContentToTest = [
                                 ['client/scripts/components/index.jsx', /<div>/i],
@@ -351,7 +351,7 @@ describe('Yeogurt generator using React', function() {
                                 'client/scripts/components/modules/link.jsx',
                                 'client/scripts/components/modules/messages.jsx',
                                 'client/scripts/components/modules/navbar.jsx',
-                                'client/scripts/components/layouts/one-column.jsx',
+                                'client/scripts/components/layouts/default.jsx',
                                 'client/scripts/components/account/forgot.jsx',
                                 'client/scripts/components/account/login.jsx',
                                 'client/scripts/components/account/reset.jsx',
@@ -389,7 +389,7 @@ describe('Yeogurt generator using React', function() {
                                 'client/scripts/components/modules/link.js',
                                 'client/scripts/components/modules/messages.js',
                                 'client/scripts/components/modules/navbar.js',
-                                'client/scripts/components/layouts/one-column.js',
+                                'client/scripts/components/layouts/default.js',
                                 'client/scripts/components/account/forgot.js',
                                 'client/scripts/components/account/login.js',
                                 'client/scripts/components/account/reset.js',
@@ -433,7 +433,7 @@ describe('Yeogurt generator using React', function() {
                                 'client/scripts/components/modules/link.jsx',
                                 'client/scripts/components/modules/messages.jsx',
                                 'client/scripts/components/modules/navbar.jsx',
-                                'client/scripts/components/layouts/one-column.jsx',
+                                'client/scripts/components/layouts/default.jsx',
                                 'client/scripts/components/account/forgot.jsx',
                                 'client/scripts/components/account/login.jsx',
                                 'client/scripts/components/account/reset.jsx',
@@ -472,7 +472,7 @@ describe('Yeogurt generator using React', function() {
                                 'client/scripts/components/modules/link.js',
                                 'client/scripts/components/modules/messages.js',
                                 'client/scripts/components/modules/navbar.js',
-                                'client/scripts/components/layouts/one-column.js',
+                                'client/scripts/components/layouts/default.js',
                                 'client/scripts/components/account/forgot.js',
                                 'client/scripts/components/account/login.js',
                                 'client/scripts/components/account/reset.js',
