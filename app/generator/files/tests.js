@@ -30,10 +30,6 @@ var testingFiles = function testingFiles() {
                     this.template('test/spec/backbone/requirejs/views/modules/messages.spec.js', 'test/spec/views/modules/messages.spec.js');
                     this.template('test/spec/backbone/requirejs/views/modules/navbar.spec.js', 'test/spec/views/modules/navbar.spec.js');
 
-                    // Controllers
-                    this.template('test/spec/backbone/requirejs/controllers/account.spec.js', 'test/spec/controllers/account.spec.js');
-                    this.template('test/spec/backbone/requirejs/controllers/index.spec.js', 'test/spec/controllers/index.spec.js');
-
                     // Models
                     this.template('test/spec/backbone/requirejs/models/user.spec.js', 'test/spec/models/user.spec.js');
                     this.template('test/spec/backbone/requirejs/models/messages.spec.js', 'test/spec/models/messages.spec.js');
@@ -58,10 +54,6 @@ var testingFiles = function testingFiles() {
                     this.template('test/spec/backbone/browserify/views/modules/messages.spec.js', 'test/spec/views/modules/messages.spec.js');
                     this.template('test/spec/backbone/browserify/views/modules/navbar.spec.js', 'test/spec/views/modules/navbar.spec.js');
 
-                    // Controllers
-                    this.template('test/spec/backbone/browserify/controllers/account.spec.js', 'test/spec/controllers/account.spec.js');
-                    this.template('test/spec/backbone/browserify/controllers/index.spec.js', 'test/spec/controllers/index.spec.js');
-
                     // Models
                     this.template('test/spec/backbone/browserify/models/user.spec.js', 'test/spec/models/user.spec.js');
                     this.template('test/spec/backbone/browserify/models/messages.spec.js', 'test/spec/models/messages.spec.js');
@@ -85,10 +77,6 @@ var testingFiles = function testingFiles() {
 
                     this.template('test/spec/backbone/js/views/modules/messages.spec.js', 'test/spec/views/modules/messages.spec.js');
                     this.template('test/spec/backbone/js/views/modules/navbar.spec.js', 'test/spec/views/modules/navbar.spec.js');
-
-                    // Controllers
-                    this.template('test/spec/backbone/js/controllers/account.spec.js', 'test/spec/controllers/account.spec.js');
-                    this.template('test/spec/backbone/js/controllers/index.spec.js', 'test/spec/controllers/index.spec.js');
 
                     // Models
                     this.template('test/spec/backbone/js/models/user.spec.js', 'test/spec/models/user.spec.js');

@@ -26,88 +26,76 @@ var scriptFiles = function scriptFiles() {
 
     if (this.jsFramework === 'backbone') {
         if (this.jsOption === 'requirejs') {
-            this.template('client/scripts/backbone/main/requirejs/main.js', 'client/scripts/main.js');
-            this.template('client/scripts/backbone/main/requirejs/app.js', 'client/scripts/app.js');
-            this.template('client/scripts/backbone/routes/requirejs/routes.js', 'client/scripts/routes.js');
-            this.template('client/scripts/backbone/views/requirejs/index.js', 'client/scripts/views/index.js');
+            this.template('client/scripts/backbone/requirejs/main/main.js', 'client/scripts/main.js');
+            this.template('client/scripts/backbone/requirejs/main/app.js', 'client/scripts/app.js');
+            this.template('client/scripts/backbone/requirejs/routes/routes.js', 'client/scripts/routes.js');
+            this.template('client/scripts/backbone/requirejs/views/index.js', 'client/scripts/views/index.js');
 
             if (this.useAuth) {
                 // Views
-                this.template('client/scripts/backbone/views/requirejs/account/forgot.js', 'client/scripts/views/account/forgot.js');
-                this.template('client/scripts/backbone/views/requirejs/account/login.js', 'client/scripts/views/account/login.js');
-                this.template('client/scripts/backbone/views/requirejs/account/reset.js', 'client/scripts/views/account/reset.js');
-                this.template('client/scripts/backbone/views/requirejs/account/settings.js', 'client/scripts/views/account/settings.js');
-                this.template('client/scripts/backbone/views/requirejs/account/signup.js', 'client/scripts/views/account/signup.js');
+                this.template('client/scripts/backbone/requirejs/views/account/forgot.js', 'client/scripts/views/account/forgot.js');
+                this.template('client/scripts/backbone/requirejs/views/account/login.js', 'client/scripts/views/account/login.js');
+                this.template('client/scripts/backbone/requirejs/views/account/reset.js', 'client/scripts/views/account/reset.js');
+                this.template('client/scripts/backbone/requirejs/views/account/settings.js', 'client/scripts/views/account/settings.js');
+                this.template('client/scripts/backbone/requirejs/views/account/signup.js', 'client/scripts/views/account/signup.js');
 
-                this.template('client/scripts/backbone/views/requirejs/layouts/default.js', 'client/scripts/views/layouts/default.js');
+                this.template('client/scripts/backbone/requirejs/views/layouts/default.js', 'client/scripts/views/layouts/default.js');
 
-                this.template('client/scripts/backbone/views/requirejs/modules/messages.js', 'client/scripts/views/modules/messages.js');
-                this.template('client/scripts/backbone/views/requirejs/modules/navbar.js', 'client/scripts/views/modules/navbar.js');
-
-                // Controllers
-                this.template('client/scripts/backbone/controllers/requirejs/account.js', 'client/scripts/controllers/account.js');
-                this.template('client/scripts/backbone/controllers/requirejs/index.js', 'client/scripts/controllers/index.js');
+                this.template('client/scripts/backbone/requirejs/views/modules/messages.js', 'client/scripts/views/modules/messages.js');
+                this.template('client/scripts/backbone/requirejs/views/modules/navbar.js', 'client/scripts/views/modules/navbar.js');
 
                 // Models
-                this.template('client/scripts/backbone/models/requirejs/user.js', 'client/scripts/models/user.js');
-                this.template('client/scripts/backbone/models/requirejs/messages.js', 'client/scripts/models/messages.js');
+                this.template('client/scripts/backbone/requirejs/models/user.js', 'client/scripts/models/user.js');
+                this.template('client/scripts/backbone/requirejs/models/messages.js', 'client/scripts/models/messages.js');
             }
         }
 
         if (this.jsOption === 'browserify') {
-            this.template('client/scripts/backbone/main/browserify/main.js', 'client/scripts/main.js');
-            this.template('client/scripts/backbone/main/browserify/app.js', 'client/scripts/app.js');
-            this.template('client/scripts/backbone/routes/browserify/routes.js', 'client/scripts/routes.js');
-            this.template('client/scripts/backbone/views/browserify/index.js', 'client/scripts/views/index.js');
+            this.template('client/scripts/backbone/browserify/main/main.js', 'client/scripts/main.js');
+            this.template('client/scripts/backbone/browserify/main/app.js', 'client/scripts/app.js');
+            this.template('client/scripts/backbone/browserify/routes/routes.js', 'client/scripts/routes.js');
+            this.template('client/scripts/backbone/browserify/views/index.js', 'client/scripts/views/index.js');
 
             if (this.useAuth) {
                 // Views
-                this.template('client/scripts/backbone/views/browserify/account/forgot.js', 'client/scripts/views/account/forgot.js');
-                this.template('client/scripts/backbone/views/browserify/account/login.js', 'client/scripts/views/account/login.js');
-                this.template('client/scripts/backbone/views/browserify/account/reset.js', 'client/scripts/views/account/reset.js');
-                this.template('client/scripts/backbone/views/browserify/account/settings.js', 'client/scripts/views/account/settings.js');
-                this.template('client/scripts/backbone/views/browserify/account/signup.js', 'client/scripts/views/account/signup.js');
+                this.template('client/scripts/backbone/browserify/views/account/forgot.js', 'client/scripts/views/account/forgot.js');
+                this.template('client/scripts/backbone/browserify/views/account/login.js', 'client/scripts/views/account/login.js');
+                this.template('client/scripts/backbone/browserify/views/account/reset.js', 'client/scripts/views/account/reset.js');
+                this.template('client/scripts/backbone/browserify/views/account/settings.js', 'client/scripts/views/account/settings.js');
+                this.template('client/scripts/backbone/browserify/views/account/signup.js', 'client/scripts/views/account/signup.js');
 
-                this.template('client/scripts/backbone/views/browserify/layouts/default.js', 'client/scripts/views/layouts/default.js');
+                this.template('client/scripts/backbone/browserify/views/layouts/default.js', 'client/scripts/views/layouts/default.js');
 
-                this.template('client/scripts/backbone/views/browserify/modules/messages.js', 'client/scripts/views/modules/messages.js');
-                this.template('client/scripts/backbone/views/browserify/modules/navbar.js', 'client/scripts/views/modules/navbar.js');
-
-                // Controllers
-                this.template('client/scripts/backbone/controllers/browserify/account.js', 'client/scripts/controllers/account.js');
-                this.template('client/scripts/backbone/controllers/browserify/index.js', 'client/scripts/controllers/index.js');
+                this.template('client/scripts/backbone/browserify/views/modules/messages.js', 'client/scripts/views/modules/messages.js');
+                this.template('client/scripts/backbone/browserify/views/modules/navbar.js', 'client/scripts/views/modules/navbar.js');
 
                 // Models
-                this.template('client/scripts/backbone/models/browserify/user.js', 'client/scripts/models/user.js');
-                this.template('client/scripts/backbone/models/browserify/messages.js', 'client/scripts/models/messages.js');
+                this.template('client/scripts/backbone/browserify/models/user.js', 'client/scripts/models/user.js');
+                this.template('client/scripts/backbone/browserify/models/messages.js', 'client/scripts/models/messages.js');
             }
         }
 
         if (this.jsOption === 'none') {
-            this.template('client/scripts/backbone/main/js/main.js', 'client/scripts/main.js');
-            this.template('client/scripts/backbone/routes/js/routes.js', 'client/scripts/routes.js');
-            this.template('client/scripts/backbone/views/js/index.js', 'client/scripts/views/index.js');
+            this.template('client/scripts/backbone/js/main/main.js', 'client/scripts/main.js');
+            this.template('client/scripts/backbone/js/routes/routes.js', 'client/scripts/routes.js');
+            this.template('client/scripts/backbone/js/views/index.js', 'client/scripts/views/index.js');
 
             if (this.useAuth) {
                 // Views
-                this.template('client/scripts/backbone/views/js/account/forgot.js', 'client/scripts/views/account/forgot.js');
-                this.template('client/scripts/backbone/views/js/account/login.js', 'client/scripts/views/account/login.js');
-                this.template('client/scripts/backbone/views/js/account/reset.js', 'client/scripts/views/account/reset.js');
-                this.template('client/scripts/backbone/views/js/account/settings.js', 'client/scripts/views/account/settings.js');
-                this.template('client/scripts/backbone/views/js/account/signup.js', 'client/scripts/views/account/signup.js');
+                this.template('client/scripts/backbone/js/views/account/forgot.js', 'client/scripts/views/account/forgot.js');
+                this.template('client/scripts/backbone/js/views/account/login.js', 'client/scripts/views/account/login.js');
+                this.template('client/scripts/backbone/js/views/account/reset.js', 'client/scripts/views/account/reset.js');
+                this.template('client/scripts/backbone/js/views/account/settings.js', 'client/scripts/views/account/settings.js');
+                this.template('client/scripts/backbone/js/views/account/signup.js', 'client/scripts/views/account/signup.js');
 
-                this.template('client/scripts/backbone/views/js/layouts/default.js', 'client/scripts/views/layouts/default.js');
+                this.template('client/scripts/backbone/js/views/layouts/default.js', 'client/scripts/views/layouts/default.js');
 
-                this.template('client/scripts/backbone/views/js/modules/messages.js', 'client/scripts/views/modules/messages.js');
-                this.template('client/scripts/backbone/views/js/modules/navbar.js', 'client/scripts/views/modules/navbar.js');
-
-                // Controllers
-                this.template('client/scripts/backbone/controllers/js/account.js', 'client/scripts/controllers/account.js');
-                this.template('client/scripts/backbone/controllers/js/index.js', 'client/scripts/controllers/index.js');
+                this.template('client/scripts/backbone/js/views/modules/messages.js', 'client/scripts/views/modules/messages.js');
+                this.template('client/scripts/backbone/js/views/modules/navbar.js', 'client/scripts/views/modules/navbar.js');
 
                 // Models
-                this.template('client/scripts/backbone/models/js/user.js', 'client/scripts/models/user.js');
-                this.template('client/scripts/backbone/models/js/messages.js', 'client/scripts/models/messages.js');
+                this.template('client/scripts/backbone/js/models/user.js', 'client/scripts/models/user.js');
+                this.template('client/scripts/backbone/js/models/messages.js', 'client/scripts/models/messages.js');
             }
         }
 

@@ -13,12 +13,12 @@ var SignupPage = React.createFactory(require('./components/account/signup.jsx'))
 var ResetPage = React.createFactory(require('./components/account/reset.jsx'));
 var ForgotPage = React.createFactory(require('./components/account/forgot.jsx'));
 var SettingsPage = React.createFactory(require('./components/account/settings.jsx'));<% } else { %>
-var IndexPage = require('./components/index.js');
-var LoginPage = require('./components/account/login.js');
-var SignupPage = require('./components/account/signup.js');
-var ResetPage = require('./components/account/reset.js');
-var ForgotPage = require('./components/account/forgot.js');
-var SettingsPage = require('./components/account/settings.js');<% } %>
+var IndexPage = require('./components/index');
+var LoginPage = require('./components/account/login');
+var SignupPage = require('./components/account/signup');
+var ResetPage = require('./components/account/reset');
+var ForgotPage = require('./components/account/forgot');
+var SettingsPage = require('./components/account/settings');<% } %>
 
 var render = function(Page) {
     React.render(new Page(), document.getElementById('app-wrapper'));

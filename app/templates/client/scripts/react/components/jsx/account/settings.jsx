@@ -7,7 +7,7 @@
 var React = require('react');
 var DefaultLayout = require('../layouts/default.jsx');
 var userStore = require('../../stores/user');
-var userActions = require('../../actions/user')
+var userActions = require('../../actions/user');
 
 var getState = function() {
     return {

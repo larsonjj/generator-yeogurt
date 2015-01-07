@@ -29,7 +29,6 @@ describe('Yeogurt generator using React', function() {
                         'client/scripts',
                         'client/scripts/main.js',
                         'client/scripts/routes.js',
-                        'client/scripts/app.js',
                         'client/scripts/constants/action-types.js',
                         'client/scripts/constants/defaults.js',
                         'client/scripts/constants/payload-sources.js',
@@ -68,7 +67,7 @@ describe('Yeogurt generator using React', function() {
                             'client/scripts/components/layouts/default.jsx'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/components/index.jsx', /<div>/i],
+                            ['client/scripts/components/index.jsx', /<div/i],
                             ['package.json', /node-jsx/i],
                             ['client/scripts/routes.js', /jsx/i]
                         ];
@@ -132,7 +131,7 @@ describe('Yeogurt generator using React', function() {
                             'client/scripts/components/layouts/default.jsx'
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/components/index.jsx', /<div>/i],
+                            ['client/scripts/components/index.jsx', /<div/i],
                             ['package.json', /node-jsx/i],
                             ['client/scripts/routes.js', /jsx/i]
                         ];
@@ -201,7 +200,7 @@ describe('Yeogurt generator using React', function() {
                                 'client/scripts/components/layouts/default.jsx'
                             ];
                             var fileContentToTest = [
-                                ['client/scripts/components/index.jsx', /<div>/i],
+                                ['client/scripts/components/index.jsx', /<div/i],
                                 ['package.json', /node-jsx/i],
                                 ['client/scripts/routes.js', /jsx/i]
                             ];
@@ -265,7 +264,7 @@ describe('Yeogurt generator using React', function() {
                                 'client/scripts/components/layouts/default.jsx'
                             ];
                             var fileContentToTest = [
-                                ['client/scripts/components/index.jsx', /<div>/i],
+                                ['client/scripts/components/index.jsx', /<div/i],
                                 ['package.json', /node-jsx/i],
                                 ['client/scripts/routes.js', /jsx/i]
                             ];
@@ -359,7 +358,7 @@ describe('Yeogurt generator using React', function() {
                                 'client/scripts/components/account/signup.jsx'
                             ];
                             var fileContentToTest = [
-                                ['client/scripts/components/index.jsx', /<div>/i],
+                                ['client/scripts/components/index.jsx', /<div/i],
                                 ['package.json', /node-jsx/i],
                                 ['client/scripts/routes.js', /jsx/i]
                             ];
@@ -441,7 +440,7 @@ describe('Yeogurt generator using React', function() {
                                 'client/scripts/components/account/signup.jsx'
                             ];
                             var fileContentToTest = [
-                                ['client/scripts/components/index.jsx', /<div>/i],
+                                ['client/scripts/components/index.jsx', /<div/i],
                                 ['package.json', /node-jsx/i],
                                 ['client/scripts/routes.js', /jsx/i]
                             ];

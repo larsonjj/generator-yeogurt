@@ -6,7 +6,7 @@
 
 var React = require('react');
 var DefaultLayout = require('../layouts/default.jsx');
-var userActions = require('../../actions/user')
+var userActions = require('../../actions/user');
 
 var ResetComponent = React.createClass({
     render: function() {

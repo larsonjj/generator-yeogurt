@@ -7,7 +7,7 @@
 var React = require('react');
 var DefaultLayout = require('../layouts/default.jsx');
 var Link = require('../modules/link.jsx');
-var userActions = require('../../actions/user')
+var userActions = require('../../actions/user');
 
 
 var LoginComponent = React.createClass({
