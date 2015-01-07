@@ -5,9 +5,9 @@
         "consolelog": "~2.0.1",
         "html5shiv": "~3.7.2",
         "modernizr": "~2.8.1",
-        "normalize.css": "~3.0.1",<% if (singlePageApplication && useServer) { %>
-        "jquery.cookie": "~1.4.1",<% } %>
-        "jquery": "~1.11.1"<% if (jsFramework === 'backbone' || jsFramework === 'react') { %>,
+        "normalize.css": "~3.0.1"<% if (jsFramework === 'backbone' && useServer) { %>,
+        "jquery.cookie": "~1.4.1"<% } %><% if (jsFramework !== 'react') { %>,
+        "jquery": "~1.11.1"<% } %><% if (jsFramework === 'backbone') { %>,
         "backbone": "~1.1.2"<% } %><% if (jsFramework === 'react') { %>,
         "es5-shim": "~3.4.0"<% } %><% if (jsTemplate === 'handlebars') { %>,
         "handlebars": "~2.0.0"<% } else if (jsTemplate === 'jade') { %>,

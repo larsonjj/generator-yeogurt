@@ -29,14 +29,13 @@ define(function(require) {
         formInfo: function(e) {
             e.preventDefault();
             var $form = $(e.currentTarget);
-            app.user.updateInfo($form, {
+            app.user.updateSettings($form, {
                 success: function(res) {
                     app.user.set({
                         email: res.user.email,
                         firstName: res.user.firstName,
                         lastName: res.user.lastName
                     });
-                    Backbone.history.navigate('/settings', true);
                 }
             });
         },
@@ -44,11 +43,7 @@ define(function(require) {
         formPassword: function(e) {
             e.preventDefault();
             var $form = $(e.currentTarget);
-            app.user.updatePassword($form, {
-                success: function(res) {
-                    Backbone.history.navigate('/settings', true);
-                }
-            });
+            app.user.updatePassword($form);
         },
 
         formDelete: function(e) {
@@ -56,7 +51,7 @@ define(function(require) {
             app.user.destroy({
                 success: function(res) {
                     app.user.logout();
-                    Backbone.history.navigate('/', true);
+                    Backbone.history.navigate('/', {trigger: true});
                 },
                 complete: function(res) {
                     app.messages.showMessages(res.responseJSON);

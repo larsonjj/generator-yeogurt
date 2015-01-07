@@ -173,13 +173,6 @@ var scriptFiles = function scriptFiles() {
     else if (this.jsFramework === 'react') {
         this.template('client/scripts/react/routes/routes.js', 'client/scripts/routes.js');
         this.template('client/scripts/react/main/main.js', 'client/scripts/main.js');
-        this.template('client/scripts/react/main/app.js', 'client/scripts/app.js');
-
-        if (this.useAuth) {
-            // Controllers
-            this.template('client/scripts/react/controllers/account.js', 'client/scripts/controllers/account.js');
-            this.template('client/scripts/react/controllers/index.js', 'client/scripts/controllers/index.js');
-        }
 
         // Constants
         this.template('client/scripts/react/constants/action-types.js', 'client/scripts/constants/action-types.js');
@@ -192,6 +185,17 @@ var scriptFiles = function scriptFiles() {
         if (this.useAuth) {
             this.template('client/scripts/react/stores/messages.js', 'client/scripts/stores/messages.js');
             this.template('client/scripts/react/stores/user.js', 'client/scripts/stores/user.js');
+        }
+
+        // Distpatcher
+        this.template('client/scripts/react/dispatchers/default.js', 'client/scripts/dispatchers/default.js');
+
+        // Actions
+        this.template('client/scripts/react/actions/routes.js', 'client/scripts/actions/routes.js');
+        this.template('client/scripts/react/actions/page.js', 'client/scripts/actions/page.js');
+        if (this.useAuth) {
+            this.template('client/scripts/react/actions/messages.js', 'client/scripts/actions/messages.js');
+            this.template('client/scripts/react/actions/user.js', 'client/scripts/actions/user.js');
         }
 
         if (this.useJsx) {

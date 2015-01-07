@@ -15,13 +15,20 @@ define(function(require) {
         template: JST['client/templates/modules/navbar<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
 
         // Delegated events
-        events: {},
+        events: {
+            'click #logoutLink': 'handleLogout'
+        },
 
         // Code that runs when View is initialized
         initialize: function() {
             // Re-render template when data changes
             this.listenTo(app.user, 'change', this.render);
             this.render();
+        },
+
+        handleLogout: function(e) {
+            e.preventDefault();
+            app.user.logout();
         },
 
         render: function() {

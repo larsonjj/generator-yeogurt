@@ -26,17 +26,8 @@ define(function(require) {
 
         formSubmit: function(e) {
             e.preventDefault();
-            var data = {
-                formData: $(e.currentTarget).serialize()
-            };
-            app.user.login(data, {
-                success: function(res){
-                    Backbone.history.navigate('/', true);
-                },
-                error: function(err){
-                    Backbone.history.navigate('/login', true);
-                }
-            });
+            var $form = $(e.currentTarget);
+            app.user.login($form);
         },
 
         render: function() {

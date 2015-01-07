@@ -32,7 +32,7 @@ define(function(require) {
         /*
          * Check to see if current user is authenticated
          */
-        isAuthenticated: function(callback, args) {
+        isAuthenticated: function(callback) {
             var self = this;
             this.fetch({
                 success: function(model, res) {
@@ -69,55 +69,12 @@ define(function(require) {
             });
         },
 
-        /*
-         * Make a POST request to the auth endpoint
-         * This takes care of the JSON Web Token header for security, as well as
-         * updating the user and Auth after receiving a response from the server
-         */
-        postAuth: function(data, callback) {
-            var self = this;
-            var postData = _.omit(data, 'url');
-            $.ajax({
-                url: data.url,
-                dataType: 'json',
-                data: postData.formData,
-                type: 'post',
-                success: function(res) {
-
-                    if (!res.error) {
-                        // Store token in cookie that expires in a week
-                        self.setToken(res.token, 7);
-                        var userData = res.user;
-                        userData.loggedIn = true;
-
-                        self.set(userData);
-
-                        if (callback && callback.success) {
-                            callback.success(res);
-                        }
-
-                    } else {
-                        if (callback && callback.error) {
-                            callback.error(res);
-                        }
-                    }
-                },
-                error: function(res) {
-                    if (callback && callback.error) {
-                        callback.error(res);
-                    }
-                }
-            }).complete(function(res) {
-                app.messages.showMessages(res.responseJSON);
-                if (callback && callback.complete) {
-                    callback.complete(res);
-                }
-            });
-        },
-
         postForm: function($form, callback) {
+            var self = this;
             var postData = $form.serialize();
             var postUrl = $form.attr('action') || window.location.pathname;
+            var options = callback.options || {};
+
             $.ajax({
                 url: postUrl,
                 dataType: 'json',
@@ -126,23 +83,44 @@ define(function(require) {
                 success: function(res) {
 
                     if (!res.error) {
-                        if (callback && callback.success) {
+                        // If user needs to be authenticated
+                        if (options.setToken) {
+                            // Store token in cookie that expires in a week
+                            self.setToken(res.token, 7);
+                        }
+                        // If user needs to be updated
+                        if (options.updateUser) {
+                            var userData = res.user;
+                            userData.loggedIn = true;
+
+                            self.set(userData);
+                        }
+                        if (callback.success) {
                             callback.success(res);
                         }
+                        if (options.successUrl) {
+                            Backbone.history.navigate(options.successUrl, {trigger: true});
+                        }
                     } else {
-                        if (callback && callback.error) {
+                        if (callback.error) {
                             callback.error(res);
+                        }
+                        if (options.errorUrl) {
+                            Backbone.history.navigate(options.errorUrl, {trigger: true});
                         }
                     }
                 },
                 error: function(res) {
-                    if (callback && callback.error) {
+                    if (callback.error) {
                         callback.error(res);
+                    }
+                    if (options.errorUrl) {
+                        Backbone.history.navigate(options.errorUrl, {trigger: true});
                     }
                 }
             }).complete(function(res) {
                 app.messages.showMessages(res.responseJSON);
-                if (callback && callback.complete) {
+                if (callback.complete) {
                     callback.complete(res);
                 }
             });
@@ -157,13 +135,18 @@ define(function(require) {
         },
 
 
-        login: function(data, callback) {
-            this.postAuth(_.extend(data, {
-                url: '/login'
-            }), callback);
+        login: function($form, callback) {
+        var cb = callback || function() {};
+            cb.options = {
+                successUrl: '/',
+                errorUrl: '/login',
+                setToken: true,
+                updateUser: true
+            };
+            this.postForm($form, cb);
         },
 
-        logout: function(data, callback) {
+        logout: function() {
             // Remove any auth cookies
             $.removeCookie('token');
 
@@ -178,26 +161,52 @@ define(function(require) {
             Backbone.history.navigate('/', true);
         },
 
-        signup: function(data, callback) {
-            this.postAuth(_.extend(data, {
-                url: '/user'
-            }), callback);
+        signup: function($form, callback) {
+            var cb = callback || function() {};
+            cb.options = {
+                successUrl: '/',
+                errorUrl: '/signup',
+                setToken: true,
+                updateUser: true
+            };
+            this.postForm($form, cb);
         },
 
         forgot: function($form, callback) {
-            this.postForm($form, callback);
+            var cb = callback || function() {};
+            cb.options = {
+                successUrl: '/',
+                errorUrl: '/forgot'
+            };
+            this.postForm($form, cb);
         },
 
         reset: function($form, callback) {
-            this.postForm($form, callback);
+            var cb = callback || function() {};
+            cb.options = {
+                successUrl: '/',
+                errorUrl: window.location.pathname
+            };
+            this.postForm($form, cb);
         },
 
-        updateInfo: function($form, callback) {
-            this.postForm($form, callback);
+        updateSettings: function($form, callback) {
+            var cb = callback || function() {};
+            cb.options = {
+                successUrl: '/settings',
+                errorUrl: '/settings',
+                updateUser: true
+            };
+            this.postForm($form, cb);
         },
 
         updatePassword: function($form, callback) {
-            this.postForm($form, callback);
+            var cb = callback || function() {};
+            cb.options = {
+                successUrl: '/settings',
+                errorUrl: '/settings'
+            };
+            this.postForm($form, cb);
         }
 
     });

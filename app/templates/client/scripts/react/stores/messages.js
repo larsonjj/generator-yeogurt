@@ -32,6 +32,7 @@ MessagesStore.dispatcherToken = Dispatcher.register(function(payload) {
 
     if (action.actionType === ActionTypes.SET_MESSAGES) {
         _messages = action.messages;
+
         MessagesStore.emitChange();
     }
 

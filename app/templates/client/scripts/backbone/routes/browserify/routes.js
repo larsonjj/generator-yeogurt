@@ -12,7 +12,6 @@ var Router = Backbone.Router.extend({
     // Defined routes
     routes: {<% if (useAuth) { %>
         'login': 'login',
-        'logout': 'logout',
         'forgot': 'forgot',
         'reset/:token': 'reset',
         'signup': 'signup',
@@ -27,7 +26,6 @@ var Router = Backbone.Router.extend({
 
     login: AccountController.login,
 
-    logout: AccountController.logout,
 
     forgot: AccountController.forgot,
 

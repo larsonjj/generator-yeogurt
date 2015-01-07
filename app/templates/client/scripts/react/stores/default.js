@@ -35,11 +35,11 @@ var Store = function(methods) {
     this.mixin = {
 
         componentDidMount: function() {
-            self.addChangeListener(this.onChange);
+            self.addChangeListener(this._onChange);
         },
 
         componentWillUnmount: function() {
-            self.removeChangeListener(this.onChange);
+            self.removeChangeListener(this._onChange);
         }
 
     };

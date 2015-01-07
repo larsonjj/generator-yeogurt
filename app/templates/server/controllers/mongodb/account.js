@@ -141,7 +141,7 @@ var reset = function(req, res, next) {
             resetPasswordToken: req.params.token
         })
         // Make sure token hasn't expired
-        .where('resetPasswordExpires').gt(Date.now())
+        .where('resetPasswordExpires').gt(new Date())
         .exec(function(err, user) {
             if (err) {
                 return next(err);
@@ -194,7 +194,7 @@ var postReset = function(req, res, next) {
                     resetPasswordToken: req.params.token
                 })
                 // Make sure token hasn't expired
-                .where('resetPasswordExpires').gt(Date.now())
+                .where('resetPasswordExpires').gt(new Date())
                 .exec(function(err, user) {
                     if (!user) {
                         return res.status(400).json({
@@ -259,7 +259,7 @@ var postReset = function(req, res, next) {
                     resetPasswordToken: req.params.token
                 })
                 // Make sure token hasn't expired
-                .where('resetPasswordExpires').gt(Date.now())
+                .where('resetPasswordExpires').gt(new Date())
                 .exec(function(err, user) {
                     if (!user) {
                         req.flash('errors', {
@@ -375,7 +375,7 @@ var postForgot = function(req, res, next) {
                 }
 
                 user.resetPasswordToken = token;
-                user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+                user.resetPasswordExpires = new Date(new Date().getTime() + 3600000); // 1 hour
 
                 // Save token to user account
                 user.save(function(err) {
@@ -442,7 +442,7 @@ var postForgot = function(req, res, next) {
                 }
 
                 user.resetPasswordToken = token;
-                user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+                user.resetPasswordExpires = new Date(new Date().getTime() + 3600000); // 1 hour
 
                // Save token to user account
                 user.save(function(err) {

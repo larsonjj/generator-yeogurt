@@ -14,7 +14,6 @@ define(function(require) {
         // Defined routes
         routes: {<% if (useAuth) { %>
             'login': 'login',
-            'logout': 'logout',
             'forgot': 'forgot',
             'reset/:token': 'reset',
             'signup': 'signup',
@@ -28,8 +27,6 @@ define(function(require) {
         }<% } else { %>
 
         login: AccountController.login,
-
-        logout: AccountController.logout,
 
         forgot: AccountController.forgot,
 

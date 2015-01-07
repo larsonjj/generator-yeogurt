@@ -30,14 +30,6 @@ var login = function() {
     app.showView(loginPage);
 };
 
-var logout = function() {
-    // If user is not logged in, redirect to the home page
-    if (!app.user.get('loggedIn')) {
-        return app.router.navigate('/', {trigger: true});
-    }
-    app.user.logout();
-};
-
 var signup = function() {
     // If user is logged in, redirect to settings page
     if (app.user.get('loggedIn')) {
@@ -104,7 +96,6 @@ var settingsPage = function() {
 
 module.exports = {
     login: login,
-    logout: logout,
     signup: signup,
     reset: reset,
     forgot: forgot,

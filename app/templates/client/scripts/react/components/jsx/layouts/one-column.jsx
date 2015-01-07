@@ -5,35 +5,41 @@
 'use strict';
 
 var React = require('react');
-var Navbar = require('../modules/navbar');
-var Messages = require('../modules/messages');
+var Navbar = require('../modules/navbar.jsx');
+var Messages = require('../modules/messages.jsx');
 var pageStore = require('../../stores/page');
+var userStore = require('../../stores/user');
 
 var getState = function() {
     return {
-        title: pageStore.get().title
+        title: pageStore.get().title,
+        user: userStore.get()
     };
 };
 
 var OneColumnComponent = React.createClass({
-    mixins: [pageStore.mixin],
+    mixins: [pageStore.mixin, userStore.mixin],
     componentDidMount: function() {
         // Update page title when this layout is loaded
         pageStore.emitChange();
+        userStore.emitChange();
+    },
+    getInitialState: function() {
+        return getState();
     },
     render: function() {
         return (
             /* jshint ignore:start */
             <div>
-                <div class="main-nav">
+                <div className="main-nav">
                     <Navbar user={this.state.user} />
                 </div>
-                <div class="one-column">
-                    <div class="main-container">
-                        <div class="messages">
+                <div className="one-column">
+                    <div className="main-container">
+                        <div className="messages">
                             <Messages messages={this.state.messages} />
                         </div>
-                        <div class="content">
+                        <div className="content">
                             {this.props.children}
                         </div>
                     </div>
@@ -45,7 +51,7 @@ var OneColumnComponent = React.createClass({
     /**
      * Event handler for 'change' events coming from store mixins.
      */
-    onChange: function() {
+    _onChange: function() {
         this.setState(getState());
     }
 });

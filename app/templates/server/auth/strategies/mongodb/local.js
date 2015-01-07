@@ -11,9 +11,7 @@ var strategy = function(User) {
     }, function(username, password, done) {
         // Search for user in Database
         User.findOne({
-            where: {
-                email: username
-            }
+            email: username
         }, function(err, user) {
             if (!user) {
                 return done(null, false, {

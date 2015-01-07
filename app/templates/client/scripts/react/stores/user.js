@@ -32,14 +32,9 @@ UserStore.dispatcherToken = Dispatcher.register(function(payload) {
 
     if (action.actionType === ActionTypes.SET_CURRENT_USER) {
         _user = action.user;
-    }
 
-    else if (action.actionType === ActionTypes.LOGOUT_CURRENT_USER) {
-        _user = userDefaults;
+        UserStore.emitChange();
     }
-
-    // Emit change event by default
-    UserStore.emitChange();
 
 });
 

@@ -29,14 +29,13 @@ App.Views.Settings = Backbone.View.extend({
     formInfo: function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        App.user.updateInfo($form, {
+        App.user.updateSettings($form, {
             success: function(res) {
                 App.user.set({
                     email: res.user.email,
                     firstName: res.user.firstName,
                     lastName: res.user.lastName
                 });
-                Backbone.history.navigate('/settings', true);
             }
         });
     },
@@ -44,11 +43,7 @@ App.Views.Settings = Backbone.View.extend({
     formPassword: function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        App.user.updatePassword($form, {
-            success: function(res) {
-                Backbone.history.navigate('/settings', true);
-            }
-        });
+        App.user.updatePassword($form);
     },
 
     formDelete: function(e) {
@@ -56,7 +51,7 @@ App.Views.Settings = Backbone.View.extend({
         App.user.destroy({
             success: function(res) {
                 App.user.logout();
-                Backbone.history.navigate('/', true);
+                Backbone.history.navigate('/', {trigger: true});
             },
             complete: function(res) {
                 App.messages.showMessages(res.responseJSON);

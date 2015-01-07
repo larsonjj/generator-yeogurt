@@ -26,14 +26,7 @@ var Forgot = Backbone.View.extend({
     formSubmit: function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        app.user.forgot($form, {
-            success: function(res) {
-                Backbone.history.navigate('/', true);
-            },
-            error: function(err) {
-                Backbone.history.navigate('/reset', true);
-            },
-        });
+        app.user.forgot($form);
     },
 
     render: function() {

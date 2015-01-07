@@ -2,7 +2,7 @@
 
 var Dispatcher = require('../dispatchers/default');
 var ActionTypes = require('../constants/action-types');
-var pageDefaults = require('../constants/config').defaults.page;
+var pageDefaults = require('../constants/defaults').page;
 var assign = require('object-assign');
 
 module.exports = {

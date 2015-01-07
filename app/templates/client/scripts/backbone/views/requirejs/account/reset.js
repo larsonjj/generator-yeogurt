@@ -27,14 +27,7 @@ define(function(require) {
         formSubmit: function(e) {
             e.preventDefault();
             var $form = $(e.currentTarget);
-            app.user.reset($form, {
-                success: function(res) {
-                    Backbone.history.navigate('/', true);
-                },
-                error: function(err) {
-                    Backbone.history.navigate(window.location.pathname, true);
-                }
-            });
+            app.user.reset($form);
         },
 
         render: function() {

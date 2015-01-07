@@ -142,7 +142,7 @@ var reset = function(req, res, next) {
         where: {
             resetPasswordToken: req.params.token,
             // Make sure token hasn't expired
-            resetPasswordExpires: {gt: Date.now()}
+            resetPasswordExpires: {gt: new Date()}
         }
     }).success(function(user) {
          if (!user) {<% if (singlePageApplication) { %>
@@ -196,7 +196,7 @@ var postReset = function(req, res, next) {
                 where: {
                     resetPasswordToken: req.params.token,
                     // Make sure token hasn't expired
-                    resetPasswordExpires: {gt: Date.now()}
+                    resetPasswordExpires: {gt: new Date()}
                 }
             }).success(function(user) {
                 if (!user) {
@@ -266,7 +266,7 @@ var postReset = function(req, res, next) {
                 where: {
                     resetPasswordToken: req.params.token,
                     // Make sure token hasn't expired
-                    resetPasswordExpires: {gt: Date.now()}
+                    resetPasswordExpires: {gt: new Date()}
                 }
             }).success(function(user) {
                 if (!user) {
@@ -388,7 +388,7 @@ var postForgot = function(req, res, next) {
                 }
 
                 user.resetPasswordToken = token;
-                user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+                user.resetPasswordExpires = new Date(new Date().getTime() + 3600000); // 1 hour
 
                 // Save token to user account
                 user.save().success(function() {
@@ -457,7 +457,7 @@ var postForgot = function(req, res, next) {
                 }
 
                 user.resetPasswordToken = token;
-                user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+                user.resetPasswordExpires = new Date(new Date().getTime() + 3600000); // 1 hour
 
                 // Save token to user account
                 user.save().success(function() {

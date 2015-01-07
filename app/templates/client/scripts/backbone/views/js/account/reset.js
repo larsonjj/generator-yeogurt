@@ -27,14 +27,7 @@ App.Views.Reset = Backbone.View.extend({
     formSubmit: function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        App.user.reset($form, {
-            success: function(res) {
-                Backbone.history.navigate('/', true);
-            },
-            error: function(err) {
-                Backbone.history.navigate(window.location.pathname, true);
-            },
-        });
+        App.user.reset($form);
     },
 
     render: function() {

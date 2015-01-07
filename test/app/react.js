@@ -34,6 +34,7 @@ describe('Yeogurt generator using React', function() {
                         'client/scripts/constants/defaults.js',
                         'client/scripts/constants/payload-sources.js',
                         'client/scripts/stores/default.js',
+                        'client/scripts/dispatchers/default.js',
                         'client/scripts/stores/user.js'
                     ];
 
@@ -323,8 +324,6 @@ describe('Yeogurt generator using React', function() {
             describe('With Auth', function() {
                 it('Creates default files', function(done) {
                     var expected = [
-                        'client/scripts/controllers/account.js',
-                        'client/scripts/controllers/index.js',
                         'client/scripts/stores/messages.js',
                         'client/scripts/stores/user.js'
                     ];

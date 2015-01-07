@@ -3,25 +3,84 @@
 */
 
 'use strict';
-<% if (useAuth) { %>
-var IndexController = require('./controllers/index');
-var AccountController = require('./controllers/account');<% } else { %>
-var app = require('./app');
-var React = require('react');<% if (useJsx) { %>
-var IndexComponent = React.createFactory(require('./components/index.jsx'));<% } else { %>
-var IndexComponent = require('./components/index.js');<% } %><% } %>
+
+var React = require('react');
+var routeActions = require('./actions/routes');
+var userStore = require('./stores/user');<% if (useJsx) { %>
+var IndexPage = React.createFactory(require('./components/index.jsx'));
+var LoginPage = React.createFactory(require('./components/account/login.jsx'));
+var SignupPage = React.createFactory(require('./components/account/signup.jsx'));
+var ResetPage = React.createFactory(require('./components/account/reset.jsx'));
+var ForgotPage = React.createFactory(require('./components/account/forgot.jsx'));
+var SettingsPage = React.createFactory(require('./components/account/settings.jsx'));<% } else { %>
+var IndexPage = require('./components/index.js');
+var LoginPage = require('./components/account/login.js');
+var SignupPage = require('./components/account/signup.js');
+var ResetPage = require('./components/account/reset.js');
+var ForgotPage = require('./components/account/forgot.js');
+var SettingsPage = require('./components/account/settings.js');<% } %>
+
+var render = function(Page) {
+    React.render(new Page(), document.getElementById('app-wrapper'));
+};
+
+var index = function() {
+    render(IndexPage);
+};
+
+var login = function() {
+    // If user is logged in, redirect to settings page
+    if (userStore.get().loggedIn) {
+        return routeActions.setRoute('/settings');
+    }
+
+    render(LoginPage);
+};
+
+var signup = function() {
+    // If user is logged in, redirect to settings page
+    if (userStore.get().loggedIn) {
+        return routeActions.setRoute('/settings');
+    }
+
+    render(SignupPage);
+};
+
+var reset = function() {
+    // If user is logged in, redirect to settings page
+    if (userStore.get().loggedIn) {
+        return routeActions.setRoute('/settings');
+    }
+
+    render(ResetPage);
+};
+
+var forgot = function() {
+    // If user is logged in, redirect to settings page
+    if (userStore.get().loggedIn) {
+        return routeActions.setRoute('/settings');
+    }
+
+    render(ForgotPage);
+};
+
+var settings = function() {
+    // If user is not logged in, redirect to login page
+    if (!userStore.get().loggedIn) {
+        return routeActions.setRoute('/login');
+    }
+
+    render(SettingsPage);
+};
 
     // Defined routes
 var routes = {<% if (useAuth) { %>
-    '/login': AccountController.login,
-    '/logout': AccountController.logout,
-    '/forgot': AccountController.forgot,
-    '/reset/:token': AccountController.reset,
-    '/signup': AccountController.signup,
-    '/settings': AccountController.settings,<% } %>
-    '/': <% if (!useAuth) { %>function() {
-        app.render(IndexComponent);
-    }<% } else { %>IndexController.index<% } %>
+    '/login': login,
+    '/forgot': forgot,
+    '/reset/:token': reset,
+    '/signup': signup,
+    '/settings': settings,<% } %>
+    '/': index
 };
 
 module.exports = routes;

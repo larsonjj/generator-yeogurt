@@ -5,7 +5,7 @@
 'use strict';
 
 var React = require('react');
-var routeActions = require('../../actions/route');
+var routeActions = require('../../actions/routes');
 
 var LinkComponent = React.createClass({
 
@@ -14,13 +14,9 @@ var LinkComponent = React.createClass({
     },
 
     render: function() {
-        this.props.href =
-        this.props.url && this.props.url.lastIndexOf('/', 0) === 0 ?
-        this.props.url : '/' + this.props.url;
-
         return (
             /* jshint ignore:start */
-            <a onClick={this.handleClick} {...this.props}>{this.props.children}</a>
+            <a onClick={this.handleClick} href={this.props.url} {...this.props}>{this.props.children}</a>
             /* jshint ignore:end */
         );
     },

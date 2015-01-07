@@ -5,38 +5,41 @@
 'use strict';
 
 var React = require('react');
-var OneColumnLayout = require('../layouts/one-column');
+var OneColumnLayout = require('../layouts/one-column.jsx');
+var userActions = require('../../actions/user')
 
 var SignupComponent = React.createClass({
-    statics: {
-        layout: OneColumnLayout
-    },
     render: function() {
         return (
             /* jshint ignore:start */
-            <div>
+            <OneColumnLayout>
                 <h3>Sign up</h3>
-                <form id="signup-form" method="post" action="/user">
+                <form id="signup-form" method="post" action="/user" onSubmit={this.handleSubmit}>
                     <p>
-                        <label for="email">Email:</label>
+                        <label htmlFor="email">Email:</label>
                         <input type="text" name="email" id="email" placeholder="Email" />
                     </p>
 
                     <p>
-                        <label for="password">Password:</label>
+                        <label htmlFor="password">Password:</label>
                         <input type="password" name="password" id="password" placeholder="Password" />
                     </p>
 
                     <p>
-                        <label for="confirmPassword">Confirm Password:</label>
+                        <label htmlFor="confirmPassword">Confirm Password:</label>
                         <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" />
                     </p>
 
                     <button>Signup</button>
                 </form>
-            </div>
+            </OneColumnLayout>
             /* jshint ignore:end */
         );
+    },
+    handleSubmit: function(e) {
+        e.preventDefault();
+        var form = e.currentTarget;
+        userActions.signup(form);
     }
 });
 

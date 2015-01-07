@@ -5,8 +5,9 @@
 'use strict';
 
 var React = require('react');
-var OneColumnLayout = require('../layouts/one-column');
+var OneColumnLayout = require('../layouts/one-column.jsx');
 var userStore = require('../../stores/user');
+var userActions = require('../../actions/user')
 
 var getState = function() {
     return {
@@ -16,30 +17,32 @@ var getState = function() {
 
 var SettingsComponent = React.createClass({
     mixins: [userStore.mixin],
-    statics: {
-        layout: OneColumnLayout
+    getInitialState: function() {
+        return getState();
     },
     render: function() {
+        var user = this.state.user;
+
         return (
             /* jshint ignore:start */
-            <div>
+            <OneColumnLayout>
                 <h3>Profile Information</h3>
 
-                <form id="profile-form" action="/user?_method=PUT" method="post">
+                <form id="profile-form" action="/user?_method=PUT" method="post" onSubmit={this.handleSettings}>
 
                     <p>
-                        <label for="email">Email:</label>
-                        <input type="text" name="email" id="email" value="{user.email}" />
+                        <label htmlFor="email">Email:</label>
+                        <input type="text" name="email" id="email" defaultValue={user.email} />
                     </p>
 
                     <p>
-                        <label for="firstName">First Name:</label>
-                        <input type="text" name="firstName" id="firstName" value="{user.firstName}" />
+                        <label htmlFor="firstName">First Name:</label>
+                        <input type="text" name="firstName" id="firstName" defaultValue={user.firstName} />
                     </p>
 
                     <p>
-                        <label for="lastName">Last Name:</label>
-                        <input type="text" name="lastName" id="lastName" value="{user.lastName}" />
+                        <label htmlFor="lastName">Last Name:</label>
+                        <input type="text" name="lastName" id="lastName" defaultValue={user.lastName} />
                     </p>
 
                     <button>Update Profile</button>
@@ -47,16 +50,16 @@ var SettingsComponent = React.createClass({
 
                 <h3>Change Password</h3>
 
-                <form id="password-form" action="/user/password?_method=PUT" method="post">
+                <form id="password-form" action="/user/password?_method=PUT" method="post" onSubmit={this.handlePassword}>
 
                     <p>
-                        <label for="password">New Password:</label>
-                        <input type="password" name="password" id="password" value='' />
+                        <label htmlFor="password">New Password:</label>
+                        <input type="password" name="password" id="password" defaultValue='' />
                     </p>
 
                     <p>
-                        <label for="confirmPassword">Confirm Password:</label>
-                        <input type="password" name="confirmPassword" id="confirmPassword" value='' />
+                        <label htmlFor="confirmPassword">Confirm Password:</label>
+                        <input type="password" name="confirmPassword" id="confirmPassword" defaultValue='' />
                     </p>
 
                     <button>Change Password</button>
@@ -66,17 +69,32 @@ var SettingsComponent = React.createClass({
 
                 <p>You can delete your account, but keep in mind this action is irreversible.</p>
 
-                <form id="delete-form" action="/user" method="post">
+                <form id="delete-form" action="/user?_method=DELETE" method="post" onSubmit={this.handleDestroy}>
                     <button>Delete my account</button>
                 </form>
-            </div>
+            </OneColumnLayout>
             /* jshint ignore:end */
         );
+    },
+    handleSettings: function(e) {
+        e.preventDefault();
+        var form = e.currentTarget;
+        userActions.updateSettings(form);
+    },
+    handlePassword: function(e) {
+        e.preventDefault();
+        var form = e.currentTarget;
+        userActions.updatePassword(form);
+    },
+    handleDestroy: function(e) {
+        e.preventDefault();
+        var form = e.currentTarget;
+        userActions.destroy(form);
     },
     /**
      * Event handler for 'change' events coming from store mixins.
      */
-    onChange: function() {
+    _onChange: function() {
         this.setState(getState());
     }
 });

@@ -23,7 +23,7 @@ var securityConfig = function(req, res, next) {
 
     // allow XHR requests to bypass CSRF
     // since they will be authenticated by token
-    if (req.xhr) {
+    if (req.is('json') || req.xhr) {
         settings.security.config.csrf = false;
     }<% } %>
 

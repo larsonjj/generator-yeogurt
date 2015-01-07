@@ -5,7 +5,7 @@
 'use strict';
 
 var React = require('react');
-var messagesStore = require('../../stores/page');
+var messagesStore = require('../../stores/messages');
 
 var getState = function() {
     return {
@@ -15,25 +15,29 @@ var getState = function() {
 
 var MessagesComponent = React.createClass({
     mixins: [messagesStore.mixin],
+    getInitialState: function() {
+        return getState();
+    },
     render: function() {
+        var messages = this.state.messages;
 
-        var getMessages = function(key) {
-            if (messages && messages[key]) {
-                return messages[key].map(function(item) {
+        var getMessages = function(options) {
+            if (messages && messages[options.key]) {
+                return messages[options.key].map(function(item, index) {
                     return (
                         /* jshint ignore:start */
-                        <div class="error">{item.msg}</div>
+                        <div key={index} className={options.msgClass}>{item.msg}</div>
                         /* jshint ignore:end */
                     );
                 });
             }
         };
 
-        var errors = getMessages('errors');
+        var errors = getMessages({key: 'errors', msgClass: 'error'});
 
-        var info = getMessages('info');
+        var info = getMessages({key: 'info', msgClass: 'info'});
 
-        var success = getMessages('success');
+        var success = getMessages({key: 'success', msgClass: 'success'});
 
         return (
             /* jshint ignore:start */
@@ -48,7 +52,7 @@ var MessagesComponent = React.createClass({
     /**
      * Event handler for 'change' events coming from store mixins.
      */
-    onChange: function() {
+    _onChange: function() {
         this.setState(getState());
     }
 });

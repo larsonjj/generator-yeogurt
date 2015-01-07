@@ -32,14 +32,6 @@ define(function(require) {
         app.showView(login);
     };
 
-    var logout = function() {
-        // If user is not logged in, redirect to the home page
-        if (!app.user.get('loggedIn')) {
-            return app.router.navigate('/', {trigger: true});
-        }
-        app.user.logout();
-    };
-
     var signup = function() {
         // If user is logged in, redirect to settings page
         if (app.user.get('loggedIn')) {
@@ -106,7 +98,6 @@ define(function(require) {
 
     return {
         login: login,
-        logout: logout,
         signup: signup,
         reset: reset,
         forgot: forgot,

@@ -2,6 +2,7 @@
 
 var Dispatcher = require('../dispatchers/default');
 var ActionTypes = require('../constants/action-types');
+var messagesActions = require('./messages');
 
 module.exports = {
 
@@ -10,6 +11,7 @@ module.exports = {
      * @param {string} route Supply a route value.
      */
     setRoute: function(route) {
+        messagesActions.clear();
         Dispatcher.handleViewAction({
             actionType: ActionTypes.SET_CURRENT_ROUTE,
             route: route
