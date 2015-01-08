@@ -13,7 +13,6 @@ var testingFiles = function testingFiles() {
 
         if (this.jsFramework === 'backbone') {
             if (this.jsOption === 'requirejs') {
-                this.template('test/spec/backbone/requirejs/app.spec.js', 'test/spec/app.spec.js');
                 this.template('test/spec/backbone/requirejs/routes.spec.js', 'test/spec/routes.spec.js');
                 this.template('test/spec/backbone/requirejs/views/index.spec.js', 'test/spec/views/index.spec.js');
 
@@ -37,7 +36,6 @@ var testingFiles = function testingFiles() {
             }
 
             if (this.jsOption === 'browserify') {
-                this.template('test/spec/backbone/browserify/app.spec.js', 'test/spec/app.spec.js');
                 this.template('test/spec/backbone/browserify/routes.spec.js', 'test/spec/routes.spec.js');
                 this.template('test/spec/backbone/browserify/views/index.spec.js', 'test/spec/views/index.spec.js');
 
@@ -61,7 +59,6 @@ var testingFiles = function testingFiles() {
             }
 
             if (this.jsOption === 'none') {
-                this.template('test/spec/backbone/js/app.spec.js', 'test/spec/app.spec.js');
                 this.template('test/spec/backbone/js/routes.spec.js', 'test/spec/routes.spec.js');
                 this.template('test/spec/backbone/js/views/index.spec.js', 'test/spec/views/index.spec.js');
 
@@ -125,7 +122,7 @@ var testingFiles = function testingFiles() {
             }
         }
         else {
-            this.template('test/spec/app.spec.js', 'test/spec/app.spec.js');
+            this.template('test/spec/main.spec.js', 'test/spec/main.spec.js');
         }
     }
 };

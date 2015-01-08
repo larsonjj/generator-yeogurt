@@ -1,11 +1,10 @@
 /**
 *   User Model
-*   Access this model through the app.user object
 */
 
 'use strict';
 
-var app = require('../app');
+var messages = require('./messages');
 
 var User = Backbone.Model.extend({<% if (dbOption === 'mongodb') { %>
 
@@ -121,7 +120,7 @@ var User = Backbone.Model.extend({<% if (dbOption === 'mongodb') { %>
                 }
             }
         }).complete(function(res) {
-            app.messages.showMessages(res.responseJSON);
+            messages.showMessages(res.responseJSON);
             if (callback.complete) {
                 callback.complete(res);
             }
@@ -213,4 +212,4 @@ var User = Backbone.Model.extend({<% if (dbOption === 'mongodb') { %>
 
 });
 
-module.exports = User;
+module.exports = new User();

@@ -26,3 +26,6 @@ App.Models.Messages = Backbone.Model.extend({
     }
 
 });
+
+// Setup flash messages
+App.messages = new App.Models.Messages();

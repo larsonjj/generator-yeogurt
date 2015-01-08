@@ -34,7 +34,8 @@ module.exports = function(config) {
             'test/test-main.js',<% } else if (jsOption === 'browserify') { %>
             'test/scripts/bundle.js'<% } else { %><% if (jsFramework === 'backbone') { %>
             // Load all scripts except ones that require a specific order (ie. 'main' and 'routes')
-            'client/scripts/**/!(main|routes).js',
+            'client/scripts/**/!(main|routes<% if (jsFramework === 'backbone' && jsOption === 'none') { %>|layouts)/*<% } else { %>)<% } %>.js',<% if (jsFramework === 'backbone' && jsOption === 'none') { %>
+            'client/scripts/**/layouts/**/*.js',<% } %>
             'client/scripts/routes.js',<% } %>
             'client/scripts/main.js',
             'test/**/*.spec.js'<% } %>

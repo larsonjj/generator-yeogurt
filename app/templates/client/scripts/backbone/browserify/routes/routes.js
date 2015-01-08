@@ -4,14 +4,28 @@
 
 'use strict';<% if (useAuth) { %>
 
-var app = require('../app');
-var LoginView = require('../views/account/login');
-var SignupView = require('../views/account/signup');
-var ResetView = require('../views/account/reset');
-var ForgotView = require('../views/account/forgot');
-var SettingsView = require('../views/account/settings');
-var DefaultView = require('../views/layouts/default');<% } %>
-var IndexView = require('./views/index');
+var user = require('./models/user');
+var messages = require('./models/messages');
+var router = require('./routes');
+var LoginView = require('./views/account/login');
+var SignupView = require('./views/account/signup');
+var ResetView = require('./views/account/reset');
+var ForgotView = require('./views/account/forgot');
+var SettingsView = require('./views/account/settings');
+var DefaultView = require('./views/layouts/default');<% } %>
+var IndexView = require('./views/index');<% if (useAuth) { %>
+
+// Handle displaying and cleaning up views
+var currentView;
+var render = function(view) {
+    if (currentView) {
+        currentView.close();
+    }
+
+    currentView = view;
+
+    $('#app-wrapper').html(currentView.render().$el);
+};<% } %>
 
 var Router = Backbone.Router.extend({
     // Defined routes
@@ -22,7 +36,7 @@ var Router = Backbone.Router.extend({
         'signup': 'signup',
         'settings': 'settings',<% } %>
         '': 'index'
-    },<% if (useAuth) { %>
+    },
 
     index: function() {
         var homePage = new DefaultView({
@@ -30,74 +44,91 @@ var Router = Backbone.Router.extend({
                 '.content': new IndexView()
             }
         });
-        app.showView(homePage);
-    },
+        render(homePage);
+    },<% if (useAuth) { %>
 
     login: function() {
         // If user is logged in, redirect to settings page
-        if (app.user.get('loggedIn')) {
-            return app.router.navigate('/settings', {trigger: true});
+        if (user.get('loggedIn')) {
+            return router.navigate('/settings', {trigger: true});
         }
         var loginPage = new DefaultView({
             subviews: {
                 '.content': new LoginView()
             }
         });
-        app.showView(loginPage);
+        render(loginPage);
     },
 
 
     forgot: function() {
         // If user is logged in, redirect to settings page
-        if (app.user.get('loggedIn')) {
-            return app.router.navigate('/settings', {trigger: true});
+        if (user.get('loggedIn')) {
+            return router.navigate('/settings', {trigger: true});
+        }
+        // If reset token is invalid or has expired, display error message
+        if (window.location.search === '?error=invalid') {
+            messages.showMessages({
+                errors: [{
+                    msg: 'Reset is invalid or has expired.'
+                }]
+            });
         }
         var forgotPage = new DefaultView({
             subviews: {
                 '.content': new ForgotView()
             }
         });
-        app.showView(forgotPage);
+        render(forgotPage);
     },
 
     reset: function() {
         // If user is logged in, redirect to settings page
-        if (app.user.get('loggedIn')) {
-            return app.router.navigate('/settings', {trigger: true});
+        if (user.get('loggedIn')) {
+            return router.navigate('/settings', {trigger: true});
         }
         var resetPage = new DefaultView({
             subviews: {
                 '.content': new ResetView()
             }
         });
-        app.showView(resetPage);
+        render(resetPage);
     },
 
     signup: function() {
         // If user is logged in, redirect to settings page
-        if (app.user.get('loggedIn')) {
-            return app.router.navigate('/settings', {trigger: true});
+        if (user.get('loggedIn')) {
+            return router.navigate('/settings', {trigger: true});
         }
         var signupPage = new DefaultView({
             subviews: {
                 '.content': new SignupView()
             }
         });
-        app.showView(signupPage);
+        render(signupPage);
     },
 
     settings: function() {
         // If user is not logged in, redirect to login page
-        if (!app.user.get('loggedIn')) {
-            return app.router.navigate('/login', {trigger: true});
+        if (!user.get('loggedIn')) {
+            return router.navigate('/login', {trigger: true});
         }
         var settingsPage = new DefaultView({
             subviews: {
                 '.content': new SettingsView()
             }
         });
-        app.showView(settingsPage);
+        render(settingsPage);
+    },
+
+    // Runs before every route loads
+    execute: function(callback, args) {
+        // Clear out any global messages
+        messages.clear();
+        if (callback) {
+            callback.apply(this, args);
+        }
     }<% } %>
 });
 
-module.exports = Router;
+module.exports = new Router();

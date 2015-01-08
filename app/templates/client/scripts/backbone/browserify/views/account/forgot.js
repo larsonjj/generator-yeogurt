@@ -4,7 +4,7 @@
 
 'use strict';
 
-var app = require('../../app');
+var user = require('../../models/user');
 
 var Forgot = Backbone.View.extend({
 
@@ -26,7 +26,7 @@ var Forgot = Backbone.View.extend({
     formSubmit: function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        app.user.forgot($form);
+        user.forgot($form);
     },
 
     render: function() {

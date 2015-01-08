@@ -9,11 +9,9 @@ require.config({
     paths: {}
 });
 
-define('init', function(require) {
+define('init', function() {
 
-    var app = require('./app');
-
-    console.log(app.welcome);
+    console.log('Welcome to Yeogurt!');
 
 });
 

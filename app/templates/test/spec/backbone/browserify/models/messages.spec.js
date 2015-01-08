@@ -6,17 +6,13 @@
 
 'use strict';
 
-var MessagesModel = require('../../../client/scripts/models/messages');
+var messagesModel = require('../../../client/scripts/models/messages');
 
 describe('Messages Model', function() {
 
-    beforeEach(function() {
-        this.messagesModel = new MessagesModel();
-    });
-
     it('provides the "Messages Model" instance', function() {
         // Expect it to exist
-        expect(this.messagesModel)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+        expect(messagesModel)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
     });
 
 });

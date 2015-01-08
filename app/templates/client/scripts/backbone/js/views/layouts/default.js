@@ -26,13 +26,18 @@ App.Views.Default = Backbone.View.extend({
     render: function() {
         this.$el.html(this.template);
 
-        // Assign/Render subviews
-        this.assign(this.subviews);
-
         // If subviews are passed in, then assign/render them
         if (this.options && this.options.subviews) {
-            this.assign(this.options.subviews);
+            this.assign(_.extend(
+                this.options.subviews,
+                this.subviews
+            ));
         }
+        else {
+            // Assign/Render subviews
+            this.assign(this.subviews);
+        }
+
         return this;
     },
 

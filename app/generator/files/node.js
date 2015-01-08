@@ -22,18 +22,31 @@ var nodeFiles = function nodeFiles() {
             this.template('server/routes/user.js', 'server/routes/user.js');
 
             if (this.dbOption === 'mongodb') {
-                this.template('server/controllers/mongodb/user.js', 'server/controllers/user.js');
                 this.template('server/models/mongodb/user.js', 'server/models/user.js');
-                this.template('server/controllers/mongodb/account.js', 'server/controllers/account.js');
+
+                if (this.singlePageApplication) {
+                    this.template('server/controllers/mongodb/spa/user.js', 'server/controllers/user.js');
+                    this.template('server/controllers/mongodb/spa/account.js', 'server/controllers/account.js');
+                }
+                else {
+                    this.template('server/controllers/mongodb/non-spa/user.js', 'server/controllers/user.js');
+                    this.template('server/controllers/mongodb/non-spa/account.js', 'server/controllers/account.js');
+                }
 
                 this.template('server/auth/strategies/mongodb/local.js', 'server/auth/strategies/local.js');
             }
             if (this.dbOption === 'sql') {
-                this.template('server/controllers/sql/user.js', 'server/controllers/user.js');
                 this.template('server/models/sql/user.js', 'server/models/user.js');
-                this.template('server/controllers/sql/account.js', 'server/controllers/account.js');
 
-                this.template('server/controllers/sql/account.js', 'server/controllers/account.js');
+                if (this.singlePageApplication) {
+                    this.template('server/controllers/sql/spa/user.js', 'server/controllers/user.js');
+                    this.template('server/controllers/sql/spa/account.js', 'server/controllers/account.js');
+                }
+                else {
+                    this.template('server/controllers/sql/non-spa/user.js', 'server/controllers/user.js');
+                    this.template('server/controllers/sql/non-spa/account.js', 'server/controllers/account.js');
+                }
+
                 this.template('server/auth/strategies/sql/local.js', 'server/auth/strategies/local.js');
             }
 

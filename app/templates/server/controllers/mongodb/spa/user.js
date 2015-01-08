@@ -4,14 +4,8 @@
 
 'use strict';
 
-var _ = require('lodash');
-var async = require('async');
-var crypto = require('crypto');
-var nodemailer = require('nodemailer');
-var passport = require('passport');
 var User = require('mongoose').model('user');
-var secrets = require('../config/secrets');
-var auth = require('../auth');<% if (singlePageApplication) { %>
+var auth = require('../auth');
 
 /**
  * GET /user
@@ -33,7 +27,7 @@ var readAccount = function(req, res, next) {
             user: user
         });
     });
-};<% } %>
+};
 
 /**
  * POST /user
@@ -48,7 +42,7 @@ var createAccount = function(req, res, next) {
     req.assert('password', 'Password must be at least 6 characters long').len(6);
     req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
-    var errors = req.validationErrors();<% if (singlePageApplication) { %>
+    var errors = req.validationErrors();
 
     if (errors) {
         return res.status(400).json({
@@ -89,41 +83,7 @@ var createAccount = function(req, res, next) {
                 }]
             });
         });
-    });<% } else { %>
-    if (errors) {
-        req.flash('errors', errors);
-        return res.redirect('/signup');
-    }
-
-    var user = new User({
-        email: req.body.email,
-        password: req.body.password
     });
-
-    User.findOne({
-        email: req.body.email
-    }, function(err, existingUser) {
-        if (existingUser) {
-            req.flash('errors', {
-                msg: 'Account with that email address already exists.'
-            });
-            return res.redirect('/signup');
-        }
-        user.save(function(err) {
-            if (err) {
-                return next(err);
-            }
-            req.logIn(user, function(err) {
-                if (err) {
-                    return next(err);
-                }
-                req.flash('success', {
-                    msg: 'Account created successfully.'
-                });
-                res.redirect('/');
-            });
-        });
-    });<% } %>
 };
 
 /**
@@ -134,7 +94,7 @@ var createAccount = function(req, res, next) {
 var updateProfile = function(req, res, next) {
     req.assert('email', 'Email is not valid').isEmail();
 
-    var errors = req.validationErrors();<% if (singlePageApplication) { %>
+    var errors = req.validationErrors();
 
     if (errors) {
         return res.status(400).json({
@@ -162,31 +122,7 @@ var updateProfile = function(req, res, next) {
                 user: user
             });
         });
-    });<% } else { %>
-    if (errors) {
-        req.flash('errors', errors);
-        return res.redirect('/settings');
-    }
-
-    User.findById(req.user._id, function(err, user) {
-        if (err) {
-            return next(err);
-        }
-
-        user.email = req.body.email || '';
-        user.firstName = req.body.firstName || '';
-        user.lastName = req.body.lastName || '';
-
-        user.save(function(err) {
-            if (err) {
-                return next(err);
-            }
-            req.flash('success', {
-                msg: 'Profile information updated.'
-            });
-            res.redirect('/settings');
-        });
-    });<% } %>
+    });
 };
 
 /**
@@ -200,7 +136,7 @@ var updatePassword = function(req, res, next) {
     req.assert('password', 'Password must be at least 6 characters long').len(6);
     req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
-    var errors = req.validationErrors();<% if (singlePageApplication) { %>
+    var errors = req.validationErrors();
 
     if (errors) {
         return res.status(400).json({
@@ -225,29 +161,7 @@ var updatePassword = function(req, res, next) {
                 }]
             });
         });
-    });<% } else { %>
-    if (errors) {
-        req.flash('errors', errors);
-        return res.redirect('/settings');
-    }
-
-    User.findById(req.user._id, function(err, user) {
-        if (err) {
-            return next(err);
-        }
-
-        user.password = req.body.password;
-
-        user.save(function(err) {
-            if (err) {
-                return next(err);
-            }
-            req.flash('success', {
-                msg: 'Password has been changed.'
-            });
-            res.redirect('/settings');
-        });
-    });<% } %>
+    });
 };
 
 /**
@@ -255,7 +169,7 @@ var updatePassword = function(req, res, next) {
  * Delete current user account.
  */
 
-var deleteAccount = function(req, res, next) {<% if (singlePageApplication) { %>
+var deleteAccount = function(req, res, next) {
     User.findByIdAndRemove(req.user._id, function(err) {
         if (err) {
             return next(err);
@@ -265,21 +179,11 @@ var deleteAccount = function(req, res, next) {<% if (singlePageApplication) { %>
                 msg: 'Your account has been deleted.'
             }]
         });
-    });<% } else { %>
-    User.findByIdAndRemove(req.user._id, function(err) {
-        if (err) {
-            return next(err);
-        }
-        req.logout();
-        req.flash('info', {
-            msg: 'Your account has been deleted.'
-        });
-        res.redirect('/');
-    });<% } %>
+    });
 };
 
-module.exports = {<% if (singlePageApplication) { %>
-    readAccount: readAccount,<% } %>
+module.exports = {
+    readAccount: readAccount,
     createAccount: createAccount,
     updateProfile: updateProfile,
     updatePassword: updatePassword,

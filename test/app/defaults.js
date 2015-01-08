@@ -34,7 +34,7 @@ describe('Yeogurt generator using Default Configuration', function() {
             'client/',
             'client/styles',
             'client/scripts',
-            'client/scripts/app.js',
+            'client/scripts/main.js',
             'client/images',
             'client/robots.txt',
             'client/favicon.ico',

@@ -213,3 +213,6 @@ App.Models.User = Backbone.Model.extend({<% if (dbOption === 'mongodb') { %>
     }
 
 });
+
+// Setup user account
+App.user = new App.Models.User();

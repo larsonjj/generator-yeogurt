@@ -94,7 +94,8 @@
 
         <!-- build:js(client) scripts/main.js -->
             <!-- [injector:js] -->
-            <!-- [endinjector] --><% if (jsFramework === 'backbone') { %>
+            <!-- [endinjector] --><% if (jsFramework === 'backbone') { %><% if (jsOption === 'none') { %>
+        <script src="/scripts/views/layouts/default.js"></script><% } %>
         <script src="/scripts/routes.js"></script><% } %>
         <script src="/scripts/main.js"></script>
         <!-- endbuild --><% } %>

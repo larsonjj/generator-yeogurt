@@ -11,6 +11,14 @@
 var <%= _.classify(name) %> = require('<%= rootDir %>../<%= constantFile %>');
 
 describe('Testing Flux Constant: <%= _.classify(name) %>', function() {
+
+    var ReactTestUtils;
+    var reactRender;
+
+    beforeEach(function() {
+        ReactTestUtils = require('react/addons').addons.TestUtils;
+    });
+
     it('Should run a few assertions', function() {
 
     });

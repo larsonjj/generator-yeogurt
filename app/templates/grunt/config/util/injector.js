@@ -67,7 +67,8 @@ var taskConfig = function(grunt) {
                 '<%%= yeogurt.server %>/templates/<% if (htmlOption === 'jade') { %>layouts/base.jade<% } else if (htmlOption === 'swig') { %>layouts/base.swig<% } %>'<% } else { %>
                 '<%%= yeogurt.client %>/<% if (htmlOption === 'jade') { %>templates/layouts/base.jade<% } else if (htmlOption === 'swig') { %>templates/layouts/base.swig<% } %>'<% } %>: [
                     '<%%= yeogurt.client %>/scripts/**/*.js',
-                    '!<%%= yeogurt.client %>/scripts/{main,app}.js'<% if (singlePageApplication) { %>,
+                    '!<%%= yeogurt.client %>/scripts/{main,app}.js'<% if (singlePageApplication) { %>,<% if (jsFramework === 'backbone' && jsOption === 'none') { %>
+                    '!<%%= yeogurt.client %>/scripts/views/layouts/default.js',<% } %>
                     '!<%%= yeogurt.client %>/scripts/routes.js'<% } %>
                 ]
             }

@@ -26,10 +26,11 @@ describe('Yeogurt generator unit testing', function() {
                 'test',
                 'test/spec',
                 'grunt/config/test/karma.js',
-                'test/spec/app.spec.js'
+                'test/spec/main.spec.js'
             ];
 
             helpers.mockPrompt(this.app, {
+                jsFramework: 'none',
                 useTesting: true,
                 testFramework: 'jasmine'
             });
@@ -63,8 +64,7 @@ describe('Yeogurt generator unit testing', function() {
             var notExpected = [
                 'test',
                 'test/spec',
-                'grunt/config/test/karma.js',
-                'test/spec/app.spec.js'
+                'grunt/config/test/karma.js'
             ];
 
             helpers.mockPrompt(this.app, {

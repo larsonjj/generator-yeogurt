@@ -1,12 +1,11 @@
 /**
 *   User Model
-*   Access this model through the app.user object
 */
 
 define(function(require) {
     'use strict';
 
-    var app = require('../app');
+    var messages = require('./messages');
 
     var User = Backbone.Model.extend({
 
@@ -119,7 +118,7 @@ define(function(require) {
                     }
                 }
             }).complete(function(res) {
-                app.messages.showMessages(res.responseJSON);
+                messages.showMessages(res.responseJSON);
                 if (callback.complete) {
                     callback.complete(res);
                 }
@@ -211,7 +210,7 @@ define(function(require) {
 
     });
 
-    return User;
+    return new User();
 
 });
 

@@ -11,7 +11,9 @@ require.config({
 
 define('init', function(require) {
 
-    var app = require('./app');
+    <% if (useAuth) { %>
+    var user = require('./models/user');<% } %>
+    var router = require('./routes');
 
     // Use GET and POST to support all browsers
     // Also adds '_method' parameter with correct HTTP headers
@@ -46,7 +48,7 @@ define('init', function(require) {
 
     // Send authorization header on each AJAX request
     $(document).ajaxSend(function(event, request) {
-        var token = app.user.getToken();
+        var token = user.getToken();
         if (token) {
             request.setRequestHeader('authorization', 'Bearer ' + token);
         }
@@ -54,7 +56,7 @@ define('init', function(require) {
 
     // Check the auth status upon initialization,
     // should happen before rendering any templates
-    app.user.isAuthenticated({
+    user.isAuthenticated({
 
         // Start backbone routing once we have captured a user's auth status
         complete: function() {
@@ -66,7 +68,7 @@ define('init', function(require) {
             var pushState = !!(enablePushState && window.history && window.history.pushState);
 
             if (pushState) {
-                Backbone.history.start({ pushState: true, root: app.root });
+                Backbone.history.start({ pushState: true, root: '/' });
             } else {
                 Backbone.history.start();
             }
@@ -86,7 +88,7 @@ define('init', function(require) {
     var pushState = !!(enablePushState && window.history && window.history.pushState);
 
     if (pushState) {
-        Backbone.history.start({ pushState: true, root: app.root });
+        Backbone.history.start({ pushState: true, root: '/' });
     } else {
         Backbone.history.start();
     }
@@ -105,7 +107,7 @@ define('init', function(require) {
 
         if (href.slice(protocol.length) !== protocol) {
             event.preventDefault();
-            app.router.navigate(href, true);
+            router.navigate(href, true);
         }
 
     });

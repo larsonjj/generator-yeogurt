@@ -19,8 +19,6 @@ App.Views.Messages = Backbone.View.extend({
 
     // Code that runs when View is initialized
     initialize: function() {
-        // Remove messages data when navigating to a different page
-        App.messages.clear();
         // Re-render template when data changes
         this.listenTo(App.messages, 'change', this.render);
         this.render();

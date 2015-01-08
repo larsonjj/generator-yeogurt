@@ -6,6 +6,7 @@
 
 var React = require('react');
 var routeActions = require('./actions/routes');
+var messagesActions = require('./actions/messages');
 var userStore = require('./stores/user');<% if (useJsx) { %>
 var IndexPage = React.createFactory(require('./components/index.jsx'));<% if (useAuth) { %>
 var LoginPage = React.createFactory(require('./components/account/login.jsx'));
@@ -59,6 +60,14 @@ var forgot = function() {
     // If user is logged in, redirect to settings page
     if (userStore.get().loggedIn) {
         return routeActions.setRoute('/settings');
+    }
+    // If reset token is invalid or has expired, display error message
+    if (window.location.search === '?error=invalid') {
+        messagesActions.setMessages({
+            errors: [{
+                msg: 'Reset is invalid or has expired.'
+            }]
+        });
     }
 
     render(ForgotPage);

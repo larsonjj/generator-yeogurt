@@ -5,10 +5,10 @@
 'use strict';
 
 var React = require('react');
+var keyMirror = require('keymirror');
 
-var <%= _.classify(name) %> = {
-    // Replace SAMPLE_CONSTANT with your own constant property
-    SAMPLE_CONSTANT: 'SAMPLE_CONSTANT'
-};
+var <%= _.classify(name) %>Constants = keyMirror({
+    SAMPLE_CONSTANT: null
+});
 
-module.exports = <%= _.classify(name) %>;
+module.exports = <%= _.classify(name) %>Constants;

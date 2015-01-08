@@ -4,7 +4,7 @@
 
 'use strict';
 
-var app = require('../../app');
+var user = require('../../models/user');
 
 var Signup = Backbone.View.extend({
 
@@ -26,7 +26,7 @@ var Signup = Backbone.View.extend({
     formSubmit: function(e) {
         e.preventDefault();
         var $form = $(e.currentTarget);
-        app.user.signup($form);
+        user.signup($form);
     },
 
     render: function() {

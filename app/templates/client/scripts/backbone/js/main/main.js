@@ -47,7 +47,7 @@ var App = App || {
     };
 
     // Handle displaying and cleaning up views
-    App.showView = function(view) {
+    App.render = function(view) {
         if (this.currentView) {
             this.currentView.close();
         }
@@ -59,12 +59,6 @@ var App = App || {
 
     // Initialize routes
     App.router = new App.Routers.Main();<% if (useAuth) { %>
-
-    // Setup user account
-    App.user = new App.Models.User();
-
-    // Setup flash messages
-    App.messages = new App.Models.Messages();
 
     // Send authorization header on each AJAX request
     $(document).ajaxSend(function(event, request) {

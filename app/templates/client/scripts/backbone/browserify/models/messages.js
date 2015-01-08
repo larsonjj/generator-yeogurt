@@ -5,8 +5,6 @@
 
 'use strict';
 
-var app = require('../app');
-
 var Messages = Backbone.Model.extend({
 
     initialize: function() {
@@ -26,4 +24,4 @@ var Messages = Backbone.Model.extend({
 
 });
 
-module.exports = Messages;
+module.exports = new Messages();
