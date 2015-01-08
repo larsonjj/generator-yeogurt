@@ -95,7 +95,7 @@ describe('Yeogurt generator using React', function() {
                             'client/scripts/components/index.js',
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/components/index.js', /React\.DOM/i],
+                            ['client/scripts/components/index.js', /React\.createElement/i],
                         ];
                         var fileContentNotThere = [
                             ['package.json', /node-jsx/i],
@@ -159,7 +159,7 @@ describe('Yeogurt generator using React', function() {
                             'client/scripts/components/index.js',
                         ];
                         var fileContentToTest = [
-                            ['client/scripts/components/index.js', /React\.DOM/i],
+                            ['client/scripts/components/index.js', /React\.createElement/i],
                         ];
                         var fileContentNotThere = [
                             ['package.json', /node-jsx/i],
@@ -190,6 +190,32 @@ describe('Yeogurt generator using React', function() {
     describe('On the Server', function() {
         describe('With Browserify', function() {
             describe('Without Auth', function() {
+                it('Creates default files', function(done) {
+                    var expected = [
+                        'client/scripts/stores/page.js',
+                        'client/scripts/stores/default.js',
+                        'client/scripts/dispatchers/default.js',
+                        'client/scripts/actions/page.js',
+                        'client/scripts/actions/routes.js',
+                        'client/scripts/constants/action-types.js',
+                        'client/scripts/constants/defaults.js',
+                        'client/scripts/constants/payload-sources.js'
+                    ];
+                    helpers.mockPrompt(this.app, {
+                        useAuth: false,
+                        singlePageApplication: true,
+                        jsFramework: 'react',
+                        jsTemplate: false,
+                        jsOption: 'browserify',
+                        useServer: true,
+                        testFramework: 'jasmine'
+                    });
+
+                    this.app.run([], function() {
+                        assert.file(expected);
+                        done();
+                    });
+                });
                 describe('Using Jasmine', function() {
                     describe('Using JSX', function() {
                         it ('Creates expected files with expected content', function(done) {
@@ -228,7 +254,7 @@ describe('Yeogurt generator using React', function() {
                                 'client/scripts/components/index.js',
                             ];
                             var fileContentToTest = [
-                                ['client/scripts/components/index.js', /React\.DOM/i],
+                                ['client/scripts/components/index.js', /React\.createElement/i],
                             ];
                             var fileContentNotThere = [
                                 ['package.json', /node-jsx/i],
@@ -293,7 +319,7 @@ describe('Yeogurt generator using React', function() {
                                 'client/scripts/components/index.js',
                             ];
                             var fileContentToTest = [
-                                ['client/scripts/components/index.js', /React\.DOM/i],
+                                ['client/scripts/components/index.js', /React\.createElement/i],
                             ];
                             var fileContentNotThere = [
                                 ['package.json', /node-jsx/i],
@@ -324,7 +350,17 @@ describe('Yeogurt generator using React', function() {
                 it('Creates default files', function(done) {
                     var expected = [
                         'client/scripts/stores/messages.js',
-                        'client/scripts/stores/user.js'
+                        'client/scripts/stores/user.js',
+                        'client/scripts/stores/page.js',
+                        'client/scripts/stores/default.js',
+                        'client/scripts/dispatchers/default.js',
+                        'client/scripts/actions/user.js',
+                        'client/scripts/actions/messages.js',
+                        'client/scripts/actions/page.js',
+                        'client/scripts/actions/routes.js',
+                        'client/scripts/constants/action-types.js',
+                        'client/scripts/constants/defaults.js',
+                        'client/scripts/constants/payload-sources.js',
                     ];
                     helpers.mockPrompt(this.app, {
                         useAuth: true,
@@ -396,7 +432,7 @@ describe('Yeogurt generator using React', function() {
                                 'client/scripts/components/account/signup.js'
                             ];
                             var fileContentToTest = [
-                                ['client/scripts/components/index.js', /React\.DOM/i],
+                                ['client/scripts/components/index.js', /React\.createElement/i],
                             ];
                             var fileContentNotThere = [
                                 ['package.json', /node-jsx/i],
@@ -479,7 +515,7 @@ describe('Yeogurt generator using React', function() {
                                 'client/scripts/components/account/signup.js'
                             ];
                             var fileContentToTest = [
-                                ['client/scripts/components/index.js', /React\.DOM/i],
+                                ['client/scripts/components/index.js', /React\.createElement/i],
                             ];
                             var fileContentNotThere = [
                                 ['package.json', /node-jsx/i],

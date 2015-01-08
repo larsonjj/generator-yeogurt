@@ -11,7 +11,7 @@ var pageStore = require('../../stores/page');
 var userStore = require('../../stores/user');
 
 // Alias for React DOM
-var DOM = React.DOM;
+var DOM = React.createElement;
 
 var getState = function() {
     return {

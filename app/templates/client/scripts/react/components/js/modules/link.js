@@ -8,7 +8,7 @@ var React = require('react');
 var routeActions = require('../../actions/routes');
 
 // Alias for React DOM
-var DOM = React.DOM;
+var DOM = React.createElement;
 
 var LinkComponent = React.createClass({
 

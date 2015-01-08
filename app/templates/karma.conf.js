@@ -11,12 +11,12 @@ module.exports = function(config) {
         frameworks: [<% if (testFramework === 'jasmine') { %>'jasmine'<% } else if (testFramework === 'mocha') { %>'mocha', 'chai'<% } %>],
 
         // list of files / patterns to load in the browser
-        files: [
-            'client/bower_components/jquery/dist/jquery.js',<% if (jsFramework === 'backbone' || jsFramework === 'react') { %>
+        files: [<% if (jsFramework !== 'react') { %>
+            'client/bower_components/jquery/dist/jquery.js',<% } %><% if (jsFramework === 'backbone') { %>
             'client/bower_components/underscore/underscore.js',
             'client/bower_components/backbone/backbone.js',<% if (useAuth) { %>
-            'client/bower_components/jquery.cookie/jquery.cookie.js',<% } %><% if (jsFramework === 'react') { %>
-            'test/helpers/phantomjs-shims.js',<% } %><% } %><% if (jsTemplate === 'handlebars') { %>
+            'client/bower_components/jquery.cookie/jquery.cookie.js',<% } %><% } %><% if (jsFramework === 'react') { %>
+            'test/helpers/phantomjs-shims.js',<% } %><% if (jsTemplate === 'handlebars') { %>
             'client/bower_components/handlebars/handlebars.runtime.js',<% } else if (jsTemplate === 'jade') { %>'client/bower_components/jade/runtime.js',<% } %><% if (jsFramework === 'backbone') { %>
             'test/scripts/templates.js',<% } %><% if (jsOption === 'requirejs') { %>
             {

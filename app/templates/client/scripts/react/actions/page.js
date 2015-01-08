@@ -9,7 +9,7 @@ module.exports = {
 
     /**
      * Set metadata for the current page (title, description, keywords etc.).
-     * @param {object} The page object.
+     * @param {object} page Supply an object containing page information.
      */
     set: function(page) {
         Dispatcher.handleViewAction({

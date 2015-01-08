@@ -8,11 +8,13 @@
 
 var React = require('react');
 
+var DOM = React.createElement;
+
 var <%= _.classify(name) %> = React.createClass({displayName: '<%= _.classify(name) %>',
     render: function() {
         return (
-            React.DOM.div(null,
-                React.DOM.p({ref: 'p'}, '<%= _.classify(name) %> component')
+            DOM('div', null,
+                DOM('p', {ref: 'p'}, '<%= _.classify(name) %> component')
             )
         );
     }

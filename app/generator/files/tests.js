@@ -84,6 +84,46 @@ var testingFiles = function testingFiles() {
                 }
             }
         }
+        else if (this.jsFramework === 'react') {
+            // Router
+            this.template('test/spec/react/routes.spec.js', 'test/spec/routes.spec.js');
+
+            // Components
+            this.template('test/spec/react/components/index.spec.js', 'test/spec/components/index.spec.js');
+
+            // Dispatchers
+            this.template('test/spec/react/dispatchers/default.spec.js', 'test/spec/dispatchers/default.spec.js');
+
+            // Stores
+            this.template('test/spec/react/stores/page.spec.js', 'test/spec/stores/page.spec.js');
+            this.template('test/spec/react/stores/default.spec.js', 'test/spec/stores/default.spec.js');
+
+            // Actions
+            this.template('test/spec/react/actions/page.spec.js', 'test/spec/actions/page.spec.js');
+            this.template('test/spec/react/actions/routes.spec.js', 'test/spec/actions/routes.spec.js');
+
+            if (this.useAuth) {
+                // Components
+                this.template('test/spec/react/components/account/forgot.spec.js', 'test/spec/components/account/forgot.spec.js');
+                this.template('test/spec/react/components/account/login.spec.js', 'test/spec/components/account/login.spec.js');
+                this.template('test/spec/react/components/account/reset.spec.js', 'test/spec/components/account/reset.spec.js');
+                this.template('test/spec/react/components/account/settings.spec.js', 'test/spec/components/account/settings.spec.js');
+                this.template('test/spec/react/components/account/signup.spec.js', 'test/spec/components/account/signup.spec.js');
+
+                this.template('test/spec/react/components/layouts/default.spec.js', 'test/spec/components/layouts/default.spec.js');
+
+                this.template('test/spec/react/components/modules/messages.spec.js', 'test/spec/components/modules/messages.spec.js');
+                this.template('test/spec/react/components/modules/navbar.spec.js', 'test/spec/components/modules/navbar.spec.js');
+
+                // Stores
+                this.template('test/spec/react/stores/user.spec.js', 'test/spec/stores/user.spec.js');
+                this.template('test/spec/react/stores/messages.spec.js', 'test/spec/stores/messages.spec.js');
+
+                // Actions
+                this.template('test/spec/react/actions/user.spec.js', 'test/spec/actions/user.spec.js');
+                this.template('test/spec/react/actions/messages.spec.js', 'test/spec/actions/messages.spec.js');
+            }
+        }
         else {
             this.template('test/spec/app.spec.js', 'test/spec/app.spec.js');
         }

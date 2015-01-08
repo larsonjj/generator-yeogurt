@@ -7,8 +7,8 @@
 var Router = require('director').Router;
 var routes = require('./routes');
 var Dispatcher = require('./dispatchers/default');
-var userActions = require('./actions/user');
-var ActionTypes = require('./constants/action-types');
+var ActionTypes = require('./constants/action-types');<% if (useAuth) { %>
+var userActions = require('./actions/user');<% } %>
 
 // Setup router
 var router = new Router(routes);<% if (useAuth) { %>

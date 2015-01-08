@@ -8,7 +8,7 @@ var React = require('react');
 var messagesStore = require('../../stores/messages');
 
 // Alias for React DOM
-var DOM = React.DOM;
+var DOM = React.createElement;
 
 var getState = function() {
     return {

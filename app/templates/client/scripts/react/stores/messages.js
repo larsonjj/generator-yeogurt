@@ -6,19 +6,16 @@ var ActionTypes = require('../constants/action-types');
 var messagesDefaults = require('../constants/defaults').messages;
 
 /**
- * @typedef User
+ * @typedef Messages
  * @type {object}
- * @property {boolean} loggedIn
- * @property {string} firstName
- * @property {string} lastName
  */
 var _messages;
 
 var MessagesStore = new Store({
 
     /**
-     * Gets data associated with the current user.
-     * @returns {user}
+     * Gets data associated with the current messages.
+     * @returns {messages}
      */
     get: function() {
         return _messages || messagesDefaults;

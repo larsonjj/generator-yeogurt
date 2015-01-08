@@ -7,18 +7,18 @@
 var React = require('react');
 var routeActions = require('./actions/routes');
 var userStore = require('./stores/user');<% if (useJsx) { %>
-var IndexPage = React.createFactory(require('./components/index.jsx'));
+var IndexPage = React.createFactory(require('./components/index.jsx'));<% if (useAuth) { %>
 var LoginPage = React.createFactory(require('./components/account/login.jsx'));
 var SignupPage = React.createFactory(require('./components/account/signup.jsx'));
 var ResetPage = React.createFactory(require('./components/account/reset.jsx'));
 var ForgotPage = React.createFactory(require('./components/account/forgot.jsx'));
-var SettingsPage = React.createFactory(require('./components/account/settings.jsx'));<% } else { %>
-var IndexPage = require('./components/index');
-var LoginPage = require('./components/account/login');
-var SignupPage = require('./components/account/signup');
-var ResetPage = require('./components/account/reset');
-var ForgotPage = require('./components/account/forgot');
-var SettingsPage = require('./components/account/settings');<% } %>
+var SettingsPage = React.createFactory(require('./components/account/settings.jsx'));<% } %><% } else { %>
+var IndexPage = React.createFactory(require('./components/index');<% if (useAuth) { %>
+var LoginPage = React.createFactory(require('./components/account/login'));
+var SignupPage = React.createFactory(require('./components/account/signup'));
+var ResetPage = React.createFactory(require('./components/account/reset'));
+var ForgotPage = React.createFactory(require('./components/account/forgot'));
+var SettingsPage = React.createFactory(require('./components/account/settings'));<% } %><% } %>
 
 var render = function(Page) {
     React.render(new Page(), document.getElementById('app-wrapper'));
@@ -26,7 +26,7 @@ var render = function(Page) {
 
 var index = function() {
     render(IndexPage);
-};
+};<% if (useAuth) { %>
 
 var login = function() {
     // If user is logged in, redirect to settings page
@@ -71,7 +71,7 @@ var settings = function() {
     }
 
     render(SettingsPage);
-};
+};<% } %>
 
     // Defined routes
 var routes = {<% if (useAuth) { %>

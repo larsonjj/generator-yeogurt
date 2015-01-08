@@ -12,7 +12,8 @@
 
 'use strict';
 
-var <%= _.classify(name) %> = require('<%= rootDir %><%= reactFile %><% if (useJsx) { %>.jsx<% } %>');
+var React = require('react');
+var <%= _.classify(name) %> = React.createFactory(require('<%= rootDir %><%= reactFile %><% if (useJsx) { %>.jsx<% } %>'));
 
 var ReactTestUtils;
 var reactRender;

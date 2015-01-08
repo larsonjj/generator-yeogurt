@@ -17,7 +17,8 @@ var IndexComponent = React.createClass({
                     <div className="yeogurt-info">
                         <h1>Welcome to Yeogurt!</h1>
                         <p>
-                            Take a look at the <Link url="https://github.com/larsonjj/generator-yeogurt#yeogurt-generator---">documentation</Link> and start mixing up something awesome.
+                            Take a look at the <Link url="https://github.com/larsonjj/generator-yeogurt#yeogurt-generator---">documentation</Link>
+                            and start mixing up something awesome.
                         </p>
                         <p>
                             <img src="/images/yeogurt-swirl.png" width="75px" className="logo" />

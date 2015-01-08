@@ -3,6 +3,7 @@
 var Dispatcher = require('../dispatchers/default');
 var ActionTypes = require('../constants/action-types');
 var messagesDefaults = require('../constants/defaults').messages;
+var assign = require('object-assign');
 
 module.exports = {
 
@@ -13,14 +14,7 @@ module.exports = {
     setMessages: function(messages) {
         Dispatcher.handleViewAction({
             actionType: ActionTypes.SET_MESSAGES,
-            messages: messages
-        });
-    },
-
-    clear: function() {
-        Dispatcher.handleViewAction({
-            actionType: ActionTypes.SET_MESSAGES,
-            messages: messagesDefaults
+            messages: assign({}, messagesDefaults, messages)
         });
     }
 

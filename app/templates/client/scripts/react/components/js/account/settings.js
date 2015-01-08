@@ -10,7 +10,7 @@ var userStore = require('../../stores/user');
 var userActions = require('../../actions/user');
 
 // Alias for React DOM
-var DOM = React.DOM;
+var DOM = React.createElement;
 
 var getState = function() {
     return {

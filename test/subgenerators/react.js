@@ -240,7 +240,7 @@ describe('React sub-generator', function() {
                 'client/scripts/components/' + react + '.js'
             ];
             var fileContentToTest = [
-                ['client/scripts/components/' + react + '.js', /React\.DOM/i]
+                ['client/scripts/components/' + react + '.js', /React\.createElement/i]
             ];
             var fileContentNotThere = [
                 ['test/spec/components/' + react + '.spec.js', /\jsx/i]
@@ -271,8 +271,8 @@ describe('React sub-generator', function() {
                 'client/scripts/components/' + react + '.jsx'
             ];
             var fileContentToTest = [
-                ['test/spec/components/' + react + '.spec.js', /\@jsx React\.DOM /i],
-                ['client/scripts/components/' + react + '.jsx', /\@jsx React\.DOM /i]
+                ['test/spec/components/' + react + '.spec.js', /React\.createFactory/i],
+                ['client/scripts/components/' + react + '.jsx', /jshint ignore/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -297,7 +297,7 @@ describe('React sub-generator', function() {
                 'client/scripts/components/' + react + '.jsx'
             ];
             var fileContentToTest = [
-                ['client/scripts/components/' + react + '.jsx', /\@jsx React\.DOM /i]
+                ['client/scripts/components/' + react + '.jsx', /jshint ignore/i]
             ];
             var filesNotCreated = [
                 'test/spec/components/' + react + '.spec.js',

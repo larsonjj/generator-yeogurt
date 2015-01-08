@@ -9,7 +9,7 @@
 var React = require('react');
 
 // Alias for React DOM
-var DOM = React.DOM;
+var DOM = React.createElement;
 
 var IndexComponent = React.createClass({displayName: 'IndexComponent',
     render: function() {

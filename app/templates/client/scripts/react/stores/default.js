@@ -6,8 +6,9 @@ var assign = require('object-assign');
 var CHANGE_EVENT = 'change';
 
 /**
- * Constructs a Store object, extends it with EventEmitter and supplied
- * methods parameter,  and creates a mixin property for use in components.
+ * Constructs a Store object.
+ * Extends itself with supplied methods parameter, attaches EventEmitter to itself,
+ * and creates a mixin property for use in components.
  *
  * @param {object} methods Public methods for Store instance.
  * @constructor
@@ -24,13 +25,15 @@ var Store = function(methods) {
         console.error('"mixin" cannot be used as a method as it is reserved.');
     }
 
-    assign(this, EventEmitter.prototype, methods);
+    assign(this, EventEmitter.prototype, methods || {});
 
     this.dispatcherToken = null;
 
     /**
      * Provides mixin for easily adding/removing event listeners to Stores
      * Add to Components using `mixins: [storeName.mixin]`
+     * This will also add the `_onChange` method which can be used as a callback
+     * when this store's change event(s) are fired
      */
     this.mixin = {
 

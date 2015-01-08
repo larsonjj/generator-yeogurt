@@ -8,17 +8,18 @@ var userDefaults = require('../constants/defaults').user;
 var request = require('superagent');
 var serialize = require('form-serialize');
 var cookie = require('cookie');
+var assign = require('object-assign');
 
 module.exports = {
 
     /**
      * Set the current user.
-     * @param {string} user Supply a user value.
+     * @param {string} user Supply an object containing user information.
      */
     setUser: function(user) {
         Dispatcher.handleViewAction({
             actionType: ActionTypes.SET_CURRENT_USER,
-            user: user
+            user: assign({}, {}, user)
         });
     },
 
@@ -147,7 +148,7 @@ module.exports = {
         this.setToken('', -1);
 
         // Reset user to defaults
-        this.setUser(userDefaults);
+        this.setUser({});
 
         routeActions.setRoute('/');
     },

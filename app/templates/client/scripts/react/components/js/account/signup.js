@@ -9,7 +9,7 @@ var DefaultLayout = require('../layouts/default');
 var userActions = require('../../actions/user');
 
 // Alias for React DOM
-var DOM = React.DOM;
+var DOM = React.createElement;
 
 var SignupComponent = React.createClass({
     render: function() {
