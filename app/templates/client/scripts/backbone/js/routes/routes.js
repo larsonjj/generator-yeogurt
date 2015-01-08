@@ -17,8 +17,11 @@ App.Routers.Main = Backbone.Router.extend({
         'signup': 'signup',
         'settings': 'settings',<% } %>
         '': 'index'
-    },
-
+    },<% if (!useAuth) { %>
+    index: function() {
+        // Render index page
+        new IndexView();
+    }<% } else { %>
     index: function() {
         var homePage = new App.Views.Default({
             subviews: {
@@ -26,7 +29,7 @@ App.Routers.Main = Backbone.Router.extend({
             }
         });
         App.render(homePage);
-    },<% if (useAuth) { %>
+    },
 
     login: function() {
         // If user is logged in, redirect to settings page

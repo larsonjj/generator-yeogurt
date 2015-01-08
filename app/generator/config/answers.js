@@ -53,6 +53,10 @@ var answersConfig = function answersConfig() {
 
     this.useAuth = this.answers.useAuth;
 
+    // Clear dbPass and/or dbUser if 'nouser' and/or 'nopass'
+    if (this.answers.dbUser === 'nouser') {this.answers.dbUser = '';}
+    if (this.answers.dbPass === 'nouser') {this.answers.dbPass = '';}
+
     this.dbUser = this.answers.dbUser;
     this.dbPass = this.answers.dbPass;
 
@@ -115,6 +119,10 @@ var answersConfig = function answersConfig() {
     this.useFTP                = this.answers.useFTP;
     this.ftpHost               = this.answers.ftpHost;
     this.ftpFolder             = this.answers.ftpFolder;
+
+    // Clear ftpPass and/or ftpUser if 'nouser' and/or 'nopass'
+    if (this.answers.ftpUser === 'nouser') {this.answers.ftpUser = '';}
+    if (this.answers.ftpPass === 'nouser') {this.answers.ftpPass = '';}
 
     this.ftpUser = this.answers.ftpUser;
     this.ftpPass = this.answers.ftpPass;

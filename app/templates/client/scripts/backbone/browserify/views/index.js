@@ -4,7 +4,6 @@
 
 'use strict';
 
-// IndexView is the top-level piece of UI.
 var IndexView = Backbone.View.extend({
 
     el: <% if (useAuth) { %>'.content'<% } else { %>'#app-wrapper'<% } %>,

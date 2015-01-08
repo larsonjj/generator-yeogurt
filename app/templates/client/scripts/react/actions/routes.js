@@ -1,8 +1,8 @@
 'use strict';
 
 var Dispatcher = require('../dispatchers/default');
-var ActionTypes = require('../constants/action-types');
-var messagesActions = require('./messages');
+var ActionTypes = require('../constants/action-types');<% if (useAuth) { %>
+var messagesActions = require('./messages');<% } %>
 
 module.exports = {
 
@@ -10,9 +10,9 @@ module.exports = {
      * Set the current route.
      * @param {string} route Supply a route value.
      */
-    setRoute: function(route) {
+    setRoute: function(route) {<% if (useAuth) { %>
         // Clear out any existing messages
-        messagesActions.setMessages({});
+        messagesActions.setMessages({});<% } %>
 
         Dispatcher.handleViewAction({
             actionType: ActionTypes.SET_CURRENT_ROUTE,

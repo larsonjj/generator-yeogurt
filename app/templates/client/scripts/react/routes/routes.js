@@ -5,16 +5,16 @@
 'use strict';
 
 var React = require('react');
-var routeActions = require('./actions/routes');
+var routeActions = require('./actions/routes');<% if (useAuth) { %>
 var messagesActions = require('./actions/messages');
-var userStore = require('./stores/user');<% if (useJsx) { %>
+var userStore = require('./stores/user');<% } %><% if (useJsx) { %>
 var IndexPage = React.createFactory(require('./components/index.jsx'));<% if (useAuth) { %>
 var LoginPage = React.createFactory(require('./components/account/login.jsx'));
 var SignupPage = React.createFactory(require('./components/account/signup.jsx'));
 var ResetPage = React.createFactory(require('./components/account/reset.jsx'));
 var ForgotPage = React.createFactory(require('./components/account/forgot.jsx'));
 var SettingsPage = React.createFactory(require('./components/account/settings.jsx'));<% } %><% } else { %>
-var IndexPage = React.createFactory(require('./components/index');<% if (useAuth) { %>
+var IndexPage = React.createFactory(require('./components/index'));<% if (useAuth) { %>
 var LoginPage = React.createFactory(require('./components/account/login'));
 var SignupPage = React.createFactory(require('./components/account/signup'));
 var ResetPage = React.createFactory(require('./components/account/reset'));

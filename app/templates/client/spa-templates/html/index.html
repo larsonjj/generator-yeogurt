@@ -36,7 +36,7 @@
         <script src="/bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
 
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- HTML5 and consolelog shims for IE8 support -->
         <!-- build:js(client) scripts/lt-ie9.js -->
         <!--[if lt IE 9]>
         <script src="/bower_components/consolelog/consolelog.js"></script>
@@ -79,7 +79,8 @@
 
         <!-- build:js(<% if (jsFramework === 'backbone') { %>{client,.tmp}<% } else { %>client<% } %>) scripts/global.js -->
             <!-- bower:js -->
-            <script src="/bower_components/jquery/dist/jquery.js"></script><% if (jsFramework === 'backbone' || jsFramework === 'react') { %>
+            <script src="/bower_components/jquery/dist/jquery.js"></script><% if (jsFramework === 'backbone') { %><% if (useAuth) { %>
+            <script src="/bower_components/jquery.cookie/jquery.cookie.js"></script><% } %>
             <script src="/bower_components/underscore/underscore.js"></script>
             <script src="/bower_components/backbone/backbone.js"></script><% } %><% if (jsTemplate === 'handlebars') { %>
             <script src="/bower_components/handlebars/handlebars.runtime.js"></script><% } else if (jsTemplate === 'jade') { %>

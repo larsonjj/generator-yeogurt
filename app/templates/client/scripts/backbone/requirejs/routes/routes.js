@@ -14,6 +14,7 @@ define(function(require) {
     var ForgotView = require('./views/account/forgot');
     var SettingsView = require('./views/account/settings');
     var DefaultView = require('./views/layouts/default');<% } %>
+    var IndexView = require('./views/index');
 
     // Handle displaying and cleaning up views
     var currentView;
@@ -36,8 +37,11 @@ define(function(require) {
             'signup': 'signup',
             'settings': 'settings',<% } %>
             '': 'index'
-        },
-
+        },<% if (!useAuth) { %>
+        index: function() {
+            // Render index page
+            new IndexView();
+        }<% } else { %>
         index: function() {
             var homePage = new DefaultView({
                 subviews: {
@@ -45,7 +49,7 @@ define(function(require) {
                 }
             });
             render(homePage);
-        },<% if (useAuth) { %>
+        },
 
         login: function() {
             // If user is logged in, redirect to settings page

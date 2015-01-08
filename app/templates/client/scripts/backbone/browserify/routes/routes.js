@@ -36,8 +36,11 @@ var Router = Backbone.Router.extend({
         'signup': 'signup',
         'settings': 'settings',<% } %>
         '': 'index'
-    },
-
+    },<% if (!useAuth) { %>
+    index: function() {
+        // Render index page
+        new IndexView();
+    }<% } else { %>
     index: function() {
         var homePage = new DefaultView({
             subviews: {
@@ -45,7 +48,7 @@ var Router = Backbone.Router.extend({
             }
         });
         render(homePage);
-    },<% if (useAuth) { %>
+    },
 
     login: function() {
         // If user is logged in, redirect to settings page

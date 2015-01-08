@@ -1,5 +1,7 @@
 /**
-*   Messages Component Description
+*   Link Component
+*   Handles pushState route changes within app
+*   Usage: <Link url="/linkUrl">Link Title</Link>
 */
 
 'use strict';

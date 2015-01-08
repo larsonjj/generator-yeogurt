@@ -1,28 +1,28 @@
 /**
-*   Default Component Description
+*   Default Layout Component Description
 */
 
 'use strict';
 
-var React = require('react');
+var React = require('react');<% if (useAuth) { %>
 var Navbar = require('../modules/navbar.jsx');
-var Messages = require('../modules/messages.jsx');
-var pageStore = require('../../stores/page');
-var userStore = require('../../stores/user');
+var Messages = require('../modules/messages.jsx');<% } %>
+var pageStore = require('../../stores/page');<% if (useAuth) { %>
+var userStore = require('../../stores/user');<% } %>
 
 var getState = function() {
     return {
-        title: pageStore.get().title,
-        user: userStore.get()
+        title: pageStore.get().title<% if (useAuth) { %>,
+        user: userStore.get()<% } %>
     };
 };
 
 var DefaultComponent = React.createClass({
-    mixins: [pageStore.mixin, userStore.mixin],
+    mixins: [pageStore.mixin<% if (useAuth) { %>, userStore.mixin<% } %>],
     componentDidMount: function() {
         // Update page title when this layout is loaded
-        pageStore.emitChange();
-        userStore.emitChange();
+        pageStore.emitChange();<% if (useAuth) { %>
+        userStore.emitChange();<% } %>
     },
     getInitialState: function() {
         return getState();
@@ -30,15 +30,15 @@ var DefaultComponent = React.createClass({
     render: function() {
         return (
             /* jshint ignore:start */
-            <div>
+            <div><% if (useAuth) { %>
                 <div className="main-nav">
                     <Navbar user={this.state.user} />
-                </div>
+                </div><% } %>
                 <div className="default">
-                    <div className="main-container">
+                    <div className="main-container"><% if (useAuth) { %>
                         <div className="messages">
                             <Messages messages={this.state.messages} />
-                        </div>
+                        </div><% } %>
                         <div className="content">
                             {this.props.children}
                         </div>

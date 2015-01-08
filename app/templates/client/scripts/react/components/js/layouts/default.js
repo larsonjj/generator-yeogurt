@@ -1,58 +1,58 @@
 /**
- *   Default Component Description
+ *   Default Layout Component Description
  */
 
 'use strict';
 
-var React = require('react');
+var React = require('react');<% if (useAuth) { %>
 var Navbar = require('../modules/navbar');
-var Messages = require('../modules/messages');
-var pageStore = require('../../stores/page');
-var userStore = require('../../stores/user');
+var Messages = require('../modules/messages');<% } %>
+var pageStore = require('../../stores/page');<% if (useAuth) { %>
+var userStore = require('../../stores/user');<% } %>
 
 // Alias for React DOM
 var DOM = React.createElement;
 
 var getState = function() {
     return {
-        title: pageStore.get().title,
-        user: userStore.get()
+        title: pageStore.get().title<% if (useAuth) { %>,
+        user: userStore.get()<% } %>
     };
 };
 
 var DefaultComponent = React.createClass({
-    mixins: [pageStore.mixin, userStore.mixin],
+    mixins: [pageStore.mixin<% if (useAuth) { %>, userStore.mixin<% } %>],
     componentDidMount: function() {
         // Update page title when this layout is loaded
-        pageStore.emitChange();
-        userStore.emitChange();
+        pageStore.emitChange();<% if (useAuth) { %>
+        userStore.emitChange();<% } %>
     },
     getInitialState: function() {
         return getState();
     },
     render: function() {
         return (
-            DOM('div', null,
+            DOM('div', null,<% if (useAuth) { %>
                 DOM('div', {
                         className: 'main-nav'
                     },
                     DOM(Navbar, {
                         user: this.state.user
                     })
-                ),
+                ),<% } %>
                 DOM('div', {
                         className: 'default'
                     },
                     DOM('div', {
                             className: 'main-container'
-                        },
+                        },<% if (useAuth) { %>
                         DOM('div', {
                                 className: 'messages'
                             },
                             DOM(Messages, {
                                 messages: this.state.messages
                             })
-                        ),
+                        ),<% } %>
                         DOM('div', {
                                 className: 'content'
                             },
