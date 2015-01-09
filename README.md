@@ -15,7 +15,7 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 - [Features](#features)
     - [Included in every project](#included-in-every-project)
     - [Available Options](#available-options)
-    - [Static/Server Site Options](#static-server-site-options)
+    - [Static/Server Site Options](#staticserver-site-options)
     - [Single Page Application Options](#single-page-application-options)
     - [Express Server Options](#express-server-options)
     - [Automatic File Injection](#automatic-file-injection)
@@ -188,7 +188,7 @@ Files to be injected into:
 |Jade | Static/Server Site | `client/templates/layouts/base.jade` or `server/templates/layouts/base.jade` if using express server
 |Swig | Static/Server Site |`client/templates/layouts/base.swig` or `server/templates/layouts/base.swig` if using express server
 |CSS, JS | Static/Server Site | `client/templates/layouts/base.{jade,swig}` or `server/templates/layouts/base.{jade,swig}` if using express server
-|CSS, JS | Single Page Application | `client/index.html` or `server/templates/index.html` if using express server
+|CSS, JS | Single Page Application | `client/index.html`
 
 
 ## Grunt Workflow
@@ -495,12 +495,12 @@ Once installed, take a look at your base template and you will notice the follow
 <!-- endbower -->
 ```
 
-These comments will ensure all libraries and their dependencies found in your `bower.json` file are correctly ordered and injected into your base template file via [grunt-wiredep](https://github.com/stephenplusplus/grunt-wiredep) using the following comments:. Then you are all set, no need to worry about linking your libraries manually.
+These comments will ensure all libraries and their dependencies found in your `bower.json` file are correctly ordered and injected into your base template file via [grunt-wiredep](https://github.com/stephenplusplus/grunt-wiredep). Then you are all set, no need to worry about linking your libraries manually.
 
 If you can't [find the package on bower](http://bower.io/search/) (very rare), or you have your own in-house libraries that you like to use, then you should:
 
 - Put your scripts within a `client/scripts/vendor` folder (jshint is setup to ignore this folder)
-- Put your stylesheets within a `client/styles/vendor` folder
+- Put your stylesheets within a `client/styles/vendor` folder (to keep things consistant)
 - Place all other file types somewhere within the `client` folder (This will make sure that your base template can access them).
 
 If you decided to remove `<!-- bower:js -->` and/or `<!-- bower:css -->` comments from your base template (i.e. not use grunt-wiredep) and have your new library installed, you will want to add it to your project. To do this, you'll need to add a new `<script>` or `<link>` tag to your base template file:
@@ -519,7 +519,7 @@ If you decided to remove `<!-- bower:js -->` and/or `<!-- bower:css -->` comment
 |Library/Framework | Server? | Base Template Location
 |---------|---------------|---------
 |Any | No  | `client/index.html`
-|Any | Yes | `server/templates/index.html`
+|Any | Yes | `client/index.html`
 
 Within your base template file, you will want to locate the `build:js(client) scripts/global.js` comment for scripts and the `build:css(client) styles/global.css` comment for styles. Once located, add your `<script>` or `<link>` after the comment and make sure it is also located before the `endbuild` comment:
 
@@ -573,7 +573,7 @@ Fill out the necessary connection information needed to access your FTP server a
 
 For more info on setting up the `.ftppass` file, refer to the [grunt-ftpush](https://github.com/inossidabile/grunt-ftpush) documentation
 
-> IMPORTANT: You will want to test your FTP connection information using an FTP client first (ex. [Filezilla](https://filezilla-project.org/)). This will ensure that you are: a) using the correct information and b) copying files to the correct directory.
+> IMPORTANT: You will want to test your FTP connection information using an FTP client first (ex. [Filezilla](https://filezilla-project.org/)). This will ensure that you are: a) using the correct connection information and b) copying files to the correct directory.
 
 ## Vagrant Setup
 If you would like to use Yeogurt with [Vagrant](https://www.vagrantup.com/), head over to the [yeogurt-vagrant](https://github.com/larsonjj/yeogurt-vagrant) repository for installation and setup instructions.
@@ -610,7 +610,7 @@ To remedy this situation, all you need to do is open up your `.jshintrc` file in
 // .jshintrc
 {
 ...
-    global: {
+    globals: {
         Backbone: true // Tells JSHint that Backbone is defined globally
     }
 ...
