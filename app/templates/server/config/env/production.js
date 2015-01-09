@@ -5,7 +5,7 @@
 
 // Production specific configuration
 var prodConfig = {
-    logLevel: 'short',
+    logLevel: 'short'
 };
 
 module.exports = prodConfig;

@@ -55,7 +55,7 @@ var answersConfig = function answersConfig() {
 
     // Clear dbPass and/or dbUser if 'nouser' and/or 'nopass'
     if (this.answers.dbUser === 'nouser') {this.answers.dbUser = '';}
-    if (this.answers.dbPass === 'nouser') {this.answers.dbPass = '';}
+    if (this.answers.dbPass === 'nopass') {this.answers.dbPass = '';}
 
     this.dbUser = this.answers.dbUser;
     this.dbPass = this.answers.dbPass;
@@ -122,7 +122,7 @@ var answersConfig = function answersConfig() {
 
     // Clear ftpPass and/or ftpUser if 'nouser' and/or 'nopass'
     if (this.answers.ftpUser === 'nouser') {this.answers.ftpUser = '';}
-    if (this.answers.ftpPass === 'nouser') {this.answers.ftpPass = '';}
+    if (this.answers.ftpPass === 'nopass') {this.answers.ftpPass = '';}
 
     this.ftpUser = this.answers.ftpUser;
     this.ftpPass = this.answers.ftpPass;

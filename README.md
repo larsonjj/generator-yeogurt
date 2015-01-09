@@ -15,14 +15,14 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 - [Features](#features)
     - [Included in every project](#included-in-every-project)
     - [Available Options](#available-options)
-    - [Static Site Options](#static-site-options)
+    - [Static/Server Site Options](#static-server-site-options)
     - [Single Page Application Options](#single-page-application-options)
     - [Express Server Options](#express-server-options)
     - [Automatic File Injection](#automatic-file-injection)
 - [Grunt Workflow](#grunt-workflow)
 - [Sub-Generators](#sub-generators)
     - [Default (Can be used on any project)](#default-can-be-used-on-any-project)
-    - [Static Sites and Backbone](#static-sites-and-backbone-applications)
+    - [Static/Server Sites and Backbone](#static-sites-and-backbone-applications)
     - [React](#react-application)
     - [Flux](#flux-application)
     - [Backbone](#backbone-application)
@@ -47,7 +47,7 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 
 ## What can I create with Yeogurt?
 - Build out static sites using [Jade](http://jade-lang.com/) or [Swig](http://paularmstrong.github.io/swig/).
-- Create Single Page Applications using [Backbone](http://backbonejs.org/) or [React](http://facebook.github.io/react/) (optionally with [Flux](http://facebook.github.io/react/docs/flux-overview.html)).
+- Create Single Page Applications using [Backbone](http://backbonejs.org/) or [React](http://facebook.github.io/react/) + [Flux](http://facebook.github.io/react/docs/flux-overview.html).
 - Make your site/app full-stack by adding an [Express](http://expressjs.com/) Server with optional database, cookie session, user authentication, and security support .
 
 Check out the [features](#features) section to see everything this generator has to offer.
@@ -92,7 +92,7 @@ then, run the Yeogurt generator.
 yo yeogurt
 ```
 
-Optionally, you can skip the automated installation of npm and bower packages by passing in `--skip-install`.
+Optionally, you can skip the automated installation of npm and bower packages by passing in `--skip-install`. The main reason to use this is if you have spotty/no internet connection, but would still like to generate your project.
 
 ```
 yo yeogurt --skip-install
@@ -100,17 +100,18 @@ yo yeogurt --skip-install
 
 Follow all the prompts and choose what suits you most for the project you would like to create. When you finish with all of the prompts, your project scaffold will be created and all dependencies will be installed.
 
-***NOTE: If you used the `--skip-install` option, no dependencies will have been installed. You will need to run `npm install && bower install` in your project's root directory in order to get started***
+***NOTE: If you used the `--skip-install` option, no dependencies will have been installed. You will need to run `npm install && bower install` in your project's root directory in order to get started running automated tasks***
 
 Now you can run:
 
 - `grunt` for testing and building a production version of your site.
 - `grunt serve` for previewing your site/app on a development server.
+- `grunt serve:dics` is the same as `grunt serve` but will also re-compile you automated documentation (won't be available if you didn't choose to use any automated documentation).
 - `grunt serve:dist` for previewing a production version of your site/app.
 
 You can learn more about what tasks are available in the [grunt tasks](#grunt-workflow) section.
 
-> IMPORTANT: SVN users should run the `svn-init.sh` (Linux, OSX) or `svn-init.bat` (Window) script in order to correctly setup ignores for your project. These scripts will be located in the root of your project folder. It is recommended that you do this before committing any code.
+> IMPORTANT: SVN users should choose the 'SVN' version control option when running the generator. Then be sure to run the `svn-init.sh` (Linux, OSX) or `svn-init.bat` (Window) script in order to correctly setup ignores for your project. These scripts will be located in the root of your project folder. It is recommended that you do this before committing any code.
 
 Congratulations! You should now have successfully created a Yeogurt project and are ready to start building out your site/app.
 
@@ -123,6 +124,7 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 - Automated build process that includes: compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, optimization of images, and processing of [usemin blocks](Usemin blocks)
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets (Except Stylus. [Waiting on PR](https://github.com/gruntjs/grunt-contrib-stylus/pull/121))
 - IE8+ Support via [HTML5shiv](https://github.com/aFarkas/html5shiv) and [consolelog](https://github.com/patik/console.log-wrapper)
+    - [ES5-Shim and ES5-Sham](https://github.com/es-shims/es5-shim) Included for React apps
 - JavaScript Linting with [JSHint](http://www.jshint.com/)
 - Feature detection with [Modernizr](http://modernizr.com/)
 
@@ -138,7 +140,7 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 - Test running with [Karma](http://karma-runner.github.io/0.12/index.html)
 - FTP deployment
 
-### Static Site Options
+### Static/Server Site Options
 - Markup with [Jade](http://jade-lang.com/) or [Swig](http://paularmstrong.github.io/swig/)
 - Dashboard - auto-generated dashboard for your site with [grunt-dashboard](https://github.com/larsonjj/grunt-dashboard)
     - Only available for Static Sites that are not using an Express server
@@ -146,20 +148,22 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 ### Single Page Application Options
 - Facebook's [React](http://facebook.github.io/react/) with optional [Flux](http://facebook.github.io/react/docs/flux-overview.html) architecture
 
-> IMPORTANT: You can only use Browserify with React (no RequireJS support)
+> IMPORTANT: You can only use Browserify with React (no RequireJS or Vanilla JS support)
 
 - Backbone with [Jade](http://jade-lang.com/), [Handlebars](http://handlebarsjs.com/), or [Lo-dash](http://lodash.com/) templating
 
 ### Express Server Options
 
-- Database support for [MySQL](http://www.mysql.com/) and [MongoDB](http://www.mongodb.org/) using [Sequelize](http://sequelizejs.com/) and [Mongoose](http://mongoosejs.com/) respectively.
+- Database support for:
+    - [MySQL](http://www.mysql.com/), [PostgreSQL](http://www.postgresql.org/) using [Sequelize](http://sequelizejs.com/)
+    - [MongoDB](http://www.mongodb.org/) using [Mongoose](http://mongoosejs.com/)
 - Cookie Session Storage with [express-session](https://github.com/expressjs/session)
 - Security with Paypal's [Lusca](https://github.com/krakenjs/lusca) module
 - User authentication (Email & Password) using [Passport](http://passportjs.org/)
-- [JSON Web Tokens](http://jwt.io/) authentication support (For IOS/Android/Mobile apps)
+- [JSON Web Token](http://jwt.io/) authentication support
     - Only for Single Page Applications
 - Jade, Swig server-side template rendering
-    - Only for Non-Single Page Applications
+    - Only for Static/Server sites (i.e. not Backbone or React)
 
 ### Automatic File Injection
 A grunt task, using the [grunt-injector](https://www.npmjs.org/package/grunt-injector) plugin, looks for new/updated files in your project and automatically injects imports/includes in the appropriate places based on an injection block.
@@ -181,9 +185,9 @@ Files to be injected into:
 |Less| Any | `client/styles/main.less`
 |Sass | Any | `client/styles/main.scss`
 |Stylus | Any | `client/styles/main.styl`
-|Jade | Static | `client/templates/layouts/base.jade` or `server/templates/layouts/base.jade` if using express server
-|Swig | Static |`client/templates/layouts/base.swig` or `server/templates/layouts/base.swig` if using express server
-|CSS, JS | Static | `client/templates/layouts/base.{jade,swig}` or `server/templates/layouts/base.{jade,swig}` if using express server
+|Jade | Static/Server Site | `client/templates/layouts/base.jade` or `server/templates/layouts/base.jade` if using express server
+|Swig | Static/Server Site |`client/templates/layouts/base.swig` or `server/templates/layouts/base.swig` if using express server
+|CSS, JS | Static/Server Site | `client/templates/layouts/base.{jade,swig}` or `server/templates/layouts/base.{jade,swig}` if using express server
 |CSS, JS | Single Page Application | `client/index.html` or `server/templates/index.html` if using express server
 
 
@@ -199,8 +203,8 @@ Starts up a development server that watches files and automatically reloads them
 
 |Tasks| Description
 |---------|-------
-|grunt serve:dist| runs [`grunt build`](#grunt-build) and starts up a server that loads the optimized files
 |grunt serve:docs| same as [`grunt serve`](#grunt-serve), but will also watch and recompile automated documentation (KSS, JSDoc, etc).
+|grunt serve:dist| runs [`grunt build`](#grunt-build) and starts up a server that loads the optimized files
 
 ***NOTE: you can add the `--allow-remote` option to any of these commands to allow remote devices on the same network to view your site/app***
 
@@ -219,7 +223,7 @@ Runs JSHint and Karma to lint and run JavaScript tests, respectively.
 ***NOTE: you can add the `--allow-remote` option to any of these commands to allow remote devices on the same network to view/run your tests***
 
 ### `grunt deploy`
-Runs [`grunt build`](#grunt-build) and pushes optimized files to a specified FTP server.
+Runs [`grunt build`](#grunt-build) and pushes optimized files to a specified FTP server. (only available if FTP deployment is chosen when generating project)
 
 ***NOTE: [FTP server](#ftp-server) info is specified in the `.ftppass` file in the root of your project)***
 
@@ -229,7 +233,7 @@ Runs [`grunt build`](#grunt-build) and pushes optimized files to a specified FTP
 * [yeogurt:script](#script)
 * [yeogurt:style](#style)
 
-#### Static Sites and Backbone applications
+#### Static/Server Sites and Backbone applications
 * [yeogurt:template](#template)
 
 #### React application
@@ -283,13 +287,13 @@ Produces:
 client/styles/_mystyle.scss
 ```
 
-## Static Site and Backbone Sub-generators
+## Static/Server Site and Backbone Sub-generators
 ***Note: (The following sub-generator cannot be used with React applications)***
 
 ### Template
-> IMPORTANT: This sub-generator is unique in that it's behavior differs depending on if you have generated a Static Site or a Backbone application.
+> IMPORTANT: This sub-generator is unique in that it's behavior differs depending on if you have generated a Static/Server Site or a Backbone application.
 
-##### For Static Sites
+##### For Static/Server Sites
 Creates a jade file in the `client` folder (or `server` folder if using an Express server).
 
 Examples:
@@ -501,7 +505,7 @@ If you can't [find the package on bower](http://bower.io/search/) (very rare), o
 
 If you decided to remove `<!-- bower:js -->` and/or `<!-- bower:css -->` comments from your base template (i.e. not use grunt-wiredep) and have your new library installed, you will want to add it to your project. To do this, you'll need to add a new `<script>` or `<link>` tag to your base template file:
 
-***Static Sites***
+***Static/Server Sites***
 
 |Template Type | Server? | Base Template Location
 |---------|---------------|---------
