@@ -7,7 +7,7 @@ Want to use [Bootstrap](http://getbootstrap.com/)? Follow this guide to get up a
 From the root of you project folder, open up a terminal/command prompt and run:
 
 ```
-// less
+// less/css
 bower install bootstrap --save
 
 // sass/scss
@@ -22,25 +22,6 @@ This will download the library and place it in the `client/bower_components` fol
 ### 2. Add library to your base template/stylesheet
 
 #### Using CSS
-##### Adding font path
-
-Locate you base stylesheet @ `client/styles/main.{less,scss/sass,styl}`
-
-Once you have located the base stylesheet file for your project, add the needed `$icon-font-path` statement:
-
-```
-// sass
-$icon-font-path: ../bower_components/bootstrap-sass-official/assets/fonts/"
-
-// scss
-$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
-
-// less
-@icon-font-path: "../bower_components/bootstrap/less/fonts/";
-
-// stylus
-@icon-font-path: "../bower_components/bootstrap-stylus/fonts/";
-```
 
 ##### Using default dependency injection via [grunt-wiredep](https://github.com/stephenplusplus/grunt-wiredep)
 
@@ -75,6 +56,24 @@ Now, navigate to the `<!-- build:css(client) styles/global.css -->` comment and 
 #### Using Sass/Scss, Less, or Stylus
 ##### Using default dependency injection via [grunt-wiredep](https://github.com/stephenplusplus/grunt-wiredep)
 
+Locate your base stylesheet @ `client/styles/main.{less,scss/sass,styl}`
+
+Once you have located the base stylesheet file for your project, add the needed `$icon-font-path` statement:
+
+```
+// sass
+$icon-font-path: ../bower_components/bootstrap-sass-official/assets/fonts/"
+
+// scss
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+
+// less
+@icon-font-path: "../bower_components/bootstrap/less/fonts/";
+
+// stylus
+@icon-font-path: "../bower_components/bootstrap-stylus/fonts/";
+```
+
 ***For Less only***
 Add bootstrap to your exclude list within the `grunt/config/util/wiredep.js` 'app' task:
 
@@ -82,7 +81,7 @@ Add bootstrap to your exclude list within the `grunt/config/util/wiredep.js` 'ap
 // packages to ignore
 exclude: [
     ...
-    // Less
+    // less
     'bower_components/bootstrap/dist/css'
     ...
 ],
@@ -94,7 +93,7 @@ Note that the bootstrap imports will be automatically injected into your base st
 
 If you decided to not use the `// bower:{less,stylus,sass/scss}` comments to auto-inject your bower dependencies via [grunt-wiredep](https://github.com/stephenplusplus/grunt-wiredep), then follow the steps below.
 
-Locate you base stylesheet @ `client/styles/main.{less,scss/sass,styl}`
+Locate your base stylesheet @ `client/styles/main.{less,scss/sass,styl}`
 
 Once you have located the base stylesheet file for your project, add the needed `@import` statement:
 

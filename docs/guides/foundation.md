@@ -1,4 +1,4 @@
-# Installing Foundation (Sass only)
+# Installing Foundation
 Want to use [Foundation](http://foundation.zurb.com/)? Follow this guide to get up and running with it quickly.
 
 ## Steps
@@ -69,7 +69,7 @@ Note that the bootstrap imports will be automatically injected into your base st
 
 If you decided to not use the `// bower:scss` or `<!-- bower:js -->` comments to auto-inject your bower dependencies via [grunt-wiredep](https://github.com/stephenplusplus/grunt-wiredep), then follow the steps below.
 
-Locate you base stylesheet @ `client/styles/main.{scss/sass}`
+Locate your base stylesheet @ `client/styles/main.{scss/sass}`
 
 Once you have located the base stylesheet file for your project, add the needed `@import` statement:
 
