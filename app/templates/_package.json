@@ -51,7 +51,7 @@
         "grunt-contrib-watch": "~0.6.1",
         "grunt-contrib-clean": "0.5.0",<% if (useKss) { %>
         "grunt-styleguide": "~0.2.17",<% } %><% if (htmlOption === 'jade' || jsTemplate === 'jade') { %>
-        "grunt-contrib-jade": "~0.12.0",<% } %><% if (htmlOption === 'swig') { %>
+        "grunt-contrib-jade": "~0.14.0",<% } %><% if (htmlOption === 'swig') { %>
         "grunt-swig-templates": "~0.1.2",<% } %>
         "grunt-autoprefixer": "~1.0.1",
         "grunt-contrib-htmlmin": "~0.3.0",<% if (jsOption === 'requirejs') { %>
