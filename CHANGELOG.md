@@ -1,4 +1,4 @@
-### v0.13.0:
+### v0.13.1:
 #### date: 2015-1-09
 ##### changes:
 
@@ -43,6 +43,11 @@
 * Fixed folder path creation for sub-generators [#90](https://github.com/larsonjj/generator-yeogurt/issues/90) & [#87](https://github.com/larsonjj/generator-yeogurt/issues/87)
 * Fixed 'JST undefined' error for backbone apps [#92](https://github.com/larsonjj/generator-yeogurt/issues/92)
 * Fixed 'resource interpreted as script but transferred with mime type text/html' error [#91](https://github.com/larsonjj/generator-yeogurt/issues/91)
+
+### v0.13.0:
+#### date: 2015-1-09
+##### changes:
+* Unpublished due to weird documentation issue. Please use v0.13.1
 
 ### v0.12.3:
 #### date: 2014-11-12
