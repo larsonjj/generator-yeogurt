@@ -21,7 +21,7 @@
  - Reset password (via email)
  - Create Account
  - Global error messages
-* Brand new guides that give even more information on how to incorporate popular libraries/frameworks
+* Brand new [Guides](https://github.com/larsonjj/generator-yeogurt/tree/master/docs/guides) that give even more information on how to incorporate popular libraries/frameworks
 * Added cookie-parser package to help handle parsing cookies for server apps
 
 ***Updates***
@@ -36,9 +36,12 @@
 * Updated `grunt-imagemin` to handle all images (jpg, jpeg, svg, and png) rather than using `grunt-svgmin` and `grunt-pngmin`
 * Unit test file name endings have been changed from `-spec.js` to `.spec.js`
 * Updated unit tests to reach over 90% code coverage
+* All React apps will use flux by default (no more flux options)
 
 ***Fixes***
-* Fixed folder path creation for sub-generators
+* Fixed folder path creation for sub-generators [#90](https://github.com/larsonjj/generator-yeogurt/issues/90) & [#87](https://github.com/larsonjj/generator-yeogurt/issues/87)
+* Fixed 'JST undefined' error for backbone apps [#92](https://github.com/larsonjj/generator-yeogurt/issues/92)
+* Fixed 'resource interpreted as script but transferred with mime type text/html' error [#91](https://github.com/larsonjj/generator-yeogurt/issues/91)
 
 
 ### v0.12.3:
