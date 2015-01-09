@@ -1,5 +1,5 @@
 # Installing Lo-dash
-Note a fan or [lodash](http://lodashjs.org/)? Want to use [Lo-dash](http://lodash.com/)? Follow this guide to get up and running with it quickly.
+Note a fan or [underscore](http://underscorejs.org/)? Want to use [Lo-dash](http://lodash.com/)? Follow this guide to get up and running with it quickly.
 
 ## Steps
 
