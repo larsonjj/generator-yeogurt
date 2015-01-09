@@ -8,7 +8,7 @@ var React = require('react');
 var keyMirror = require('keymirror');
 
 var <%= _.classify(name) %>Constants = keyMirror({
-    SAMPLE_CONSTANT: null
+    <%= name.toUpperCase() %>_CONSTANT: null
 });
 
 module.exports = <%= _.classify(name) %>Constants;

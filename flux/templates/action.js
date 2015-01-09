@@ -13,7 +13,7 @@ var <%= _.classify(name) %>Actions = {
      */
     sample: function(data) {
         Dispatcher.handleViewAction({
-            actionType: <%= _.classify(name) %>.SAMPLE_CONSTANT,
+            actionType: <%= _.classify(name) %>.<%= name.toUpperCase() %>_CONSTANT,
             data: data
         });
     },

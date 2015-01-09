@@ -31,7 +31,7 @@ var <%= _.classify(name) %>Store = new Store({
     var action = payload.action;
 
     // Replace 'true' with your desired constant
-    if (action.actionType === <%= _.classify(name) %>Constants.SAMPLE_CONSTANT) {
+    if (action.actionType === <%= _.classify(name) %>Constants.<%= name.toUpperCase() %>_CONSTANT) {
         _data = action.data;
 
         <%= _.classify(name) %>Store.emitChange();
