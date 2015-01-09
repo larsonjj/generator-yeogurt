@@ -6,7 +6,7 @@
 var taskConfig = function(grunt) {
 
     grunt.config.set('wiredep', {
-        all: {
+        app: {
             options: {
                 ignorePath: /client\/|\.\.\//g,
                 fileTypes: {<% if (singlePageApplication) { %>
@@ -61,7 +61,13 @@ var taskConfig = function(grunt) {
                 '<%%= yeogurt.client %>/templates/layouts/base.jade'<% } else if (htmlOption === 'swig') { %>
                 '<%%= yeogurt.client %>/templates/layouts/base.swig'<% } %><% } %>
             ]
-        }
+        }<% if (cssOption === 'sass') { %>,
+        styles: {<% if (cssOption === 'sass') { %>
+            src: ['<%%= yeogurt.client %>/styles/{,*/}*.{scss,sass}'],<% } %><% if (cssOption === 'less') { %>
+            src: ['<%%= yeogurt.client %>/styles/{,*/}*.less'],<% } %><% if (cssOption === 'stylus') { %>
+            src: ['<%%= yeogurt.client %>/styles/{,*/}*.styl'],<% } %>
+            ignorePath: /client\/|\.\.\//g,
+        }<% } %>
     });
 
 };

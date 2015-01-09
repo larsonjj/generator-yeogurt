@@ -39,7 +39,7 @@ Locate your base template with the following table:
 |Library/Framework | Server? | Base Template Location
 |---------|---------------|---------
 |Any | No  | `client/index.html`
-|Any | Yes | `server/templates/index.html`
+|Any | Yes | `client/templates/index.html`
 
 Once you have located the base template file for your project, navigate to the `<!-- build:js(client) scripts/global.js -->` comment and add the needed script:
 

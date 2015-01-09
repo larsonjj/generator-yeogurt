@@ -8,7 +8,7 @@ var taskConfig = function(grunt) {
         'clean:dist',<% if (useServer) { %>
         'env:prod',<% } %>
         'injector',
-        'wiredep:all',
+        'wiredep',
         'copy:dist',
         'concurrent',
         'useminPrepare',

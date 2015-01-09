@@ -20,7 +20,7 @@ var taskConfig = function(grunt) {
             'env:all',<% } %><% if (useKss && cssOption !== 'css') { %>
             'copy:server',<% } %>
             'injector',
-            'wiredep:all',<% if (jsOption === 'browserify') { %>
+            'wiredep',<% if (jsOption === 'browserify') { %>
             'browserify:server',
             'exorcise:server',<% } %><% if (jsTemplate === 'underscore') { %>
             'jst:server',<% } else if (jsTemplate === 'handlebars') { %>
