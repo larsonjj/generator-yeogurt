@@ -20,7 +20,7 @@ var styleFiles = function styleFiles() {
                 this.template('client/styles/main.sass', 'client/styles/main.sass');
             }
             else {
-                this.template('client/styles/main.less', 'client/styles/main.scss');
+                this.template('client/styles/main.scss', 'client/styles/main.scss');
             }
         }
         if (this.cssOption === 'stylus') {
