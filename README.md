@@ -106,7 +106,7 @@ Now you can run:
 
 - `grunt` for testing and building a production version of your site.
 - `grunt serve` for previewing your site/app on a development server.
-- `grunt serve:dics` is the same as `grunt serve` but will also re-compile you automated documentation (won't be available if you didn't choose to use any automated documentation).
+- `grunt serve:docs` is the same as `grunt serve` but will also re-compile you automated documentation (won't be available if you didn't choose to use any automated documentation).
 - `grunt serve:dist` for previewing a production version of your site/app.
 
 You can learn more about what tasks are available in the [grunt tasks](#grunt-workflow) section.
