@@ -10,9 +10,17 @@ From the root of you project folder, open up a terminal/command prompt and run:
 bower install animate.css --save
 ```
 
-This will download the library and place it in the `client/bower_components` folder
+This will download the library, place it in the `client/bower_components` folder, and save a reference to it in your `bower.json` file.
 
 ### 2. Add library to your base template
+
+#### Using default dependency injection via [grunt-wiredep](https://github.com/stephenplusplus/grunt-wiredep)
+
+No futher action is required. Note that the Animate.css library will be automatically injected into your base template between the `<!-- bower:css -->` and `<!-- endbower -->` comments
+
+#### Without dependency injection
+
+If you decided to not use the `<!-- bower:css -->` comments to auto-inject your bower dependencies via [grunt-wiredep](https://github.com/stephenplusplus/grunt-wiredep), then follow the steps below.
 
 Locate your base template with the following table:
 
@@ -43,5 +51,6 @@ Once you have located the base template file for your project, navigate to the `
 <!-- endbuild -->
 ```
 
+
 ## Usage
-After following all of the above steps, you should be all set. Start up your development server with `grunt serve` and begin building with Animate.css.
+After following all of the steps outlined above, you should be all set. Start up your development server with `grunt serve` and begin building with Animate.css.

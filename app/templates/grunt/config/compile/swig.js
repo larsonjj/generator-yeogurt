@@ -14,7 +14,7 @@ var taskConfig = function(grunt) {
         server: {
             expand: true,
             cwd: '<%%= yeogurt.client %>/templates/',
-            dest: '<%%= yeogurt.staticServer %>/',
+            dest: '<%%= yeogurt.tmp %>/',
             src: ['*.swig'],
             ext: '.html'
         },<% } %>
@@ -22,7 +22,7 @@ var taskConfig = function(grunt) {
             expand: true,
             cwd: '<% if (useServer) { %><%%= yeogurt.server %><% } %><% if (!useServer) { %><%%= yeogurt.client %><% } %>/templates/',<% if (!useServer) { %>
             dest: '<%%= yeogurt.dist %>/',<% } %><% if (useServer) { %>
-            dest: '.tmp/',<% } %>
+            dest: '<%%= yeogurt.tmp %>/',<% } %>
             src: ['*.swig'],
             ext: '.html'
         }

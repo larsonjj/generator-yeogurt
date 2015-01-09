@@ -4,13 +4,15 @@ var yeoman = require('yeoman-generator');
 var helpers = yeoman.test;
 var Output  = require('../helpers/mute');
 
-var createSubGenerator = function(type, args, options, asserts) {
+var createSubGenerator = function(type, args, options, mockPrompts, asserts) {
     var subGenerator = helpers.createGenerator('yeogurt:' + type, [
         '../../../' + type
     ], args, options);
 
     subGenerator.on( 'start', Output.mute );
     subGenerator.on( 'end', Output.unmute );
+
+    helpers.mockPrompt(subGenerator, mockPrompts);
 
     subGenerator.run([], function() {
         asserts();

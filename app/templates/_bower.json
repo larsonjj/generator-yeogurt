@@ -1,26 +1,18 @@
 {
     "name": "<%= _.slugify(projectName) %>",
     "version": "0.0.1",
-    "dependencies": {<% if (useFoundation || !ieSupport) { %>
-        "jquery": "~2.1.0"<% } else { %>
-        "jquery": "~1.11.1"<% } %><% if (jsFramework === 'backbone' || jsFramework === 'react') { %>,
-        "backbone": "~1.1.2",
-        "lodash": "~2.4.1"<% } %><% if (jsFramework === 'react') { %>,
-        "es5-shim": "~3.4.0"<% } %><% if (jsTemplate === 'handlebars') { %>,
-        "handlebars": "~1.3.0"<% } else if (jsTemplate === 'jade') { %>,
-        "jade": "~1.5.0"<% } %><% if (useFoundation) { %>,
-        "foundation": "~5.3.3"<% } %><% if (useModernizr) { %>,
-        "modernizr": "~2.8.1"<% } %><% if (cssOption === 'less' && useBootstrap || cssOption === 'css' && useBootstrap) { %>,
-        "bootstrap": "~3.2.0"<% } else if (cssOption === 'sass' && useBootstrap) { %>,
-        "bootstrap-sass-official": "~3.2.0"<% } %><% if (cssOption === 'less') { %><% if (!useBootstrap) { %>,
-        "normalize.css": "~3.0.1"<% } %><% if (useLesshat) { %>,
-        "lesshat": "~3.0.0"<% } %><% } %><% if (cssOption === 'sass') { %><% if (!useBootstrap) { %>,
-        "normalize-scss": "~3.0.1"<% } %><% if (useBourbon) { %>,
-        "bourbon": "~3.2.1"<% } %><% } %><% if (useFontAwesome) { %>,
-        "font-awesome": "~4.1.0"<% } %><% if (ieSupport) { %>,
+    "dependencies": {
+        "consolelog": "~2.0.1",
         "html5shiv": "~3.7.2",
-        "respond": "~1.4.2"<% } %><% if (jsOption === 'requirejs') { %>,
+        "modernizr": "~2.8.1",
+        "normalize.css": "~3.0.1"<% if (jsFramework === 'backbone' && useAuth) { %>,
+        "jquery.cookie": "~1.4.1"<% } %><% if (jsFramework !== 'react') { %>,
+        "jquery": "~1.11.1"<% } %><% if (jsFramework === 'backbone') { %>,
+        "backbone": "~1.1.2"<% } %><% if (jsFramework === 'react') { %>,
+        "es5-shim": "~3.4.0"<% } %><% if (jsTemplate === 'handlebars') { %>,
+        "handlebars": "~2.0.0"<% } else if (jsTemplate === 'jade') { %>,
+        "jade": "~1.5.0"<% } %><% if (jsOption === 'requirejs') { %>,
         "requirejs": "~2.1.11"<% } %>
     },
-  "devDependencies": {}
+    "devDependencies": {}
 }

@@ -6,49 +6,132 @@
 var compress = require('compression');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var errorHandler = require('errorhandler');<% if (useSession) { %>
-var session = require('express-session');<% if (dbOption === 'mongodb') { %>
-var MongoStore = require('connect-mongo')({
-    session: session
-});<% } %><% if (dbOption === 'mysql') { %>
-var SequelizeStore = require('connect-session-sequelize')(session.Store);<% } %><% } %>
+var path = require('path');
+var methodOverride = require('method-override');
+var errorHandler = require('errorhandler');<% if (useAuth) { %>
+var flash = require('express-flash');
+var expressValidator = require('express-validator');
+var passport = require('passport');
+var auth = require('../auth');
+var session = require('express-session');<% } %>
 
-// Configuration files<% if (useSession) { %>
+// Configuration files<% if (useAuth) { %>
 var secrets = require('./secrets');<% } %>
 var settings = require('./env/default');
 var security = require('./security');
 
-var expressConfig = function(app, express,<% if (dbOption === 'mysql') { %> sequelize,<% } %> path) {
+var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% } %>) {
 
     var hour = 3600000;
     var day = hour * 24;
     var week = day * 7;
 
+    // Get current server environment
     var env = app.get('env');
-
-    // Setup port for server to run on
-    app.set('port', settings.server.port);
-
-     // Setup view engine for server side templating<% if (singlePageApplication || htmlOption === 'html') { %>
-    app.engine('.html', require('ejs').__express);
-    app.set('view engine', 'html');<% } %><% if (!singlePageApplication && htmlOption !== 'html') { %>
-    app.engine('<%= htmlOption === 'jade' ? 'jade' : '' %><%= htmlOption === 'swig' ? 'swig' : '' %><%= htmlOption === 'html' ? 'html' : '' %>', require('<%= htmlOption %>').renderFile);
-    app.set('view engine', '<%= htmlOption === 'jade' ? 'jade' : '' %><%= htmlOption === 'swig' ? 'swig' : '' %>');<% } %>
 
     // Remove x-powered-by header (doesn't let clients know we are using Express)
     app.disable('x-powered-by');
 
+    // Setup port for server to run on
+    app.set('port', settings.server.port);
+
+     // Setup view engine for server side templating<% if (singlePageApplication) { %>
+    app.engine('.html', require('ejs').__express);
+    app.set('view engine', 'html');<% } %><% if (!singlePageApplication) { %>
+    app.engine('<%= htmlOption === 'jade' ? 'jade' : '' %><%= htmlOption === 'swig' ? 'swig' : '' %>', require('<%= htmlOption %>').renderFile);
+    app.set('view engine', '<%= htmlOption === 'jade' ? 'jade' : '' %><%= htmlOption === 'swig' ? 'swig' : '' %>');<% } %>
+
     // Setup path where all server templates will reside
     app.set('views', path.join(settings.root, 'server/templates'));
 
-    if ('production' === env) {
-        // Enable GZip compression for all static assets
-        app.use(compress());
-    }
-    else if ('development' === env) {
-        // Include livereload script
+    // Enable GZip compression for all static assets
+    app.use(compress());
+
+    if (env === 'development') {
+        // Include livereload script on all pages
         app.use(require('connect-livereload')());
+        // Load bower_components
+        app.use(express.static(path.join(settings.root, '.tmp'), {maxAge: 0}));
+        app.use('/bower_components', express.static(path.join(settings.root, 'client/bower_components'), {maxAge: 0}));
+    }
+    // Load favicon
+    app.use(favicon(path.join(settings.root, settings.staticAssets, '/favicon.ico')));
+    // Load static assets
+    app.use(express.static(path.join(settings.root, settings.staticAssets), {maxAge: week}));
+
+    // Returns middleware that parses both json and urlencoded.
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: true }));
+
+    // Returns middleware that parses cookies
+    app.use(cookieParser());<% if (useAuth) { %>
+
+    // Initialize form validation
+    app.use(expressValidator());
+
+    /**
+     * Enable HTTP Method Overrides (POST, GET, DELETE, PUT, etc)
+     * Override HTML forms with method="POST" using ?_method=PUT at the end of action URLs
+     * ex <form method="POST" action="/someurl?_method=PUT">
+     */
+    app.use(methodOverride('_method'));
+
+    // override with the X-HTTP-Method-Override header in the request
+    app.use(methodOverride('X-HTTP-Method-Override'));
+
+    /**
+     * Create cookie that keeps track of user sessions
+     */
+    app.use(session({
+        secret: secrets.sessionSecret,
+        saveUninitialized: true,
+        resave: true,
+        cookie: {
+            httpOnly: true, // Only server can manipulate cookies
+            maxAge: day
+        }
+    }));
+
+    // Initialize Authentication
+    auth.init(db.user);
+    app.use(passport.initialize());
+    app.use(passport.session());
+
+    // Initialize server validation flash messages
+    app.use(flash());
+
+    // Initialize Security
+    app.use(security);
+
+    app.use(function(req, res, next) {
+        // Make Node environment available in templates
+        res.locals.env = env;
+        // Make user object available in templates.
+        res.locals.user = req.user;
+        next();
+    });
+
+    /**
+     * Remember original destination before login.
+     * Go back to that original destination once successfully logged in
+     * (Unless specified in the ignoredPaths array)
+     */
+    app.use(function(req, res, next) {
+        var path = req.path.split('/')[1];
+        var regExp = new RegExp(settings.server.loginIgnorePaths.join('|'), 'i');
+        if (regExp.test(path)) {
+            return next();
+        }
+        req.session.returnTo = req.path;
+        next();
+    });<% } %>
+
+    // Setup log level for server console output
+    app.use(logger(settings.server.logLevel));
+
+    if (env === 'development') {
 
         // Disable caching for easier testing
         app.use(function noCache(req, res, next) {
@@ -59,48 +142,68 @@ var expressConfig = function(app, express,<% if (dbOption === 'mysql') { %> sequ
         });
     }
 
-    // Load favicon
-    app.use(favicon((settings.root + '/' + settings.staticAssets + '/favicon.ico')));
-
-    app.use(express.static(path.join(settings.root, settings.staticAssets), {maxAge: week}));
-
-    // Setup log level for server console output
-    app.use(logger('dev'));
-
-    // Returns middleware that parses both json and urlencoded.
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: true }));<% if (useSession) { %>
-
-    // Create cookie that keeps track of user sessions
-    // And store it in the Database
-    app.use(session({
-        secret: secrets.sessionSecret,
-        saveUninitialized: true,
-        resave: true,<% if (dbOption === 'mongodb') { %>
-        store: new MongoStore({
-            url: settings.database.url,
-            auto_reconnect: true,
-        }),<% } %><% if (dbOption === 'mysql') { %>
-        store: new SequelizeStore({
-            db: sequelize
-        }),<% } %>
-        cookie: {
-            httpOnly: true, /*, secure: true for HTTPS*/
-            maxAge: day
-        }
-    }));<% } %><% if (useSession && useSecurity) { %>
-
-    // Initialize Lusca Security
-    app.use(security);<% } %>
-
     // Load routes
-    require('../routes')(app);
+    require(path.join(settings.root,'./server/routes'))(app);
 
-    /**
-     * 500 Error Handler.
-     * As of Express 4.0 it must be placed at the end of all routes.
-     */
-    app.use(errorHandler());
+    // 404 Error Handler
+    app.use(function(req, res) {
+        res.status(404);
+        res.format({
+            html: function() {
+                res.render('error', {
+                    status: 404,
+                    message: 'Page not found',
+                    error: {}
+                });
+            },
+            json: function() {
+                res.json({
+                    status: 404,
+                    message: 'Page not found',
+                    error: {}
+                });
+            },
+            text: function() {
+                res.send(404 + ': ' + 'Page not found');
+            }
+        });
+    });
+
+    if (env === 'development') {
+        // Development Error Handler.
+        // Log out stack trace
+        return app.use(errorHandler());
+    }
+
+    // Production Error Handler.
+    app.use(function(err, req, res, next) {
+
+        var error = err.error || err;
+        var message = err.message;
+        var status = err.status || 500;
+
+        res.status(status);
+        res.format({
+            html: function() {
+                res.render('error', {
+                    status: status,
+                    message: message,
+                    error: {}
+                });
+            },
+            json: function() {
+                res.json({
+                    status: status,
+                    message: message,
+                    error: {}
+                });
+            },
+            text: function() {
+                res.send(status + ': ' + message);
+            }
+        });
+    });
+
 
 };
 

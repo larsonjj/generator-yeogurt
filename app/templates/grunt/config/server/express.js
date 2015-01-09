@@ -18,7 +18,7 @@ var taskConfig = function(grunt) {
         },
         dist: {
             options: {
-                script: 'server.js',
+                script: 'dist/server.js',
                 node_env: 'production'
             }
         }

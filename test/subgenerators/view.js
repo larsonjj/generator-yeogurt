@@ -8,7 +8,7 @@ var assert  = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
-describe('View sub-generator', function () {
+describe('View sub-generator', function() {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -21,7 +21,7 @@ describe('View sub-generator', function () {
         }.bind(this));
     });
 
-    describe('Does not create any view files when using React', function () {
+    describe('Does not create any view files when using React', function() {
         it('Handles defaults', function(done) {
             // Filename
             var view = 'myview';
@@ -36,7 +36,12 @@ describe('View sub-generator', function () {
             });
 
             this.app.run([], function() {
-                createSubGenerator('view', view, {}, function() {
+                createSubGenerator('view', view, {}, {
+                    // mock prompt data
+                    viewFile: 'client/scripts/views/',
+                    templateFile: 'client/templates',
+                    testFile: 'test/spec/views'
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -55,7 +60,12 @@ describe('View sub-generator', function () {
             ];
 
             this.app.run([], function() {
-                createSubGenerator('view', view, {folder: folder}, function() {
+                createSubGenerator('view', view, {}, {
+                    // mock prompt data
+                    viewFile: 'client/scripts/views/' + folder,
+                    templateFile: 'client/templates/' + folder,
+                    testFile: 'test/spec/views/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -74,7 +84,12 @@ describe('View sub-generator', function () {
             ];
 
             this.app.run([], function() {
-                createSubGenerator('view', view, {folder: folder}, function() {
+                createSubGenerator('view', view, {}, {
+                    // mock prompt data
+                    viewFile: 'client/scripts/views/' + folder,
+                    templateFile: 'client/templates/' + folder,
+                    testFile: 'test/spec/views/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -82,7 +97,7 @@ describe('View sub-generator', function () {
         });
     });
 
-    describe('Does not create any view files when using Static Jade', function () {
+    describe('Does not create any view files when using Static Jade', function() {
         it('Handles defaults', function(done) {
             // Filename
             var view = 'myview';
@@ -97,7 +112,12 @@ describe('View sub-generator', function () {
             });
 
             this.app.run([], function() {
-                createSubGenerator('view', view, {}, function() {
+                createSubGenerator('view', view, {}, {
+                    // mock prompt data
+                    viewFile: 'client/scripts/views/',
+                    templateFile: 'client/templates',
+                    testFile: 'test/spec/views'
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -117,7 +137,12 @@ describe('View sub-generator', function () {
             ];
 
             this.app.run([], function() {
-                createSubGenerator('view', view, {folder: folder}, function() {
+                createSubGenerator('view', view, {}, {
+                    // mock prompt data
+                    viewFile: 'client/scripts/views/' + folder,
+                    templateFile: 'client/templates/' + folder,
+                    testFile: 'test/spec/views/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -137,7 +162,12 @@ describe('View sub-generator', function () {
             ];
 
             this.app.run([], function() {
-                createSubGenerator('view', view, {folder: folder}, function() {
+                createSubGenerator('view', view, {}, {
+                    // mock prompt data
+                    viewFile: 'client/scripts/views/' + folder,
+                    templateFile: 'client/templates/' + folder,
+                    testFile: 'test/spec/views/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -159,7 +189,12 @@ describe('View sub-generator', function () {
             ];
 
             this.app.run([], function() {
-                createSubGenerator('view', view, {}, function() {
+                createSubGenerator('view', view, {}, {
+                    // mock prompt data
+                    viewFile: 'client/scripts/views/',
+                    templateFile: 'client/templates',
+                    testFile: 'test/spec/views'
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -179,7 +214,12 @@ describe('View sub-generator', function () {
             ];
 
             this.app.run([], function() {
-                createSubGenerator('view', view, {folder: folder}, function() {
+                createSubGenerator('view', view, {}, {
+                    // mock prompt data
+                    viewFile: 'client/scripts/views/' + folder,
+                    templateFile: 'client/templates/' + folder,
+                    testFile: 'test/spec/views/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -199,7 +239,12 @@ describe('View sub-generator', function () {
             ];
 
             this.app.run([], function() {
-                createSubGenerator('view', view, {folder: folder}, function() {
+                createSubGenerator('view', view, {}, {
+                    // mock prompt data
+                    viewFile: 'client/scripts/views/' + folder,
+                    templateFile: 'client/templates/' + folder,
+                    testFile: 'test/spec/views/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -207,54 +252,64 @@ describe('View sub-generator', function () {
         });
     });
 
-    describe('Create view files when using Backbone', function () {
+    describe('Create view files when using Backbone', function() {
         it('Without testing', function(done) {
             // Filename
             var view = 'myview';
             var filesNotCreated = [
-                'test/spec/views/' + view + '-spec.js',
+                'test/spec/views/' + view + '.spec.js',
             ];
 
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
                 useTesting: false,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('view', view, {}, function() {
+                createSubGenerator('view', view, {}, {
+                    // mock prompt data
+                    viewFile: 'client/scripts/views/',
+                    templateFile: 'client/templates',
+                    testFile: 'test/spec/views'
+                }, function() {
                     assert.noFile(filesNotCreated);
                     done();
                 });
             });
         });
-        describe('Handles defaults with Lo-dash', function () {
+        describe('Handles defaults with Underscore', function() {
             describe('Using Browserify', function() {
                 it('Using Jasmine', function(done) {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.jst'
                     ];
                     var fileContentToTest = [
                         ['client/templates/' + view + '.jst', /<div>/i],
                         ['client/scripts/views/' + view + '.js', /module\.exports/i],
-                        ['test/spec/views/' + view + '-spec.js', /describe/i]
+                        ['test/spec/views/' + view + '.spec.js', /describe/i]
                     ];
 
                     helpers.mockPrompt(this.app, {
                         jsFramework: 'backbone',
                         singlePageApplication: true,
-                        jsTemplate: 'lodash',
+                        jsTemplate: 'underscore',
                         jsOption: 'browserify',
                         testFramework: 'jasmine'
                     });
                     this.app.run([], function() {
-                        createSubGenerator('view', view, {}, function() {
+                        createSubGenerator('view', view, {}, {
+                            // mock prompt data
+                            viewFile: 'client/scripts/views/',
+                            templateFile: 'client/templates',
+                            testFile: 'test/spec/views'
+                        }, function() {
                             assert.file(filesToTest);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -265,26 +320,31 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.jst'
                     ];
                     var fileContentToTest = [
                         ['client/templates/' + view + '.jst', /<div>/i],
                         ['client/scripts/views/' + view + '.js', /module\.exports/i],
-                        ['test/spec/views/' + view + '-spec.js', /describe/i],
-                        ['test/spec/views/' + view + '-spec.js', /jshint expr/i]
+                        ['test/spec/views/' + view + '.spec.js', /describe/i],
+                        ['test/spec/views/' + view + '.spec.js', /jshint expr/i]
                     ];
 
                     helpers.mockPrompt(this.app, {
                         jsFramework: 'backbone',
                         singlePageApplication: true,
-                        jsTemplate: 'lodash',
+                        jsTemplate: 'underscore',
                         jsOption: 'browserify',
                         testFramework: 'mocha'
                     });
                     this.app.run([], function() {
-                        createSubGenerator('view', view, {}, function() {
+                        createSubGenerator('view', view, {}, {
+                            // mock prompt data
+                            viewFile: 'client/scripts/views/',
+                            templateFile: 'client/templates',
+                            testFile: 'test/spec/views'
+                        }, function() {
                             assert.file(filesToTest);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -297,25 +357,30 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.jst'
                     ];
                     var fileContentToTest = [
                         ['client/templates/' + view + '.jst', /<div>/i],
                         ['client/scripts/views/' + view + '.js', /define\(function\(require\)/i],
-                        ['test/spec/views/' + view + '-spec.js', /define\(function\(require\)/i]
+                        ['test/spec/views/' + view + '.spec.js', /define\(function\(require\)/i]
                     ];
 
                     helpers.mockPrompt(this.app, {
                         jsFramework: 'backbone',
                         singlePageApplication: true,
-                        jsTemplate: 'lodash',
+                        jsTemplate: 'underscore',
                         jsOption: 'requirejs',
                         testFramework: 'jasmine'
                     });
                     this.app.run([], function() {
-                        createSubGenerator('view', view, {}, function() {
+                        createSubGenerator('view', view, {}, {
+                            // mock prompt data
+                            viewFile: 'client/scripts/views/',
+                            templateFile: 'client/templates',
+                            testFile: 'test/spec/views'
+                        }, function() {
                             assert.file(filesToTest);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -326,26 +391,31 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.jst'
                     ];
                     var fileContentToTest = [
                         ['client/templates/' + view + '.jst', /<div>/i],
                         ['client/scripts/views/' + view + '.js', /define\(function\(require\)/i],
-                        ['test/spec/views/' + view + '-spec.js', /define\(function\(require\)/i],
-                        ['test/spec/views/' + view + '-spec.js', /jshint expr/i]
+                        ['test/spec/views/' + view + '.spec.js', /define\(function\(require\)/i],
+                        ['test/spec/views/' + view + '.spec.js', /jshint expr/i]
                     ];
 
                     helpers.mockPrompt(this.app, {
                         jsFramework: 'backbone',
                         singlePageApplication: true,
-                        jsTemplate: 'lodash',
+                        jsTemplate: 'underscore',
                         jsOption: 'requirejs',
                         testFramework: 'mocha'
                     });
                     this.app.run([], function() {
-                        createSubGenerator('view', view, {}, function() {
+                        createSubGenerator('view', view, {}, {
+                            // mock prompt data
+                            viewFile: 'client/scripts/views/',
+                            templateFile: 'client/templates',
+                            testFile: 'test/spec/views'
+                        }, function() {
                             assert.file(filesToTest);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -360,14 +430,14 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.hbs'
                     ];
                     var fileContentToTest = [
                         ['client/templates/' + view + '.hbs', /<div>/i],
                         ['client/scripts/views/' + view + '.js', /module\.exports/i],
-                        ['test/spec/views/' + view + '-spec.js', /describe/i]
+                        ['test/spec/views/' + view + '.spec.js', /describe/i]
                     ];
 
                     helpers.mockPrompt(this.app, {
@@ -378,7 +448,12 @@ describe('View sub-generator', function () {
                         testFramework: 'jasmine'
                     });
                     this.app.run([], function() {
-                        createSubGenerator('view', view, {}, function() {
+                        createSubGenerator('view', view, {}, {
+                            // mock prompt data
+                            viewFile: 'client/scripts/views/',
+                            templateFile: 'client/templates',
+                            testFile: 'test/spec/views'
+                        }, function() {
                             assert.file(filesToTest);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -389,15 +464,15 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.hbs'
                     ];
                     var fileContentToTest = [
                         ['client/templates/' + view + '.hbs', /<div>/i],
                         ['client/scripts/views/' + view + '.js', /module\.exports/i],
-                        ['test/spec/views/' + view + '-spec.js', /describe/i],
-                        ['test/spec/views/' + view + '-spec.js', /jshint expr/i]
+                        ['test/spec/views/' + view + '.spec.js', /describe/i],
+                        ['test/spec/views/' + view + '.spec.js', /jshint expr/i]
                     ];
 
                     helpers.mockPrompt(this.app, {
@@ -408,7 +483,12 @@ describe('View sub-generator', function () {
                         testFramework: 'mocha'
                     });
                     this.app.run([], function() {
-                        createSubGenerator('view', view, {}, function() {
+                        createSubGenerator('view', view, {}, {
+                            // mock prompt data
+                            viewFile: 'client/scripts/views/',
+                            templateFile: 'client/templates',
+                            testFile: 'test/spec/views'
+                        }, function() {
                             assert.file(filesToTest);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -421,14 +501,14 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.hbs'
                     ];
                     var fileContentToTest = [
                         ['client/templates/' + view + '.hbs', /<div>/i],
                         ['client/scripts/views/' + view + '.js', /define\(function\(require\)/i],
-                        ['test/spec/views/' + view + '-spec.js', /define\(function\(require\)/i]
+                        ['test/spec/views/' + view + '.spec.js', /define\(function\(require\)/i]
                     ];
 
                     helpers.mockPrompt(this.app, {
@@ -439,7 +519,12 @@ describe('View sub-generator', function () {
                         testFramework: 'jasmine'
                     });
                     this.app.run([], function() {
-                        createSubGenerator('view', view, {}, function() {
+                        createSubGenerator('view', view, {}, {
+                            // mock prompt data
+                            viewFile: 'client/scripts/views/',
+                            templateFile: 'client/templates',
+                            testFile: 'test/spec/views'
+                        }, function() {
                             assert.file(filesToTest);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -450,15 +535,15 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.hbs'
                     ];
                     var fileContentToTest = [
                         ['client/templates/' + view + '.hbs', /<div>/i],
                         ['client/scripts/views/' + view + '.js', /define\(function\(require\)/i],
-                        ['test/spec/views/' + view + '-spec.js', /define\(function\(require\)/i],
-                        ['test/spec/views/' + view + '-spec.js', /jshint expr/i]
+                        ['test/spec/views/' + view + '.spec.js', /define\(function\(require\)/i],
+                        ['test/spec/views/' + view + '.spec.js', /jshint expr/i]
                     ];
 
                     helpers.mockPrompt(this.app, {
@@ -469,7 +554,12 @@ describe('View sub-generator', function () {
                         testFramework: 'mocha'
                     });
                     this.app.run([], function() {
-                        createSubGenerator('view', view, {}, function() {
+                        createSubGenerator('view', view, {}, {
+                            // mock prompt data
+                            viewFile: 'client/scripts/views/',
+                            templateFile: 'client/templates',
+                            testFile: 'test/spec/views'
+                        }, function() {
                             assert.file(filesToTest);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -484,13 +574,13 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.jade'
                     ];
                     var fileContentToTest = [
                         ['client/scripts/views/' + view + '.js', /module\.exports/i],
-                        ['test/spec/views/' + view + '-spec.js', /describe/i]
+                        ['test/spec/views/' + view + '.spec.js', /describe/i]
                     ];
                     var fileContentToNotFind = [
                         ['client/templates/' + view + '.jade', /<div>/i]
@@ -504,7 +594,12 @@ describe('View sub-generator', function () {
                         testFramework: 'jasmine'
                     });
                     this.app.run([], function() {
-                        createSubGenerator('view', view, {}, function() {
+                        createSubGenerator('view', view, {}, {
+                            // mock prompt data
+                            viewFile: 'client/scripts/views/',
+                            templateFile: 'client/templates',
+                            testFile: 'test/spec/views'
+                        }, function() {
                             assert.file(filesToTest);
                             assert.fileContent(fileContentToTest);
                             assert.noFileContent(fileContentToNotFind);
@@ -516,14 +611,14 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.jade'
                     ];
                     var fileContentToTest = [
                         ['client/scripts/views/' + view + '.js', /module\.exports/i],
-                        ['test/spec/views/' + view + '-spec.js', /describe/i],
-                        ['test/spec/views/' + view + '-spec.js', /jshint expr/i]
+                        ['test/spec/views/' + view + '.spec.js', /describe/i],
+                        ['test/spec/views/' + view + '.spec.js', /jshint expr/i]
                     ];
                     var fileContentToNotFind = [
                         ['client/templates/' + view + '.jade', /<div>/i]
@@ -537,7 +632,12 @@ describe('View sub-generator', function () {
                         testFramework: 'mocha'
                     });
                     this.app.run([], function() {
-                        createSubGenerator('view', view, {}, function() {
+                        createSubGenerator('view', view, {}, {
+                            // mock prompt data
+                            viewFile: 'client/scripts/views/',
+                            templateFile: 'client/templates',
+                            testFile: 'test/spec/views'
+                        }, function() {
                             assert.file(filesToTest);
                             assert.fileContent(fileContentToTest);
                             assert.noFileContent(fileContentToNotFind);
@@ -551,13 +651,13 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.jade'
                     ];
                     var fileContentToTest = [
                         ['client/scripts/views/' + view + '.js', /define\(function\(require\)/i],
-                        ['test/spec/views/' + view + '-spec.js', /define\(function\(require\)/i]
+                        ['test/spec/views/' + view + '.spec.js', /define\(function\(require\)/i]
                     ];
                     var fileContentToNotFind = [
                         ['client/templates/' + view + '.jade', /<div>/i]
@@ -571,7 +671,12 @@ describe('View sub-generator', function () {
                         testFramework: 'jasmine'
                     });
                     this.app.run([], function() {
-                        createSubGenerator('view', view, {}, function() {
+                        createSubGenerator('view', view, {}, {
+                            // mock prompt data
+                            viewFile: 'client/scripts/views/',
+                            templateFile: 'client/templates',
+                            testFile: 'test/spec/views'
+                        }, function() {
                             assert.file(filesToTest);
                             assert.fileContent(fileContentToTest);
                             assert.noFileContent(fileContentToNotFind);
@@ -583,14 +688,14 @@ describe('View sub-generator', function () {
                     // Filename
                     var view = 'myview';
                     var filesToTest = [
-                        'test/spec/views/' + view + '-spec.js',
+                        'test/spec/views/' + view + '.spec.js',
                         'client/scripts/views/' + view + '.js',
                         'client/templates/' + view + '.jade'
                     ];
                     var fileContentToTest = [
                         ['client/scripts/views/' + view + '.js', /define\(function\(require\)/i],
-                        ['test/spec/views/' + view + '-spec.js', /define\(function\(require\)/i],
-                        ['test/spec/views/' + view + '-spec.js', /jshint expr/i]
+                        ['test/spec/views/' + view + '.spec.js', /define\(function\(require\)/i],
+                        ['test/spec/views/' + view + '.spec.js', /jshint expr/i]
                     ];
                     var fileContentToNotFind = [
                         ['client/templates/' + view + '.jade', /<div>/i]
@@ -604,7 +709,12 @@ describe('View sub-generator', function () {
                         testFramework: 'mocha'
                     });
                     this.app.run([], function() {
-                        createSubGenerator('view', view, {}, function() {
+                        createSubGenerator('view', view, {}, {
+                            // mock prompt data
+                            viewFile: 'client/scripts/views/',
+                            templateFile: 'client/templates',
+                            testFile: 'test/spec/views'
+                        }, function() {
                             assert.file(filesToTest);
                             assert.fileContent(fileContentToTest);
                             assert.noFileContent(fileContentToNotFind);
@@ -619,20 +729,25 @@ describe('View sub-generator', function () {
             var view = 'myview';
             var folder = 'folder/';
             var filesToTest = [
-                'test/spec/views/' + folder + view + '-spec.js',
+                'test/spec/views/' + folder + view + '.spec.js',
                 'client/scripts/views/' + folder + view + '.js'
             ];
 
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
 
             this.app.run([], function() {
-                createSubGenerator('view', view, {folder: folder}, function() {
+                createSubGenerator('view', view, {}, {
+                    // mock prompt data
+                    viewFile: 'client/scripts/views/' + folder,
+                    templateFile: 'client/templates/' + folder,
+                    testFile: 'test/spec/views/' + folder
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -643,20 +758,25 @@ describe('View sub-generator', function () {
             var view = 'myview';
             var folder = '/////folder/////';
             var filesToTest = [
-                'test/spec/views/folder/' + view + '-spec.js',
+                'test/spec/views/folder/' + view + '.spec.js',
                 'client/scripts/views/folder/' + view + '.js'
             ];
 
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
 
             this.app.run([], function() {
-                createSubGenerator('view', view, {folder: folder}, function() {
+                createSubGenerator('view', view, {}, {
+                    // mock prompt data
+                    viewFile: 'client/scripts/views/' + folder,
+                    templateFile: 'client/templates/' + folder,
+                    testFile: 'test/spec/views/' + folder
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });

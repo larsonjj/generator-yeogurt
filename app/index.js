@@ -3,7 +3,7 @@
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var _ = require('lodash');
-var grabFiles = require('./modules/grabFiles');
+var grabFiles = require('./helpers/grabFiles');
 require('colors');
 
 // Order to load and run generator config files based on their name

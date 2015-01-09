@@ -10,7 +10,6 @@ var clientPrompts = function clientPrompts() {
     }
 
     var cb = this.async();
-    var self = this;
 
     this.log('\n---- ' + 'Client'.red.underline + ' ----\n');
 
@@ -20,22 +19,7 @@ var clientPrompts = function clientPrompts() {
         message: 'Will this be a ' + 'Single Page Application'.blue + '?',
         default: true
     }, {
-        when: function(answers) { return !answers.singlePageApplication && !self.serverPrompts.useServer; },
-        type: 'list',
-        name: 'htmlOption',
-        message: 'What would you like to use to ' + 'write markup'.blue + '?',
-        choices: ['Jade', 'Swig', 'HTML'],
-        filter: function(val) {
-            var filterMap = {
-                'Jade': 'jade',
-                'Swig': 'swig',
-                'HTML': 'html'
-            };
-
-            return filterMap[val];
-        }
-    }, {
-        when: function(answers) { return !answers.singlePageApplication && self.serverPrompts.useServer; },
+        when: function(answers) { return !answers.singlePageApplication; },
         type: 'list',
         name: 'htmlOption',
         message: 'Which ' + 'HTML preprocessor'.blue + ' would you like to use?',
@@ -69,26 +53,14 @@ var clientPrompts = function clientPrompts() {
         message: 'Would you like to use ' + 'React\'s JSX syntax'.blue + '?',
         default: true
     }, {
-        when: function(answers) { return answers.jsFramework === 'react'; },
-        type: 'confirm',
-        name: 'useFlux',
-        message: 'Would you like to use ' + 'Flux'.blue + ' with your React application?',
-        default: true
-    }, {
-        when: function(answers) { return self.serverPrompts.useServer && answers.jsFramework === 'react'; },
-        type: 'confirm',
-        name: 'useServerTemplates',
-        message: 'Would you like to render ' + 'templates on the server'.blue + '?',
-        default: true
-    }, {
-        when: function(answers) {return answers.jsFramework === 'backbone' || false;},
+        when: function(answers) {return answers.jsFramework === 'backbone';},
         type: 'list',
         name: 'jsTemplate',
         message: 'Which ' + 'JavaScript templating library'.blue + ' would you like to use?',
-        choices: ['Lo-dash', 'Handlebars', 'Jade'],
+        choices: ['Underscore', 'Handlebars', 'Jade'],
         filter: function(val) {
             var filterMap = {
-                'Lo-dash': 'lodash',
+                'Underscore': 'underscore',
                 'Handlebars': 'handlebars',
                 'Jade': 'jade'
             };
@@ -139,68 +111,6 @@ var clientPrompts = function clientPrompts() {
 
             return filterMap[val];
         }
-    }, {
-        when: function(answers) { return answers.cssOption === 'sass'; },
-        type: 'confirm',
-        name: 'useBourbon',
-        message: 'Would you like to use the ' + 'Bourbon Mixin Library'.blue + '?',
-        default: true
-    }, {
-        when: function(answers) { return answers.cssOption === 'less'; },
-        type: 'confirm',
-        name: 'useLesshat',
-        message: 'Would you like to use the ' + 'Lesshat Mixin Library'.blue + '?',
-        default: true
-    }, {
-        when: function(answers) { return answers.cssOption === 'sass' || answers.cssOption === 'css'; },
-        type: 'list',
-        name: 'cssFramework',
-        message: 'Which CSS ' + 'framework'.blue + ' would you like to use?',
-        choices: ['Bootstrap', 'Foundation', 'None'],
-        filter: function(val) {
-            var filterMap = {
-                'Bootstrap': 'bootstrap',
-                'Foundation': 'foundation',
-                'None': 'none'
-            };
-
-            return filterMap[val];
-        }
-    }, {
-        when: function(answers) { return answers.cssOption === 'less'; },
-        type: 'confirm',
-        name: 'useBootstrap',
-        message: 'Would you like to use the ' + 'Bootstrap'.blue + ' CSS framework?',
-        default: true
-    }, {
-        when: function(answers) { return answers.cssFramework !== 'foundation'; },
-        type: 'confirm',
-        name: 'ieSupport',
-        message: 'Do you need to ' + 'support IE8+'.blue + '?',
-        default: true
-    }, {
-        type: 'confirm',
-        name: 'useGA',
-        message: 'Will you be using ' + 'Google Analytics'.blue + '?',
-        default: true
-    }, {
-        type: 'confirm',
-        name: 'jshint',
-        message: 'Would you like to lint your Javascript with ' + 'JSHint'.blue + '?',
-        default: true
-    }, {
-        type: 'checkbox',
-        name: 'extras',
-        message: 'Select any extras you would like:',
-        choices: [{
-            name: 'Font Awesome',
-            value: 'useFontAwesome',
-            checked: true
-        },  {
-            name: 'Modernizr',
-            value: 'useModernizr',
-            checked: true
-        }],
     }], function(answers) {
         this.clientPrompts = answers;
 

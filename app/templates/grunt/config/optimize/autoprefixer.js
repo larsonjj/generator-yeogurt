@@ -8,26 +8,26 @@ var taskConfig = function(grunt) {
     grunt.config.set('autoprefixer', {
         server: {
             options: {
-                browsers: ['last 2 versions'<% if (ieSupport) { %>, 'ie 8'<% } %>, 'ie 9'],
+                browsers: ['last 2 versions','ie 8', 'ie 9'],
                 map: true
             },
             files: [{
                 expand: true,
                 flatten: true,
-                src: '<%%= yeogurt.staticServer %>/styles/*.css',
-                dest: '<%%= yeogurt.staticServer %>/styles/'
+                src: '<%%= yeogurt.tmp %>/styles/*.css',
+                dest: '<%%= yeogurt.tmp %>/styles/'
             }]
         },
         dist: {
             options: {
-                browsers: ['last 2 versions'<% if (ieSupport) { %>, 'ie 8'<% } %>, 'ie 9'],
+                browsers: ['last 2 versions', 'ie 8', 'ie 9'],
                 map: true
             },
             files: [{
                 expand: true,
                 flatten: true,
-                src: '<%%= yeogurt.dist %>/styles/*.css',
-                dest: '<%%= yeogurt.dist %>/styles/'
+                src: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>styles/*.css',
+                dest: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>styles/'
             }]
         }
     });

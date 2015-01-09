@@ -4,30 +4,51 @@
 'use strict';
 
 // Module dependencies.
-var express = require('express');
-var errorHandler = require('errorhandler');
-var path = require('path');
+var express = require('express');<% if (dbOption === 'mongodb') { %>
+var mongoose = require('mongoose');<% } %>
 
 // Add coloring for console output
 require('colors');
 
 // Create Express server.
-var app = express();
-<% if (dbOption !== 'none') { %>
-// Database Configuration
-var db = require('./server/config/database');
+var app = express();<% if (dbOption === 'sql') { %>
 
-// Connect to Database
-<% if (dbOption === 'mysql') { %>var sequelize = <% } %>db(app);<% } %>
+// Database configuration
+var db = require('./server/config/database');<% } else if (dbOption === 'mongodb') { %>
 
-require('./server/config/express')(app, express,<% if (dbOption === 'mysql') { %> sequelize,<% } %> path);
+// Database configuration
+var db = require('./server/config/database')(app);<% } %>
 
-/**
- * Start Express server.
- */
+// Express configuration
+require('./server/config/express')(app, express<% if (dbOption !== 'none') { %>, db<% } %>);<% if (dbOption === 'sql') { %>
+
+// Verify database connection and sync tables
+db.sequelize.authenticate().complete(function(err) {
+    if (!!err) {
+        throw '✗ Database Connection Error: '.red + err;
+    }
+    else {
+        console.log('✔ Database Connection Success!'.green);
+        db.sequelize.sync()
+            .success(function() {
+                console.log('✔ Database Synced!'.green);
+            }).error(function() {
+                throw '✗ Database Not Synced!'.red;
+            });
+    }
+});<% } else if (dbOption === 'mongodb') { %>
+// Verify database connection
+mongoose.connection.on('connected', function() {
+    console.log('✔ MongoDB Connection Success!'.green);
+});
+
+mongoose.connection.on('error', function() {
+    throw '✗ MongoDB Connection Error. Please make sure MongoDB is running.'.red;
+});<% } %>
+
+// Start Express server.
 app.listen(app.get('port'), function() {
     console.log('✔ Express server listening on port '.green + '%d'.blue + ' in '.green + '%s'.blue + ' mode'.green, app.get('port'), app.get('env'));
 });
 
-// Expose App
 module.exports = app;

@@ -8,15 +8,19 @@ var taskConfig = function(grunt) {
     grunt.config.set('htmlmin', {
         dist: {
             options: {
-                removeEmptyAttributes: true
+                collapseBooleanAttributes: true,
+                conservativeCollapse: true,
+                removeCommentsFromCDATA: true,
+                removeEmptyAttributes: true,
+                removeRedundantAttributes: true
             },
             files: [{
                 expand: true,
-                cwd: '<%%= yeogurt.dist %>',
+                cwd: '<%%= yeogurt.dist %>/<% if (useServer) { %>client<% } %>',
                 src: [
                     '*.html', 'views/**/*.html'
                 ],
-                dest: '<%%= yeogurt.dist %>'
+                dest: '<%%= yeogurt.dist %>/<% if (useServer) { %>client<% } %>'
             }]
         }
     });

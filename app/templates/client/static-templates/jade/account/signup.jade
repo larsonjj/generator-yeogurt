@@ -1,0 +1,24 @@
+extends ../layouts/default
+
+block content
+    h3 Sign up
+    form(id='signup-form', method='post', action='/user')
+        input(type='hidden', name='_csrf', value=_csrf)
+
+        p
+            label(for='username') Username:
+            input(type='username', name='username', id='username', placeholder='Username', autofocus)
+
+        p
+            label(for='email') Email:
+            input(type='text', name='email', id='email', placeholder='Email')
+
+        p
+            label(for='password') Password:
+            input(type='password', name='password', id='password', placeholder='Password')
+
+        p
+            label(for='confirmPassword') Confirm Password:
+            input(type='password', name='confirmPassword', id='confirmPassword', placeholder='Confirm Password')
+
+        button Signup

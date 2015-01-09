@@ -9,7 +9,7 @@ var createAppGenerator = require('../helpers/create-generator').createAppGenerat
 var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
 
-describe('Collection sub-generator', function () {
+describe('Collection sub-generator', function() {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -22,12 +22,12 @@ describe('Collection sub-generator', function () {
         }.bind(this));
     });
 
-    describe('Does not create any collection files when using React', function () {
+    describe('Does not create any collection files when using React', function() {
         it('Handles defaults', function(done) {
             // Filename
             var collection = 'mycollection';
             var filesToTest = [
-                'test/spec/collections/' + collection + '.js',
+                'test/spec/collections/' + collection + '.spec.js',
                 'client/scripts/collections/' + collection + '.js'
             ];
 
@@ -35,7 +35,11 @@ describe('Collection sub-generator', function () {
                 jsFramework: 'react'
             });
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections',
+                    testFile: 'test/spec/collections'
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -53,7 +57,11 @@ describe('Collection sub-generator', function () {
                 'client/scripts/collections/' + folder + collection + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {folder: folder}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections/' + folder,
+                    testFile: 'test/spec/collections/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -71,7 +79,11 @@ describe('Collection sub-generator', function () {
                 'client/scripts/collections/folder/' + collection + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {folder: folder}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections/' + folder,
+                    testFile: 'test/spec/collections/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -79,12 +91,12 @@ describe('Collection sub-generator', function () {
         });
     });
 
-    describe('Does not create any collection files when using Static Jade', function () {
+    describe('Does not create any collection files when using Static Jade', function() {
         it('Handles defaults', function(done) {
             // Filename
             var collection = 'mycollection';
             var filesToTest = [
-                'test/spec/collections/' + collection + '.js',
+                'test/spec/collections/' + collection + '.spec.js',
                 'client/scripts/collections/' + collection + '.js'
             ];
 
@@ -93,7 +105,7 @@ describe('Collection sub-generator', function () {
                 singlePageApplication: false
             });
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {}, function() {
+                createSubGenerator('collection', collection, {}, {}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -112,7 +124,7 @@ describe('Collection sub-generator', function () {
                 'client/scripts/collections/' + folder + collection + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {folder: folder}, function() {
+                createSubGenerator('collection', collection, {}, {}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -127,11 +139,11 @@ describe('Collection sub-generator', function () {
             var collection = 'mycollection';
             var folder = '/////folder/////';
             var filesToTest = [
-                'test/spec/collections/folder/' + collection + '.js',
-                'client/scripts/collections/folder/' + collection + '.js'
+                'test/spec/collections/' + folder + collection + '.js',
+                'client/scripts/collections/' + folder + collection + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {folder: folder}, function() {
+                createSubGenerator('collection', collection, {}, {}, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -148,11 +160,15 @@ describe('Collection sub-generator', function () {
             // Filename
             var collection = 'mycollection';
             var filesToTest = [
-                'test/spec/collections/' + collection + '.js',
+                'test/spec/collections/' + collection + '.spec.js',
                 'client/scripts/collections/' + collection + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections',
+                    testFile: 'test/spec/collections'
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -171,7 +187,11 @@ describe('Collection sub-generator', function () {
                 'client/scripts/collections/' + folder + collection + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {folder: folder}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections/' + folder,
+                    testFile: 'test/spec/collections/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -186,11 +206,15 @@ describe('Collection sub-generator', function () {
             var collection = 'mycollection';
             var folder = '/////folder/////';
             var filesToTest = [
-                'test/spec/collections/folder/' + collection + '.js',
-                'client/scripts/collections/folder/' + collection + '.js'
+                'test/spec/collections/' + folder + collection + '.js',
+                'client/scripts/collections/' + folder + collection + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {folder: folder}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections/' + folder,
+                    testFile: 'test/spec/collections/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -198,24 +222,29 @@ describe('Collection sub-generator', function () {
         });
     });
 
-    describe('Create collection files when using Backbone', function () {
+    describe('Create collection files when using Backbone', function() {
         it('Handles defaults', function(done) {
             // Filename
             var collection = 'mycollection';
             var filesToTest = [
-                'test/spec/collections/' + collection + '-spec.js',
+                'test/spec/collections/' + collection + '.spec.js',
                 'client/scripts/collections/' + collection + '.js'
             ];
 
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'browserify',
+                useTesting: true,
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections',
+                    testFile: 'test/spec/collections'
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -228,19 +257,22 @@ describe('Collection sub-generator', function () {
                 'client/scripts/collections/' + collection + '.js'
             ];
             var filesNotCreated = [
-                'test/spec/collections/' + collection + '-spec.js',
+                'test/spec/collections/' + collection + '.spec.js',
             ];
 
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
                 useTesting: false,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections'
+                }, function() {
                     assert.file(filesToTest);
                     assert.noFile(filesNotCreated);
                     done();
@@ -251,19 +283,23 @@ describe('Collection sub-generator', function () {
             // Filename
             var collection = 'mycollection';
             var fileContentToTest = [
-                ['test/spec/collections/' + collection + '-spec.js', /describe/i],
+                ['test/spec/collections/' + collection + '.spec.js', /describe/i],
                 ['client/scripts/collections/' + collection + '.js', /module\.exports/i]
             ];
 
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections',
+                    testFile: 'test/spec/collections'
+                }, function() {
                     assert.fileContent(fileContentToTest);
                     done();
                 });
@@ -273,19 +309,23 @@ describe('Collection sub-generator', function () {
             // Filename
             var collection = 'mycollection';
             var fileContentToTest = [
-                ['test/spec/collections/' + collection + '-spec.js', /define\(function\(require\)/i],
+                ['test/spec/collections/' + collection + '.spec.js', /define\(function\(require\)/i],
                 ['client/scripts/collections/' + collection + '.js', /define\(function\(require\)/i]
             ];
 
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'requirejs',
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections',
+                    testFile: 'test/spec/collections'
+                }, function() {
                     assert.fileContent(fileContentToTest);
                     done();
                 });
@@ -295,18 +335,22 @@ describe('Collection sub-generator', function () {
             // Filename
             var collection = 'mycollection';
             var fileContentToTest = [
-                ['test/spec/collections/' + collection + '-spec.js', /jshint expr/i],
+                ['test/spec/collections/' + collection + '.spec.js', /jshint expr/i],
             ];
 
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'requirejs',
                 testFramework: 'mocha'
             });
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections',
+                    testFile: 'test/spec/collections'
+                }, function() {
                     assert.fileContent(fileContentToTest);
                     done();
                 });
@@ -316,18 +360,22 @@ describe('Collection sub-generator', function () {
             // Filename
             var collection = 'mycollection';
             var fileContentToTest = [
-                ['test/spec/collections/' + collection + '-spec.js', /jshint expr/i],
+                ['test/spec/collections/' + collection + '.spec.js', /jshint expr/i],
             ];
 
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'requirejs',
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections',
+                    testFile: 'test/spec/collections'
+                }, function() {
                     assert.noFileContent(fileContentToTest);
                     done();
                 });
@@ -338,19 +386,23 @@ describe('Collection sub-generator', function () {
             var collection = 'mycollection';
             var folder = 'folder/';
             var filesToTest = [
-                'test/spec/collections/' + folder + collection + '-spec.js',
+                'test/spec/collections/' + folder + collection + '.spec.js',
                 'client/scripts/collections/' + folder + collection + '.js'
             ];
 
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {folder: folder}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections/' + folder,
+                    testFile: 'test/spec/collections/' + folder
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -361,19 +413,23 @@ describe('Collection sub-generator', function () {
             var collection = 'mycollection';
             var folder = '/////folder/////';
             var filesToTest = [
-                'test/spec/collections/folder/' + collection + '-spec.js',
+                'test/spec/collections/folder/' + collection + '.spec.js',
                 'client/scripts/collections/folder/' + collection + '.js'
             ];
 
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('collection', collection, {folder: folder}, function() {
+                createSubGenerator('collection', collection, {}, {
+                    // mock prompt data
+                    collectionFile: 'client/scripts/collections/' + folder,
+                    testFile: 'test/spec/collections/' + folder
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });

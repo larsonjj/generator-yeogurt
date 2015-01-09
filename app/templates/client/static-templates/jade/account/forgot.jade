@@ -1,0 +1,14 @@
+extends ../layouts/default
+
+block content
+    h3 Forgot Password
+    form(method='post', action='/forgot')
+        input(type='hidden', name='_csrf', value=_csrf)
+
+        p Enter your Username or email address below and we will send you password reset instructions.
+
+        p
+            label(for='username') Username or Email:
+            input(type='username', name='username', id='username', placeholder='Enter your username or email', autofocus)
+
+        button Reset Password

@@ -4,72 +4,39 @@
 
 'use strict';
 
-var AppDispatcher = require('../dispatchers/app');
-var EventEmitter = require('events').EventEmitter;
+var Store = require('./default');
+var Dispatcher = require('../dispatchers/default');
 var <%= _.classify(name) %>Constants = require('../constants/<%= _.slugify(name.toLowerCase()) %>');
 
-// Default change event name
-var CHANGE_EVENT = 'change';
-
-// Where you will store your data
-var _data = {};
-
 /**
- * Update data in store
- * @param  {object} data
+ * @typedef Messages
+ * @type {object}
  */
-function update(data) {
-    _data = data;
-}
+var _data;
 
-var <%= _.classify(name) %>Store = EventEmitter.prototype;
+var <%= _.classify(name) %>Store = new Store({
 
-/**
- * Get data.
- * @return {object}
- */
-<%= _.classify(name) %>Store.getData = function() {
-    return _data;
-};
-
-<%= _.classify(name) %>Store.emitChange = function() {
-    this.emit(CHANGE_EVENT);
-};
-
-/**
- * @param {function} callback
- */
-<%= _.classify(name) %>Store.addChangeListener = function(callback) {
-    this.on(CHANGE_EVENT, callback);
-};
-
-/**
- * @param {function} callback
- */
-<%= _.classify(name) %>Store.removeChangeListener = function(callback) {
-    this.removeListener(CHANGE_EVENT, callback);
-};
-
-// Have dispatcher handle all updates
-AppDispatcher.register(function(payload) {
-    var action = payload.action;
-    var text;
-
-    switch (action.actionType) {
-        case <%=_.classify(name) %>Constants.SAMPLE_CONSTANT:
-            text = action.text.trim();
-            if (text !== '') {
-                update(text);
-                // Let application know, that a change has occured
-                <%= _.classify(name) %>Store.emitChange();
-            }
-            break;
-        default:
-            return true;
+    /**
+     * Gets data associated with the current store.
+     * @returns {data}
+     */
+    get: function() {
+        return _data;
     }
 
+});
 
-    return true; // No errors.  Needed by promise in Dispatcher.
+<%= _.classify(name) %>Store.dispatcherToken = Dispatcher.register(function(payload) {
+
+    var action = payload.action;
+
+    // Replace 'true' with your desired constant
+    if (action.actionType === <%= _.classify(name) %>Constants.<%= name.toUpperCase() %>_CONSTANT) {
+        _data = action.data;
+
+        <%= _.classify(name) %>Store.emitChange();
+    }
+
 });
 
 module.exports = <%= _.classify(name) %>Store;

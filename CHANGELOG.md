@@ -1,3 +1,49 @@
+### v0.13.0:
+#### date: 2015-1-9
+##### changes:
+
+***Removals***
+* Removed HTML Option for static sites
+* Removed Bootstrap and Foundation prompts and added [Guides](https://github.com/larsonjj/generator-yeogurt/tree/master/docs/guides) for them instead
+* Removed the ability to use the `--delete` option on sub-generators as it could catastrophic effects if user used `sudo`
+* Removed humans.txt as it is superflous for most projects and can be easily added to any project if need be
+* Removed server-side rendering for React + Express server apps.
+* Removed Google Analytics as it is very simple to add and is not needed on every project
+* Removed Bourbon, Lesshat, and nib mixin libraries as they can be easily added using bower
+
+***Additions***
+* Added support for PostgreSQL databases when generating an express authentication app.
+* Added `npm run clean` command to cleanup all bower and npm dependencies as well as all generated files within `.tmp`, and `dist` folders.
+* Added grunt-wiredep to automatically handle injecting bower dependencies into the base template file.
+* Express apps now have the option to be generated with authentication using JSON Web Tokens for Backbone and React applications or Cookie Session Storage for Jade and Swig server applications.
+* If using authentication, a barebones authentication boilerplate will be included with essential code to get you up and running quickly with authenticating users and resetting passwords when generating an express server. Some features include:
+ - Login/Logout
+ - Edit Account
+ - Reset password (via email)
+ - Create Account
+ - Global error messages
+* Brand new [Guides](https://github.com/larsonjj/generator-yeogurt/tree/master/docs/guides) that give even more information on how to incorporate popular libraries/frameworks
+* Added cookie-parser package to help handle parsing cookies for server apps
+
+***Updates***
+* Switched to `grunt-styleguide` for generateing kss styleguides as it has much fewer issues than the old `grunt-kss`
+* Overhauled sub-generators to have built in prompts to guide the user. Also fixed folder pathing.
+* Consolidated all compiled and temporary files ro now live in the `.tmp` folder.
+* Changed `one-column` layouts to now be `default` to be a bit more sensible
+* Updated 404 and 500 error pages for all server apps.
+* IE8 support is now included by default by including modernizr, html5shiv, and consolelog libraries
+* Lusca security is included by default on all server apps
+* Base template for single page applications using a server is now located in the `client/` folder rather than `server/`
+* Updated `grunt-imagemin` to handle all images (jpg, jpeg, svg, and png) rather than using `grunt-svgmin` and `grunt-pngmin`
+* Unit test file name endings have been changed from `-spec.js` to `.spec.js`
+* Updated unit tests to reach over 90% code coverage
+* All React apps will use flux by default (no more flux options)
+
+***Fixes***
+* Fixed folder path creation for sub-generators [#90](https://github.com/larsonjj/generator-yeogurt/issues/90) & [#87](https://github.com/larsonjj/generator-yeogurt/issues/87)
+* Fixed 'JST undefined' error for backbone apps [#92](https://github.com/larsonjj/generator-yeogurt/issues/92)
+* Fixed 'resource interpreted as script but transferred with mime type text/html' error [#91](https://github.com/larsonjj/generator-yeogurt/issues/91)
+
 ### v0.12.3:
 #### date: 2014-11-12
 ##### changes:

@@ -9,13 +9,13 @@ var taskConfig = function(grunt) {
         server: {
             options: {},
             files: {
-                '<%%= yeogurt.staticServer %>/scripts/app.js.map': ['<%%= yeogurt.staticServer %>/scripts/app.js'],
+                '<%%= yeogurt.tmp %>/scripts/main.js.map': ['<%%= yeogurt.tmp %>/scripts/main.js'],
             }
         },
         dist: {
             options: {},
             files: {
-                '<%%= yeogurt.dist %>/scripts/app.js.map': ['<%%= yeogurt.dist %>/scripts/app.js'],
+                '<%%= yeogurt.dist %>/scripts/main.js.map': ['<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>scripts/main.js'],
             }
         }
     });

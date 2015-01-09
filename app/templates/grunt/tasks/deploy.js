@@ -15,7 +15,6 @@ var taskConfig = function(grunt) {
     });
 
     grunt.registerTask('deploy', 'Build a production ready version of your site and deploy it to a desired FTP server.', [
-        'zip',
         'ftpinfo'
     ]);
 };

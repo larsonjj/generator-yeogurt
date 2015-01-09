@@ -4,22 +4,21 @@
 
 'use strict';
 
-var allTestFiles = [];
-var TEST_REGEXP = /spec\.js$/;
-
-Object.keys(window.__karma__.files).forEach(function(file) {
-    if (TEST_REGEXP.test(file)) {
-        // Normalize paths to RequireJS module names.
-        allTestFiles.push(file);
+var tests = [];
+for (var file in window.__karma__.files) {
+    if (window.__karma__.files.hasOwnProperty(file)) {
+        if (/spec\.js$/.test(file)) {
+            tests.push(file);
+        }
     }
-});
+}
 
 requirejs.config({
     // Karma serves files from '/base'
-    baseUrl: '/base/client/scripts',
+    baseUrl: '/base',
 
     // ask Require.js to load these files (all our tests)
-    deps: allTestFiles,
+    deps: tests,
 
     // start test run, once Require.js is done
     callback: window.__karma__.start

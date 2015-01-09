@@ -10,15 +10,15 @@ var taskConfig = function(grunt) {
             options: {
                 paths: ['<%%= yeogurt.client %>/'],
                 sourceMap: true,
-                sourceMapFilename: '<%%= yeogurt.staticServer %>/styles/main.css.map',
-                sourceMapBasepath: '<%%= yeogurt.staticServer %>/styles/',
+                sourceMapFilename: '<%%= yeogurt.tmp %>/styles/main.css.map',
+                sourceMapBasepath: '<%%= yeogurt.tmp %>/styles/',
                 sourceMapRootpath: '',
                 dumpLineNumbers: 'comments',
                 outputSourceFiles: true
             },
             expand: true,
             cwd: '<%%= yeogurt.client %>/',
-            dest: '<%%= yeogurt.staticServer %>/',
+            dest: '<%%= yeogurt.tmp %>/',
             src: [
                 'styles/main.less'
             ],
@@ -28,15 +28,15 @@ var taskConfig = function(grunt) {
             options: {
                 paths: ['<%%= yeogurt.client %>/'],
                 sourceMap: true,
-                sourceMapFilename: '<%%= yeogurt.dist %>/styles/main.css.map',
-                sourceMapBasepath: '<%%= yeogurt.dist %>/styles/',
+                sourceMapFilename: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>styles/main.css.map',
+                sourceMapBasepath: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>styles/',
                 sourceMapRootpath: './',
                 compress: true,
                 outputSourceFiles: true
             },
             expand: true,
             cwd: '<%%= yeogurt.client %>/',
-            dest: '<%%= yeogurt.dist %>/',
+            dest: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>',
             src: [
                 'styles/main.less'
             ],

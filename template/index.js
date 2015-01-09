@@ -1,8 +1,8 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var cleanFolderPath = require('../helpers/clean-folder-path');
-var deleteFile = require('../helpers/delete-file');
+var getRootDir = require('../helpers/get-root-dir');
+var path = require('path');
 
 var TemplateGenerator = module.exports = function TemplateGenerator() {
     // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -12,10 +12,6 @@ var TemplateGenerator = module.exports = function TemplateGenerator() {
     var fileJSON = this.config.get('config');
 
     // options
-    this.type = this.options.type || 'page';
-    this.useLayout = this.options.layout || false;
-    this.folder = this.options.folder || '';
-    this.delete = this.options.delete || '';
     this.useDashboard = fileJSON.useDashboard;
     this.projectName = fileJSON.projectName;
     this.jsTemplate = fileJSON.jsTemplate;
@@ -25,23 +21,24 @@ var TemplateGenerator = module.exports = function TemplateGenerator() {
     this.jsOption = fileJSON.jsOption;
     this.singlePageApplication = fileJSON.singlePageApplication;
 
-    var getNumberOfPaths = [];
-    this.folder.split('/').forEach(function(item) {
-        if (item) {
-            getNumberOfPaths.push('../');
-        }
-    });
-    this.folderCount = getNumberOfPaths.join('');
-
-    // Remove all leading and trailing slashes in folder path
-    this.cleanFolderPath = cleanFolderPath;
 };
 
 util.inherits(TemplateGenerator, yeoman.generators.NamedBase);
 
-TemplateGenerator.prototype.files = function files() {
-    this.log('You called the view subgenerator with the argument ' + this.name + '.');
+// Prompts
+TemplateGenerator.prototype.ask = function ask() {
 
+    if (this.singlePageApplication) {
+        if (this.jsTemplate === 'react') {
+            this.log('You have chosen to use React, so this subgenerator is not available.');
+            this.log('Try the following to generate a new react component: yo yeogurt:react myreact');
+            this.log('Operation aborted');
+            this.abort = true;
+            return;
+        }
+    }
+
+    var self = this;
     var rootPath;
     if (!this.singlePageApplication && this.useServer) {
         rootPath = 'server';
@@ -50,35 +47,84 @@ TemplateGenerator.prototype.files = function files() {
         rootPath = 'client';
     }
 
-    if (this.singlePageApplication) {
-        if (this.jsTemplate !== 'react') {
-            if (!this.delete) {
-                if (this.jsTemplate === 'lodash') {
-                    this.template('template.html', 'client/templates/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.jst');
-                }
-                else if (this.jsTemplate === 'handlebars') {
-                    this.template('template.html', 'client/templates/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.hbs');
-                }
-                else if (this.jsTemplate === 'jade') {
-                    this.template('template.html', 'client/templates/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.jade');
-                }
-            }
-            else {
-                if (this.jsTemplate === 'lodash') {
-                    deleteFile('client/templates/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.jst', this);
-                }
-                else if (this.jsTemplate === 'handlebars') {
-                    deleteFile('client/templates/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.hbs', this);
-                }
-                else if (this.jsTemplate === 'jade') {
-                    deleteFile('client/templates/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.jade', this);
-                }
-            }
+    var done = this.async();
+    var prompts = [{
+        when: function() {
+            return self.htmlOption === 'jade' || self.htmlOption === 'swig';
+        },
+        type: 'list',
+        name: 'type',
+        message: 'What type of template do you want to create?',
+        choices: ['Page', 'Layout', 'Module'],
+        filter: function(val) {
+            var filterMap = {
+                'Page': 'page',
+                'Layout': 'layout',
+                'Module': 'module'
+            };
+
+            return filterMap[val];
         }
-        else {
-            this.log('You have chosen to use React, so this subgenerator is not available.');
-            this.log('Try the following to generate a new react component: yo yeogurt:react myreact');
-            this.log('Operation aborted');
+    }, {
+        when: function(answers) {
+            return answers.type === 'page';
+        },
+        name: 'useLayout',
+        message: 'What template you you like to extend from?',
+        default: 'layouts/base'
+    }, {
+        when: function(answers) {
+            return answers.type === 'module';
+        },
+        name: 'templateFile',
+        message: 'Where would you like to create this template?',
+        default: rootPath + '/templates/modules'
+    }, {
+        when: function(answers) {
+            return answers.type === 'layout';
+        },
+        name: 'templateFile',
+        message: 'Where would you like to create this template?',
+        default: rootPath + '/templates/layouts'
+    }, {
+        when: function() {
+            return self.singlePageApplication;
+        },
+        name: 'templateFile',
+        message: 'Where would you like to create this template?',
+        default: rootPath + '/templates'
+    }];
+
+    this.prompt(prompts, function(answers) {
+        if (answers.type === 'page') {
+            answers.templateFile = rootPath + '/templates';
+        }
+
+        // Get root directory
+        this.rootDir = getRootDir(answers.templateFile);
+
+        this.type = answers.type;
+        this.useLayout = answers.useLayout || false;
+        this.templateFile = path.join(answers.templateFile, this._.slugify(this.name.toLowerCase()));
+        done();
+    }.bind(this));
+};
+
+// Create Files
+TemplateGenerator.prototype.files = function files() {
+    if (this.abort) {
+        return;
+    }
+
+    if (this.singlePageApplication) {
+        if (this.jsTemplate === 'underscore') {
+            this.template('template.html', this.templateFile + '.jst');
+        }
+        else if (this.jsTemplate === 'handlebars') {
+            this.template('template.html', this.templateFile + '.hbs');
+        }
+        else if (this.jsTemplate === 'jade') {
+            this.template('template.html', this.templateFile + '.jade');
         }
     }
     else {
@@ -87,69 +133,26 @@ TemplateGenerator.prototype.files = function files() {
         }
 
         if (this.htmlOption === 'jade') {
-            if (!this.delete) {
-                if (this.type === 'page') {
-                    this.template('template.jade', rootPath + '/templates/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.jade');
-                }
-                else if (this.type === 'module') {
-                    this.template('template.jade', rootPath +'/templates/modules/' + this.cleanFolderPath(this.folder) +'/' + this._.slugify(this.name.toLowerCase()) + '.jade');
-                }
-                else if (this.type === 'layout') {
-                    this.template('template.jade', rootPath +'/templates/layouts/' + this.cleanFolderPath(this.folder) +'/' + this._.slugify(this.name.toLowerCase()) + '.jade');
-                }
-                else {
-                    this.log('Must use a supported type: page, template, module.\nOperation aborted');
-                }
+            if (this.type === 'page') {
+                this.template('template.jade', this.templateFile + '.jade');
             }
-            else {
-                if (this.type === 'page') {
-                    deleteFile(rootPath + '/templates/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.jade', this);
-                }
-                else if (this.type === 'module') {
-                    deleteFile(rootPath +'/templates/modules/' + this.cleanFolderPath(this.folder) +'/' + this._.slugify(this.name.toLowerCase()) + '.jade', this);
-                }
-                else if (this.type === 'layout') {
-                    deleteFile(rootPath +'/templates/layouts/' + this.cleanFolderPath(this.folder) +'/' + this._.slugify(this.name.toLowerCase()) + '.jade', this);
-                }
-                else {
-                    this.log('Must use a supported type: page, template, module.\nOperation aborted');
-                }
+            else if (this.type === 'module') {
+                this.template('template.jade', this.templateFile + '.jade');
+            }
+            else if (this.type === 'layout') {
+                this.template('template.jade', this.templateFile + '.jade');
             }
         }
         else if (this.htmlOption === 'swig') {
-            if (!this.delete) {
-                if (this.type === 'page') {
-                    this.template('template.swig', rootPath +'/templates/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.swig');
-                }
-                else if (this.type === 'module') {
-                    this.template('template.swig', rootPath +'/templates/modules/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.swig');
-                }
-                else if (this.type === 'layout') {
-                    this.template('template.swig', rootPath +'/templates/layouts/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.swig');
-                }
-                else {
-                    this.log('Must use a supported type: page, template, module.\nOperation aborted');
-                }
+            if (this.type === 'page') {
+                this.template('template.swig', this.templateFile + '.swig');
             }
-            else {
-                if (this.type === 'page') {
-                    deleteFile(rootPath +'/templates/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.swig', this);
-                }
-                else if (this.type === 'module') {
-                    deleteFile(rootPath +'/templates/modules/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.swig', this);
-                }
-                else if (this.type === 'layout') {
-                    deleteFile(rootPath +'/templates/layouts/' + this.cleanFolderPath(this.folder) + this._.slugify(this.name.toLowerCase()) + '.swig', this);
-                }
-                else {
-                    this.log('Must use a supported type: page, template, module.\nOperation aborted');
-                }
+            else if (this.type === 'module') {
+                this.template('template.swig', this.templateFile + '.swig');
             }
-        }
-        else if (this.htmlOption === 'html') {
-            this.log('You have chosen to use HTML, so you cannot use this sub-generator.');
-            this.log('If you would like to create a new page. Just duplicate/copy your index.html.');
-            this.log('Operation aborted.');
+            else if (this.type === 'layout') {
+                this.template('template.swig', this.templateFile + '.swig');
+            }
         }
     }
 };

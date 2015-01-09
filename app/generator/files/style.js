@@ -6,7 +6,6 @@
 
 var styleFiles = function styleFiles() {
     // client/styles
-    this.mkdir('client/styles');
 
     if (this.useKss) {
         this.template('client/styles/styleguide.md', 'client/styles/styleguide.md');
@@ -25,7 +24,7 @@ var styleFiles = function styleFiles() {
             }
         }
         if (this.cssOption === 'stylus') {
-            this.template('client/styles/main.less', 'client/styles/main.styl');
+            this.template('client/styles/main.styl', 'client/styles/main.styl');
         }
     }
     else {

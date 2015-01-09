@@ -6,11 +6,8 @@
 var taskConfig = function(grunt) {
 
     grunt.config.set('clean', {
-        server: ['<%%= yeogurt.staticServer %>/'],
-        dist: ['<%%= yeogurt.dist %>/'],
-        temp: [
-            '.tmp'
-        ]
+        dist: ['<%%= yeogurt.dist %>'],
+        tmp: ['<%%= yeogurt.tmp %>']
     });
 
 };

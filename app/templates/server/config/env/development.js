@@ -5,7 +5,7 @@
 
 // Development specific configuration
 var devConfig = {
-    staticAssets: 'client/.serve'
+    logLevel: 'dev'
 };
 
 module.exports = devConfig;

@@ -5,38 +5,27 @@
 
 var taskConfig = function(grunt) {
 
-    grunt.config.set('copy', {
+    grunt.config.set('copy', {<% if (useKss && cssOption !== 'css') { %>
         server: {
             files: [{
-                expand: true,
-                cwd: '<%%= yeogurt.client %>/',
-                dest: '<%%= yeogurt.staticServer %>/',
-                src: [
-                    'scripts/**/*.js',<% if (useDashboard) { %>
-                    'dashboard/**/*.*',<% } %><% if (jsOption === 'browserify') { %>
-                    '!scripts/app.js',
-                    '!scripts/main.js',<% } %>
-                    'bower_components/**/*.{js,map,css,woff,otf,ttf,eot,svg}',<% if (useKss) { %>
-                    'docs/styleguide/public/images',<% } %>
-                    'styles/**/*.css',
-                    'images/**',
-                    '*.{ico,png,txt}',
-                    'styles/fonts/**/*.{woff,otf,ttf,eot,svg}',<% if (htmlOption === 'html' || jsFramework === 'backbone' && !useServer || jsFramework === 'react' && !useServer) { %>
-                    '*.html'<% } %>
-                ]
-            }]
-        },
+                 expand: true,
+                    cwd: '<%%= yeogurt.client %>/',
+                    dest: '<%%= yeogurt.tmp %>',
+                    src: [
+                        'styles/styleguide.md'
+                    ]
+                }]
+        },<% } %>
         dist: {
             files: [{
                 expand: true,
                 cwd: '<%%= yeogurt.client %>/',
-                dest: '<%%= yeogurt.dist %>/',
+                dest: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>',
                 src: [<% if (jsOption === 'requirejs') { %>
-                    'bower_components/requirejs/require.js',<% } %><% if (useModernizr) { %>
-                    'bower_components/modernizr/modernizr.js',<% } %>
-                    'bower_components/**/*.{woff,otf,ttf,eot,svg}',<% if (useDashboard) { %>
-                    'dashboard/**/*.*',<% } %><% if (htmlOption === 'html' || jsFramework === 'backbone' && !useServer || jsFramework === 'react' && !useServer) { %>
+                    'bower_components/requirejs/require.js',<% } %><% if (useDashboard) { %>
+                    'dashboard/**/*.*',<% } %><% if (singlePageApplication) { %>
                     '*.html',<% } %><% if (useKss) { %>
+                    'styles/styleguide.md',
                     'docs/styleguide/public/images',<% } %>
                     '!*.js',
                     '*.{ico,png,txt}',
@@ -45,10 +34,19 @@ var taskConfig = function(grunt) {
                 ]
             }<% if (useServer && singlePageApplication) { %>, {
                 expand: true,
-                cwd: 'server/templates/',
-                dest: '.tmp',
+                cwd: '<%%= yeogurt.server %>/templates/',
+                dest: '<%%= yeogurt.tmp %>',
                 src: [
                     'index.html'
+                ]
+            }<% } %><% if (useServer) { %>, {
+                expand: true,
+                cwd: './',
+                dest: '<%%= yeogurt.dist %>/',
+                src: [
+                    '<%%= yeogurt.server %>/**/*',
+                    'server.js',
+                    'package.json'
                 ]
             }<% } %>]
         }

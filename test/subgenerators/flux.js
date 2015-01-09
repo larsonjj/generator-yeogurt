@@ -9,7 +9,7 @@ var createAppGenerator = require('../helpers/create-generator').createAppGenerat
 var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
 
-describe('Flux sub-generator', function () {
+describe('Flux sub-generator', function() {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -22,7 +22,7 @@ describe('Flux sub-generator', function () {
         }.bind(this));
     });
 
-    describe('Does not create any flux files when using Backbone', function () {
+    describe('Does not create any flux files when using Backbone', function() {
         it('Handles defaults', function(done) {
             // Filename
             var flux = 'myflux';
@@ -38,12 +38,16 @@ describe('Flux sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('flux', flux, {}, function() {
+                createSubGenerator('flux', flux, {}, {
+                    // mock prompt data
+                    fluxFile: 'client/scripts/flux/',
+                    testFile: 'test/spec/flux/'
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -53,7 +57,7 @@ describe('Flux sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
@@ -61,12 +65,16 @@ describe('Flux sub-generator', function () {
             var flux = 'myflux';
             var folder = 'folder/';
             var filesToTest = [
-                'test/spec/flux/stores/' + folder + flux + '.js',
-                'test/spec/flux/actions/' + folder + flux + '.js',
-                'test/spec/flux/constants/' + folder + flux + '.js'
+                'test/spec/flux/' + folder + 'stores/' + flux + '.js',
+                'test/spec/flux/' + folder + 'actions/' + flux + '.js',
+                'test/spec/flux/' + folder + 'constants/' + flux + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('flux', flux, {folder: folder}, function() {
+                createSubGenerator('flux', flux, {}, {
+                    // mock prompt data
+                    fluxFile: 'client/scripts/flux/' + folder,
+                    testFile: 'test/spec/flux/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -76,7 +84,7 @@ describe('Flux sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
@@ -84,12 +92,16 @@ describe('Flux sub-generator', function () {
             var flux = 'myflux';
             var folder = '/////folder/////';
             var filesToTest = [
-                'test/spec/flux/stores/folder/' + flux + '.js',
-                'test/spec/flux/actions/folder/' + flux + '.js',
-                'test/spec/flux/constants/folder/' + flux + '.js'
+                'test/spec/flux/' + folder + 'stores/' + flux + '.js',
+                'test/spec/flux/' + folder + 'actions/' + flux + '.js',
+                'test/spec/flux/' + folder + 'constants/' + flux + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('flux', flux, {folder: folder}, function() {
+                createSubGenerator('flux', flux, {}, {
+                    // mock prompt data
+                    fluxFile: 'client/scripts/flux/' + folder,
+                    testFile: 'test/spec/flux/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -97,7 +109,7 @@ describe('Flux sub-generator', function () {
         });
     });
 
-    describe('Does not create any flux files when using Static Jade', function () {
+    describe('Does not create any flux files when using Static Jade', function() {
         it('Handles defaults', function(done) {
             // Filename
             var flux = 'myflux';
@@ -114,7 +126,11 @@ describe('Flux sub-generator', function () {
                 htmlOption: 'jade'
             });
             this.app.run([], function() {
-                createSubGenerator('flux', flux, {}, function() {
+                createSubGenerator('flux', flux, {}, {
+                    // mock prompt data
+                    fluxFile: 'client/scripts/flux/',
+                    testFile: 'test/spec/flux/'
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -128,12 +144,16 @@ describe('Flux sub-generator', function () {
             var flux = 'myflux';
             var folder = 'folder/';
             var filesToTest = [
-                'test/spec/flux/stores/' + folder + flux + '.js',
-                'test/spec/flux/actions/' + folder + flux + '.js',
-                'test/spec/flux/constants/' + folder + flux + '.js'
+                'test/spec/flux/' + folder + 'stores/' + flux + '.js',
+                'test/spec/flux/' + folder + 'actions/' + flux + '.js',
+                'test/spec/flux/' + folder + 'constants/' + flux + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('flux', flux, {folder: folder}, function() {
+                createSubGenerator('flux', flux, {}, {
+                    // mock prompt data
+                    fluxFile: 'client/scripts/flux/' + folder,
+                    testFile: 'test/spec/flux/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -147,12 +167,16 @@ describe('Flux sub-generator', function () {
             var flux = 'myflux';
             var folder = '/////folder/////';
             var filesToTest = [
-                'test/spec/flux/stores/folder/' + flux + '.js',
-                'test/spec/flux/actions/folder/' + flux + '.js',
-                'test/spec/flux/constants/folder/' + flux + '.js'
+                'test/spec/flux/' + folder + 'stores/' + flux + '.js',
+                'test/spec/flux/' + folder + 'actions/' + flux + '.js',
+                'test/spec/flux/' + folder + 'constants/' + flux + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('flux', flux, {folder: folder}, function() {
+                createSubGenerator('flux', flux, {}, {
+                    // mock prompt data
+                    fluxFile: 'client/scripts/flux/' + folder,
+                    testFile: 'test/spec/flux/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -176,7 +200,11 @@ describe('Flux sub-generator', function () {
                 'client/scripts/flux/actions/' + flux + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('flux', flux, {}, function() {
+                createSubGenerator('flux', flux, {}, {
+                    // mock prompt data
+                    fluxFile: 'client/scripts/flux/',
+                    testFile: 'test/spec/flux/'
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -190,12 +218,16 @@ describe('Flux sub-generator', function () {
             var flux = 'myflux';
             var folder = 'folder/';
             var filesToTest = [
-                'test/spec/flux/stores/' + folder + flux + '.js',
-                'test/spec/flux/actions/' + folder + flux + '.js',
-                'test/spec/flux/constants/' + folder + flux + '.js'
+                'test/spec/flux/' + folder + 'stores/' + flux + '.js',
+                'test/spec/flux/' + folder + 'actions/' + flux + '.js',
+                'test/spec/flux/' + folder + 'constants/' + flux + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('flux', flux, {folder: folder}, function() {
+                createSubGenerator('flux', flux, {}, {
+                    // mock prompt data
+                    fluxFile: 'client/scripts/flux/' + folder,
+                    testFile: 'test/spec/flux/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -209,12 +241,16 @@ describe('Flux sub-generator', function () {
             var flux = 'myflux';
             var folder = '/////folder/////';
             var filesToTest = [
-                'test/spec/flux/stores/folder/' + flux + '.js',
-                'test/spec/flux/actions/folder/' + flux + '.js',
-                'test/spec/flux/constants/folder/' + flux + '.js'
+                'test/spec/flux/' + folder + 'stores/' + flux + '.js',
+                'test/spec/flux/' + folder + 'actions/' + flux + '.js',
+                'test/spec/flux/' + folder + 'constants/' + flux + '.js'
             ];
             this.app.run([], function() {
-                createSubGenerator('flux', flux, {folder: folder}, function() {
+                createSubGenerator('flux', flux, {}, {
+                    // mock prompt data
+                    fluxFile: 'client/scripts/flux/' + folder,
+                    testFile: 'test/spec/flux/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -222,16 +258,16 @@ describe('Flux sub-generator', function () {
         });
     });
 
-    describe('Create flux files when using flux', function () {
+    describe('Create flux files when using flux', function() {
         it('Handles defaults', function(done) {
             // Filename
             var flux = 'myflux';
             var filesToTest = [
-                'test/spec/flux/stores/' + flux + '-spec.js',
+                'test/spec/flux/stores/' + flux + '.spec.js',
                 'client/scripts/flux/stores/' + flux + '.js',
-                'test/spec/flux/actions/' + flux + '-spec.js',
+                'test/spec/flux/actions/' + flux + '.spec.js',
                 'client/scripts/flux/actions/' + flux + '.js',
-                'test/spec/flux/constants/' + flux + '-spec.js',
+                'test/spec/flux/constants/' + flux + '.spec.js',
                 'client/scripts/flux/constants/' + flux + '.js'
             ];
             var fileContentToTest = [
@@ -246,7 +282,11 @@ describe('Flux sub-generator', function () {
                 useJsx: false
             });
             this.app.run([], function() {
-                createSubGenerator('flux', flux, {}, function() {
+                createSubGenerator('flux', flux, {}, {
+                    // mock prompt data
+                    fluxFile: 'client/scripts/flux/',
+                    testFile: 'test/spec/flux/'
+                }, function() {
                     assert.file(filesToTest);
                     assert.fileContent(fileContentToTest);
                     done();
@@ -267,9 +307,9 @@ describe('Flux sub-generator', function () {
                 ['client/scripts/flux/constants/' + flux + '.js', /Constant/i]
             ];
             var filesNotCreated = [
-                'test/spec/flux/stores/' + flux + '-spec.js',
-                'test/spec/flux/actions/' + flux + '-spec.js',
-                'test/spec/flux/constants/' + flux + '-spec.js',
+                'test/spec/flux/stores/' + flux + '.spec.js',
+                'test/spec/flux/actions/' + flux + '.spec.js',
+                'test/spec/flux/constants/' + flux + '.spec.js',
             ];
 
             helpers.mockPrompt(this.app, {
@@ -278,7 +318,11 @@ describe('Flux sub-generator', function () {
                 useTesting: false
             });
             this.app.run([], function() {
-                createSubGenerator('flux', flux, {}, function() {
+                createSubGenerator('flux', flux, {}, {
+                    // mock prompt data
+                    fluxFile: 'client/scripts/flux/',
+                    testFile: 'test/spec/flux/'
+                }, function() {
                     assert.file(filesToTest);
                     assert.noFile(filesNotCreated);
                     assert.fileContent(fileContentToTest);
@@ -290,9 +334,9 @@ describe('Flux sub-generator', function () {
             // Filename
             var flux = 'myflux';
             var fileContentToTest = [
-                ['test/spec/flux/stores/' + flux + '-spec.js', /jshint expr/i],
-                ['test/spec/flux/actions/' + flux + '-spec.js', /jshint expr/i],
-                ['test/spec/flux/constants/' + flux + '-spec.js', /jshint expr/i],
+                ['test/spec/flux/stores/' + flux + '.spec.js', /jshint expr/i],
+                ['test/spec/flux/actions/' + flux + '.spec.js', /jshint expr/i],
+                ['test/spec/flux/constants/' + flux + '.spec.js', /jshint expr/i],
             ];
 
             helpers.mockPrompt(this.app, {
@@ -301,7 +345,11 @@ describe('Flux sub-generator', function () {
                 testFramework: 'mocha'
             });
             this.app.run([], function() {
-                createSubGenerator('flux', flux, {}, function() {
+                createSubGenerator('flux', flux, {}, {
+                    // mock prompt data
+                    fluxFile: 'client/scripts/flux/',
+                    testFile: 'test/spec/flux/'
+                }, function() {
                     assert.fileContent(fileContentToTest);
                     done();
                 });

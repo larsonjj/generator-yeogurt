@@ -8,7 +8,7 @@
     }
     [/dash]
 //- [dash:jade]
-    include client/templates/modules/<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= name || 'example' %>
+    include <%= templateFile %>
 
     +<%= name || 'example' %>()
     [/dash]
@@ -18,23 +18,20 @@
         p This is an example paragraph<% } else if (type === 'layout') { %>
 extend base
 
-block content
-
+block layout
     //- Provides layout level markup
     .layout-wrapper<% if (name) { %>(class="<%= _.slugify(name.toLowerCase()) %>")<% } %>
-
-<% } else if (type === 'page') { %><% if (useDashboard) { %>
+        block content<% } else if (type === 'page') { %><% if (useDashboard) { %>
 //- [dash:data]
     {
         "status": "development",
         "category": "page",
         "label": "<%= _.titleize(name) %>",
-        "link": "../../<%= folder ? cleanFolderPath(folder) + '/' : ''%><%= _.slugify(name.toLowerCase()) %>.html"
+        "link": "<%= rootDir %><%= _.slugify(name.toLowerCase()) %>.html"
     }
     [/dash]
-<% } %><% if (!useLayout) { %>
-extend ./layouts/base<% } else { %>
-extend ./layouts/<%= useLayout %><% } %>
+<% } %>
+extend ./<%= rootDir.replace('../../', '') %><%= useLayout %>
 
 block content
     p <%= name || 'empty' %> page<% } %>

@@ -8,7 +8,7 @@ var assert  = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
-describe('Template sub-generator', function () {
+describe('Template sub-generator', function() {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -21,7 +21,7 @@ describe('Template sub-generator', function () {
         }.bind(this));
     });
 
-    describe('Does not create any template files when using React', function () {
+    describe('Does not create any template files when using React', function() {
         it('Handles defaults', function(done) {
             // Filename
             var template = 'mytemplate';
@@ -35,7 +35,10 @@ describe('Template sub-generator', function () {
                 singlePageApplication: true
             });
             this.app.run([], function() {
-                createSubGenerator('template', template, {}, function() {
+                createSubGenerator('template', template, {}, {
+                    // mock prompt data
+                    templateFile: 'client/templates/'
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -53,7 +56,10 @@ describe('Template sub-generator', function () {
                 'client/scripts/components/' + folder + template + '.jsx'
             ];
             this.app.run([], function() {
-                createSubGenerator('template', template, {folder: folder}, function() {
+                createSubGenerator('template', template, {}, {
+                    // mock prompt data
+                    templateFile: 'client/templates/'
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -71,7 +77,10 @@ describe('Template sub-generator', function () {
                 'client/scripts/components/folder/' + template + '.jsx'
             ];
             this.app.run([], function() {
-                createSubGenerator('template', template, {folder: folder}, function() {
+                createSubGenerator('template', template, {}, {
+                    // mock prompt data
+                    templateFile: 'client/templates/' + folder
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
@@ -79,10 +88,11 @@ describe('Template sub-generator', function () {
         });
     });
 
-    describe('Does not create template files when using Static HTML', function () {
+    describe('Does not create template files when using Static HTML', function() {
         it('Handles defaults with type: Page', function(done) {
             // Filename
             var template = 'mytemplate';
+            var type = 'page';
             var filesToTest = [
                 // add files and folders you expect to NOT exist here.
                 'client/templates/' + template + '.html',
@@ -96,20 +106,25 @@ describe('Template sub-generator', function () {
                 useServer: false
             });
             this.app.run([], function() {
-                createSubGenerator('template', template, {}, function() {
+                createSubGenerator('template', template, {}, {
+                    // mock prompt data
+                    templateFile: 'client/templates/',
+                            type: type
+                }, function() {
                     assert.noFile(filesToTest);
                     done();
                 });
             });
         });
-   });
+    });
 
-    describe('Create template files when using Static Jade', function () {
-        describe('Client templates', function () {
+    describe('Create template files when using Static Jade', function() {
+        describe('Client templates', function() {
             describe('Handles defaults with type: Page', function() {
                 it('Without template', function(done) {
                     // Filename
                     var template = 'mytemplate';
+                    var type = 'page';
                     var filesToTest = [
                         // add files and folders you expect to NOT exist here.
                         'client/templates/' + template + '.jade',
@@ -125,7 +140,11 @@ describe('Template sub-generator', function () {
                     });
 
                     this.app.run([], function() {
-                        createSubGenerator('template', template, {}, function() {
+                        createSubGenerator('template', template, {}, {
+                            // mock prompt data
+                            templateFile: 'client/templates/',
+                            type: type
+                        }, function() {
                             assert.file(filesToTest);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -135,6 +154,7 @@ describe('Template sub-generator', function () {
                 it('With template', function(done) {
                     // Filename
                     var template = 'mytemplate';
+                    var type = 'page';
                     var filesToTest = [
                         // add files and folders you expect to NOT exist here.
                         'client/templates/' + template + '.jade',
@@ -150,7 +170,12 @@ describe('Template sub-generator', function () {
                     });
 
                     this.app.run([], function() {
-                        createSubGenerator('template', template, {layout: 'testTemplate'}, function() {
+                        createSubGenerator('template', template, {}, {
+                            // mock prompt data
+                            templateFile: 'client/templates/',
+                            type: type,
+                            useLayout: 'testTemplate'
+                        }, function() {
                             assert.file(filesToTest);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -178,7 +203,11 @@ describe('Template sub-generator', function () {
                     });
 
                     this.app.run([], function() {
-                            createSubGenerator('template', template, {type: type}, function() {
+                        createSubGenerator('template', template, {}, {
+                                // mock prompt data
+                                templateFile: 'client/templates/modules/',
+                                type: type
+                            }, function() {
                             assert.file(filesToTest);
                             assert.fileContent(fileContentToTest);
                             done();
@@ -204,8 +233,9 @@ describe('Template sub-generator', function () {
                     });
 
                     this.app.run([], function() {
-                        createSubGenerator('template', template, {
-                            layout: 'testTemplate',
+                        createSubGenerator('template', template, {}, {
+                            // mock prompt data
+                            templateFile: 'client/templates/modules/',
                             type: type
                         }, function() {
                             assert.file(filesToTest);
@@ -233,7 +263,11 @@ describe('Template sub-generator', function () {
                     useServer: false
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {type: type}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'client/templates/layouts/',
+                        type: type
+                    }, function() {
                         assert.file(filesToTest);
                         assert.fileContent(fileContentToTest);
                         done();
@@ -255,7 +289,11 @@ describe('Template sub-generator', function () {
                     useServer: false
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {type: type}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'client/templates/',
+                        type: type
+                    }, function() {
                         assert.noFile(filesToTest);
                         done();
                     });
@@ -269,13 +307,18 @@ describe('Template sub-generator', function () {
                 });
                 // Filename
                 var template = 'mytemplate';
+                var type = 'module';
                 var folder = 'folder/';
                 var filesToTest = [
                     // add files and folders you expect to NOT exist here.
-                    'client/templates/' + folder + template + '.jade'
+                    'client/templates/modules/' + folder + template + '.jade'
                 ];
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {folder: folder}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'client/templates/modules/' + folder,
+                        type: type
+                    }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -289,23 +332,29 @@ describe('Template sub-generator', function () {
                 });
                 // Filename
                 var template = 'mytemplate';
+                var type = 'module';
                 var folder = '/////folder/////';
                 var filesToTest = [
                     // add files and folders you expect to NOT exist here.
-                    'client/templates/folder/' + template + '.jade'
+                    'client/templates/modules/' + folder + template + '.jade'
                 ];
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {folder: folder}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'client/templates/modules/' + folder,
+                        type: type
+                    }, function() {
                     assert.file(filesToTest);
                     done();
                 });
                 });
             });
         });
-        describe('Client templates with Dashboard', function () {
+        describe('Client templates with Dashboard', function() {
             it('Handles defaults with type: Page', function(done) {
                 // Filename
                 var template = 'mytemplate';
+                var type = 'page';
                 var fileContentToTest = [
                     ['client/templates/' + template + '.jade', /\[dash\:data\]/i]
                 ];
@@ -317,7 +366,11 @@ describe('Template sub-generator', function () {
                     useDashboard: true
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'client/templates/',
+                        type: type
+                    }, function() {
                         assert.fileContent(fileContentToTest);
                         done();
                     });
@@ -338,7 +391,11 @@ describe('Template sub-generator', function () {
                     useDashboard: true
                 });
                 this.app.run([], function() {
-                        createSubGenerator('template', template, {type: type}, function() {
+                        createSubGenerator('template', template, {}, {
+                            // mock prompt data
+                            templateFile: 'client/templates/modules/',
+                            type: type
+                        }, function() {
                         assert.fileContent(fileContentToTest);
                         done();
                     });
@@ -359,14 +416,18 @@ describe('Template sub-generator', function () {
                     useDashboard: true
                 });
                 this.app.run([], function() {
-                        createSubGenerator('template', template, {type: type}, function() {
+                    createSubGenerator('template', template, {}, {
+                            // mock prompt data
+                            templateFile: 'client/templates/layouts/',
+                            type: type
+                        }, function() {
                         assert.noFileContent(fileContentToTest);
                         done();
                     });
                 });
             });
         });
-        describe('Server templates', function () {
+        describe('Server templates', function() {
             it('Handles defaults with type: Page', function(done) {
                 // Filename
                 var template = 'mytemplate';
@@ -382,10 +443,14 @@ describe('Template sub-generator', function () {
                     useServer: true
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {type: type}, function() {
-                    assert.file(filesToTest);
-                    done();
-                });
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'server/templates/',
+                        type: type
+                    }, function() {
+                        assert.file(filesToTest);
+                        done();
+                    });
                 });
             });
             it('Handles defaults with type: Module', function(done) {
@@ -403,7 +468,11 @@ describe('Template sub-generator', function () {
                     useServer: true
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {type: type}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'server/templates/modules/',
+                        type: type
+                    }, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -424,7 +493,11 @@ describe('Template sub-generator', function () {
                     useServer: true
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {type: type}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'server/templates/layouts/',
+                        type: type
+                    }, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -438,13 +511,18 @@ describe('Template sub-generator', function () {
                 });
                 // Filename
                 var template = 'mytemplate';
+                var type = 'module';
                 var folder = 'folder/';
                 var filesToTest = [
                     // add files and folders you expect to NOT exist here.
-                    'server/templates/' + folder + template + '.jade'
+                    'server/templates/modules/' + folder + template + '.jade'
                 ];
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {folder: folder}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'server/templates/modules/' + folder,
+                        type: type
+                    }, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -458,20 +536,25 @@ describe('Template sub-generator', function () {
                 });
                 // Filename
                 var template = 'mytemplate';
+                var type = 'module';
                 var folder = '/////folder/////';
                 var filesToTest = [
                     // add files and folders you expect to NOT exist here.
-                    'server/templates/folder/' + template + '.jade'
+                    'server/templates/modules/' + folder + template + '.jade'
                 ];
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {folder: folder}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'server/templates/modules/' + folder,
+                        type: type
+                    }, function() {
                         assert.file(filesToTest);
                         done();
                     });
                 });
             });
         });
-        describe('Server templates with Dashboard', function () {
+        describe('Server templates with Dashboard', function() {
             it('Handles defaults with type: Page', function(done) {
                 // Filename
                 var template = 'mytemplate';
@@ -487,7 +570,11 @@ describe('Template sub-generator', function () {
                     useServer: true
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {type: type}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'server/templates/',
+                        type: type
+                    }, function() {
                         assert.fileContent(fileContentToTest);
                         done();
                     });
@@ -508,7 +595,11 @@ describe('Template sub-generator', function () {
                     useServer: true
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {type: type}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'server/templates/modules/',
+                        type: type
+                    }, function() {
                         assert.fileContent(fileContentToTest);
                         done();
                     });
@@ -529,7 +620,11 @@ describe('Template sub-generator', function () {
                     useDashboard: true
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {type: type}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'server/templates/layouts/',
+                        type: type
+                    }, function() {
                         assert.noFileContent(fileContentToTest);
                         done();
                     });
@@ -539,7 +634,7 @@ describe('Template sub-generator', function () {
     });
 
     describe('Does not create any template files when using Static Swig', function() {
-        describe('Client templates', function () {
+        describe('Client templates', function() {
             it('Handles defaults with type: Page', function(done) {
                 // Filename
                 var template = 'mytemplate';
@@ -555,7 +650,11 @@ describe('Template sub-generator', function () {
                     useServer: false
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {type: type}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'client/templates/',
+                        type: type
+                    }, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -576,7 +675,11 @@ describe('Template sub-generator', function () {
                     useServer: false
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {type: type}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'client/templates/modules/',
+                        type: type
+                    }, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -597,7 +700,11 @@ describe('Template sub-generator', function () {
                     useServer: false
                 });
                 this.app.run([], function() {
-                        createSubGenerator('template', template, {type: type}, function() {
+                        createSubGenerator('template', template, {}, {
+                            // mock prompt data
+                        templateFile: 'client/templates/layouts/',
+                        type: type
+                        }, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -618,7 +725,11 @@ describe('Template sub-generator', function () {
                     useServer: false
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {type: type}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'client/templates/',
+                        type: type
+                    }, function() {
                         assert.noFile(filesToTest);
                         done();
                     });
@@ -632,13 +743,18 @@ describe('Template sub-generator', function () {
                 });
                 // Filename
                 var template = 'mytemplate';
+                var type = 'module';
                 var folder = 'folder/';
                 var filesToTest = [
                     // add files and folders you expect to NOT exist here.
-                    'client/templates/' + folder + template + '.swig'
+                    'client/templates/modules/' + folder + template + '.swig'
                 ];
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {folder: folder}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'client/templates/modules/' + folder,
+                        type: type
+                    }, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -652,23 +768,29 @@ describe('Template sub-generator', function () {
                 });
                 // Filename
                 var template = 'mytemplate';
+                var type = 'module';
                 var folder = '/////folder/////';
                 var filesToTest = [
                     // add files and folders you expect to NOT exist here.
-                    'client/templates/folder/' + template + '.swig'
+                    'client/templates/modules/' + folder + template + '.swig'
                 ];
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {folder: folder}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'client/templates/modules/' + folder,
+                        type: type
+                    }, function() {
                         assert.file(filesToTest);
                         done();
                     });
                 });
             });
         });
-        describe('Client templates with Dashboard', function () {
+        describe('Client templates with Dashboard', function() {
             it('Handles defaults with type: Page', function(done) {
                 // Filename
                 var template = 'mytemplate';
+                var type = 'page';
                 var fileContentToTest = [
                     ['client/templates/' + template + '.swig', /\[dash\:data\]/i]
                 ];
@@ -680,7 +802,11 @@ describe('Template sub-generator', function () {
                     useDashboard: true
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'client/templates/',
+                        type: type
+                    }, function() {
                         assert.fileContent(fileContentToTest);
                         done();
                     });
@@ -701,7 +827,11 @@ describe('Template sub-generator', function () {
                     useDashboard: true
                 });
                 this.app.run([], function() {
-                        createSubGenerator('template', template, {type: type}, function() {
+                        createSubGenerator('template', template, {}, {
+                            // mock prompt data
+                        templateFile: 'client/templates/modules/',
+                        type: type
+                        }, function() {
                         assert.fileContent(fileContentToTest);
                         done();
                     });
@@ -722,17 +852,22 @@ describe('Template sub-generator', function () {
                     useDashboard: true
                 });
                 this.app.run([], function() {
-                        createSubGenerator('template', template, {type: type}, function() {
+                        createSubGenerator('template', template, {}, {
+                            // mock prompt data
+                            templateFile: 'client/templates/layouts/',
+                            type: type
+                        }, function() {
                         assert.noFileContent(fileContentToTest);
                         done();
                     });
                 });
             });
         });
-        describe('Server templates', function () {
+        describe('Server templates', function() {
             it('Handles defaults with type: Page', function(done) {
                 // Filename
                 var template = 'mytemplate';
+                var type = 'page';
                 var filesToTest = [
                     // add files and folders you expect to NOT exist here.
                     'server/templates/' + template + '.swig',
@@ -744,7 +879,11 @@ describe('Template sub-generator', function () {
                     useServer: true
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'server/templates/',
+                        type: type
+                    }, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -765,7 +904,11 @@ describe('Template sub-generator', function () {
                     useServer: true
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {type: type}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'server/templates/modules/',
+                        type: type
+                    }, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -786,7 +929,11 @@ describe('Template sub-generator', function () {
                     useServer: true
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {type: type}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'server/templates/layouts/',
+                        type: type
+                    }, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -800,13 +947,18 @@ describe('Template sub-generator', function () {
                 });
                 // Filename
                 var template = 'mytemplate';
+                var type = 'module';
                 var folder = 'folder/';
                 var filesToTest = [
                     // add files and folders you expect to NOT exist here.
-                    'server/templates/' + folder + template + '.swig'
+                    'server/templates/modules/' + folder + template + '.swig'
                 ];
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {folder: folder}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'server/templates/modules/' + folder,
+                        type: type
+                    }, function() {
                         assert.file(filesToTest);
                         done();
                     });
@@ -820,20 +972,25 @@ describe('Template sub-generator', function () {
                 });
                 // Filename
                 var template = 'mytemplate';
+                var type = 'module';
                 var folder = '/////folder/////';
                 var filesToTest = [
                     // add files and folders you expect to NOT exist here.
-                    'server/templates/folder/' + template + '.swig'
+                    'server/templates/modules/' + folder + template + '.swig'
                 ];
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {folder: folder}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'server/templates/modules/' + folder,
+                        type: type
+                    }, function() {
                         assert.file(filesToTest);
                         done();
                     });
                 });
             });
         });
-        describe('Server templates with Dashboard', function () {
+        describe('Server templates with Dashboard', function() {
             it('Handles defaults with type: Page', function(done) {
                 // Filename
                 var template = 'mytemplate';
@@ -849,7 +1006,11 @@ describe('Template sub-generator', function () {
                     useServer: true
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {type: type}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'server/templates/',
+                        type: type
+                    }, function() {
                         assert.fileContent(fileContentToTest);
                         done();
                     });
@@ -870,7 +1031,11 @@ describe('Template sub-generator', function () {
                     useServer: true
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {type: type}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'server/templates/modules/',
+                        type: type
+                    }, function() {
                         assert.fileContent(fileContentToTest);
                         done();
                     });
@@ -891,7 +1056,11 @@ describe('Template sub-generator', function () {
                     useDashboard: true
                 });
                 this.app.run([], function() {
-                    createSubGenerator('template', template, {type: type}, function() {
+                    createSubGenerator('template', template, {}, {
+                        // mock prompt data
+                        templateFile: 'server/templates/layouts/',
+                        type: type
+                    }, function() {
                         assert.noFileContent(fileContentToTest);
                         done();
                     });
@@ -900,8 +1069,8 @@ describe('Template sub-generator', function () {
         });
     });
 
-    describe('Create template files when using Backbone', function () {
-        it('Handles defaults with Lo-dash', function(done) {
+    describe('Create template files when using Backbone', function() {
+        it('Handles defaults with Underscore', function(done) {
             // Filename
             var template = 'mytemplate';
             var filesToTest = [
@@ -914,12 +1083,15 @@ describe('Template sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('template', template, {}, function() {
+                createSubGenerator('template', template, {}, {
+                    // mock prompt data
+                    templateFile: 'client/templates/'
+                }, function() {
                     assert.file(filesToTest);
                     assert.fileContent(fileContentToTest);
                     done();
@@ -945,7 +1117,10 @@ describe('Template sub-generator', function () {
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('template', template, {}, function() {
+                createSubGenerator('template', template, {}, {
+                    // mock prompt data
+                    templateFile: 'client/templates/'
+                }, function() {
                     assert.file(filesToTest);
                     assert.fileContent(fileContentToTest);
                     done();
@@ -970,7 +1145,10 @@ describe('Template sub-generator', function () {
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('template', template, {}, function() {
+                createSubGenerator('template', template, {}, {
+                    // mock prompt data
+                    templateFile: 'client/templates/'
+                }, function() {
                     assert.file(filesToTest);
                     assert.noFileContent(fileContentToTest);
                     done();
@@ -988,12 +1166,15 @@ describe('Template sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('template', template, {folder: folder}, function() {
+                createSubGenerator('template', template, {}, {
+                    // mock prompt data
+                    templateFile: 'client/templates/' + folder
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });
@@ -1010,12 +1191,15 @@ describe('Template sub-generator', function () {
             helpers.mockPrompt(this.app, {
                 jsFramework: 'backbone',
                 singlePageApplication: true,
-                jsTemplate: 'lodash',
+                jsTemplate: 'underscore',
                 jsOption: 'browserify',
                 testFramework: 'jasmine'
             });
             this.app.run([], function() {
-                createSubGenerator('template', template, {folder: folder}, function() {
+                createSubGenerator('template', template, {}, {
+                    // mock prompt data
+                    templateFile: 'client/templates/' + folder
+                }, function() {
                     assert.file(filesToTest);
                     done();
                 });

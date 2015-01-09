@@ -8,3 +8,4 @@ bower_components
 .tmp
 secrets.js
 .DS_Store
+.yo-rc.json

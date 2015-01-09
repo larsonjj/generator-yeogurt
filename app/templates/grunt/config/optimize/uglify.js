@@ -9,11 +9,12 @@ var taskConfig = function(grunt) {
         generated: {
             options: {
                 mangle: true,
-                preserveComments: 'some',
+                preserveComments: 'some',<% if (jsOption === 'none') { %>
                 sourceMap: true,
-                sourceMapIncludeSources: true
+                sourceMapIncludeSources: true,
+                sourceMapIn: '<%%= yeogurt.tmp %>/concat/scripts/main.js.map'<% } %>
             }
-        },
+        }<% if (jsOption === 'requirejs') { %>,
         dist: {
             options: {
                 mangle: true,
@@ -22,23 +23,12 @@ var taskConfig = function(grunt) {
                 sourceMapIncludeSources: true
             },
             expand: true,
-            cwd: '<%%= yeogurt.dist %>/bower_components/',
-            dest: '<%%= yeogurt.dist %>/bower_components/',
-            src: [<% if (jsOption === 'requirejs') { %>
-                'requirejs/require.js',<% } %>
-                'modernizr/modernizr.js'
+            cwd: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>bower_components/',
+            dest: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>bower_components/',
+            src: [
+                'requirejs/require.js'
             ],
             ext: '.js'
-        }<% if (singlePageApplication && jsFramework !== 'react') { %>,
-        distTemplates: {
-            options: {
-                mangle: false,
-                preserveComments: 'some'
-            },
-            expand: true,
-            cwd: '.tmp/scripts/templates/',
-            dest: '.tmp/scripts/templates/',
-            src: ['templates.js']
         }<% } %>
     });
 

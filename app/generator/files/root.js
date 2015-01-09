@@ -31,16 +31,11 @@ var rootFiles = function rootFiles() {
     }
 
     this.copy('client/robots.txt', 'client/robots.txt');
-    this.copy('client/humans.txt', 'client/humans.txt');
     this.copy('client/favicon.ico', 'client/favicon.ico');
 
     this.copy('editorconfig', '.editorconfig');
-    if (this.jshint) {
-        this.template('jshintrc', '.jshintrc');
-    }
+    this.template('jshintrc', '.jshintrc');
 
-    // client/
-    this.mkdir('client');
 };
 
 module.exports = rootFiles;

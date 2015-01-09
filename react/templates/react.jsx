@@ -11,9 +11,11 @@ var React = require('react');
 var <%= _.classify(name) %> = React.createClass({
     render: function() {
         return (
+            /* jshint ignore:start */
             <div>
                 <p ref="p"><%= name.toLowerCase() %> component</p>
             </div>
+            /* jshint ignore:end */
         );
     }
 });

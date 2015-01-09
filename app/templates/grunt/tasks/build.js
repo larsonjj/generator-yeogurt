@@ -8,17 +8,17 @@ var taskConfig = function(grunt) {
         'clean:dist',<% if (useServer) { %>
         'env:prod',<% } %>
         'injector',
+        'wiredep:all',
         'copy:dist',
-        'concurrent:compile',
-        'autoprefixer:server',<% if (useKss) { %>
-        'kss:dist',<% } %>
+        'concurrent',
         'useminPrepare',
         'concat:generated',
         'cssmin',
+        'autoprefixer:server',
         'usemin',
         'htmlmin:dist',
         'uglify',
-        'clean:temp'
+        'clean:tmp'
     ]);
 };
 

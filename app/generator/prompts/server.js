@@ -23,11 +23,12 @@ var serverPrompts = function serverPrompts() {
         type: 'list',
         name: 'dbOption',
         message: 'What ' + 'database type'.blue + ' would you like to use ?',
-        choices: ['MongoDB', 'MySQL', 'None'],
+        choices: ['MongoDB', 'MySQL', 'Postgres', 'None'],
         filter: function(val) {
             var filterMap = {
                 'MongoDB': 'mongodb',
                 'MySQL': 'mysql',
+                'Postgres': 'postgres',
                 'None': 'none'
             };
 
@@ -43,6 +44,11 @@ var serverPrompts = function serverPrompts() {
         name: 'dbPort',
         message: 'What ' + 'port'.blue + ' is your database running on?',
         default: '3306'
+    }, {
+        when: function(answers) { return answers.dbOption === 'postgres'; },
+        name: 'dbPort',
+        message: 'What ' + 'port'.blue + ' is your database running on?',
+        default: '5432'
     }, {
         when: function(answers) { return answers.dbOption === 'mongodb'; },
         name: 'dbPort',
@@ -78,16 +84,10 @@ var serverPrompts = function serverPrompts() {
             }
         }
     }, {
-        when: function(answers) { return answers.useServer; },
+        when: function(answers) { return answers.useServer && answers.dbOption !== 'none'; },
         type: 'confirm',
-        name: 'useSession',
-        message: 'Would you like to use ' + 'Cookie Session Storage'.blue + '?',
-        default: true
-    }, {
-        when: function(answers) { return answers.useSession && answers.useServer; },
-        type: 'confirm',
-        name: 'useSecurity',
-        message: 'Would you like to use ' + 'Paypal\'s Lusca Security Module'.blue + '?',
+        name: 'useAuth',
+        message: 'Would you like to ' + 'authenticate users (Email & Password)'.blue + '?',
         default: true
     }], function(answers) {
         this.serverPrompts = answers;

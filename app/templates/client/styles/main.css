@@ -1,4 +1,4 @@
-/* Main Stylesheet */<% if (!useBootstrap) { %>
+/* Main Stylesheet */
 
 /* Box sizing styles: Apply a natural box layout model to all elements */
 *,
@@ -9,22 +9,23 @@
     box-sizing: border-box;
 }
 
-<% } %>/* Author Custom Styles */
+/* Author Custom Styles */
 
-.main-container {
-    padding-top: 200px;
+.yeogurt-info {
     text-align: center;
-    width: 500px;
+    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
 }
+
 .version {
     font-size: 14px;
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
     position: absolute;
-    top: 10px;
+    bottom: 10px;
     right: 10px;
 }
+
 .logo {
     margin-top: 15px;
 }
@@ -47,6 +48,59 @@
     padding: .5em 1em;
     text-decoration: none;
 }
+
+<% if (useAuth) { %>
+.main-container {
+    clear: both;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navbar {
+    position: relative;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 50px;
+}
+
+.nav {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0;
+    list-style-type: none;
+}
+
+.nav-list {
+    padding: 0;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.nav-item {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.error {
+    color: #c00;
+}
+
+.info {
+    color: #5280e4;
+}
+
+.success {
+    color: #58e44e;
+}<% } %>
 
 /* Styling on warning for users on IE7 or below */
 .browsehappy {

@@ -15,7 +15,7 @@ var taskConfig = function(grunt) {
                 watch: true
             },
             files: {
-                '<%%= yeogurt.staticServer %>/scripts/app.js': ['<%%= yeogurt.client %>/scripts/app.js']
+                '<%%= yeogurt.tmp %>/scripts/main.js': ['<%%= yeogurt.client %>/scripts/main.js']
             }
         },
         dist: {
@@ -27,13 +27,13 @@ var taskConfig = function(grunt) {
                 preBundleCB: function(b) {
                     // Minify code
                     return b.plugin('minifyify', {
-                        map: 'app.js.map',
-                        output: 'dist/scripts/app.js.map'
+                        map: 'main.js.map',
+                        output: 'dist/<% if (useServer) { %>client/<% } %>scripts/main.js.map'
                     });
                 }
             },
             files: {
-                '<%%= yeogurt.dist %>/scripts/app.js': ['<%%= yeogurt.client %>/scripts/app.js']
+                '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>scripts/main.js': ['<%%= yeogurt.client %>/scripts/main.js']
             }
         },<% if (useTesting) { %>
         test: {
@@ -45,7 +45,7 @@ var taskConfig = function(grunt) {
                 watch: true
             },
             files: {
-                'test/scripts/bundle.js': ['test/spec/**/*-spec.js']
+                'test/scripts/bundle.js': ['test/spec/**/*.spec.js']
             }
         }<% } %>
     });

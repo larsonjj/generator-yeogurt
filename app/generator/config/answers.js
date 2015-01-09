@@ -9,6 +9,13 @@ var _ = require('lodash');
 
 var answersConfig = function answersConfig() {
 
+    // Determine if feature exists within a given object
+    var hasFeature = function(feat, obj) {
+        if (obj) {
+            return obj.indexOf(feat) !== -1;
+        }
+    };
+
     // If user chooses to use exsiting yo-rc file, then skip prompts
     if (this.existingConfig) {
         this.answers = this.config.get('config');
@@ -31,20 +38,33 @@ var answersConfig = function answersConfig() {
     this.versionControl = this.answers.versionControl;
 
     // Server Info
-    this.useServer          = this.answers.useServer;
-    this.dbOption           = this.answers.dbOption;
-    this.useSession         = this.answers.useSession;
-    this.useSecurity        = this.answers.useSecurity;
-    this.useServerTemplates = this.answers.useServerTemplates;
+    this.useServer = this.answers.useServer;
 
-    this.answers.dbUser = this.answers.dbUser === 'nouser' ? '' : this.answers.dbUser;
-    this.answers.dbPass = this.answers.dbPass === 'nopass' ? '' : this.answers.dbPass;
+    this.dbType = this.answers.dbType || this.answers.dbOption;
+
+    if (this.answers.dbOption === 'sql' || this.answers.dbOption === 'mysql' || this.answers.dbOption === 'postgres') {
+        this.answers.dbType = this.dbType;
+        this.dbOption = 'sql';
+        this.answers.dbOption = 'sql';
+    }
+    else {
+        this.dbOption = this.answers.dbOption;
+    }
+
+    this.useAuth = this.answers.useAuth;
+
+    // Clear dbPass and/or dbUser if 'nouser' and/or 'nopass'
+    if (this.answers.dbUser === 'nouser') {this.answers.dbUser = '';}
+    if (this.answers.dbPass === 'nopass') {this.answers.dbPass = '';}
+
+    this.dbUser = this.answers.dbUser;
+    this.dbPass = this.answers.dbPass;
 
     // Setup Database URLs
-    var username = this.answers.dbUser || '';
-    var password = this.answers.dbPass ? ':' + this.answers.dbPass : '';
+    var username = this.dbUser || '';
+    var password = this.dbPass ? ':' + this.dbPass : '';
     var port     = this.answers.dbPort;
-    var host     = this.answers.dbUser ? '@' + this.answers.dbHost : this.answers.dbHost;
+    var host     = this.dbUser ? '@' + this.answers.dbHost : this.answers.dbHost;
     var name     = this.answers.dbName ? this.answers.dbName : '';
 
     if (this.dbOption === 'mongodb') {
@@ -55,8 +75,16 @@ var answersConfig = function answersConfig() {
         port + '/' +
         name;
     }
-    else if (this.dbOption === 'mysql') {
+    else if (this.dbType === 'sql') {
         this.dbURL = process.env.MYSQL || 'mysql://' +
+        username +
+        password +
+        host + ':' +
+        port + '/' +
+        name;
+    }
+    else if (this.dbType === 'postgres') {
+        this.dbURL = process.env.MYSQL || 'postgres://' +
         username +
         password +
         host + ':' +
@@ -72,22 +100,15 @@ var answersConfig = function answersConfig() {
     this.htmlOption            = this.answers.htmlOption;
     this.jsFramework           = this.answers.jsFramework;
     this.useJsx                = this.answers.useJsx;
-    this.useFlux               = this.answers.useFlux;
     this.jsTemplate            = this.answers.jsTemplate;
     this.jsOption              = this.answers.jsOption;
     this.cssOption             = this.answers.cssOption;
     this.sassSyntax            = this.answers.sassSyntax;
-    this.useBourbon            = this.answers.useBourbon;
-    this.useLesshat            = this.answers.useLesshat;
-    this.cssFramework          = this.answers.cssFramework;
-    this.ieSupport             = this.answers.ieSupport;
-    this.useGA                 = this.answers.useGA;
-    this.jshint                = this.answers.jshint;
     this.extras                = this.answers.extras;
 
     // Testing
     this.testFramework         = this.answers.testFramework;
-    this.useTesting = this.answers.useTesting;
+    this.useTesting            = this.answers.useTesting;
 
     // Documentation
     this.useJsdoc              = this.answers.useJsdoc;
@@ -98,8 +119,13 @@ var answersConfig = function answersConfig() {
     this.useFTP                = this.answers.useFTP;
     this.ftpHost               = this.answers.ftpHost;
     this.ftpFolder             = this.answers.ftpFolder;
-    this.ftpUser               = this.answers.ftpUser === 'nouser' ? '' : this.answers.ftpUser;
-    this.ftpPass               = this.answers.ftpUser === 'nopass' ? '' : this.answers.ftpPass;
+
+    // Clear ftpPass and/or ftpUser if 'nouser' and/or 'nopass'
+    if (this.answers.ftpUser === 'nouser') {this.answers.ftpUser = '';}
+    if (this.answers.ftpPass === 'nopass') {this.answers.ftpPass = '';}
+
+    this.ftpUser = this.answers.ftpUser;
+    this.ftpPass = this.answers.ftpPass;
 
     // Default Overwrites
     if (this.jsFramework === 'react') {
@@ -109,32 +135,6 @@ var answersConfig = function answersConfig() {
 
     // Default jsOption to Browserify
     this.jsOption = this.answers.jsOption || 'browserify';
-
-    // Determine if feature exists within a given object
-    function hasFeature(feat, obj) {
-        if (obj) {
-            return obj.indexOf(feat) !== -1;
-        }
-    }
-
-    // Intially set flags to false
-    this.useBootstrap  = this.answers.useBootstrap ? this.answers.useBootstrap : false;
-    this.responsive    = false;
-    this.useFoundation = false;
-
-    if (this.cssFramework === 'bootstrap') {
-        this.useBootstrap = true;
-        if (this.ieSupport) {
-            this.responsive = true;
-        }
-    }
-    else if (this.cssFramework === 'foundation') {
-        this.useFoundation = true;
-    }
-
-    this.useFontAwesome = hasFeature('useFontAwesome', this.extras);
-    this.useModernizr   = hasFeature('useModernizr', this.extras);
-
 };
 
 module.exports = answersConfig;

@@ -15,14 +15,14 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 - [Features](#features)
     - [Included in every project](#included-in-every-project)
     - [Available Options](#available-options)
-    - [Static Site Options](#static-site-options)
+    - [Static/Server Site Options](#staticserver-site-options)
     - [Single Page Application Options](#single-page-application-options)
     - [Express Server Options](#express-server-options)
     - [Automatic File Injection](#automatic-file-injection)
 - [Grunt Workflow](#grunt-workflow)
 - [Sub-Generators](#sub-generators)
     - [Default (Can be used on any project)](#default-can-be-used-on-any-project)
-    - [Static Sites and Backbone](#static-sites-and-backbone-applications)
+    - [Static/Server Sites and Backbone](#static-sites-and-backbone-applications)
     - [React](#react-application)
     - [Flux](#flux-application)
     - [Backbone](#backbone-application)
@@ -34,7 +34,7 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 - [Deployment](#deployment)
     - [FTP Server](#ftp-server)
 - [Vagrant Setup](#vagrant-setup)
-- [Guides](#guides)
+- [Extend Yeogurt](#extend-yeogurt)
 - [Common Gotchas](#common-gotchas)
     - [Bower not installing dependencies using Git](#bower-not-installing-dependencies-using-git)
     - [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts)
@@ -46,9 +46,9 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
 - [License](#license)
 
 ## What can I create with Yeogurt?
-- Build out static sites using [Jade](http://jade-lang.com/), [Swig](http://paularmstrong.github.io/swig/), or HTML.
-- Create Single Page Applications using [Backbone](http://backbonejs.org/) or [React](http://facebook.github.io/react/) (optionally with [Flux](http://facebook.github.io/react/docs/flux-overview.html)).
-- Make your site/app full-stack by adding an [Express](http://expressjs.com/) Server with optional database, cookie session, and security support .
+- Build out static sites using [Jade](http://jade-lang.com/) or [Swig](http://paularmstrong.github.io/swig/).
+- Create Single Page Applications using [Backbone](http://backbonejs.org/) or [React](http://facebook.github.io/react/) + [Flux](http://facebook.github.io/react/docs/flux-overview.html).
+- Make your site/app full-stack by adding an [Express](http://expressjs.com/) Server with optional database, cookie session, user authentication, and security support .
 
 Check out the [features](#features) section to see everything this generator has to offer.
 
@@ -59,7 +59,7 @@ This generator utilizes [Yeoman](http://yeoman.io/), [Grunt](http://gruntjs.com/
 There are a few dependencies that this project relies on:
 
 #### Node.js
-Check to see if you already have Node installed. Do this by bringing up a terminal/command prompt and type `node -v`. If the response shows a version at or above `v0.10.x`, you are alll set and can proceed to installing Yeoman, Grunt, and Bower. If you see an error and/or your version is too low, navigate to the [Node.js](http://nodejs.org/) website and install Node from there.
+Check to see if you already have Node installed. Do this by bringing up a terminal/command prompt and type `node -v`. If the response shows a version at or above `v0.10.x`, you are all set and can proceed to installing Yeoman, Grunt, and Bower. If you see an error and/or your version is too low, navigate to the [Node.js](http://nodejs.org/) website and install Node from there.
 
 #### Yeoman, Grunt, & Bower
 Once you have Node installed, make sure you have these tools by opening up a terminal/command prompt and entering following commands:
@@ -92,7 +92,7 @@ then, run the Yeogurt generator.
 yo yeogurt
 ```
 
-Optionally, you can skip the automated installation of npm and bower packages by passing in `--skip-install`.
+Optionally, you can skip the automated installation of npm and bower packages by passing in `--skip-install`. The main reason to use this is if you have spotty/no internet connection, but would still like to generate your project.
 
 ```
 yo yeogurt --skip-install
@@ -100,17 +100,18 @@ yo yeogurt --skip-install
 
 Follow all the prompts and choose what suits you most for the project you would like to create. When you finish with all of the prompts, your project scaffold will be created and all dependencies will be installed.
 
-***NOTE: If you used the `--skip-install` option, no dependencies will have been installed. You will need to run `npm install && bower install` in your project's root directory in order to get started***
+***NOTE: If you used the `--skip-install` option, no dependencies will have been installed. You will need to run `npm install && bower install` in your project's root directory in order to get started running automated tasks***
 
 Now you can run:
 
 - `grunt` for testing and building a production version of your site.
 - `grunt serve` for previewing your site/app on a development server.
+- `grunt serve:dics` is the same as `grunt serve` but will also re-compile you automated documentation (won't be available if you didn't choose to use any automated documentation).
 - `grunt serve:dist` for previewing a production version of your site/app.
 
 You can learn more about what tasks are available in the [grunt tasks](#grunt-workflow) section.
 
-> IMPORTANT: SVN users should run the `svn-init.sh` (Linux, OSX) or `svn-init.bat` (Window) script in order to correctly setup ignores for your project. These scripts will be located in the root of your project folder. It is recommended that you do this before committing any code.
+> IMPORTANT: SVN users should choose the 'SVN' version control option when running the generator. Then be sure to run the `svn-init.sh` (Linux, OSX) or `svn-init.bat` (Window) script in order to correctly setup ignores for your project. These scripts will be located in the root of your project folder. It is recommended that you do this before committing any code.
 
 Congratulations! You should now have successfully created a Yeogurt project and are ready to start building out your site/app.
 
@@ -121,7 +122,11 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 - Built in preview server with LiveReload
 - [.editorconfig](http://editorconfig.org/) for consistent coding styles within text editors
 - Automated build process that includes: compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, optimization of images, and processing of [usemin blocks](Usemin blocks)
-- [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets
+- [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets (Except Stylus. [Waiting on PR](https://github.com/gruntjs/grunt-contrib-stylus/pull/121))
+- IE8+ Support via [HTML5shiv](https://github.com/aFarkas/html5shiv) and [consolelog](https://github.com/patik/console.log-wrapper)
+    - [ES5-Shim and ES5-Sham](https://github.com/es-shims/es5-shim) Included for React apps
+- JavaScript Linting with [JSHint](http://www.jshint.com/)
+- Feature detection with [Modernizr](http://modernizr.com/)
 
 ### Available Options
 
@@ -129,47 +134,61 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 - Default ignores for [Git](http://git-scm.com/) or [SVN](http://subversion.apache.org/)
 - Stylesheets with [Less](http://lesscss.org/), [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass)), [Stylus](http://learnboost.github.io/stylus/), or CSS
 - Modular JavaScript with [RequireJS](http://requirejs.org/) or [Browserify](http://browserify.org/)
-- IE8 Support via [HTML5shiv](https://github.com/aFarkas/html5shiv) and [RespondJS](https://github.com/scottjehl/Respond)
-- JavaScript Linting with [JSHint](http://www.jshint.com/)
-- Feature detection with [Modernizr](http://modernizr.com/)
 - Styleguide - auto-generated styleguide for your stylesheets with [Knyle Style Sheets](http://warpspire.com/posts/kss/)
 - JavaScript Documentation - auto-generated API for your scripts with [JSDoc](http://usejsdoc.org/)
 - JavaScript unit testing with [Jasmine](http://jasmine.github.io/) or [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/)
 - Test running with [Karma](http://karma-runner.github.io/0.12/index.html)
 - FTP deployment
 
-### Static Site Options
-- Markup with [Jade](http://jade-lang.com/), [Swig](http://paularmstrong.github.io/swig/), or HTML
+### Static/Server Site Options
+- Markup with [Jade](http://jade-lang.com/) or [Swig](http://paularmstrong.github.io/swig/)
 - Dashboard - auto-generated dashboard for your site with [grunt-dashboard](https://github.com/larsonjj/grunt-dashboard)
     - Only available for Static Sites that are not using an Express server
 
 ### Single Page Application Options
-- Facebook's [React](http://facebook.github.io/react/) with [Flux](http://facebook.github.io/react/docs/flux-overview.html) (Optional)
+- Facebook's [React](http://facebook.github.io/react/) with optional [Flux](http://facebook.github.io/react/docs/flux-overview.html) architecture
 
-> IMPORTANT: You can only use Browserify with React (no RequireJS support)
+> IMPORTANT: You can only use Browserify with React (no RequireJS or Vanilla JS support)
 
 - Backbone with [Jade](http://jade-lang.com/), [Handlebars](http://handlebarsjs.com/), or [Lo-dash](http://lodash.com/) templating
 
 ### Express Server Options
 
-- Database support for [MySQL](http://www.mysql.com/) and [MongoDB](http://www.mongodb.org/) using [Sequelize](http://sequelizejs.com/) and [Mongoose](http://mongoosejs.com/) respectively.
+- Database support for:
+    - [MySQL](http://www.mysql.com/), [PostgreSQL](http://www.postgresql.org/) using [Sequelize](http://sequelizejs.com/)
+    - [MongoDB](http://www.mongodb.org/) using [Mongoose](http://mongoosejs.com/)
 - Cookie Session Storage with [express-session](https://github.com/expressjs/session)
 - Security with Paypal's [Lusca](https://github.com/krakenjs/lusca) module
-- Jade, Swig, and React server-side template rendering
+- User authentication (Email & Password) using [Passport](http://passportjs.org/)
+- [JSON Web Token](http://jwt.io/) authentication support
+    - Only for Single Page Applications
+- Jade, Swig server-side template rendering
+    - Only for Static/Server sites (i.e. not Backbone or React)
 
 ### Automatic File Injection
-A grunt task looks for new/updated files in your project and automatically injects imports/includes in the appropriate places based on an injection block.
+A grunt task, using the [grunt-injector](https://www.npmjs.org/package/grunt-injector) plugin, looks for new/updated files in your project and automatically injects imports/includes in the appropriate places based on an injection block.
 
-|Filetype(s) |Project Type (Static/Single Page Appliction)| File to be injected into
+Example injection blocks:
+
+|Filetype(s) | Start Injection Block| End Injection Block
+|------------|----------------|-----
+|Sass,Scss,Less,Stylus | ```// [injector]```| ```// [endinjector]```
+|Jade | ```//- [injector:jade]```| ```//- [endinjector]```
+|Swig | ```{# [injector:swig] #}```| ```{# [endinjector] #}```
+|HTML(JS) | ```<!-- [injector:js] -->```| ```<!-- [endinjector] -->```
+|HTML(CSS) | ```<!-- [injector:css] -->```| ```<!-- [endinjector] -->```
+
+Files to be injected into:
+
+|Filetype(s) |Project Type |Static/Single Page Application File to be injected into
 |---------|---------------|---------
 |Less| Any | `client/styles/main.less`
 |Sass | Any | `client/styles/main.scss`
 |Stylus | Any | `client/styles/main.styl`
-|Jade | Static | `client/templates/layouts/base.jade` or `server/templates/layouts/base.jade` if using express server
-|Swig | Static |`client/templates/layouts/base.swig` or `server/templates/layouts/base.swig` if using express server
-|CSS, JS | Static | `client/templates/layouts/base.{jade,swig}` or `server/templates/layouts/base.{jade,swig}` if using express server
-|CSS, JS | Single Page Application | `client/index.html` or `server/templates/index.html` if using express server
-
+|Jade | Static/Server Site | `client/templates/layouts/base.jade` or `server/templates/layouts/base.jade` if using express server
+|Swig | Static/Server Site |`client/templates/layouts/base.swig` or `server/templates/layouts/base.swig` if using express server
+|CSS, JS | Static/Server Site | `client/templates/layouts/base.{jade,swig}` or `server/templates/layouts/base.{jade,swig}` if using express server
+|CSS, JS | Single Page Application | `client/index.html`
 
 
 ## Grunt Workflow
@@ -184,8 +203,8 @@ Starts up a development server that watches files and automatically reloads them
 
 |Tasks| Description
 |---------|-------
-|grunt serve:dist| runs [`grunt build`](#grunt-build) and starts up a server that loads the optimized files
 |grunt serve:docs| same as [`grunt serve`](#grunt-serve), but will also watch and recompile automated documentation (KSS, JSDoc, etc).
+|grunt serve:dist| runs [`grunt build`](#grunt-build) and starts up a server that loads the optimized files
 
 ***NOTE: you can add the `--allow-remote` option to any of these commands to allow remote devices on the same network to view your site/app***
 
@@ -204,7 +223,7 @@ Runs JSHint and Karma to lint and run JavaScript tests, respectively.
 ***NOTE: you can add the `--allow-remote` option to any of these commands to allow remote devices on the same network to view/run your tests***
 
 ### `grunt deploy`
-Runs [`grunt build`](#grunt-build) and pushes optimized files to a specified FTP server.
+Runs [`grunt build`](#grunt-build) and pushes optimized files to a specified FTP server. (only available if FTP deployment is chosen when generating project)
 
 ***NOTE: [FTP server](#ftp-server) info is specified in the `.ftppass` file in the root of your project)***
 
@@ -214,7 +233,7 @@ Runs [`grunt build`](#grunt-build) and pushes optimized files to a specified FTP
 * [yeogurt:script](#script)
 * [yeogurt:style](#style)
 
-#### Static Sites and Backbone applications
+#### Static/Server Sites and Backbone applications
 * [yeogurt:template](#template)
 
 #### React application
@@ -235,129 +254,119 @@ Runs [`grunt build`](#grunt-build) and pushes optimized files to a specified FTP
 ***Note: (The following sub-generators can be used with any type of project)***
 
 ### Script
-Creates 2 files:
-
-- A script file within the `client/scripts` folder.
-- A unit test file within the `test/spec` folder.
-
-There are also an option that can be used to change the default behavior:
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--folder | [any folder path] |  Creates file relative to the `client/scripts` folder
-|--delete | [n/a] |  Deletes file relative to the `client/scripts` folder
+Creates a new module script.
 
 Example:
 
 ```
-## Module
-yo yeogurt:script myscript
+$ yo yeogurt:script myscript
+? Where would you like to create this script?: client/scripts
+? Where would you like to create this script's test?: test/spec
+```
 
-## Module with specified folder: client/scripts/account
-yo yeogurt:script myscript --folder=account
+Produces:
+
+```
+client/scripts/myscript.js
+test/spec/myscript.spec.js
 ```
 
 ### Style
-Create a stylesheet file within `client/styles` folder.
-
-There are also an option that can be used to change the default behavior:
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--folder | [any folder path] |  Creates file relative to the `client/styles` folder
-|--delete | [n/a] |  Deletes file relative to the `client/styles` folder
+Create a new stylesheet.
 
 Example:
 
 ```
-## Style
 yo yeogurt:style mystyle
-
-## Style within specified folder: client/styles/account
-yo yeogurt:style mystyle --folder=account
+? Where would you like to create this stylesheet?: client/styles
 ```
 
-## Static Site and Backbone Sub-generators
+Produces:
+
+```
+client/styles/_mystyle.scss
+```
+
+## Static/Server Site and Backbone Sub-generators
 ***Note: (The following sub-generator cannot be used with React applications)***
 
 ### Template
-> IMPORTANT: This sub-generator is unique in that it's behavior differs depending on if you have generated a Static Site or a Backbone application.
+> IMPORTANT: This sub-generator is unique in that it's behavior differs depending on if you have generated a Static/Server Site or a Backbone application.
 
-##### For Static Sites
-Creates a jade file within the `client/templates` folder.
-
-There are also an option that can be used to change the default behavior:
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--type| `module`, `layout`, or `page(default)` | Creates file in folder specified by type: `client/templates/{type}/myfile` or `server/templates/{type}/myfile` if using express server
-|--folder | [any folder path] |  Creates file relative to the `client/templates` folder or `server/templates` if using express server
-|--delete | [n/a] |  Deletes file relative to the `client/templates` folder or `server/templates` if using express server
+##### For Static/Server Sites
+Creates a jade file in the `client` folder (or `server` folder if using an Express server).
 
 Examples:
 
 ```
-## Page
-yo yeogurt:template mypage
+yo yeogurt:template mytemplate
 
-## Page using specified Template
-yo yeogurt:template mypage --layout=base
+# Page
+? What type of template do you want to create?: Page
+? What template you you like to extend from?: layouts/base
 
-## Page using specified folder: {server,client}/templates
-yo yeogurt:template mypage --layout=base
+# Layout
+? What type of template do you want to create?: Layout
+? Where would you like to create this template?: {client,server}/templates/layouts
 
-## Template
-yo yeogurt:template mylayout --type=layout
-
-## Module
-yo yeogurt:template mymodule --type=module
+# Module
+? What type of template do you want to create?: Module
+? Where would you like to create this template?: {client,server}/templates/modules
 ```
 
+Produces:
+
+```
+# Page
+{client,server}/templates/mytemplate.jade
+
+# Layout
+{client,server}/templates/layouts/mytemplate.jade
+
+# Module
+{client,server}/templates/modules/mytemplate.jade
+```
+
+***NOTE: `{client,server}` means that the Jade file will be created in the `client` folder, or in the `server` folder if using an Express server***
+
 ##### For Backbone applications
-Creates a new template file (Jade, Handlebars, or Lo-dash depending on which you chose) within the `client/templates` folder.
-
-There are also an option that can be used to change the default behavior:
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--folder | [any folder path] |  Creates file relative to the `client/templates` folder
-|--delete | [n/a] |  Deletes file relative to the `client/templates` folder
-
+Creates a new template file (Jade, Handlebars, or Lo-dash depending on which you chose).
 
 Example:
 
 ```
-## Template
 yo yeogurt:template mytemplate
-
-## Template with specified folder client/templates/account
-yo yeogurt:template mytemplate --folder=account
+? Where would you like to create this template?: client/templates
 ```
+
+Produces:
+
+```
+client/templates/mytemplate.{jst,hbs,jade}
+```
+
+***NOTE: `{jst,hbs,jade}` means that the file extension template will match the template engine you chose: `lo-dash, handlebars, or jade` respectively***
 
 ## React Sub-generator
 ***Note: (The following sub-generator can only be used with React applications)***
 
 ### React
 
-Creates 2 files
-
-- A new React component file within the `client/scripts/components`
-- A unit test file within the `test/spec/components` folder.
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--folder | [any folder path] |  Creates file relative to the `client/scripts/components` folder
-|--delete | [n/a] |  Deletes file relative to the `client/scripts/components` folder
-
+Creates React JSX Component File.
 
 Example:
 
 ```
-## React
-yo yeogurt:react myreact
+yo yeogurt:react mycomponent
+? Where would you like to create this react component?: client/scripts/components
+? Where would you like to create this react component's test?: test/spec/components
+```
 
-## React within specified folder: client/scripts/components/account
-yo yeogurt:react myreact --folder=account
+Produces:
+
+```
+client/scripts/components/mycomponent.jsx
+test/spec/components/mycomponent.spec.js
 ```
 
 ## Flux Sub-generator
@@ -365,118 +374,102 @@ yo yeogurt:react myreact --folder=account
 
 ### Flux
 
-Creates 6 files:
-
-***Source Files***
-
-- A new Flux store file within the `client/scripts/flux/stores`
-- A new Flux constant file within the `client/scripts/flux/constants`
-- A new Flux action file within the `client/scripts/flux/actions`
-
-***Test Files***
-
-- A store test file within the `test/spec/stores` folder.
-- A constant test file within the `test/spec/constants` folder.
-- A action test file within the `test/spec/action` folder.
+Creates Flux files:
 
 Example:
 
 ```
-## Flux
 yo yeogurt:flux myflux
+? Where would you like to create flux files?: client/scripts/flux
+? Where would you like to create flux file tests?: test/spec/flux
+```
+
+Produces:
+
+```
+client/scripts/flux/constants/myflux.js
+client/scripts/flux/actions/myflux.js
+client/scripts/flux/stores/myflux.js
+test/spec/flux/constants/myflux.spec.js
+test/spec/flux/actions/myflux.spec.js
+test/spec/flux/stores/myflux.spec.js
 ```
 
 ## Backbone Sub-generators
 ***Note: (The following sub-generators can only be used with Backbone applications)***
 
 ### View
-Creates 3 files:
-
-- A new template file (Jade, Handlebars, or Lo-dash depending on which you chose) within the `client/templates` folder
-- A new Backbone view file within the `client/scripts/views` folder
-- A unit test file within the `test/spec/views` folder.
-
-There are also an option that can be used to change the default behavior:
-
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--folder | [any folder path] |  Creates file relative to the `client/scripts/views` folder
-|--delete | [n/a] |  Deletes file relative to the `client/scripts/views` folder
-
+Creates a Backbone view along with a corresponding template:
 
 Example:
 
 ```
-## View
 yo yeogurt:view myview
-
-## View
-yo yeogurt:view myview --folder=account
+? Where would you like to create this view?: client/scripts/views
+? Where would you like to create this view's template?: client/templates
+? Where would you like to create this view's test?: test/spec/views
 ```
+
+Produces:
+
+```
+client/scripts/views/myview.js
+client/templates/myview.{jst,hbs,jade}
+test/spec/views/myview.spec.js
+```
+
+***NOTE: `{jst,hbs,jade}` means that the file extension template will match the template engine you chose: `underscore, handlebars, or jade` respectively***
 
 ### Model
 
-Creates 2 files:
-
-- A new Backbone model file within `client/scripts/models`
-- A unit test spec file within the `test/spec/models` folder
-
-There are also an option that can be used to change the default behavior:
-
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--folder | [any folder path] |  Creates file relative to the `client/templates` folder
-|--delete | [n/a] |  Deletes file relative to the `client/templates` folder
+Creates a Backbone model.
 
 Example:
 
 ```
-## Model
 yo yeogurt:model mymodel
+? Where would you like to create this model?: client/scripts/models
+? Where would you like to create this model's test?: test/spec/models
+```
 
-## Model with specified folder
-yo yeogurt:model mymodel --folder=account
+Produces:
+
+```
+client/scripts/models/mymodel.js
+test/spec/models/mymodel.spec.js
 ```
 
 ### Collection
 
-Creates 2 files
-
-- A new Backbone collection file within `client/scripts/collections`
-- A unit test spec file within the `test/spec/collections` folder.
-
-There are also a couple possible options that can be used to change the default behavior:
-
-
-|Options |Possible Values |Description
-|---------|---------------|-----------
-|--model | `[filename of model]` |  Adds the specified model name to the collection `model:` property
-|--folder | [any folder path] |  Creates file relative to the `client/templates` folder
-|--delete | [n/a] |  Deletes file relative to the `client/templates` folder
+Creates a Backbone collection file with the ability to specify which Backbone model to use.
 
 Example:
 
 ```
-## Collection
 yo yeogurt:model mycollection
+? Where would you like to create this collection?: client/scripts/collections
+? What is the name of the model you would like to use with this collection?: mycollection-model
+? What folder is the model file located in?: client/scripts/models
+? Where would you like to create this collection's test?: test/spec/collections
+```
 
-## Collection with specified model
-yo yeogurt:model mycollection --model=mymodel
+Produces:
 
-## Collection with specified folder
-yo yeogurt:model mycollection --folder=accounts
+```
+client/scripts/collections/mycollection.js
+test/spec/collections/mycollection.spec.js
 ```
 
 ## Automated Documentation
 ### Dashboard
-If you chose to create a Dashboard, a dashboard will be automatically generated from raeading your Jade/Swig files. After running `grunt serve` or `grunt serve:dist`, it can be accessed at `/docs/dashboard/index.html`.
+***NOTE: Only available for static sites***
+
+If you chose to create a Dashboard, a dashboard will be automatically generated from reading your Jade/Swig files. After running `grunt serve` or `grunt serve:dist`, it can be accessed at `/docs/dashboard/index.html`.
 
 For more information and usage, please refer to the `grunt-dashboard` plugin [documentation](https://github.com/larsonjj/grunt-dashboard).
 
 ### JavaScript API
-If you chose to use [JSDoc](http://usejsdoc.org/), JavaScript API documenation will be automatically generated from reading your script files. After running `grunt serve` or `grunt serve:dist`, it can be accessed at `/docs/api/index.html`.
+If you chose to use [JSDoc](http://usejsdoc.org/), JavaScript API documentation will be automatically generated from reading your script files. After running `grunt serve` or `grunt serve:dist`, it can be accessed at `/docs/api/index.html`.
 
 You can view an example [here](http://yeoman.github.io/generator/).
 
@@ -486,11 +479,33 @@ If you chose to use [KSS (Knyle Style Sheets)](http://warpspire.com/posts/kss/),
 Knyle Style Sheets (KSS) is used at Github to create their [styleguide](https://github.com/styleguide) and is used in this generator via [kss-node](https://github.com/hughsk/kss-node). Be sure to look up [documentation](http://warpspire.com/posts/kss/) to see how to write KSS comments in your stylesheets.
 
 ## Adding third-party libraries
-Odds are that you will need to add some third party libraries to your project at some point. To do so, it is strongly recommended that you install them using bower ([usage](http://bower.io/)). If you can't [find the package on bower](http://bower.io/search/) (very rare) or you have your own in-house libraries that you like to use, you should put your scripts within a `client/scripts/vendor` folder (jshint is setup to ignore this folder), styles within a `client/styles/vendor` folder, and all other file types can go whereever you want within the `client` folder (This will make sure that your base template can access them).
+Odds are that you will need to add some third party libraries to your project at some point. To do so, it is strongly recommended that you install them using bower ([usage](http://bower.io/)):
 
-Once you have your library installed, you will want to add it to your project. To do this, you'll need to add a new `<script>` or `<link>` tag to your base template file:
+```
+bower install [package name] --save
+```
 
-***Static Sites***
+Once installed, take a look at your base template and you will notice the following comments:
+
+```
+<!-- bower:js -->
+<!-- endbower -->
+
+<!-- bower:css -->
+<!-- endbower -->
+```
+
+These comments will ensure all libraries and their dependencies found in your `bower.json` file are correctly ordered and injected into your base template file via [grunt-wiredep](https://github.com/stephenplusplus/grunt-wiredep). Then you are all set, no need to worry about linking your libraries manually.
+
+If you can't [find the package on bower](http://bower.io/search/) (very rare), or you have your own in-house libraries that you like to use, then you should:
+
+- Put your scripts within a `client/scripts/vendor` folder (jshint is setup to ignore this folder)
+- Put your stylesheets within a `client/styles/vendor` folder (to keep things consistant)
+- Place all other file types somewhere within the `client` folder (This will make sure that your base template can access them).
+
+If you decided to remove `<!-- bower:js -->` and/or `<!-- bower:css -->` comments from your base template (i.e. not use grunt-wiredep) and have your new library installed, you will want to add it to your project. To do this, you'll need to add a new `<script>` or `<link>` tag to your base template file:
+
+***Static/Server Sites***
 
 |Template Type | Server? | Base Template Location
 |---------|---------------|---------
@@ -498,16 +513,15 @@ Once you have your library installed, you will want to add it to your project. T
 |Jade | Yes | `server/templates/layouts/base.jade`
 |Swig | No |`client/templates/layouts/base.swig`
 |Swig | Yes | `server/templates/layouts/base.swig`
-|HTML | No | `client/templates/index.html`
 
 ***Single Page Applications***
 
 |Library/Framework | Server? | Base Template Location
 |---------|---------------|---------
 |Any | No  | `client/index.html`
-|Any | Yes | `server/templates/index.html`
+|Any | Yes | `client/index.html`
 
-Within your base template file, you will want to locate the `build:js({client,.tmp}) scripts/global.js` comment for scripts and the `build:css(client) styles/global.css` comment for styles. Once located, add your `<script>` or `<link>` after the comment and make sure it is also located before the `endbuild` comment:
+Within your base template file, you will want to locate the `build:js(client) scripts/global.js` comment for scripts and the `build:css(client) styles/global.css` comment for styles. Once located, add your `<script>` or `<link>` after the comment and make sure it is also located before the `endbuild` comment:
 
 ***Styles***
 ```
@@ -538,10 +552,9 @@ Your library should now load correctly (assuming your source path is correct).
 
 > IMPORTANT: If you have third-party script that will be referenced within your own code (ex. using jQuery), you need to make sure that JSHint is aware it. Check out [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts) to see how to make this happen.
 
-
 ## Deployment
 ### FTP Server
-If you are deploying to an FTP server, you will need to make sure that you fill out the generated `.ftppass` file. It is located in the root folder of your yeogurt project.
+If you are deploying to an FTP (not SFTP) server, you will need to make sure that you fill out the generated `.ftppass` file. It is located in the root folder of your Yeogurt project.
 
 This file looks like this:
 
@@ -560,15 +573,15 @@ Fill out the necessary connection information needed to access your FTP server a
 
 For more info on setting up the `.ftppass` file, refer to the [grunt-ftpush](https://github.com/inossidabile/grunt-ftpush) documentation
 
-> IMPORTANT: You will want to test your FTP connection information using an FTP client first (ex. [Filezilla](https://filezilla-project.org/)). This will ensure that you are: a) using the correct information and b) copying files to the correct directory.
+> IMPORTANT: You will want to test your FTP connection information using an FTP client first (ex. [Filezilla](https://filezilla-project.org/)). This will ensure that you are: a) using the correct connection information and b) copying files to the correct directory.
 
 ## Vagrant Setup
 If you would like to use Yeogurt with [Vagrant](https://www.vagrantup.com/), head over to the [yeogurt-vagrant](https://github.com/larsonjj/yeogurt-vagrant) repository for installation and setup instructions.
 
-## Guides
-Check out the [Guides](docs/guides/README.md) section to learn how to integrate other technologies like Ruby Sass
+## Extend Yeogurt
+Check out the [Guides](docs/guides/README.md) section to learn how to integrate other technologies like Ruby Sass, Bootstrap, Animate.css, etc
 
-## Common Gotchas
+## Common Issues
 ### Bower not installing dependencies using Git
 ##### Typical error message:
 > fatal: unable to connect to github.com: github.com
@@ -597,7 +610,7 @@ To remedy this situation, all you need to do is open up your `.jshintrc` file in
 // .jshintrc
 {
 ...
-    global: {
+    globals: {
         Backbone: true // Tells JSHint that Backbone is defined globally
     }
 ...

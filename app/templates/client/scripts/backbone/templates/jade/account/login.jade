@@ -1,0 +1,11 @@
+h3 Sign in
+form(method='post', action='/login')
+    p
+        label(for='email') Email:
+        input#email(type='text', name='email', placeholder='Enter your email', autofocus='autofocus')
+    p
+        label(for='password') Password:
+        input#password(type='password', name='password', placeholder='Password')
+    button Login
+    p
+        a(href='/forgot') Forgot your password?

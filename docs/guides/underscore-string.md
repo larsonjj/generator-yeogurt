@@ -1,5 +1,5 @@
 # Installing Underscore.string
-Want to use [Underscore.string](http://epeli.github.io/underscore.string/)? Follow this guide to get up and running with it quickly.
+Want to use [Underscore.string](http://daneden.github.io/Underscore.string/)? Follow this guide to get up and running with it quickly.
 
 ## Steps
 
@@ -10,9 +10,17 @@ From the root of you project folder, open up a terminal/command prompt and run:
 bower install underscore.string --save
 ```
 
-This will download the library and place it in the `client/bower_components` folder
+This will download the library, place it in the `client/bower_components` folder, and save a reference to it in your `bower.json` file.
 
 ### 2. Add library to your base template
+
+#### Using default dependency injection via [grunt-wiredep](https://github.com/stephenplusplus/grunt-wiredep)
+
+No futher action is required. Note that the Underscore.string library will be automatically injected into your base template between the `<!-- bower:js -->` and `<!-- endbower -->` comments
+
+#### Without dependency injection
+
+If you decided to not use the `<!-- bower:js -->` comments to auto-inject your bower dependencies via [grunt-wiredep](https://github.com/stephenplusplus/grunt-wiredep), then follow the steps below.
 
 Locate your base template with the following table:
 
@@ -43,8 +51,10 @@ Once you have located the base template file for your project, navigate to the `
 <!-- endbuild -->
 ```
 
+
 ## Usage
-After following all of the above steps, you should be all set. Start up your development server with `grunt serve` and begin building with Underscore.string.
+After following all of the steps outlined above, you should be all set. Start up your development server with `grunt serve` and begin building with Underscore.string.
+
 
 ## Extras
 
@@ -54,7 +64,7 @@ If you would like to use Underscore.string with [Underscore](http://underscorejs
 ```html
 <!-- build:js(client) scripts/global.js -->
 ...
-// Place under both Underscore/Lo-dash and Underscore.string scripts
+// Place under the `<!-- endbower -->` cooment and both the Underscore/Lo-dash and Underscore.string scripts
 <script type="text/javascript">
     _.mixin(_.string.exports());
 </script>

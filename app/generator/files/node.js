@@ -6,30 +6,50 @@
 
 var nodeFiles = function nodeFiles() {
     if (this.useServer) {
-        this.mkdir('server');
-        this.mkdir('server/controllers');
-        this.mkdir('server/config');
-        this.mkdir('server/config/env');
-        if (this.useServer && this.singlePageApplication) {
-            this.mkdir('server/templates');
+        if (this.dbOption === 'mongodb') {
+            this.template('server/config/mongodb/database.js', 'server/config/database.js');
         }
-        if (this.singlePageApplication) {
-            if (this.useServerTemplates) {
-                if (this.jsFramework === 'react') {
-                    this.mkdir('server/modules');
-                    this.template('server/modules/react-render.js','server/modules/react-render.js');
-                }
-            }
-            this.template('client/templates/html/index.html', 'server/templates/index.html');
-        }
-
-        if (this.dbOption !== 'none') {
-            this.template('server/config/database.js', 'server/config/database.js');
+        if (this.dbOption === 'sql') {
+            this.template('server/config/sql/database.js', 'server/config/database.js');
         }
 
         this.template('server/config/express.js', 'server/config/express.js');
-        if (this.useSession) {
+
+        if (this.useAuth) {
             this.template('server/config/secrets.js', 'server/config/secrets.js');
+            this.template('server/auth/index.js', 'server/auth/index.js');
+            this.template('server/routes/account.js', 'server/routes/account.js');
+            this.template('server/routes/user.js', 'server/routes/user.js');
+
+            if (this.dbOption === 'mongodb') {
+                this.template('server/models/mongodb/user.js', 'server/models/user.js');
+
+                if (this.singlePageApplication) {
+                    this.template('server/controllers/mongodb/spa/user.js', 'server/controllers/user.js');
+                    this.template('server/controllers/mongodb/spa/account.js', 'server/controllers/account.js');
+                }
+                else {
+                    this.template('server/controllers/mongodb/non-spa/user.js', 'server/controllers/user.js');
+                    this.template('server/controllers/mongodb/non-spa/account.js', 'server/controllers/account.js');
+                }
+
+                this.template('server/auth/strategies/mongodb/local.js', 'server/auth/strategies/local.js');
+            }
+            if (this.dbOption === 'sql') {
+                this.template('server/models/sql/user.js', 'server/models/user.js');
+
+                if (this.singlePageApplication) {
+                    this.template('server/controllers/sql/spa/user.js', 'server/controllers/user.js');
+                    this.template('server/controllers/sql/spa/account.js', 'server/controllers/account.js');
+                }
+                else {
+                    this.template('server/controllers/sql/non-spa/user.js', 'server/controllers/user.js');
+                    this.template('server/controllers/sql/non-spa/account.js', 'server/controllers/account.js');
+                }
+
+                this.template('server/auth/strategies/sql/local.js', 'server/auth/strategies/local.js');
+            }
+
         }
         this.template('server/config/security.js', 'server/config/security.js');
 
@@ -38,8 +58,8 @@ var nodeFiles = function nodeFiles() {
         this.template('server/config/env/production.js', 'server/config/env/production.js');
 
         this.template('server/server.js', 'server.js');
-        this.template('server/controllers/main.js', 'server/controllers/main.js');
-        this.template('server/routes.js', 'server/routes.js');
+        this.template('server/controllers/index.js', 'server/controllers/index.js');
+        this.template('server/routes/index.js', 'server/routes/index.js');
     }
 };
 
