@@ -31,7 +31,7 @@ No futher action is required. Note that the bootstrap css will be automatically 
 
 If you decided to not use the `<!-- bower:css -->` or `<!-- bower:js -->` comments to auto-inject your bower dependencies via [grunt-wiredep](https://github.com/stephenplusplus/grunt-wiredep), then follow the steps below.
 
-Next, [Locate your base template](Locate Base Template)
+Next, [Locate your base template](#locate-base-template)
 
 Once you have located the base template file for your project, navigate to the `<!-- build:js(client) scripts/global.js -->` comment and add the needed script:
 
@@ -111,7 +111,7 @@ Once you have located the base stylesheet file for your project, add the needed 
 @import "../bower_components/bootstrap-stylus/bootstrap";
 ```
 
-Next, [Locate your base template](Locate Base Template)
+Next, [Locate your base template](#locate-base-template)
 
 Once you have located the base template file for your project, navigate to the `<!-- build:js(client) scripts/global.js -->` comment and add the needed script:
 
@@ -160,7 +160,7 @@ Find your base template with the following table:
 |Library/Framework | Server? | Base Template Location
 |---------|---------------|---------
 |Any | No  | `client/index.html`
-|Any | Yes | `client/templates/index.html`
+|Any | Yes | `client/index.html`
 
 ## Usage
 After following all of the above steps, you should be all set. Start up your development server with `grunt serve` and begin building with Bootstrap.

@@ -24,7 +24,6 @@ A [Yeoman](http://yeoman.io) generator that creates a sensible structure for sta
     - [Default (Can be used on any project)](#default-can-be-used-on-any-project)
     - [Static/Server Sites and Backbone](#static-sites-and-backbone-applications)
     - [React](#react-application)
-    - [Flux](#flux-application)
     - [Backbone](#backbone-application)
 - [Automated Documentation](#automated-documentation)
     - [Dashboard](#dashboard)
@@ -238,10 +237,7 @@ Runs [`grunt build`](#grunt-build) and pushes optimized files to a specified FTP
 
 #### React application
 * [yeogurt:react](#react)
-
-#### Flux application
 * [yeogurt:flux](#flux)
-
 
 #### Backbone application
 * [yeogurt:view](#view)
@@ -347,8 +343,8 @@ client/templates/mytemplate.{jst,hbs,jade}
 
 ***NOTE: `{jst,hbs,jade}` means that the file extension template will match the template engine you chose: `lo-dash, handlebars, or jade` respectively***
 
-## React Sub-generator
-***Note: (The following sub-generator can only be used with React applications)***
+## React Sub-generators
+***Note: (The following sub-generators can only be used with React applications)***
 
 ### React
 
@@ -369,9 +365,6 @@ client/scripts/components/mycomponent.jsx
 test/spec/components/mycomponent.spec.js
 ```
 
-## Flux Sub-generator
-***Note: (The following sub-generator can only be used with React + Flux applications)***
-
 ### Flux
 
 Creates Flux files:
@@ -380,8 +373,8 @@ Example:
 
 ```
 yo yeogurt:flux myflux
-? Where would you like to create flux files?: client/scripts/flux
-? Where would you like to create flux file tests?: test/spec/flux
+? Where would you like to create flux files?: client/scripts
+? Where would you like to create flux file tests?: test/spec
 ```
 
 Produces:
