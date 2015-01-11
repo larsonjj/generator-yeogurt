@@ -21,8 +21,7 @@ var taskConfig = function(grunt) {
             'copy:server',<% } %>
             'injector',
             'wiredep',<% if (jsOption === 'browserify') { %>
-            'browserify:server',
-            'exorcise:server',<% } %><% if (jsTemplate === 'underscore') { %>
+            'browserify:server',<% } %><% if (jsTemplate === 'underscore') { %>
             'jst:server',<% } else if (jsTemplate === 'handlebars') { %>
             'handlebars:server',<% } else if (jsTemplate === 'jade') { %>
             'jade:server',<% } %><% if (htmlOption === 'jade' && !useServer ) { %>

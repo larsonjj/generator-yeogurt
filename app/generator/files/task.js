@@ -10,7 +10,6 @@ var taskFiles = function taskFiles() {
     // Config
     if (this.jsOption === 'browserify') {
         this.template('grunt/config/compile/browserify.js', 'grunt/config/compile/browserify.js');
-        this.template('grunt/config/util/exorcise.js', 'grunt/config/util/exorcise.js');
     }
     if (this.useJsdoc) {
         this.template('grunt/config/docs/jsdoc.js', 'grunt/config/docs/jsdoc.js');
