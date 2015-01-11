@@ -1,7 +1,3 @@
-/**
-*   <%= _.classify(name) %> Model Description
-*/
-
 'use strict';
 
 var <%= _.classify(name) %> = Backbone.Model.extend({

@@ -1,7 +1,3 @@
-/**
-*   Messages View
-*/
-
 define(function(require) {
     'use strict';
 
@@ -11,13 +7,10 @@ define(function(require) {
 
         el: '.messages',
 
-        // Compiled template
         template: JST['client/templates/modules/messages<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
 
-        // Delegated events
         events: {},
 
-        // Code that runs when View is initialized
         initialize: function() {
             // Re-render template when data changes
             this.listenTo(app.messages, 'change', this.render);

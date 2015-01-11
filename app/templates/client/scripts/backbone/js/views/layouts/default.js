@@ -1,7 +1,3 @@
-/**
-*   Default View
-*/
-
 'use strict';
 
 var App = App || {};
@@ -9,13 +5,10 @@ App.Views = App.Views || {};
 
 App.Views.Default = Backbone.View.extend({
 
-    // Compiled template
     template: JST['client/templates/layouts/default<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
 
-    // Delegated events
     events: {},
 
-    // Code that runs when View is initialized
     initialize: function (options) {
         // Check to see if any options were passed in
         if (options) {

@@ -1,14 +1,10 @@
-/**
-*   Reset Component Description
-*/
-
 'use strict';
 
 var React = require('react');
 var DefaultLayout = require('../layouts/default');
 var userActions = require('../../actions/user');
 
-// Alias for React DOM
+// Alias for making element creation less verbose
 var DOM = React.createElement;
 
 var ResetComponent = React.createClass({

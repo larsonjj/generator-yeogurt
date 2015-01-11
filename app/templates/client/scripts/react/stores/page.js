@@ -5,21 +5,11 @@ var Dispatcher = require('../dispatchers/default');
 var ActionTypes = require('../constants/action-types');
 var pageDefaults = require('../constants/defaults').page;
 
-/**
- * @typedef Page
- * @type {object}
- * @property {string} title
- * @property {string} description
- * @property {string} keywords
- */
 var _page;
 
 var PageStore = new Store({
 
-    /**
-     * Gets metadata associated with the current page.
-     * @returns {Page}
-     */
+    // Gets metadata associated with the current page.
     get: function() {
         return _page || pageDefaults;
     }

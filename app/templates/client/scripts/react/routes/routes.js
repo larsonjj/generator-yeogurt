@@ -1,7 +1,3 @@
-/**
-*   Router
-*/
-
 'use strict';
 
 var React = require('react');
@@ -82,7 +78,6 @@ var settings = function() {
     render(SettingsPage);
 };<% } %>
 
-    // Defined routes
 var routes = {<% if (useAuth) { %>
     '/login': login,
     '/forgot': forgot,

@@ -1,7 +1,3 @@
-/**
- *   Navbar Component Description
- */
-
 'use strict';
 
 var React = require('react');
@@ -9,7 +5,7 @@ var Link = require('./link');
 var userStore = require('../../stores/user');
 var userActions = require('../../actions/user');
 
-// Alias for React DOM
+// Alias for making element creation less verbose
 var DOM = React.createElement;
 
 var getState = function() {
@@ -98,9 +94,7 @@ var NavbarComponent = React.createClass({
         e.preventDefault();
         userActions.logout();
     },
-    /**
-     * Event handler for 'change' events coming from store mixins.
-     */
+    // Event handler for 'change' events coming from store mixins.
     _onChange: function() {
         this.setState(getState());
     }

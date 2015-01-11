@@ -1,7 +1,3 @@
-/**
-*   Forgot Component Description
-*/
-
 'use strict';
 
 var React = require('react');

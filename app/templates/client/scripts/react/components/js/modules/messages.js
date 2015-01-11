@@ -1,13 +1,9 @@
-/**
- *   Messages Component Description
- */
-
 'use strict';
 
 var React = require('react');
 var messagesStore = require('../../stores/messages');
 
-// Alias for React DOM
+// Alias for making element creation less verbose
 var DOM = React.createElement;
 
 var getState = function() {
@@ -60,9 +56,7 @@ var MessagesComponent = React.createClass({
             )
         );
     },
-    /**
-     * Event handler for 'change' events coming from store mixins.
-     */
+    // Event handler for 'change' events coming from store mixins.
     _onChange: function() {
         this.setState(getState());
     }

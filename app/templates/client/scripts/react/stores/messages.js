@@ -5,18 +5,11 @@ var Dispatcher = require('../dispatchers/default');
 var ActionTypes = require('../constants/action-types');
 var messagesDefaults = require('../constants/defaults').messages;
 
-/**
- * @typedef Messages
- * @type {object}
- */
 var _messages;
 
 var MessagesStore = new Store({
 
-    /**
-     * Gets data associated with the current messages.
-     * @returns {messages}
-     */
+    // Gets data associated with the current messages.
     get: function() {
         return _messages || messagesDefaults;
     }

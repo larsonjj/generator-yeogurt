@@ -5,21 +5,11 @@ var Dispatcher = require('../dispatchers/default');
 var ActionTypes = require('../constants/action-types');
 var userDefaults = require('../constants/defaults').user;
 
-/**
- * @typedef User
- * @type {object}
- * @property {boolean} loggedIn
- * @property {string} firstName
- * @property {string} lastName
- */
 var _user;
 
 var UserStore = new Store({
 
-    /**
-     * Gets data associated with the current user.
-     * @returns {user}
-     */
+    // Gets data associated with the current user.
     get: function() {
         return _user || userDefaults;
     }

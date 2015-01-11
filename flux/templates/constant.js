@@ -1,7 +1,3 @@
-/**
-*   <%= _.classify(name) %>Constant Description
-*/
-
 'use strict';
 
 var React = require('react');

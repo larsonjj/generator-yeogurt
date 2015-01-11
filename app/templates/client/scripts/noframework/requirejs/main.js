@@ -1,7 +1,3 @@
-/**
-*   Main Configuration
-*/
-
 'use strict';
 
 // RequireJS configuration

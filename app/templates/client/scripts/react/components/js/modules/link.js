@@ -1,18 +1,14 @@
-/**
-*   Link Component
-*   Handles pushState route changes within app
-*   Usage: DOM(Link, {url: '/linkUrl'}, 'Link Title')
-*/
-
-
 'use strict';
 
 var React = require('react');
 var routeActions = require('../../actions/routes');
 
-// Alias for React DOM
+// Alias for making element creation less verbose
 var DOM = React.createElement;
 
+// Link Component
+// Handles pushState route changes within app
+// Usage: <Link url="/linkUrl">Link Title</Link>
 var LinkComponent = React.createClass({
 
     propTypes: {

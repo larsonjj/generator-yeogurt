@@ -1,7 +1,3 @@
-/**
-*   Application Logic
-*/
-
 'use strict';
 
 // Create application namspace

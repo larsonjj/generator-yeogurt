@@ -1,7 +1,3 @@
-/**
- *   Default Layout Component Description
- */
-
 'use strict';
 
 var React = require('react');<% if (useAuth) { %>
@@ -10,7 +6,7 @@ var Messages = require('../modules/messages');<% } %>
 var pageStore = require('../../stores/page');<% if (useAuth) { %>
 var userStore = require('../../stores/user');<% } %>
 
-// Alias for React DOM
+// Alias for making element creation less verbose
 var DOM = React.createElement;
 
 var getState = function() {
@@ -23,7 +19,6 @@ var getState = function() {
 var DefaultComponent = React.createClass({
     mixins: [pageStore.mixin<% if (useAuth) { %>, userStore.mixin<% } %>],
     componentDidMount: function() {
-        // Update page title when this layout is loaded
         pageStore.emitChange();<% if (useAuth) { %>
         userStore.emitChange();<% } %>
     },
@@ -63,9 +58,7 @@ var DefaultComponent = React.createClass({
             )
         );
     },
-    /**
-     * Event handler for 'change' events coming from store mixins.
-     */
+    // Event handler for 'change' events coming from store mixins.
     _onChange: function() {
         this.setState(getState());
     }

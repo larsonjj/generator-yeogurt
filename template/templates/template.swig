@@ -1,5 +1,4 @@
-{# <%= name %> <%= type %> #}<% if (type === 'module') { %>
-<% if (useDashboard) { %>{# [dash:data]
+<% if (type === 'module') { %><% if (useDashboard) { %>{# [dash:data]
     {
         "status": "development",
         "category": "module",

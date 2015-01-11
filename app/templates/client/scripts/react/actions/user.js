@@ -11,10 +11,6 @@ var cookie = require('cookie');
 
 module.exports = {
 
-    /**
-     * Set the current user.
-     * @param {string} user Supply an object containing user information.
-     */
     setUser: function(user) {
         Dispatcher.handleViewAction({
             actionType: ActionTypes.SET_CURRENT_USER,
@@ -149,6 +145,7 @@ module.exports = {
         // Reset user to defaults
         this.setUser(userDefaults);
 
+        // Redirect to homepage
         routeActions.setRoute('/');
     },
 

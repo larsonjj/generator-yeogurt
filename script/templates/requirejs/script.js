@@ -1,7 +1,3 @@
-/**
-*   <%= _.classify(name) %> Script Description
-*/
-
 define(function(require) {
 
     'use strict';

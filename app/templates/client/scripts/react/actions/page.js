@@ -7,10 +7,6 @@ var assign = require('object-assign');
 
 module.exports = {
 
-    /**
-     * Set metadata for the current page (title, description, keywords etc.).
-     * @param {object} page Supply an object containing page information.
-     */
     set: function(page) {
         Dispatcher.handleViewAction({
             actionType: ActionTypes.SET_CURRENT_PAGE,

@@ -1,15 +1,10 @@
-/**
-*   Router
-*/
-
 'use strict';
 
 var App = App || {};
 App.Routers = App.Routers || {};
 
-// Router
 App.Routers.Main = Backbone.Router.extend({
-    // Defined routes
+
     routes: {<% if (useAuth) { %>
         'login': 'login',
         'forgot': 'forgot',

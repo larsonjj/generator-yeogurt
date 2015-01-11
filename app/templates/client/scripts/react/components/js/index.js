@@ -1,14 +1,9 @@
 /*jshint newcap:false */
-
-/**
- *   Main Component
- */
-
 'use strict';
 
 var React = require('react');
 
-// Alias for React DOM
+// Alias for making element creation less verbose
 var DOM = React.createElement;
 var DefaultLayout = require('./layouts/default');
 

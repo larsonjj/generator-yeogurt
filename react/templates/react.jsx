@@ -1,9 +1,3 @@
-/** @jsx React.DOM */
-
-/**
-*   <%= _.classify(name) %> Component Description
-*/
-
 'use strict';
 
 var React = require('react');

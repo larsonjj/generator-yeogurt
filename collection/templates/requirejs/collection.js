@@ -1,7 +1,3 @@
-/**
-*   <%= _.classify(name) %> Collection Description
-*/
-
 define(function(require) {
     'use strict';
 

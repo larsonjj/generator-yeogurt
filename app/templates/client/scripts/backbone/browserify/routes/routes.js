@@ -1,7 +1,3 @@
-/**
-*   Router
-*/
-
 'use strict';<% if (useAuth) { %>
 
 var user = require('./models/user');
@@ -28,7 +24,7 @@ var render = function(view) {
 };<% } %>
 
 var Router = Backbone.Router.extend({
-    // Defined routes
+
     routes: {<% if (useAuth) { %>
         'login': 'login',
         'forgot': 'forgot',

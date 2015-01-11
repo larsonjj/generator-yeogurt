@@ -1,7 +1,3 @@
-/**
-*   Settings Component Description
-*/
-
 'use strict';
 
 var React = require('react');
@@ -91,9 +87,7 @@ var SettingsComponent = React.createClass({
         var form = e.currentTarget;
         userActions.destroy(form);
     },
-    /**
-     * Event handler for 'change' events coming from store mixins.
-     */
+    // Event handler for 'change' events coming from store mixins.
     _onChange: function() {
         this.setState(getState());
     }

@@ -1,7 +1,3 @@
-/**
-*   User Model
-*/
-
 'use strict';
 
 var messages = require('./messages');
@@ -30,9 +26,7 @@ var User = Backbone.Model.extend({<% if (dbOption === 'mongodb') { %>
 
     },
 
-    /*
-     * Check to see if current user is authenticated
-     */
+    // Check to see if current user is authenticated
     isAuthenticated: function(callback) {
         var self = this;
         this.fetch({

@@ -1,7 +1,3 @@
-/**
- *   Settings Component Description
- */
-
 'use strict';
 
 var React = require('react');
@@ -9,7 +5,7 @@ var DefaultLayout = require('../layouts/default');
 var userStore = require('../../stores/user');
 var userActions = require('../../actions/user');
 
-// Alias for React DOM
+// Alias for making element creation less verbose
 var DOM = React.createElement;
 
 var getState = function() {

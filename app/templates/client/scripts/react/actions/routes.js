@@ -6,10 +6,6 @@ var messagesActions = require('./messages');<% } %>
 
 module.exports = {
 
-    /**
-     * Set the current route.
-     * @param {string} route Supply a route value.
-     */
     setRoute: function(route) {<% if (useAuth) { %>
         // Clear out any existing messages
         messagesActions.setMessages({});<% } %>

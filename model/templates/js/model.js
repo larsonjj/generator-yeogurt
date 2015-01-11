@@ -1,7 +1,3 @@
-/**
-*   <%= _.classify(name) %> Model Description
-*/
-
 'use strict';
 
 var App = App || {};

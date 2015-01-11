@@ -1,7 +1,3 @@
-/**
-*   <%= _.classify(name) %> Script Description
-*/
-
 'use strict';
 
 var <%= _.classify(name) %> = (function() {

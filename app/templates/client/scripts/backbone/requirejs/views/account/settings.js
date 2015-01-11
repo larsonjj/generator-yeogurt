@@ -1,7 +1,3 @@
-/**
-*   Settings View
-*/
-
 define(function(require) {
     'use strict';
 
@@ -11,17 +7,14 @@ define(function(require) {
 
         el: '.content',
 
-        // Compiled template
         template: JST['client/templates/account/settings<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
 
-        // Delegated events
         events: {
             'submit #profile-form': 'formInfo',
             'submit #password-form': 'formPassword',
             'submit #delete-form': 'formDelete',
         },
 
-        // Code that runs when View is initialized
         initialize: function() {
             this.render();
         },

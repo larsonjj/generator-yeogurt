@@ -1,8 +1,3 @@
-/**
-*   Messages Model
-*   Stores flash messages from server
-*/
-
 'use strict';
 
 var Messages = Backbone.Model.extend({

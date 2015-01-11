@@ -1,7 +1,3 @@
-/**
-*   <%= _.classify(name) %> Spec Description
-*/
-
 /* jshint newcap:false */
 /* jshint -W024 */<% if (testFramework === 'mocha') { %>
 /* jshint expr:true */<% } %>

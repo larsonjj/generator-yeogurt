@@ -1,14 +1,12 @@
-/**
-*   Link Component
-*   Handles pushState route changes within app
-*   Usage: <Link url="/linkUrl">Link Title</Link>
-*/
-
 'use strict';
 
 var React = require('react');
 var routeActions = require('../../actions/routes');
 
+
+// Link Component
+// Handles pushState route changes within app
+// Usage: <Link url="/linkUrl">Link Title</Link>
 var LinkComponent = React.createClass({
 
     propTypes: {

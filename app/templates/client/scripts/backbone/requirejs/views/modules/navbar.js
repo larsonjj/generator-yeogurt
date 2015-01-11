@@ -1,7 +1,3 @@
-/**
-*   Navbar View
-*/
-
 define(function(require) {
     'use strict';
 
@@ -11,17 +7,14 @@ define(function(require) {
 
         el: '.main-nav',
 
-        // Compiled template
         template: JST['client/templates/modules/navbar<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
 
-        // Delegated events
         events: {
             'click #logoutLink': 'handleLogout'
         },
 
-        // Code that runs when View is initialized
         initialize: function() {
-            // Re-render template when data changes
+            // Re-render template when user model changes
             this.listenTo(app.user, 'change', this.render);
             this.render();
         },

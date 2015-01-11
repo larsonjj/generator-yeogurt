@@ -1,7 +1,3 @@
-/**
-*   User Model
-*/
-
 define(function(require) {
     'use strict';
 
@@ -28,9 +24,7 @@ define(function(require) {
 
         },
 
-        /*
-         * Check to see if current user is authenticated
-         */
+        // Check to see if current user is authenticated
         isAuthenticated: function(callback) {
             var self = this;
             this.fetch({

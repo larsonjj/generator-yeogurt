@@ -1,8 +1,3 @@
-/**
-*   Messages Model
-*   Stores flash messages from server
-*/
-
 define(function(require) {
     'use strict';
 

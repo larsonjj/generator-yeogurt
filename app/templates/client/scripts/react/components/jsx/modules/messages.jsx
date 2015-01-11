@@ -49,9 +49,7 @@ var MessagesComponent = React.createClass({
             /* jshint ignore:end */
         );
     },
-    /**
-     * Event handler for 'change' events coming from store mixins.
-     */
+    // Event handler for 'change' events coming from store mixins.
     _onChange: function() {
         this.setState(getState());
     }

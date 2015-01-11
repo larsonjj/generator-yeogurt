@@ -1,7 +1,3 @@
-/**
-*   Messages View
-*/
-
 'use strict';
 
 var App = App || {};
@@ -11,15 +7,12 @@ App.Views.Messages = Backbone.View.extend({
 
     el: '.messages',
 
-    // Compiled template
     template: JST['client/templates/modules/messages<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
 
-    // Delegated events
     events: {},
 
-    // Code that runs when View is initialized
     initialize: function() {
-        // Re-render template when data changes
+        // Re-render template when messages store changes
         this.listenTo(App.messages, 'change', this.render);
         this.render();
     },

@@ -1,7 +1,3 @@
-/**
-*   Router
-*/
-
 define(function(require) {
     'use strict';<% if (useAuth) { %>
 
@@ -29,7 +25,7 @@ define(function(require) {
     };
 
     var Router = Backbone.Router.extend({
-        // Defined routes
+
         routes: {<% if (useAuth) { %>
             'login': 'login',
             'forgot': 'forgot',

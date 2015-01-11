@@ -1,7 +1,3 @@
-/**
-*   Navbar Component Description
-*/
-
 'use strict';
 
 var React = require('react');
@@ -68,9 +64,7 @@ var NavbarComponent = React.createClass({
         e.preventDefault();
         userActions.logout();
     },
-    /**
-     * Event handler for 'change' events coming from store mixins.
-     */
+    // Event handler for 'change' events coming from store mixins.
     _onChange: function() {
         this.setState(getState());
     }

@@ -1,7 +1,3 @@
-/**
-*   <%= _.classify(name) %> Collection Description
-*/
-
 'use strict';
 
 var App = App || {};

@@ -1,9 +1,5 @@
 /*jshint newcap:false */
 
-/**
-*   <%= _.classify(name) %> Component Description
-*/
-
 'use strict';
 
 var React = require('react');

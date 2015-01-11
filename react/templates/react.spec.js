@@ -1,12 +1,4 @@
-<% if (useJsx) { %>/** @jsx React.DOM */
-
-<% } %>
 /*jshint newcap:false */
-
-/**
-*   <%= _.classify(name) %> Spec Description
-*/
-
 /* jshint -W024 */<% if (testFramework === 'mocha') { %>
 /* jshint expr:true */<% } %>
 

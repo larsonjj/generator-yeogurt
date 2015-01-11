@@ -1,7 +1,3 @@
-/**
-*   <%= _.classify(name) %> Model Description
-*/
-
 define(function(require) {
     'use strict';
 

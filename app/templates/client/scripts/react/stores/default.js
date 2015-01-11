@@ -5,14 +5,9 @@ var assign = require('object-assign');
 
 var CHANGE_EVENT = 'change';
 
-/**
- * Constructs a Store object.
- * Extends itself with supplied methods parameter, attaches EventEmitter to itself,
- * and creates a mixin property for use in components.
- *
- * @param {object} methods Public methods for Store instance.
- * @constructor
- */
+// Constructs a Store object.
+// Extends itself with supplied methods parameter, attaches EventEmitter to itself,
+// and creates a mixin property for use in components.
 var Store = function(methods) {
 
     var self = this;
@@ -29,12 +24,10 @@ var Store = function(methods) {
 
     this.dispatcherToken = null;
 
-    /**
-     * Provides mixin for easily adding/removing event listeners to Stores
-     * Add to Components using `mixins: [storeName.mixin]`
-     * This will also add the `_onChange` method which can be used as a callback
-     * when this store's change event(s) are fired
-     */
+    // Provides mixin for easily adding/removing event listeners to Stores
+    // Add to Components using `mixins: [storeName.mixin]`
+    // This will also add the `_onChange` method which can be used as a callback
+    // when this store's change event(s) are fired
     this.mixin = {
 
         componentDidMount: function() {
@@ -47,27 +40,18 @@ var Store = function(methods) {
 
     };
 
-    /**
-     * Emits change event.
-     */
+    // Emits change event.
     this.emitChange = function() {
         this.emit(CHANGE_EVENT);
     };
 
-    /**
-     * Adds a change listener.
-     *
-     * @param {function} callback Callback function.
-     */
+    // Adds a change listener.
     this.addChangeListener = function(callback) {
         this.on(CHANGE_EVENT, callback);
     };
 
-    /**
-     * Removes a change listener.
-     *
-     * @param {function} callback Callback function.
-     */
+
+    // Removes a change listener.
     this.removeChangeListener = function(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     };

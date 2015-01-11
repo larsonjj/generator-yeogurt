@@ -8,18 +8,10 @@ var Store = require('./default');
 var Dispatcher = require('../dispatchers/default');
 var <%= _.classify(name) %>Constants = require('../constants/<%= _.slugify(name.toLowerCase()) %>');
 
-/**
- * @typedef Messages
- * @type {object}
- */
 var _data;
 
 var <%= _.classify(name) %>Store = new Store({
 
-    /**
-     * Gets data associated with the current store.
-     * @returns {data}
-     */
     get: function() {
         return _data;
     }
@@ -30,7 +22,6 @@ var <%= _.classify(name) %>Store = new Store({
 
     var action = payload.action;
 
-    // Replace 'true' with your desired constant
     if (action.actionType === <%= _.classify(name) %>Constants.<%= name.toUpperCase() %>_CONSTANT) {
         _data = action.data;
 

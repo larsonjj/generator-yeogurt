@@ -1,8 +1,3 @@
-/**
-*   User Model
-*   Access this model through the App.user object
-*/
-
 'use strict';
 
 var App = App || {};
@@ -32,9 +27,7 @@ App.Models.User = Backbone.Model.extend({<% if (dbOption === 'mongodb') { %>
 
     },
 
-    /*
-     * Check to see if current user is authenticated
-     */
+    // Check to see if current user is authenticated
     isAuthenticated: function(callback) {
         var self = this;
         this.fetch({
