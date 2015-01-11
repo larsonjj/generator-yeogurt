@@ -23,14 +23,14 @@ var taskConfig = function(grunt) {
                 dest: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>',
                 src: [<% if (jsOption === 'requirejs') { %>
                     'bower_components/requirejs/require.js',<% } %><% if (useDashboard) { %>
-                    'dashboard/**/*.*',<% } %><% if (singlePageApplication) { %>
-                    '*.html',<% } %><% if (useKss) { %>
+                    'dashboard/**/*.*',<% } %><% if (useKss) { %>
                     'styles/styleguide.md',
                     'docs/styleguide/public/images',<% } %>
-                    '!*.js',
-                    '*.{ico,png,txt}',
+                    'styles/fonts/**/*.{woff,otf,ttf,eot,svg}',
                     'images/**/*.{webp}',
-                    'styles/fonts/**/*.{woff,otf,ttf,eot,svg}'
+                    '!*.js',
+                    '*.{ico,png,txt}'<% if (singlePageApplication) { %>,
+                    '*.html'<% } %>
                 ]
             }<% if (useServer && singlePageApplication) { %>, {
                 expand: true,

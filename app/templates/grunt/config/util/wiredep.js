@@ -61,12 +61,12 @@ var taskConfig = function(grunt) {
                 '<%%= yeogurt.client %>/templates/layouts/base.jade'<% } else if (htmlOption === 'swig') { %>
                 '<%%= yeogurt.client %>/templates/layouts/base.swig'<% } %><% } %>
             ]
-        }<% if (cssOption === 'sass') { %>,
+        }<% if (cssOption !== 'none') { %>,
         styles: {<% if (cssOption === 'sass') { %>
-            src: ['<%%= yeogurt.client %>/styles/{,*/}*.{scss,sass}'],<% } %><% if (cssOption === 'less') { %>
-            src: ['<%%= yeogurt.client %>/styles/{,*/}*.less'],<% } %><% if (cssOption === 'stylus') { %>
-            src: ['<%%= yeogurt.client %>/styles/{,*/}*.styl'],<% } %>
-            ignorePath: /client\/|\.\.\//g,
+            src: ['<%%= yeogurt.client %>/styles/**/*.{scss,sass}'],<% } %><% if (cssOption === 'less') { %>
+            src: ['<%%= yeogurt.client %>/styles/**/*.less'],<% } %><% if (cssOption === 'stylus') { %>
+            src: ['<%%= yeogurt.client %>/styles/**/*.styl'],<% } %>
+            ignorePath: /client/g,
         }<% } %>
     });
 

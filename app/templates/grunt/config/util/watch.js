@@ -20,7 +20,7 @@ var taskConfig = function(grunt) {
                 interrupt: true
             },
             tasks: [
-                'wiredep:all',
+                'wiredep',
                 'serve:nowatch'
             ]
         },<% if (htmlOption === 'jade' && !useServer) { %>

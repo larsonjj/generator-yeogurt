@@ -61,17 +61,14 @@ Locate your base stylesheet @ `client/styles/main.{less,scss/sass,styl}`
 Once you have located the base stylesheet file for your project, add the needed `$icon-font-path` statement:
 
 ```
-// sass
-$icon-font-path: ../bower_components/bootstrap-sass-official/assets/fonts/"
+// sass/scss (must be placed above the @import)
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/"
 
-// scss
-$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
-
-// less
-@icon-font-path: "../bower_components/bootstrap/less/fonts/";
+// less (must be placed below @import)
+@icon-font-path: "../bower_components/bootstrap/fonts/";
 
 // stylus
-@icon-font-path: "../bower_components/bootstrap-stylus/fonts/";
+$icon-font-path = "../bower_components/bootstrap-stylus/fonts/";
 ```
 
 ***For Less only***
@@ -85,6 +82,26 @@ exclude: [
     'bower_components/bootstrap/dist/css'
     ...
 ],
+```
+
+***For Stylus only***
+`grunt-wiredep` is not "smart" enough to read the `bootstrap-stylus` directory, so you will need to explicitly tell it where the files are that you need. To override bower package that contains the needed boostrap files, add the following to your `bower.json` file:
+
+```
+"overrides": {
+    "bootstrap-stylus": {
+        "main": [
+            "bootstrap/variables.styl",
+            "bootstrap/utilities.styl",
+            "bootstrap/buttons.styl",
+            "bootstrap/scaffolding.styl",
+            "bootstrap/mixins/*.styl",
+            "bootstrap/**/!(variables|utilities|buttons|scaffolding).styl",
+            "js/**/!(popover.js)",
+            "js/popover.js"
+        ]
+    }
+}
 ```
 
 Note that the bootstrap imports will be automatically injected into your base stylesheet between the `// bower:{less,styl,sass/scss}` and `// endbower` comments with the bootstrap javascript being injected between the `<!-- bower:js -->` and `<!-- endbower -->` comments
@@ -139,6 +156,26 @@ Once you have located the base template file for your project, navigate to the `
 <script src="/bower_components/bootstrap-stylus/javascripts/transition.js"></script>
 ...
 <!-- endbuild -->
+```
+
+### 3. Handle fonts
+
+Bootstrap comes bundled with glyphicons, which are font files. If you want to use them, you will need to make sure that they correctly get copied over during the `grunt build` process. You can easily do this by adding the following to the `grunt/config/util/copy.js` file:
+
+```
+// Locate the 'src' property and add the following string
+src: [
+    ...
+    // scss/sass
+    'bower_components/bootstrap-sass-official/**/*.{woff,ttf,eot,svg}'
+
+    // less/css
+    'bower_components/bootstrap/**/*.{woff,ttf,eot,svg}'
+
+    // stylus
+    'bower_components/bootstrap-stylus/**/*.{woff,ttf,eot,svg}'
+    ...
+]
 ```
 
 ## Locate Base Template
