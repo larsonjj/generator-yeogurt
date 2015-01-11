@@ -5,7 +5,13 @@
         "consolelog": "~2.0.1",
         "html5shiv": "~3.7.2",
         "modernizr": "~2.8.1",
-        "normalize.css": "~3.0.1"<% if (jsFramework === 'backbone' && useAuth) { %>,
+        "normalize.css": "~3.0.1"<% if (jsFramework === 'angular') { %>,
+        "angular": "~1.2.0",
+        "angular-route": "~1.2.0",
+        "angular-cookies": "~1.2.0",
+        "angular-sanitize": "~1.2.0",
+        "angular-loader": "~1.2.0",
+        "json3": "~3.3.1",<% } %><% if (jsFramework === 'backbone' && useAuth) { %>,
         "jquery.cookie": "~1.4.1"<% } %><% if (jsFramework !== 'react') { %>,
         "jquery": "~1.11.1"<% } %><% if (jsFramework === 'backbone') { %>,
         "backbone": "~1.1.2"<% } %><% if (jsFramework === 'react') { %>,
@@ -14,5 +20,8 @@
         "jade": "~1.5.0"<% } %><% if (jsOption === 'requirejs') { %>,
         "requirejs": "~2.1.11"<% } %>
     },
-    "devDependencies": {}
+    "devDependencies": {<% if (jsFramework === 'angular') { <% } %>
+        "angular-mocks": ">=1.2.*",
+        "angular-scenario": ">=1.2.*"
+    <% } %>}
 }
