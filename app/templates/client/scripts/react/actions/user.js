@@ -1,7 +1,7 @@
 'use strict';
 
 var Dispatcher = require('../dispatchers/default');
-var ActionTypes = require('../constants/action-types');
+var userConstants = require('../constants/user');
 var messagesActions = require('./messages');
 var routeActions = require('./routes');
 var userDefaults = require('../constants/defaults').user;
@@ -13,7 +13,7 @@ module.exports = {
 
     setUser: function(user) {
         Dispatcher.handleViewAction({
-            actionType: ActionTypes.SET_CURRENT_USER,
+            actionType: userConstants.SET_CURRENT_USER,
             user: user
         });
     },

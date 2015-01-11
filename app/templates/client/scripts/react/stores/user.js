@@ -2,7 +2,7 @@
 
 var Store = require('./default');
 var Dispatcher = require('../dispatchers/default');
-var ActionTypes = require('../constants/action-types');
+var userConstants = require('../constants/user');
 var userDefaults = require('../constants/defaults').user;
 
 var _user;
@@ -20,7 +20,7 @@ UserStore.dispatcherToken = Dispatcher.register(function(payload) {
 
     var action = payload.action;
 
-    if (action.actionType === ActionTypes.SET_CURRENT_USER) {
+    if (action.actionType === userConstants.SET_CURRENT_USER) {
         _user = action.user;
 
         UserStore.emitChange();

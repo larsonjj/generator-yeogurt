@@ -2,7 +2,7 @@
 
 var Store = require('./default');
 var Dispatcher = require('../dispatchers/default');
-var ActionTypes = require('../constants/action-types');
+var pageConstants = require('../constants/page');
 var pageDefaults = require('../constants/defaults').page;
 
 var _page;
@@ -20,7 +20,7 @@ PageStore.dispatcherToken = Dispatcher.register(function(payload) {
 
     var action = payload.action;
 
-    if (action.actionType === ActionTypes.SET_CURRENT_PAGE) {
+    if (action.actionType === pageConstants.SET_CURRENT_PAGE) {
         _page = action.page;
 
         PageStore.emitChange();

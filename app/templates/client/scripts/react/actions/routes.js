@@ -1,7 +1,7 @@
 'use strict';
 
 var Dispatcher = require('../dispatchers/default');
-var ActionTypes = require('../constants/action-types');<% if (useAuth) { %>
+var routesConstants = require('../constants/routes');<% if (useAuth) { %>
 var messagesActions = require('./messages');<% } %>
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
         messagesActions.setMessages({});<% } %>
 
         Dispatcher.handleViewAction({
-            actionType: ActionTypes.SET_CURRENT_ROUTE,
+            actionType: routesConstants.SET_CURRENT_ROUTE,
             route: route
         });
     }

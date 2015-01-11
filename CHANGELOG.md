@@ -1,5 +1,14 @@
-### v0.13.2:
+### v0.13.3:
 #### date: 2015-1-11
+##### changes:
+* Updated all files to no longer have useless/superfluous comments
+* Updated readme to make the difference between the template sub-generator to static/server sites vs backbone apps more apparant.
+* Updated constants for react apps so that each action type has it's own file.
+* Fixed hash routing for non-server single page applications
+* Fixed issue where watch task was trying to run exorcise when it doesn't exist anymore
+
+### v0.13.2:
+#### date: 2015-1-10
 ##### changes:
 * Added `grunt-wiredep` comments to main stylesheet for all types of projects (Stylus, Less, Sass/Scss) which will automatically add bower components/libraries.
 * Removed `grunt-exorcise` as it is un-needed for development of projects using browserify. (Sourcemap for browserify bundles will be inline rather than in a seperate file now)

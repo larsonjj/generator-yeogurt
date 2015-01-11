@@ -2,7 +2,7 @@
 
 var Store = require('./default');
 var Dispatcher = require('../dispatchers/default');
-var ActionTypes = require('../constants/action-types');
+var messagesConstants = require('../constants/messages');
 var messagesDefaults = require('../constants/defaults').messages;
 
 var _messages;
@@ -20,7 +20,7 @@ MessagesStore.dispatcherToken = Dispatcher.register(function(payload) {
 
     var action = payload.action;
 
-    if (action.actionType === ActionTypes.SET_MESSAGES) {
+    if (action.actionType === messagesConstants.SET_MESSAGES) {
         _messages = action.messages;
 
         MessagesStore.emitChange();

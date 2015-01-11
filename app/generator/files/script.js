@@ -159,9 +159,14 @@ var scriptFiles = function scriptFiles() {
         this.template('client/scripts/react/main/main.js', 'client/scripts/main.js');
 
         // Constants
-        this.template('client/scripts/react/constants/action-types.js', 'client/scripts/constants/action-types.js');
+        this.template('client/scripts/react/constants/page.js', 'client/scripts/constants/page.js');
+        this.template('client/scripts/react/constants/routes.js', 'client/scripts/constants/routes.js');
         this.template('client/scripts/react/constants/defaults.js', 'client/scripts/constants/defaults.js');
         this.template('client/scripts/react/constants/payload-sources.js', 'client/scripts/constants/payload-sources.js');
+        if (this.useAuth) {
+            this.template('client/scripts/react/constants/user.js', 'client/scripts/constants/user.js');
+            this.template('client/scripts/react/constants/messages.js', 'client/scripts/constants/messages.js');
+        }
 
         // Stores
         this.template('client/scripts/react/stores/default.js', 'client/scripts/stores/default.js');
@@ -186,7 +191,9 @@ var scriptFiles = function scriptFiles() {
             this.template('client/scripts/react/components/jsx/index.jsx', 'client/scripts/components/index.jsx');
 
             // Modules
-            this.template('client/scripts/react/components/jsx/modules/link.jsx', 'client/scripts/components/modules/link.jsx');
+            if (this.useServer) {
+                this.template('client/scripts/react/components/jsx/modules/link.jsx', 'client/scripts/components/modules/link.jsx');
+            }
             if (this.useAuth) {
                 this.template('client/scripts/react/components/jsx/modules/messages.jsx', 'client/scripts/components/modules/messages.jsx');
                 this.template('client/scripts/react/components/jsx/modules/navbar.jsx', 'client/scripts/components/modules/navbar.jsx');

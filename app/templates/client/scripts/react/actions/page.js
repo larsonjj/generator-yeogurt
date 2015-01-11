@@ -1,7 +1,7 @@
 'use strict';
 
 var Dispatcher = require('../dispatchers/default');
-var ActionTypes = require('../constants/action-types');
+var pageConstants = require('../constants/page');
 var pageDefaults = require('../constants/defaults').page;
 var assign = require('object-assign');
 
@@ -9,7 +9,7 @@ module.exports = {
 
     set: function(page) {
         Dispatcher.handleViewAction({
-            actionType: ActionTypes.SET_CURRENT_PAGE,
+            actionType: pageConstants.SET_CURRENT_PAGE,
             page: assign({}, pageDefaults, page)
         });
     }

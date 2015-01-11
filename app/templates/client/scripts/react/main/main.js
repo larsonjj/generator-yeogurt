@@ -3,7 +3,8 @@
 var Router = require('director').Router;
 var routes = require('./routes');
 var Dispatcher = require('./dispatchers/default');
-var ActionTypes = require('./constants/action-types');<% if (useAuth) { %>
+var pageConstants = require('./constants/page');
+var routesConstants = require('./constants/routes');<% if (useAuth) { %>
 var userActions = require('./actions/user');<% } %>
 
 // Setup router
@@ -23,10 +24,12 @@ userActions.isAuthenticated({
         var pushState = !!(enablePushState && window.history && window.history.pushState);
 
         if (pushState) {
+            // Start listening to route changes with pushState
             router.configure({
                 html5history: true
             }).init();
         } else {
+            // Start listening to route changes without pushState
             router.init();
         }
 
@@ -40,11 +43,11 @@ userActions.isAuthenticated({
 
             var action = payload.action;
 
-            if (action.actionType === ActionTypes.SET_CURRENT_ROUTE) {
+            if (action.actionType === routesConstants.SET_CURRENT_ROUTE) {
                 router.setRoute(action.route);
             }
 
-            else if (action.actionType === ActionTypes.SET_CURRENT_PAGE) {
+            else if (action.actionType === pageConstants.SET_CURRENT_PAGE) {
                 // Set current page title
                 document.title = action.page.title;
             }
@@ -54,7 +57,7 @@ userActions.isAuthenticated({
 
     }
 
-});<% } else { %>
+});<% } else if (useServer){ %>
 // Enable pushState for compatible browsers
 var enablePushState = true;
 
@@ -62,10 +65,12 @@ var enablePushState = true;
 var pushState = !!(enablePushState && window.history && window.history.pushState);
 
 if (pushState) {
+    // Start listening to route changes with pushState
     router.configure({
         html5history: true
     }).init();
 } else {
+    // Start listening to route changes without pushState
     router.init();
 }
 
@@ -79,11 +84,34 @@ Dispatcher.register(function(payload) {
 
     var action = payload.action;
 
-    if (action.actionType === ActionTypes.SET_CURRENT_ROUTE) {
+    if (action.actionType === routesConstants.SET_CURRENT_ROUTE) {
         router.setRoute(action.route);
     }
 
-    else if (action.actionType === ActionTypes.SET_CURRENT_PAGE) {
+    else if (action.actionType === pageConstants.SET_CURRENT_PAGE) {
+        // Set current page title
+        document.title = action.page.title;
+    }
+
+    return true; // No errors.  Needed by promise in Dispatcher.
+});<% } else { %>
+
+// Start listening to route changes
+router.init();
+
+// Handle urls by ensuring the use of hash routing
+window.location.replace('/#' + window.location.pathname);
+
+// Handle route and page changes
+Dispatcher.register(function(payload) {
+
+    var action = payload.action;
+
+    if (action.actionType === routesConstants.SET_CURRENT_ROUTE) {
+        router.setRoute(action.route);
+    }
+
+    else if (action.actionType === pageConstants.SET_CURRENT_PAGE) {
         // Set current page title
         document.title = action.page.title;
     }

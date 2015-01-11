@@ -29,7 +29,8 @@ describe('Yeogurt generator using React', function() {
                         'client/scripts',
                         'client/scripts/main.js',
                         'client/scripts/routes.js',
-                        'client/scripts/constants/action-types.js',
+                        'client/scripts/constants/page.js',
+                        'client/scripts/constants/routes.js',
                         'client/scripts/constants/defaults.js',
                         'client/scripts/constants/payload-sources.js',
                         'client/scripts/stores/default.js',
@@ -197,7 +198,8 @@ describe('Yeogurt generator using React', function() {
                         'client/scripts/dispatchers/default.js',
                         'client/scripts/actions/page.js',
                         'client/scripts/actions/routes.js',
-                        'client/scripts/constants/action-types.js',
+                        'client/scripts/constants/page.js',
+                        'client/scripts/constants/routes.js',
                         'client/scripts/constants/defaults.js',
                         'client/scripts/constants/payload-sources.js'
                     ];
@@ -358,7 +360,8 @@ describe('Yeogurt generator using React', function() {
                         'client/scripts/actions/messages.js',
                         'client/scripts/actions/page.js',
                         'client/scripts/actions/routes.js',
-                        'client/scripts/constants/action-types.js',
+                        'client/scripts/constants/page.js',
+                        'client/scripts/constants/routes.js',
                         'client/scripts/constants/defaults.js',
                         'client/scripts/constants/payload-sources.js',
                     ];

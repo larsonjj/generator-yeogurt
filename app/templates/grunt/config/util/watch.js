@@ -115,17 +115,9 @@ var taskConfig = function(grunt) {
                 '!<%%= yeogurt.client %>/scripts/**/components/*.js'<% } %>
             ],
             tasks: [
-                'newer:jshint'<% if (jsOption === 'browserify') { %>,
-                'exorcise:server'<% } %>
+                'newer:jshint'
             ]
-        },<% if (jsFramework === 'react' && jsOption === 'browserify') { %>
-        react: {<% if (useJsx) { %>
-            files: ['<%%= yeogurt.client %>/scripts/components/**/*.jsx'],<% } else { %>
-            files: ['<%%= yeogurt.client %>/scripts/components/**/*.js'],<% } %>
-            tasks: [
-                'exorcise:server'
-            ]
-        },<% } %><% if (jsTemplate === 'handlebars') { %>
+        },<% if (jsTemplate === 'handlebars') { %>
         handlebars: {
             files: ['<%%= yeogurt.client %>/templates/**/*.hbs'],
             tasks: [
