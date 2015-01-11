@@ -232,7 +232,7 @@ Runs [`grunt build`](#grunt-build) and pushes optimized files to a specified FTP
 * [yeogurt:script](#script)
 * [yeogurt:style](#style)
 
-#### Static/Server Sites and Backbone applications
+#### Static/Server Sites
 * [yeogurt:template](#template)
 
 #### React application
@@ -241,6 +241,7 @@ Runs [`grunt build`](#grunt-build) and pushes optimized files to a specified FTP
 
 #### Backbone application
 * [yeogurt:view](#view)
+* [yeogurt:template](#view-template)
 * [yeogurt:model](#model)
 * [yeogurt:collection](#collection)
 
@@ -283,14 +284,12 @@ Produces:
 client/styles/_mystyle.scss
 ```
 
-## Static/Server Site and Backbone Sub-generators
-***Note: (The following sub-generator cannot be used with React applications)***
+## Static/Server Site
+***Note: (The following sub-generators cannot be used with React or Backbone applications)***
 
 ### Template
-> IMPORTANT: This sub-generator is unique in that it's behavior differs depending on if you have generated a Static/Server Site or a Backbone application.
 
-##### For Static/Server Sites
-Creates a jade file in the `client` folder (or `server` folder if using an Express server).
+Creates a jade or swig file in the `client` folder (or `server` folder if using an Express server).
 
 Examples:
 
@@ -314,34 +313,16 @@ Produces:
 
 ```
 # Page
-{client,server}/templates/mytemplate.jade
+{client,server}/templates/mytemplate.{jade,swig}
 
 # Layout
-{client,server}/templates/layouts/mytemplate.jade
+{client,server}/templates/layouts/mytemplate.{jade,swig}
 
 # Module
-{client,server}/templates/modules/mytemplate.jade
+{client,server}/templates/modules/mytemplate.{jade,swig}
 ```
 
-***NOTE: `{client,server}` means that the Jade file will be created in the `client` folder, or in the `server` folder if using an Express server***
-
-##### For Backbone applications
-Creates a new template file (Jade, Handlebars, or Lo-dash depending on which you chose).
-
-Example:
-
-```
-yo yeogurt:template mytemplate
-? Where would you like to create this template?: client/templates
-```
-
-Produces:
-
-```
-client/templates/mytemplate.{jst,hbs,jade}
-```
-
-***NOTE: `{jst,hbs,jade}` means that the file extension template will match the template engine you chose: `lo-dash, handlebars, or jade` respectively***
+***NOTE: `{client,server}` means that the template file will be created in the `client` folder, or in the `server` folder if using an Express server. In the same way, {jade,swig} means that the file extension will match the template engine you are using***
 
 ## React Sub-generators
 ***Note: (The following sub-generators can only be used with React applications)***
@@ -411,7 +392,25 @@ client/templates/myview.{jst,hbs,jade}
 test/spec/views/myview.spec.js
 ```
 
-***NOTE: `{jst,hbs,jade}` means that the file extension template will match the template engine you chose: `underscore, handlebars, or jade` respectively***
+***NOTE: `{jst,hbs,jade}` means that the file extension will match the template engine you chose: `underscore, handlebars, or jade` respectively***
+
+### View Template
+Creates a new template file (Jade, Handlebars, or Lo-dash depending on which you chose).
+
+Example:
+
+```
+yo yeogurt:template mytemplate
+? Where would you like to create this template?: client/templates
+```
+
+Produces:
+
+```
+client/templates/mytemplate.{jst,hbs,jade}
+```
+
+***NOTE: `{jst,hbs,jade}` means that the file extension will match the template engine you chose: `lo-dash, handlebars, or jade` respectively***
 
 ### Model
 
