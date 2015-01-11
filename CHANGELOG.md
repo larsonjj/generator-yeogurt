@@ -1,3 +1,11 @@
+### v0.13.2:
+#### date: 2015-1-11
+##### changes:
+* Added `grunt-wiredep` comments to main stylesheet for all types of projects (Stylus, Less, Sass/Scss) which will automatically add bower components/libraries.
+* Removed `grunt-exorcise` as it is un-needed for development of projects using browserify. (Sourcemap for browserify bundles will be inline rather than in a seperate file now)
+* Updated `grunt-browserify` and `minifify` plugins, so now browserify v6 is available
+* Updated Guides to reflect `0.13.0+` changes
+
 ### v0.13.1:
 #### date: 2015-1-09
 ##### changes:
