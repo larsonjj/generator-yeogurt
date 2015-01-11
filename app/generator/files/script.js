@@ -237,6 +237,18 @@ var scriptFiles = function scriptFiles() {
             this.template('test/helpers/phantomjs-shims.js', 'test/helpers/phantomjs-shims.js');
         }
     }
+    else if (this.jsFramework === 'angular') {
+        this.template('client/scripts/angular/main/main.js', 'client/scripts/main.js');
+
+        // Templates
+        this.template('client/scripts/angular/templates/index.html', 'client/templates/index.html');
+
+        // Controllers
+        this.template('client/scripts/angular/controllers/index.js', 'client/scripts/controllers/index.js');
+
+        // Decorators
+        this.template('client/scripts/angular/decorators/index.js', 'client/scripts/decorators/index.js');
+    }
 };
 
 module.exports = scriptFiles;

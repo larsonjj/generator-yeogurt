@@ -14,7 +14,7 @@ var TemplateGenerator = module.exports = function TemplateGenerator() {
     // options
     this.useDashboard = fileJSON.useDashboard;
     this.projectName = fileJSON.projectName;
-    this.jsTemplate = fileJSON.jsTemplate;
+    this.jsFramework = fileJSON.jsFramework;
     this.testFramework = fileJSON.testFramework;
     this.htmlOption = fileJSON.htmlOption;
     this.useServer = fileJSON.useServer;
@@ -29,7 +29,7 @@ util.inherits(TemplateGenerator, yeoman.generators.NamedBase);
 TemplateGenerator.prototype.ask = function ask() {
 
     if (this.singlePageApplication) {
-        if (this.jsTemplate === 'react') {
+        if (this.jsFramework === 'react') {
             this.log('You have chosen to use React, so this subgenerator is not available.');
             this.log('Try the following to generate a new react component: yo yeogurt:react myreact');
             this.log('Operation aborted');

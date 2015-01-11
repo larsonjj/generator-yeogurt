@@ -37,11 +37,12 @@ var clientPrompts = function clientPrompts() {
         type: 'list',
         name: 'jsFramework',
         message: 'Which ' + 'JavaScript framework/library'.blue + ' would you like to use?',
-        choices: ['React', 'Backbone'],
+        choices: ['React', 'Backbone', 'Angular'],
         filter: function(val) {
             var filterMap = {
                 'React': 'react',
-                'Backbone': 'backbone'
+                'Backbone': 'backbone',
+                'Angular': 'angular'
             };
 
             return filterMap[val];
@@ -68,7 +69,7 @@ var clientPrompts = function clientPrompts() {
             return filterMap[val];
         }
     }, {
-        when: function(answers) { return answers.jsFramework !== 'react'; },
+        when: function(answers) { return answers.jsFramework !== 'react' && answers.jsFramework !== 'angular'; },
         type: 'list',
         name: 'jsOption',
         message: 'Which ' + 'JavaScript module library'.blue + ' would you like to use?',

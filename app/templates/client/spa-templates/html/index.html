@@ -8,8 +8,8 @@
     }
     [/dash] -->
 <% } %>
-<!--[if lte IE 8]><html class="lt-ie9 no-js" lang="en"><![endif]-->
-<!--[if gt IE 8]><!--><html lang="en" class="no-js"><!--<![endif]-->
+<!--[if lte IE 8]><html class="lt-ie9 <% if (jsFramework === 'angular') { %>ng-app="<%= _.classify(projectName) %>"<% } %> no-js" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--><html lang="en" <% if (jsFramework === 'angular') { %>ng-app="<%= _.classify(projectName) %>"<% } %> class="no-js"><!--<![endif]-->
     <head>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -68,7 +68,7 @@
         <code class="version">v<%= pkg.version %></code><% } else if (singlePageApplication) { %>
 
         <!-- Application loads here -->
-        <div id="app-wrapper"></div><% } %><% if (jsFramework === 'react') { %>
+        <div id="app-wrapper" <% if (jsFramework === 'angular') { %>ng-view<% } %>></div><% } %><% if (jsFramework === 'react') { %>
 
         <!-- build:js(client) scripts/lt-ie9.js -->
         <!--[if lt IE 9]>
@@ -85,7 +85,7 @@
             <script src="/bower_components/backbone/backbone.js"></script><% } %><% if (jsTemplate === 'handlebars') { %>
             <script src="/bower_components/handlebars/handlebars.runtime.js"></script><% } else if (jsTemplate === 'jade') { %>
             <script src="/bower_components/jade/runtime.js"></script><% } %>
-            <!-- endbower --><% if (singlePageApplication && jsFramework !== 'react') { %>
+            <!-- endbower --><% if (singlePageApplication && jsFramework !== 'react' && jsFramework !== 'angular') { %>
         <script src="/templates/templates.js"></script><% } %>
         <!-- endbuild --><% if (jsOption === 'requirejs') { %>
 
@@ -93,12 +93,14 @@
 
         <script src="/scripts/main.js"></script><% } else { %>
 
-        <!-- build:js(client) scripts/main.js -->
+        <!-- build:js(client) scripts/main.js --><% if (jsFramework !== 'angular') { %>
             <!-- [injector:js] -->
-            <!-- [endinjector] --><% if (jsFramework === 'backbone') { %><% if (jsOption === 'none') { %>
+            <!-- [endinjector] --><% } %><% if (jsFramework === 'backbone') { %><% if (jsOption === 'none') { %>
         <script src="/scripts/views/layouts/default.js"></script><% } %>
         <script src="/scripts/routes.js"></script><% } %>
-        <script src="/scripts/main.js"></script>
+        <script src="/scripts/main.js"></script><% if (jsFramework === 'angular') { %>
+        <!-- [injector:js] -->
+        <!-- [endinjector] --><% } %>
         <!-- endbuild --><% } %>
     </body>
 </html>
