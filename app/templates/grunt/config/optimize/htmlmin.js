@@ -19,7 +19,7 @@ var taskConfig = function(grunt) {
                 expand: true,
                 cwd: '<%%= yeogurt.dist %>/<% if (useServer) { %>client<% } %>',
                 src: [
-                    '*.html', 'templates/**/*.html'
+                    '*.html'<% if (jsFramework === 'angular' || !singlePageApplication) { %>, 'templates/**/*.html'<% } %>
                 ],
                 dest: '<%%= yeogurt.dist %>/<% if (useServer) { %>client<% } %>'
             }]
