@@ -39,7 +39,7 @@ define(function(require) {
                     Backbone.history.navigate('/', {trigger: true});
                 },
                 complete: function(res) {
-                    app.messages.showMessages(res.responseJSON);
+                    app.messages.setMessages(res.responseJSON);
                 }
             });
         },

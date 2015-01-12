@@ -12,7 +12,7 @@ App.Models.Messages = Backbone.Model.extend({
         messages: {}
     },
 
-    showMessages: function(data) {
+    setMessages: function(data) {
         if (!_.isEmpty(data)) {
             this.set({
                 messages: data

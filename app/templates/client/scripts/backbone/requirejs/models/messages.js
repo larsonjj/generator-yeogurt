@@ -10,7 +10,7 @@ define(function(require) {
             messages: {}
         },
 
-        showMessages: function(data) {
+        setMessages: function(data) {
             if (!_.isEmpty(data)) {
                 this.set({
                     messages: data

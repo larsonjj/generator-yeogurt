@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('<%= _.classify(projectName) %>', [
-    '<%= _.classify(projectName) %>.index'
+angular.module('<%= _.classify(projectName) %>.index', [
+    '<%= _.classify(projectName) %>.routes'
 ])
 
 .controller('IndexCtrl', [function() {

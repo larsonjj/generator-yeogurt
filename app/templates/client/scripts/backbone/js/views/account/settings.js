@@ -39,7 +39,7 @@ App.Views.Settings = Backbone.View.extend({
                 Backbone.history.navigate('/', {trigger: true});
             },
             complete: function(res) {
-                App.messages.showMessages(res.responseJSON);
+                App.messages.setMessages(res.responseJSON);
             }
         });
     },

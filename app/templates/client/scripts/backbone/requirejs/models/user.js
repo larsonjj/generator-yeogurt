@@ -112,7 +112,7 @@ define(function(require) {
                     }
                 }
             }).complete(function(res) {
-                messages.showMessages(res.responseJSON);
+                messages.setMessages(res.responseJSON);
                 if (callback.complete) {
                     callback.complete(res);
                 }
