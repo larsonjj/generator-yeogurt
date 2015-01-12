@@ -2,11 +2,8 @@
 
 // Declare app level module which depends on views, and components
 angular.module('<%= _.classify(projectName) %>', [
-    '<%= _.classify(projectName) %>.routes',
     'ngSanitize',
-    'ngRoute'<% if (useServer) { %>,
-    'ngResource'<% } %><% if (useAuth) { %>,
-    'ngCookie'<% } %>
+    'ngRoute'
 ])
 
 .config(['$routeProvider'<% if (useServer) { %>, '$locationProvider'<% } %><% if (useAuth) { %>, '$httpProvider'<% } %>, function($routeProvider<% if (useServer) { %>, $locationProvider<% } %><% if(useAuth) { %>, $httpProvider<% } %>) {
@@ -28,13 +25,14 @@ angular.module('<%= _.classify(projectName) %>', [
     }
 ])<% if(useAuth) { %>
 
-.factory('authInterceptor', function($rootScope, $q, $cookieStore, $location) {
+.factory('authInterceptor', function($rootScope, $q, $location) {
     return {
         // Add authorization token to headers
         request: function(config) {
             config.headers = config.headers || {};
-            if ($cookieStore.get('token')) {
-                config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
+            var token = $.cookie('token');
+            if (token) {
+                config.headers.Authorization = 'Bearer ' + token;
             }
             return config;
         },
@@ -42,9 +40,8 @@ angular.module('<%= _.classify(projectName) %>', [
         // Intercept 401s and redirect you to login
         responseError: function(response) {
             if (response.status === 401) {
-                $location.path('/login');
-                // remove any stale tokens
-                $cookieStore.remove('token');
+                // Remove auth token
+                $.removeCookie('token');
                 return $q.reject(response);
             } else {
                 return $q.reject(response);
@@ -53,13 +50,12 @@ angular.module('<%= _.classify(projectName) %>', [
     };
 })
 
-.run(function($rootScope, $location, Auth) {
+.run(function($rootScope, $location, User) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$routeChangeStart', function(event, next) {
-        Auth.isLoggedInAsync(function(loggedIn) {
-            if (next.authenticate && !loggedIn) {
-                $location.path('/login');
-            }
-        });
+        // Check to see if user is authenticated
+        User.isAuthenticated();
     });
 })<% } %>;
+
+console.log('Welcome to Yeogurt!');

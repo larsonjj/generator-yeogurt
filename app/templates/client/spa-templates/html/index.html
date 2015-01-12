@@ -99,10 +99,11 @@
 
         <!-- build:js(client) scripts/main.js --><% if (jsFramework !== 'angular') { %>
             <!-- [injector:js] -->
-            <!-- [endinjector] --><% } %><% if (jsFramework === 'backbone' && jsOption === 'none') { %>
-        <script src="/scripts/views/layouts/default.js"></script><% } %><% if (singlePageApplication) { %>
+            <!-- [endinjector] --><% } %><% if (jsFramework === 'backbone') { %><% if (jsOption === 'none') { %>
+        <script src="/scripts/views/layouts/default.js"></script><% } %>
         <script src="/scripts/routes.js"></script><% } %>
         <script src="/scripts/main.js"></script><% if (jsFramework === 'angular') { %>
+        <script src="/scripts/routes.js"></script>
         <!-- [injector:js] -->
         <!-- [endinjector] --><% } %>
         <!-- endbuild --><% } %>

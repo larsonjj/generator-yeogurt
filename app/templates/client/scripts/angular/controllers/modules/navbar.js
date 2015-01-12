@@ -2,7 +2,7 @@
 
 angular.module('<%= _.classify(projectName) %>')
 
-.controller('NavbarCtrl', [function($scope, User) {
+.controller('NavbarCtrl', ['$scope', 'User', function($scope, User) {
 
     $scope.loggedIn = User.getUser().loggedIn;
     $scope.user = User.getUser();

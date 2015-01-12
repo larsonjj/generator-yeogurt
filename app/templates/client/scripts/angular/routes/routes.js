@@ -1,9 +1,6 @@
 'use strict';
 
-angular.module('<%= _.classify(projectName) %>.routes', [
-    'ngRoute',
-    '<%= projectName %>.index'
-])
+angular.module('<%= _.classify(projectName) %>')
 
 .config(['$routeProvider',
     function($routeProvider) {

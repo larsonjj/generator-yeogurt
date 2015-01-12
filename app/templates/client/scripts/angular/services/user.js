@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('<%= _.classify(projectName) %>')
-    .factory('User', function User($location, $rootScope, $resource, $http, Messages) {
+    .factory('User', function User($location, $rootScope, $http, Messages) {
 
         // Store user info
         var currentUser = {};
@@ -22,7 +22,8 @@ angular.module('<%= _.classify(projectName) %>')
 
             },
 
-            isAuthenticated: function() {
+            isAuthenticated: function(callback) {
+                var self = this;
                 $http.get('/user')
                 .success(function(res) {
                     var userData = res.user;
@@ -30,7 +31,7 @@ angular.module('<%= _.classify(projectName) %>')
                     currentUser = userData;
                 })
                 .error(function() {
-                    currentUser = this.defaults;
+                    currentUser = self.defaults;
                 });
             },
 
@@ -69,7 +70,7 @@ angular.module('<%= _.classify(projectName) %>')
                         $location.path(options.errorUrl);
                     }
                 })
-                .complete(function(res) {
+                .always(function(res) {
                     Messages.setMessages(res.responseJSON);
                 });
             },
@@ -87,7 +88,7 @@ angular.module('<%= _.classify(projectName) %>')
 
             logout: function() {
                 // Remove token
-                this.setToken('', -1);
+                $.removeCookie('token');
 
                 // Reset user to defaults
                 this.setUser(this.defaults);

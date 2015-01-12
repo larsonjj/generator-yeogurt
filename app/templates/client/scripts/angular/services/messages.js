@@ -1,19 +1,21 @@
+'use strict';
+
 angular.module('<%= _.classify(projectName) %>')
-.factory('Messages', function Messages($rootScope, $scope) {
-    $scope.currentMessages = {};
+.factory('Messages', function Messages($rootScope) {
+    $rootScope.currentMessages = {};
 
     $rootScope.$on('$routeChangeSuccess', function() {
-        $scope.currentMessages = {};
+        $rootScope.currentMessages = {};
     });
 
     return {
         setMessages: function(data) {
             if (!$.isEmptyObject(data)) {
-                $scope.currentMessages = data;
+                $rootScope.currentMessages = data;
             }
         },
         getMessages: function() {
-            return $scope.currentMessages;
+            return $rootScope.currentMessages;
         }
     };
 });
