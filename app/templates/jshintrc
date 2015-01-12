@@ -49,7 +49,7 @@
         "Modernizr": true,<% if (jsFramework === 'angular') { %>
         "angular": true,<% } %>
         "jQuery": true<% if (jsOption === 'requirejs') { %>,
-        "requirejs": true<% } %><% if (jsFramework === 'backbone' || jsFramework === 'react') { %>,
+        "requirejs": true<% } %><% if (jsFramework === 'backbone') { %>,
         "Backbone": true,<% if (jsOption === 'none') { %>
         "App": true,<% } else { %>
         "app": true,<% } %>

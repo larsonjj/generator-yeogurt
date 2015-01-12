@@ -1,5 +1,5 @@
-.main-nav
+<% if (useAuth) { %>.main-nav<% } %>
 .default
-    .main-container
-        .messages
+    .main-container<% if (useAuth) { %>
+        .messages<% } %>
         .content
