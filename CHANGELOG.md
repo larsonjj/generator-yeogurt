@@ -1,3 +1,8 @@
+### v0.13.5:
+#### date: 2015-1-12
+##### changes:
+* Actually fixed [#93](https://github.com/larsonjj/generator-yeogurt/issues/93)
+
 ### v0.13.4:
 #### date: 2015-1-12
 ##### changes:
