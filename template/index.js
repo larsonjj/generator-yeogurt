@@ -15,6 +15,7 @@ var TemplateGenerator = module.exports = function TemplateGenerator() {
     this.useDashboard = fileJSON.useDashboard;
     this.projectName = fileJSON.projectName;
     this.jsFramework = fileJSON.jsFramework;
+    this.jsTemplate = fileJSON.jsTemplate;
     this.testFramework = fileJSON.testFramework;
     this.htmlOption = fileJSON.htmlOption;
     this.useServer = fileJSON.useServer;
@@ -117,7 +118,10 @@ TemplateGenerator.prototype.files = function files() {
     }
 
     if (this.singlePageApplication) {
-        if (this.jsTemplate === 'underscore') {
+        if (this.jsFramework === 'angular') {
+            this.template('template.html', this.templateFile + '.html');
+        }
+        else if (this.jsTemplate === 'underscore') {
             this.template('template.html', this.templateFile + '.jst');
         }
         else if (this.jsTemplate === 'handlebars') {
