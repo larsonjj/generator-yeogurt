@@ -27,7 +27,8 @@ var taskConfig = function(grunt) {
                     'styles/styleguide.md',
                     'docs/styleguide/public/images',<% } %>
                     'styles/fonts/**/*.{woff,otf,ttf,eot,svg}',
-                    'images/**/*.{webp}',
+                    'images/**/*.{webp}',<% if (jsFramework === 'angular') { %>
+                    'templates/**/*.html',<% } %>
                     '!*.js',
                     '*.{ico,png,txt}'<% if (singlePageApplication) { %>,
                     '*.html'<% } %>

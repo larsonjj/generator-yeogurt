@@ -10,6 +10,7 @@ var clientPrompts = function clientPrompts() {
     }
 
     var cb = this.async();
+    var self = this;
 
     this.log('\n---- ' + 'Client'.red.underline + ' ----\n');
 
@@ -33,7 +34,7 @@ var clientPrompts = function clientPrompts() {
             return filterMap[val];
         }
     }, {
-        when: function(answers) { return answers.singlePageApplication; },
+        when: function(answers) { return answers.singlePageApplication && self.serverPrompts.useAuth; },
         type: 'list',
         name: 'jsFramework',
         message: 'Which ' + 'JavaScript framework/library'.blue + ' would you like to use?',
@@ -42,6 +43,21 @@ var clientPrompts = function clientPrompts() {
             var filterMap = {
                 'React': 'react',
                 'Backbone': 'backbone'
+            };
+
+            return filterMap[val];
+        }
+    }, {
+        when: function(answers) { return answers.singlePageApplication && !self.serverPrompts.useAuth; },
+        type: 'list',
+        name: 'jsFramework',
+        message: 'Which ' + 'JavaScript framework/library'.blue + ' would you like to use?',
+        choices: ['React', 'Backbone', 'Angular'],
+        filter: function(val) {
+            var filterMap = {
+                'React': 'react',
+                'Backbone': 'backbone',
+                'Angular': 'angular'
             };
 
             return filterMap[val];
@@ -68,7 +84,7 @@ var clientPrompts = function clientPrompts() {
             return filterMap[val];
         }
     }, {
-        when: function(answers) { return answers.jsFramework !== 'react'; },
+        when: function(answers) { return answers.jsFramework !== 'react' && answers.jsFramework !== 'angular'; },
         type: 'list',
         name: 'jsOption',
         message: 'Which ' + 'JavaScript module library'.blue + ' would you like to use?',

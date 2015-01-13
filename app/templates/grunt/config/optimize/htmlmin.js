@@ -12,13 +12,14 @@ var taskConfig = function(grunt) {
                 conservativeCollapse: true,
                 removeCommentsFromCDATA: true,
                 removeEmptyAttributes: true,
-                removeRedundantAttributes: true
+                removeRedundantAttributes: true,
+                collapseWhitespace: true
             },
             files: [{
                 expand: true,
                 cwd: '<%%= yeogurt.dist %>/<% if (useServer) { %>client<% } %>',
                 src: [
-                    '*.html', 'views/**/*.html'
+                    '*.html'<% if (jsFramework === 'angular' || !singlePageApplication && !useServer) { %>, 'templates/**/*.html'<% } %>
                 ],
                 dest: '<%%= yeogurt.dist %>/<% if (useServer) { %>client<% } %>'
             }]

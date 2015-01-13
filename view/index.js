@@ -19,7 +19,7 @@ var ViewGenerator = module.exports = function ViewGenerator() {
     this.view = this.options.type || 'page';
     this.useDashboard = fileJSON.useDashboard;
     this.projectName = fileJSON.projectName;
-    this.jsTemplate = fileJSON.jsTemplate;
+    this.jsFramework = fileJSON.jsFramework;
     this.useTesting = fileJSON.useTesting;
     this.testFramework = fileJSON.testFramework;
     this.htmlOption = fileJSON.htmlOption;
@@ -35,7 +35,7 @@ util.inherits(ViewGenerator, yeoman.generators.NamedBase);
 // Prompts
 ViewGenerator.prototype.ask = function ask() {
     if (this.singlePageApplication) {
-        if (this.jsTemplate === 'react') {
+        if (this.jsFramework === 'react') {
             this.log('You have chosen to use React, so this subgenerator is not available.');
             this.log('Try the following to generate a new react component: yo yeogurt:react myreact');
             this.log('Operation aborted');

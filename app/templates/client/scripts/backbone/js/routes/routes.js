@@ -47,7 +47,7 @@ App.Routers.Main = Backbone.Router.extend({
         }
         // If reset token is invalid or has expired, display error message
         if (window.location.search === '?error=invalid') {
-            App.messages.showMessages({
+            App.messages.setMessages({
                 errors: [{
                     msg: 'Reset is invalid or has expired.'
                 }]

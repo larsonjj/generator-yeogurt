@@ -39,7 +39,7 @@ var Settings = Backbone.View.extend({
                 Backbone.history.navigate('/', {trigger: true});
             },
             complete: function(res) {
-                messages.showMessages(res.responseJSON);
+                messages.setMessages(res.responseJSON);
             }
         });
     },

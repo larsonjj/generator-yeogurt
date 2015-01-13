@@ -115,7 +115,7 @@ App.Models.User = Backbone.Model.extend({<% if (dbOption === 'mongodb') { %>
                 }
             }
         }).complete(function(res) {
-            App.messages.showMessages(res.responseJSON);
+            App.messages.setMessages(res.responseJSON);
             if (callback.complete) {
                 callback.complete(res);
             }

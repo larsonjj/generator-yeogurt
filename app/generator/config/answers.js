@@ -129,8 +129,10 @@ var answersConfig = function answersConfig() {
 
     // Default Overwrites
     if (this.jsFramework === 'react') {
-        this.jsTemplate = this.answers.jsTemplate = 'react';
         this.jsOption   = this.answers.jsOption   = 'browserify';
+    }
+    else if (this.jsFramework === 'angular') {
+        this.jsOption   = this.answers.jsOption   = 'none';
     }
 
     // Default jsOption to Browserify
