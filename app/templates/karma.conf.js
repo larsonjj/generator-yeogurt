@@ -38,9 +38,9 @@ module.exports = function(config) {
             'test/scripts/bundle.js'<% } else { %><% if (jsFramework === 'angular') { %>
             'client/scripts/main.js',
             'client/scripts/routes.js',
-            'client/scripts/**/!(decorators)/**/*.js',
+            'client/scripts/**/!(decorators|values)/**/*.js',
             'client/scripts/**/!(main|routes).js',
-            'client/scripts/**/decorators/**/*.js',<% } %><% if (jsFramework === 'backbone') { %>
+            'client/scripts/**/(decorators|values)/**/*.js',<% } %><% if (jsFramework === 'backbone') { %>
             // Load all scripts except ones that require a specific order (ie. 'main' and 'routes')
             'client/scripts/**/!(main|routes<% if (jsFramework === 'backbone' && jsOption === 'none') { %>|layouts)/*<% } else { %>)<% } %>.js',<% if (jsFramework === 'backbone' && jsOption === 'none') { %>
             'client/scripts/**/layouts/**/*.js',<% } %>
