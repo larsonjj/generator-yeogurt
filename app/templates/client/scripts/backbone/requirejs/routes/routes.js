@@ -3,7 +3,6 @@ define(function(require) {
 
     var user = require('./models/user');
     var messages = require('./models/messages');
-    var router = require('./routes');
     var LoginView = require('./views/account/login');
     var SignupView = require('./views/account/signup');
     var ResetView = require('./views/account/reset');
