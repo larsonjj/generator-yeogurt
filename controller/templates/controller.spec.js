@@ -5,8 +5,8 @@ describe('Controller: <%= _.classify(name) %>Ctrl', function() {
     // load module that the controller is associated with
     beforeEach(module('<%= _.camelize(projectName) %>'));
 
-    var <%= _.classify(name) %>Ctrl,
-    scope;
+    var <%= _.classify(name) %>Ctrl;
+    var scope;
 
     // Setup controller and mock it's scope
     beforeEach(inject(function($controller, $rootScope) {
