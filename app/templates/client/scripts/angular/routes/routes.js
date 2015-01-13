@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('<%= _.classify(projectName) %>')
+angular.module('<%= _.camelize(projectName) %>')
 
 .config(['$routeProvider',
     function($routeProvider) {

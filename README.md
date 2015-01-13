@@ -245,6 +245,14 @@ Runs [`grunt build`](#grunt-build) and pushes optimized files to a specified FTP
 * [yeogurt:model](#model)
 * [yeogurt:collection](#collection)
 
+#### Angular application
+* [yeogurt:template](#ng-template)
+* [yeogurt:controller](#controller)
+* [yeogurt:directive](#directive)
+* [yeogurt:filter](#filter)
+* [yeogurt:service](#service)
+* [yeogurt:decorator](#decorator)
+
 ***Note: Generators need to be run from the root directory of your app.***
 
 ## Default Generators

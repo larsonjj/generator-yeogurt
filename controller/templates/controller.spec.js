@@ -1,22 +1,22 @@
 'use strict';
 
-describe('Controller: IndexCtrl', function() {
+describe('Controller: <%= _.classify(name) %>Ctrl', function() {
 
     // load module that the controller is associated with
-    beforeEach(module('<%= _.classify(projectName) %>'));
+    beforeEach(module('<%= _.camelize(projectName) %>'));
 
-    var IndexCtrl,
-        scope;
+    var <%= _.classify(name) %>Ctrl,
+    scope;
 
     // Setup controller and mock it's scope
     beforeEach(inject(function($controller, $rootScope) {
         scope = $rootScope.$new();
-        IndexCtrl = $controller('IndexCtrl', {
+        <%= _.classify(name) %>Ctrl = $controller('<%= _.classify(name) %>Ctrl', {
             $scope: scope
         });
     }));
 
-    it('should have scope defined', function() {
+    it('should attach a property named yeogurt to the scope', function() {
         expect(scope.yeogurt)<% if (testFramework === 'jasmine') { %>.toBe('awesome')<% } else if (testFramework === 'mocha') { %>.to.equal('awesome')<% } %>;
     });
 });

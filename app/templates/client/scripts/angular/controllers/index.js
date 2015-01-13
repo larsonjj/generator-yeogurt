@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('<%= _.classify(projectName) %>')
+angular.module('<%= _.camelize(projectName) %>')
 
-.controller('IndexCtrl', [function() {
-    console.log('Welcome to Yeogurt!');
+.controller('IndexCtrl', ['$scope', function($scope) {
+    $scope.yeogurt = 'awesome';
 }]);

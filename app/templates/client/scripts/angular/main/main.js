@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('<%= _.classify(projectName) %>', [
+angular.module('<%= _.camelize(projectName) %>', [
     'ngRoute'
 ])
 
@@ -10,3 +10,5 @@ angular.module('<%= _.classify(projectName) %>', [
 
     $locationProvider.html5Mode(true);<% } %>
 }]);
+
+console.log('Welcome to Yeogurt!');
