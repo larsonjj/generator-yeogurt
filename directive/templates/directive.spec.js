@@ -2,7 +2,7 @@
 
 describe('Directive: <%= _.camelize(name) %>', function() {
 
-    // load module that the directive is associated with
+    // Load module that the directive is associated with
     beforeEach(module('<%= _.camelize(projectName) %>'));
 
     var element;

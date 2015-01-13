@@ -251,6 +251,7 @@ Runs [`grunt build`](#grunt-build) and pushes optimized files to a specified FTP
 * [yeogurt:directive](#directive)
 * [yeogurt:filter](#filter)
 * [yeogurt:service](#service)
+* [yeogurt:factory](#factory)
 * [yeogurt:decorator](#decorator)
 
 ***Note: Generators need to be run from the root directory of your app.***

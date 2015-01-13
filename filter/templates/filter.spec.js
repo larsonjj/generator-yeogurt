@@ -2,7 +2,7 @@
 
 describe('Filter: <%= _.camelize(name) %>', function() {
 
-    // load module that the filter is associated with
+    // Load module that the filter is associated with
     beforeEach(module('<%= _.camelize(projectName) %>'));
 
     // Setup a new instance of the filter before each test

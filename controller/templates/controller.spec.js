@@ -2,7 +2,7 @@
 
 describe('Controller: <%= _.classify(name) %>Ctrl', function() {
 
-    // load module that the controller is associated with
+    // Load module that the controller is associated with
     beforeEach(module('<%= _.camelize(projectName) %>'));
 
     var <%= _.classify(name) %>Ctrl;
