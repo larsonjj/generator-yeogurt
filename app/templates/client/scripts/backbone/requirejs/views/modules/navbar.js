@@ -1,7 +1,7 @@
 define(function(require) {
     'use strict';
 
-    var app = require('../../app');
+    var user = require('../../models/user');
 
     var Navbar = Backbone.View.extend({
 
@@ -15,19 +15,19 @@ define(function(require) {
 
         initialize: function() {
             // Re-render template when user model changes
-            this.listenTo(app.user, 'change', this.render);
+            this.listenTo(user, 'change', this.render);
             this.render();
         },
 
         handleLogout: function(e) {
             e.preventDefault();
-            app.user.logout();
+            user.logout();
         },
 
         render: function() {
             this.$el.html(this.template({
-                loggedIn: app.user.get('loggedIn'),
-                user: app.user.toJSON()
+                loggedIn: user.get('loggedIn'),
+                user: user.toJSON()
             }));
             return this;
         }

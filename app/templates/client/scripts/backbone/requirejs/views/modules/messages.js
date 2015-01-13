@@ -1,7 +1,7 @@
 define(function(require) {
     'use strict';
 
-    var app = require('../../app');
+    var messages = require('../../models/messages');
 
     var Messages = Backbone.View.extend({
 
@@ -13,12 +13,12 @@ define(function(require) {
 
         initialize: function() {
             // Re-render template when data changes
-            this.listenTo(app.messages, 'change', this.render);
+            this.listenTo(messages, 'change', this.render);
             this.render();
         },
 
         render: function() {
-            this.$el.html(this.template(app.messages.toJSON()));
+            this.$el.html(this.template(messages.toJSON()));
             return this;
         }
 

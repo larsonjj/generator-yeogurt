@@ -1,12 +1,16 @@
+### v0.13.6:
+#### date: 2015-1-13
+##### changes:
+* Fixed [#96](https://github.com/larsonjj/generator-yeogurt/issues/96)
+
 ### v0.13.5:
 #### date: 2015-1-12
 ##### changes:
-* Actually fixed [#93](https://github.com/larsonjj/generator-yeogurt/issues/93)
+* Fixed [#93](https://github.com/larsonjj/generator-yeogurt/issues/93)
 
 ### v0.13.4:
 #### date: 2015-1-12
 ##### changes:
-* Fixed [#93](https://github.com/larsonjj/generator-yeogurt/issues/93)
 * General cleanup of unused logic and statments (bitrot)
 * Updated backbone layouts to not have messages and navigation if not using authentication
 
