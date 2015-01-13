@@ -241,7 +241,6 @@ var scriptFiles = function scriptFiles() {
         this.template('client/scripts/angular/main/main.js', 'client/scripts/main.js');
 
         // Templates
-        this.template('client/scripts/angular/templates/layouts/default.html', 'client/templates/layouts/default.html');
         this.template('client/scripts/angular/templates/index.html', 'client/templates/index.html');
 
         // Controllers
@@ -250,33 +249,6 @@ var scriptFiles = function scriptFiles() {
         // Routes
         this.template('client/scripts/angular/routes/routes.js', 'client/scripts/routes.js');
 
-        if (this.useAuth) {
-            // Templates
-            this.template('client/scripts/angular/templates/account/forgot.html', 'client/templates/account/forgot.html');
-            this.template('client/scripts/angular/templates/account/login.html', 'client/templates/account/login.html');
-            this.template('client/scripts/angular/templates/account/reset.html', 'client/templates/account/reset.html');
-            this.template('client/scripts/angular/templates/account/settings.html', 'client/templates/account/settings.html');
-            this.template('client/scripts/angular/templates/account/signup.html', 'client/templates/account/signup.html');
-
-            this.template('client/scripts/angular/templates/modules/navbar.html', 'client/templates/modules/navbar.html');
-            this.template('client/scripts/angular/templates/modules/messages.html', 'client/templates/modules/messages.html');
-
-            // Controllers
-            this.template('client/scripts/angular/controllers/index.js', 'client/scripts/controllers/index.js');
-
-            this.template('client/scripts/angular/controllers/account/forgot.js', 'client/scripts/controllers/account/forgot.js');
-            this.template('client/scripts/angular/controllers/account/login.js', 'client/scripts/controllers/account/login.js');
-            this.template('client/scripts/angular/controllers/account/reset.js', 'client/scripts/controllers/account/reset.js');
-            this.template('client/scripts/angular/controllers/account/settings.js', 'client/scripts/controllers/account/settings.js');
-            this.template('client/scripts/angular/controllers/account/signup.js', 'client/scripts/controllers/account/signup.js');
-
-            this.template('client/scripts/angular/controllers/modules/messages.js', 'client/scripts/controllers/modules/messages.js');
-            this.template('client/scripts/angular/controllers/modules/navbar.js', 'client/scripts/controllers/modules/navbar.js');
-
-            // Services
-            this.template('client/scripts/angular/services/messages.js', 'client/scripts/services/messages.js');
-            this.template('client/scripts/angular/services/user.js', 'client/scripts/services/user.js');
-        }
     }
 };
 

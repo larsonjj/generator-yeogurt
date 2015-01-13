@@ -12,7 +12,10 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [<% if (jsFramework !== 'react') { %>
-            'client/bower_components/jquery/dist/jquery.js',<% } %><% if (jsFramework === 'backbone') { %>
+            'client/bower_components/jquery/dist/jquery.js',<% } %><% if (jsFramework === 'angular') { %>
+            'client/bower_components/angular/angular.js',
+            'client/bower_components/angular-mocks/angular-mocks.js',
+            'client/bower_components/angular-route/angular-route.js',<% } %><% if (jsFramework === 'backbone') { %>
             'client/bower_components/underscore/underscore.js',
             'client/bower_components/backbone/backbone.js',<% if (useAuth) { %>
             'client/bower_components/jquery.cookie/jquery.cookie.js',<% } %><% } %><% if (jsFramework === 'react') { %>
@@ -32,12 +35,15 @@ module.exports = function(config) {
             'node_modules/requirejs/require.js',
             'node_modules/karma-requirejs/lib/adapter.js',
             'test/test-main.js',<% } else if (jsOption === 'browserify') { %>
-            'test/scripts/bundle.js'<% } else { %><% if (jsFramework === 'backbone') { %>
+            'test/scripts/bundle.js'<% } else { %><% if (jsFramework === 'angular') { %>
+            'client/scripts/main.js',
+            'client/scripts/routes.js',
+            'client/scripts/**/!(main|routes).js',<% } %><% if (jsFramework === 'backbone') { %>
             // Load all scripts except ones that require a specific order (ie. 'main' and 'routes')
             'client/scripts/**/!(main|routes<% if (jsFramework === 'backbone' && jsOption === 'none') { %>|layouts)/*<% } else { %>)<% } %>.js',<% if (jsFramework === 'backbone' && jsOption === 'none') { %>
             'client/scripts/**/layouts/**/*.js',<% } %>
-            'client/scripts/routes.js',<% } %>
-            'client/scripts/main.js',
+            'client/scripts/routes.js',<% } %><% if (jsFramework !== 'angular') { %>
+            'client/scripts/main.js',<% } %>
             'test/**/*.spec.js'<% } %>
         ],
 

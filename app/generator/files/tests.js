@@ -121,6 +121,9 @@ var testingFiles = function testingFiles() {
                 this.template('test/spec/react/actions/messages.spec.js', 'test/spec/actions/messages.spec.js');
             }
         }
+        else if (this.jsFramework === 'angular') {
+            this.template('test/spec/angular/controllers/index.spec.js', 'test/spec/controllers/index.spec.js');
+        }
         else {
             this.template('test/spec/main.spec.js', 'test/spec/main.spec.js');
         }
