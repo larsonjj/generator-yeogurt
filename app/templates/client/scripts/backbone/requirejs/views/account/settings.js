@@ -1,7 +1,8 @@
 define(function(require) {
     'use strict';
 
-    var app = require('../../app');
+    var user = require('../../models/user');
+    var messages = require('../../models/messages');
 
     var Settings = Backbone.View.extend({
 
@@ -22,31 +23,31 @@ define(function(require) {
         formInfo: function(e) {
             e.preventDefault();
             var $form = $(e.currentTarget);
-            app.user.updateSettings($form);
+            user.updateSettings($form);
         },
 
         formPassword: function(e) {
             e.preventDefault();
             var $form = $(e.currentTarget);
-            app.user.updatePassword($form);
+            user.updatePassword($form);
         },
 
         formDelete: function(e) {
             e.preventDefault();
-            app.user.destroy({
+            user.destroy({
                 success: function(res) {
-                    app.user.logout();
+                    user.logout();
                     Backbone.history.navigate('/', {trigger: true});
                 },
                 complete: function(res) {
-                    app.messages.setMessages(res.responseJSON);
+                    messages.showMessages(res.responseJSON);
                 }
             });
         },
 
         render: function() {
             this.$el.html(this.template({
-                user: app.user.toJSON()
+                user: user.toJSON()
             }));
             return this;
         }

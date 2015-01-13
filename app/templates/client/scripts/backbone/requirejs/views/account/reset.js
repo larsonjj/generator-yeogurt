@@ -1,7 +1,7 @@
 define(function(require) {
     'use strict';
 
-    var app = require('../../app');
+    var user = require('../../models/user');
 
     var Reset = Backbone.View.extend({
 
@@ -20,7 +20,7 @@ define(function(require) {
         formSubmit: function(e) {
             e.preventDefault();
             var $form = $(e.currentTarget);
-            app.user.reset($form);
+            user.reset($form);
         },
 
         render: function() {
