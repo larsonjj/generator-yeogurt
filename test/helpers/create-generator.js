@@ -9,8 +9,8 @@ var createSubGenerator = function(type, args, options, mockPrompts, asserts) {
         '../../../' + type
     ], args, options);
 
-    subGenerator.on( 'start', Output.mute );
-    subGenerator.on( 'end', Output.unmute );
+    // subGenerator.on( 'start', Output.mute );
+    // subGenerator.on( 'end', Output.unmute );
 
     helpers.mockPrompt(subGenerator, mockPrompts);
 
@@ -28,8 +28,8 @@ var createAppGenerator = function(args, options) {
 
     // Prevent Yeoman writes while the generator runs
     // and reenable them when it's finished to see the test results
-    app.on('start', Output.mute);
-    app.on('end', Output.unmute);
+    // app.on('start', Output.mute);
+    // app.on('end', Output.unmute);
 
     return app;
 };

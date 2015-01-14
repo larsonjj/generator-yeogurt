@@ -25,10 +25,9 @@ describe('Yeogurt generator using Angular', function() {
         describe('With Defaults', function() {
             it ('Creates expected files', function(done) {
                 var expected = [
-                    'client/scripts',
-                    'client/scripts/main.js',
-                    'client/scripts/routes.js',
-                    'client/scripts/controllers/index.js',
+                    'client/app/main.js',
+                    'client/app/index/index.js',
+                    'client/app/index/index.controller.js'
                 ];
 
                 var fileContentToTest = [];
@@ -44,6 +43,62 @@ describe('Yeogurt generator using Angular', function() {
                     assert.file(expected);
                     assert.fileContent(fileContentToTest);
                     done();
+                });
+            });
+        });
+        describe('Without Server', function() {
+            describe('With Testing', function() {
+                describe('With Jasmine', function() {
+                    it ('Creates expected files', function(done) {
+                        var expected = [
+                            'client/app/index/index.spec.js'
+                        ];
+
+                        var fileContentToTest = [
+                            ['client/app/index/index.spec.js', /toBe/i]
+                        ];
+
+                        helpers.mockPrompt(this.app, {
+                            singlePageApplication: true,
+                            jsFramework: 'angular',
+                            jsOption: 'none',
+                            useServer: false,
+                            useTesting: true,
+                            testFramework: 'jasmine'
+                        });
+
+                        this.app.run([], function() {
+                            assert.file(expected);
+                            assert.fileContent(fileContentToTest);
+                            done();
+                        });
+                    });
+                });
+                describe('With Mocha', function() {
+                    it ('Creates expected files', function(done) {
+                        var expected = [
+                            'client/app/index/index.spec.js'
+                        ];
+
+                        var fileContentToTest = [
+                            ['client/app/index/index.spec.js', /to\./i]
+                        ];
+
+                        helpers.mockPrompt(this.app, {
+                            singlePageApplication: true,
+                            jsFramework: 'angular',
+                            jsOption: 'none',
+                            useServer: false,
+                            useTesting: true,
+                            testFramework: 'mocha'
+                        });
+
+                        this.app.run([], function() {
+                            assert.file(expected);
+                            assert.fileContent(fileContentToTest);
+                            done();
+                        });
+                    });
                 });
             });
         });
