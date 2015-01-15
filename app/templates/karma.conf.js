@@ -36,17 +36,15 @@ module.exports = function(config) {
             'node_modules/karma-requirejs/lib/adapter.js',
             'test/test-main.js',<% } else if (jsOption === 'browserify') { %>
             'test/scripts/bundle.js'<% } else { %><% if (jsFramework === 'angular') { %>
-            'client/scripts/main.js',
-            'client/scripts/routes.js',
-            'client/scripts/**/!(decorators|values)/**/*.js',
-            'client/scripts/**/!(main|routes).js',
-            'client/scripts/**/(decorators|values)/**/*.js',<% } %><% if (jsFramework === 'backbone') { %>
+            'client/app/main.js',
+            'client/app/**/!(main).js',
+            'client/app/**/*.html'<% } %><% if (jsFramework === 'backbone') { %>
             // Load all scripts except ones that require a specific order (ie. 'main' and 'routes')
             'client/scripts/**/!(main|routes<% if (jsFramework === 'backbone' && jsOption === 'none') { %>|layouts)/*<% } else { %>)<% } %>.js',<% if (jsFramework === 'backbone' && jsOption === 'none') { %>
             'client/scripts/**/layouts/**/*.js',<% } %>
             'client/scripts/routes.js',<% } %><% if (jsFramework !== 'angular') { %>
-            'client/scripts/main.js',<% } %>
-            'test/**/*.spec.js'<% } %>
+            'client/scripts/main.js',
+            'test/**/*.spec.js'<% } %><% } %>
         ],
 
         // list of files to exclude
