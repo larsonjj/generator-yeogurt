@@ -2,8 +2,8 @@
  * Configuration for watch task(s)
  */
 'use strict';
-
-var _ = require('lodash');
+<% if (useKss || useJsdoc || useDashboard) { %>
+var _ = require('lodash');<% } %>
 
 var taskConfig = function(grunt) {
 
@@ -237,8 +237,8 @@ var taskConfig = function(grunt) {
         }<% } %>
     };<% } %>
 
-    grunt.config.set('watch', config);
-    <% if (useKss || useJsdoc || useDashboard) { %>
+    grunt.config.set('watch', config);<% if (useKss || useJsdoc || useDashboard) { %>
+
     grunt.registerTask('listen:docs', function() {
         // Merge docsConfig object with the config object without overwriting arrays
         // Instead concatenate all arrays with each other
