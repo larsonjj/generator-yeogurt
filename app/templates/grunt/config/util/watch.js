@@ -110,8 +110,10 @@ var taskConfig = function(grunt) {
             tasks: ['injector:scripts']
         },<% } %>
         js: {
-            files: [
-                '<%%= yeogurt.client %>/scripts/**/*.js'<% if (jsFramework === 'react' && !useJsx) { %>,
+            files: [<% if (jsFramework === 'angular') { %>
+                '<%%= yeogurt.client %>/app/**/*.js',
+                '!<%%= yeogurt.client %>/app/**/*.{spec,mock}.js'<% } else { %>
+                '<%%= yeogurt.client %>/scripts/**/*.js'<% } %><% if (jsFramework === 'react' && !useJsx) { %>,
                 '!<%%= yeogurt.client %>/scripts/**/components/*.js'<% } %>
             ],
             tasks: [
@@ -147,8 +149,10 @@ var taskConfig = function(grunt) {
                 '<%%= yeogurt.client %>/**/*.html',<% } %><% if (cssOption !== 'css') { %>
                 '<%%= yeogurt.tmp %>/styles/**/*.{css,ttf,otf,woff,svg,eot}',<% } else { %>
                 '<%%= yeogurt.client %>/styles/**/*.{css,ttf,otf,woff,svg,eot}',<% } %><% if (jsOption === 'browserify') { %>
-                '<%%= yeogurt.tmp %>/scripts/**/*.js',<% } else { %>
-                '<%%= yeogurt.client %>/scripts/**/*.js',<% } %><% if (singlePageApplication && jsTemplate !== 'react') { %>
+                '<%%= yeogurt.tmp %>/scripts/**/*.js',<% } else { %><% if (jsFramework === 'angular') { %>
+                '<%%= yeogurt.client %>/app/**/*.js',
+                '!<%%= yeogurt.client %>/app/**/*.{spec,mock}.js',<% } else { %>
+                '<%%= yeogurt.client %>/scripts/**/*.js',<% } %><% } %><% if (singlePageApplication && jsTemplate !== 'react') { %>
                 '<%%= yeogurt.tmp %>/templates/**/*.js',<% } %>
                 '<%%= yeogurt.client %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
             ]
