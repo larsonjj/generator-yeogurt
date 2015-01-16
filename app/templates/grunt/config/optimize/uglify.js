@@ -11,8 +11,8 @@ var taskConfig = function(grunt) {
                 mangle: true,
                 preserveComments: 'some',<% if (jsOption === 'none') { %>
                 sourceMap: true,
-                sourceMapIncludeSources: true,
-                sourceMapIn: '<%%= yeogurt.tmp %>/concat/scripts/main.js.map'<% } %>
+                sourceMapIncludeSources: true<% if (jsFramework !== 'angular') { %>,
+                sourceMapIn: '<%%= yeogurt.tmp %>/concat/scripts/main.js.map'<% } %><% } %>
             }
         }<% if (jsOption === 'requirejs') { %>,
         dist: {
