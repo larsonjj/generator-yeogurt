@@ -1,3 +1,9 @@
+### v0.13.7:
+#### date: 2015-1-15
+##### changes:
+* Fixed [#98](https://github.com/larsonjj/generator-yeogurt/pull/98)
+
+
 ### v0.13.6:
 #### date: 2015-1-13
 ##### changes:
