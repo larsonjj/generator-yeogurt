@@ -13,7 +13,8 @@ var taskConfig = function(grunt) {
         'concurrent',
         'useminPrepare',<% if (jsFramework === 'angular') { %>
         'ngtemplates:main',<% } %>
-        'concat:generated',
+        'concat:generated',<% if (jsFramework === 'angular') { %>
+        'ngAnnotate',<% } %>
         'cssmin',
         'autoprefixer:server',
         'usemin',

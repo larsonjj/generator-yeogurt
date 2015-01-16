@@ -77,6 +77,7 @@ var taskFiles = function taskFiles() {
 
     if (this.jsFramework === 'angular') {
         this.template('grunt/config/compile/ng-templates.js', 'grunt/config/compile/ng-templates.js');
+        this.template('grunt/config/compile/ng-annotate.js', 'grunt/config/compile/ng-annotate.js');
     }
 
 

@@ -23,12 +23,12 @@ var taskConfig = function(grunt) {
         main: {
             cwd: '<%%= yeogurt.client %>',
             src: ['app/**/*.html'],
-            dest: '.tmp/templates.js'
+            dest: '<%%= yeogurt.tmp %>/templates.js'
         },
         tmp: {
-            cwd: '.tmp',
+            cwd: '<%%= yeogurt.tmp %>',
             src: ['app/**/*.html'],
-            dest: '.tmp/tmp-templates.js'
+            dest: '<%%= yeogurt.tmp %>/tmp-templates.js'
         }
     });
 };

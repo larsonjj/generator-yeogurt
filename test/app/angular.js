@@ -26,6 +26,7 @@ describe('Yeogurt generator using Angular', function() {
             it ('Creates expected files', function(done) {
                 var expected = [
                     'grunt/config/compile/ng-templates.js',
+                    'grunt/config/compile/ng-annotate.js',
                     'client/app/main.js',
                     'client/app/index/index.js',
                     'client/app/index/index.controller.js'
