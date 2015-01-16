@@ -22,7 +22,8 @@
     "browser"       : true,
     "devel"         : true,
     "jquery"        : true,
-    "node"          : true,
+    "node"          : true,<% if (testFramework === 'mocha') { %>
+    "expr"          : true,<% } %>
     "maxerr"        : 100,
     "predef"        : [
         "require",

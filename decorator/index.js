@@ -29,18 +29,17 @@ DecoratorGenerator.prototype.ask = function ask() {
         return;
     }
 
-    var self = this;
     var done = this.async();
     var prompts = [{
         name: 'decoratorFile',
         message: 'Where would you like to create this decorator?',
-        default: 'client/scripts/decorators'
+        default: 'client/app'
     }];
 
     this.prompt(prompts, function(answers) {
         // Get root directory
         this.rootDir = getRootDir(answers.decoratorFile);
-        this.decoratorFile = path.join(answers.decoratorFile, this._.slugify(this.name.toLowerCase()));
+        this.decoratorFile = path.join(answers.decoratorFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
 
         done();
     }.bind(this));

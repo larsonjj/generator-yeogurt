@@ -30,29 +30,19 @@ FactoryGenerator.prototype.ask = function ask() {
         return;
     }
 
-    var self = this;
     var done = this.async();
     var prompts = [{
         name: 'factoryFile',
         message: 'Where would you like to create this factory?',
-        default: 'client/scripts/services'
-    }, {
-        when: function() {
-            return self.useTesting;
-        },
-        name: 'testFile',
-        message: 'Where would you like to create this factory\'s test?',
-        default: 'test/spec/services'
+        default: 'client/app'
     }];
 
     this.prompt(prompts, function(answers) {
         // Get root directory
         this.rootDir = getRootDir(answers.factoryFile);
-        this.factoryFile = path.join(answers.factoryFile, this._.slugify(this.name.toLowerCase()));
+        this.factoryFile = path.join(answers.factoryFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
+        this.testFile = path.join(answers.factoryFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
 
-        if (answers.testFile) {
-            this.testFile = path.join(answers.testFile, this._.slugify(this.name.toLowerCase()));
-        }
         done();
     }.bind(this));
 };

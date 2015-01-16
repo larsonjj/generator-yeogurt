@@ -30,29 +30,19 @@ FilterGenerator.prototype.ask = function ask() {
         return;
     }
 
-    var self = this;
     var done = this.async();
     var prompts = [{
         name: 'filterFile',
         message: 'Where would you like to create this filter?',
-        default: 'client/scripts/filters'
-    }, {
-        when: function() {
-            return self.useTesting;
-        },
-        name: 'testFile',
-        message: 'Where would you like to create this filter\'s test?',
-        default: 'test/spec/filters'
+        default: 'client/app'
     }];
 
     this.prompt(prompts, function(answers) {
         // Get root directory
         this.rootDir = getRootDir(answers.filterFile);
-        this.filterFile = path.join(answers.filterFile, this._.slugify(this.name.toLowerCase()));
+        this.filterFile = path.join(answers.filterFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
+        this.testFile = path.join(answers.filterFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
 
-        if (answers.testFile) {
-            this.testFile = path.join(answers.testFile, this._.slugify(this.name.toLowerCase()));
-        }
         done();
     }.bind(this));
 };

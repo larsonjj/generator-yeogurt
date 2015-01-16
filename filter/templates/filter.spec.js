@@ -7,7 +7,8 @@ describe('Filter: <%= _.camelize(name) %>', function() {
 
     // Setup a new instance of the filter before each test
     var <%= _.camelize(name) %>;
-    beforeEach(inject(function($filter) { <%= _.camelize(name) %> = $filter('<%= _.camelize(name) %>');
+    beforeEach(inject(function($filter) {
+        <%= _.camelize(name) %> = $filter('<%= _.camelize(name) %>');
     }));
 
     it('should return the input prefixed with "<%= _.camelize(name) %> filter:"', function() {

@@ -1,8 +1,7 @@
 /**
 *   Index Component Spec Test
 */
-<% if (testFramework === 'mocha') { %>
-/*jshint expr: true*/<% } %>
+
 
 'use strict';
 

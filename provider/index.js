@@ -30,29 +30,19 @@ ProviderGenerator.prototype.ask = function ask() {
         return;
     }
 
-    var self = this;
     var done = this.async();
     var prompts = [{
         name: 'providerFile',
         message: 'Where would you like to create this provider?',
-        default: 'client/scripts/services'
-    }, {
-        when: function() {
-            return self.useTesting;
-        },
-        name: 'testFile',
-        message: 'Where would you like to create this provider\'s test?',
-        default: 'test/spec/services'
+        default: 'client/app'
     }];
 
     this.prompt(prompts, function(answers) {
         // Get root directory
         this.rootDir = getRootDir(answers.providerFile);
-        this.providerFile = path.join(answers.providerFile, this._.slugify(this.name.toLowerCase()));
+        this.providerFile = path.join(answers.providerFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
+        this.testFile = path.join(answers.providerFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
 
-        if (answers.testFile) {
-            this.testFile = path.join(answers.testFile, this._.slugify(this.name.toLowerCase()));
-        }
         done();
     }.bind(this));
 };
