@@ -14,5 +14,12 @@ describe('Yeogurt generator and sub-generators', function() {
         assert(require('../../model') !== undefined);
         assert(require('../../collection') !== undefined);
         assert(require('../../template') !== undefined);
+        assert(require('../../filter') !== undefined);
+        assert(require('../../factory') !== undefined);
+        assert(require('../../decorator') !== undefined);
+        assert(require('../../service') !== undefined);
+        assert(require('../../controller') !== undefined);
+        assert(require('../../provider') !== undefined);
+        assert(require('../../route') !== undefined);
     });
 });

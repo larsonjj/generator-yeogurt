@@ -52,10 +52,10 @@ ProviderGenerator.prototype.files = function files() {
         return;
     }
 
-    this.template('provider.js', this.providerFile + '.js');
+    this.template('provider.js', this.providerFile + '.provider.js');
 
     if (this.useTesting) {
-        this.template('provider.spec.js', this.testFile + '.spec.js');
+        this.template('provider.spec.js', this.testFile + '.provider.spec.js');
     }
 
 };

@@ -52,10 +52,10 @@ FilterGenerator.prototype.files = function files() {
         return;
     }
 
-    this.template('filter.js', this.filterFile + '.js');
+    this.template('filter.js', this.filterFile + '.filter.js');
 
     if (this.useTesting) {
-        this.template('filter.spec.js', this.testFile + '.spec.js');
+        this.template('filter.spec.js', this.testFile + '.filter.spec.js');
     }
 
 };

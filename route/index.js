@@ -32,23 +32,22 @@ DirectiveGenerator.prototype.ask = function ask() {
 
     var done = this.async();
     var prompts = [{
-        name: 'directiveFile',
-        message: 'Where would you like to create this directive?',
+        name: 'routeFile',
+        message: 'Where would you like to create this route?',
         default: 'client/app'
     }, {
-        type: 'confirm',
-        name: 'directiveHTML',
-        message: 'Does this directive need an HTML template?',
-        default: true
+        name: 'routeURL',
+        message: 'URL of new route?',
+        default: '/someurl'
     }];
 
     this.prompt(prompts, function(answers) {
         // Get root directory
-        this.rootDir = getRootDir(answers.directiveFile);
-        this.directiveFile = path.join(answers.directiveFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
-        this.testFile = path.join(answers.directiveFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
-        this.htmlUrl = path.join(answers.directiveFile.replace('client', ''), this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase())) + '.html';
-        this.makeHTML = answers.directiveHTML;
+        this.rootDir = getRootDir(answers.routeFile);
+        this.routeFile = path.join(answers.routeFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
+        this.testFile = path.join(answers.routeFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
+        this.routeURL = answers.routeURL;
+        this.htmlURL = path.join(answers.routeFile.replace('client', ''), this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase())) + '.html';
 
         done();
     }.bind(this));
@@ -59,14 +58,13 @@ DirectiveGenerator.prototype.files = function files() {
         return;
     }
 
-    this.template('directive.js', this.directiveFile + '.directive.js');
+    this.template('route.js', this.routeFile + '.js');
+    this.template('route.controller.js', this.routeFile + '.controller.js');
+    this.template('route.html', this.routeFile + '.html');
 
     if (this.useTesting) {
-        this.template('directive.spec.js', this.testFile + '.directive.spec.js');
+        this.template('route.spec.js', this.testFile + '.controller.spec.js');
     }
 
-    if (this.makeHTML) {
-        this.template('directive.html', this.directiveFile + '.html');
-    }
 
 };

@@ -51,10 +51,10 @@ ServiceGenerator.prototype.files = function files() {
         return;
     }
 
-    this.template('service.js', this.serviceFile + '.js');
+    this.template('service.js', this.serviceFile + '.service.js');
 
     if (this.useTesting) {
-        this.template('service.spec.js', this.testFile + '.spec.js');
+        this.template('service.spec.js', this.testFile + '.service.spec.js');
     }
 
 };

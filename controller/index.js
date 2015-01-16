@@ -52,10 +52,10 @@ ControllerGenerator.prototype.files = function files() {
         return;
     }
 
-    this.template('controller.js', this.controllerFile + '.js');
+    this.template('controller.js', this.controllerFile + '.controller.js');
 
     if (this.useTesting) {
-        this.template('controller.spec.js', this.testFile + '.spec.js');
+        this.template('controller.spec.js', this.testFile + '.controller.spec.js');
     }
 
 };

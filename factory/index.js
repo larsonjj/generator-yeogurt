@@ -52,10 +52,10 @@ FactoryGenerator.prototype.files = function files() {
         return;
     }
 
-    this.template('factory.js', this.factoryFile + '.js');
+    this.template('factory.js', this.factoryFile + '.factory.js');
 
     if (this.useTesting) {
-        this.template('factory.spec.js', this.testFile + '.spec.js');
+        this.template('factory.spec.js', this.testFile + '.factory.spec.js');
     }
 
 };

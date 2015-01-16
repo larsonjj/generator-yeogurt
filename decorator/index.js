@@ -50,6 +50,6 @@ DecoratorGenerator.prototype.files = function files() {
         return;
     }
 
-    this.template('decorator.js', this.decoratorFile + '.js');
+    this.template('decorator.js', this.decoratorFile + '.decorator.js');
 
 };
