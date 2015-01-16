@@ -30,29 +30,19 @@ ControllerGenerator.prototype.ask = function ask() {
         return;
     }
 
-    var self = this;
     var done = this.async();
     var prompts = [{
         name: 'controllerFile',
         message: 'Where would you like to create this controller?',
-        default: 'client/scripts/controllers'
-    }, {
-        when: function() {
-            return self.useTesting;
-        },
-        name: 'testFile',
-        message: 'Where would you like to create this controller\'s test?',
-        default: 'test/spec/controllers'
+        default: 'client/app'
     }];
 
     this.prompt(prompts, function(answers) {
         // Get root directory
         this.rootDir = getRootDir(answers.controllerFile);
-        this.controllerFile = path.join(answers.controllerFile, this._.slugify(this.name.toLowerCase()));
+        this.controllerFile = path.join(answers.controllerFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
+        this.testFile = path.join(answers.controllerFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
 
-        if (answers.testFile) {
-            this.testFile = path.join(answers.testFile, this._.slugify(this.name.toLowerCase()));
-        }
         done();
     }.bind(this));
 };

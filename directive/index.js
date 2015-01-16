@@ -30,29 +30,26 @@ DirectiveGenerator.prototype.ask = function ask() {
         return;
     }
 
-    var self = this;
     var done = this.async();
     var prompts = [{
         name: 'directiveFile',
         message: 'Where would you like to create this directive?',
-        default: 'client/scripts/directives'
+        default: 'client/app'
     }, {
-        when: function() {
-            return self.useTesting;
-        },
-        name: 'testFile',
-        message: 'Where would you like to create this directive\'s test?',
-        default: 'test/spec/directives'
+        type: 'confirm',
+        name: 'directiveHTML',
+        message: 'Does this directive need an HTML template?',
+        default: true
     }];
 
     this.prompt(prompts, function(answers) {
         // Get root directory
         this.rootDir = getRootDir(answers.directiveFile);
-        this.directiveFile = path.join(answers.directiveFile, this._.slugify(this.name.toLowerCase()));
+        this.directiveFile = path.join(answers.directiveFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
+        this.testFile = path.join(answers.directiveFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
+        this.htmlUrl = path.join(answers.directiveFile.replace('client', ''), this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase())) + '.html';
+        this.makeHTML = answers.directiveHTML;
 
-        if (answers.testFile) {
-            this.testFile = path.join(answers.testFile, this._.slugify(this.name.toLowerCase()));
-        }
         done();
     }.bind(this));
 };
@@ -66,6 +63,10 @@ DirectiveGenerator.prototype.files = function files() {
 
     if (this.useTesting) {
         this.template('directive.spec.js', this.testFile + '.spec.js');
+    }
+
+    if (this.makeHTML) {
+        this.template('directive.html', this.directiveFile + '.html');
     }
 
 };
