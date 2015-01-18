@@ -122,7 +122,7 @@ var testingFiles = function testingFiles() {
             }
         }
         else if (this.jsFramework === 'angular') {
-            this.template('test/spec/angular/controllers/index.spec.js', 'test/spec/controllers/index.spec.js');
+            this.template('client/scripts/angular/app/index/index.spec.js', 'client/app/index/index.spec.js');
         }
         else {
             this.template('test/spec/main.spec.js', 'test/spec/main.spec.js');

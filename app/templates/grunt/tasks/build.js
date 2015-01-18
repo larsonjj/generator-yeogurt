@@ -11,8 +11,10 @@ var taskConfig = function(grunt) {
         'wiredep',
         'copy:dist',
         'concurrent',
-        'useminPrepare',
-        'concat:generated',
+        'useminPrepare',<% if (jsFramework === 'angular') { %>
+        'ngtemplates:main',<% } %>
+        'concat:generated',<% if (jsFramework === 'angular') { %>
+        'ngAnnotate',<% } %>
         'cssmin',
         'autoprefixer:server',
         'usemin',

@@ -20,6 +20,7 @@ var ViewGenerator = module.exports = function ViewGenerator() {
     this.useDashboard = fileJSON.useDashboard;
     this.projectName = fileJSON.projectName;
     this.jsFramework = fileJSON.jsFramework;
+    this.jsTemplate = fileJSON.jsTemplate;
     this.useTesting = fileJSON.useTesting;
     this.testFramework = fileJSON.testFramework;
     this.htmlOption = fileJSON.htmlOption;

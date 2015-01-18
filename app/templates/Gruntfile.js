@@ -27,7 +27,8 @@ module.exports = function(grunt) {
         useminPrepare: 'grunt-usemin',
         // translate swig to use the 'grunt-wobble-swig' plugin
         swig: 'grunt-swig-templates'<% if (useServer) { %>,
-        express: 'grunt-express-server'<% } %>
+        express: 'grunt-express-server'<% } %><% if (jsFramework === 'angular') { %>,
+        ngtemplates: 'grunt-angular-templates'<% } %>
     });
 
     // Load the include-all library in order to require all of our grunt

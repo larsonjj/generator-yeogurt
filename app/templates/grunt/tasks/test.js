@@ -11,10 +11,10 @@ var taskConfig = function(grunt) {
         }<% } %>
 
         grunt.task.run([
-            'jshint:test',<% if (useTesting) { %><% if (jsTemplate === 'underscore') { %>
-            'jst:test',<% } else if (jsTemplate === 'handlebars') { %>
-            'handlebars:test',<% } else if (jsTemplate === 'jade') { %>
-            'jade:test',<% } %><% if (jsOption === 'browserify') { %>
+            'jshint:test'<% if (useTesting) { %><% if (jsTemplate === 'underscore') { %>,
+            'jst:test'<% } else if (jsTemplate === 'handlebars') { %>,
+            'handlebars:test'<% } else if (jsTemplate === 'jade') { %>,
+            'jade:test'<% } %><% if (jsOption === 'browserify') { %>,
             'browserify:test'<% } %><% } %>
         ]);<% if (useTesting) { %>
 
@@ -23,12 +23,12 @@ var taskConfig = function(grunt) {
         }
         else {
             grunt.task.run(['karma:unit']);
-        }
+        }<% if (jsFramework !== 'angular') { %>
 
         // Clean up temp files
         grunt.task.run([
             'clean:tmp'
-        ]);<% } %>
+        ]);<% } %><% } %>
     });
 };
 

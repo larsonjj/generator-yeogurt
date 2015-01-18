@@ -32,12 +32,12 @@
 
         <link rel="stylesheet" href="/styles/main.css" /><% } %>
 
-        <!-- build:js(client) scripts/modernizr.js -->
+        <!-- build:js(client) <% if (jsFramework === 'angular') { %>app<% } else { %>scripts<% } %>/modernizr.js -->
         <script src="/bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
 
         <!-- HTML5 and consolelog shims for IE8 support -->
-        <!-- build:js(client) scripts/lt-ie9.js -->
+        <!-- build:js(client) <% if (jsFramework === 'angular') { %>app<% } else { %>scripts<% } %>/lt-ie9.js -->
         <!--[if lt IE 9]>
         <script src="/bower_components/consolelog/consolelog.js"></script>
         <script src="/bower_components/html5shiv/dist/html5shiv-printshiv.js"></script>
@@ -69,14 +69,14 @@
         <!-- Application loads here -->
         <div id="app-wrapper" <% if (jsFramework === 'angular') { %>ng-view<% } %>></div><% } %><% if (jsFramework === 'react') { %>
 
-        <!-- build:js(client) scripts/lt-ie9.js -->
+        <!-- build:js(client) <% if (jsFramework === 'angular') { %>app<% } else { %>scripts<% } %>/lt-ie9.js -->
         <!--[if lt IE 9]>
         <script src="/bower_components/es5-shim/es5-shim.js"></script>
         <script src="/bower_components/es5-shim/es5-sham.js"></script>
         <![endif]-->
         <!-- endbuild --><% } %>
 
-        <!-- build:js(<% if (jsFramework === 'backbone') { %>{client,.tmp}<% } else { %>client<% } %>) scripts/global.js -->
+        <!-- build:js(<% if (jsFramework === 'backbone') { %>{client,.tmp}<% } else { %>client<% } %>) <% if (jsFramework === 'angular') { %>app<% } else { %>scripts<% } %>/global.js -->
             <!-- bower:js -->
             <script src="/bower_components/jquery/dist/jquery.js"></script><% if (useAuth && (jsFramework === 'backbone' || jsFramework === 'angular')) { %>
             <script src="/bower_components/jquery.cookie/jquery.cookie.js"></script><% } %><% if (jsFramework === 'backbone') { %>
@@ -84,7 +84,6 @@
             <script src="/bower_components/backbone/backbone.js"></script><% } %><% if (jsFramework === 'angular') { %>
             <script src="/bower_components/angular/angular.js"></script>
             <script src="/bower_components/angular-route/angular-route.js"></script>
-            <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
             <script src="/bower_components/json3/lib/json3.js"></script><% } %><% if (jsTemplate === 'handlebars') { %>
             <script src="/bower_components/handlebars/handlebars.runtime.js"></script><% } else if (jsTemplate === 'jade') { %>
             <script src="/bower_components/jade/runtime.js"></script><% } %>
@@ -96,13 +95,13 @@
 
         <script src="/scripts/main.js"></script><% } else { %>
 
-        <!-- build:js(client) scripts/main.js --><% if (jsFramework !== 'angular') { %>
+        <!-- build:js(client) <% if (jsFramework === 'angular') { %>app<% } else { %>scripts<% } %>/main.js --><% if (jsFramework !== 'angular') { %>
             <!-- [injector:js] -->
             <!-- [endinjector] --><% } %><% if (jsFramework === 'backbone') { %><% if (jsOption === 'none') { %>
         <script src="/scripts/views/layouts/default.js"></script><% } %>
-        <script src="/scripts/routes.js"></script><% } %>
-        <script src="/scripts/main.js"></script><% if (jsFramework === 'angular') { %>
-        <script src="/scripts/routes.js"></script>
+        <script src="/scripts/routes.js"></script><% } %><% if (jsFramework !== 'angular') { %>
+        <script src="/scripts/main.js"></script><% } %><% if (jsFramework === 'angular') { %>
+        <script src="/app/main.js"></script>
         <!-- [injector:js] -->
         <!-- [endinjector] --><% } %>
         <!-- endbuild --><% } %>

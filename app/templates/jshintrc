@@ -22,7 +22,8 @@
     "browser"       : true,
     "devel"         : true,
     "jquery"        : true,
-    "node"          : true,
+    "node"          : true,<% if (testFramework === 'mocha') { %>
+    "expr"          : true,<% } %>
     "maxerr"        : 100,
     "predef"        : [
         "require",
@@ -47,7 +48,8 @@
     "globals": {
         "$": true,
         "Modernizr": true,<% if (jsFramework === 'angular') { %>
-        "angular": true,<% } %>
+        "angular": true,
+        "inject": true,<% } %>
         "jQuery": true<% if (jsOption === 'requirejs') { %>,
         "requirejs": true<% } %><% if (jsFramework === 'backbone') { %>,
         "Backbone": true,<% if (jsOption === 'none') { %>

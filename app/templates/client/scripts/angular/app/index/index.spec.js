@@ -2,13 +2,13 @@
 
 describe('Controller: IndexCtrl', function() {
 
-    // load the controller's module
+    // load module that the controller is associated with
     beforeEach(module('<%= _.classify(projectName) %>'));
 
     var IndexCtrl,
         scope;
 
-    // Initialize the controller and a mock scope
+    // Setup controller and mock it's scope
     beforeEach(inject(function($controller, $rootScope) {
         scope = $rootScope.$new();
         IndexCtrl = $controller('IndexCtrl', {
@@ -17,6 +17,6 @@ describe('Controller: IndexCtrl', function() {
     }));
 
     it('should have scope defined', function() {
-        expect(scope)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+        expect(scope.yeogurt)<% if (testFramework === 'jasmine') { %>.toBe('awesome')<% } else if (testFramework === 'mocha') { %>.to.equal('awesome')<% } %>;
     });
 });

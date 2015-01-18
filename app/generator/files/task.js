@@ -75,6 +75,13 @@ var taskFiles = function taskFiles() {
         this.template('grunt/config/test/karma.js', 'grunt/config/test/karma.js');
     }
 
+    if (this.jsFramework === 'angular') {
+        this.template('grunt/config/compile/ng-templates.js', 'grunt/config/compile/ng-templates.js');
+        this.template('grunt/config/compile/ng-annotate.js', 'grunt/config/compile/ng-annotate.js');
+    }
+
+
+
     // Tasks
     this.template('grunt/tasks/build.js', 'grunt/tasks/build.js');
     this.template('grunt/tasks/default.js', 'grunt/tasks/default.js');

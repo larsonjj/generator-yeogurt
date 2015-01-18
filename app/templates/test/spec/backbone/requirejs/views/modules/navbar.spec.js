@@ -1,8 +1,7 @@
 /**
 *   Navbar View Spec Test
 */
-<% if (testFramework === 'mocha') { %>
-/*jshint expr: true*/<% } %>
+
 
 define(function(require) {
     'use strict';

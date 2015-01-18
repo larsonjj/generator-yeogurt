@@ -238,17 +238,12 @@ var scriptFiles = function scriptFiles() {
         }
     }
     else if (this.jsFramework === 'angular') {
-        this.template('client/scripts/angular/main/main.js', 'client/scripts/main.js');
+        this.template('client/scripts/angular/main/main.js', 'client/app/main.js');
 
-        // Templates
-        this.template('client/scripts/angular/templates/index.html', 'client/templates/index.html');
-
-        // Controllers
-        this.template('client/scripts/angular/controllers/index.js', 'client/scripts/controllers/index.js');
-
-        // Routes
-        this.template('client/scripts/angular/routes/routes.js', 'client/scripts/routes.js');
-
+        // Modules
+        this.template('client/scripts/angular/app/index/index.html', 'client/app/index/index.html');
+        this.template('client/scripts/angular/app/index/index.js', 'client/app/index/index.js');
+        this.template('client/scripts/angular/app/index/index.controller.js', 'client/app/index/index.controller.js');
     }
 };
 
