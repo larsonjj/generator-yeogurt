@@ -2,20 +2,20 @@
 
 var Messages = Backbone.Model.extend({
 
-    initialize: function() {
-    },
+  initialize: function() {
+  },
 
-    defaults: {
-        messages: {}
-    },
+  defaults: {
+    messages: {}
+  },
 
-    setMessages: function(data) {
-        if (!_.isEmpty(data)) {
-            this.set({
-                messages: data
-            });
-        }
+  setMessages: function(data) {
+    if (!_.isEmpty(data)) {
+      this.set({
+        messages: data
+      });
     }
+  }
 
 });
 

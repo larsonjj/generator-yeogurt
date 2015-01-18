@@ -38,37 +38,37 @@ Make the changes below to setup the needed configuration for `grunt-contrib-sass
 ```diff
  var taskConfig = function(grunt) {
 
-     grunt.config.set('sass', {
-         server: {
-             options: {
-                 precision: 10,
--                outputStyle: 'nested',
-+                style: 'nested',
-                 sourceMap: true,
--                includePaths: [
--                    '<%%= yeogurt.client %>/styles/'
--                ]
-             },
-             files: {
-                 '<%%= yeogurt.tmp %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.scss'
-             }
-         },
-         dist: {
-             options: {
-                 precision: 10,
--                outputStyle: 'nested',
-+                style: 'nested',
--                sourceMap: true,
-+                sourcemap: 'inline',
--                includePaths: [
--                    '<%%= yeogurt.client %>/styles/'
--                ]
-             },
-             files: {
-                 '<%%= yeogurt.dist %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.scss'
-             }
-         }
-     });
+   grunt.config.set('sass', {
+     server: {
+       options: {
+         precision: 10,
+-        outputStyle: 'nested',
++        style: 'nested',
+         sourceMap: true,
+-        includePaths: [
+-          '<%%= yeogurt.client %>/styles/'
+-        ]
+       },
+       files: {
+         '<%%= yeogurt.tmp %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.scss'
+       }
+     },
+     dist: {
+       options: {
+         precision: 10,
+-        outputStyle: 'nested',
++        style: 'nested',
+-        sourceMap: true,
++        sourcemap: 'inline',
+-        includePaths: [
+-          '<%%= yeogurt.client %>/styles/'
+-        ]
+       },
+       files: {
+         '<%%= yeogurt.dist %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.scss'
+       }
+     }
+   });
 
  };
 ```

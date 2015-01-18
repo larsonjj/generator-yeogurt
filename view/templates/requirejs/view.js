@@ -1,28 +1,28 @@
 define(function(require) {
-    'use strict';
+  'use strict';
 
-    var <%= _.classify(name) %> = Backbone.View.extend({
+  var <%= _.classify(name) %> = Backbone.View.extend({
 
-        tagName: 'div',
+    tagName: 'div',
 
-        id: '',
+    id: '',
 
-        className: '',
+    className: '',
 
-        template: JST['<%= templateFile %>.<% if (jsTemplate === 'underscore') { %>jst<% } else if (jsTemplate === 'handlebars') { %>hbs<% } else if (jsTemplate === 'jade') { %>jade<% } else if (jsTemplate === 'swig') { %>swig<% } %>'],
+    template: JST['<%= templateFile %>.<% if (jsTemplate === 'underscore') { %>jst<% } else if (jsTemplate === 'handlebars') { %>hbs<% } else if (jsTemplate === 'jade') { %>jade<% } else if (jsTemplate === 'swig') { %>swig<% } %>'],
 
-        events: {},
+    events: {},
 
-        initialize: function() {
-            this.render();
-        },
+    initialize: function() {
+      this.render();
+    },
 
-        render: function() {
-            this.$el.html(this.template);
-            return this;
-        }
+    render: function() {
+      this.$el.html(this.template);
+      return this;
+    }
 
-    });
+  });
 
-    return <%= _.classify(name) %>;
+  return <%= _.classify(name) %>;
 });

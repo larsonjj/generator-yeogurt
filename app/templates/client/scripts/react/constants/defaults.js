@@ -2,22 +2,22 @@
 
 var Defaults = {
 
-    route: '/',
+  route: '/',
 
-    page: {
-        title: 'Home',
-        description: 'A React + Flux application',
-        keywords: null
+  page: {
+    title: 'Home',
+    description: 'A React + Flux application',
+    keywords: null
 
-    }<% if (useAuth) { %>,
+  }<% if (useAuth) { %>,
 
-    user: {
-        loggedIn: false,
-        firstName: 'John',
-        lastName: 'Doe'
-    },
+  user: {
+    loggedIn: false,
+    firstName: 'John',
+    lastName: 'Doe'
+  },
 
-    messages: {}<% } %>
+  messages: {}<% } %>
 
 
 };

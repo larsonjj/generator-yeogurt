@@ -16,53 +16,53 @@ var User = db.user;
  */
 
 var createAccount = function(req, res, next) {
-    req.assert('email', 'Email is not valid').isEmail();
-    req.assert('password', 'Password must be at least 6 characters long').len(6);
-    req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
+  req.assert('email', 'Email is not valid').isEmail();
+  req.assert('password', 'Password must be at least 6 characters long').len(6);
+  req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
-    var errors = req.validationErrors();
+  var errors = req.validationErrors();
 
-    if (errors) {
-        req.flash('errors', errors);
-        return res.redirect('/signup');
+  if (errors) {
+    req.flash('errors', errors);
+    return res.redirect('/signup');
+  }
+
+  var user = {
+    email: req.body.email,
+    password: req.body.password
+  };
+
+  User.find({
+    where: {
+      email: req.body.email
     }
-
-    var user = {
-        email: req.body.email,
-        password: req.body.password
-    };
-
-    User.find({
-        where: {
-            email: req.body.email
-        }
-    }).success(function(existingUser) {
-        if (existingUser) {
-            req.flash('errors', {
-                msg: 'Account with that email address already exists.'
-            });
-            return res.redirect('/signup');
-        }
-        User.create(user).success(function(user) {
-            req.logIn(user, function(err) {
-                if (err) {
-                    return next(err);
-                }
-                req.flash('success', {
-                    msg: 'Account created successfully.'
-                });
-                res.redirect('/');
-            });
-        }).error(function(err) {
-            if (err) {
-                return next(err);
-            }
-        });
-    }).error(function(err) {
+  }).success(function(existingUser) {
+    if (existingUser) {
+      req.flash('errors', {
+        msg: 'Account with that email address already exists.'
+      });
+      return res.redirect('/signup');
+    }
+    User.create(user).success(function(user) {
+      req.logIn(user, function(err) {
         if (err) {
-            return next(err);
+          return next(err);
         }
+        req.flash('success', {
+          msg: 'Account created successfully.'
+        });
+        res.redirect('/');
+      });
+    }).error(function(err) {
+      if (err) {
+        return next(err);
+      }
     });
+  }).error(function(err) {
+    if (err) {
+      return next(err);
+    }
+  });
 };
 
 /**
@@ -71,34 +71,34 @@ var createAccount = function(req, res, next) {
  */
 
 var updateProfile = function(req, res, next) {
-    req.assert('email', 'Email is not valid').isEmail();
+  req.assert('email', 'Email is not valid').isEmail();
 
-    var errors = req.validationErrors();
-    if (errors) {
-        req.flash('errors', errors);
-        return res.redirect('/settings');
-    }
+  var errors = req.validationErrors();
+  if (errors) {
+    req.flash('errors', errors);
+    return res.redirect('/settings');
+  }
 
-    User.find(req.user.id).success(function(user) {
-        user.email = req.body.email || '';
-        user.firstName = req.body.firstName || '';
-        user.lastName = req.body.lastName || '';
+  User.find(req.user.id).success(function(user) {
+    user.email = req.body.email || '';
+    user.firstName = req.body.firstName || '';
+    user.lastName = req.body.lastName || '';
 
-        user.save().success(function() {
-            req.flash('success', {
-                msg: 'Profile information updated.'
-            });
-            res.redirect('/settings');
-        }).error(function(err) {
-            if (err) {
-                return next(err);
-            }
-        });
+    user.save().success(function() {
+      req.flash('success', {
+        msg: 'Profile information updated.'
+      });
+      res.redirect('/settings');
     }).error(function(err) {
-        if (err) {
-            return next(err);
-        }
+      if (err) {
+        return next(err);
+      }
     });
+  }).error(function(err) {
+    if (err) {
+      return next(err);
+    }
+  });
 };
 
 /**
@@ -109,34 +109,34 @@ var updateProfile = function(req, res, next) {
  */
 
 var updatePassword = function(req, res, next) {
-    req.assert('password', 'Password must be at least 6 characters long').len(6);
-    req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
+  req.assert('password', 'Password must be at least 6 characters long').len(6);
+  req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
-    var errors = req.validationErrors();
+  var errors = req.validationErrors();
 
-    if (errors) {
-        req.flash('errors', errors);
-        return res.redirect('/settings');
-    }
+  if (errors) {
+    req.flash('errors', errors);
+    return res.redirect('/settings');
+  }
 
-    User.find(req.user.id).success(function(user) {
-        user.password = req.body.password;
+  User.find(req.user.id).success(function(user) {
+    user.password = req.body.password;
 
-        user.save().success(function() {
-            req.flash('success', {
-                msg: 'Password has been changed.'
-            });
-            res.redirect('/settings');
-        }).error(function(err) {
-            if (err) {
-                return next(err);
-            }
-        });
+    user.save().success(function() {
+      req.flash('success', {
+        msg: 'Password has been changed.'
+      });
+      res.redirect('/settings');
     }).error(function(err) {
-        if (err) {
-            return next(err);
-        }
+      if (err) {
+        return next(err);
+      }
     });
+  }).error(function(err) {
+    if (err) {
+      return next(err);
+    }
+  });
 };
 
 /**
@@ -145,22 +145,22 @@ var updatePassword = function(req, res, next) {
  */
 
 var deleteAccount = function(req, res, next) {
-    User.destroy(req.user.id).success(function() {
-        req.logout();
-        req.flash('info', {
-            msg: 'Your account has been deleted.'
-        });
-        res.redirect('/');
-    }).error(function(err) {
-        if (err) {
-            return next(err);
-        }
+  User.destroy(req.user.id).success(function() {
+    req.logout();
+    req.flash('info', {
+      msg: 'Your account has been deleted.'
     });
+    res.redirect('/');
+  }).error(function(err) {
+    if (err) {
+      return next(err);
+    }
+  });
 };
 
 module.exports = {
-    createAccount: createAccount,
-    updateProfile: updateProfile,
-    updatePassword: updatePassword,
-    deleteAccount: deleteAccount
+  createAccount: createAccount,
+  updateProfile: updateProfile,
+  updatePassword: updatePassword,
+  deleteAccount: deleteAccount
 };

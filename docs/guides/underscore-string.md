@@ -66,7 +66,7 @@ If you would like to use Underscore.string with [Underscore](http://underscorejs
 ...
 // Place under the `<!-- endbower -->` cooment and both the Underscore/Lo-dash and Underscore.string scripts
 <script type="text/javascript">
-    _.mixin(_.string.exports());
+  _.mixin(_.string.exports());
 </script>
 ...
 ```

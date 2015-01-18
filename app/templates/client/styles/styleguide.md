@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="public/images/yeogurt-logo.png" alt="Yeogurt Logo" width="200">
+  <img src="public/images/yeogurt-logo.png" alt="Yeogurt Logo" width="200">
 </p>
 
 <h1 class="kss-title kss-title-main"> Overview </h1>
@@ -32,21 +32,21 @@ The basic format for KSS documentation can be best explained in an example:
 /*
 A button suitable for giving stars to someone.
 
-:hover             - Subtle hover highlight.
-.stars-given       - A highlight indicating you've already given a star.
+:hover       - Subtle hover highlight.
+.stars-given     - A highlight indicating you've already given a star.
 .stars-given:hover - Subtle hover highlight on top of stars-given styling.
-.disabled          - Dims the button to indicate it cannot be used.
+.disabled      - Dims the button to indicate it cannot be used.
 
 Styleguide 2.1.3.
 */
 a.button.star{
-    ...
+  ...
 }
 a.button.star.stars-given{
-    ...
+  ...
 }
 a.button.star.disabled{
-    ...
+  ...
 }
 ```
 
@@ -55,20 +55,20 @@ When using a preprocessor that supports the functionality, use `//` to prefix yo
 ```less
 // A button suitable for giving stars to someone.
 //
-// :hover             - Subtle hover highlight.
-// .stars-given       - A highlight indicating you've already given a star.
+// :hover       - Subtle hover highlight.
+// .stars-given     - A highlight indicating you've already given a star.
 // .stars-given:hover - Subtle hover highlight on top of stars-given styling.
-// .disabled          - Dims the button to indicate it cannot be used.
+// .disabled      - Dims the button to indicate it cannot be used.
 //
 // Styleguide 2.1.3.
 a.button.star{
+  ...
+  &.star-given{
     ...
-    &.star-given{
-        ...
-    }
-    &.disabled{
-        ...
-    }
+  }
+  &.disabled{
+    ...
+  }
 }
 ```
 
@@ -104,10 +104,10 @@ To describe the status of a set of rules, you should prefix the description with
 If the UI element you are documenting has multiple states or styles depending on added classes or pseudo-classes, you should document them in the modifiers section.
 
 ```less
-// :hover             - Subtle hover highlight.
-// .stars-given       - A highlight indicating you've already given a star.
+// :hover       - Subtle hover highlight.
+// .stars-given     - A highlight indicating you've already given a star.
 // .stars-given:hover - Subtle hover highlight on top of stars-given styling.
-// .disabled          - Dims the button to indicate it cannot be used.
+// .disabled      - Dims the button to indicate it cannot be used.
 ```
 
 ## The styleguide section
@@ -158,7 +158,7 @@ If you use a CSS preprocessor like SCSS or Less, you should document all helper 
 //
 // Compatible in IE6+, Firefox 2+, Safari 4+.
 @mixin gradient($start, $end){
-    ...
+  ...
 }
 ```
 
@@ -199,18 +199,18 @@ Overall, keep in mind that styleguides should adapt to the application they are 
 
 The styleguide should be organized by numbered sections. These sections can go as deep as you like. Every element should have a numbered section to refer to. For example:
 
-    1. Buttons
-        1.1 Form Buttons
-            1.1.1 Generic form button
-            1.1.2 Special form button
-        1.2 Social buttons
-        1.3 Miscelaneous buttons
-    2. Form elements
-        2.1 Text fields
-        2.2 Radio and checkboxes
-    3. Text styling
-    4. Tables
-        4.1 Number tables
-        4.2 Diagram tables
+  1. Buttons
+    1.1 Form Buttons
+      1.1.1 Generic form button
+      1.1.2 Special form button
+    1.2 Social buttons
+    1.3 Miscelaneous buttons
+  2. Form elements
+    2.1 Text fields
+    2.2 Radio and checkboxes
+  3. Text styling
+  4. Tables
+    4.1 Number tables
+    4.2 Diagram tables
 
 The goal here is to create an organizational structure that is flexible, but  rigid enough to be machine processed and referenced inside of documentation.

@@ -77,10 +77,10 @@ Add bootstrap to your exclude list within the `grunt/config/util/wiredep.js` 'ap
 ```
 // packages to ignore
 exclude: [
-    ...
-    // less
-    'bower_components/bootstrap/dist/css'
-    ...
+  ...
+  // less
+  'bower_components/bootstrap/dist/css'
+  ...
 ],
 ```
 
@@ -89,18 +89,18 @@ exclude: [
 
 ```
 "overrides": {
-    "bootstrap-stylus": {
-        "main": [
-            "bootstrap/variables.styl",
-            "bootstrap/utilities.styl",
-            "bootstrap/buttons.styl",
-            "bootstrap/scaffolding.styl",
-            "bootstrap/mixins/*.styl",
-            "bootstrap/**/!(variables|utilities|buttons|scaffolding).styl",
-            "js/**/!(popover.js)",
-            "js/popover.js"
-        ]
-    }
+  "bootstrap-stylus": {
+    "main": [
+      "bootstrap/variables.styl",
+      "bootstrap/utilities.styl",
+      "bootstrap/buttons.styl",
+      "bootstrap/scaffolding.styl",
+      "bootstrap/mixins/*.styl",
+      "bootstrap/**/!(variables|utilities|buttons|scaffolding).styl",
+      "js/**/!(popover.js)",
+      "js/popover.js"
+    ]
+  }
 }
 ```
 
@@ -165,16 +165,16 @@ Bootstrap comes bundled with glyphicons, which are font files. If you want to us
 ```
 // Locate the 'src' property and add the following string
 src: [
-    ...
-    // scss/sass
-    'bower_components/bootstrap-sass-official/**/*.{woff,ttf,eot,svg}'
+  ...
+  // scss/sass
+  'bower_components/bootstrap-sass-official/**/*.{woff,ttf,eot,svg}'
 
-    // less/css
-    'bower_components/bootstrap/**/*.{woff,ttf,eot,svg}'
+  // less/css
+  'bower_components/bootstrap/**/*.{woff,ttf,eot,svg}'
 
-    // stylus
-    'bower_components/bootstrap-stylus/**/*.{woff,ttf,eot,svg}'
-    ...
+  // stylus
+  'bower_components/bootstrap-stylus/**/*.{woff,ttf,eot,svg}'
+  ...
 ]
 ```
 

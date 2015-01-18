@@ -4,20 +4,20 @@
 
 
 define(function(require) {
-    'use strict';
+  'use strict';
 
-    var SignupView = require('client/scripts/views/account/signup');
+  var SignupView = require('client/scripts/views/account/signup');
 
-    describe('Signup View', function() {
+  describe('Signup View', function() {
 
-        beforeEach(function() {
-            this.signupView = new SignupView();
-        });
-
-        it('provides the "Signup View" instance', function() {
-            // Expect it to exist
-            expect(this.signupView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
-        });
-
+    beforeEach(function() {
+      this.signupView = new SignupView();
     });
+
+    it('provides the "Signup View" instance', function() {
+      // Expect it to exist
+      expect(this.signupView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+    });
+
+  });
 });

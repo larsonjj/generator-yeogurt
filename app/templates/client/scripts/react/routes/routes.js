@@ -18,73 +18,73 @@ var ForgotPage = React.createFactory(require('./components/account/forgot'));
 var SettingsPage = React.createFactory(require('./components/account/settings'));<% } %><% } %>
 
 var render = function(Page) {
-    React.render(new Page(), document.getElementById('app-wrapper'));
+  React.render(new Page(), document.getElementById('app-wrapper'));
 };
 
 var index = function() {
-    render(IndexPage);
+  render(IndexPage);
 };<% if (useAuth) { %>
 
 var login = function() {
-    // If user is logged in, redirect to settings page
-    if (userStore.get().loggedIn) {
-        return routeActions.setRoute('/settings');
-    }
+  // If user is logged in, redirect to settings page
+  if (userStore.get().loggedIn) {
+    return routeActions.setRoute('/settings');
+  }
 
-    render(LoginPage);
+  render(LoginPage);
 };
 
 var signup = function() {
-    // If user is logged in, redirect to settings page
-    if (userStore.get().loggedIn) {
-        return routeActions.setRoute('/settings');
-    }
+  // If user is logged in, redirect to settings page
+  if (userStore.get().loggedIn) {
+    return routeActions.setRoute('/settings');
+  }
 
-    render(SignupPage);
+  render(SignupPage);
 };
 
 var reset = function() {
-    // If user is logged in, redirect to settings page
-    if (userStore.get().loggedIn) {
-        return routeActions.setRoute('/settings');
-    }
+  // If user is logged in, redirect to settings page
+  if (userStore.get().loggedIn) {
+    return routeActions.setRoute('/settings');
+  }
 
-    render(ResetPage);
+  render(ResetPage);
 };
 
 var forgot = function() {
-    // If user is logged in, redirect to settings page
-    if (userStore.get().loggedIn) {
-        return routeActions.setRoute('/settings');
-    }
-    // If reset token is invalid or has expired, display error message
-    if (window.location.search === '?error=invalid') {
-        messagesActions.setMessages({
-            errors: [{
-                msg: 'Reset is invalid or has expired.'
-            }]
-        });
-    }
+  // If user is logged in, redirect to settings page
+  if (userStore.get().loggedIn) {
+    return routeActions.setRoute('/settings');
+  }
+  // If reset token is invalid or has expired, display error message
+  if (window.location.search === '?error=invalid') {
+    messagesActions.setMessages({
+      errors: [{
+        msg: 'Reset is invalid or has expired.'
+      }]
+    });
+  }
 
-    render(ForgotPage);
+  render(ForgotPage);
 };
 
 var settings = function() {
-    // If user is not logged in, redirect to login page
-    if (!userStore.get().loggedIn) {
-        return routeActions.setRoute('/login');
-    }
+  // If user is not logged in, redirect to login page
+  if (!userStore.get().loggedIn) {
+    return routeActions.setRoute('/login');
+  }
 
-    render(SettingsPage);
+  render(SettingsPage);
 };<% } %>
 
 var routes = {<% if (useAuth) { %>
-    '/login': login,
-    '/forgot': forgot,
-    '/reset/:token': reset,
-    '/signup': signup,
-    '/settings': settings,<% } %>
-    '/': index
+  '/login': login,
+  '/forgot': forgot,
+  '/reset/:token': reset,
+  '/signup': signup,
+  '/settings': settings,<% } %>
+  '/': index
 };
 
 module.exports = routes;

@@ -1,13 +1,13 @@
 define(function(require) {
 
-    'use strict';
+  'use strict';
 
-    var init = function() {
-        // Intialize module
-    };
+  var init = function() {
+    // Intialize module
+  };
 
-    return {
-        init: init
-    };
+  return {
+    init: init
+  };
 
 });

@@ -1,7 +1,7 @@
 /*global describe, beforeEach, it*/
 'use strict';
 
-var path    = require('path');
+var path  = require('path');
 var yeoman  = require('yeoman-generator');
 var helpers = yeoman.test;
 var assert  = yeoman.assert;
@@ -10,62 +10,62 @@ var createSubGenerator = require('../helpers/create-generator').createSubGenerat
 
 
 describe('Filter sub-generator', function() {
-    beforeEach(function (done) {
-        helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
-            if (err) {
-                return done(err);
-            }
+  beforeEach(function (done) {
+    helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
+      if (err) {
+        return done(err);
+      }
 
-            this.app = createAppGenerator();
+      this.app = createAppGenerator();
 
-            done();
-        }.bind(this));
-    });
+      done();
+    }.bind(this));
+  });
 
-    describe('Create filter files with Angular', function() {
-        it('Handles defaults', function(done) {
-            // Filename
-            var filter = 'myfilter';
-            var filesToTest = [
-                'client/app/' + filter + '/' + filter + '.filter.js',
-                'client/app/' + filter + '/' + filter + '.filter.spec.js'
-            ];
+  describe('Create filter files with Angular', function() {
+    it('Handles defaults', function(done) {
+      // Filename
+      var filter = 'myfilter';
+      var filesToTest = [
+        'client/app/' + filter + '/' + filter + '.filter.js',
+        'client/app/' + filter + '/' + filter + '.filter.spec.js'
+      ];
 
-            helpers.mockPrompt(this.app, {
-                jsFramework: 'angular',
-                singlePageApplication: true
-            });
-            this.app.run([], function() {
-                createSubGenerator('filter', filter, {}, {
-                    // mock prompt data
-                    filterFile: 'client/app'
-                }, function() {
-                    assert.file(filesToTest);
-                    done();
-                });
-            });
+      helpers.mockPrompt(this.app, {
+        jsFramework: 'angular',
+        singlePageApplication: true
+      });
+      this.app.run([], function() {
+        createSubGenerator('filter', filter, {}, {
+          // mock prompt data
+          filterFile: 'client/app'
+        }, function() {
+          assert.file(filesToTest);
+          done();
         });
-        it('Handles funky path', function(done) {
-            // Filename
-            var funkyPath = '/////funkypath/////';
-            var filesToTest = [
-                'client/app/funkypath/funkypath.filter.js',
-                'client/app/funkypath/funkypath.filter.spec.js'
-            ];
-
-            helpers.mockPrompt(this.app, {
-                jsFramework: 'angular',
-                singlePageApplication: true
-            });
-            this.app.run([], function() {
-                createSubGenerator('filter', funkyPath, {}, {
-                    // mock prompt data
-                    filterFile: 'client/app',
-                }, function() {
-                    assert.file(filesToTest);
-                    done();
-                });
-            });
-        });
+      });
     });
+    it('Handles funky path', function(done) {
+      // Filename
+      var funkyPath = '/////funkypath/////';
+      var filesToTest = [
+        'client/app/funkypath/funkypath.filter.js',
+        'client/app/funkypath/funkypath.filter.spec.js'
+      ];
+
+      helpers.mockPrompt(this.app, {
+        jsFramework: 'angular',
+        singlePageApplication: true
+      });
+      this.app.run([], function() {
+        createSubGenerator('filter', funkyPath, {}, {
+          // mock prompt data
+          filterFile: 'client/app',
+        }, function() {
+          assert.file(filesToTest);
+          done();
+        });
+      });
+    });
+  });
 });

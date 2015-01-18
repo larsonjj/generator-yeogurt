@@ -12,21 +12,21 @@ var auth = require('../auth');
  * Read user data.
  */
 var readAccount = function(req, res, next) {
-    User.findById(req.user._id, '-password', function(err, user) {
-        if (err) {
-            return next(err);
-        }
-        if (!user) {
-            return res.status(400).json({
-                errors: [{
-                    msg: 'Failed to authenticate'
-                }]
-            });
-        }
-        res.status(200).json({
-            user: user
-        });
+  User.findById(req.user._id, '-password', function(err, user) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.status(400).json({
+        errors: [{
+          msg: 'Failed to authenticate'
+        }]
+      });
+    }
+    res.status(200).json({
+      user: user
     });
+  });
 };
 
 /**
@@ -38,52 +38,52 @@ var readAccount = function(req, res, next) {
  */
 
 var createAccount = function(req, res, next) {
-    req.assert('email', 'Email is not valid').isEmail();
-    req.assert('password', 'Password must be at least 6 characters long').len(6);
-    req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
+  req.assert('email', 'Email is not valid').isEmail();
+  req.assert('password', 'Password must be at least 6 characters long').len(6);
+  req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
-    var errors = req.validationErrors();
+  var errors = req.validationErrors();
 
-    if (errors) {
-        return res.status(400).json({
-            errors: errors
-        });
+  if (errors) {
+    return res.status(400).json({
+      errors: errors
+    });
+  }
+
+  var user = new User({
+    email: req.body.email,
+    password: req.body.password
+  });
+
+  User.findOne({
+    email: req.body.email
+  }, '-password', function(err, existingUser) {
+    if (err) {
+      return next(err);
     }
-
-    var user = new User({
-        email: req.body.email,
-        password: req.body.password
+    if (existingUser) {
+      res.status(409).json({
+        errors: [{
+          param: 'email',
+          msg: 'Account with that email address already exists.'
+        }]
+      });
+    }
+    user.save(function(err) {
+      if (err) {
+        return next(err);
+      }
+      // Send user and authentication token
+      var token = auth.signToken(user._id, user.role);
+      res.status(200).json({
+        token: token,
+        user: user,
+        success: [{
+          msg: 'Account created successfully.'
+        }]
+      });
     });
-
-    User.findOne({
-        email: req.body.email
-    }, '-password', function(err, existingUser) {
-        if (err) {
-            return next(err);
-        }
-        if (existingUser) {
-            res.status(409).json({
-                errors: [{
-                    param: 'email',
-                    msg: 'Account with that email address already exists.'
-                }]
-            });
-        }
-        user.save(function(err) {
-            if (err) {
-                return next(err);
-            }
-            // Send user and authentication token
-            var token = auth.signToken(user._id, user.role);
-            res.status(200).json({
-                token: token,
-                user: user,
-                success: [{
-                    msg: 'Account created successfully.'
-                }]
-            });
-        });
-    });
+  });
 };
 
 /**
@@ -92,37 +92,37 @@ var createAccount = function(req, res, next) {
  */
 
 var updateProfile = function(req, res, next) {
-    req.assert('email', 'Email is not valid').isEmail();
+  req.assert('email', 'Email is not valid').isEmail();
 
-    var errors = req.validationErrors();
+  var errors = req.validationErrors();
 
-    if (errors) {
-        return res.status(400).json({
-            errors: errors
-        });
+  if (errors) {
+    return res.status(400).json({
+      errors: errors
+    });
+  }
+
+  User.findById(req.user._id, '-password', function(err, user) {
+    if (err) {
+      return next(err);
     }
 
-    User.findById(req.user._id, '-password', function(err, user) {
-        if (err) {
-            return next(err);
-        }
+    user.email = req.body.email || '';
+    user.firstName = req.body.firstName || '';
+    user.lastName = req.body.lastName || '';
 
-        user.email = req.body.email || '';
-        user.firstName = req.body.firstName || '';
-        user.lastName = req.body.lastName || '';
-
-        user.save(function(err) {
-            if (err) {
-                return next(err);
-            }
-            res.status(200).json({
-                success: [{
-                    msg: 'Profile information updated.'
-                }],
-                user: user
-            });
-        });
+    user.save(function(err) {
+      if (err) {
+        return next(err);
+      }
+      res.status(200).json({
+        success: [{
+          msg: 'Profile information updated.'
+        }],
+        user: user
+      });
     });
+  });
 };
 
 /**
@@ -133,35 +133,35 @@ var updateProfile = function(req, res, next) {
  */
 
 var updatePassword = function(req, res, next) {
-    req.assert('password', 'Password must be at least 6 characters long').len(6);
-    req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
+  req.assert('password', 'Password must be at least 6 characters long').len(6);
+  req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
-    var errors = req.validationErrors();
+  var errors = req.validationErrors();
 
-    if (errors) {
-        return res.status(400).json({
-            errors: errors
-        });
+  if (errors) {
+    return res.status(400).json({
+      errors: errors
+    });
+  }
+
+  User.findById(req.user._id, function(err, user) {
+    if (err) {
+      return next(err);
     }
 
-    User.findById(req.user._id, function(err, user) {
-        if (err) {
-            return next(err);
-        }
+    user.password = req.body.password;
 
-        user.password = req.body.password;
-
-        user.save(function(err) {
-            if (err) {
-                return next(err);
-            }
-            res.status(200).json({
-                success: [{
-                    msg: 'Password has been changed.'
-                }]
-            });
-        });
+    user.save(function(err) {
+      if (err) {
+        return next(err);
+      }
+      res.status(200).json({
+        success: [{
+          msg: 'Password has been changed.'
+        }]
+      });
     });
+  });
 };
 
 /**
@@ -170,22 +170,22 @@ var updatePassword = function(req, res, next) {
  */
 
 var deleteAccount = function(req, res, next) {
-    User.findByIdAndRemove(req.user._id, function(err) {
-        if (err) {
-            return next(err);
-        }
-        res.status(200).json({
-            info: [{
-                msg: 'Your account has been deleted.'
-            }]
-        });
+  User.findByIdAndRemove(req.user._id, function(err) {
+    if (err) {
+      return next(err);
+    }
+    res.status(200).json({
+      info: [{
+        msg: 'Your account has been deleted.'
+      }]
     });
+  });
 };
 
 module.exports = {
-    readAccount: readAccount,
-    createAccount: createAccount,
-    updateProfile: updateProfile,
-    updatePassword: updatePassword,
-    deleteAccount: deleteAccount
+  readAccount: readAccount,
+  createAccount: createAccount,
+  updateProfile: updateProfile,
+  updatePassword: updatePassword,
+  deleteAccount: deleteAccount
 };

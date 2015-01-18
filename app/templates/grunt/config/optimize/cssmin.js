@@ -5,11 +5,11 @@
 
 var taskConfig = function(grunt) {
 
-    grunt.config.set('cssmin', {
-        options: {
-            sourceMap: true
-        }
-    });
+  grunt.config.set('cssmin', {
+    options: {
+      sourceMap: true
+    }
+  });
 
 };
 

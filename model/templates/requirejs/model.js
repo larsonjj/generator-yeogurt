@@ -1,24 +1,24 @@
 define(function(require) {
-    'use strict';
+  'use strict';
 
-    var <%= _.classify(name) %> = Backbone.Model.extend({
+  var <%= _.classify(name) %> = Backbone.Model.extend({
 
-        url: '',
+    url: '',
 
-        initialize: function() {
-        },
+    initialize: function() {
+    },
 
-        defaults: {
-        },
+    defaults: {
+    },
 
-        validate: function(attrs, options) {
-        },
+    validate: function(attrs, options) {
+    },
 
-        parse: function(response, options)  {
-            return response;
-        }
+    parse: function(response, options)  {
+      return response;
+    }
 
-    });
+  });
 
-    return <%= _.classify(name) %>;
+  return <%= _.classify(name) %>;
 });

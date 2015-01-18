@@ -7,13 +7,13 @@
 
 describe('Forgot View Namespace', function() {
 
-    beforeEach(function() {
-        this.forgotView = new App.Views.Forgot();
-    });
+  beforeEach(function() {
+    this.forgotView = new App.Views.Forgot();
+  });
 
-    it('provides the "Forgot View" instance', function() {
-        // Expect it to exist
-        expect(this.forgotView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
-    });
+  it('provides the "Forgot View" instance', function() {
+    // Expect it to exist
+    expect(this.forgotView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+  });
 
 });

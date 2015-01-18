@@ -7,59 +7,59 @@ var messagesStore = require('../../stores/messages');
 var DOM = React.createElement;
 
 var getState = function() {
-    return {
-        messages: messagesStore.get()
-    };
+  return {
+    messages: messagesStore.get()
+  };
 };
 
 var MessagesComponent = React.createClass({
-    mixins: [messagesStore.mixin],
-    getInitialState: function() {
-        return getState();
-    },
-    render: function() {
-        var messages = this.state.messages;
+  mixins: [messagesStore.mixin],
+  getInitialState: function() {
+    return getState();
+  },
+  render: function() {
+    var messages = this.state.messages;
 
-        var getMessages = function(options) {
-            if (messages && messages[options.key]) {
-                return messages[options.key].map(function(item, index) {
-                    return (
-                        DOM('div', {
-                            key: index,
-                            className: options.msgClass
-                        }, item.msg)
-                    );
-                });
-            }
-        };
-
-        var errors = getMessages({
-            key: 'errors',
-            msgClass: 'error'
+    var getMessages = function(options) {
+      if (messages && messages[options.key]) {
+        return messages[options.key].map(function(item, index) {
+          return (
+            DOM('div', {
+              key: index,
+              className: options.msgClass
+            }, item.msg)
+          );
         });
+      }
+    };
 
-        var info = getMessages({
-            key: 'info',
-            msgClass: 'info'
-        });
+    var errors = getMessages({
+      key: 'errors',
+      msgClass: 'error'
+    });
 
-        var success = getMessages({
-            key: 'success',
-            msgClass: 'success'
-        });
+    var info = getMessages({
+      key: 'info',
+      msgClass: 'info'
+    });
 
-        return (
-            DOM('div', null,
-                errors,
-                info,
-                success
-            )
-        );
-    },
-    // Event handler for 'change' events coming from store mixins.
-    _onChange: function() {
-        this.setState(getState());
-    }
+    var success = getMessages({
+      key: 'success',
+      msgClass: 'success'
+    });
+
+    return (
+      DOM('div', null,
+        errors,
+        info,
+        success
+      )
+    );
+  },
+  // Event handler for 'change' events coming from store mixins.
+  _onChange: function() {
+    this.setState(getState());
+  }
 });
 
 module.exports = MessagesComponent;

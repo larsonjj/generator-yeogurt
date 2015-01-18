@@ -4,16 +4,16 @@
 'use strict';
 
 var taskConfig = function(grunt) {
-    grunt.registerTask('wait', 'Helper task that allows a set amount of time to wait for the server to reload', function() {
-        grunt.log.ok('Waiting for server...');
+  grunt.registerTask('wait', 'Helper task that allows a set amount of time to wait for the server to reload', function() {
+    grunt.log.ok('Waiting for server...');
 
-        var done = this.async();
+    var done = this.async();
 
-        setTimeout(function() {
-            grunt.log.writeln('Done waiting!');
-            done();
-        }, 500);
-    });
+    setTimeout(function() {
+      grunt.log.writeln('Done waiting!');
+      done();
+    }, 500);
+  });
 };
 
 module.exports = taskConfig;

@@ -13,23 +13,23 @@ var settings = require('./env/default');
  */
 var securityConfig = function(req, res, next) {
 
-    for (var prop in settings.security.whitelists) {
-        // Conditional whitelisted URLs.
-        if (_.contains(settings.security.whitelists[prop], req.path)) {
-            settings.security.config[prop.replace('Whitelist', '')] = false;
-            console.log('"' + req.path + '" is white-listed for: ' + prop.replace('Whitelist', ''));
-        }
-    }<% if (singlePageApplication) { %>
+  for (var prop in settings.security.whitelists) {
+    // Conditional whitelisted URLs.
+    if (_.contains(settings.security.whitelists[prop], req.path)) {
+      settings.security.config[prop.replace('Whitelist', '')] = false;
+      console.log('"' + req.path + '" is white-listed for: ' + prop.replace('Whitelist', ''));
+    }
+  }<% if (singlePageApplication) { %>
 
-    // allow XHR requests to bypass CSRF
-    // since they will be authenticated by token
-    if (req.is('json') || req.xhr) {
-        settings.security.config.csrf = false;
-    }<% } %>
+  // allow XHR requests to bypass CSRF
+  // since they will be authenticated by token
+  if (req.is('json') || req.xhr) {
+    settings.security.config.csrf = false;
+  }<% } %>
 
-    var init = lusca(settings.security.config);
+  var init = lusca(settings.security.config);
 
-    return init(req, res, next);
+  return init(req, res, next);
 };
 
 module.exports = securityConfig;

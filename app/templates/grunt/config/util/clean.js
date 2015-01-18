@@ -5,10 +5,10 @@
 
 var taskConfig = function(grunt) {
 
-    grunt.config.set('clean', {
-        dist: ['<%%= yeogurt.dist %>'],
-        tmp: ['<%%= yeogurt.tmp %>']
-    });
+  grunt.config.set('clean', {
+    dist: ['<%%= yeogurt.dist %>'],
+    tmp: ['<%%= yeogurt.tmp %>']
+  });
 
 };
 

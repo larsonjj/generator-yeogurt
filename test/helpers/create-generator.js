@@ -5,36 +5,36 @@ var helpers = yeoman.test;
 var Output  = require('../helpers/mute');
 
 var createSubGenerator = function(type, args, options, mockPrompts, asserts) {
-    var subGenerator = helpers.createGenerator('yeogurt:' + type, [
-        '../../../' + type
-    ], args, options);
+  var subGenerator = helpers.createGenerator('yeogurt:' + type, [
+    '../../../' + type
+  ], args, options);
 
-    subGenerator.on( 'start', Output.mute );
-    subGenerator.on( 'end', Output.unmute );
+  subGenerator.on( 'start', Output.mute );
+  subGenerator.on( 'end', Output.unmute );
 
-    helpers.mockPrompt(subGenerator, mockPrompts);
+  helpers.mockPrompt(subGenerator, mockPrompts);
 
-    subGenerator.run([], function() {
-        asserts();
-    });
+  subGenerator.run([], function() {
+    asserts();
+  });
 };
 
 var createAppGenerator = function(args, options) {
-    var app = helpers.createGenerator('yeogurt:app', [
-        '../../../app'
-    ], args, options);
+  var app = helpers.createGenerator('yeogurt:app', [
+    '../../../app'
+  ], args, options);
 
-    app.options['skip-install'] = true;
+  app.options['skip-install'] = true;
 
-    // Prevent Yeoman writes while the generator runs
-    // and reenable them when it's finished to see the test results
-    app.on('start', Output.mute);
-    app.on('end', Output.unmute);
+  // Prevent Yeoman writes while the generator runs
+  // and reenable them when it's finished to see the test results
+  app.on('start', Output.mute);
+  app.on('end', Output.unmute);
 
-    return app;
+  return app;
 };
 
 module.exports = {
-    createSubGenerator: createSubGenerator,
-    createAppGenerator: createAppGenerator
+  createSubGenerator: createSubGenerator,
+  createAppGenerator: createAppGenerator
 };

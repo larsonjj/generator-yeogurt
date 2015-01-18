@@ -5,11 +5,11 @@
 
 var taskConfig = function(grunt) {
 
-    grunt.config.set('open', {
-        server: {
-            url: 'http://localhost:9010/'
-        }
-    });
+  grunt.config.set('open', {
+    server: {
+      url: 'http://localhost:9010/'
+    }
+  });
 
 };
 

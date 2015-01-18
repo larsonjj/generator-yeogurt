@@ -4,7 +4,7 @@ var <%= _.classify(modelName) %> = require('<%= rootDir %><%= modelFile %>');
 
 var <%= _.classify(name) %> = Backbone.Collection.extend({
 
-    model: <%= _.classify(modelName) %>
+  model: <%= _.classify(modelName) %>
 
 });
 

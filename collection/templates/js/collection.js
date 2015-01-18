@@ -6,6 +6,6 @@ App.Collections = App.Collections || {};
 
 App.Collections.<%= _.classify(name) %> = Backbone.Collection.extend({
 
-    model: App.Models.<%= _.classify(modelName) %>
+  model: App.Models.<%= _.classify(modelName) %>
 
 });

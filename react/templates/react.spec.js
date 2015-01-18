@@ -11,12 +11,12 @@ var ReactTestUtils;
 var reactRender;
 
 beforeEach(function() {
-    ReactTestUtils = require('react/addons').addons.TestUtils;
-    reactRender = ReactTestUtils.renderIntoDocument;
+  ReactTestUtils = require('react/addons').addons.TestUtils;
+  reactRender = ReactTestUtils.renderIntoDocument;
 });
 
 describe('Testing React Component: <%= _.classify(name) %>', function() {
-    it('Should run a few assertions', function() {
+  it('Should run a few assertions', function() {
 
-    });
+  });
 });
