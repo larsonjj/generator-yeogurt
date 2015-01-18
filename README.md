@@ -4,7 +4,7 @@
 
 # Yeogurt Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-yeogurt.png?branch=master)](https://travis-ci.org/larsonjj/generator-yeogurt) [![NPM version](https://badge.fury.io/js/generator-yeogurt.png)](http://badge.fury.io/js/generator-yeogurt) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-yeogurt/badge.png)](https://coveralls.io/r/larsonjj/generator-yeogurt)
 
-A "Choose your own adventure" generator for creating static sites and single page applications. Helps you harness the power of your favorite tools: React + Flux, Backbone, Jade, Swig, Express, Grunt and much more!
+A "Choose your own adventure" generator for creating static sites and single page applications. Helps you harness the power of your favorite tools: Angular, React + Flux, Backbone, Jade, Swig, Express, Grunt and much more!
 
 # Table of Contents
 
@@ -25,6 +25,7 @@ A "Choose your own adventure" generator for creating static sites and single pag
     - [Static/Server Sites and Backbone](#static-sites-and-backbone-applications)
     - [React](#react-application)
     - [Backbone](#backbone-application)
+    - [Angular](#angular-application)
 - [Automated Documentation](#automated-documentation)
     - [Dashboard](#dashboard)
     - [JavaScript API](#javascript-api)
@@ -33,7 +34,7 @@ A "Choose your own adventure" generator for creating static sites and single pag
 - [Deployment](#deployment)
     - [FTP Server](#ftp-server)
 - [Vagrant Setup](#vagrant-setup)
-- [Extend Yeogurt](#extend-yeogurt)
+- [Extending Yeogurt](#extending-yeogurt)
 - [Common Gotchas](#common-gotchas)
     - [Bower not installing dependencies using Git](#bower-not-installing-dependencies-using-git)
     - [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts)
@@ -46,7 +47,7 @@ A "Choose your own adventure" generator for creating static sites and single pag
 
 ## What can I create with Yeogurt?
 - Build out static sites using [Jade](http://jade-lang.com/) or [Swig](http://paularmstrong.github.io/swig/).
-- Create Single Page Applications using [Backbone](http://backbonejs.org/) or [React](http://facebook.github.io/react/) + [Flux](http://facebook.github.io/react/docs/flux-overview.html).
+- Create Single Page Applications using [Angular](https://angularjs.org/), [Backbone](http://backbonejs.org/) or [React](http://facebook.github.io/react/) + [Flux](http://facebook.github.io/react/docs/flux-overview.html).
 - Make your site/app full-stack by adding an [Express](http://expressjs.com/) Server with optional database, cookie session, user authentication, and security support .
 
 Check out the [features](#features) section to see everything this generator has to offer.
@@ -145,6 +146,10 @@ Congratulations! You should now have successfully created a Yeogurt project and 
     - Only available for Static Sites that are not using an Express server
 
 ### Single Page Application Options
+- [Angular](https://angularjs.org/)
+
+> IMPORTANT: You can only use Vanilla JS with Angular (no RequireJS or Browserify support)
+
 - Facebook's [React](http://facebook.github.io/react/) with optional [Flux](http://facebook.github.io/react/docs/flux-overview.html) architecture
 
 > IMPORTANT: You can only use Browserify with React (no RequireJS or Vanilla JS support)
@@ -160,7 +165,7 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 - Security with Paypal's [Lusca](https://github.com/krakenjs/lusca) module
 - User authentication (Email & Password) using [Passport](http://passportjs.org/)
 - [JSON Web Token](http://jwt.io/) authentication support
-    - Only for Single Page Applications
+    - Only for Single Page Applications (No Angular Support)
 - Jade, Swig server-side template rendering
     - Only for Static/Server sites (i.e. not Backbone or React)
 
@@ -254,8 +259,6 @@ Runs [`grunt build`](#grunt-build) and pushes optimized files to a specified FTP
 * [yeogurt:service](#service)
 * [yeogurt:factory](#factory)
 * [yeogurt:provider](#provider)
-* [yeogurt:value](#value)
-* [yeogurt:constant](#constant)
 
 ***Note: Generators need to be run from the root directory of your app.***
 
@@ -464,6 +467,164 @@ client/scripts/collections/mycollection.js
 test/spec/collections/mycollection.spec.js
 ```
 
+## Angular Sub-generators
+***Note: (The following sub-generators can only be used with Angular applications)***
+
+### Route
+Creates an Angular template:
+
+Example:
+
+```
+yo yeogurt:route myroute
+? Where would you like to create this view?: client/app
+```
+
+Produces:
+
+```
+client/app/myroute/myroute.html
+client/app/myroute/myroute.controller.js
+client/app/myroute/myroute.controller.spec.js
+client/app/myroute/myroute.js
+```
+
+### ng Template
+Creates an Angular template:
+
+Example:
+
+```
+yo yeogurt:template mytemp
+? Where would you like to create this view?: client/app/templates
+```
+
+Produces:
+
+```
+client/app/templates/mytemp.html
+```
+
+### Controller
+Creates an Angular controller:
+
+Example:
+
+```
+yo yeogurt:controller mycontroller
+? Where would you like to create this controller?: client/app
+```
+
+Produces:
+
+```
+client/app/mycontroller/mycontroller.controller.js
+client/app/mycontroller/mycontroller.controller.spec.js
+```
+
+### Directive
+Creates an Angular directive:
+
+Example:
+
+```
+yo yeogurt:directive mydirective
+? Where would you like to create this directive?: client/app
+? Does this directive need an HTML template?: Yes
+```
+
+Produces:
+
+```
+client/app/mydirective/mydirective.directive.js
+client/app/mydirective/mydirective.directive.spec.js
+client/app/mydirective/mydirective.html (optional)
+```
+
+### Filter
+Creates an Angular filter:
+
+Example:
+
+```
+yo yeogurt:filter myfilter
+? Where would you like to create this filter?: client/app
+```
+
+Produces:
+
+```
+client/app/myfilter/myfilter.filter.js
+client/app/myfilter/myfilter.filter.spec.js
+```
+
+### Decorator
+Creates an Angular decorator:
+
+Example:
+
+```
+yo yeogurt:decorator mydecorator
+? Where would you like to create this decorator?: client/app
+```
+
+Produces:
+
+```
+client/app/mydecorator/mydecorator.decorator.js
+```
+
+### Service
+Creates an Angular service:
+
+Example:
+
+```
+yo yeogurt:service myservice
+? Where would you like to create this service?: client/app
+```
+
+Produces:
+
+```
+client/app/myservice/myservice.service.js
+client/app/myservice/myservice.service.spec.js
+```
+
+### Factory
+Creates an Angular factory:
+
+Example:
+
+```
+yo yeogurt:factory myfactory
+? Where would you like to create this factory?: client/app
+```
+
+Produces:
+
+```
+client/app/myfactory/myfactory.factory.js
+client/app/myfactory/myfactory.factory.spec.js
+```
+
+### Provider
+Creates an Angular provider:
+
+Example:
+
+```
+yo yeogurt:provider myprovider
+? Where would you like to create this provider?: client/app
+```
+
+Produces:
+
+```
+client/app/myprovider/myprovider.provider.js
+client/app/myprovider/myprovider.provider.spec.js
+```
+
 ## Automated Documentation
 ### Dashboard
 ***NOTE: Only available for static sites***
@@ -582,7 +743,7 @@ For more info on setting up the `.ftppass` file, refer to the [grunt-ftpush](htt
 ## Vagrant Setup
 If you would like to use Yeogurt with [Vagrant](https://www.vagrantup.com/), head over to the [yeogurt-vagrant](https://github.com/larsonjj/yeogurt-vagrant) repository for installation and setup instructions.
 
-## Extend Yeogurt
+## Extending Yeogurt
 Check out the [Guides](docs/guides/README.md) section to learn how to integrate other technologies like Ruby Sass, Bootstrap, Animate.css, etc
 
 ## Common Issues
