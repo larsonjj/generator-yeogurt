@@ -133,7 +133,7 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 - Project/Site naming
 - Default ignores for [Git](http://git-scm.com/) or [SVN](http://subversion.apache.org/)
 - Stylesheets with [Less](http://lesscss.org/), [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass)), [Stylus](http://learnboost.github.io/stylus/), or CSS
-- Modular JavaScript with [RequireJS](http://requirejs.org/) or [Browserify](http://browserify.org/)
+- Modular JavaScript with [RequireJS](http://requirejs.org/) or [Browserify](http://browserify.org/). Can also just use Vanilla JS.
 - Styleguide - auto-generated styleguide for your stylesheets with [Knyle Style Sheets](http://warpspire.com/posts/kss/)
 - JavaScript Documentation - auto-generated API for your scripts with [JSDoc](http://usejsdoc.org/)
 - JavaScript unit testing with [Jasmine](http://jasmine.github.io/) or [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/)
@@ -300,7 +300,7 @@ client/styles/_mystyle.scss
 ```
 
 ## Static/Server Site
-***Note: (The following sub-generators cannot be used with React or Backbone applications)***
+***Note: (The following sub-generators cannot be used with Single Page Applications)***
 
 ### Template
 
@@ -344,7 +344,7 @@ Produces:
 
 ### React
 
-Creates React JSX Component File.
+Creates React Component File.
 
 Example:
 
@@ -357,9 +357,11 @@ yo yeogurt:react mycomponent
 Produces:
 
 ```
-client/scripts/components/mycomponent.jsx
+client/scripts/components/mycomponent.{jsx,js}
 test/spec/components/mycomponent.spec.js
 ```
+
+***NOTE: `{jsx,js}` means that the file extension will match the template engine you chose: `JSX` or just plain `JS`***
 
 ### Flux
 
