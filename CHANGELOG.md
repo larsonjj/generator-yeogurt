@@ -1,23 +1,24 @@
 ### v0.14.0:
 #### date: 2015-1-18
 ##### changes:
-* Added AngularJS option for Single Page Applications
- - Templates auto compiled to single JS payload and added to $templateCache
- - Angular scripts automatically converted to min-safe. (Angular shorthand DI can be used)
+* Added [AngularJS](https://angularjs.org/) option for Single Page Applications
+ - Templates auto compiled to single JS payload and added to $templateCache using [`grunt-angular-templates`](https://github.com/ericclemmons/grunt-angular-templates)
+ - Angular scripts automatically converted to min-safe using [grunt-ng-annotate](https://github.com/mzgol/grunt-ng-annotate). (Angular shorthand DI can be used)
  - Modular Structure based on [John Papa's Styleguide](https://github.com/johnpapa/angularjs-styleguide)
  - 8 new AngularJS sub-generators
-  - Route
-  - Service
-  - Factory
-  - Controller
-  - Template
-  - Directive
-  - Decorator
+  - [Route](https://github.com/larsonjj/generator-yeogurt#route)
+  - [Service](https://github.com/larsonjj/generator-yeogurt#service)
+  - [Factory](https://github.com/larsonjj/generator-yeogurt#factory)
+  - [Controller](https://github.com/larsonjj/generator-yeogurt#controller)
+  - [Template](https://github.com/larsonjj/generator-yeogurt#ng-template)
+  - [Directive](https://github.com/larsonjj/generator-yeogurt#directive)
+  - [Decorator](https://github.com/larsonjj/generator-yeogurt#decorator)
 * Changed coding style to match [Google's](https://github.com/jscs-dev/node-jscs/blob/master/presets/google.json)
   - 4 space indent has been changed to 2
   - [jscs](http://jscs.info/) is now used to enforce new style rules (for yeogurt repo only)
   - Differences: Allow 120 characters instead of the default 80. Also allow `else` on new lines.
 * Authentication boilerplates for React, Backbone, Jade, and Swig have been deprecated (will be removed from next release `0.15.0`)
+* Removed FTP deployment prompts. Instead, a [guide](https://github.com/larsonjj/generator-yeogurt/blob/master/docs/guides/ftp.md) has been added on how to implement it.
 
 ### v0.13.7:
 #### date: 2015-1-15
