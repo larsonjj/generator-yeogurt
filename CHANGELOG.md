@@ -1,5 +1,5 @@
 ### v0.14.0:
-#### date: 2015-1-18
+#### date: 2015-1-19
 ##### changes:
 * Added [AngularJS](https://angularjs.org/) option for Single Page Applications
  - Templates auto compiled to single JS payload and added to $templateCache using [`grunt-angular-templates`](https://github.com/ericclemmons/grunt-angular-templates)
