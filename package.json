@@ -1,6 +1,6 @@
 {
   "name": "generator-yeogurt",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "description": "A “Choose your own adventure” generator for creating static sites and single page applications. Helps you harness the power of your favorite tools: Angular, React + Flux, Backbone, Jade, Swig, Express, Grunt and much more!",
   "keywords": [
   "yeoman-generator",

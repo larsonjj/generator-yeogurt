@@ -1,3 +1,8 @@
+### v0.14.1:
+#### date: 2015-1-19
+##### changes:
+* Updated documentation
+
 ### v0.14.0:
 #### date: 2015-1-19
 ##### changes:
