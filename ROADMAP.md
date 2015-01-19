@@ -6,6 +6,7 @@
 
 ## v0.15.0+
 * Add End-to-end testing with [Protractor](http://angular.github.io/protractor/#/)
+* Add guide for deploying to Heroku
 
 ## v1.0.0
 * TBD
