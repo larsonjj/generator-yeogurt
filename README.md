@@ -288,8 +288,10 @@ yo yeogurt:style mystyle
 Produces:
 
 ```
-client/styles/_mystyle.scss
+client/styles/_mystyle.{css,styl,less,scss,sass}
 ```
+
+***NOTE: `{css,styl,less,scss,sass}` means that the file extension will match the preprocessor you chose: `CSS, Stylus, Less or Sass` respectively***
 
 ## Static/Server Site
 ***Note: (The following sub-generators cannot be used with Single Page Applications)***
@@ -480,8 +482,11 @@ Produces:
 client/app/myroute/myroute.html
 client/app/myroute/myroute.controller.js
 client/app/myroute/myroute.controller.spec.js
+client/app/myroute/myroute.{css,styl,less,scss,sass}
 client/app/myroute/myroute.js
 ```
+
+***NOTE: `{css,styl,less,scss,sass}` means that the file extension will match the preprocessor you chose: `CSS, Stylus, Less or Sass` respectively***
 
 ### ng Template
 Creates an Angular template:
