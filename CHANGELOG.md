@@ -10,7 +10,7 @@
   - Service
   - Factory
   - Controller
-  - ngTemplate
+  - Template
   - Directive
   - Decorator
 * Changed coding style to match [Google's](https://github.com/jscs-dev/node-jscs/blob/master/presets/google.json)
