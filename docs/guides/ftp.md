@@ -28,12 +28,12 @@ var taskConfig = function(grunt) {
     build: {
       simple: true,
       auth: {
-        host: '<%%= secret.host %>',
+        host: '<%= secret.host %>',
         port: 21,
         authKey: 'key1'
       },
-      src: '<%%= yeogurt.dist %>',
-      dest: '<%%= secret.serverPath %>',
+      src: '<%= yeogurt.dist %>',
+      dest: '<%= secret.serverPath %>',
       exclusions: ['*.svn', '.svn/', '.svn', '*.git', '.git/', '.git', '.tmp'],
       server_sep: '/'
     }
@@ -48,6 +48,8 @@ module.exports = taskConfig;
 
 ```
 var deployConfig = loadTasks('./grunt/config/deploy');
+
+invokeConfigFn(deployConfig);
 ```
 
 ### 4. Add FTP configuration file
@@ -55,11 +57,11 @@ Create a `.ftppass` file in the root directory of your project and add the follo
 
 ```
 {
-  "host": "<%= ftpHost %>",
-  "serverPath": "<%= ftpFolder %>",
+  "host": "/serverUrl",
+  "serverPath": "/serverFolder",
   "key1": {
-    "username": "<%= ftpUser %>",
-    "password": "<%= ftpPass %>"
+    "username": "ftpUser",
+    "password": "ftpPass"
     }
 }
 ```
