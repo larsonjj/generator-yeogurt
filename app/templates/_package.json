@@ -97,8 +97,7 @@
     "lodash": "~2.4.1",<% } %>
     "time-grunt": "0.2.10",<% if (useDashboard) { %>
     "grunt-dashboard": "~0.3.0",<% } %>
-    "bower": "~1.3.3",<% if (useFTP) { %>
-    "grunt-ftpush": "~0.3.3",<% } %>
+    "bower": "~1.3.3",
     "jit-grunt": "~0.9.0"<% if (useServer) { %>,
     "connect-livereload": "~0.5.2",
     "grunt-express-server": "~0.4.5"<% } %>

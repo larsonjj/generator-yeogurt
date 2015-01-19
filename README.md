@@ -31,14 +31,11 @@ A "Choose your own adventure" generator for creating static sites and single pag
   - [JavaScript API](#javascript-api)
   - [Styleguide](#styleguide)
 - [Adding third-party libraries](#adding-third-party-libraries)
-- [Deployment](#deployment)
-  - [FTP Server](#ftp-server)
 - [Vagrant Setup](#vagrant-setup)
 - [Extending Yeogurt](#extending-yeogurt)
 - [Common Gotchas](#common-gotchas)
   - [Bower not installing dependencies using Git](#bower-not-installing-dependencies-using-git)
   - [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts)
-  - [`grunt deploy` is not copying files to FTP server](#grunt-deploy-is-not-copying-files-to-ftp-server)
 - [Testing](#testing)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
@@ -225,11 +222,6 @@ Runs JSHint and Karma to lint and run JavaScript tests, respectively.
 |grunt test:watch| runs [`grunt test`](#grunt-test), but also watches test files and auto runs tests when changes are detected.
 
 ***NOTE: you can add the `--allow-remote` option to any of these commands to allow remote devices on the same network to view/run your tests***
-
-### `grunt deploy`
-Runs [`grunt build`](#grunt-build) and pushes optimized files to a specified FTP server. (only available if FTP deployment is chosen when generating project)
-
-***NOTE: [FTP server](#ftp-server) info is specified in the `.ftppass` file in the root of your project)***
 
 ## Sub-Generators
 
@@ -719,29 +711,6 @@ Your library should now load correctly (assuming your source path is correct).
 
 > IMPORTANT: If you have third-party script that will be referenced within your own code (ex. using jQuery), you need to make sure that JSHint is aware it. Check out [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts) to see how to make this happen.
 
-## Deployment
-### FTP Server
-If you are deploying to an FTP (not SFTP) server, you will need to make sure that you fill out the generated `.ftppass` file. It is located in the root folder of your Yeogurt project.
-
-This file looks like this:
-
-```
-{
-  "host": "",
-  "serverPath": "/html",
-  "key1": {
-    "username": "jdoe",
-    "password": "jdoe1"
-    }
-}
-```
-
-Fill out the necessary connection information needed to access your FTP server and you should be ready to use the `grunt deploy` command.
-
-For more info on setting up the `.ftppass` file, refer to the [grunt-ftpush](https://github.com/inossidabile/grunt-ftpush) documentation
-
-> IMPORTANT: You will want to test your FTP connection information using an FTP client first (ex. [Filezilla](https://filezilla-project.org/)). This will ensure that you are: a) using the correct connection information and b) copying files to the correct directory.
-
 ## Vagrant Setup
 If you would like to use Yeogurt with [Vagrant](https://www.vagrantup.com/), head over to the [yeogurt-vagrant](https://github.com/larsonjj/yeogurt-vagrant) repository for installation and setup instructions.
 
@@ -783,13 +752,6 @@ To remedy this situation, all you need to do is open up your `.jshintrc` file in
 ...
 }
 ```
-
-### `grunt deploy` is not copying files to FTP server
-
-`grunt deploy` runs the [grunt-ftpush](https://github.com/inossidabile/grunt-ftpush) plugin. This plugin tries to cache files that have been transferred to an FTP server (even if there is an error). The cache is stored in the `.grunt` folder at the root of the project.
-
-##### Solution
-Delete the `.grunt` folder. Once this folder is deleted, it will remove the FTP cache and should now allow you to do a full FTP transfer using `grunt deploy`.
 
 ## Testing
 To run unit tests, you have a couple options:

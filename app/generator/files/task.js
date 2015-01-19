@@ -27,9 +27,6 @@ var taskFiles = function taskFiles() {
   if (this.useDashboard) {
     this.template('grunt/config/docs/dashboard.js', 'grunt/config/docs/dashboard.js');
   }
-  if (this.useFTP) {
-    this.template('grunt/config/deploy/ftpush.js', 'grunt/config/deploy/ftpush.js');
-  }
   if (this.useKss) {
     this.template('grunt/config/docs/styleguide.js', 'grunt/config/docs/styleguide.js');
   }
@@ -80,14 +77,9 @@ var taskFiles = function taskFiles() {
     this.template('grunt/config/compile/ng-annotate.js', 'grunt/config/compile/ng-annotate.js');
   }
 
-
-
   // Tasks
   this.template('grunt/tasks/build.js', 'grunt/tasks/build.js');
   this.template('grunt/tasks/default.js', 'grunt/tasks/default.js');
-  if (this.useFTP) {
-    this.template('grunt/tasks/deploy.js', 'grunt/tasks/deploy.js');
-  }
   this.template('grunt/tasks/serve.js', 'grunt/tasks/serve.js');
   this.template('grunt/tasks/test.js', 'grunt/tasks/test.js');
   if (this.useServer) {

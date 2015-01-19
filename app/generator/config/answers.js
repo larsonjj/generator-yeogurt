@@ -115,18 +115,6 @@ var answersConfig = function answersConfig() {
   this.useKss        = this.answers.useKss;
   this.useDashboard  = this.answers.useDashboard;
 
-  // Deployment
-  this.useFTP        = this.answers.useFTP;
-  this.ftpHost       = this.answers.ftpHost;
-  this.ftpFolder     = this.answers.ftpFolder;
-
-  // Clear ftpPass and/or ftpUser if 'nouser' and/or 'nopass'
-  if (this.answers.ftpUser === 'nouser') {this.answers.ftpUser = '';}
-  if (this.answers.ftpPass === 'nopass') {this.answers.ftpPass = '';}
-
-  this.ftpUser = this.answers.ftpUser;
-  this.ftpPass = this.answers.ftpPass;
-
   // Default Overwrites
   if (this.jsFramework === 'react') {
     this.jsOption   = this.answers.jsOption   = 'browserify';

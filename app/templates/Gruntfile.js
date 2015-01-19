@@ -63,8 +63,7 @@ module.exports = function(grunt) {
   var utilConfig = loadTasks('./grunt/config/util');
   var compileConfig = loadTasks('./grunt/config/compile');<% if (useKss || useDashboard || useJsdoc) { %>
   var docConfig = loadTasks('./grunt/config/docs');<% } %>
-  var optimizeConfig = loadTasks('./grunt/config/optimize');<% if (useFTP) { %>
-  var deployConfig = loadTasks('./grunt/config/deploy');<% } %>
+  var optimizeConfig = loadTasks('./grunt/config/optimize');
   var serverConfig = loadTasks('./grunt/config/server');<% if (useTesting) { %>
   var testConfig = loadTasks('./grunt/config/test');<% } %>
   var registerDefinitions = loadTasks('./grunt/tasks');
@@ -81,8 +80,7 @@ module.exports = function(grunt) {
   invokeConfigFn(utilConfig);
   invokeConfigFn(compileConfig);<% if (useKss || useDashboard || useJsdoc) { %>
   invokeConfigFn(docConfig);<% } %>
-  invokeConfigFn(optimizeConfig);<% if (useFTP) { %>
-  invokeConfigFn(deployConfig);<% } %>
+  invokeConfigFn(optimizeConfig);
   invokeConfigFn(serverConfig);<% if (useTesting) { %>
   invokeConfigFn(testConfig);<% } %>
   invokeConfigFn(registerDefinitions);

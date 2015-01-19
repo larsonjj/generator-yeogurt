@@ -1,7 +1,6 @@
 node_modules
 *.log
 dist
-.ftppass
 client/bower_components
 .tmp
 .grunt
