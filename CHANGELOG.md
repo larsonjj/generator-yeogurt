@@ -17,7 +17,7 @@
   - 4 space indent has been changed to 2
   - [jscs](http://jscs.info/) is now used to enforce new style rules (for yeogurt repo only)
   - Differences: Allow 120 characters instead of the default 80. Also allow `else` on new lines.
-* Authentication boilerplates for React, Backbone, Jade, and Swig have been deprecated (will be removed from next release)
+* Authentication boilerplates for React, Backbone, Jade, and Swig have been deprecated (will be removed from next release `0.15.0`)
 
 ### v0.13.7:
 #### date: 2015-1-15
