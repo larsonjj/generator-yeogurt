@@ -1,6 +1,5 @@
-/**
- * Configuration for wiredep task(s)
- */
+// Configuration for Wiredep task(s)
+// Injects Bower packages into your source code.
 'use strict';
 
 var taskConfig = function(grunt) {
@@ -9,22 +8,20 @@ var taskConfig = function(grunt) {
     app: {
       options: {
         ignorePath: /client\/|\.\.\//g,
+        // Make sure everything has an absolute path (starts with '/')
         fileTypes: {<% if (singlePageApplication) { %>
-          // Make sure everything has an absolute path
           html: {
             replace: {
               js: '<script src="/{{filePath}}"></script>',
               css: '<link rel="stylesheet" href="/{{filePath}}" />'
             }
           }<% } %><% if (htmlOption === 'jade') { %>
-          // Make sure everything has an absolute path
           jade: {
             replace: {
               js: 'script(src=\'/{{filePath}}\')',
               css: 'link(rel=\'stylesheet\', href=\'/{{filePath}}\')'
             }
           }<% } else if (htmlOption === 'swig') { %>
-          // Make sure everything has an absolute path
           swig: {
             block: /(([ \t]*)<!--\s*bower:*(\S*)\s*-->)(\n|\r|.)*?(<!--\s*endbower\s*-->)/gi,
             detect: {

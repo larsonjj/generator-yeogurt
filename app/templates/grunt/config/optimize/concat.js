@@ -1,6 +1,5 @@
-/**
- * Configuration for concat task(s)
- */
+// Configuration for Concatenation task(s)
+// Concatenates files together
 'use strict';
 
 var taskConfig = function(grunt) {

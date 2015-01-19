@@ -1,6 +1,7 @@
-/**
- * Configuration for Jade task(s)
- */
+// Configuration for jade task(s)<% if (singlePageApplication) { %>
+// Compile jade templates to single `.js` file
+// using the JST namespace (accessible via window.JST)<% } else { %>
+// Compile jade templates into HTML<% } %>
 'use strict';
 
 var taskConfig = function(grunt) {

@@ -1,6 +1,5 @@
-/**
- * Configuration for browserify task(s)
- */
+// Configuration for browserify task(s)
+// Compiles JavaScript into single bundle file
 'use strict';
 
 var taskConfig = function(grunt) {

@@ -8,10 +8,9 @@ var assert  = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
-
 describe('Filter sub-generator', function() {
-  beforeEach(function (done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
+  beforeEach(function(done) {
+    helpers.testDirectory(path.join(__dirname, 'temp'), function(err) {
       if (err) {
         return done(err);
       }

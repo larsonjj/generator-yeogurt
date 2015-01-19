@@ -44,10 +44,20 @@ DirectiveGenerator.prototype.ask = function ask() {
   this.prompt(prompts, function(answers) {
     // Get root directory
     this.rootDir = getRootDir(answers.routeFile);
-    this.routeFile = path.join(answers.routeFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
-    this.testFile = path.join(answers.routeFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
+    this.routeFile = path.join(answers.routeFile,
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase())
+      );
+    this.testFile = path.join(answers.routeFile,
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase())
+      );
     this.routeURL = answers.routeURL;
-    this.htmlURL = path.join(answers.routeFile.replace('client', ''), this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase())) + '.html';
+    this.htmlURL = path.join(
+        answers.routeFile.replace('client', ''),
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase())
+      ) + '.html';
 
     done();
   }.bind(this));
@@ -65,6 +75,5 @@ DirectiveGenerator.prototype.files = function files() {
   if (this.useTesting) {
     this.template('route.spec.js', this.testFile + '.controller.spec.js');
   }
-
 
 };

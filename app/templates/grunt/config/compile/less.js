@@ -1,6 +1,5 @@
-/**
- * Configuration for Less task(s)
- */
+// Configuration for LESS task(s)
+// Compile LESS stylesheets to single `.css` file
 'use strict';
 
 var taskConfig = function(grunt) {

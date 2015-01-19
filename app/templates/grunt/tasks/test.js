@@ -1,6 +1,6 @@
-/**
- * Builds out an optimised site through minification of CSS and HTML, as well as  uglification and optimisation of Javascript.
- */
+// `grunt test`
+// Runs all tests and static analysis (i.e. JSHint)
+
 'use strict';
 
 var taskConfig = function(grunt) {

@@ -27,7 +27,9 @@ module.exports = function(grunt) {
     useminPrepare: 'grunt-usemin',
     // translate swig to use the 'grunt-wobble-swig' plugin
     swig: 'grunt-swig-templates'<% if (useServer) { %>,
+    // translate express to use the 'grunt-express-server' plugin
     express: 'grunt-express-server'<% } %><% if (jsFramework === 'angular') { %>,
+    // translate ngtemplates to use the 'grunt-angular-templates' plugin
     ngtemplates: 'grunt-angular-templates'<% } %>
   });
 
@@ -35,12 +37,11 @@ module.exports = function(grunt) {
   // configurations and task registrations dynamically.
   var includeAll = require('include-all');
 
-  /**
-   * Loads Grunt configuration modules from the specified
-   * relative path. These modules should export a function
-   * that, when run, should either load/configure or register
-   * a Grunt task.
-   */
+
+  // Loads Grunt configuration modules from the specified
+  // relative path. These modules should export a function
+  // that, when run, should either load/configure or register
+  // a Grunt task.
   function loadTasks(relPath) {
     return includeAll({
       dirname: require('path').resolve(__dirname, relPath),
@@ -48,10 +49,8 @@ module.exports = function(grunt) {
     }) || {};
   }
 
-  /**
-   * Invokes the function from a Grunt configuration module with
-   * a single argument - the `grunt` object.
-   */
+  // Invokes the function from a Grunt configuration module with
+  // a single argument - the `grunt` object.
   function invokeConfigFn(tasks) {
     for (var taskName in tasks) {
       if (tasks.hasOwnProperty(taskName)) {
@@ -71,8 +70,7 @@ module.exports = function(grunt) {
   var registerDefinitions = loadTasks('./grunt/tasks');
 
   // (ensure that a default task exists)
-  if (!registerDefinitions.
-    default) {
+  if (!registerDefinitions.default) {
     registerDefinitions.
     default = function(grunt) {
       grunt.registerTask('default', []);

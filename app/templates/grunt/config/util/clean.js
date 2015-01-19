@@ -1,6 +1,5 @@
-/**
- * Configuration for clean task(s)
- */
+// Configuration for Clean task(s)
+// Deletes specified folders/files
 'use strict';
 
 var taskConfig = function(grunt) {

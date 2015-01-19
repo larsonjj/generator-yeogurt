@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Provider Service: <%= _.camelize(name) %>', function () {
+describe('Provider Service: <%= _.camelize(name) %>', function() {
 
   // Load the value service's module
   beforeEach(module('angularAppTestApp'));
 
   // Setup instance of value service
   var <%= _.camelize(name) %>;
-  beforeEach(inject(function (_<%= _.camelize(name) %>_) {
+  beforeEach(inject(function(_<%= _.camelize(name) %>_) {
     <%= _.camelize(name) %> = _<%= _.camelize(name) %>_;
   }));
 
-  it('should do something', function () {
+  it('should do something', function() {
     expect(<%= _.camelize(name) %>)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
   });
 

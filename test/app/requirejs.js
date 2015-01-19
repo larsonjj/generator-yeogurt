@@ -7,10 +7,9 @@ var helpers = yeoman.test;
 var assert  = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 
-
 describe('Yeogurt generator using RequireJS', function() {
-  beforeEach(function (done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
+  beforeEach(function(done) {
+    helpers.testDirectory(path.join(__dirname, 'temp'), function(err) {
       if (err) {
         return done(err);
       }
@@ -21,7 +20,7 @@ describe('Yeogurt generator using RequireJS', function() {
     }.bind(this));
   });
 
-  it('Creates expected files', function (done) {
+  it('Creates expected files', function(done) {
     var expected = [
       'client/scripts/main.js',
       'grunt/config/compile/requirejs.js'

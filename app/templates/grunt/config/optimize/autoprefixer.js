@@ -1,6 +1,5 @@
-/**
- * Configuration for pngmin task(s)
- */
+// Configuration for Autoprefixer task(s)
+// Automatically adds vendor prefixes to stylesheets if they are needed
 'use strict';
 
 var taskConfig = function(grunt) {

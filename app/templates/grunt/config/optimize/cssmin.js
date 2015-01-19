@@ -1,6 +1,5 @@
-/**
- * Configuration for cssmin task(s)
- */
+// Configuration for CSSMin task(s)
+// Minifies CSS files
 'use strict';
 
 var taskConfig = function(grunt) {

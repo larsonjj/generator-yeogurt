@@ -1,6 +1,5 @@
-/**
- * Configuration for imagemin task(s)
- */
+// Configuration for Karma task(s)
+// Handles karma testing server
 'use strict';
 
 var taskConfig = function(grunt) {

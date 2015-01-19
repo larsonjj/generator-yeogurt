@@ -1,13 +1,11 @@
-/**
- * Configuration for watch task(s)
- */
+// Configuration for Watch task(s)
+// Runs specified tasks when file changes are detected
 'use strict';
 <% if (useKss || useJsdoc || useDashboard) { %>
 var _ = require('lodash');<% } %>
 
 var taskConfig = function(grunt) {
 
-  // Configuration
   var config = {
     configFiles: {
       files: [

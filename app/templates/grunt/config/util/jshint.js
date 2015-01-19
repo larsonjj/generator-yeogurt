@@ -1,6 +1,5 @@
-/**
- * Configuration for JSHint task(s)
- */
+// Configuration for JSLHint task(s)
+// Runs JSHint on specified files
 'use strict';
 
 var taskConfig = function(grunt) {

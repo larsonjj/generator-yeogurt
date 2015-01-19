@@ -1,6 +1,6 @@
-/**
- * Configuration for express server task(s)
- */
+// Configuration for Express task(s)
+// Boots up Node server with specified environment variables
+// and server script
 'use strict';
 
 var taskConfig = function(grunt) {

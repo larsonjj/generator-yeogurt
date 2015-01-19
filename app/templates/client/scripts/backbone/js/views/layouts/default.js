@@ -9,7 +9,7 @@ App.Views.Default = Backbone.View.extend({
 
   events: {},
 
-  initialize: function (options) {
+  initialize: function(options) {
     // Check to see if any options were passed in
     if (options) {
       this.options = options;

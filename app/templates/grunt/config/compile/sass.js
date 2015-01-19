@@ -1,6 +1,5 @@
-/**
- * Configuration for Sass task(s)
- */
+// Configuration for Sass task(s)
+// Compile Sass stylesheets to single `.css` file
 'use strict';
 
 var taskConfig = function(grunt) {

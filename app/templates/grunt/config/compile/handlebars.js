@@ -1,6 +1,6 @@
-/**
- * Configuration for handlebars task(s)
- */
+// Configuration for handlebars task(s)
+// Compile handlebars templates to single `.js` file
+// using the JST namespace (accessible via window.JST)
 'use strict';
 
 var taskConfig = function(grunt) {

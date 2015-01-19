@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('<%= _.camelize(projectName) %>')
-  .provider('<%= _.camelize(name) %>', function () {
+  .provider('<%= _.camelize(name) %>', function() {
 
     // Private API
 

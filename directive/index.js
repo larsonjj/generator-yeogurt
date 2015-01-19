@@ -45,9 +45,21 @@ DirectiveGenerator.prototype.ask = function ask() {
   this.prompt(prompts, function(answers) {
     // Get root directory
     this.rootDir = getRootDir(answers.directiveFile);
-    this.directiveFile = path.join(answers.directiveFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
-    this.testFile = path.join(answers.directiveFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
-    this.htmlUrl = path.join(answers.directiveFile.replace('client', ''), this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase())) + '.html';
+    this.directiveFile = path.join(
+        answers.directiveFile,
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase())
+      );
+    this.testFile = path.join(
+        answers.directiveFile,
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase())
+      );
+    this.htmlUrl = path.join(
+        answers.directiveFile.replace('client', ''),
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase())
+      ) + '.html';
     this.makeHTML = answers.directiveHTML;
 
     done();

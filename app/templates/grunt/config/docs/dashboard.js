@@ -1,6 +1,5 @@
-/**
- * Configuration for dashboard task(s)
- */
+// Configuration for Dashboard task(s)
+// Generates dashboard documentation based on markup comments
 'use strict';
 
 var taskConfig = function(grunt) {

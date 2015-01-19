@@ -1,7 +1,5 @@
-/**
- * Configuration for styleguide task(s)
- * Create styleguide using KSS (Knyle Style Sheets)
- */
+// Configuration for Knyle Style Sheet task(s)
+// Generates styleguide documentation based on stylesheet comments
 'use strict';
 
 var taskConfig = function(grunt) {

@@ -7,10 +7,9 @@ var helpers = yeoman.test;
 var assert  = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 
-
 describe('Yeogurt generator unit testing', function() {
-  beforeEach(function (done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
+  beforeEach(function(done) {
+    helpers.testDirectory(path.join(__dirname, 'temp'), function(err) {
       if (err) {
         return done(err);
       }
@@ -21,7 +20,7 @@ describe('Yeogurt generator unit testing', function() {
     }.bind(this));
   });
   describe('With unit tests', function() {
-    it('Creates expected files', function (done) {
+    it('Creates expected files', function(done) {
       var expected = [
         'test',
         'test/spec',
@@ -41,7 +40,7 @@ describe('Yeogurt generator unit testing', function() {
       });
     });
     describe('With RequireJS', function() {
-      it('Creates expected files', function (done) {
+      it('Creates expected files', function(done) {
         var expected = [
           'test/test-main.js'
         ];
@@ -60,7 +59,7 @@ describe('Yeogurt generator unit testing', function() {
     });
   });
   describe('Without unit tests', function() {
-    it('Does not create certain files', function (done) {
+    it('Does not create certain files', function(done) {
       var notExpected = [
         'test',
         'test/spec',
@@ -78,7 +77,7 @@ describe('Yeogurt generator unit testing', function() {
       });
     });
     describe('With RequireJS', function() {
-      it('Does not create certain files', function (done) {
+      it('Does not create certain files', function(done) {
         var notExpected = [
           'test/test-main.js'
         ];
@@ -96,7 +95,7 @@ describe('Yeogurt generator unit testing', function() {
       });
     });
     describe('With React', function() {
-      it('Does not create certain files', function (done) {
+      it('Does not create certain files', function(done) {
         var notExpected = [
           'test',
           'test/helpers',

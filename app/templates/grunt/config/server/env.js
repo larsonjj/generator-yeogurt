@@ -1,6 +1,5 @@
-/**
- * Configuration for node environment task(s)
- */
+// Configuration for Node Environment task(s)
+// Sets up development environment for Node server
 'use strict';
 <% if (useAuth) { %>
 var secrets = require('../../../server/config/secrets');<% } %>

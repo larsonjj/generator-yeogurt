@@ -7,10 +7,9 @@ var helpers = yeoman.test;
 var assert  = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 
-
 describe('Yeogurt generator using Documentation', function() {
-  beforeEach(function (done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
+  beforeEach(function(done) {
+    helpers.testDirectory(path.join(__dirname, 'temp'), function(err) {
       if (err) {
         return done(err);
       }
@@ -21,7 +20,7 @@ describe('Yeogurt generator using Documentation', function() {
     }.bind(this));
   });
   describe('With JSDoc', function() {
-    it('Creates expected files', function (done) {
+    it('Creates expected files', function(done) {
       var expected = [
         'client/docs',
         'client/docs/api',
@@ -40,7 +39,7 @@ describe('Yeogurt generator using Documentation', function() {
     });
   });
   describe('With KSS', function() {
-    it('Creates expected files', function (done) {
+    it('Creates expected files', function(done) {
       var expected = [
         'client/docs',
         'client/docs/styleguide',
@@ -64,7 +63,7 @@ describe('Yeogurt generator using Documentation', function() {
     });
   });
   describe('With Dashboard', function() {
-    it('Creates expected files', function (done) {
+    it('Creates expected files', function(done) {
       var expected = [
         'client/docs',
         'client/docs/dashboard',

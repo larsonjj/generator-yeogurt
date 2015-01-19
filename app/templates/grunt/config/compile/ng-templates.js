@@ -1,6 +1,6 @@
-/**
- * Configuration for ng-templates task(s)
- */
+// Configuration for ngTemplates task(s)
+// Compile angular HTML template files into a single js file
+// Also attaches templates to $templateCache and run them through HTMLmin
 'use strict';
 
 var taskConfig = function(grunt) {

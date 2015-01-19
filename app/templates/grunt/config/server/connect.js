@@ -1,6 +1,6 @@
-/**
- * Configuration for connect task(s)
- */
+// Configuration for Connect task(s)
+// Boots up a server that loads up all static files
+// Enables livereload
 'use strict';
 
 var taskConfig = function(grunt) {

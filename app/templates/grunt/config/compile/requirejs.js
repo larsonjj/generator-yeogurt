@@ -1,6 +1,5 @@
-  /**
- * Configuration for Require task(s)
- */
+// Configuration for RequireJS task(s)
+// Compile JS files to single bundle file
 'use strict';
 
 var taskConfig = function(grunt) {

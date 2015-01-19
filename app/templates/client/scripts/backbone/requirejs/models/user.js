@@ -123,13 +123,12 @@ define(function(require) {
       return $.cookie('token');
     },
 
-    setToken: function (token, duration) {
+    setToken: function(token, duration) {
       return $.cookie('token', token, {expires: duration});
     },
 
-
     login: function($form, callback) {
-    var cb = callback || function() {};
+      var cb = callback || function() {};
       cb.options = {
         successUrl: '/',
         errorUrl: '/login',

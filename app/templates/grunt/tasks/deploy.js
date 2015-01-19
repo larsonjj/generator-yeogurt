@@ -1,6 +1,7 @@
-/**
- * Build a production ready version of your site and zip it up
- */
+// `grunt deploy`
+// Build a production ready version of your site
+// and push it to an FTP server
+
 'use strict';
 
 var taskConfig = function(grunt) {

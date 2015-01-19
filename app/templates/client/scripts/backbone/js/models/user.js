@@ -126,7 +126,7 @@ App.Models.User = Backbone.Model.extend({<% if (dbOption === 'mongodb') { %>
     return $.cookie('token');
   },
 
-  setToken: function (token, duration) {
+  setToken: function(token, duration) {
     return $.cookie('token', token, {expires: duration});
   },
 

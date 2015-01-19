@@ -15,17 +15,15 @@
 
 'use strict';
 
-
-var Fixture  = require( 'fixture-stdout' );
+var Fixture  = require('fixture-stdout');
 // var fixtureOut = new Fixture(  );
-var fixtureErr = new Fixture({ stream: process.stderr });
+var fixtureErr = new Fixture({stream: process.stderr});
 
 // var _writesOut = [];
 var _writesErr = [];
 
-
 // Mute
-module.exports.mute = function (  ) {
+module.exports.mute = function() {
   // fixtureOut.capture( function onWrite ( string ) {
   //   _writesOut.push(string);
 
@@ -33,8 +31,7 @@ module.exports.mute = function (  ) {
   //   return false;
   // });
 
-
-  fixtureErr.capture( function onWrite ( string ) {
+  fixtureErr.capture(function onWrite(string) {
     _writesErr.push(string);
 
     // Prevent original write
@@ -42,16 +39,14 @@ module.exports.mute = function (  ) {
   });
 };
 
-
 // Unmute
-module.exports.unmute = function (  ) {
+module.exports.unmute = function() {
   // fixtureOut.release();
   fixtureErr.release();
 };
 
-
 // Return the output that was captured
-module.exports.getMutedWrites = function (  ) {
+module.exports.getMutedWrites = function() {
   return {
     // out: _writesOut.join(''),
     err: _writesErr.join('')

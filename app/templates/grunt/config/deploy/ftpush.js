@@ -1,6 +1,6 @@
-/**
- * Configuration for ftpush task(s)
- */
+// Configuration for FTPush task(s)
+// Pushes site/project build to FTP server
+// Connection information found in `.ftppass` file
 'use strict';
 
 var taskConfig = function(grunt) {

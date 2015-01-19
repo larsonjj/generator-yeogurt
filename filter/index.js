@@ -40,8 +40,16 @@ FilterGenerator.prototype.ask = function ask() {
   this.prompt(prompts, function(answers) {
     // Get root directory
     this.rootDir = getRootDir(answers.filterFile);
-    this.filterFile = path.join(answers.filterFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
-    this.testFile = path.join(answers.filterFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
+    this.filterFile = path.join(
+        answers.filterFile,
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase())
+      );
+    this.testFile = path.join(
+        answers.filterFile,
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase())
+      );
 
     done();
   }.bind(this));

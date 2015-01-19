@@ -1,6 +1,6 @@
-/**
- * Configuration for jst task(s)
- */
+// Configuration for JST task(s)
+// Compile JST templates to single `.js` file
+// using the JST namespace (accessible via window.JST)
 'use strict';
 
 var taskConfig = function(grunt) {

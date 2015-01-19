@@ -1,6 +1,5 @@
-/**
- * Configuration for copy task(s)
- */
+// Configuration for Copy task(s)
+// Copies specified folders/files to specified destination
 'use strict';
 
 var taskConfig = function(grunt) {

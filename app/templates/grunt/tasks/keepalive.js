@@ -1,6 +1,6 @@
-/**
- * Build a production ready version of your site and zip it up
- */
+// `grunt keepalive`
+// Keep node server running forever
+
 'use strict';
 
 var taskConfig = function(grunt) {

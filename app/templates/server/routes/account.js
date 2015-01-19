@@ -7,7 +7,7 @@
 var accountController = require('../controllers/account');
 var auth = require('../auth');
 
-var routes = function (app) {
+var routes = function(app) {
   // Account
   app.get('/login', accountController.login);
   app.post('/login', accountController.postLogin);<% if (!singlePageApplication) { %>

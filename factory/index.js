@@ -40,8 +40,15 @@ FactoryGenerator.prototype.ask = function ask() {
   this.prompt(prompts, function(answers) {
     // Get root directory
     this.rootDir = getRootDir(answers.factoryFile);
-    this.factoryFile = path.join(answers.factoryFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
-    this.testFile = path.join(answers.factoryFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
+    this.factoryFile = path.join(
+      answers.factoryFile,
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase()
+        ));
+    this.testFile = path.join(answers.factoryFile,
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase())
+      );
 
     done();
   }.bind(this));

@@ -8,7 +8,7 @@ var indexController = require('../controllers/index');
 var path = require('path');
 var fs = require('fs');
 
-var routes = function (app) {
+var routes = function(app) {
 
   // Dynamically load all routes
   fs.readdirSync(__dirname).forEach(function(file) {

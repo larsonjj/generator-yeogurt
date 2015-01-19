@@ -1,6 +1,5 @@
-/**
- * Configuration for injector task(s)
- */
+// Configuration for Injector task(s)
+// Injects Link/Import statements in to specified files
 'use strict';
 
 var _str = require('underscore.string');

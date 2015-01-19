@@ -1,6 +1,5 @@
-/**
- * Configuration for imagemin task(s)
- */
+// Configuration for ImageMin task(s)
+// Compresses jpg, jpeg, png, and svg files
 'use strict';
 
 var pngquant = require('imagemin-pngquant');

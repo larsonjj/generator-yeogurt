@@ -1,6 +1,5 @@
-/**
- * Configuration for uglify task(s)
- */
+// Configuration for Uglify task(s)
+// Minifies JavaScript files
 'use strict';
 
 var taskConfig = function(grunt) {

@@ -8,16 +8,14 @@ var helpers = yeoman.test;
 var assert  = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 
-
 describe('Yeogurt generator using existing configuration', function() {
-  beforeEach(function (done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
+  beforeEach(function(done) {
+    helpers.testDirectory(path.join(__dirname, 'temp'), function(err) {
       if (err) {
         return done(err);
       }
 
       this.app = createAppGenerator();
-
 
       // create dummy yo config file
       fs.writeFile(path.join(__dirname, 'temp/.yo-rc.json'), '{"config": {"htmlOption": "swig"}}');
@@ -26,7 +24,7 @@ describe('Yeogurt generator using existing configuration', function() {
     }.bind(this));
   });
 
-  it('Creates expected files with expected content', function (done) {
+  it('Creates expected files with expected content', function(done) {
     var expected = [
       '.yo-rc.json'
     ];
@@ -48,8 +46,8 @@ describe('Yeogurt generator using existing configuration', function() {
 });
 
 describe('Yeogurt generator without existing configuration', function() {
-  beforeEach(function (done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
+  beforeEach(function(done) {
+    helpers.testDirectory(path.join(__dirname, 'temp'), function(err) {
       if (err) {
         return done(err);
       }
@@ -60,7 +58,7 @@ describe('Yeogurt generator without existing configuration', function() {
     }.bind(this));
   });
 
-  it('Creates expected files with expected content', function (done) {
+  it('Creates expected files with expected content', function(done) {
     var expected = [
       '.yo-rc.json'
     ];

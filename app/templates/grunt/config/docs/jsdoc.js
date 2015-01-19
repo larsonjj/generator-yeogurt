@@ -1,6 +1,5 @@
-/**
- * Configuration for jsdoc task(s)
- */
+// Configuration for JSDoc task(s)
+// Generates jsdoc api documentation based on JS comments
 'use strict';
 
 var taskConfig = function(grunt) {

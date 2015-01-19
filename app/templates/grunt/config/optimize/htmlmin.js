@@ -1,6 +1,5 @@
-/**
- * Configuration for HTMLmin task(s)
- */
+// Configuration for HTMLMin task(s)
+// Minifies HTML files
 'use strict';
 
 var taskConfig = function(grunt) {

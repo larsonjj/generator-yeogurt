@@ -1,6 +1,5 @@
-/**
- * Configuration for swig task(s)
- */
+// Configuration for swig task(s)
+// Compile swig templates into HTML
 'use strict';
 
 var taskConfig = function(grunt) {

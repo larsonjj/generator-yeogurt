@@ -7,10 +7,9 @@ var helpers = yeoman.test;
 var assert  = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 
-
 describe('Yeogurt generator using Styles', function() {
-  beforeEach(function (done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
+  beforeEach(function(done) {
+    helpers.testDirectory(path.join(__dirname, 'temp'), function(err) {
       if (err) {
         return done(err);
       }
@@ -21,7 +20,7 @@ describe('Yeogurt generator using Styles', function() {
     }.bind(this));
   });
   describe('With CSS', function() {
-    it('Creates expected files', function (done) {
+    it('Creates expected files', function(done) {
       var expected = [
         'client/styles/main.css',
         'grunt/config/optimize/cssmin.js'
@@ -37,7 +36,7 @@ describe('Yeogurt generator using Styles', function() {
     });
   });
   describe('With Sass', function() {
-    it('Creates expected files', function (done) {
+    it('Creates expected files', function(done) {
       var expected = [
         'client/',
         'client/styles',
@@ -56,7 +55,7 @@ describe('Yeogurt generator using Styles', function() {
       });
     });
     describe('With Sass (not Scss) syntax', function() {
-      it('Creates expected content', function (done) {
+      it('Creates expected content', function(done) {
         var expected = [
           'client/',
           'client/styles',
@@ -82,7 +81,7 @@ describe('Yeogurt generator using Styles', function() {
     });
   });
   describe('With Less', function() {
-    it('Creates expected files', function (done) {
+    it('Creates expected files', function(done) {
       var expected = [
         'client/',
         'client/styles',
@@ -106,7 +105,7 @@ describe('Yeogurt generator using Styles', function() {
     });
   });
   describe('With Stylus', function() {
-    it('Creates expected files', function (done) {
+    it('Creates expected files', function(done) {
       var expected = [
         'client/',
         'client/styles',

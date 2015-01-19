@@ -40,8 +40,16 @@ ProviderGenerator.prototype.ask = function ask() {
   this.prompt(prompts, function(answers) {
     // Get root directory
     this.rootDir = getRootDir(answers.providerFile);
-    this.providerFile = path.join(answers.providerFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
-    this.testFile = path.join(answers.providerFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
+    this.providerFile = path.join(
+      answers.providerFile,
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase())
+      );
+    this.testFile = path.join(
+        answers.providerFile,
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase())
+      );
 
     done();
   }.bind(this));

@@ -7,10 +7,9 @@ var helpers = yeoman.test;
 var assert  = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 
-
 describe('Yeogurt generator using Server', function() {
-  beforeEach(function (done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
+  beforeEach(function(done) {
+    helpers.testDirectory(path.join(__dirname, 'temp'), function(err) {
       if (err) {
         return done(err);
       }
@@ -21,7 +20,7 @@ describe('Yeogurt generator using Server', function() {
     }.bind(this));
   });
   describe('With Defaults', function() {
-    it('Creates expected files', function (done) {
+    it('Creates expected files', function(done) {
       var expected = [
         'grunt/config/util/open.js',
         'grunt/config/server/express.js',
@@ -50,7 +49,7 @@ describe('Yeogurt generator using Server', function() {
   });
   describe('With Authentication', function() {
     describe('With Jade', function() {
-      it('Creates expected files', function (done) {
+      it('Creates expected files', function(done) {
         var expected = [
           'server/templates/error.jade',
           'server/templates/account/forgot.jade',
@@ -76,7 +75,7 @@ describe('Yeogurt generator using Server', function() {
       });
     });
     describe('With Swig', function() {
-      it('Creates expected files', function (done) {
+      it('Creates expected files', function(done) {
         var expected = [
           'server/templates/error.swig',
           'server/templates/account/forgot.swig',
@@ -103,7 +102,7 @@ describe('Yeogurt generator using Server', function() {
     });
     describe('With MongoDB', function() {
       describe('With Defaults', function() {
-        it('Creates expected files', function (done) {
+        it('Creates expected files', function(done) {
           var expected = [
             'server/controllers/user.js',
             'server/controllers/account.js',
@@ -125,7 +124,7 @@ describe('Yeogurt generator using Server', function() {
         });
       });
       describe('With Local Authentication', function() {
-        it('Creates expected files', function (done) {
+        it('Creates expected files', function(done) {
           var expected = [
             'server/auth/strategies/local.js',
           ];
@@ -149,7 +148,7 @@ describe('Yeogurt generator using Server', function() {
     });
     describe('With MySQL', function() {
       describe('With Defaults', function() {
-        it('Creates expected files', function (done) {
+        it('Creates expected files', function(done) {
           var expected = [
             'server/controllers/user.js',
             'server/controllers/account.js',
@@ -171,7 +170,7 @@ describe('Yeogurt generator using Server', function() {
         });
       });
       describe('With Local Authentication', function() {
-        it('Creates expected files', function (done) {
+        it('Creates expected files', function(done) {
           var expected = [
             'server/auth/strategies/local.js',
           ];
@@ -193,7 +192,7 @@ describe('Yeogurt generator using Server', function() {
         });
       });
       describe('With Single Page Application', function() {
-        it('Creates expected files', function (done) {
+        it('Creates expected files', function(done) {
           var fileContentToTest = [
             ['server/auth/index.js', /express\-jwt/i],
             ['server/auth/index.js', /signToken/i],
@@ -216,7 +215,7 @@ describe('Yeogurt generator using Server', function() {
     });
   });
   describe('With MongoDB Database', function() {
-    it('Creates expected files', function (done) {
+    it('Creates expected files', function(done) {
       var expected = [
         'server/config/database.js'
       ];
@@ -237,7 +236,7 @@ describe('Yeogurt generator using Server', function() {
     });
   });
   describe('With MySQL Database', function() {
-    it('Creates expected files', function (done) {
+    it('Creates expected files', function(done) {
       var expected = [
         'server/config/database.js'
       ];
@@ -258,7 +257,7 @@ describe('Yeogurt generator using Server', function() {
     });
   });
   describe('With Static Jade', function() {
-    it('Creates expected files', function (done) {
+    it('Creates expected files', function(done) {
       var expected = [
         'server/templates/error.jade',
         'server/templates/layouts/base.jade',
@@ -281,7 +280,7 @@ describe('Yeogurt generator using Server', function() {
     });
   });
   describe('With Static Swig', function() {
-    it('Creates expected files', function (done) {
+    it('Creates expected files', function(done) {
       var expected = [
         'server/templates/error.swig',
         'server/templates/layouts/base.swig',
@@ -305,7 +304,7 @@ describe('Yeogurt generator using Server', function() {
   });
   describe('With Single Page Application', function() {
     describe('With Defaults', function() {
-      it('Creates expected files', function (done) {
+      it('Creates expected files', function(done) {
         var expected = [
           'client/index.html'
         ];
@@ -327,7 +326,7 @@ describe('Yeogurt generator using Server', function() {
       });
     });
     describe('Without Server templates', function() {
-      it('Creates expected files', function (done) {
+      it('Creates expected files', function(done) {
         var expectedContent = [
           ['server/routes/index.js', /app\.get\('\/'/i]
         ];
@@ -351,7 +350,7 @@ describe('Yeogurt generator using Server', function() {
     });
   });
   describe('With Paypal\'s Lucsa Security Module', function() {
-    it('Creates expected files', function (done) {
+    it('Creates expected files', function(done) {
       var expected = [
         'server/config/security.js'
       ];
@@ -370,7 +369,7 @@ describe('Yeogurt generator using Server', function() {
     });
   });
   describe('With Cookie Sessions', function() {
-    it('Creates expected files', function (done) {
+    it('Creates expected files', function(done) {
       var expected = [
         'server/config/secrets.js'
       ];

@@ -40,8 +40,16 @@ ControllerGenerator.prototype.ask = function ask() {
   this.prompt(prompts, function(answers) {
     // Get root directory
     this.rootDir = getRootDir(answers.controllerFile);
-    this.controllerFile = path.join(answers.controllerFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
-    this.testFile = path.join(answers.controllerFile, this._.slugify(this.name.toLowerCase()), this._.slugify(this.name.toLowerCase()));
+    this.controllerFile = path.join(
+        answers.controllerFile,
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase())
+      );
+    this.testFile = path.join(
+        answers.controllerFile,
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase())
+      );
 
     done();
   }.bind(this));

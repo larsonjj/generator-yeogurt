@@ -1,6 +1,6 @@
-/**
- * Configuration for usemin task(s)
- */
+// Configuration for Usemin task(s)
+// Reads base template for usemin blocks to enable smart builds that automatically
+// concat and minify files.
 'use strict';
 
 var taskConfig = function(grunt) {

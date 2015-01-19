@@ -102,5 +102,4 @@ CollectionGenerator.prototype.files = function files() {
     return;
   }
 
-
 };

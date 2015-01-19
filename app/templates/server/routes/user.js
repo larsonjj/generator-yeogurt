@@ -7,7 +7,7 @@
 var userController = require('../controllers/user');
 var auth = require('../auth');
 
-var routes = function (app) {
+var routes = function(app) {
 
   // Create
   app.post('/user', userController.createAccount);<% if (singlePageApplication) { %>
