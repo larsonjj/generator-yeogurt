@@ -4,16 +4,7 @@
 
 var taskConfig = function(grunt) {
 
-  grunt.config.set('uglify', {
-    generated: {
-      options: {
-        mangle: true,
-        preserveComments: 'some',<% if (jsOption === 'none') { %>
-        sourceMap: true,
-        sourceMapIncludeSources: true<% if (jsFramework !== 'angular') { %>,
-        sourceMapIn: '<%%= yeogurt.tmp %>/concat/scripts/main.js.map'<% } %><% } %>
-      }
-    }<% if (jsOption === 'requirejs') { %>,
+  grunt.config.set('uglify', {<% if (jsOption === 'requirejs') { %>,
     dist: {
       options: {
         mangle: true,

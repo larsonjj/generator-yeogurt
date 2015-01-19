@@ -4,11 +4,7 @@
 
 var taskConfig = function(grunt) {
 
-  grunt.config.set('concat', {
-    options: {
-      sourceMap: true
-    }
-  });
+  grunt.config.set('concat', {});
 
 };
 
