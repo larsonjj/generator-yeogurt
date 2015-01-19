@@ -4,7 +4,7 @@
 
 var taskConfig = function(grunt) {
 
-  grunt.config.set('uglify', {<% if (jsOption === 'requirejs') { %>,
+  grunt.config.set('uglify', {<% if (jsOption === 'requirejs') { %>
     dist: {
       options: {
         mangle: true,
