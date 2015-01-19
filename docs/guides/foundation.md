@@ -52,7 +52,7 @@ Now, navigate to the `<!-- build:css(client) styles/global.css -->` comment and 
 #### Using Sass/Scss
 ##### Using default dependency injection via [grunt-wiredep](https://github.com/stephenplusplus/grunt-wiredep)
 
-Add bootstrap to your exclude list within the `grunt/config/util/wiredep.js` 'app' task:
+Add foundation to your exclude list within the `grunt/config/util/wiredep.js` 'app' task:
 
 ```
 // packages to ignore
@@ -63,7 +63,17 @@ exclude: [
 ],
 ```
 
-Note that the bootstrap imports will be automatically injected into your base stylesheet between the `// bower:{less,styl,sass/scss}` and `// endbower` comments with the bootstrap javascript being injected between the `<!-- bower:js -->` and `<!-- endbower -->` comments
+You will also need to add the neccessary @import to your main stylesheet (`grunt-wiredep` does not seem to detect the foundation library for `scss`):
+
+```
+// sass
+@import ../bower_components/foundation/scss/foundation.scss
+
+// scss
+@import "../bower_components/foundation/scss/foundation.scss";
+```
+
+Note that the foundation javascript will be automatically injected into your base template being injected between the `<!-- bower:js -->` and `<!-- endbower -->` comments
 
 ##### Without dependency injection
 

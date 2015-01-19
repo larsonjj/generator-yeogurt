@@ -18,7 +18,7 @@
 
 // Injects all import files automatically (ex. _mypartial)
 // [injector]
-// [endinjector]
+// [endinjector]<% if (jsFramework !== 'angular') { %>
 
 .yeogurt-info
   text-align: center
@@ -34,7 +34,7 @@
   right: 10px
 
 .logo
-  margin-top: 15px
+  margin-top: 15px<% } %>
 
 .links a
   color: white

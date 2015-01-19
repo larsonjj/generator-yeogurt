@@ -17,7 +17,7 @@
 
 // Injects all import files automatically
 // [injector]
-// [endinjector]
+// [endinjector]<% if (jsFramework !== 'angular') { %>
 
 .yeogurt-info {
   text-align: center;
@@ -36,7 +36,7 @@
 
 .logo {
   margin-top: 15px;
-}
+}<% } %>
 
 .links a {
   color: white;

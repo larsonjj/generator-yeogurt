@@ -79,8 +79,14 @@ var taskConfig = function(grunt) {
     // Inject component less into main.less
     less: {
       options: {
-        transform: function(filePath) {
-          filePath = filePath.replace('/client/styles/', '');
+        transform: function(filePath) {<% if (jsFramework === 'angular') { %>
+          if (filePath.indexOf('app') > -1) {
+            filePath = filePath.replace('/client/', '../');
+          }
+          else {
+            filePath = filePath.replace('/client/styles/', '');
+          }<% } else { %>
+          filePath = filePath.replace('/client/styles/', '');<% } %>
           return '@import \'' + filePath + '\';';
         },
         starttag: '// [injector]',
@@ -89,15 +95,22 @@ var taskConfig = function(grunt) {
       files: {
         '<%%= yeogurt.client %>/styles/main.less': [
           '<%%= yeogurt.client %>/styles/**/*.less',
-          '!<%%= yeogurt.client %>/styles/main.less'
+          '!<%%= yeogurt.client %>/styles/main.less'<% if (jsFramework === 'angular') { %>,
+          '<%%= yeogurt.client %>/app/**/*.less'<% } %>
         ]
       }
     },<% } %><% if (cssOption === 'sass') { %>
     // Inject component scss into main.scss
     sass: {
       options: {
-        transform: function(filePath) {
-          filePath = filePath.replace('/client/styles/', '');
+        transform: function(filePath) {<% if (jsFramework === 'angular') { %>
+          if (filePath.indexOf('app') > -1) {
+            filePath = filePath.replace('/client/', '../');
+          }
+          else {
+            filePath = filePath.replace('/client/styles/', '');
+          }<% } else { %>
+          filePath = filePath.replace('/client/styles/', '');<% } %>
           <% if (sassSyntax === 'scss') { %>
           return '@import \'' + filePath.slice(0, -5) + '\';';<% } else { %>
           return '@import ' + filePath.slice(0, -5);<% } %>
@@ -108,19 +121,27 @@ var taskConfig = function(grunt) {
       files: {<% if (sassSyntax === 'scss') { %>
         '<%%= yeogurt.client %>/styles/main.scss': [
           '<%%= yeogurt.client %>/styles/**/*.scss',
-          '!<%%= yeogurt.client %>/styles/main.scss'
+          '!<%%= yeogurt.client %>/styles/main.scss'<% if (jsFramework === 'angular') { %>,
+          '<%%= yeogurt.client %>/app/**/*.scss'<% } %>
         ]<% } else { %>
         '<%%= yeogurt.client %>/styles/main.sass': [
           '<%%= yeogurt.client %>/styles/**/*.sass',
-          '!<%%= yeogurt.client %>/styles/main.sass'
+          '!<%%= yeogurt.client %>/styles/main.sass'<% if (jsFramework === 'angular') { %>,
+          '<%%= yeogurt.client %>/app/**/*.sass'<% } %>
         ]<% } %>
       }
     },<% } %><% if (cssOption === 'stylus') { %>
     // Inject component scss into main.scss
     stylus: {
       options: {
-        transform: function(filePath) {
-          filePath = filePath.replace('/client/styles/', '');
+        transform: function(filePath) {<% if (jsFramework === 'angular') { %>
+          if (filePath.indexOf('app') > -1) {
+            filePath = filePath.replace('/client/', '../');
+          }
+          else {
+            filePath = filePath.replace('/client/styles/', '');
+          }<% } else { %>
+          filePath = filePath.replace('/client/styles/', '');<% } %>
           return '@import \'' + filePath.slice(0, -5) + '\';';
         },
         starttag: '// [injector]',
@@ -129,7 +150,8 @@ var taskConfig = function(grunt) {
       files: {
         '<%%= yeogurt.client %>/styles/main.styl': [
           '<%%= yeogurt.client %>/styles/**/*.styl',
-          '!<%%= yeogurt.client %>/styles/main.styl'
+          '!<%%= yeogurt.client %>/styles/main.styl'<% if (jsFramework === 'angular') { %>,
+          '<%%= yeogurt.client %>/app/**/*.styl'<% } %>
         ]
       }
     },<% } %><% if (cssOption === 'css') { %>
@@ -151,7 +173,8 @@ var taskConfig = function(grunt) {
         '<%%= yeogurt.server %>/templates/<% if (htmlOption === 'jade') { %>layouts/base.jade<% } else if (htmlOption === 'swig') { %>layouts/base.swig<% } %>'<% } else { %>
         '<%%= yeogurt.client %>/<% if (htmlOption === 'jade') { %>templates/layouts/base.jade<% } else if (htmlOption === 'swig') { %>templates//layouts/base.swig<% } %>'<% } %>: [
           '<%%= yeogurt.client %>/styles/**/*.css',
-          '!<%%= yeogurt.client %>/styles/main.css'
+          '!<%%= yeogurt.client %>/styles/main.css'<% if (jsFramework === 'angular') { %>,
+          '<%%= yeogurt.client %>/app/**/*.css'<% } %>
         ]
       }
     }<% } %>

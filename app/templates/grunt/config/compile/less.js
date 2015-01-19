@@ -7,7 +7,11 @@ var taskConfig = function(grunt) {
   grunt.config.set('less', {
     server: {
       options: {
-        paths: ['<%%= yeogurt.client %>/'],
+        paths: [
+          '<%%= yeogurt.client %>/bower_components',
+          '<%%= yeogurt.client %>/styles'<% if (jsFramework === 'angular') { %>,
+          '<%%= yeogurt.client %>/app/'<% } %>
+        ],
         sourceMap: true,
         sourceMapFilename: '<%%= yeogurt.tmp %>/styles/main.css.map',
         sourceMapBasepath: '<%%= yeogurt.tmp %>/styles/',
@@ -25,7 +29,11 @@ var taskConfig = function(grunt) {
     },
     dist: {
       options: {
-        paths: ['<%%= yeogurt.client %>/'],
+        paths: [
+          '<%%= yeogurt.client %>/bower_components',
+          '<%%= yeogurt.client %>/styles'<% if (jsFramework === 'angular') { %>,
+          '<%%= yeogurt.client %>/app/'<% } %>
+        ],
         sourceMap: true,
         sourceMapFilename: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>styles/main.css.map',
         sourceMapBasepath: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>styles/',

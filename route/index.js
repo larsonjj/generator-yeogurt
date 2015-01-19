@@ -14,6 +14,8 @@ var DirectiveGenerator = module.exports = function DirectiveGenerator() {
   // options
   this.projectName = fileJSON.projectName;
   this.jsFramework = fileJSON.jsFramework;
+  this.cssOption = fileJSON.cssOption;
+  this.sassSyntax = fileJSON.sassSyntax;
   this.testFramework = fileJSON.testFramework;
   this.useTesting = fileJSON.useTesting;
 
@@ -71,6 +73,24 @@ DirectiveGenerator.prototype.files = function files() {
   this.template('route.js', this.routeFile + '.js');
   this.template('route.controller.js', this.routeFile + '.controller.js');
   this.template('route.html', this.routeFile + '.html');
+
+  if (this.cssOption === 'sass') {
+    if (this.sassSyntax === 'sass') {
+      this.template('route.css', this.routeFile + '.sass');
+    }
+    else {
+      this.template('route.css', this.routeFile + '.scss');
+    }
+  }
+  else if (this.cssOption === 'less') {
+    this.template('route.css', this.routeFile + '.less');
+  }
+  else if (this.cssOption === 'stylus') {
+    this.template('route.css', this.routeFile + '.styl');
+  }
+  else {
+    this.template('route.css', this.routeFile + '.css');
+  }
 
   if (this.useTesting) {
     this.template('route.spec.js', this.testFile + '.controller.spec.js');

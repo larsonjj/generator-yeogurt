@@ -11,7 +11,9 @@ var taskConfig = function(grunt) {
         outputStyle: 'nested',
         sourceMap: true,
         includePaths: [
-          '<%%= yeogurt.client %>/styles/'
+          '<%%= yeogurt.client %>/bower_components',
+          '<%%= yeogurt.client %>/styles/'<% if (jsFramework === 'angular') { %>,
+          '<%%= yeogurt.client %>/app/'<% } %>
         ]
       },
       files: {
@@ -24,7 +26,9 @@ var taskConfig = function(grunt) {
         outputStyle: 'compressed',
         sourceMap: true,
         includePaths: [
-          '<%%= yeogurt.client %>/styles/'
+          '<%%= yeogurt.client %>/bower_components',
+          '<%%= yeogurt.client %>/styles/'<% if (jsFramework === 'angular') { %>,
+          '<%%= yeogurt.client %>/app/'<% } %>
         ]
       },
       files: {

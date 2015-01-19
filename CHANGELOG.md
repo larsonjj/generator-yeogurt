@@ -18,7 +18,10 @@
   - [jscs](http://jscs.info/) is now used to enforce new style rules (for yeogurt repo only)
   - Differences: Allow 120 characters instead of the default 80. Also allow `else` on new lines.
 * Authentication boilerplates for React, Backbone, Jade, and Swig have been deprecated (will be removed from next release `0.15.0`)
+  - Yeogurt already does so much that handling a large boilerplate codebase will make releases take much longer and ultimately slow down development. So these need to be removed.
 * Removed FTP deployment prompts. Instead, a [guide](https://github.com/larsonjj/generator-yeogurt/blob/master/docs/guides/ftp.md) has been added on how to implement it.
+  - Going forward, guides will be added for more deployment options. (i.e. Heroku, Openshift, etc)
+* Removed sourcemaps from usemin tasks (they were very inaccurate)
 
 ### v0.13.7:
 #### date: 2015-1-15

@@ -27,8 +27,8 @@ describe('Yeogurt generator using Angular', function() {
           'grunt/config/compile/ng-templates.js',
           'grunt/config/compile/ng-annotate.js',
           'client/app/main.js',
-          'client/app/index/index.js',
-          'client/app/index/index.controller.js'
+          'client/app/home/home.js',
+          'client/app/home/home.controller.js'
         ];
 
         var fileContentToTest = [];
@@ -52,11 +52,11 @@ describe('Yeogurt generator using Angular', function() {
         describe('With Jasmine', function() {
           it ('Creates expected files', function(done) {
             var expected = [
-              'client/app/index/index.spec.js'
+              'client/app/home/home.spec.js'
             ];
 
             var fileContentToTest = [
-              ['client/app/index/index.spec.js', /toBe/i]
+              ['client/app/home/home.spec.js', /toBe/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -78,11 +78,11 @@ describe('Yeogurt generator using Angular', function() {
         describe('With Mocha', function() {
           it ('Creates expected files', function(done) {
             var expected = [
-              'client/app/index/index.spec.js'
+              'client/app/home/home.spec.js'
             ];
 
             var fileContentToTest = [
-              ['client/app/index/index.spec.js', /to\./i]
+              ['client/app/home/home.spec.js', /to\./i]
             ];
 
             helpers.mockPrompt(this.app, {
