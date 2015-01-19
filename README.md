@@ -135,7 +135,6 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 - JavaScript Documentation - auto-generated API for your scripts with [JSDoc](http://usejsdoc.org/)
 - JavaScript unit testing with [Jasmine](http://jasmine.github.io/) or [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/)
 - Test running with [Karma](http://karma-runner.github.io/0.12/index.html)
-- FTP deployment
 
 ### Static/Server Site Options
 - Markup with [Jade](http://jade-lang.com/) or [Swig](http://paularmstrong.github.io/swig/)
