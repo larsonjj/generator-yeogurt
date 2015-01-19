@@ -6,14 +6,14 @@ var messagesActions = require('./messages');<% } %>
 
 module.exports = {
 
-    setRoute: function(route) {<% if (useAuth) { %>
-        // Clear out any existing messages
-        messagesActions.setMessages({});<% } %>
+  setRoute: function(route) {<% if (useAuth) { %>
+    // Clear out any existing messages
+    messagesActions.setMessages({});<% } %>
 
-        Dispatcher.handleViewAction({
-            actionType: routesConstants.SET_CURRENT_ROUTE,
-            route: route
-        });
-    }
+    Dispatcher.handleViewAction({
+      actionType: routesConstants.SET_CURRENT_ROUTE,
+      route: route
+    });
+  }
 
 };

@@ -10,18 +10,18 @@ var LoginComponent = React.createFactory(require('../../../../client/scripts/com
 
 describe('Login Component', function() {
 
-    var ReactTestUtils;
-    var reactRender;
+  var ReactTestUtils;
+  var reactRender;
 
-    beforeEach(function() {
-        ReactTestUtils = require('react/addons').addons.TestUtils;
-        reactRender = ReactTestUtils.renderIntoDocument;
-        this.loginComponent = new LoginComponent();
-    });
+  beforeEach(function() {
+    ReactTestUtils = require('react/addons').addons.TestUtils;
+    reactRender = ReactTestUtils.renderIntoDocument;
+    this.loginComponent = new LoginComponent();
+  });
 
-    it('provides the "Login Component" instance', function() {
-        // Expect it to exist
-        expect(this.loginComponent)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
-    });
+  it('provides the "Login Component" instance', function() {
+    // Expect it to exist
+    expect(this.loginComponent)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+  });
 
 });

@@ -1,113 +1,113 @@
 {
-    "name": "<%= _.slugify(projectName) %>",
-    "version": "0.0.1",
-    "dependencies": {<% if (jsFramework === 'react') { %>
-        "flux": "~2.0.0",
-        "object-assign": "~1.0.0",
-        "superagent": "~0.21.0",
-        "cookie": "~0.1.2",
-        "keymirror": "~0.1.0",
-        "director": "~1.2.7",
-        "form-serialize": "~0.4.0",<% if (useJsx) { %>
-        "node-jsx": "~0.12.4",<% } %>
-        "react": "~0.12.0"<% } %><% if (useServer) { %><% if (jsFramework === 'react') { %>,<% } %>
-        "lodash": "~2.4.1",
-        "colors": "~0.6.2",
-        "async": "~0.7.0",
-        "body-parser": "~1.0.2",
-        "cookie-parser": "~1.3.3",
-        "method-override": "~2.3.0",
-        "compression": "~1.0.1",
-        "serve-favicon": "2.0.1",
-        "errorhandler": "~1.0.0",
-        "express": "~4.9.0",
-        "express-session": "~1.6.0",<% if (useAuth) { %>
-        "express-flash": "~0.0.2",
-        "validator": "~3.19.1",
-        "express-validator": "~2.6.0",<% if (singlePageApplication) { %>
-        "jsonwebtoken": "~1.1.2",
-        "express-jwt": "~0.4.0",<% } %>
-        "bcrypt-nodejs": "~0.0.3",
-        "bcrypt": "~0.8.0",
-        "nodemailer": "~1.3.0",
-        "passport": "0.2.1",
-        "passport-local": "~1.0.0",<% } %>
-        "lusca": "~1.0.0",<% if (dbOption === 'mongodb') { %>
-        "mongoose": "~3.8.8",<% } %>
-        "morgan": "~1.0.0",
-        "ejs": "~0.8.4"<% if (dbOption === 'sql') { %>,<% if (dbType === 'mysql') { %>
-        "mysql": "2.3.2",<% } else if (dbType === 'postgres') { %>
-        "pg": "~4.1.1",<% } %>
-        "sequelize": "1.7.9"<% } %><% if (htmlOption === 'swig') { %>,
-        "swig": "~1.4.1"<% } %><% if (jsTemplate === 'jade' || htmlOption === 'jade') { %>,
-        "jade": "~1.8.2"<% } %><% if (jsTemplate === 'handlebars') { %>,
-        "handlebars": "~2.0.0"<% } %><% } %>
-    },
-    "devDependencies": {
-        "rimraf": "~2.2.8",<% if (useKss) { %>
-        "kss": "~1.3.0",<% } %>
-        "grunt": "~0.4.2",<% if (useServer) { %>
-        "grunt-open": "~0.2.0",<% } else { %>
-        "grunt-contrib-connect": "~0.9.0",<% } %>
-        "grunt-contrib-watch": "~0.6.1",
-        "grunt-contrib-clean": "0.5.0",<% if (useKss) { %>
-        "grunt-styleguide": "~0.2.17",<% } %><% if (htmlOption === 'jade' || jsTemplate === 'jade') { %>
-        "grunt-contrib-jade": "~0.14.0",<% } %><% if (htmlOption === 'swig') { %>
-        "grunt-swig-templates": "~0.1.2",<% } %>
-        "grunt-autoprefixer": "~1.0.1",
-        "grunt-contrib-htmlmin": "~0.3.0",<% if (jsOption === 'requirejs') { %>
-        "grunt-contrib-requirejs": "~0.4.4",<% } else if (jsOption === 'browserify') { %>
-        "minifyify": "~5.0.0",
-        "grunt-browserify": "~3.2.0",<% } %>
-        "grunt-usemin": "2.1.1",<% if (useJsdoc) { %>
-        "grunt-jsdoc": "beta",<% } %>
-        "grunt-concurrent": "~1.0.0",<% if (jsTemplate === 'underscore') { %>
-        "grunt-contrib-jst": "~0.6.0",<% } else if (jsTemplate === 'handlebars') { %>
-        "grunt-contrib-handlebars": "~0.9.0",<% } else if (jsFramework === 'react') { %>
-        "grunt-react": "~0.10.0",<% } %>
-        "grunt-contrib-concat": "~0.5.0",
-        "grunt-wiredep": "~2.0.0",
-        "grunt-contrib-cssmin": "~0.10.0",
-        "grunt-contrib-imagemin": "~0.9.1",
-        "imagemin-svgo": "~4.0.0",
-        "imagemin-pngquant": "~4.0.0",
-        "grunt-contrib-jshint": "~0.10.0",
-        "jshint-stylish": "~1.0.0",
-        "grunt-contrib-copy": "~0.7.0",
-        "grunt-contrib-uglify": "~0.6.0",<% if (cssOption === 'sass') { %>
-        "grunt-sass": "~0.14.2",<% } %><% if (cssOption === 'less') { %>
-        "grunt-contrib-less": "~0.12.0",<% } %><% if (cssOption === 'stylus') { %>
-        "grunt-contrib-stylus": "~0.20.0",<% } %>
-        "grunt-open": "~0.2.3",
-        "grunt-injector": "~0.5.3",<% if (jsFramework === 'angular') { %>
-        "grunt-angular-templates": "~0.5.7",
-        "grunt-ng-annotate": "~0.8.0",<% } %>
-        "grunt-env": "~0.4.1",
-        "grunt-newer": "~0.7.0",
-        "underscore.string": "~2.3.3",
-        "include-all": "~0.1.6",<% if (jsOption === 'browserify') { %>
-        "browserify" : "~6.2.0",<% } else if (jsOption === 'requirejs') { %>
-        "karma-requirejs": "~0.2.1",<% } %><% if (useTesting) { %>
-        "grunt-karma": "~0.9.0",
-        "karma-phantomjs-launcher": "~0.1.2",<% if (testFramework === 'jasmine') { %>
-        "karma-jasmine": "~0.2.0",<% } else if (testFramework === 'mocha') { %>
-        "karma-chai": "0.1.0",
-        "karma-mocha": "~0.1.3",<% } %>
-        "karma": "~0.12.21",<% } %><% if (!useServer && (useKss || useJsdoc || useDashboard)) { %>
-        "lodash": "~2.4.1",<% } %>
-        "time-grunt": "0.2.10",<% if (useDashboard) { %>
-        "grunt-dashboard": "~0.3.0",<% } %>
-        "bower": "~1.3.3",<% if (useFTP) { %>
-        "grunt-ftpush": "~0.3.3",<% } %>
-        "jit-grunt": "~0.9.0"<% if (useServer) { %>,
-        "connect-livereload": "~0.5.2",
-        "grunt-express-server": "~0.4.5"<% } %>
-    },
-    "scripts": {
-        "clean": "rimraf node_modules client/bower_components .tmp dist"<% if (useServer) { %>,
-        "start": "NODE_ENV=production node server.js"<% } %>
-    },
-    "engines": {
-        "node": ">=0.10.0"
-    }
+  "name": "<%= _.slugify(projectName) %>",
+  "version": "0.0.1",
+  "dependencies": {<% if (jsFramework === 'react') { %>
+    "flux": "~2.0.0",
+    "object-assign": "~1.0.0",
+    "superagent": "~0.21.0",
+    "cookie": "~0.1.2",
+    "keymirror": "~0.1.0",
+    "director": "~1.2.7",
+    "form-serialize": "~0.4.0",<% if (useJsx) { %>
+    "node-jsx": "~0.12.4",<% } %>
+    "react": "~0.12.0"<% } %><% if (useServer) { %><% if (jsFramework === 'react') { %>,<% } %>
+    "lodash": "~2.4.1",
+    "colors": "~0.6.2",
+    "async": "~0.7.0",
+    "body-parser": "~1.0.2",
+    "cookie-parser": "~1.3.3",
+    "method-override": "~2.3.0",
+    "compression": "~1.0.1",
+    "serve-favicon": "2.0.1",
+    "errorhandler": "~1.0.0",
+    "express": "~4.9.0",
+    "express-session": "~1.6.0",<% if (useAuth) { %>
+    "express-flash": "~0.0.2",
+    "validator": "~3.19.1",
+    "express-validator": "~2.6.0",<% if (singlePageApplication) { %>
+    "jsonwebtoken": "~1.1.2",
+    "express-jwt": "~0.4.0",<% } %>
+    "bcrypt-nodejs": "~0.0.3",
+    "bcrypt": "~0.8.0",
+    "nodemailer": "~1.3.0",
+    "passport": "0.2.1",
+    "passport-local": "~1.0.0",<% } %>
+    "lusca": "~1.0.0",<% if (dbOption === 'mongodb') { %>
+    "mongoose": "~3.8.8",<% } %>
+    "morgan": "~1.0.0",
+    "ejs": "~0.8.4"<% if (dbOption === 'sql') { %>,<% if (dbType === 'mysql') { %>
+    "mysql": "2.3.2",<% } else if (dbType === 'postgres') { %>
+    "pg": "~4.1.1",<% } %>
+    "sequelize": "1.7.9"<% } %><% if (htmlOption === 'swig') { %>,
+    "swig": "~1.4.1"<% } %><% if (jsTemplate === 'jade' || htmlOption === 'jade') { %>,
+    "jade": "~1.8.2"<% } %><% if (jsTemplate === 'handlebars') { %>,
+    "handlebars": "~2.0.0"<% } %><% } %>
+  },
+  "devDependencies": {
+    "rimraf": "~2.2.8",<% if (useKss) { %>
+    "kss": "~1.3.0",<% } %>
+    "grunt": "~0.4.2",<% if (useServer) { %>
+    "grunt-open": "~0.2.0",<% } else { %>
+    "grunt-contrib-connect": "~0.9.0",<% } %>
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-clean": "0.5.0",<% if (useKss) { %>
+    "grunt-styleguide": "~0.2.17",<% } %><% if (htmlOption === 'jade' || jsTemplate === 'jade') { %>
+    "grunt-contrib-jade": "~0.14.0",<% } %><% if (htmlOption === 'swig') { %>
+    "grunt-swig-templates": "~0.1.2",<% } %>
+    "grunt-autoprefixer": "~1.0.1",
+    "grunt-contrib-htmlmin": "~0.3.0",<% if (jsOption === 'requirejs') { %>
+    "grunt-contrib-requirejs": "~0.4.4",<% } else if (jsOption === 'browserify') { %>
+    "minifyify": "~5.0.0",
+    "grunt-browserify": "~3.2.0",<% } %>
+    "grunt-usemin": "2.1.1",<% if (useJsdoc) { %>
+    "grunt-jsdoc": "beta",<% } %>
+    "grunt-concurrent": "~1.0.0",<% if (jsTemplate === 'underscore') { %>
+    "grunt-contrib-jst": "~0.6.0",<% } else if (jsTemplate === 'handlebars') { %>
+    "grunt-contrib-handlebars": "~0.9.0",<% } else if (jsFramework === 'react') { %>
+    "grunt-react": "~0.10.0",<% } %>
+    "grunt-contrib-concat": "~0.5.0",
+    "grunt-wiredep": "~2.0.0",
+    "grunt-contrib-cssmin": "~0.10.0",
+    "grunt-contrib-imagemin": "~0.9.1",
+    "imagemin-svgo": "~4.0.0",
+    "imagemin-pngquant": "~4.0.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "jshint-stylish": "~1.0.0",
+    "grunt-contrib-copy": "~0.7.0",
+    "grunt-contrib-uglify": "~0.6.0",<% if (cssOption === 'sass') { %>
+    "grunt-sass": "~0.14.2",<% } %><% if (cssOption === 'less') { %>
+    "grunt-contrib-less": "~0.12.0",<% } %><% if (cssOption === 'stylus') { %>
+    "grunt-contrib-stylus": "~0.20.0",<% } %>
+    "grunt-open": "~0.2.3",
+    "grunt-injector": "~0.5.3",<% if (jsFramework === 'angular') { %>
+    "grunt-angular-templates": "~0.5.7",
+    "grunt-ng-annotate": "~0.8.0",<% } %>
+    "grunt-env": "~0.4.1",
+    "grunt-newer": "~0.7.0",
+    "underscore.string": "~2.3.3",
+    "include-all": "~0.1.6",<% if (jsOption === 'browserify') { %>
+    "browserify" : "~6.2.0",<% } else if (jsOption === 'requirejs') { %>
+    "karma-requirejs": "~0.2.1",<% } %><% if (useTesting) { %>
+    "grunt-karma": "~0.9.0",
+    "karma-phantomjs-launcher": "~0.1.2",<% if (testFramework === 'jasmine') { %>
+    "karma-jasmine": "~0.2.0",<% } else if (testFramework === 'mocha') { %>
+    "karma-chai": "0.1.0",
+    "karma-mocha": "~0.1.3",<% } %>
+    "karma": "~0.12.21",<% } %><% if (!useServer && (useKss || useJsdoc || useDashboard)) { %>
+    "lodash": "~2.4.1",<% } %>
+    "time-grunt": "0.2.10",<% if (useDashboard) { %>
+    "grunt-dashboard": "~0.3.0",<% } %>
+    "bower": "~1.3.3",<% if (useFTP) { %>
+    "grunt-ftpush": "~0.3.3",<% } %>
+    "jit-grunt": "~0.9.0"<% if (useServer) { %>,
+    "connect-livereload": "~0.5.2",
+    "grunt-express-server": "~0.4.5"<% } %>
+  },
+  "scripts": {
+    "clean": "rimraf node_modules client/bower_components .tmp dist"<% if (useServer) { %>,
+    "start": "NODE_ENV=production node server.js"<% } %>
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
 }

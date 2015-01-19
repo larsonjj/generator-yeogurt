@@ -11,23 +11,23 @@ var DOM = React.createElement;
 // Usage: <Link url="/linkUrl">Link Title</Link>
 var LinkComponent = React.createClass({
 
-    propTypes: {
-        url: React.PropTypes.string.isRequired
-    },
+  propTypes: {
+    url: React.PropTypes.string.isRequired
+  },
 
-    render: function() {
-        return (
-            DOM('a', React.__spread({
-                onClick: this.handleClick,
-                href: this.props.url
-            }, this.props), this.props.children)
-        );
-    },
+  render: function() {
+    return (
+      DOM('a', React.__spread({
+        onClick: this.handleClick,
+        href: this.props.url
+      }, this.props), this.props.children)
+    );
+  },
 
-    handleClick: function(e) {
-        e.preventDefault();
-        routeActions.setRoute(this.props.url);
-    }
+  handleClick: function(e) {
+    e.preventDefault();
+    routeActions.setRoute(this.props.url);
+  }
 
 });
 

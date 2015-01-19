@@ -9,16 +9,16 @@ var messagesStore = require('../../../client/scripts/stores/messages');
 
 describe('Messages Store', function() {
 
-    var ReactTestUtils;
-    var reactRender;
+  var ReactTestUtils;
+  var reactRender;
 
-    beforeEach(function() {
-        ReactTestUtils = require('react/addons').addons.TestUtils;
-    });
+  beforeEach(function() {
+    ReactTestUtils = require('react/addons').addons.TestUtils;
+  });
 
-    it('provides the "Messages Store"', function() {
-        // Expect it to exist
-        expect(messagesStore)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
-    });
+  it('provides the "Messages Store"', function() {
+    // Expect it to exist
+    expect(messagesStore)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+  });
 
 });

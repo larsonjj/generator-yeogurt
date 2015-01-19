@@ -9,22 +9,22 @@ var _user;
 
 var UserStore = new Store({
 
-    // Gets data associated with the current user.
-    get: function() {
-        return _user || userDefaults;
-    }
+  // Gets data associated with the current user.
+  get: function() {
+    return _user || userDefaults;
+  }
 
 });
 
 UserStore.dispatcherToken = Dispatcher.register(function(payload) {
 
-    var action = payload.action;
+  var action = payload.action;
 
-    if (action.actionType === userConstants.SET_CURRENT_USER) {
-        _user = action.user;
+  if (action.actionType === userConstants.SET_CURRENT_USER) {
+    _user = action.user;
 
-        UserStore.emitChange();
-    }
+    UserStore.emitChange();
+  }
 
 });
 

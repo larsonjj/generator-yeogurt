@@ -1,63 +1,63 @@
 {
-    "bitwise"       : true,
-    "curly"         : true,
-    "eqeqeq"        : true,
-    "forin"         : true,
-    "immed"         : true,
-    "latedef"       : true,
-    "newcap"        : true,
-    "noarg"         : true,
-    "noempty"       : true,
-    "nonew"         : false,
-    "plusplus"      : false,
-    "regexp"        : true,
-    "undef"         : true,
-    "strict"        : true,
-    "trailing"      : true,
-    "quotmark"      : "single",
-    "asi"           : false,
-    "debug"         : true,
-    "globalstrict"  : true,
-    "smarttabs"     : true,
-    "browser"       : true,
-    "devel"         : true,
-    "jquery"        : true,
-    "node"          : true,<% if (testFramework === 'mocha') { %>
-    "expr"          : true,<% } %>
-    "maxerr"        : 100,
-    "predef"        : [
-        "require",
-        "define",
-        "afterEach",
-        "beforeEach",
-        "confirm",
-        "context",
-        "describe",
-        "expect",
-        "it",
-        "jasmine",
-        "JSHINT",
-        "mostRecentAjaxRequest",
-        "qq",
-        "runs",
-        "spyOn",
-        "spyOnEvent",
-        "waitsFor",
-        "xdescribe"
-    ],
-    "globals": {
-        "$": true,
-        "Modernizr": true,<% if (jsFramework === 'angular') { %>
-        "angular": true,
-        "inject": true,<% } %>
-        "jQuery": true<% if (jsOption === 'requirejs') { %>,
-        "requirejs": true<% } %><% if (jsFramework === 'backbone') { %>,
-        "Backbone": true,<% if (jsOption === 'none') { %>
-        "App": true,<% } else { %>
-        "app": true,<% } %>
-        "_": true<% } %><% if (jsTemplate === 'underscore' || jsTemplate === 'handlebars' || jsTemplate === 'jade') { %>,
-        "JST": true<% } %><% if (useServer) { %>,
-        "__dirname": true<% } %>
-    },
-    "indent"        : 4
+  "bitwise": true,
+  "curly": true,
+  "eqeqeq": true,
+  "forin": true,
+  "immed": true,
+  "latedef": true,
+  "newcap": true,
+  "noarg": true,
+  "noempty": true,
+  "nonew": false,
+  "plusplus": false,
+  "regexp": true,
+  "undef": true,
+  "strict": true,
+  "trailing": true,
+  "quotmark": "single",
+  "asi": false,
+  "debug": true,
+  "globalstrict": true,
+  "smarttabs": true,
+  "browser": true,
+  "devel": true,
+  "jquery": true,
+  "node": true,<% if (testFramework === 'mocha') { %>
+  "expr": true,<% } %>
+  "maxerr": 100,
+  "predef": [
+    "require",
+    "define",
+    "afterEach",
+    "beforeEach",
+    "confirm",
+    "context",
+    "describe",
+    "expect",
+    "it",
+    "jasmine",
+    "JSHINT",
+    "mostRecentAjaxRequest",
+    "qq",
+    "runs",
+    "spyOn",
+    "spyOnEvent",
+    "waitsFor",
+    "xdescribe"
+  ],
+  "globals": {
+    "$": true,
+    "Modernizr": true,<% if (jsFramework === 'angular') { %>
+    "angular": true,
+    "inject": true,<% } %>
+    "jQuery": true<% if (jsOption === 'requirejs') { %>,
+    "requirejs": true<% } %><% if (jsFramework === 'backbone') { %>,
+    "Backbone": true,<% if (jsOption === 'none') { %>
+    "App": true,<% } else { %>
+    "app": true,<% } %>
+    "_": true<% } %><% if (jsTemplate === 'underscore' || jsTemplate === 'handlebars' || jsTemplate === 'jade') { %>,
+    "JST": true<% } %><% if (useServer) { %>,
+    "__dirname": true<% } %>
+  },
+  "indent": 2
 }

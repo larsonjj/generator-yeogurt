@@ -1,9 +1,9 @@
 'use strict';
 
 var init = function() {
-     // Intialize module
+   // Intialize module
 };
 
 module.exports = {
-    init: init
+  init: init
 };

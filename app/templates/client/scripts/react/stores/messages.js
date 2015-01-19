@@ -9,22 +9,22 @@ var _messages;
 
 var MessagesStore = new Store({
 
-    // Gets data associated with the current messages.
-    get: function() {
-        return _messages || messagesDefaults;
-    }
+  // Gets data associated with the current messages.
+  get: function() {
+    return _messages || messagesDefaults;
+  }
 
 });
 
 MessagesStore.dispatcherToken = Dispatcher.register(function(payload) {
 
-    var action = payload.action;
+  var action = payload.action;
 
-    if (action.actionType === messagesConstants.SET_MESSAGES) {
-        _messages = action.messages;
+  if (action.actionType === messagesConstants.SET_MESSAGES) {
+    _messages = action.messages;
 
-        MessagesStore.emitChange();
-    }
+    MessagesStore.emitChange();
+  }
 
 });
 

@@ -4,28 +4,28 @@ var user = require('../../models/user');
 
 var Login = Backbone.View.extend({
 
-    el: '.content',
+  el: '.content',
 
-    template: JST['client/templates/account/login<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
+  template: JST['client/templates/account/login<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } else if (jsTemplate === 'jade') { %><% } %>'],
 
-    events: {
-        'submit form': 'formSubmit'
-    },
+  events: {
+    'submit form': 'formSubmit'
+  },
 
-    initialize: function() {
-        this.render();
-    },
+  initialize: function() {
+    this.render();
+  },
 
-    formSubmit: function(e) {
-        e.preventDefault();
-        var $form = $(e.currentTarget);
-        user.login($form);
-    },
+  formSubmit: function(e) {
+    e.preventDefault();
+    var $form = $(e.currentTarget);
+    user.login($form);
+  },
 
-    render: function() {
-        this.$el.html(this.template);
-        return this;
-    }
+  render: function() {
+    this.$el.html(this.template);
+    return this;
+  }
 
 });
 

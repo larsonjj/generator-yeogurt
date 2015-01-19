@@ -1,19 +1,19 @@
 <%% if (typeof(messages) !== 'undefined') { %>
-    <%% if (messages.errors) { %>
-        <%% for (var i = 0; i < messages.errors.length; i += 1) { %>
-            <div class="error"><%%= messages.errors[i].msg %></div>
-        <%% } %>
+  <%% if (messages.errors) { %>
+    <%% for (var i = 0; i < messages.errors.length; i += 1) { %>
+      <div class="error"><%%= messages.errors[i].msg %></div>
     <%% } %>
+  <%% } %>
 
-    <%% if (messages.info) { %>
-        <%% for (var i = 0; i < messages.info.length; i += 1) { %>
-            <div class="info"><%%= messages.info[i].msg %></div>
-        <%% } %>
+  <%% if (messages.info) { %>
+    <%% for (var i = 0; i < messages.info.length; i += 1) { %>
+      <div class="info"><%%= messages.info[i].msg %></div>
     <%% } %>
+  <%% } %>
 
-    <%% if (messages.success) { %>
-        <%% for (var i = 0; i < messages.success.length; i += 1) { %>
-            <div class="success"><%%= messages.success[i].msg %></div>
-        <%% } %>
+  <%% if (messages.success) { %>
+    <%% for (var i = 0; i < messages.success.length; i += 1) { %>
+      <div class="success"><%%= messages.success[i].msg %></div>
     <%% } %>
+  <%% } %>
 <%% } %>

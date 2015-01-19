@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <title>{{ status }}</title>
-    </head>
+  <head>
+    <title>{{ status }}</title>
+  </head>
 
-    <body>
-        <h3>{{ status }}</h3>
-        <p>{{ message }}</p>
-    </body>
+  <body>
+    <h3>{{ status }}</h3>
+    <p>{{ message }}</p>
+  </body>
 
 </html>

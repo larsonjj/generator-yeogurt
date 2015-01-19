@@ -9,16 +9,16 @@ var userActions = require('../../../client/scripts/actions/user');
 
 describe('User Action', function() {
 
-    var ReactTestUtils;
-    var reactRender;
+  var ReactTestUtils;
+  var reactRender;
 
-    beforeEach(function() {
-        ReactTestUtils = require('react/addons').addons.TestUtils;
-    });
+  beforeEach(function() {
+    ReactTestUtils = require('react/addons').addons.TestUtils;
+  });
 
-    it('provides the "User Action"', function() {
-        // Expect it to exist
-        expect(userActions)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
-    });
+  it('provides the "User Action"', function() {
+    // Expect it to exist
+    expect(userActions)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+  });
 
 });

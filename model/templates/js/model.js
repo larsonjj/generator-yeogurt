@@ -5,19 +5,19 @@ App.Models = App.Models || {};
 
 App.Models.<%= _.classify(name) %> = Backbone.Model.extend({
 
-    url: '',
+  url: '',
 
-    initialize: function() {
-    },
+  initialize: function() {
+  },
 
-    defaults: {
-    },
+  defaults: {
+  },
 
-    validate: function(attrs, options) {
-    },
+  validate: function(attrs, options) {
+  },
 
-    parse: function(response, options)  {
-        return response;
-    }
+  parse: function(response, options)  {
+    return response;
+  }
 
 });

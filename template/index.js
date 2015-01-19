@@ -5,22 +5,22 @@ var getRootDir = require('../helpers/get-root-dir');
 var path = require('path');
 
 var TemplateGenerator = module.exports = function TemplateGenerator() {
-    // By calling `NamedBase` here, we get the argument to the subgenerator call
-    // as `this.name`.
-    yeoman.generators.NamedBase.apply(this, arguments);
+  // By calling `NamedBase` here, we get the argument to the subgenerator call
+  // as `this.name`.
+  yeoman.generators.NamedBase.apply(this, arguments);
 
-    var fileJSON = this.config.get('config');
+  var fileJSON = this.config.get('config');
 
-    // options
-    this.useDashboard = fileJSON.useDashboard;
-    this.projectName = fileJSON.projectName;
-    this.jsFramework = fileJSON.jsFramework;
-    this.jsTemplate = fileJSON.jsTemplate;
-    this.testFramework = fileJSON.testFramework;
-    this.htmlOption = fileJSON.htmlOption;
-    this.useServer = fileJSON.useServer;
-    this.jsOption = fileJSON.jsOption;
-    this.singlePageApplication = fileJSON.singlePageApplication;
+  // options
+  this.useDashboard = fileJSON.useDashboard;
+  this.projectName = fileJSON.projectName;
+  this.jsFramework = fileJSON.jsFramework;
+  this.jsTemplate = fileJSON.jsTemplate;
+  this.testFramework = fileJSON.testFramework;
+  this.htmlOption = fileJSON.htmlOption;
+  this.useServer = fileJSON.useServer;
+  this.jsOption = fileJSON.jsOption;
+  this.singlePageApplication = fileJSON.singlePageApplication;
 
 };
 
@@ -29,134 +29,134 @@ util.inherits(TemplateGenerator, yeoman.generators.NamedBase);
 // Prompts
 TemplateGenerator.prototype.ask = function ask() {
 
-    if (this.singlePageApplication) {
-        if (this.jsFramework === 'react') {
-            this.log('You have chosen to use React, so this subgenerator is not available.');
-            this.log('Try the following to generate a new react component: yo yeogurt:react myreact');
-            this.log('Operation aborted');
-            this.abort = true;
-            return;
-        }
+  if (this.singlePageApplication) {
+    if (this.jsFramework === 'react') {
+      this.log('You have chosen to use React, so this subgenerator is not available.');
+      this.log('Try the following to generate a new react component: yo yeogurt:react myreact');
+      this.log('Operation aborted');
+      this.abort = true;
+      return;
+    }
+  }
+
+  var self = this;
+  var rootPath;
+  if (!this.singlePageApplication && this.useServer) {
+    rootPath = 'server';
+  }
+  else {
+    rootPath = 'client';
+  }
+
+  var done = this.async();
+  var prompts = [{
+    when: function() {
+      return self.htmlOption === 'jade' || self.htmlOption === 'swig';
+    },
+    type: 'list',
+    name: 'type',
+    message: 'What type of template do you want to create?',
+    choices: ['Page', 'Layout', 'Module'],
+    filter: function(val) {
+      var filterMap = {
+        'Page': 'page',
+        'Layout': 'layout',
+        'Module': 'module'
+      };
+
+      return filterMap[val];
+    }
+  }, {
+    when: function(answers) {
+      return answers.type === 'page';
+    },
+    name: 'useLayout',
+    message: 'What template you you like to extend from?',
+    default: 'layouts/base'
+  }, {
+    when: function(answers) {
+      return answers.type === 'module';
+    },
+    name: 'templateFile',
+    message: 'Where would you like to create this template?',
+    default: rootPath + '/templates/modules'
+  }, {
+    when: function(answers) {
+      return answers.type === 'layout';
+    },
+    name: 'templateFile',
+    message: 'Where would you like to create this template?',
+    default: rootPath + '/templates/layouts'
+  }, {
+    when: function() {
+      return self.singlePageApplication;
+    },
+    name: 'templateFile',
+    message: 'Where would you like to create this template?',
+    default: rootPath + '/templates'
+  }];
+
+  this.prompt(prompts, function(answers) {
+    if (answers.type === 'page') {
+      answers.templateFile = rootPath + '/templates';
     }
 
-    var self = this;
-    var rootPath;
-    if (!this.singlePageApplication && this.useServer) {
-        rootPath = 'server';
-    }
-    else {
-        rootPath = 'client';
-    }
+    // Get root directory
+    this.rootDir = getRootDir(answers.templateFile);
 
-    var done = this.async();
-    var prompts = [{
-        when: function() {
-            return self.htmlOption === 'jade' || self.htmlOption === 'swig';
-        },
-        type: 'list',
-        name: 'type',
-        message: 'What type of template do you want to create?',
-        choices: ['Page', 'Layout', 'Module'],
-        filter: function(val) {
-            var filterMap = {
-                'Page': 'page',
-                'Layout': 'layout',
-                'Module': 'module'
-            };
-
-            return filterMap[val];
-        }
-    }, {
-        when: function(answers) {
-            return answers.type === 'page';
-        },
-        name: 'useLayout',
-        message: 'What template you you like to extend from?',
-        default: 'layouts/base'
-    }, {
-        when: function(answers) {
-            return answers.type === 'module';
-        },
-        name: 'templateFile',
-        message: 'Where would you like to create this template?',
-        default: rootPath + '/templates/modules'
-    }, {
-        when: function(answers) {
-            return answers.type === 'layout';
-        },
-        name: 'templateFile',
-        message: 'Where would you like to create this template?',
-        default: rootPath + '/templates/layouts'
-    }, {
-        when: function() {
-            return self.singlePageApplication;
-        },
-        name: 'templateFile',
-        message: 'Where would you like to create this template?',
-        default: rootPath + '/templates'
-    }];
-
-    this.prompt(prompts, function(answers) {
-        if (answers.type === 'page') {
-            answers.templateFile = rootPath + '/templates';
-        }
-
-        // Get root directory
-        this.rootDir = getRootDir(answers.templateFile);
-
-        this.type = answers.type;
-        this.useLayout = answers.useLayout || false;
-        this.templateFile = path.join(answers.templateFile, this._.slugify(this.name.toLowerCase()));
-        done();
-    }.bind(this));
+    this.type = answers.type;
+    this.useLayout = answers.useLayout || false;
+    this.templateFile = path.join(answers.templateFile, this._.slugify(this.name.toLowerCase()));
+    done();
+  }.bind(this));
 };
 
 // Create Files
 TemplateGenerator.prototype.files = function files() {
-    if (this.abort) {
-        return;
+  if (this.abort) {
+    return;
+  }
+
+  if (this.singlePageApplication) {
+    if (this.jsFramework === 'angular') {
+      this.template('template.html', this.templateFile + '.html');
+    }
+    else if (this.jsTemplate === 'underscore') {
+      this.template('template.html', this.templateFile + '.jst');
+    }
+    else if (this.jsTemplate === 'handlebars') {
+      this.template('template.html', this.templateFile + '.hbs');
+    }
+    else if (this.jsTemplate === 'jade') {
+      this.template('template.html', this.templateFile + '.jade');
+    }
+  }
+  else {
+    if (this.useLayout && this.type !== 'page') {
+      this.log('The template option will be ignored as the type is not "page"');
     }
 
-    if (this.singlePageApplication) {
-        if (this.jsFramework === 'angular') {
-            this.template('template.html', this.templateFile + '.html');
-        }
-        else if (this.jsTemplate === 'underscore') {
-            this.template('template.html', this.templateFile + '.jst');
-        }
-        else if (this.jsTemplate === 'handlebars') {
-            this.template('template.html', this.templateFile + '.hbs');
-        }
-        else if (this.jsTemplate === 'jade') {
-            this.template('template.html', this.templateFile + '.jade');
-        }
+    if (this.htmlOption === 'jade') {
+      if (this.type === 'page') {
+        this.template('template.jade', this.templateFile + '.jade');
+      }
+      else if (this.type === 'module') {
+        this.template('template.jade', this.templateFile + '.jade');
+      }
+      else if (this.type === 'layout') {
+        this.template('template.jade', this.templateFile + '.jade');
+      }
     }
-    else {
-        if (this.useLayout && this.type !== 'page') {
-            this.log('The template option will be ignored as the type is not "page"');
-        }
-
-        if (this.htmlOption === 'jade') {
-            if (this.type === 'page') {
-                this.template('template.jade', this.templateFile + '.jade');
-            }
-            else if (this.type === 'module') {
-                this.template('template.jade', this.templateFile + '.jade');
-            }
-            else if (this.type === 'layout') {
-                this.template('template.jade', this.templateFile + '.jade');
-            }
-        }
-        else if (this.htmlOption === 'swig') {
-            if (this.type === 'page') {
-                this.template('template.swig', this.templateFile + '.swig');
-            }
-            else if (this.type === 'module') {
-                this.template('template.swig', this.templateFile + '.swig');
-            }
-            else if (this.type === 'layout') {
-                this.template('template.swig', this.templateFile + '.swig');
-            }
-        }
+    else if (this.htmlOption === 'swig') {
+      if (this.type === 'page') {
+        this.template('template.swig', this.templateFile + '.swig');
+      }
+      else if (this.type === 'module') {
+        this.template('template.swig', this.templateFile + '.swig');
+      }
+      else if (this.type === 'layout') {
+        this.template('template.swig', this.templateFile + '.swig');
+      }
     }
+  }
 };

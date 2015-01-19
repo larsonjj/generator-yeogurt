@@ -23,7 +23,7 @@ You will need to inform the grunt-wiredep task about which Lo-dash build you wou
 
 ```
 'lodash': {
-    'main': 'lodash.underscore.js'
+  'main': 'lodash.underscore.js'
 }
 ```
 

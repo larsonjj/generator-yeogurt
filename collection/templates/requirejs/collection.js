@@ -1,13 +1,13 @@
 define(function(require) {
-    'use strict';
+  'use strict';
 
-    var <%= _.classify(modelName) %> = require('<%= modelFile %>');
+  var <%= _.classify(modelName) %> = require('<%= modelFile %>');
 
-    var <%= _.classify(name) %> = Backbone.Collection.extend({
+  var <%= _.classify(name) %> = Backbone.Collection.extend({
 
-        model: <%= _.classify(modelName) %>
+    model: <%= _.classify(modelName) %>
 
-    });
+  });
 
-    return <%= _.classify(name) %>;
+  return <%= _.classify(name) %>;
 });

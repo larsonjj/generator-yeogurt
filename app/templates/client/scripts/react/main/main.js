@@ -14,48 +14,48 @@ var router = new Router(routes);<% if (useAuth) { %>
 // should happen before rendering any templates
 userActions.isAuthenticated({
 
-    // Start routing once we have captured a user's auth status
-    complete: function() {
+  // Start routing once we have captured a user's auth status
+  complete: function() {
 
-        // Enable pushState for compatible browsers
-        var enablePushState = true;
+    // Enable pushState for compatible browsers
+    var enablePushState = true;
 
-        // Detect is pushState is available
-        var pushState = !!(enablePushState && window.history && window.history.pushState);
+    // Detect is pushState is available
+    var pushState = !!(enablePushState && window.history && window.history.pushState);
 
-        if (pushState) {
-            // Start listening to route changes with pushState
-            router.configure({
-                html5history: true
-            }).init();
-        } else {
-            // Start listening to route changes without pushState
-            router.init();
-        }
-
-        // Handle pushState for incompatible browsers (IE9 and below)
-        if (!pushState && window.location.pathname !== '/') {
-            window.location.replace('/#' + window.location.pathname);
-        }
-
-        // Handle route and page changes
-        Dispatcher.register(function(payload) {
-
-            var action = payload.action;
-
-            if (action.actionType === routesConstants.SET_CURRENT_ROUTE) {
-                router.setRoute(action.route);
-            }
-
-            else if (action.actionType === pageConstants.SET_CURRENT_PAGE) {
-                // Set current page title
-                document.title = action.page.title;
-            }
-
-            return true; // No errors.  Needed by promise in Dispatcher.
-        });
-
+    if (pushState) {
+      // Start listening to route changes with pushState
+      router.configure({
+        html5history: true
+      }).init();
+    } else {
+      // Start listening to route changes without pushState
+      router.init();
     }
+
+    // Handle pushState for incompatible browsers (IE9 and below)
+    if (!pushState && window.location.pathname !== '/') {
+      window.location.replace('/#' + window.location.pathname);
+    }
+
+    // Handle route and page changes
+    Dispatcher.register(function(payload) {
+
+      var action = payload.action;
+
+      if (action.actionType === routesConstants.SET_CURRENT_ROUTE) {
+        router.setRoute(action.route);
+      }
+
+      else if (action.actionType === pageConstants.SET_CURRENT_PAGE) {
+        // Set current page title
+        document.title = action.page.title;
+      }
+
+      return true; // No errors.  Needed by promise in Dispatcher.
+    });
+
+  }
 
 });<% } else if (useServer){ %>
 // Enable pushState for compatible browsers
@@ -65,35 +65,35 @@ var enablePushState = true;
 var pushState = !!(enablePushState && window.history && window.history.pushState);
 
 if (pushState) {
-    // Start listening to route changes with pushState
-    router.configure({
-        html5history: true
-    }).init();
+  // Start listening to route changes with pushState
+  router.configure({
+    html5history: true
+  }).init();
 } else {
-    // Start listening to route changes without pushState
-    router.init();
+  // Start listening to route changes without pushState
+  router.init();
 }
 
 // Handle pushState for incompatible browsers (IE9 and below)
 if (!pushState && window.location.pathname !== '/') {
-    window.location.replace('/#' + window.location.pathname);
+  window.location.replace('/#' + window.location.pathname);
 }
 
 // Handle route and page changes
 Dispatcher.register(function(payload) {
 
-    var action = payload.action;
+  var action = payload.action;
 
-    if (action.actionType === routesConstants.SET_CURRENT_ROUTE) {
-        router.setRoute(action.route);
-    }
+  if (action.actionType === routesConstants.SET_CURRENT_ROUTE) {
+    router.setRoute(action.route);
+  }
 
-    else if (action.actionType === pageConstants.SET_CURRENT_PAGE) {
-        // Set current page title
-        document.title = action.page.title;
-    }
+  else if (action.actionType === pageConstants.SET_CURRENT_PAGE) {
+    // Set current page title
+    document.title = action.page.title;
+  }
 
-    return true; // No errors.  Needed by promise in Dispatcher.
+  return true; // No errors.  Needed by promise in Dispatcher.
 });<% } else { %>
 
 // Start listening to route changes
@@ -105,18 +105,18 @@ window.location.replace('/#' + window.location.pathname);
 // Handle route and page changes
 Dispatcher.register(function(payload) {
 
-    var action = payload.action;
+  var action = payload.action;
 
-    if (action.actionType === routesConstants.SET_CURRENT_ROUTE) {
-        router.setRoute(action.route);
-    }
+  if (action.actionType === routesConstants.SET_CURRENT_ROUTE) {
+    router.setRoute(action.route);
+  }
 
-    else if (action.actionType === pageConstants.SET_CURRENT_PAGE) {
-        // Set current page title
-        document.title = action.page.title;
-    }
+  else if (action.actionType === pageConstants.SET_CURRENT_PAGE) {
+    // Set current page title
+    document.title = action.page.title;
+  }
 
-    return true; // No errors.  Needed by promise in Dispatcher.
+  return true; // No errors.  Needed by promise in Dispatcher.
 });<% } %>
 
 console.log('Welcome to Yeogurt');

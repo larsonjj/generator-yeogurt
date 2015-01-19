@@ -4,15 +4,15 @@
 
 describe('<%= _.classify(name) %> Model', function() {
 
-    beforeEach(function() {
-        var App = App || {};
-        App.Models = App.Models || {};
+  beforeEach(function() {
+    var App = App || {};
+    App.Models = App.Models || {};
 
-        this.<%= _.camelize(name) %> = new App.Models.<%= _.classify(name) %>();
-    });
+    this.<%= _.camelize(name) %> = new App.Models.<%= _.classify(name) %>();
+  });
 
-    it('Should run a few assertions', function(){
+  it('Should run a few assertions', function(){
 
-    });
+  });
 
 });

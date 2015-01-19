@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/larsonjj/generator-yeogurt/master/docs/images/logo.png" />
+  <img src="https://raw.githubusercontent.com/larsonjj/generator-yeogurt/master/docs/images/logo.png" />
 </p>
 
 # Yeogurt Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-yeogurt.png?branch=master)](https://travis-ci.org/larsonjj/generator-yeogurt) [![NPM version](https://badge.fury.io/js/generator-yeogurt.png)](http://badge.fury.io/js/generator-yeogurt) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-yeogurt/badge.png)](https://coveralls.io/r/larsonjj/generator-yeogurt)
@@ -10,35 +10,35 @@ A "Choose your own adventure" generator for creating static sites and single pag
 
 - [What can I create with Yeogurt?](#what-can-i-create-with-yeogurt)
 - [Getting Started](#getting-started)
-    - [Installation](#installation)
-    - [Usage](#usage)
+  - [Installation](#installation)
+  - [Usage](#usage)
 - [Features](#features)
-    - [Included in every project](#included-in-every-project)
-    - [Available Options](#available-options)
-    - [Static/Server Site Options](#staticserver-site-options)
-    - [Single Page Application Options](#single-page-application-options)
-    - [Express Server Options](#express-server-options)
-    - [Automatic File Injection](#automatic-file-injection)
+  - [Included in every project](#included-in-every-project)
+  - [Available Options](#available-options)
+  - [Static/Server Site Options](#staticserver-site-options)
+  - [Single Page Application Options](#single-page-application-options)
+  - [Express Server Options](#express-server-options)
+  - [Automatic File Injection](#automatic-file-injection)
 - [Grunt Workflow](#grunt-workflow)
 - [Sub-Generators](#sub-generators)
-    - [Default (Can be used on any project)](#default-can-be-used-on-any-project)
-    - [Static/Server Sites and Backbone](#static-sites-and-backbone-applications)
-    - [React](#react-application)
-    - [Backbone](#backbone-application)
-    - [Angular](#angular-application)
+  - [Default (Can be used on any project)](#default-can-be-used-on-any-project)
+  - [Static/Server Sites and Backbone](#static-sites-and-backbone-applications)
+  - [React](#react-application)
+  - [Backbone](#backbone-application)
+  - [Angular](#angular-application)
 - [Automated Documentation](#automated-documentation)
-    - [Dashboard](#dashboard)
-    - [JavaScript API](#javascript-api)
-    - [Styleguide](#styleguide)
+  - [Dashboard](#dashboard)
+  - [JavaScript API](#javascript-api)
+  - [Styleguide](#styleguide)
 - [Adding third-party libraries](#adding-third-party-libraries)
 - [Deployment](#deployment)
-    - [FTP Server](#ftp-server)
+  - [FTP Server](#ftp-server)
 - [Vagrant Setup](#vagrant-setup)
 - [Extending Yeogurt](#extending-yeogurt)
 - [Common Gotchas](#common-gotchas)
-    - [Bower not installing dependencies using Git](#bower-not-installing-dependencies-using-git)
-    - [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts)
-    - [`grunt deploy` is not copying files to FTP server](#grunt-deploy-is-not-copying-files-to-ftp-server)
+  - [Bower not installing dependencies using Git](#bower-not-installing-dependencies-using-git)
+  - [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts)
+  - [`grunt deploy` is not copying files to FTP server](#grunt-deploy-is-not-copying-files-to-ftp-server)
 - [Testing](#testing)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
@@ -64,9 +64,9 @@ Check to see if you already have Node installed. Do this by bringing up a termin
 #### Yeoman, Grunt, & Bower
 Once you have Node installed, make sure you have these tools by opening up a terminal/command prompt and entering following commands:
 
-| Command    | Response
+| Command  | Response
 |---------- |:---------:
-| `yo -v`    | at or above `v1.2.1`
+| `yo -v`  | at or above `v1.2.1`
 | `bower -v` | at or above `v1.3.x`
 | `grunt -V` | `grunt-cli` at or above `v0.1.10`
 
@@ -124,7 +124,7 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 - Automated build process that includes: compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, optimization of images, and processing of [usemin blocks](Usemin blocks)
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets (Except Stylus. [Waiting on PR](https://github.com/gruntjs/grunt-contrib-stylus/pull/121))
 - IE8+ Support via [HTML5shiv](https://github.com/aFarkas/html5shiv) and [consolelog](https://github.com/patik/console.log-wrapper)
-    - [ES5-Shim and ES5-Sham](https://github.com/es-shims/es5-shim) Included for React apps
+  - [ES5-Shim and ES5-Sham](https://github.com/es-shims/es5-shim) Included for React apps
 - JavaScript Linting with [JSHint](http://www.jshint.com/)
 - Feature detection with [Modernizr](http://modernizr.com/)
 
@@ -143,7 +143,7 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 ### Static/Server Site Options
 - Markup with [Jade](http://jade-lang.com/) or [Swig](http://paularmstrong.github.io/swig/)
 - Dashboard - auto-generated dashboard for your site with [grunt-dashboard](https://github.com/larsonjj/grunt-dashboard)
-    - Only available for Static Sites that are not using an Express server
+  - Only available for Static Sites that are not using an Express server
 
 ### Single Page Application Options
 - [Angular](https://angularjs.org/)
@@ -159,15 +159,15 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 ### Express Server Options
 
 - Database support for:
-    - [MySQL](http://www.mysql.com/), [PostgreSQL](http://www.postgresql.org/) using [Sequelize](http://sequelizejs.com/)
-    - [MongoDB](http://www.mongodb.org/) using [Mongoose](http://mongoosejs.com/)
+  - [MySQL](http://www.mysql.com/), [PostgreSQL](http://www.postgresql.org/) using [Sequelize](http://sequelizejs.com/)
+  - [MongoDB](http://www.mongodb.org/) using [Mongoose](http://mongoosejs.com/)
 - Cookie Session Storage with [express-session](https://github.com/expressjs/session)
 - Security with Paypal's [Lusca](https://github.com/krakenjs/lusca) module
 - User authentication (Email & Password) using [Passport](http://passportjs.org/)
 - [JSON Web Token](http://jwt.io/) authentication support
-    - Only for Single Page Applications (No Angular Support)
+  - Only for Single Page Applications (No Angular Support)
 - Jade, Swig server-side template rendering
-    - Only for Static/Server sites (i.e. not Backbone or React)
+  - Only for Static/Server sites (i.e. not Backbone or React)
 
 ### Automatic File Injection
 A grunt task, using the [grunt-injector](https://www.npmjs.org/package/grunt-injector) plugin, looks for new/updated files in your project and automatically injects imports/includes in the appropriate places based on an injection block.
@@ -694,7 +694,7 @@ Within your base template file, you will want to locate the `build:js(client) sc
 ```
 <!-- build:css(client) styles/global.css -->
 ...
-    <link href="/styles/vendor/thirdparty.css"></script>
+  <link href="/styles/vendor/thirdparty.css"></script>
 ...
 <!-- endbuild -->
 ```
@@ -703,8 +703,8 @@ Within your base template file, you will want to locate the `build:js(client) sc
 ```
 <!-- build:js(client) scripts/global.js -->
 ...
-    <script src="/scripts/vendor/thirdparty.js"></script>
-    <script src="/bower_components/somescript/thirdparty.js"></script>
+  <script src="/scripts/vendor/thirdparty.js"></script>
+  <script src="/bower_components/somescript/thirdparty.js"></script>
 ...
 <!-- endbuild -->
 ```
@@ -727,12 +727,12 @@ This file looks like this:
 
 ```
 {
-    "host": "",
-    "serverPath": "/html",
-    "key1": {
-        "username": "jdoe",
-        "password": "jdoe1"
-      }
+  "host": "",
+  "serverPath": "/html",
+  "key1": {
+    "username": "jdoe",
+    "password": "jdoe1"
+    }
 }
 ```
 
@@ -777,9 +777,9 @@ To remedy this situation, all you need to do is open up your `.jshintrc` file in
 // .jshintrc
 {
 ...
-    globals: {
-        Backbone: true // Tells JSHint that Backbone is defined globally
-    }
+  globals: {
+    Backbone: true // Tells JSHint that Backbone is defined globally
+  }
 ...
 }
 ```

@@ -1,3 +1,24 @@
+### v0.14.0:
+#### date: 2015-1-18
+##### changes:
+* Added AngularJS option for Single Page Applications
+ - Templates auto compiled to single JS payload and added to $templateCache
+ - Angular scripts automatically converted to min-safe. (Angular shorthand DI can be used)
+ - Modular Structure based on [John Papa's Styleguide](https://github.com/johnpapa/angularjs-styleguide)
+ - 8 new AngularJS sub-generators
+  - Route
+  - Service
+  - Factory
+  - Controller
+  - Template
+  - Directive
+  - Decorator
+* Changed coding style to match [Google's](https://github.com/jscs-dev/node-jscs/blob/master/presets/google.json)
+  - 4 space indent has been changed to 2
+  - [jscs](http://jscs.info/) is now used to enforce new style rules (for yeogurt repo only)
+  - Differences: Allow 120 characters instead of the default 80. Also allow `else` on new lines.
+* Authentication boilerplates for React, Backbone, Jade, and Swig have been deprecated (will be removed from next release)
+
 ### v0.13.7:
 #### date: 2015-1-15
 ##### changes:

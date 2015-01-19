@@ -7,11 +7,11 @@ var assign = require('object-assign');
 
 module.exports = {
 
-    setMessages: function(messages) {
-        Dispatcher.handleViewAction({
-            actionType: messagesConstants.SET_MESSAGES,
-            messages: assign({}, messagesDefaults, messages)
-        });
-    }
+  setMessages: function(messages) {
+    Dispatcher.handleViewAction({
+      actionType: messagesConstants.SET_MESSAGES,
+      messages: assign({}, messagesDefaults, messages)
+    });
+  }
 
 };

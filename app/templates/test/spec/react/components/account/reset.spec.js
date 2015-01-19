@@ -10,18 +10,18 @@ var ResetComponent = React.createFactory(require('../../../../client/scripts/com
 
 describe('Reset Component', function() {
 
-    var ReactTestUtils;
-    var reactRender;
+  var ReactTestUtils;
+  var reactRender;
 
-    beforeEach(function() {
-        ReactTestUtils = require('react/addons').addons.TestUtils;
-        reactRender = ReactTestUtils.renderIntoDocument;
-        this.resetComponent = new ResetComponent();
-    });
+  beforeEach(function() {
+    ReactTestUtils = require('react/addons').addons.TestUtils;
+    reactRender = ReactTestUtils.renderIntoDocument;
+    this.resetComponent = new ResetComponent();
+  });
 
-    it('provides the "Reset Component" instance', function() {
-        // Expect it to exist
-        expect(this.resetComponent)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
-    });
+  it('provides the "Reset Component" instance', function() {
+    // Expect it to exist
+    expect(this.resetComponent)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+  });
 
 });

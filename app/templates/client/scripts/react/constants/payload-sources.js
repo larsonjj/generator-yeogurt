@@ -2,7 +2,7 @@
 
 var PayloadSources = {
 
-    VIEW_ACTION: 'VIEW_ACTION'
+  VIEW_ACTION: 'VIEW_ACTION'
 
 };
 

@@ -7,46 +7,46 @@ var pageStore = require('../../stores/page');<% if (useAuth) { %>
 var userStore = require('../../stores/user');<% } %>
 
 var getState = function() {
-    return {
-        title: pageStore.get().title<% if (useAuth) { %>,
-        user: userStore.get()<% } %>
-    };
+  return {
+    title: pageStore.get().title<% if (useAuth) { %>,
+    user: userStore.get()<% } %>
+  };
 };
 
 var DefaultComponent = React.createClass({
-    mixins: [pageStore.mixin<% if (useAuth) { %>, userStore.mixin<% } %>],
-    componentDidMount: function() {
-        pageStore.emitChange();<% if (useAuth) { %>
-        userStore.emitChange();<% } %>
-    },
-    getInitialState: function() {
-        return getState();
-    },
-    render: function() {
-        return (
-            /* jshint ignore:start */
-            <div><% if (useAuth) { %>
-                <div className="main-nav">
-                    <Navbar user={this.state.user} />
-                </div><% } %>
-                <div className="default">
-                    <div className="main-container"><% if (useAuth) { %>
-                        <div className="messages">
-                            <Messages messages={this.state.messages} />
-                        </div><% } %>
-                        <div className="content">
-                            {this.props.children}
-                        </div>
-                    </div>
-                </div>
+  mixins: [pageStore.mixin<% if (useAuth) { %>, userStore.mixin<% } %>],
+  componentDidMount: function() {
+    pageStore.emitChange();<% if (useAuth) { %>
+    userStore.emitChange();<% } %>
+  },
+  getInitialState: function() {
+    return getState();
+  },
+  render: function() {
+    return (
+      /* jshint ignore:start */
+      <div><% if (useAuth) { %>
+        <div className="main-nav">
+          <Navbar user={this.state.user} />
+        </div><% } %>
+        <div className="default">
+          <div className="main-container"><% if (useAuth) { %>
+            <div className="messages">
+              <Messages messages={this.state.messages} />
+            </div><% } %>
+            <div className="content">
+              {this.props.children}
             </div>
-            /* jshint ignore:end */
-        );
-    },
-    // Event handler for 'change' events coming from store mixins.
-    _onChange: function() {
-        this.setState(getState());
-    }
+          </div>
+        </div>
+      </div>
+      /* jshint ignore:end */
+    );
+  },
+  // Event handler for 'change' events coming from store mixins.
+  _onChange: function() {
+    this.setState(getState());
+  }
 });
 
 module.exports = DefaultComponent;

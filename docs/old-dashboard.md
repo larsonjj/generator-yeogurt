@@ -8,21 +8,21 @@ It is 'dynamic' because it is generated at compile time using comments placed at
 
 ```
 //- Dashboard Data
-    !##
-    {
-        "status": "development",
-        "blocks": [
-            {
-                "blockName": "content",
-                "width": "100px",
-                "height": "100px",
-                "bgcolor": "#9d9d9d",
-                "textColor": "#fff",
-                "fontSize": "10px"
-            }
-        ]
-    }
-    ##!
+  !##
+  {
+    "status": "development",
+    "blocks": [
+      {
+        "blockName": "content",
+        "width": "100px",
+        "height": "100px",
+        "bgcolor": "#9d9d9d",
+        "textColor": "#fff",
+        "fontSize": "10px"
+      }
+    ]
+  }
+  ##!
 ```
 For pages, components, templates, and helpers, these comments create the ability to pass data directly to the dashboard. In the above code example, we are setting a template file's status to be in 'development' and are adding a content block with a name of 'content' and a couple of CSS properties.
 

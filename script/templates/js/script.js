@@ -2,10 +2,10 @@
 
 var <%= _.classify(name) %> = (function() {
 
-    var init = function() {
-         // Intialize module
-    };
+  var init = function() {
+     // Intialize module
+  };
 
-    return init;
+  return init;
 
 }());

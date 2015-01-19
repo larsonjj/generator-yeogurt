@@ -1,20 +1,20 @@
 <% if (testFramework === 'mocha') { %>/*jshint expr: true*/<% } %>
 
 define(function(require) {
-    'use strict';
+  'use strict';
 
-    var <%= _.classify(name) %> = require('<%= viewFile %>');
+  var <%= _.classify(name) %> = require('<%= viewFile %>');
 
-    describe('<%= _.classify(name) %> View', function() {
+  describe('<%= _.classify(name) %> View', function() {
 
-        beforeEach(function() {
-            this.<%= _.camelize(name) %> = new <%= _.classify(name) %>();
-        });
+    beforeEach(function() {
+      this.<%= _.camelize(name) %> = new <%= _.classify(name) %>();
+    });
 
-        it('Should run a few assertions', function(){
-
-        });
+    it('Should run a few assertions', function(){
 
     });
+
+  });
 
 });
