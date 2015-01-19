@@ -13,10 +13,6 @@ var rootFiles = function rootFiles() {
   this.template('_package.json', 'package.json');
   this.template('README.md', 'README.md');
 
-  if (this.useFTP) {
-    this.copy('.ftppass', '.ftppass');
-  }
-
   if (this.versionControl === 'svn') {
     this.copy('svn-init.sh', 'svn-init.sh');
     this.copy('svn-init.bat', 'svn-init.bat');

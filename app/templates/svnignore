@@ -1,7 +1,6 @@
 node_modules
 *.log
 dist
-.ftppass
 bower_components
 .grunt
 .serve
