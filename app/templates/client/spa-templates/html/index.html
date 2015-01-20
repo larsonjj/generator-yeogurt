@@ -96,8 +96,7 @@
 
     <!-- build:js(client) <% if (jsFramework === 'angular') { %>app<% } else { %>scripts<% } %>/main.js --><% if (jsFramework !== 'angular') { %>
       <!-- [injector:js] -->
-      <!-- [endinjector] --><% } %><% if (jsFramework === 'backbone') { %><% if (jsOption === 'none') { %>
-    <script src="/scripts/views/layouts/default.js"></script><% } %>
+      <!-- [endinjector] --><% } %><% if (jsFramework === 'backbone') { %>
     <script src="/scripts/routes.js"></script><% } %><% if (jsFramework !== 'angular') { %>
     <script src="/scripts/main.js"></script><% } %><% if (jsFramework === 'angular') { %>
     <script src="/app/main.js"></script>

@@ -9,7 +9,11 @@ var App = App || {
   Routers: {}
 };
 
-(function() {<% if (useServer) { %>
+(function() {
+
+  // Create/Instantiate global reference to router
+  App.router = new App.Routers.Main();<% if (useServer) { %>
+
   // Enable pushState for compatible browsers
   var enablePushState = true;
 
