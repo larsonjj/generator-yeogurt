@@ -75,7 +75,7 @@ var answersConfig = function answersConfig() {
     port + '/' +
     name;
   }
-  else if (this.dbType === 'sql') {
+  else if (this.dbType === 'mysql') {
     this.dbURL = process.env.MYSQL || 'mysql://' +
     username +
     password +

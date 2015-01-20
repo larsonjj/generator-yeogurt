@@ -1,6 +1,6 @@
 {
   "name": "generator-yeogurt",
-  "version": "0.14.1",
+  "version": "0.14.2",
   "description": "A “Choose your own adventure” generator for creating static sites and single page applications. Helps you harness the power of your favorite tools: Angular, React + Flux, Backbone, Jade, Swig, Express, Grunt and much more!",
   "keywords": [
   "yeoman-generator",
@@ -17,6 +17,7 @@
   "dashboard",
   "backbone",
   "react",
+  "angular",
   "jsx",
   "flux",
   "express",
@@ -25,7 +26,7 @@
   "styleguide",
   "api",
   "handlebars",
-  "lodash"
+  "underscore"
   ],
   "homepage": "https://github.com/larsonjj/generator-yeogurt",
   "bugs": "https://github.com/larsonjj/generator-yeogurt/issues",
