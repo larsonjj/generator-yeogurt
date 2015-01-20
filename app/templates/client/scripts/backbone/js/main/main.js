@@ -11,7 +11,7 @@ var App = App || {
 
 (function() {
 
-  // Create/Instantiate global reference to router
+  // Initialize routes and create global reference to router
   App.router = new App.Routers.Main();<% if (useServer) { %>
 
   // Enable pushState for compatible browsers
