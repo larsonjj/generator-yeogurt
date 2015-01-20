@@ -17,6 +17,6 @@
     "requirejs": "~2.1.11"<% } %>
   },
   "devDependencies": {<% if (jsFramework === 'angular') { %>
-    "angular-mocks": ">=1.2.*"
+    "angular-mocks": "~1.2.28"
   <% } %>}
 }
