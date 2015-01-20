@@ -2,7 +2,7 @@
 
 var Defaults = {
 
-  route: '/',
+  routeRoot: '/',
 
   page: {
     title: 'Home',
