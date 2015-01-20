@@ -1,6 +1,4 @@
-/**
- * Index Controller
- */
+// Index Controller
 
 'use strict';<% if (singlePageApplication) { %>
 

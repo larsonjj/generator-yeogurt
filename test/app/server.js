@@ -38,179 +38,11 @@ describe('Yeogurt generator using Server', function() {
 
       helpers.mockPrompt(this.app, {
         useServer: true,
-        dbOption: 'none',
-        useAuth: false
+        dbOption: 'none'
       });
       this.app.run([], function() {
         assert.file(expected);
         done();
-      });
-    });
-  });
-  describe('With Authentication', function() {
-    describe('With Jade', function() {
-      it('Creates expected files', function(done) {
-        var expected = [
-          'server/templates/error.jade',
-          'server/templates/account/forgot.jade',
-          'server/templates/account/login.jade',
-          'server/templates/account/reset.jade',
-          'server/templates/account/signup.jade',
-          'server/templates/partials/navbar.jade',
-          'server/templates/partials/messages.jade',
-          'server/templates/layouts/default.jade'
-        ];
-
-        helpers.mockPrompt(this.app, {
-          useServer: true,
-          htmlOption: 'jade',
-          dbOption: 'mongodb',
-          dbType: 'mongodb',
-          useAuth: true
-        });
-        this.app.run([], function() {
-          assert.file(expected);
-          done();
-        });
-      });
-    });
-    describe('With Swig', function() {
-      it('Creates expected files', function(done) {
-        var expected = [
-          'server/templates/error.swig',
-          'server/templates/account/forgot.swig',
-          'server/templates/account/login.swig',
-          'server/templates/account/reset.swig',
-          'server/templates/account/signup.swig',
-          'server/templates/partials/navbar.swig',
-          'server/templates/partials/messages.swig',
-          'server/templates/layouts/default.swig'
-        ];
-
-        helpers.mockPrompt(this.app, {
-          useServer: true,
-          htmlOption: 'swig',
-          dbOption: 'mongodb',
-          dbType: 'mongodb',
-          useAuth: true
-        });
-        this.app.run([], function() {
-          assert.file(expected);
-          done();
-        });
-      });
-    });
-    describe('With MongoDB', function() {
-      describe('With Defaults', function() {
-        it('Creates expected files', function(done) {
-          var expected = [
-            'server/controllers/user.js',
-            'server/controllers/account.js',
-            'server/routes/user.js',
-            'server/routes/account.js',
-            'server/auth/index.js',
-          ];
-
-          helpers.mockPrompt(this.app, {
-            useServer: true,
-            dbOption: 'mongodb',
-            dbType: 'mongodb',
-            useAuth: true
-          });
-          this.app.run([], function() {
-            assert.file(expected);
-            done();
-          });
-        });
-      });
-      describe('With Local Authentication', function() {
-        it('Creates expected files', function(done) {
-          var expected = [
-            'server/auth/strategies/local.js',
-          ];
-          var fileContentToTest = [
-            ['server/auth/strategies/local.js', /findOne/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            useServer: true,
-            dbOption: 'mongodb',
-            dbType: 'mongodb',
-            useAuth: true
-          });
-          this.app.run([], function() {
-            assert.file(expected);
-            assert.fileContent(fileContentToTest);
-            done();
-          });
-        });
-      });
-    });
-    describe('With MySQL', function() {
-      describe('With Defaults', function() {
-        it('Creates expected files', function(done) {
-          var expected = [
-            'server/controllers/user.js',
-            'server/controllers/account.js',
-            'server/routes/user.js',
-            'server/routes/account.js',
-            'server/auth/index.js',
-          ];
-
-          helpers.mockPrompt(this.app, {
-            useServer: true,
-            dbOption: 'sql',
-            dbType: 'mysql',
-            useAuth: true
-          });
-          this.app.run([], function() {
-            assert.file(expected);
-            done();
-          });
-        });
-      });
-      describe('With Local Authentication', function() {
-        it('Creates expected files', function(done) {
-          var expected = [
-            'server/auth/strategies/local.js',
-          ];
-          var fileContentToTest = [
-            ['server/auth/strategies/local.js', /\.success/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            useServer: true,
-            dbOption: 'sql',
-            dbType: 'mysql',
-            useAuth: true
-          });
-          this.app.run([], function() {
-            assert.file(expected);
-            assert.fileContent(fileContentToTest);
-            done();
-          });
-        });
-      });
-      describe('With Single Page Application', function() {
-        it('Creates expected files', function(done) {
-          var fileContentToTest = [
-            ['server/auth/index.js', /express\-jwt/i],
-            ['server/auth/index.js', /signToken/i],
-            ['server/auth/index.js', /setTokenCookie/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            useServer: true,
-            dbOption: 'sql',
-            dbType: 'mysql',
-            useAuth: true,
-            singlePageApplication: true
-          });
-          this.app.run([], function() {
-            assert.fileContent(fileContentToTest);
-            done();
-          });
-        });
       });
     });
   });
@@ -308,11 +140,6 @@ describe('Yeogurt generator using Server', function() {
         var expected = [
           'client/index.html'
         ];
-        var fileContentToTest = [
-          ['server/auth/index.js', /express\-jwt/i],
-          ['server/auth/index.js', /signToken/i],
-          ['server/auth/index.js', /setTokenCookie/i]
-        ];
 
         helpers.mockPrompt(this.app, {
           singlePageApplication: true,
@@ -320,7 +147,6 @@ describe('Yeogurt generator using Server', function() {
         });
         this.app.run([], function() {
           assert.file(expected);
-          assert.fileContent(fileContentToTest);
           done();
         });
       });
@@ -378,8 +204,7 @@ describe('Yeogurt generator using Server', function() {
       ];
 
       helpers.mockPrompt(this.app, {
-        useServer: true,
-        useAuth: true
+        useServer: true
       });
       this.app.run([], function() {
         assert.file(expected);

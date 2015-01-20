@@ -1,18 +1,15 @@
 'use strict';
 
 var Dispatcher = require('../dispatchers/default');
-var routesConstants = require('../constants/routes');<% if (useAuth) { %>
-var messagesActions = require('./messages');<% } %>
+var routeConstants = require('../constants/routes');
 
 module.exports = {
 
-  setRoute: function(route) {<% if (useAuth) { %>
-    // Clear out any existing messages
-    messagesActions.setMessages({});<% } %>
-
+  setRoute: function(route) {
     Dispatcher.handleViewAction({
-      actionType: routesConstants.SET_CURRENT_ROUTE,
-      route: route
+      actionType: routeConstants.SET_CURRENT_ROUTE,
+      // Change to specified route, or default to root route
+      route: route || routeConstants.routeRoot
     });
   }
 

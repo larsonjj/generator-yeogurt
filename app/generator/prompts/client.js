@@ -34,21 +34,7 @@ var clientPrompts = function clientPrompts() {
       return filterMap[val];
     }
   }, {
-    when: function(answers) { return answers.singlePageApplication && self.serverPrompts.useAuth; },
-    type: 'list',
-    name: 'jsFramework',
-    message: 'Which ' + 'JavaScript framework/library'.blue + ' would you like to use?',
-    choices: ['React', 'Backbone'],
-    filter: function(val) {
-      var filterMap = {
-        'React': 'react',
-        'Backbone': 'backbone'
-      };
-
-      return filterMap[val];
-    }
-  }, {
-    when: function(answers) { return answers.singlePageApplication && !self.serverPrompts.useAuth; },
+    when: function(answers) { return answers.singlePageApplication; },
     type: 'list',
     name: 'jsFramework',
     message: 'Which ' + 'JavaScript framework/library'.blue + ' would you like to use?',

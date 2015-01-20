@@ -78,8 +78,7 @@
 
     <!-- build:js(<% if (jsFramework === 'backbone') { %>{client,.tmp}<% } else { %>client<% } %>) <% if (jsFramework === 'angular') { %>app<% } else { %>scripts<% } %>/global.js -->
       <!-- bower:js -->
-      <script src="/bower_components/jquery/dist/jquery.js"></script><% if (useAuth && (jsFramework === 'backbone' || jsFramework === 'angular')) { %>
-      <script src="/bower_components/jquery.cookie/jquery.cookie.js"></script><% } %><% if (jsFramework === 'backbone') { %>
+      <script src="/bower_components/jquery/dist/jquery.js"></script><% if (jsFramework === 'backbone') { %>
       <script src="/bower_components/underscore/underscore.js"></script>
       <script src="/bower_components/backbone/backbone.js"></script><% } %><% if (jsFramework === 'angular') { %>
       <script src="/bower_components/angular/angular.js"></script>
@@ -97,8 +96,7 @@
 
     <!-- build:js(client) <% if (jsFramework === 'angular') { %>app<% } else { %>scripts<% } %>/main.js --><% if (jsFramework !== 'angular') { %>
       <!-- [injector:js] -->
-      <!-- [endinjector] --><% } %><% if (jsFramework === 'backbone') { %><% if (jsOption === 'none') { %>
-    <script src="/scripts/views/layouts/default.js"></script><% } %>
+      <!-- [endinjector] --><% } %><% if (jsFramework === 'backbone') { %>
     <script src="/scripts/routes.js"></script><% } %><% if (jsFramework !== 'angular') { %>
     <script src="/scripts/main.js"></script><% } %><% if (jsFramework === 'angular') { %>
     <script src="/app/main.js"></script>
