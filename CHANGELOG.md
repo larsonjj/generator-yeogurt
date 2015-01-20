@@ -1,3 +1,8 @@
+### v0.14.2:
+#### date: 2015-1-20
+##### changes:
+* Fixed issue where mysql database urls were not being populated in server settings.
+
 ### v0.14.1:
 #### date: 2015-1-19
 ##### changes:
