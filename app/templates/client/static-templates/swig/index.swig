@@ -6,9 +6,8 @@
     "label": "Home",
     "link": "../../index.html"
   }
-  [/dash] #}<% } %><% if (useAuth) { %>
-{% extends './layouts/default.swig' %}<% } else { %>
-{% extends './layouts/base.swig' %}<% } %>
+  [/dash] #}<% } %>
+{% extends './layouts/base.swig' %}
 
 {% block content %}
 <div class="main-container">

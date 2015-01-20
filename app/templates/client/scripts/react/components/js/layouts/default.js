@@ -1,53 +1,34 @@
 'use strict';
 
-var React = require('react');<% if (useAuth) { %>
-var Navbar = require('../modules/navbar');
-var Messages = require('../modules/messages');<% } %>
-var pageStore = require('../../stores/page');<% if (useAuth) { %>
-var userStore = require('../../stores/user');<% } %>
+var React = require('react');
+var pageStore = require('../../stores/page');
 
 // Alias for making element creation less verbose
 var DOM = React.createElement;
 
 var getState = function() {
   return {
-    title: pageStore.get().title<% if (useAuth) { %>,
-    user: userStore.get()<% } %>
+    title: pageStore.get().title
   };
 };
 
 var DefaultComponent = React.createClass({
-  mixins: [pageStore.mixin<% if (useAuth) { %>, userStore.mixin<% } %>],
+  mixins: [pageStore.mixin],
   componentDidMount: function() {
-    pageStore.emitChange();<% if (useAuth) { %>
-    userStore.emitChange();<% } %>
+    pageStore.emitChange();
   },
   getInitialState: function() {
     return getState();
   },
   render: function() {
     return (
-      DOM('div', null,<% if (useAuth) { %>
-        DOM('div', {
-            className: 'main-nav'
-          },
-          DOM(Navbar, {
-            user: this.state.user
-          })
-        ),<% } %>
+      DOM('div', null,
         DOM('div', {
             className: 'default'
           },
           DOM('div', {
               className: 'main-container'
-            },<% if (useAuth) { %>
-            DOM('div', {
-                className: 'messages'
-              },
-              DOM(Messages, {
-                messages: this.state.messages
-              })
-            ),<% } %>
+            },
             DOM('div', {
                 className: 'content'
               },

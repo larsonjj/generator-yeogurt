@@ -1,9 +1,7 @@
-/**
- * Node Server Configuration
- */
+// Node Server Configuration
+//
 'use strict';
 
-// Module dependencies.
 var express = require('express');<% if (dbOption === 'mongodb') { %>
 var mongoose = require('mongoose');<% } %>
 

@@ -83,12 +83,6 @@ var serverPrompts = function serverPrompts() {
         return 'This field is required (enter "nopass" to leave blank)';
       }
     }
-  }, {
-    when: function(answers) { return answers.useServer && answers.dbOption !== 'none'; },
-    type: 'confirm',
-    name: 'useAuth',
-    message: 'Would you like to ' + 'authenticate users (Email & Password)'.blue + '?' + ' (Deprecated)'.red,
-    default: true
   }], function(answers) {
     this.serverPrompts = answers;
 

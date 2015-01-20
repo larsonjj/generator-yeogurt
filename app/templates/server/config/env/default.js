@@ -16,20 +16,7 @@ var defaults = {
     // Host/URL to run server on
     host: process.env.HOSTNAME || '127.0.0.1',
     // Log level
-    logLevel: 'dev',
-    // Paths to ignore when redirecting back
-    // to original location after logging in
-    loginIgnorePaths: [
-      'auth',
-      'login',
-      'logout',
-      'signup',
-      'favicon',
-      'images',
-      'scripts',
-      'styles',
-      'bower_components'
-    ]
+    logLevel: 'dev'
   },
   database: {
     // URL to connect to database
@@ -96,8 +83,11 @@ var defaults = {
       language: 'en'
     }<% } %>
   },
+  // Alias for accessing root of project
   root: path.normalize(__dirname + '/../../..'),
+  // Directory where all of your static assets reside
   staticAssets: 'client',
+  // Security settings
   security: {
     // Arrays of URLs to whitelist from security policies
     whitelists: {

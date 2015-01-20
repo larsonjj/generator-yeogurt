@@ -45,7 +45,7 @@ A "Choose your own adventure" generator for creating static sites and single pag
 ## What can I create with Yeogurt?
 - Build out static sites using [Jade](http://jade-lang.com/) or [Swig](http://paularmstrong.github.io/swig/).
 - Create Single Page Applications using [Angular](https://angularjs.org/), [Backbone](http://backbonejs.org/) or [React](http://facebook.github.io/react/) + [Flux](http://facebook.github.io/react/docs/flux-overview.html).
-- Make your site/app full-stack by adding an [Express](http://expressjs.com/) Server with optional database, cookie session, user authentication, and security support .
+- Make your site/app full-stack by adding an [Express](http://expressjs.com/) Server with optional database, cookie session, and security support.
 
 Check out the [features](#features) section to see everything this generator has to offer.
 

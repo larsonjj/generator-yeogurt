@@ -9,16 +9,7 @@ var Defaults = {
     description: 'A React + Flux application',
     keywords: null
 
-  }<% if (useAuth) { %>,
-
-  user: {
-    loggedIn: false,
-    firstName: 'John',
-    lastName: 'Doe'
-  },
-
-  messages: {}<% } %>
-
+  }
 
 };
 

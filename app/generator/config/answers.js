@@ -51,8 +51,6 @@ var answersConfig = function answersConfig() {
     this.dbOption = this.answers.dbOption;
   }
 
-  this.useAuth = this.answers.useAuth;
-
   // Clear dbPass and/or dbUser if 'nouser' and/or 'nopass'
   if (this.answers.dbUser === 'nouser') {this.answers.dbUser = '';}
   if (this.answers.dbPass === 'nopass') {this.answers.dbPass = '';}
@@ -67,6 +65,8 @@ var answersConfig = function answersConfig() {
   var host   = this.dbUser ? '@' + this.answers.dbHost : this.answers.dbHost;
   var name   = this.answers.dbName ? this.answers.dbName : '';
 
+  console.log(this.dbType);
+
   if (this.dbOption === 'mongodb') {
     this.dbURL = process.env.MONGODB || 'mongodb://' +
     username +
@@ -75,7 +75,7 @@ var answersConfig = function answersConfig() {
     port + '/' +
     name;
   }
-  else if (this.dbType === 'sql') {
+  else if (this.dbType === 'mysql') {
     this.dbURL = process.env.MYSQL || 'mysql://' +
     username +
     password +
@@ -84,7 +84,7 @@ var answersConfig = function answersConfig() {
     name;
   }
   else if (this.dbType === 'postgres') {
-    this.dbURL = process.env.MYSQL || 'postgres://' +
+    this.dbURL = process.env.POSTGRES || 'postgres://' +
     username +
     password +
     host + ':' +
