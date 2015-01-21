@@ -9,7 +9,9 @@ var expect = chai.expect;
 describe('Main View', function() {
   var page;
 
-  beforeEach(function() {
+  beforeEach(function() {<% if (jsFramework !== 'angular') { %>
+    // Inform protractor that it will run non-angular tests
+    isAngularSite(false);<% } %>
     browser.get('/');
     page = require('./home.po');
   });

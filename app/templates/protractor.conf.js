@@ -47,8 +47,8 @@ exports.config = {
   // See the full list at https://github.com/juliemr/minijasminenode
   jasmineNodeOpts: {
     defaultTimeoutInterval: 30000
-  }
-<% } else if (testFramework === 'mocha') { %>
+  }<% } else if (testFramework === 'mocha') { %>
+
   framework: 'mocha',
 
   // ----- Options to be passed to mocha -----
@@ -57,6 +57,13 @@ exports.config = {
   mochaOpts: {
     reporter: 'spec',
     slow: 30000
-  }
-<% } %>
+  }<% } %><% if (jsFramework !== 'angular') { %>,
+
+  // Setup globals for protractor tests
+  onPrepare: function() {
+      // Lets protractor know if it should be looking for angular in tests
+      global.isAngularSite = function(flag) {
+          browser.ignoreSynchronization = !flag;
+      };
+  }<% } %>
 };
