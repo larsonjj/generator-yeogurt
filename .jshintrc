@@ -51,7 +51,10 @@
     "require": true,
     "node": true,
     "process": true,
-    "__dirname": true
+    "__dirname": true,
+    "browser": true,
+    "element": true,
+    "by": true
   },
   "indent": 2
 }

@@ -52,6 +52,13 @@ var testingFiles = function testingFiles() {
       this.template('test/spec/main.spec.js', 'test/spec/main.spec.js');
     }
   }
+
+  if (this.useE2e) {
+    this.template('protractor.conf.js', 'protractor.conf.js');
+
+    this.template('e2e/home/home.po.js', 'e2e/home/home.po.js');
+    this.template('e2e/home/home.spec.js', 'e2e/home/home.spec.js');
+  }
 };
 
 module.exports = testingFiles;

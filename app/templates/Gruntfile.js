@@ -30,7 +30,8 @@ module.exports = function(grunt) {
     // translate express to use the 'grunt-express-server' plugin
     express: 'grunt-express-server'<% } %><% if (jsFramework === 'angular') { %>,
     // translate ngtemplates to use the 'grunt-angular-templates' plugin
-    ngtemplates: 'grunt-angular-templates'<% } %>
+    ngtemplates: 'grunt-angular-templates'<% } %><% if (useE2e) { %>,
+    protractor: 'grunt-protractor-runner'<% } %>
   });
 
   // Load the include-all library in order to require all of our grunt

@@ -33,7 +33,6 @@
     "confirm",
     "context",
     "describe",
-    "expect",
     "it",
     "jasmine",
     "JSHINT",
@@ -46,7 +45,11 @@
     "xdescribe"
   ],
   "globals": {
-    "$": true,
+    "expect": true,
+    "$": true,<% if (useE2e) { %>
+    "browser": true,
+    "element": true,
+    "by": true,<% } %>
     "Modernizr": true,<% if (jsFramework === 'angular') { %>
     "angular": true,
     "inject": true,<% } %>
