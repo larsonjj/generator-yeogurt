@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: HomeCtrl', function() {
+describe('Controller: IndexCtrl', function() {
 
   // load module that the controller is associated with
   beforeEach(module('<%= _.classify(projectName) %>'));
 
-  var HomeCtrl,
+  var IndexCtrl,
     scope;
 
   // Setup controller and mock it's scope
   beforeEach(inject(function($controller, $rootScope) {
     scope = $rootScope.$new();
-    HomeCtrl = $controller('HomeCtrl', {
+    IndexCtrl = $controller('IndexCtrl', {
       $scope: scope
     });
   }));

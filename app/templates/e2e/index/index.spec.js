@@ -6,14 +6,14 @@ var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 var expect = chai.expect;
 <% } %>
-describe('Main View', function() {
+describe('Index Page', function() {
   var page;
 
   beforeEach(function() {<% if (jsFramework !== 'angular') { %>
     // Inform protractor that it will run non-angular tests
     isAngularSite(false);<% } %>
     browser.get('/');
-    page = require('./home.po');
+    page = require('./index.po');
   });
 
   it('should include jumbotron with correct data', function() {
