@@ -16,10 +16,15 @@ var testingPrompts = function testingPrompts() {
   this.prompt([{
     type: 'confirm',
     name: 'useTesting',
-    message: 'Will you be ' + 'testing your client-side JavaScript'.blue + '?',
+    message: 'Will you be ' + 'unit testing your client-side JavaScript'.blue + '?',
     default: true
   }, {
-    when: function(answers) { return answers.useTesting; },
+    type: 'confirm',
+    name: 'useE2e',
+    message: 'Will you be ' + 'running end-to-end tests'.blue + '?',
+    default: true
+  }, {
+    when: function(answers) { return answers.useTesting || answers.useE2e; },
     type: 'list',
     name: 'testFramework',
     message: 'Which JavaScript ' + 'testing framework'.blue + ' would you like to use?',

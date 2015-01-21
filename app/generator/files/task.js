@@ -71,6 +71,9 @@ var taskFiles = function taskFiles() {
   if (this.useTesting) {
     this.template('grunt/config/test/karma.js', 'grunt/config/test/karma.js');
   }
+  if (this.useE2e) {
+    this.template('grunt/config/test/protractor.js', 'grunt/config/test/protractor.js');
+  }
 
   if (this.jsFramework === 'angular') {
     this.template('grunt/config/compile/ng-templates.js', 'grunt/config/compile/ng-templates.js');

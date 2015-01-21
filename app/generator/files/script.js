@@ -21,7 +21,6 @@ var scriptFiles = function scriptFiles() {
     }
   }
 
-
   if (this.jsFramework === 'backbone') {
     if (this.jsOption === 'requirejs') {
       this.template('client/scripts/backbone/requirejs/main/main.js', 'client/scripts/main.js');
@@ -107,9 +106,9 @@ var scriptFiles = function scriptFiles() {
     this.template('client/scripts/angular/main/main.js', 'client/app/main.js');
 
     // Modules
-    this.template('client/scripts/angular/app/home/home.html', 'client/app/home/home.html');
-    this.template('client/scripts/angular/app/home/home.js', 'client/app/home/home.js');
-    this.template('client/scripts/angular/app/home/home.controller.js', 'client/app/home/home.controller.js');
+    this.template('client/scripts/angular/app/index/index.html', 'client/app/index/index.html');
+    this.template('client/scripts/angular/app/index/index.js', 'client/app/index/index.js');
+    this.template('client/scripts/angular/app/index/index.controller.js', 'client/app/index/index.controller.js');
   }
 };
 

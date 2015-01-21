@@ -65,8 +65,6 @@ var answersConfig = function answersConfig() {
   var host   = this.dbUser ? '@' + this.answers.dbHost : this.answers.dbHost;
   var name   = this.answers.dbName ? this.answers.dbName : '';
 
-  console.log(this.dbType);
-
   if (this.dbOption === 'mongodb') {
     this.dbURL = process.env.MONGODB || 'mongodb://' +
     username +
@@ -109,6 +107,7 @@ var answersConfig = function answersConfig() {
   // Testing
   this.testFramework = this.answers.testFramework;
   this.useTesting    = this.answers.useTesting;
+  this.useE2e        = this.answers.useE2e;
 
   // Documentation
   this.useJsdoc      = this.answers.useJsdoc;

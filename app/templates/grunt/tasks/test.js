@@ -10,19 +10,31 @@ var taskConfig = function(grunt) {
       grunt.config.set('karma.options.hostname', '0.0.0.0');
     }<% } %>
 
-    grunt.task.run([
-      'jshint:test'<% if (useTesting) { %><% if (jsTemplate === 'underscore') { %>,
-      'jst:test'<% } else if (jsTemplate === 'handlebars') { %>,
-      'handlebars:test'<% } else if (jsTemplate === 'jade') { %>,
-      'jade:test'<% } %><% if (jsOption === 'browserify') { %>,
-      'browserify:test'<% } %><% } %>
-    ]);<% if (useTesting) { %>
-
-    if (target === 'watch') {
-      grunt.task.run(['karma:unitWatch']);
+    if (target === 'e2e') {
+      grunt.config.set('connect.server.options.open', false);
+      grunt.config.set('connect.server.options.livereload', false);
+      grunt.task.run([
+        'serve:nowatch',
+        'connect:server',
+        'protractor'
+      ]);
     }
-    else {
-      grunt.task.run(['karma:unit']);
+
+    if (!target || target === 'client') {
+      grunt.task.run([
+        'jshint:test'<% if (useTesting) { %><% if (jsTemplate === 'underscore') { %>,
+        'jst:test'<% } else if (jsTemplate === 'handlebars') { %>,
+        'handlebars:test'<% } else if (jsTemplate === 'jade') { %>,
+        'jade:test'<% } %><% if (jsOption === 'browserify') { %>,
+        'browserify:test'<% } %><% } %>
+      ]);<% if (useTesting) { %>
+
+      if (grunt.option('watch')) {
+        grunt.task.run(['karma:unitWatch']);
+      }
+      else {
+        grunt.task.run(['karma:unit']);
+      }
     }<% if (jsFramework !== 'angular') { %>
 
     // Clean up temp files

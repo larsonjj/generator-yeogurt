@@ -46,11 +46,18 @@ var testingFiles = function testingFiles() {
       this.template('test/spec/react/actions/routes.spec.js', 'test/spec/actions/routes.spec.js');
     }
     else if (this.jsFramework === 'angular') {
-      this.template('client/scripts/angular/app/home/home.spec.js', 'client/app/home/home.spec.js');
+      this.template('client/scripts/angular/app/index/index.spec.js', 'client/app/index/index.spec.js');
     }
     else {
       this.template('test/spec/main.spec.js', 'test/spec/main.spec.js');
     }
+  }
+
+  if (this.useE2e) {
+    this.template('protractor.conf.js', 'protractor.conf.js');
+
+    this.template('e2e/index/index.po.js', 'e2e/index/index.po.js');
+    this.template('e2e/index/index.spec.js', 'e2e/index/index.spec.js');
   }
 };
 

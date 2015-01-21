@@ -14,7 +14,7 @@ var taskConfig = function(grunt) {
     server: {
       options: {
         open: 'http://127.0.0.1:9010/',
-        base: '<%%= yeogurt.client %>/.serve',
+        base: '<%%= yeogurt.client %>',
         middleware: function(connect) {
           return [
             connect.static('.tmp'),
