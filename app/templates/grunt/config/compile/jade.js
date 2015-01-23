@@ -18,7 +18,10 @@ var taskConfig = function(grunt) {
       expand: true,
       cwd: '<%%= yeogurt.client %>/templates/',
       dest: '<%%= yeogurt.tmp %>/',
-      src: ['**/*.jade'],
+      src: [
+        '**/*.jade',
+        '!**/layouts/**'
+      ],
       ext: '.html'
     },<% } %><% if (jsTemplate !== 'jade') { %>
     dist: {
@@ -35,7 +38,10 @@ var taskConfig = function(grunt) {
       cwd: '<% if (useServer) { %><%%= yeogurt.server %><% } %><% if (!useServer) { %><%%= yeogurt.client %><% } %>/templates/',<% if (!useServer) { %>
       dest: '<%%= yeogurt.dist %>/',<% } %><% if (useServer) { %>
       dest: '<%%= yeogurt.tmp %>/',<% } %>
-      src: ['**/*.jade'],
+      src: [
+        '**/*.jade',
+        '!**/layouts/**'
+      ],
       ext: '.html'
     },<% } %><% if (jsTemplate === 'jade') { %>
     server: {

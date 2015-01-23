@@ -98,9 +98,6 @@ var scriptFiles = function scriptFiles() {
         'client/scripts/react/components/js/layouts/default.js', 'client/scripts/components/layouts/default.js'
       );
     }
-    if (this.useTesting) {
-      this.template('test/helpers/phantomjs-shims.js', 'test/helpers/phantomjs-shims.js');
-    }
   }
   else if (this.jsFramework === 'angular') {
     this.template('client/scripts/angular/main/main.js', 'client/app/main.js');
