@@ -11,14 +11,14 @@ var taskConfig = function(grunt) {
     },
     server: {
       options: {
-        script: 'server.js',
+        script: 'server/server.js',
         node_env: 'development',
         debug: true
       }
     },
     dist: {
       options: {
-        script: 'dist/server.js',
+        script: 'dist/server/server.js',
         node_env: 'production'
       }
     }

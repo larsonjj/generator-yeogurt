@@ -1,9 +1,6 @@
-/**
- * Production Configuration
- */
+// Production specific configuration
 'use strict';
 
-// Production specific configuration
 var prodConfig = {
   logLevel: 'short'
 };

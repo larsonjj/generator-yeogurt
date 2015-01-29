@@ -21,6 +21,7 @@ var nodeFiles = function nodeFiles() {
     this.template('server/config/env/default.js', 'server/config/env/default.js');
     this.template('server/config/env/development.js', 'server/config/env/development.js');
     this.template('server/config/env/production.js', 'server/config/env/production.js');
+    this.template('server/config/env/test.js', 'server/config/env/test.js');
 
     this.template('server/app/routes.js', 'server/app/routes.js');
 

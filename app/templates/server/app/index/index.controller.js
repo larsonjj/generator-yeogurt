@@ -13,7 +13,7 @@ var index = function(req, res) {<% if (singlePageApplication) { %>
       root: settings.root
     }
   );<% } else { %>
-  res.render('index', {
+  res.render('app/index/index', {
     title: 'Home',
     env: process.env.NODE_ENV || 'development'
   });<% } %>

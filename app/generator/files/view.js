@@ -8,8 +8,8 @@ var viewFiles = function viewFiles() {
 
   if (this.htmlOption === 'jade') {
     if (!this.useServer) {
-      this.template('client/static-templates/jade/index.jade', 'client/templates/index.jade');
-      this.template('client/static-templates/jade/layouts/base.jade', 'client/templates/layouts/base.jade');
+      this.template('client/static-templates/jade/index.jade', 'client/app/index/index.jade');
+      this.template('client/static-templates/jade/layouts/base.jade', 'client/app/layout/base.jade');
     }
     else {
       this.template('client/static-templates/jade/index.jade', 'server/app/index/index.jade');
@@ -21,8 +21,8 @@ var viewFiles = function viewFiles() {
   }
   else if (this.htmlOption === 'swig') {
     if (!this.useServer) {
-      this.template('client/static-templates/swig/index.swig', 'client/templates/index.swig');
-      this.template('client/static-templates/swig/layouts/base.swig', 'client/templates/layouts/base.swig');
+      this.template('client/static-templates/swig/index.swig', 'client/app/index/index.swig');
+      this.template('client/static-templates/swig/layouts/base.swig', 'client/app/layout/base.swig');
     }
     else {
       this.template('client/static-templates/swig/index.swig', 'server/app/index/index.swig');

@@ -41,7 +41,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
   app.set('view engine', '<%= htmlOption === 'jade' ? 'jade' : '' %><%= htmlOption === 'swig' ? 'swig' : '' %>');<% } %>
 
   // Setup path where all server templates will reside
-  app.set('views', path.join(settings.root, 'server/templates'));
+  app.set('views', path.join(settings.root, 'server'));
 
   // Enable GZip compression for all static assets
   app.use(compress());

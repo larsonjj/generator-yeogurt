@@ -1,9 +1,6 @@
-/**
- * Development Configuration
- */
+// Development specific configuration
 'use strict';
 
-// Development specific configuration
 var devConfig = {
   logLevel: 'dev'
 };

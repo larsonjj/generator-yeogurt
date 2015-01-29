@@ -23,11 +23,10 @@ var taskConfig = function(grunt) {
         src: [<% if (jsOption === 'requirejs') { %>
           'bower_components/requirejs/require.js',<% } %><% if (useDashboard) { %>
           'dashboard/**/*.*',<% } %><% if (useKss) { %>
-          'styles/styleguide.md',
+          'app/styleguide.md',
           'docs/styleguide/public/images',<% } %>
-          'styles/fonts/**/*.{woff,otf,ttf,eot,svg}',
-          'images/**/*.{webp}',<% if (jsFramework === 'angular') { %>
-          'templates/**/*.html',<% } %>
+          'assets/fonts/**/*.{woff,otf,ttf,eot,svg}',
+          'assets/images/**/*.{webp}',
           '!*.js',
           '*.{ico,png,txt}'<% if (singlePageApplication) { %>,
           '*.html'<% } %>

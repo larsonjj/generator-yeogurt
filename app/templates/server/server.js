@@ -12,13 +12,13 @@ require('colors');
 var app = express();<% if (dbOption === 'sql') { %>
 
 // Database configuration
-var db = require('./server/config/database');<% } else if (dbOption === 'mongodb') { %>
+var db = require('./config/database');<% } else if (dbOption === 'mongodb') { %>
 
 // Database configuration
-var db = require('./server/config/database')(app);<% } %>
+var db = require('./config/database')(app);<% } %>
 
 // Express configuration
-require('./server/config/express')(app, express<% if (dbOption && dbOption !== 'none') { %>, db<% } %>);<% if (dbOption === 'sql') { %>
+require('./config/express')(app, express<% if (dbOption && dbOption !== 'none') { %>, db<% } %>);<% if (dbOption === 'sql') { %>
 
 // Verify database connection and sync tables
 db.sequelize.authenticate().complete(function(err) {

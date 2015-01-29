@@ -12,22 +12,24 @@ var taskConfig = function(grunt) {
     },<% } %><% if (!useServer) { %>
     server: {
       expand: true,
-      cwd: '<%%= yeogurt.client %>/templates/',
+      cwd: '<%%= yeogurt.client %>/app/index',
       dest: '<%%= yeogurt.tmp %>/',
       src: [
-        '**/*.swig',
-        '!**/layouts/**'
+        '**/index.swig',
+        '../**/!(index).swig',
+        '!../**/layout/**'
       ],
       ext: '.html'
     },<% } %>
     dist: {
       expand: true,
-      cwd: '<% if (useServer) { %><%%= yeogurt.server %><% } %><% if (!useServer) { %><%%= yeogurt.client %><% } %>/templates/',<% if (!useServer) { %>
+      cwd: '<% if (useServer) { %><%%= yeogurt.server %><% } %><% if (!useServer) { %><%%= yeogurt.client %><% } %>/app/index',<% if (!useServer) { %>
       dest: '<%%= yeogurt.dist %>/',<% } %><% if (useServer) { %>
       dest: '<%%= yeogurt.tmp %>/',<% } %>
       src: [
-        '**/*.swig',
-        '!**/layouts/**'
+        '**/index.swig',
+        '../**/!(index).swig',
+        '!../**/layout/**'
       ],
       ext: '.html'
     }

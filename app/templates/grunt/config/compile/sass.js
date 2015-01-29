@@ -17,7 +17,7 @@ var taskConfig = function(grunt) {
         ]
       },
       files: {
-        '<%%= yeogurt.tmp %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.{scss,sass}'
+        '<%%= yeogurt.tmp %>/app/main.css': '<%%= yeogurt.client %>/app/main.{scss,sass}'
       }
     },
     dist: {
@@ -27,12 +27,12 @@ var taskConfig = function(grunt) {
         sourceMap: true,
         includePaths: [
           '<%%= yeogurt.client %>/bower_components',
-          '<%%= yeogurt.client %>/styles/'<% if (jsFramework === 'angular') { %>,
+          '<%%= yeogurt.client %>/app/'<% if (jsFramework === 'angular') { %>,
           '<%%= yeogurt.client %>/app/'<% } %>
         ]
       },
       files: {
-        '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>styles/main.css': '<%%= yeogurt.client %>/styles/main.{scss,sass}'
+        '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>app/main.css': '<%%= yeogurt.client %>/app/main.{scss,sass}'
       }
     }
   });
