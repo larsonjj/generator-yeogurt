@@ -61,6 +61,10 @@ var testingFiles = function testingFiles() {
     this.template('test/e2e/index/index.po.js', 'e2e/index/index.po.js');
     this.template('test/e2e/index/index.spec.js', 'e2e/index/index.spec.js');
   }
+
+  if (this.useServerTesting) {
+    this.template('server/app/index/index.spec.js', 'server/app/index/index.spec.js');
+  }
 };
 
 module.exports = testingFiles;

@@ -5,9 +5,14 @@
 var settings = require('../config/env/default');
 var path = require('path');<% } %>
 
-var indexController = function(req, res) {<% if (singlePageApplication) { %>
+var index = function(req, res) {<% if (singlePageApplication) { %>
   // Render index.html to allow application to handle routing
-  res.sendFile(path.join(settings.staticAssets, '/index.html'), { root: settings.root });<% } else { %>
+  res.sendFile(
+    path.join(settings.staticAssets, '/index.html'),
+    {
+      root: settings.root
+    }
+  );<% } else { %>
   res.render('index', {
     title: 'Home',
     env: process.env.NODE_ENV || 'development'
@@ -15,5 +20,5 @@ var indexController = function(req, res) {<% if (singlePageApplication) { %>
 };
 
 module.exports = {
-  index: indexController
+  index: index
 };

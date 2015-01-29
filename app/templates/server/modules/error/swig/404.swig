@@ -2,7 +2,7 @@
 <html>
 
   <head>
-    <title>{{ status }}</title>
+    <title>404 | Not Found</title>
   </head>
 
   <body>

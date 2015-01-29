@@ -101,9 +101,6 @@ describe('Yeogurt generator unit testing', function() {
           'test/helpers',
           'test/helpers/phantomjs-shim.js'
         ];
-        var fileContentToTest = [
-          ['Gruntfile.js', /testConfig/i]
-        ];
 
         helpers.mockPrompt(this.app, {
           useTesting: false,
@@ -113,7 +110,6 @@ describe('Yeogurt generator unit testing', function() {
 
         this.app.run([], function() {
           assert.noFile(notExpected);
-          assert.noFileContent(fileContentToTest);
           done();
         });
       });

@@ -5,27 +5,40 @@
 'use strict';
 
 var viewFiles = function viewFiles() {
-  var viewRoot = this.useServer ? 'server/' : 'client/';
 
   if (this.htmlOption === 'jade') {
-    this.template('client/static-templates/jade/index.jade', viewRoot + 'templates/index.jade');
-    this.template('client/static-templates/jade/layouts/base.jade', viewRoot + 'templates/layouts/base.jade');
-    if (this.useServer) {
-      this.template('client/static-templates/jade/errors/error.jade', viewRoot + 'templates/error.jade');
+    if (!this.useServer) {
+      this.template('client/static-templates/jade/index.jade', 'client/templates/index.jade');
+      this.template('client/static-templates/jade/layouts/base.jade', 'client/templates/layouts/base.jade');
+    }
+    else {
+      this.template('client/static-templates/jade/index.jade', 'server/app/index/index.jade');
+      this.template('client/static-templates/jade/layouts/base.jade', 'server/app/layout/base.jade');
+      this.template('server/modules/error/jade/404.jade', 'server/modules/error/404.jade');
+      this.template('server/modules/error/jade/500.jade', 'server/modules/error/500.jade');
+      this.template('server/modules/error/index.js', 'server/modules/error/index.js');
     }
   }
   else if (this.htmlOption === 'swig') {
-    this.template('client/static-templates/swig/index.swig', viewRoot + 'templates/index.swig');
-    this.template('client/static-templates/swig/layouts/base.swig', viewRoot + 'templates/layouts/base.swig');
-    if (this.useServer) {
-      this.template('client/static-templates/swig/errors/error.swig', viewRoot + 'templates/error.swig');
+    if (!this.useServer) {
+      this.template('client/static-templates/swig/index.swig', 'client/templates/index.swig');
+      this.template('client/static-templates/swig/layouts/base.swig', 'client/templates/layouts/base.swig');
+    }
+    else {
+      this.template('client/static-templates/swig/index.swig', 'server/app/index/index.swig');
+      this.template('client/static-templates/swig/layouts/base.swig', 'server/app/layout/base.swig');
+      this.template('server/modules/error/swig/404.swig', 'server/modules/error/404.swig');
+      this.template('server/modules/error/swig/500.swig', 'server/modules/error/500.swig');
+      this.template('server/modules/error/index.js', 'server/modules/error/index.js');
     }
   }
 
   if (this.singlePageApplication) {
     this.template('client/spa-templates/html/index.html', 'client/index.html');
     if (this.useServer) {
-      this.template('client/spa-templates/html/errors/error.html', 'server/templates/error.html');
+      this.template('server/modules/error/html/404.html', 'server/modules/error/404.html');
+      this.template('server/modules/error/html/500.html', 'server/modules/error/500.html');
+      this.template('server/modules/error/index.js', 'server/modules/error/index.js');
     }
   }
 };

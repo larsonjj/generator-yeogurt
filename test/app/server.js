@@ -25,15 +25,15 @@ describe('Yeogurt generator using Server', function() {
         'grunt/config/util/open.js',
         'grunt/config/server/express.js',
         'grunt/config/server/env.js',
-        'server/controllers/index.js',
+        'server/app/index/index.js',
+        'server/app/index/index.controller.js',
+        'server/app/index/package.json',
         'server/config/express.js',
         'server/config/env',
         'server/config/env/default.js',
         'server/config/env/development.js',
         'server/config/env/production.js',
-        'server/routes',
-        'server/routes/index.js',
-        'server.js'
+        'server/server.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -91,12 +91,14 @@ describe('Yeogurt generator using Server', function() {
   describe('With Static Jade', function() {
     it('Creates expected files', function(done) {
       var expected = [
-        'server/templates/error.jade',
-        'server/templates/layouts/base.jade',
-        'server/templates/index.jade',
+        'server/modules/error/404.jade',
+        'server/modules/error/500.jade',
+        'server/modules/error/index.js',
+        'server/app/layout/base.jade',
+        'server/app/index/index.jade',
       ];
       var expectedContent = [
-        ['server/routes/index.js', /app\.get\('\/'/i]
+        ['server/app/index/index.js', /router\.get\('\/'/i]
       ];
 
       helpers.mockPrompt(this.app, {
@@ -114,12 +116,15 @@ describe('Yeogurt generator using Server', function() {
   describe('With Static Swig', function() {
     it('Creates expected files', function(done) {
       var expected = [
-        'server/templates/error.swig',
-        'server/templates/layouts/base.swig',
-        'server/templates/index.swig',
+        'server/modules/error/404.swig',
+        'server/modules/error/500.swig',
+        'server/modules/error/index.js',
+        'server/app/routes.js',
+        'server/app/layout/base.swig',
+        'server/app/index/index.swig',
       ];
       var expectedContent = [
-        ['server/routes/index.js', /app\.get\('\/'/i]
+        ['server/app/index/index.js', /router\.get\('\/'/i]
       ];
 
       helpers.mockPrompt(this.app, {
@@ -154,11 +159,11 @@ describe('Yeogurt generator using Server', function() {
     describe('Without Server templates', function() {
       it('Creates expected files', function(done) {
         var expectedContent = [
-          ['server/routes/index.js', /app\.get\('\/'/i]
+          ['server/app/index/index.js', /router\.get\('\/'/i]
         ];
         var fileContentToTest = [
           ['client/index.html', /<\%\- body \%\>/i],
-          ['server/controllers/index.js', /reactRender/i]
+          ['server/app/index/index.js', /reactRender/i]
         ];
 
         helpers.mockPrompt(this.app, {
