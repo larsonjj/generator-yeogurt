@@ -7,7 +7,7 @@
 var testingFiles = function testingFiles() {
   if (this.useTesting) {
     if (this.jsOption === 'requirejs') {
-      this.copy('test/test-main.js', 'test/test-main.js');
+      this.copy('test/main.test.js', 'client/app/main.test.js');
     }
     this.template('karma.conf.js', 'karma.conf.js');
 

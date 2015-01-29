@@ -8,7 +8,7 @@ module.exports = function(config) {
     basePath: '',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: [<% if (testFramework === 'jasmine') { %>'jasmine'<% } else if (testFramework === 'mocha') { %>'mocha', 'chai'<% } %>],
+    frameworks: [<% if (jsOption === 'requirejs') { %>'requirejs', <% } %><% if (testFramework === 'jasmine') { %>'jasmine'<% } else if (testFramework === 'mocha') { %>'mocha', 'chai'<% } %>],
 
     // list of files / patterns to load in the browser
     files: [<% if (jsFramework !== 'react') { %>
@@ -26,14 +26,12 @@ module.exports = function(config) {
         included: false
       }, {
         pattern: 'client/app/**/*.js',
-        included: false
+        included: true
       }, {
-        pattern: 'test/**/*.spec.js',
-        included: false
+        pattern: 'client/app/**/*.spec.js',
+        included: true
       },
-      'node_modules/requirejs/require.js',
-      'node_modules/karma-requirejs/lib/adapter.js',
-      'client/common/scripts/test/test-main.js',<% } else if (jsOption === 'browserify') { %>
+      'client/app/main.test.js',<% } else if (jsOption === 'browserify') { %>
       '.tmp/test/bundle.js'<% } else { %><% if (jsFramework === 'angular') { %>
       'client/app/main.js',
       'client/app/**/!(main).js',
@@ -85,7 +83,7 @@ module.exports = function(config) {
     captureTimeout: 60000,
 
     // If browser does not have any activity for given timeout [ms], kill it
-    browserNoActivityTimeout: 100000,
+    browserNoActivityTimeout: 60000,
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
