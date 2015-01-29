@@ -24,7 +24,12 @@ var testingPrompts = function testingPrompts() {
     message: 'Will you be ' + 'running end-to-end tests'.blue + '?',
     default: true
   }, {
-    when: function(answers) { return answers.useTesting || answers.useE2e; },
+    type: 'confirm',
+    name: 'useServerTesting',
+    message: 'Will you be ' + 'unit testing your server-side JavaScript'.blue + '?',
+    default: true
+  }, {
+    when: function(answers) { return answers.useTesting || answers.useE2e || !answers.useServerTesting; },
     type: 'list',
     name: 'testFramework',
     message: 'Which JavaScript ' + 'testing framework'.blue + ' would you like to use?',

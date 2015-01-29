@@ -2,10 +2,10 @@
 'use strict';
 
 // Folder paths for:
-// - dev (location for development source files)
+// - client (location for files pertaining to 'client' folder)
 // - tmp (location for files created when running 'grunt serve')
 // - dist (location for files created when running 'grunt' or 'grunt build')
-// - server (location for files pertaining to server folder)
+// - server (location for files pertaining to 'server' folder)
 var config = {
   client: 'client',
   tmp: '.tmp',
@@ -23,14 +23,15 @@ module.exports = function(grunt) {
 
   // Load all grunt tasks with JIT (Makes task loading super fast!)
   require('jit-grunt')(grunt, {
-    // translate useminPrepare to use the 'grunt-usemin' plugin
+    // translate task useminPrepare to use the 'grunt-usemin' plugin
     useminPrepare: 'grunt-usemin',
-    // translate swig to use the 'grunt-wobble-swig' plugin
+    // translate swig task to use the 'grunt-wobble-swig' plugin
     swig: 'grunt-swig-templates'<% if (useServer) { %>,
-    // translate express to use the 'grunt-express-server' plugin
+    // translate express task to use the 'grunt-express-server' plugin
     express: 'grunt-express-server'<% } %><% if (jsFramework === 'angular') { %>,
-    // translate ngtemplates to use the 'grunt-angular-templates' plugin
+    // translate ngtemplates task to use the 'grunt-angular-templates' plugin
     ngtemplates: 'grunt-angular-templates'<% } %><% if (useE2e) { %>,
+    // translate protractor task to use the 'protractor-runner' plugin
     protractor: 'grunt-protractor-runner'<% } %>
   });
 
@@ -65,7 +66,7 @@ module.exports = function(grunt) {
   var compileConfig = loadTasks('./grunt/config/compile');<% if (useKss || useDashboard || useJsdoc) { %>
   var docConfig = loadTasks('./grunt/config/docs');<% } %>
   var optimizeConfig = loadTasks('./grunt/config/optimize');
-  var serverConfig = loadTasks('./grunt/config/server');<% if (useTesting) { %>
+  var serverConfig = loadTasks('./grunt/config/server');<% if (useTesting || useServerTesting || useE2e) { %>
   var testConfig = loadTasks('./grunt/config/test');<% } %>
   var registerDefinitions = loadTasks('./grunt/tasks');
 
@@ -82,7 +83,7 @@ module.exports = function(grunt) {
   invokeConfigFn(compileConfig);<% if (useKss || useDashboard || useJsdoc) { %>
   invokeConfigFn(docConfig);<% } %>
   invokeConfigFn(optimizeConfig);
-  invokeConfigFn(serverConfig);<% if (useTesting) { %>
+  invokeConfigFn(serverConfig);<% if (useTesting || useServerTesting || useE2e) { %>
   invokeConfigFn(testConfig);<% } %>
   invokeConfigFn(registerDefinitions);
 

@@ -1,9 +1,11 @@
 'use strict';
 
-var PayloadSources = {
+var keyMirror = require('keymirror');
 
-  VIEW_ACTION: 'VIEW_ACTION'
+var PayloadSources = keyMirror({
 
-};
+  VIEW_ACTION: null
+
+});
 
 module.exports = PayloadSources;

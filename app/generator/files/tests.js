@@ -28,6 +28,8 @@ var testingFiles = function testingFiles() {
       }
     }
     else if (this.jsFramework === 'react') {
+      this.template('test/helpers/phantomjs-shims.js', 'test/helpers/phantomjs-shims.js');
+
       // Router
       this.template('test/spec/react/routes.spec.js', 'test/spec/routes.spec.js');
 
@@ -56,8 +58,8 @@ var testingFiles = function testingFiles() {
   if (this.useE2e) {
     this.template('protractor.conf.js', 'protractor.conf.js');
 
-    this.template('e2e/index/index.po.js', 'e2e/index/index.po.js');
-    this.template('e2e/index/index.spec.js', 'e2e/index/index.spec.js');
+    this.template('test/e2e/index/index.po.js', 'e2e/index/index.po.js');
+    this.template('test/e2e/index/index.spec.js', 'e2e/index/index.spec.js');
   }
 };
 
