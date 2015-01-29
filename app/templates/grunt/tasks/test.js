@@ -10,15 +10,24 @@ var taskConfig = function(grunt) {
       grunt.config.set('karma.options.hostname', '0.0.0.0');
     }<% } %>
 
-    if (target === 'e2e') {
+    if (target === 'e2e') {<% if (!useServer) { %>
       grunt.config.set('connect.server.options.open', false);
-      grunt.config.set('connect.server.options.livereload', false);
+      grunt.config.set('connect.server.options.livereload', false);<% } %>
       grunt.task.run([
-        'serve:nowatch',
-        'connect:server',
+        'serve:nowatch',<% if (!useServer) { %>
+        'connect:server',<% } else { %>
+        'express:server',<% } %>
         'protractor'
       ]);
-    }
+    }<% if (useServerTesting) { %>
+
+    if (target === 'server') {
+        grunt.task.run([
+          'env:all',
+          'env:test',
+          'mochaTest'
+        ]);
+    }<% } %>
 
     if (!target || target === 'client') {
       grunt.task.run([
@@ -35,7 +44,7 @@ var taskConfig = function(grunt) {
       else {
         grunt.task.run(['karma:unit']);
       }
-    }<% if (jsFramework !== 'angular') { %>
+    }<% if (jsFramework !== 'backbone' || jsOption !== 'requirejs') { %>
 
     // Clean up temp files
     grunt.task.run([

@@ -39,7 +39,7 @@ var taskFiles = function taskFiles() {
   else if (this.htmlOption === 'swig') {
     this.template('grunt/config/compile/swig.js', 'grunt/config/compile/swig.js');
   }
-  this.template('grunt/config/util/jshint.js', 'grunt/config/util/jshint.js');
+  this.template('grunt/config/test/jshint.js', 'grunt/config/test/jshint.js');
   if (this.cssOption === 'less') {
     this.template('grunt/config/compile/less.js', 'grunt/config/compile/less.js');
   }
@@ -66,6 +66,9 @@ var taskFiles = function taskFiles() {
   if (this.useServer) {
     this.template('grunt/config/server/express.js', 'grunt/config/server/express.js');
     this.template('grunt/config/server/env.js', 'grunt/config/server/env.js');
+    if (this.useServerTesting) {
+      this.template('grunt/config/test/mochaTest.js', 'grunt/config/test/mochaTest.js');
+    }
   }
   this.template('grunt/config/util/injector.js', 'grunt/config/util/injector.js');
   if (this.useTesting) {

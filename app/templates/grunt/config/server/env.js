@@ -8,6 +8,9 @@ var taskConfig = function(grunt) {
     dev: {
       NODE_ENV: 'development'
     },
+    test: {
+      NODE_ENV: 'test'
+    },
     prod: {
       NODE_ENV: 'production'
     },
