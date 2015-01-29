@@ -104,9 +104,13 @@ var answersConfig = function answersConfig() {
   this.sassSyntax            = this.answers.sassSyntax;
   this.extras                = this.answers.extras;
 
+  // Default to mocha for testing (cannot use jasmine server-side)
+  this.answers.testFramework = this.answers.testFramework || 'mocha';
+
   // Testing
   this.testFramework = this.answers.testFramework;
   this.useTesting    = this.answers.useTesting;
+  this.useServerTesting    = this.answers.useServerTesting;
   this.useE2e        = this.answers.useE2e;
 
   // Documentation
