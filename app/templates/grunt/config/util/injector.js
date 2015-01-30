@@ -94,22 +94,15 @@ var taskConfig = function(grunt) {
       files: {
         '<%%= yeogurt.client %>/app/main.less': [
           '<%%= yeogurt.client %>/app/**/*.less',
-          '!<%%= yeogurt.client %>/app/main.less'<% if (jsFramework === 'angular') { %>,
-          '<%%= yeogurt.client %>/app/**/*.less'<% } %>
+          '!<%%= yeogurt.client %>/app/main.less'
         ]
       }
     },<% } %><% if (cssOption === 'sass') { %>
     // Inject component scss into main.scss
     sass: {
       options: {
-        transform: function(filePath) {<% if (jsFramework === 'angular') { %>
-          if (filePath.indexOf('app') > -1) {
-            filePath = filePath.replace('/client/', '../');
-          }
-          else {
-            filePath = filePath.replace('/client/app/', '');
-          }<% } else { %>
-          filePath = filePath.replace('/client/app/', '');<% } %>
+        transform: function(filePath) {
+          filePath = filePath.replace('/client/app/', '');
           <% if (sassSyntax === 'scss') { %>
           return '@import \'' + filePath.slice(0, -5) + '\';';<% } else { %>
           return '@import ' + filePath.slice(0, -5);<% } %>
@@ -120,27 +113,19 @@ var taskConfig = function(grunt) {
       files: {<% if (sassSyntax === 'scss') { %>
         '<%%= yeogurt.client %>/app/main.scss': [
           '<%%= yeogurt.client %>/app/**/*.scss',
-          '!<%%= yeogurt.client %>/app/main.scss'<% if (jsFramework === 'angular') { %>,
-          '<%%= yeogurt.client %>/app/**/*.scss'<% } %>
+          '!<%%= yeogurt.client %>/app/main.scss'
         ]<% } else { %>
         '<%%= yeogurt.client %>/app/main.sass': [
           '<%%= yeogurt.client %>/app/**/*.sass',
-          '!<%%= yeogurt.client %>/app/main.sass'<% if (jsFramework === 'angular') { %>,
-          '<%%= yeogurt.client %>/app/**/*.sass'<% } %>
+          '!<%%= yeogurt.client %>/app/main.sass'
         ]<% } %>
       }
     },<% } %><% if (cssOption === 'stylus') { %>
     // Inject component scss into main.scss
     stylus: {
       options: {
-        transform: function(filePath) {<% if (jsFramework === 'angular') { %>
-          if (filePath.indexOf('app') > -1) {
-            filePath = filePath.replace('/client/', '../');
-          }
-          else {
-            filePath = filePath.replace('/client/app/', '');
-          }<% } else { %>
-          filePath = filePath.replace('/client/app/', '');<% } %>
+        transform: function(filePath) {
+          filePath = filePath.replace('/client/app/', '');
           return '@import \'' + filePath.slice(0, -5) + '\';';
         },
         starttag: '// [injector]',
@@ -172,8 +157,7 @@ var taskConfig = function(grunt) {
         '<%%= yeogurt.server %>/app/<% if (htmlOption === 'jade') { %>layout/base.jade<% } else if (htmlOption === 'swig') { %>layout/base.swig<% } %>'<% } else { %>
         '<%%= yeogurt.client %>/<% if (htmlOption === 'jade') { %>app/layout/base.jade<% } else if (htmlOption === 'swig') { %>templates//layouts/base.swig<% } %>'<% } %>: [
           '<%%= yeogurt.client %>/app/**/*.css',
-          '!<%%= yeogurt.client %>/app/main.css'<% if (jsFramework === 'angular') { %>,
-          '<%%= yeogurt.client %>/app/**/*.css'<% } %>
+          '!<%%= yeogurt.client %>/app/main.css'
         ]
       }
     }<% } %>

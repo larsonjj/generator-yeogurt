@@ -96,8 +96,8 @@
 
     <!-- build:js(client) app/main.js --><% if (jsFramework !== 'angular') { %>
       <!-- [injector:js] -->
-      <!-- [endinjector] --><% } %>
-    <script src="/app/routes.js"></script>
+      <!-- [endinjector] -->
+    <script src="/app/routes.js"></script><% } %>
     <script src="/app/main.js"></script><% if (jsFramework === 'angular') { %>
     <!-- [injector:js] -->
     <!-- [endinjector] --><% } %>

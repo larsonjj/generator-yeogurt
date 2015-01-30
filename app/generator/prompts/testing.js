@@ -10,6 +10,7 @@ var testingPrompts = function testingPrompts() {
   }
 
   var cb = this.async();
+  var self = this;
 
   this.log('\n---- ' + 'Testing'.red.underline + ' ----\n');
 
@@ -24,6 +25,9 @@ var testingPrompts = function testingPrompts() {
     message: 'Will you be ' + 'running end-to-end tests'.blue + '?',
     default: true
   }, {
+    when: function() {
+      return self.serverPrompts.useServer;
+    },
     type: 'confirm',
     name: 'useServerTesting',
     message: 'Will you be ' + 'unit testing your server-side JavaScript'.blue + '?',

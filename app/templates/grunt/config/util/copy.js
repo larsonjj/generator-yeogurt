@@ -11,7 +11,7 @@ var taskConfig = function(grunt) {
           cwd: '<%%= yeogurt.client %>/',
           dest: '<%%= yeogurt.tmp %>',
           src: [
-            'styles/styleguide.md'
+            'app/styleguide.md'
           ]
         }]
     },<% } %>

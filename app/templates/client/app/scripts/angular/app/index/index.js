@@ -4,7 +4,7 @@ angular.module('<%= _.camelize(projectName) %>')
   .config(function($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: '/app/home/home.html',
+        templateUrl: '/app/index/index.html',
         controller: 'IndexCtrl'
       });
   });
