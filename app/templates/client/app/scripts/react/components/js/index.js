@@ -5,13 +5,13 @@ var React = require('react');
 
 // Alias for making element creation less verbose
 var DOM = React.createElement;
-var DefaultLayout = require('./layouts/default');
+var BaseLayout = require('../layout/base');
 
 var IndexComponent = React.createClass({
   displayName: 'IndexComponent',
   render: function() {
     return (
-      DOM(DefaultLayout, null,
+      DOM(BaseLayout, null,
         DOM('div', {
             className: 'main-container'
           },

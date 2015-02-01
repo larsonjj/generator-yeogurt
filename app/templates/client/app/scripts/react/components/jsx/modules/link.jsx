@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-var routeActions = require('../../actions/routes');
+var routeActions = require('../../modules/route/route.action');
 
 
 // Link Component

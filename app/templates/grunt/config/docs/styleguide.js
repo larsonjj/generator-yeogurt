@@ -22,7 +22,7 @@ var taskConfig = function(grunt) {
       files: {
         '<%%= yeogurt.tmp %>/docs/styleguide': [<% if (cssOption !== 'css') { %>
           '<%%= yeogurt.tmp %>/**/*.css'<% } else { %>
-          '<%%= yeogurt.client %>/**/*.css'<% } %>
+          '<%%= yeogurt.client %>/app/**/*.css'<% } %>
         ]
       }
     },

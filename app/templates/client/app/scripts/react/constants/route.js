@@ -10,4 +10,3 @@ var routeConstants = keyMirror({
 });
 
 module.exports = routeConstants;
-

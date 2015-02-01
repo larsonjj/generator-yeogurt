@@ -2,9 +2,9 @@
 
 var Router = require('director').Router;
 var routes = require('./routes');
-var Dispatcher = require('./dispatchers/default');
-var pageConstants = require('./constants/page');
-var routesConstants = require('./constants/routes');
+var Dispatcher = require('../common/scripts/core/dispatcher');
+var pageConstants = require('../modules/page/page.constant');
+var routeConstants = require('../modules/route/route.constant');
 
 // Setup router
 var router = new Router(routes);<% if (useServer){ %>
@@ -35,7 +35,7 @@ Dispatcher.register(function(payload) {
 
   var action = payload.action;
 
-  if (action.actionType === routesConstants.SET_CURRENT_ROUTE) {
+  if (action.actionType === routeConstants.SET_CURRENT_ROUTE) {
     router.setRoute(action.route);
   }
 
@@ -58,7 +58,7 @@ Dispatcher.register(function(payload) {
 
   var action = payload.action;
 
-  if (action.actionType === routesConstants.SET_CURRENT_ROUTE) {
+  if (action.actionType === routeConstants.SET_CURRENT_ROUTE) {
     router.setRoute(action.route);
   }
 

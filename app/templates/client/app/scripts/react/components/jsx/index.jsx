@@ -1,13 +1,13 @@
 'use strict';
 
 var React = require('react');
-var DefaultLayout = require('./layouts/default.jsx');
+var BaseLayout = require('../layout/base.jsx');
 
 var IndexComponent = React.createClass({
   render: function() {
     return (
       /* jshint ignore:start */
-      <DefaultLayout>
+      <BaseLayout>
         <div className="main-container">
           <div className="yeogurt-info">
             <h1>Welcome to Yeogurt!</h1>
@@ -24,7 +24,7 @@ var IndexComponent = React.createClass({
           </div>
         </div>
         <code className="version">v<%= pkg.version %></code>
-      </DefaultLayout>
+      </BaseLayout>
       /* jshint ignore:end */
     );
   }

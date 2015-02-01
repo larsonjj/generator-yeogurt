@@ -44,8 +44,8 @@ var testingFiles = function testingFiles() {
       this.template('test/spec/react/stores/default.spec.js', 'client/common/scripts/core/store.spec.js');
 
       // Actions
-      this.template('test/spec/react/actions/page.spec.js', 'client.modules/page/page.action.spec.js');
-      this.template('test/spec/react/actions/routes.spec.js', 'client.modules/route/routes.action.spec.js');
+      this.template('test/spec/react/actions/page.spec.js', 'client/modules/page/page.action.spec.js');
+      this.template('test/spec/react/actions/routes.spec.js', 'client/modules/route/routes.action.spec.js');
     }
     else if (this.jsFramework === 'angular') {
       this.template('client/app/scripts/angular/app/index/index.spec.js', 'client/app/index/index.spec.js');

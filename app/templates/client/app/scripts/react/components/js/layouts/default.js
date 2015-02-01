@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-var pageStore = require('../../stores/page');
+var pageStore = require('../../modules/page/page.store');
 
 // Alias for making element creation less verbose
 var DOM = React.createElement;

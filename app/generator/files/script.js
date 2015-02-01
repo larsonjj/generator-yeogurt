@@ -59,18 +59,21 @@ var scriptFiles = function scriptFiles() {
     this.template('client/app/scripts/react/constants/page.js', 'client/modules/page/page.constant.js');
     this.template('client/app/scripts/react/constants/route.js', 'client/modules/route/route.constant.js');
     this.template('client/app/scripts/react/constants/defaults.js', 'client/common/scripts/constants/default.js');
-    this.template('client/app/scripts/react/constants/payload-sources.js', 'client/common/scripts/constants/payload-sources.js');
+    this.template(
+      'client/app/scripts/react/constants/payload-sources.js',
+      'client/common/scripts/constants/payload-sources.js'
+    );
 
     // Stores
-    this.template('client/app/scripts/react/stores/default.js', 'client/common/core/store.js');
-    this.template('client/app/scripts/react/stores/page.js', 'client/app/modules/page/page.store.js');
+    this.template('client/app/scripts/react/stores/default.js', 'client/common/scripts/core/store.js');
+    this.template('client/app/scripts/react/stores/page.js', 'client/modules/page/page.store.js');
 
     // Distpatcher
-    this.template('client/app/scripts/react/dispatchers/default.js', 'client/app/common/scripts/core/dispatcher.js');
+    this.template('client/app/scripts/react/dispatchers/default.js', 'client/common/scripts/core/dispatcher.js');
 
     // Actions
-    this.template('client/app/scripts/react/actions/routes.js', 'client/app/modules/route/route.action.js');
-    this.template('client/app/scripts/react/actions/page.js', 'client/app/modules/page/page.action.js');
+    this.template('client/app/scripts/react/actions/route.js', 'client/modules/route/route.action.js');
+    this.template('client/app/scripts/react/actions/page.js', 'client/modules/page/page.action.js');
 
     if (this.useJsx) {
       this.template('client/app/scripts/react/components/jsx/index.jsx', 'client/app/index/index.jsx');
@@ -78,7 +81,7 @@ var scriptFiles = function scriptFiles() {
       // Modules
       if (this.useServer) {
         this.template(
-          'client/app/scripts/react/components/jsx/modules/link.jsx', 'client/app/modules/link/link.jsx'
+          'client/app/scripts/react/components/jsx/modules/link.jsx', 'client/modules/link/link.jsx'
         );
       }
 
@@ -91,7 +94,7 @@ var scriptFiles = function scriptFiles() {
       this.template('client/app/scripts/react/components/js/index.js', 'client/app/index/index.js');
 
       // Modules
-      this.template('client/app/scripts/react/components/js/modules/link.js', 'client/app/modules/link/link.js');
+      this.template('client/app/scripts/react/components/js/modules/link.js', 'client/modules/link/link.js');
 
       // Layouts
       this.template(
