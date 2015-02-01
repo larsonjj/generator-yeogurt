@@ -1,11 +1,6 @@
-/**
-*   App Spec Test
-*/
-
-
 'use strict';
 
-describe('App Namespace', function() {
+describe('Main Namespace', function() {
 
   it('provides the "App" object', function() {
     // Expect it to exist

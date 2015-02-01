@@ -1,8 +1,3 @@
-/**
-*   Router Spec Test
-*/
-
-
 'use strict';
 
 describe('Router Namespace', function() {

@@ -1,12 +1,7 @@
-/**
-*   Router Spec Test
-*/
-
-
 define(function(require) {
   'use strict';
 
-  var router = require('client/scripts/routes');
+  var router = require('./routes');
 
   describe('Router', function() {
 

@@ -1,12 +1,7 @@
-/**
-*   Index View Spec Test
-*/
-
-
 define(function(require) {
   'use strict';
 
-  var IndexView = require('client/scripts/views/index');
+  var IndexView = require('./index');
 
   describe('Index View', function() {
 

@@ -11,7 +11,7 @@ var taskConfig = function(grunt) {
         namespace: 'JST'
       },
       files: {
-        '<%%= yeogurt.tmp %>/templates/templates.js': ['<%%= yeogurt.client %>/app/**/*.hbs']
+        '<%%= yeogurt.tmp %>/app/templates.js': ['<%%= yeogurt.client %>/app/**/*.hbs']
       }
     },
     dist: {
@@ -19,7 +19,7 @@ var taskConfig = function(grunt) {
         namespace: 'JST'
       },
       files: {
-        '<%%= yeogurt.tmp %>/templates/templates.js': ['<%%= yeogurt.client %>/app/**/*.hbs']
+        '<%%= yeogurt.tmp %>/app/templates.js': ['<%%= yeogurt.client %>/app/**/*.hbs']
       }
     }<% if (jsFramework === 'backbone') { %>,
     test: {

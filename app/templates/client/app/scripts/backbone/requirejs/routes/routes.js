@@ -1,7 +1,7 @@
 define(function(require) {
   'use strict';
 
-  var IndexView = require('./views/index');
+  var IndexView = require('./index/index');
 
   var Router = Backbone.Router.extend({
 

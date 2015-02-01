@@ -1,8 +1,3 @@
-/**
-*   Index View Spec Test
-*/
-
-
 'use strict';
 
 describe('Index View Namespace', function() {

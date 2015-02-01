@@ -8,7 +8,7 @@ module.exports = function(config) {
     basePath: '',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: [<% if (jsOption === 'requirejs') { %>'requirejs', <% } %><% if (testFramework === 'jasmine') { %>'jasmine'<% } else if (testFramework === 'mocha') { %>'mocha', 'chai'<% } %>],
+    frameworks: [<% if (testFramework === 'jasmine') { %>'jasmine'<% } else if (testFramework === 'mocha') { %>'mocha', 'chai'<% } %>],
 
     // list of files / patterns to load in the browser
     files: [<% if (jsFramework !== 'react') { %>
@@ -21,17 +21,20 @@ module.exports = function(config) {
       'client/common/scripts/helpers/phantomjs-shims.js',<% } %><% if (jsTemplate === 'handlebars') { %>
       'client/bower_components/handlebars/handlebars.runtime.js',<% } else if (jsTemplate === 'jade') { %>'client/bower_components/jade/runtime.js',<% } %><% if (jsFramework === 'backbone') { %>
       '.tmp/test/templates.js',<% } %><% if (jsOption === 'requirejs') { %>
+      'client/bower_components/requirejs/require.js',
+      'client/app/main.test.js',
       {
         pattern: 'client/bower_components/**/*.js',
         included: false
       }, {
         pattern: 'client/app/**/*.js',
-        included: true
+        included: false
       }, {
         pattern: 'client/app/**/*.spec.js',
-        included: true
+        included: false
       },
-      'client/app/main.test.js',<% } else if (jsOption === 'browserify') { %>
+      // Karma adapter to run tests (must be loaded last)
+      'node_modules/karma-requirejs/lib/adapter.js',<% } else if (jsOption === 'browserify') { %>
       '.tmp/test/bundle.js'<% } else { %><% if (jsFramework === 'angular') { %>
       'client/app/main.js',
       'client/app/**/!(main).js',
