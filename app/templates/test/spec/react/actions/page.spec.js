@@ -5,7 +5,7 @@
 
 'use strict';
 
-var pageActions = require('../../../client/scripts/actions/page');
+var pageActions = require('./page.action');
 
 describe('Page Actions', function() {
 

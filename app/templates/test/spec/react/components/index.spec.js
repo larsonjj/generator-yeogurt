@@ -6,7 +6,7 @@
 'use strict';
 
 var React = require('react');
-var IndexComponent = React.createFactory(require('../../../client/scripts/components/index<% if (useJsx) { %>.jsx<% } %>'));
+var IndexComponent = React.createFactory(require('./index<% if (useJsx) { %>.jsx<% } %>'));
 
 describe('Index Component', function() {
 

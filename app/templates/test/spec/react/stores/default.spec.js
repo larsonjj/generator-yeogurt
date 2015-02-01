@@ -5,7 +5,7 @@
 
 'use strict';
 
-var DefaultStore = require('../../../client/scripts/stores/default');
+var DefaultStore = require('./base');
 
 describe('Default Store', function() {
 

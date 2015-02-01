@@ -1,14 +1,14 @@
 /**
-*   Default Component Spec Test
+*   Base Component Spec Test
 */
 
 
 'use strict';
 
 var React = require('react');
-var DefaultComponent = React.createFactory(require('../../../../client/scripts/components/layouts/default<% if (useJsx) { %>.jsx<% } %>'));
+var BaseLayout = React.createFactory(require('./base<% if (useJsx) { %>.jsx<% } %>'));
 
-describe('Default Component', function() {
+describe('Base Component', function() {
 
   var ReactTestUtils;
   var reactRender;
@@ -16,12 +16,12 @@ describe('Default Component', function() {
   beforeEach(function() {
     ReactTestUtils = require('react/addons').addons.TestUtils;
     reactRender = ReactTestUtils.renderIntoDocument;
-    this.defaultComponent = new DefaultComponent();
+    this.baseLayout = new BaseLayout();
   });
 
-  it('provides the "Default Component" instance', function() {
+  it('provides the "Base Component" instance', function() {
     // Expect it to exist
-    expect(this.defaultComponent)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+    expect(this.baseLayout)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
   });
 
 });

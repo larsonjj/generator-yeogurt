@@ -5,7 +5,7 @@
 
 'use strict';
 
-var defaultDispatcher = require('../../../client/scripts/dispatchers/default');
+var defaultDispatcher = require('./dispatcher');
 
 describe('Default Dispatcher', function() {
 
