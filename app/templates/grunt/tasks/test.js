@@ -17,7 +17,8 @@ var taskConfig = function(grunt) {
         'serve:nowatch',<% if (!useServer) { %>
         'connect:server',<% } else { %>
         'express:server',<% } %>
-        'protractor'
+        'protractor'<% if (jsFramework !== 'backbone' || jsOption !== 'requirejs') { %>,
+        'clean:tmp'<% } %>
       ]);
     }<% if (useServerTesting) { %>
 
@@ -43,13 +44,13 @@ var taskConfig = function(grunt) {
       }
       else {
         grunt.task.run(['karma:unit']);
-      }
-    }<% if (jsFramework !== 'backbone' || jsOption !== 'requirejs') { %>
+      }<% if (jsFramework !== 'backbone' || jsOption !== 'requirejs') { %>
 
-    // Clean up temp files
-    grunt.task.run([
-      'clean:tmp'
-    ]);<% } %><% } %>
+      // Clean up temp files
+      grunt.task.run([
+        'clean:tmp'
+      ]);<% } %>
+    }<% } %>
   });
 };
 
