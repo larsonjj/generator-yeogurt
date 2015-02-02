@@ -111,6 +111,7 @@ var taskConfig = function(grunt) {
             filePath = filePath.replace('/client/styles/', '');
           }<% } else { %>
           filePath = filePath.replace('/client/styles/', '');<% } %>
+          filePath = filePath.replace(/_/, '');
           <% if (sassSyntax === 'scss') { %>
           return '@import \'' + filePath.slice(0, -5) + '\';';<% } else { %>
           return '@import ' + filePath.slice(0, -5);<% } %>
