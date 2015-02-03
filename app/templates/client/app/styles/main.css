@@ -9,7 +9,7 @@
   box-sizing: border-box;
 }
 
-/* Author Custom Styles */<% if (jsFramework !== 'angular') { %>
+/* Author Custom Styles */<% if (useServer && !singlePageApplication) { %>
 
 .yeogurt-info {
   text-align: center;
@@ -28,7 +28,7 @@
 
 .logo {
   margin-top: 15px;
-}<% } %>
+}<% } %><% if (useJsdoc || useKss || useDashboard) { %>
 
 .links a {
   color: white;
@@ -47,7 +47,7 @@
   font-size: 100%;
   padding: .5em 1em;
   text-decoration: none;
-}
+}<% } %>
 
 /* Styling on warning for users on IE7 or below */
 .browsehappy {

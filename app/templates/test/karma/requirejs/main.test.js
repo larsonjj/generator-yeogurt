@@ -1,7 +1,5 @@
-/**
-*   RequireJS Test Config
-*/
-
+// Karma requirejs config
+// ex: http://karma-runner.github.io/0.12/plus/requirejs.html
 'use strict';
 
 var allTestFiles = [];

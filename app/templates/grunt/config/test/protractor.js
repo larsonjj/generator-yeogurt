@@ -7,7 +7,7 @@ var taskConfig = function(grunt) {
   grunt.config.set('protractor', {
     protractor: {
       options: {
-        configFile: 'e2e/protractor.conf.js'
+        configFile: 'protractor.conf.js'
       },
       chrome: {
         options: {
