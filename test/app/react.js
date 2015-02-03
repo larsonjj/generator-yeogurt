@@ -25,19 +25,22 @@ describe('Yeogurt generator using React', function() {
       describe('With Defaults', function() {
         it ('Creates expected files', function(done) {
           var expected = [
-            'client/scripts',
-            'client/scripts/main.js',
-            'client/scripts/routes.js',
-            'client/scripts/constants/page.js',
-            'client/scripts/constants/routes.js',
-            'client/scripts/constants/defaults.js',
-            'client/scripts/constants/payload-sources.js',
-            'client/scripts/stores/default.js',
-            'client/scripts/dispatchers/default.js'
+            'client/app',
+            'client/app/main.js',
+            'client/app/routes.js',
+            'client/modules/page/page.action.js',
+            'client/modules/page/page.store.js',
+            'client/modules/page/page.constant.js',
+            'client/modules/route/route.action.js',
+            'client/modules/route/route.constant.js',
+            'client/common/constants/default.js',
+            'client/common/constants/payload-sources.js',
+            'client/common/core/store.js',
+            'client/common/core/dispatcher.js'
           ];
 
           var fileContentToTest = [
-            ['client/scripts/routes.js', /module\.exports/i],
+            ['client/app/routes.js', /module\.exports/i],
             ['client/index.html', /app\-wrapper/i]
           ];
 
@@ -61,13 +64,13 @@ describe('Yeogurt generator using React', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/scripts/components/index.jsx',
-              'client/scripts/components/layouts/default.jsx'
+              'client/app/index/index.jsx',
+              'client/app/layout/base.jsx'
             ];
             var fileContentToTest = [
-              ['client/scripts/components/index.jsx', /<div/i],
+              ['client/app/index/index.jsx', /<div/i],
               ['package.json', /node-jsx/i],
-              ['client/scripts/routes.js', /jsx/i]
+              ['client/app/routes.js', /jsx/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -90,14 +93,14 @@ describe('Yeogurt generator using React', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/scripts/components/index.js',
+              'client/app/index/index.js',
             ];
             var fileContentToTest = [
-              ['client/scripts/components/index.js', /React\.createElement/i],
+              ['client/app/index/index.js', /React\.createElement/i],
             ];
             var fileContentNotThere = [
               ['package.json', /node-jsx/i],
-              ['client/scripts/routes.js', /jsx/i]
+              ['client/app/routes.js', /jsx/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -124,13 +127,13 @@ describe('Yeogurt generator using React', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/scripts/components/index.jsx',
-              'client/scripts/components/layouts/default.jsx'
+              'client/app/index/index.jsx',
+              'client/app/layout/base.jsx'
             ];
             var fileContentToTest = [
-              ['client/scripts/components/index.jsx', /<div/i],
+              ['client/app/index/index.jsx', /<div/i],
               ['package.json', /node-jsx/i],
-              ['client/scripts/routes.js', /jsx/i]
+              ['client/app/routes.js', /jsx/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -153,14 +156,14 @@ describe('Yeogurt generator using React', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/scripts/components/index.js',
+              'client/app/index/index.js',
             ];
             var fileContentToTest = [
-              ['client/scripts/components/index.js', /React\.createElement/i],
+              ['client/app/index/index.js', /React\.createElement/i],
             ];
             var fileContentNotThere = [
               ['package.json', /node-jsx/i],
-              ['client/scripts/routes.js', /jsx/i]
+              ['client/app/routes.js', /jsx/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -188,15 +191,15 @@ describe('Yeogurt generator using React', function() {
     describe('With Browserify', function() {
       it('Creates default files', function(done) {
         var expected = [
-          'client/scripts/stores/page.js',
-          'client/scripts/stores/default.js',
-          'client/scripts/dispatchers/default.js',
-          'client/scripts/actions/page.js',
-          'client/scripts/actions/routes.js',
-          'client/scripts/constants/page.js',
-          'client/scripts/constants/routes.js',
-          'client/scripts/constants/defaults.js',
-          'client/scripts/constants/payload-sources.js'
+          'client/modules/page/page.store.js',
+          'client/modules/page/page.action.js',
+          'client/modules/page/page.constant.js',
+          'client/common/core/store.js',
+          'client/common/core/dispatcher.js',
+          'client/modules/route/route.action.js',
+          'client/modules/route/route.constant.js',
+          'client/common/constants/default.js',
+          'client/common/constants/payload-sources.js'
         ];
         helpers.mockPrompt(this.app, {
           singlePageApplication: true,
@@ -217,13 +220,13 @@ describe('Yeogurt generator using React', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/scripts/components/index.jsx',
-              'client/scripts/components/layouts/default.jsx'
+              'client/app/index/index.jsx',
+              'client/app/layout/base.jsx'
             ];
             var fileContentToTest = [
-              ['client/scripts/components/index.jsx', /<div/i],
+              ['client/app/index/index.jsx', /<div/i],
               ['package.json', /node-jsx/i],
-              ['client/scripts/routes.js', /jsx/i]
+              ['client/app/routes.js', /jsx/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -246,14 +249,14 @@ describe('Yeogurt generator using React', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/scripts/components/index.js',
+              'client/app/index/index.js',
             ];
             var fileContentToTest = [
-              ['client/scripts/components/index.js', /React\.createElement/i],
+              ['client/app/index/index.js', /React\.createElement/i],
             ];
             var fileContentNotThere = [
               ['package.json', /node-jsx/i],
-              ['client/scripts/routes.js', /jsx/i]
+              ['client/app/routes.js', /jsx/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -280,13 +283,13 @@ describe('Yeogurt generator using React', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/scripts/components/index.jsx',
-              'client/scripts/components/layouts/default.jsx'
+              'client/app/index/index.jsx',
+              'client/app/layout/base.jsx'
             ];
             var fileContentToTest = [
-              ['client/scripts/components/index.jsx', /<div/i],
+              ['client/app/index/index.jsx', /<div/i],
               ['package.json', /node-jsx/i],
-              ['client/scripts/routes.js', /jsx/i]
+              ['client/app/routes.js', /jsx/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -310,14 +313,14 @@ describe('Yeogurt generator using React', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/scripts/components/index.js',
+              'client/app/index/index.js',
             ];
             var fileContentToTest = [
-              ['client/scripts/components/index.js', /React\.createElement/i],
+              ['client/app/index/index.js', /React\.createElement/i],
             ];
             var fileContentNotThere = [
               ['package.json', /node-jsx/i],
-              ['client/scripts/routes.js', /jsx/i]
+              ['client/app/routes.js', /jsx/i]
             ];
 
             helpers.mockPrompt(this.app, {
