@@ -1,5 +1,3 @@
-// Index Controller
-
 'use strict';<% if (singlePageApplication) { %>
 
 var settings = require('../config/env/default');

@@ -7,7 +7,7 @@ var pageDefaults = require('../../lib/constants/default').page;
 
 var _page;
 
-var PageStore = new Store({
+var pageStore = new Store({
 
   // Gets metadata associated with the current page.
   get: function() {
@@ -16,16 +16,16 @@ var PageStore = new Store({
 
 });
 
-PageStore.dispatcherToken = Dispatcher.register(function(payload) {
+pageStore.dispatcherToken = Dispatcher.register(function(payload) {
 
   var action = payload.action;
 
   if (action.actionType === pageConstants.SET_CURRENT_PAGE) {
     _page = action.page;
 
-    PageStore.emitChange();
+    pageStore.emitChange();
   }
 
 });
 
-module.exports = PageStore;
+module.exports = pageStore;

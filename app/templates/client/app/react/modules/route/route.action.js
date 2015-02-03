@@ -3,7 +3,7 @@
 var Dispatcher = require('../../lib/core/dispatcher');
 var routeConstants = require('./route.constant');
 
-module.exports = {
+var actions = {
 
   setRoute: function(route) {
     Dispatcher.handleViewAction({
@@ -14,3 +14,5 @@ module.exports = {
   }
 
 };
+
+module.exports = actions;

@@ -2,12 +2,12 @@
 
 var keyMirror = require('keymirror');
 
-var pageConstants = keyMirror({
+var constants = keyMirror({
 
   // Page action types
   SET_CURRENT_PAGE: null
 
 });
 
-module.exports = pageConstants;
+module.exports = constants;
 

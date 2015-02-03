@@ -4,7 +4,7 @@ var Dispatcher = require('flux').Dispatcher;
 var assign = require('object-assign');
 var PayloadSources = require('../constants/payload-sources');
 
-var DefaultDispatcher = assign(new Dispatcher(), {
+var defaultDispatcher = assign(new Dispatcher(), {
   handleViewAction: function(action) {
     this.dispatch({
       source: PayloadSources.VIEW_ACTION,
@@ -13,4 +13,4 @@ var DefaultDispatcher = assign(new Dispatcher(), {
   }
 });
 
-module.exports = DefaultDispatcher;
+module.exports = defaultDispatcher;

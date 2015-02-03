@@ -5,7 +5,7 @@ var pageConstants = require('./page.constant');
 var pageDefaults = require('../../lib/constants/default').page;
 var assign = require('object-assign');
 
-module.exports = {
+var actions = {
 
   set: function(page) {
     Dispatcher.handleViewAction({
@@ -15,3 +15,5 @@ module.exports = {
   }
 
 };
+
+module.exports = actions;

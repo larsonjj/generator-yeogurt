@@ -1,8 +1,4 @@
-/**
-*   Main Spec Test
-*/
 'use strict';
-
 
 describe('main', function() {
 

@@ -1,6 +1,6 @@
 'use strict';
 
-var Defaults = {
+var defaults = {
 
   root: '/',
 
@@ -12,4 +12,4 @@ var Defaults = {
 
 };
 
-module.exports = Defaults;
+module.exports = defaults;

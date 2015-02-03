@@ -3,7 +3,6 @@
 var React = require('react');
 var routeActions = require('../../modules/route/route.action');
 
-
 // Link Component
 // Handles pushState route changes within app
 // Usage: <Link url="/linkUrl">Link Title</Link>

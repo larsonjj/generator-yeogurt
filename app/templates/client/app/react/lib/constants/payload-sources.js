@@ -2,10 +2,10 @@
 
 var keyMirror = require('keymirror');
 
-var PayloadSources = keyMirror({
+var payloadSources = keyMirror({
 
   VIEW_ACTION: null
 
 });
 
-module.exports = PayloadSources;
+module.exports = payloadSources;
