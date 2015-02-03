@@ -39,12 +39,12 @@ var testingFiles = function testingFiles() {
       // Dispatchers
       this.template(
         'client/app/scripts/react/common/core/dispatcher.spec.js',
-        'client/common/scripts/core/dispatcher.spec.js'
+        'client/common/core/dispatcher.spec.js'
       );
 
       // Stores
       this.template('client/app/scripts/react/modules/page/page.spec.js', 'client/modules/page/page.spec.js');
-      this.template('client/app/scripts/react/common/core/store.spec.js', 'client/common/scripts/core/store.spec.js');
+      this.template('client/app/scripts/react/common/core/store.spec.js', 'client/common/core/store.spec.js');
 
       // Actions
       this.template(

@@ -1,8 +1,3 @@
-/**
-*   Default Store Spec Test
-*/
-
-
 'use strict';
 
 var DefaultStore = require('./base');

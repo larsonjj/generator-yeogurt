@@ -6,7 +6,7 @@ var taskConfig = function(grunt) {
 
   grunt.config.set('karma', {
     options: {
-      configFile: 'karma.conf.js'
+      configFile: 'karma/karma.conf.js'
     },
     unit: {
       singleRun: true,

@@ -11,7 +11,8 @@ var taskConfig = function(grunt) {
     'injector',
     'wiredep',
     'copy:dist',
-    'concurrent',
+    'concurrent:images',
+    'concurrent:compile',
     'useminPrepare',<% if (jsFramework === 'angular') { %>
     'ngtemplates:main',<% } %>
     'concat:generated',<% if (jsFramework === 'angular') { %>
@@ -21,6 +22,7 @@ var taskConfig = function(grunt) {
     'usemin',
     'htmlmin:dist',
     'uglify',
+    'concurrent:docs',
     'clean:tmp'
   ]);
 };

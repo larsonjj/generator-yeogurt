@@ -1,8 +1,3 @@
-/**
-*   Index Component Spec Test
-*/
-
-
 'use strict';
 
 var React = require('react');

@@ -1,8 +1,3 @@
-/**
-*   Default Dispatcher Spec Test
-*/
-
-
 'use strict';
 
 var defaultDispatcher = require('./dispatcher');

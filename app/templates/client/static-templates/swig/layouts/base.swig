@@ -34,15 +34,15 @@
     <link rel="stylesheet" href="/app/main.css"><% } %><% if (useServer) { %>
 
     {% if env == 'development' %}<% } %>
-    <!-- build:js(client) common/scripts/modernizr.js -->
+    <!-- build:js(client) common/modernizr.js -->
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild --><% if (useServer) { %>
     {% else %}
-    <script src="/common/scripts/modernizr.js"></script>
+    <script src="/common/modernizr.js"></script>
     {% endif %}<% } %>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- build:js(client) common/scripts/shims.js -->
+    <!-- build:js(client) common/shims.js -->
     <!--[if lt IE 9]>
     <script src="/bower_components/consolelog/consolelog.js"></script>
     <script src="/bower_components/html5shiv/dist/html5shiv-printshiv.js"></script>
@@ -58,7 +58,7 @@
     {% block content %}{% endblock %}
     {% endblock %}<% if (jsFramework === 'react') { %>
 
-    <!-- build:js(client) common/scripts/lt-ie9.js -->
+    <!-- build:js(client) common/lt-ie9.js -->
     <!--[if lt IE 9]>
     <script src="/bower_components/es5-shim/es5-shim.js"></script>
     <script src="/bower_components/es5-shim/es5-sham.js"></script>
@@ -66,13 +66,13 @@
     <!-- endbuild --><% } %><% if (useServer) { %>
 
     {% if env == 'development' %}<% } %>
-    <!-- build:js(client) common/scripts/global.js -->
+    <!-- build:js(client) common/global.js -->
       <!-- bower:js -->
       <script src="/bower_components/jquery/dist/jquery.js"></script>
       <!-- endbower -->
     <!-- endbuild --><% if (useServer) { %>
     {% else %}
-    <script src="/common/scripts/global.js"></script>
+    <script src="/common/global.js"></script>
     {% endif %}<% } %><% if  (jsOption === 'requirejs') { %>
 
     <script data-main="app/main", src="bower_components/requirejs/require.js"></script><% } else if (jsOption === 'browserify') { %>
