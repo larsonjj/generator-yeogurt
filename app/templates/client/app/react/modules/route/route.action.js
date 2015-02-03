@@ -1,6 +1,6 @@
 'use strict';
 
-var Dispatcher = require('../../common/core/dispatcher');
+var Dispatcher = require('../../lib/core/dispatcher');
 var routeConstants = require('./route.constant');
 
 module.exports = {

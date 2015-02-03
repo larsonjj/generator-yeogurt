@@ -611,7 +611,7 @@ If you chose to create a Dashboard, a dashboard will be automatically generated 
 For more information and usage, please refer to the `grunt-dashboard` plugin [documentation](https://github.com/larsonjj/grunt-dashboard).
 
 ### JavaScript API
-If you chose to use [JSDoc](http://usejsdoc.org/), JavaScript API documentation will be automatically generated from reading your script files. After running `grunt serve` or `grunt serve:dist`, it can be accessed at `/docs/api/index.html`.
+If you chose to use [JSDoc](http://usejsdoc.org/), JavaScript API documentation will be automatically generated from reading your script files. After running `grunt serve` or `grunt serve:dist`, it can be accessed at `/docs/jsdoc/index.html`.
 
 You can view an example [here](http://yeoman.github.io/generator/).
 

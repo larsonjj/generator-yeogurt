@@ -59,7 +59,7 @@ describe('Yeogurt generator unit testing', function() {
     describe('With React', function() {
       it('Does not create certain files', function(done) {
         var expected = [
-          'client/common/test/phantomjs-shims.js'
+          'client/lib/test/phantomjs-shims.js'
         ];
 
         helpers.mockPrompt(this.app, {
@@ -115,7 +115,7 @@ describe('Yeogurt generator unit testing', function() {
     describe('With React', function() {
       it('Does not create certain files', function(done) {
         var notExpected = [
-          'client/common/test/phantomjs-shims.js'
+          'client/lib/test/phantomjs-shims.js'
         ];
 
         helpers.mockPrompt(this.app, {

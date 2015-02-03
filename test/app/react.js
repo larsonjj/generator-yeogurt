@@ -33,10 +33,10 @@ describe('Yeogurt generator using React', function() {
             'client/modules/page/page.constant.js',
             'client/modules/route/route.action.js',
             'client/modules/route/route.constant.js',
-            'client/common/constants/default.js',
-            'client/common/constants/payload-sources.js',
-            'client/common/core/store.js',
-            'client/common/core/dispatcher.js'
+            'client/lib/constants/default.js',
+            'client/lib/constants/payload-sources.js',
+            'client/lib/core/store.js',
+            'client/lib/core/dispatcher.js'
           ];
 
           var fileContentToTest = [
@@ -194,12 +194,12 @@ describe('Yeogurt generator using React', function() {
           'client/modules/page/page.store.js',
           'client/modules/page/page.action.js',
           'client/modules/page/page.constant.js',
-          'client/common/core/store.js',
-          'client/common/core/dispatcher.js',
+          'client/lib/core/store.js',
+          'client/lib/core/dispatcher.js',
           'client/modules/route/route.action.js',
           'client/modules/route/route.constant.js',
-          'client/common/constants/default.js',
-          'client/common/constants/payload-sources.js'
+          'client/lib/constants/default.js',
+          'client/lib/constants/payload-sources.js'
         ];
         helpers.mockPrompt(this.app, {
           singlePageApplication: true,

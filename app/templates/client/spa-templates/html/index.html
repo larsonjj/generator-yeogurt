@@ -18,7 +18,7 @@
     <meta name="author" content=""/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <!-- build:css(client) common/styles/global.css -->
+    <!-- build:css(client) lib/styles/global.css -->
       <!-- bower:css -->
       <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css" />
       <!-- endbower -->
@@ -32,12 +32,12 @@
 
     <link rel="stylesheet" href="/app/main.css" /><% } %>
 
-    <!-- build:js(client) common/modernizr.js -->
+    <!-- build:js(client) lib/modernizr.js -->
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
 
     <!-- HTML5 and consolelog shims for IE8 support -->
-    <!-- build:js(client) common/lt-ie9.js -->
+    <!-- build:js(client) lib/lt-ie9.js -->
     <!--[if lt IE 9]>
     <script src="/bower_components/consolelog/consolelog.js"></script>
     <script src="/bower_components/html5shiv/dist/html5shiv-printshiv.js"></script>
@@ -60,7 +60,7 @@
         </p><% if (useDashboard || useJsdoc || useKss) { %>
         <p class="links"><% if (useKss) { %>
           <a href="/docs/styleguide/index.html">Styleguide</a><% } %><% if (useJsdoc) { %>
-          <a href="/docs/api/index.html">API</a><% } %>
+          <a href="/docs/jsdoc/index.html">API</a><% } %>
         </p><% } %>
       </div>
     </div>
@@ -69,14 +69,14 @@
     <!-- Application loads here -->
     <div id="app-wrapper" <% if (jsFramework === 'angular') { %>ng-view<% } %>></div><% } %><% if (jsFramework === 'react') { %>
 
-    <!-- build:js(client) common/lt-ie9.js -->
+    <!-- build:js(client) lib/lt-ie9.js -->
     <!--[if lt IE 9]>
     <script src="/bower_components/es5-shim/es5-shim.js"></script>
     <script src="/bower_components/es5-shim/es5-sham.js"></script>
     <![endif]-->
     <!-- endbuild --><% } %>
 
-    <!-- build:js(<% if (jsFramework === 'backbone') { %>{client,.tmp}<% } else { %>client<% } %>) common/global.js -->
+    <!-- build:js(<% if (jsFramework === 'backbone') { %>{client,.tmp}<% } else { %>client<% } %>) lib/global.js -->
       <!-- bower:js -->
       <script src="/bower_components/jquery/dist/jquery.js"></script><% if (jsFramework === 'backbone') { %>
       <script src="/bower_components/underscore/underscore.js"></script>

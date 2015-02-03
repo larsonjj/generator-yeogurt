@@ -19,7 +19,7 @@ var IndexComponent = React.createClass({
             </p><% if (useJsdoc || useKss) { %>
             <p className="links"><% if (useKss) { %>
               <a href="/docs/styleguide/index.html">Styleguide</a><% } %><% if (useJsdoc) { %>
-              <a href="/docs/api/index.html">API</a><% } %>
+              <a href="/docs/jsdoc/index.html">API</a><% } %>
             </p><% } %>
           </div>
         </div>

@@ -2,7 +2,7 @@
 
 var Router = require('director').Router;
 var routes = require('./routes');
-var Dispatcher = require('../common/core/dispatcher');
+var Dispatcher = require('../lib/core/dispatcher');
 var pageConstants = require('../modules/page/page.constant');
 var routeConstants = require('../modules/route/route.constant');
 

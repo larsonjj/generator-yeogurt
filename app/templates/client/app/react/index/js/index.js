@@ -38,7 +38,7 @@ var IndexComponent = React.createClass({
                 href: '/docs/styleguide/index.html'
               }, 'Styleguide')<% } %><% if (useJsdoc) { %>,
               DOM('a', {
-                href: '/docs/api/index.html'
+                href: '/docs/jsdoc/index.html'
               }, 'API')<% } %>
             )<% } %>
           )

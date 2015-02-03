@@ -16,9 +16,9 @@ var docFiles = function docFiles() {
     this.copy('client/images/yeogurt-logo.png', 'client/docs/styleguide/public/images/yeogurt-logo.png');
   }
   if (this.useJsdoc) {
-    this.directory('client/docs/api', 'client/docs/api');
-    this.template('client/docs/shared/scripts/less.js', 'client/docs/api/theme/static/scripts/less.js');
-    this.template('client/docs/shared/scripts/jquery.js', 'client/docs/api/theme/static/scripts/jquery.js');
+    this.directory('client/docs/jsdoc', 'client/docs/jsdoc');
+    this.template('client/docs/shared/scripts/less.js', 'client/docs/jsdoc/theme/static/scripts/less.js');
+    this.template('client/docs/shared/scripts/jquery.js', 'client/docs/jsdoc/theme/static/scripts/jquery.js');
   }
   if (this.useDashboard) {
     this.template('client/docs/dashboard/styles/dashboard.less', 'client/docs/dashboard/styles/dashboard.less');

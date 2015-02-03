@@ -28,7 +28,7 @@ var testingFiles = function testingFiles() {
       }
     }
     else if (this.jsFramework === 'react') {
-      this.template('test/karma/phantomjs-shims.js', 'client/common/test/phantomjs-shims.js');
+      this.template('test/karma/phantomjs-shims.js', 'client/lib/test/phantomjs-shims.js');
 
       // Router
       this.template('client/app/react/routes/routes.spec.js', 'client/app/routes.spec.js');
@@ -38,13 +38,13 @@ var testingFiles = function testingFiles() {
 
       // Dispatchers
       this.template(
-        'client/app/react/common/core/dispatcher.spec.js',
-        'client/common/core/dispatcher.spec.js'
+        'client/app/react/lib/core/dispatcher.spec.js',
+        'client/lib/core/dispatcher.spec.js'
       );
 
       // Stores
       this.template('client/app/react/modules/page/page.spec.js', 'client/modules/page/page.spec.js');
-      this.template('client/app/react/common/core/store.spec.js', 'client/common/core/store.spec.js');
+      this.template('client/app/react/lib/core/store.spec.js', 'client/lib/core/store.spec.js');
 
       // Actions
       this.template(

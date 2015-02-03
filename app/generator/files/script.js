@@ -59,20 +59,20 @@ var scriptFiles = function scriptFiles() {
     this.template('client/app/react/modules/page/page.constant.js', 'client/modules/page/page.constant.js');
     this.template('client/app/react/modules/route/route.constant.js', 'client/modules/route/route.constant.js');
     this.template(
-      'client/app/react/common/constants/default.js',
-      'client/common/constants/default.js'
+      'client/app/react/lib/constants/default.js',
+      'client/lib/constants/default.js'
     );
     this.template(
-      'client/app/react/common/constants/payload-sources.js',
-      'client/common/constants/payload-sources.js'
+      'client/app/react/lib/constants/payload-sources.js',
+      'client/lib/constants/payload-sources.js'
     );
 
     // Stores
-    this.template('client/app/react/common/core/store.js', 'client/common/core/store.js');
+    this.template('client/app/react/lib/core/store.js', 'client/lib/core/store.js');
     this.template('client/app/react/modules/page/page.store.js', 'client/modules/page/page.store.js');
 
     // Distpatcher
-    this.template('client/app/react/common/core/dispatcher.js', 'client/common/core/dispatcher.js');
+    this.template('client/app/react/lib/core/dispatcher.js', 'client/lib/core/dispatcher.js');
 
     // Actions
     this.template('client/app/react/modules/route/route.action.js', 'client/modules/route/route.action.js');
