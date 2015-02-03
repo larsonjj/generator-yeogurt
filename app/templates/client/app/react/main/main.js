@@ -7,7 +7,24 @@ var pageConstants = require('../modules/page/page.constant');
 var routeConstants = require('../modules/route/route.constant');
 
 // Setup router
-var router = new Router(routes);<% if (useServer){ %>
+var router = new Router(routes);
+
+// Handle route and page changes
+Dispatcher.register(function(payload) {
+
+  var action = payload.action;
+
+  if (action.actionType === routeConstants.SET_CURRENT_ROUTE) {
+    router.setRoute(action.route);
+  }
+
+  else if (action.actionType === pageConstants.SET_CURRENT_PAGE) {
+    // Set current page title
+    document.title = action.page.title;
+  }
+
+  return true; // No errors.  Needed by promise in Dispatcher.
+});<% if (useServer) { %>
 
 // Enable pushState for compatible browsers
 var enablePushState = true;
@@ -28,46 +45,12 @@ if (pushState) {
 // Handle pushState for incompatible browsers (IE9 and below)
 if (!pushState && window.location.pathname !== '/') {
   window.location.replace('/#' + window.location.pathname);
-}
-
-// Handle route and page changes
-Dispatcher.register(function(payload) {
-
-  var action = payload.action;
-
-  if (action.actionType === routeConstants.SET_CURRENT_ROUTE) {
-    router.setRoute(action.route);
-  }
-
-  else if (action.actionType === pageConstants.SET_CURRENT_PAGE) {
-    // Set current page title
-    document.title = action.page.title;
-  }
-
-  return true; // No errors.  Needed by promise in Dispatcher.
-});<% } else { %>
+}<% } else { %>
 
 // Start listening to route changes
 router.init();
 
 // Handle urls by ensuring the use of hash routing
-window.location.replace('/#' + window.location.pathname);
-
-// Handle route and page changes
-Dispatcher.register(function(payload) {
-
-  var action = payload.action;
-
-  if (action.actionType === routeConstants.SET_CURRENT_ROUTE) {
-    router.setRoute(action.route);
-  }
-
-  else if (action.actionType === pageConstants.SET_CURRENT_PAGE) {
-    // Set current page title
-    document.title = action.page.title;
-  }
-
-  return true; // No errors.  Needed by promise in Dispatcher.
-});<% } %>
+window.location.replace('/#' + window.location.pathname);<% } %>
 
 console.log('Welcome to Yeogurt');

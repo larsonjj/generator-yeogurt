@@ -10,7 +10,7 @@ var taskConfig = function(grunt) {
         paths: [
           '<%%= yeogurt.client %>/bower_components',
           '<%%= yeogurt.client %>/styles'<% if (jsFramework === 'angular') { %>,
-          '<%%= yeogurt.client %>/app/'<% } %>
+          '<%%= yeogurt.client %>/{app,modules,lib}/'<% } %>
         ],
         sourceMap: true,
         sourceMapFilename: '<%%= yeogurt.tmp %>/app/main.css.map',
@@ -32,7 +32,7 @@ var taskConfig = function(grunt) {
         paths: [
           '<%%= yeogurt.client %>/bower_components',
           '<%%= yeogurt.client %>/styles'<% if (jsFramework === 'angular') { %>,
-          '<%%= yeogurt.client %>/app/'<% } %>
+          '<%%= yeogurt.client %>/{app,modules,lib}/'<% } %>
         ],
         sourceMap: true,
         sourceMapFilename: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>app/main.css.map',

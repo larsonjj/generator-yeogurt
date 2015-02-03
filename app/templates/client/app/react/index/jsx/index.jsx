@@ -2,8 +2,20 @@
 
 var React = require('react');
 var BaseLayout = require('../layout/base.jsx');
+var pageStore = require('../../modules/page/page.store');
+var pageAction = require('../../modules/page/page.action');
+
+var getState = function getState() {
+  return {
+    title: pageStore.get().title
+  };
+}
 
 var IndexComponent = React.createClass({
+  mixins: [pageStore.mixin],
+  componentWillMount: function() {
+    pageAction.set({title: '<%= projectName %>'});
+  },
   render: function() {
     return (
       /* jshint ignore:start */
@@ -27,6 +39,9 @@ var IndexComponent = React.createClass({
       </BaseLayout>
       /* jshint ignore:end */
     );
+  },
+  _onChange: function() {
+    this.setState(getState());
   }
 });
 

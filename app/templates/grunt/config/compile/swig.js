@@ -12,7 +12,7 @@ var taskConfig = function(grunt) {
     },<% } %><% if (!useServer) { %>
     server: {
       expand: true,
-      cwd: '<%%= yeogurt.client %>/app/index',
+      cwd: '<%%= yeogurt.client %>/{app,modules,lib}/index',
       dest: '<%%= yeogurt.tmp %>/',
       src: [
         '**/index.swig',

@@ -60,9 +60,9 @@ var taskConfig = function(grunt) {
       ]
     }<% if (cssOption !== 'css') { %>,
     styles: {<% if (cssOption === 'sass') { %>
-      src: ['<%%= yeogurt.client %>/styles/**/*.{scss,sass}'],<% } %><% if (cssOption === 'less') { %>
-      src: ['<%%= yeogurt.client %>/styles/**/*.less'],<% } %><% if (cssOption === 'stylus') { %>
-      src: ['<%%= yeogurt.client %>/styles/**/*.styl'],<% } %>
+      src: ['<%%= yeogurt.client %>/app/**/*.{scss,sass}'],<% } %><% if (cssOption === 'less') { %>
+      src: ['<%%= yeogurt.client %>/app/**/*.less'],<% } %><% if (cssOption === 'stylus') { %>
+      src: ['<%%= yeogurt.client %>/app/**/*.styl'],<% } %>
       ignorePath: /client/g,
     }<% } %>
   });

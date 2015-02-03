@@ -2,13 +2,12 @@
 
 var Defaults = {
 
-  routeRoot: '/',
+  root: '/',
 
   page: {
-    title: 'Home',
+    title: '<%= projectName %>',
     description: 'A React + Flux application',
     keywords: null
-
   }
 
 };

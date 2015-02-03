@@ -11,12 +11,12 @@ var taskConfig = function(grunt) {
         sourcemap: false, // not supported yet
         paths: [
           '<%%= yeogurt.client %>/bower_components',
-          '<%%= yeogurt.client %>/app/'<% if (jsFramework === 'angular') { %>,
-          '<%%= yeogurt.client %>/app/'<% } %>
+          '<%%= yeogurt.client %>/{app,modules,lib}/'<% if (jsFramework === 'angular') { %>,
+          '<%%= yeogurt.client %>/{app,modules,lib}/'<% } %>
         ]
       },
       files: {
-        '<%%= yeogurt.tmp %>/app/main.css': '<%%= yeogurt.client %>/app/main.styl'
+        '<%%= yeogurt.tmp %>/app/main.css': '<%%= yeogurt.client %>/{app,modules,lib}/main.styl'
       }
     },
     dist: {
@@ -25,12 +25,12 @@ var taskConfig = function(grunt) {
         sourcemap: false, // not supported yet
         paths: [
           '<%%= yeogurt.client %>/bower_components',
-          '<%%= yeogurt.client %>/app/'<% if (jsFramework === 'angular') { %>,
-          '<%%= yeogurt.client %>/app/'<% } %>
+          '<%%= yeogurt.client %>/{app,modules,lib}/'<% if (jsFramework === 'angular') { %>,
+          '<%%= yeogurt.client %>/{app,modules,lib}/'<% } %>
         ]
       },
       files: {
-        '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>app/main.css': '<%%= yeogurt.client %>/app/main.styl'
+        '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>app/main.css': '<%%= yeogurt.client %>/{app,modules,lib}/main.styl'
       }
     }
   });

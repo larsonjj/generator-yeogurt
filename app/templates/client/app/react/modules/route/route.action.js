@@ -9,7 +9,7 @@ module.exports = {
     Dispatcher.handleViewAction({
       actionType: routeConstants.SET_CURRENT_ROUTE,
       // Change to specified route, or default to root route
-      route: route || routeConstants.routeRoot
+      route: route || routeConstants.root
     });
   }
 

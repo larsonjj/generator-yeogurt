@@ -6,9 +6,21 @@ var React = require('react');
 // Alias for making element creation less verbose
 var DOM = React.createElement;
 var BaseLayout = require('../layout/base');
+var pageStore = require('../../modules/page/page.store');
+var pageAction = require('../../modules/page/page.action');
+
+var getState = function getState() {
+  return {
+    title: pageStore.get().title
+  };
+}
 
 var IndexComponent = React.createClass({
   displayName: 'IndexComponent',
+  mixins: [pageStore.mixin],
+  componentWillMount: function() {
+    pageAction.set({title: '<%= projectName %>'});
+  },
   render: function() {
     return (
       DOM(BaseLayout, null,
@@ -48,6 +60,9 @@ var IndexComponent = React.createClass({
         }, 'v<%= pkg.version %>')
       )
     );
+  },
+  _onChange: function() {
+    this.setState(getState());
   }
 });
 
