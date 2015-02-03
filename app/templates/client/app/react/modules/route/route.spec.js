@@ -1,13 +1,8 @@
-/**
-*   Router Actions Spec Test
-*/
-
-
 'use strict';
 
 var routerActions = require('./routes');
 
-describe('Router Actions', function() {
+describe('Routes Flux Module', function() {
 
   var ReactTestUtils;
   var reactRender;

@@ -36,6 +36,10 @@ var testingFiles = function testingFiles() {
       // Components
       this.template('client/app/react/index/index.spec.js', 'client/app/index/index.spec.js');
 
+      if (this.useServer) {
+        this.template('client/app/react/modules/link/link.spec.js', 'client/modules/link/link.spec.js');
+      }
+
       // Dispatchers
       this.template(
         'client/app/react/lib/core/dispatcher.spec.js',

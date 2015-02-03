@@ -1,8 +1,3 @@
-/**
-*   Router Spec Test
-*/
-
-
 'use strict';
 
 var routes = require('./routes');

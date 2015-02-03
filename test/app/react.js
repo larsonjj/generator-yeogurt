@@ -221,6 +221,7 @@ describe('Yeogurt generator using React', function() {
             var expected = [
               // add files and folders you expect to exist here.
               'client/app/index/index.jsx',
+              'client/modules/link/link.jsx',
               'client/app/layout/base.jsx'
             ];
             var fileContentToTest = [
@@ -250,6 +251,8 @@ describe('Yeogurt generator using React', function() {
             var expected = [
               // add files and folders you expect to exist here.
               'client/app/index/index.js',
+              'client/modules/link/link.js',
+              'client/app/layout/base.js'
             ];
             var fileContentToTest = [
               ['client/app/index/index.js', /React\.createElement/i],
@@ -284,6 +287,7 @@ describe('Yeogurt generator using React', function() {
             var expected = [
               // add files and folders you expect to exist here.
               'client/app/index/index.jsx',
+              'client/modules/link/link.jsx',
               'client/app/layout/base.jsx'
             ];
             var fileContentToTest = [
@@ -314,6 +318,8 @@ describe('Yeogurt generator using React', function() {
             var expected = [
               // add files and folders you expect to exist here.
               'client/app/index/index.js',
+              'client/modules/link/link.js',
+              'client/app/layout/base.js'
             ];
             var fileContentToTest = [
               ['client/app/index/index.js', /React\.createElement/i],
