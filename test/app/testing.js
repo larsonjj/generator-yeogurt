@@ -41,7 +41,7 @@ describe('Yeogurt generator unit testing', function() {
     describe('With RequireJS', function() {
       it('Creates expected files', function(done) {
         var expected = [
-          'client/app/main.test.js'
+          'client/app/main.karma.js'
         ];
 
         helpers.mockPrompt(this.app, {
@@ -97,7 +97,7 @@ describe('Yeogurt generator unit testing', function() {
     describe('With RequireJS', function() {
       it('Does not create certain files', function(done) {
         var notExpected = [
-          'client/app/main.test.js'
+          'client/app/main.karma.js'
         ];
 
         helpers.mockPrompt(this.app, {

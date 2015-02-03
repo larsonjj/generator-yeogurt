@@ -22,7 +22,7 @@ module.exports = function(config) {
       'client/bower_components/handlebars/handlebars.runtime.js',<% } else if (jsTemplate === 'jade') { %>'client/bower_components/jade/runtime.js',<% } %><% if (jsFramework === 'backbone') { %>
       '.tmp/test/templates.js',<% } %><% if (jsOption === 'requirejs') { %>
       'client/bower_components/requirejs/require.js',
-      'client/app/main.test.js',
+      'client/app/main.karma.js',
       {
         pattern: 'client/bower_components/**/*.js',
         included: false
