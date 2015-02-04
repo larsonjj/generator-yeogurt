@@ -19,10 +19,12 @@ var rootFiles = function rootFiles() {
   }
 
   this.copy('bowerrc', '.bowerrc');
+
   if (this.versionControl === 'git') {
     this.copy('gitignore', '.gitignore');
     this.copy('gitattributes', '.gitattributes');
-  } else if (this.versionControl === 'svn') {
+  }
+  else if (this.versionControl === 'svn') {
     this.copy('svnignore', '.svnignore');
   }
 

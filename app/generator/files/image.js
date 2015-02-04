@@ -5,7 +5,6 @@
 'use strict';
 
 var imageFiles = function imageFiles() {
-  // client/images
   this.copy('client/images/yeogurt-swirl.png', 'client/assets/images/yeogurt-swirl.png');
 };
 
