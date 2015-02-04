@@ -12,7 +12,7 @@ head
   meta(name='viewport', content='width=device-width, initial-scale=1.0')<% if (useServer) { %>
   meta(name='csrf-token', content=_csrf)
 
-  if (env == 'development')<% } %>
+  if (env != 'production')<% } %>
   <% if (useServer) { %>  <% } %>// build:css(client) lib/styles/global.css
   <% if (useServer) { %>  <% } %>// bower:css
   <% if (useServer) { %>  <% } %>link(rel='stylesheet', href='/bower_components/normalize.css/normalize.css')
@@ -32,7 +32,7 @@ head
 
   link(rel='stylesheet', href='/app/main.css')<% } %><% if (useServer) { %>
 
-  if (env == 'development')<% } %>
+  if (env != 'production')<% } %>
   <% if (useServer) { %>  <% } %>// build:js(client) lib/modernizr.js
   <% if (useServer) { %>  <% } %>script(src='/bower_components/modernizr/modernizr.js')
   <% if (useServer) { %>  <% } %>// endbuild<% if (useServer) { %>
@@ -60,7 +60,7 @@ body
   script (src='/bower_components/es5-shim/es5-sham.js')
   <![endif]--><% } %><% if (useServer) { %>
 
-  if (env == 'development')<% } %>
+  if (env != 'production')<% } %>
   <% if (useServer) { %>  <% } %>// build:js(client) /lib/global.js
   <% if (useServer) { %>  <% } %>// bower:js
   <% if (useServer) { %>  <% } %>script(src='/bower_components/jquery/dist/jquery.js')

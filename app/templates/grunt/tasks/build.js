@@ -21,8 +21,8 @@ var taskConfig = function(grunt) {
     'autoprefixer:server',
     'usemin',
     'htmlmin:dist',
-    'uglify',
-    'concurrent:docs',
+    'uglify',<% if (useKss || useJsdoc || useDashboard) { %>
+    'concurrent:docs',<% } %>
     'clean:tmp'
   ]);
 };

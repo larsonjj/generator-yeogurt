@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/><% if (useServer) { %>
     <meta name="csrf-token" content="{{_csrf}}" />
 
-    {% if env == 'development' %}<% } %>
+    {% if env != 'production' %}<% } %>
     <!-- build:css(client) lib/styles/global.css -->
       <!-- bower:css -->
     <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css" />
@@ -33,7 +33,7 @@
 
     <link rel="stylesheet" href="/app/main.css"><% } %><% if (useServer) { %>
 
-    {% if env == 'development' %}<% } %>
+    {% if env != 'production' %}<% } %>
     <!-- build:js(client) lib/modernizr.js -->
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild --><% if (useServer) { %>
@@ -65,7 +65,7 @@
     <![endif]-->
     <!-- endbuild --><% } %><% if (useServer) { %>
 
-    {% if env == 'development' %}<% } %>
+    {% if env != 'production' %}<% } %>
     <!-- build:js(client) lib/global.js -->
       <!-- bower:js -->
       <script src="/bower_components/jquery/dist/jquery.js"></script>
