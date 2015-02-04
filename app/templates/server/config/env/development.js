@@ -1,11 +1,8 @@
-/**
- * Development Configuration
- */
+// Development specific configuration
 'use strict';
 
-// Development specific configuration
-var devConfig = {
+var config = {
   logLevel: 'dev'
 };
 
-module.exports = devConfig;
+module.exports = config;

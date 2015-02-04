@@ -53,16 +53,16 @@ var taskConfig = function(grunt) {
       },
       src: [<% if (singlePageApplication) { %>
         '<%%= yeogurt.client %>/index.html'<% } else if (useServer) { %><% if (htmlOption === 'jade') { %>
-        '<%%= yeogurt.server %>/templates/layouts/base.jade'<% } else if (htmlOption === 'swig') { %>
-        '<%%= yeogurt.server %>/templates/layouts/base.swig'<% } %><% } else { %><% if (htmlOption === 'jade') { %>
-        '<%%= yeogurt.client %>/templates/layouts/base.jade'<% } else if (htmlOption === 'swig') { %>
-        '<%%= yeogurt.client %>/templates/layouts/base.swig'<% } %><% } %>
+        '<%%= yeogurt.server %>/app/layout/base.jade'<% } else if (htmlOption === 'swig') { %>
+        '<%%= yeogurt.server %>/app/layout/base.swig'<% } %><% } else { %><% if (htmlOption === 'jade') { %>
+        '<%%= yeogurt.client %>/app/layout/base.jade'<% } else if (htmlOption === 'swig') { %>
+        '<%%= yeogurt.client %>/app/layout/base.swig'<% } %><% } %>
       ]
-    }<% if (cssOption !== 'none') { %>,
+    }<% if (cssOption !== 'css') { %>,
     styles: {<% if (cssOption === 'sass') { %>
-      src: ['<%%= yeogurt.client %>/styles/**/*.{scss,sass}'],<% } %><% if (cssOption === 'less') { %>
-      src: ['<%%= yeogurt.client %>/styles/**/*.less'],<% } %><% if (cssOption === 'stylus') { %>
-      src: ['<%%= yeogurt.client %>/styles/**/*.styl'],<% } %>
+      src: ['<%%= yeogurt.client %>/app/**/*.{scss,sass}'],<% } %><% if (cssOption === 'less') { %>
+      src: ['<%%= yeogurt.client %>/app/**/*.less'],<% } %><% if (cssOption === 'stylus') { %>
+      src: ['<%%= yeogurt.client %>/app/**/*.styl'],<% } %>
       ignorePath: /client/g,
     }<% } %>
   });

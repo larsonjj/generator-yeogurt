@@ -21,15 +21,15 @@ var taskConfig = function(grunt) {
     server: {
       files: {
         '<%%= yeogurt.tmp %>/docs/styleguide': [<% if (cssOption !== 'css') { %>
-          '<%%= yeogurt.tmp %>/styles/**/*.css'<% } else { %>
-          '<%%= yeogurt.client %>/styles/**/*.css'<% } %>
+          '<%%= yeogurt.tmp %>/**/*.css'<% } else { %>
+          '<%%= yeogurt.client %>/{app,modules,lib}/**/*.css'<% } %>
         ]
       }
     },
     dist: {
       files: {
         '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>docs/styleguide': [
-          '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>styles/**/*.css'
+          '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>app/**/*.css'
         ]
       }
     }

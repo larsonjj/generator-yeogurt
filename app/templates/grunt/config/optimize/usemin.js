@@ -6,7 +6,7 @@
 var taskConfig = function(grunt) {
 
   grunt.config.set('useminPrepare', {
-    html: <% if (!useServer) { %>'<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>index.html'<% } else { %><% if (htmlOption === 'jade' || htmlOption === 'swig') { %>'<%%= yeogurt.tmp %>/index.html'<% } else { %>'<%%= yeogurt.client %>/index.html'<% } %><% } %>,
+    html: <% if (!useServer) { %>'<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>/index.html'<% } else { %><% if (htmlOption === 'jade' || htmlOption === 'swig') { %>'<%%= yeogurt.tmp %>/index.html'<% } else { %>'<%%= yeogurt.client %>/index.html'<% } %><% } %>,
     options: {
       root: '<%%= yeogurt.client %>',
       dest: '<%%= yeogurt.dist %>/<% if (useServer) { %>client<% } %>'

@@ -16,11 +16,12 @@ var taskConfig = function(grunt) {
         }
       },
       expand: true,
-      cwd: '<%%= yeogurt.client %>/templates/',
+      cwd: '<%%= yeogurt.client %>/{app,modules,lib}/index',
       dest: '<%%= yeogurt.tmp %>/',
       src: [
-        '**/*.jade',
-        '!**/layouts/**'
+        '**/index.jade',
+        '../**/!(index).jade',
+        '!../**/layout/**'
       ],
       ext: '.html'
     },<% } %><% if (jsTemplate !== 'jade') { %>
@@ -35,12 +36,13 @@ var taskConfig = function(grunt) {
         }
       },
       expand: true,
-      cwd: '<% if (useServer) { %><%%= yeogurt.server %><% } %><% if (!useServer) { %><%%= yeogurt.client %><% } %>/templates/',<% if (!useServer) { %>
+      cwd: '<% if (useServer) { %><%%= yeogurt.server %><% } %><% if (!useServer) { %><%%= yeogurt.client %><% } %>/app/index/',<% if (!useServer) { %>
       dest: '<%%= yeogurt.dist %>/',<% } %><% if (useServer) { %>
       dest: '<%%= yeogurt.tmp %>/',<% } %>
       src: [
-        '**/*.jade',
-        '!**/layouts/**'
+        '**/index.jade',
+        '../**/!(index).jade',
+        '!../**/layout/**'
       ],
       ext: '.html'
     },<% } %><% if (jsTemplate === 'jade') { %>
@@ -53,7 +55,7 @@ var taskConfig = function(grunt) {
         }
       },
       files: {
-        '<%%= yeogurt.tmp %>/templates/templates.js': ['<%%= yeogurt.client %>/templates/**/*.jade']
+        '<%%= yeogurt.tmp %>/app/templates.js': ['<%%= yeogurt.client %>/{app,modules,lib}/**/*.jade']
       }
     },
     dist: {
@@ -65,7 +67,7 @@ var taskConfig = function(grunt) {
         }
       },
       files: {
-        '<%%= yeogurt.tmp %>/templates/templates.js': ['<%%= yeogurt.client %>/templates/**/*.jade']
+        '<%%= yeogurt.tmp %>/app/templates.js': ['<%%= yeogurt.client %>/{app,modules,lib}/**/*.jade']
       }
     }<% } %><% if (jsFramework === 'backbone') { %>,
     test: {
@@ -77,7 +79,7 @@ var taskConfig = function(grunt) {
         }
       },
       files: {
-        'test/scripts/templates.js': ['<%%= yeogurt.client %>/templates/**/*.jade']
+        '<%%= yeogurt.tmp %>/test/templates.js': ['<%%= yeogurt.client %>/{app,modules,lib}/**/*.jade']
       }
     }<% } %>
   });

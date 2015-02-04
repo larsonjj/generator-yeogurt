@@ -23,9 +23,9 @@ describe('Yeogurt generator using Documentation', function() {
     it('Creates expected files', function(done) {
       var expected = [
         'client/docs',
-        'client/docs/api',
-        'client/docs/api/theme/static/scripts/less.js',
-        'client/docs/api/theme/static/scripts/jquery.js'
+        'client/docs/jsdoc',
+        'client/docs/jsdoc/theme/static/scripts/less.js',
+        'client/docs/jsdoc/theme/static/scripts/jquery.js'
       ];
 
       helpers.mockPrompt(this.app, {

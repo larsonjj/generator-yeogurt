@@ -16,7 +16,7 @@ describe('Index Page', function() {
     page = require('./index.po');
   });
 
-  it('should include jumbotron with correct data', function() {
+  it('should include welcome message', function() {
 <% if (testFramework === 'mocha') { %>
     expect(page.h1El.getText()).to.eventually.equal('Welcome to Yeogurt!');
     expect(page.imgEl.getAttribute('src')).to.eventually.match(/\/images\/yeogurt\-swirl\.png/);

@@ -38,7 +38,8 @@
     "kss": "~1.3.0",<% } %>
     "grunt": "~0.4.2",<% if (useServer) { %>
     "grunt-open": "~0.2.0",<% if (useServerTesting) { %>
-    "grunt-mocha-test": "~0.12.7",<% } %><% } else { %>
+    "grunt-mocha-test": "~0.12.7",
+    "supertest": "~0.15.0",<% } %><% } else { %>
     "grunt-contrib-connect": "~0.9.0",<% } %>
     "grunt-contrib-watch": "~0.6.1",
     "grunt-contrib-clean": "0.5.0",<% if (useKss) { %>
@@ -102,7 +103,7 @@
   },
   "scripts": {
     "clean": "rimraf node_modules client/bower_components .tmp dist"<% if (useServer) { %>,
-    "start": "NODE_ENV=production node server.js"<% } %><% if (useE2e) { %>,
+    "start": "NODE_ENV=production node server/server.js"<% } %><% if (useE2e) { %>,
     "update-webdriver": "node node_modules/protractor/bin/webdriver-manager update",
     "postinstall": "npm run update-webdriver"<% } %>
   },

@@ -1,5 +1,3 @@
-// Node Server Configuration
-//
 'use strict';
 
 var express = require('express');<% if (dbOption === 'mongodb') { %>
@@ -12,13 +10,13 @@ require('colors');
 var app = express();<% if (dbOption === 'sql') { %>
 
 // Database configuration
-var db = require('./server/config/database');<% } else if (dbOption === 'mongodb') { %>
+var db = require('./config/database');<% } else if (dbOption === 'mongodb') { %>
 
 // Database configuration
-var db = require('./server/config/database')(app);<% } %>
+var db = require('./config/database')(app);<% } %>
 
 // Express configuration
-require('./server/config/express')(app, express<% if (dbOption !== 'none') { %>, db<% } %>);<% if (dbOption === 'sql') { %>
+require('./config/express')(app, express<% if (dbOption && dbOption !== 'none') { %>, db<% } %>);<% if (dbOption === 'sql') { %>
 
 // Verify database connection and sync tables
 db.sequelize.authenticate().complete(function(err) {
@@ -46,7 +44,11 @@ mongoose.connection.on('error', function() {
 
 // Start Express server.
 app.listen(app.get('port'), function() {
-  console.log('✔ Express server listening on port '.green + '%d'.blue + ' in '.green + '%s'.blue + ' mode'.green, app.get('port'), app.get('env'));
+  console.log(
+    '✔ Express server listening on port '.green + '%d'.blue + ' in '.green + '%s'.blue + ' mode'.green,
+    app.get('port'),
+    app.get('env')
+  );
 });
 
 module.exports = app;

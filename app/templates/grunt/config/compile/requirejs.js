@@ -8,9 +8,9 @@ var taskConfig = function(grunt) {
     dist: {
       options: {
         name: 'main',
-        baseUrl: '<%%= yeogurt.client %>/scripts/',
-        mainConfigFile: '<%%= yeogurt.client %>/scripts/main.js',
-        out: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>scripts/main.js',
+        baseUrl: '<%%= yeogurt.client %>/app/',
+        mainConfigFile: '<%%= yeogurt.client %>/app/main.js',
+        out: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>app/main.js',
         optimize: 'uglify2',
         generateSourceMaps: true,
         preserveLicenseComments: false

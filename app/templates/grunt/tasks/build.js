@@ -11,7 +11,8 @@ var taskConfig = function(grunt) {
     'injector',
     'wiredep',
     'copy:dist',
-    'concurrent',
+    'concurrent:images',
+    'concurrent:compile',
     'useminPrepare',<% if (jsFramework === 'angular') { %>
     'ngtemplates:main',<% } %>
     'concat:generated',<% if (jsFramework === 'angular') { %>
@@ -20,7 +21,8 @@ var taskConfig = function(grunt) {
     'autoprefixer:server',
     'usemin',
     'htmlmin:dist',
-    'uglify',
+    'uglify',<% if (useKss || useJsdoc || useDashboard) { %>
+    'concurrent:docs',<% } %>
     'clean:tmp'
   ]);
 };

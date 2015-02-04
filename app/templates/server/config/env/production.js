@@ -1,11 +1,8 @@
-/**
- * Production Configuration
- */
+// Production specific configuration
 'use strict';
 
-// Production specific configuration
-var prodConfig = {
+var config = {
   logLevel: 'short'
 };
 
-module.exports = prodConfig;
+module.exports = config;

@@ -11,6 +11,8 @@ var path = require('path');
 var methodOverride = require('method-override');
 var errorHandler = require('errorhandler');
 var session = require('express-session');
+var errors = require('../modules/error');
+var routes = require('../app/routes');
 
 // Configuration files
 var secrets = require('./secrets');
@@ -39,7 +41,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
   app.set('view engine', '<%= htmlOption === 'jade' ? 'jade' : '' %><%= htmlOption === 'swig' ? 'swig' : '' %>');<% } %>
 
   // Setup path where all server templates will reside
-  app.set('views', path.join(settings.root, 'server/templates'));
+  app.set('views', path.join(settings.root, 'server'));
 
   // Enable GZip compression for all static assets
   app.use(compress());
@@ -58,11 +60,12 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
 
   // Returns middleware that parses both json and urlencoded.
   app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
 
   // Returns middleware that parses cookies
   app.use(cookieParser());
-
 
   // Enable HTTP Method Overrides (POST, GET, DELETE, PUT, etc)
   // Override HTML forms with method="POST" using ?_method=PUT at the end of action URLs
@@ -95,43 +98,11 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
   // Setup log level for server console output
   app.use(logger(settings.server.logLevel));
 
-  if (env === 'development') {
-
-    // Disable caching for easier testing
-    app.use(function noCache(req, res, next) {
-      res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
-      res.header('Pragma', 'no-cache');
-      res.header('Expires', 0);
-      next();
-    });
-  }
-
   // Load routes
-  require(path.join(settings.root,'./server/routes'))(app);
+  routes(app);
 
   // 404 Error Handler
-  app.use(function(req, res) {
-    res.status(404);
-    res.format({
-      html: function() {
-        res.render('error', {
-          status: 404,
-          message: 'Page not found',
-          error: {}
-        });
-      },
-      json: function() {
-        res.json({
-          status: 404,
-          message: 'Page not found',
-          error: {}
-        });
-      },
-      text: function() {
-        res.send(404 + ': ' + 'Page not found');
-      }
-    });
-  });
+  app.use(errors('404'));
 
   if (env === 'development') {
     // Development Error Handler.
@@ -140,34 +111,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
   }
 
   // Production Error Handler.
-  app.use(function(err, req, res, next) {
-
-    var error = err.error || err;
-    var message = err.message;
-    var status = err.status || 500;
-
-    res.status(status);
-    res.format({
-      html: function() {
-        res.render('error', {
-          status: status,
-          message: message,
-          error: {}
-        });
-      },
-      json: function() {
-        res.json({
-          status: status,
-          message: message,
-          error: {}
-        });
-      },
-      text: function() {
-        res.send(status + ': ' + message);
-      }
-    });
-  });
-
+  app.use(errors('500'));
 
 };
 

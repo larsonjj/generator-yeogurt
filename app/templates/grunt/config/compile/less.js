@@ -10,11 +10,11 @@ var taskConfig = function(grunt) {
         paths: [
           '<%%= yeogurt.client %>/bower_components',
           '<%%= yeogurt.client %>/styles'<% if (jsFramework === 'angular') { %>,
-          '<%%= yeogurt.client %>/app/'<% } %>
+          '<%%= yeogurt.client %>/{app,modules,lib}/'<% } %>
         ],
         sourceMap: true,
-        sourceMapFilename: '<%%= yeogurt.tmp %>/styles/main.css.map',
-        sourceMapBasepath: '<%%= yeogurt.tmp %>/styles/',
+        sourceMapFilename: '<%%= yeogurt.tmp %>/app/main.css.map',
+        sourceMapBasepath: '<%%= yeogurt.tmp %>/app/',
         sourceMapRootpath: '',
         dumpLineNumbers: 'comments',
         outputSourceFiles: true
@@ -23,7 +23,7 @@ var taskConfig = function(grunt) {
       cwd: '<%%= yeogurt.client %>/',
       dest: '<%%= yeogurt.tmp %>/',
       src: [
-        'styles/main.less'
+        'app/main.less'
       ],
       ext: '.css'
     },
@@ -32,11 +32,11 @@ var taskConfig = function(grunt) {
         paths: [
           '<%%= yeogurt.client %>/bower_components',
           '<%%= yeogurt.client %>/styles'<% if (jsFramework === 'angular') { %>,
-          '<%%= yeogurt.client %>/app/'<% } %>
+          '<%%= yeogurt.client %>/{app,modules,lib}/'<% } %>
         ],
         sourceMap: true,
-        sourceMapFilename: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>styles/main.css.map',
-        sourceMapBasepath: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>styles/',
+        sourceMapFilename: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>app/main.css.map',
+        sourceMapBasepath: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>app/',
         sourceMapRootpath: './',
         compress: true,
         outputSourceFiles: true
@@ -45,7 +45,7 @@ var taskConfig = function(grunt) {
       cwd: '<%%= yeogurt.client %>/',
       dest: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>',
       src: [
-        'styles/main.less'
+        'app/main.less'
       ],
       ext: '.css'
     }

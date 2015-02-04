@@ -7,59 +7,74 @@
 var testingFiles = function testingFiles() {
   if (this.useTesting) {
     if (this.jsOption === 'requirejs') {
-      this.copy('test/test-main.js', 'test/test-main.js');
+      this.copy('test/karma/requirejs/main.karma.js', 'client/app/main.karma.js');
     }
-    this.template('karma.conf.js', 'karma.conf.js');
+    this.template('test/karma/karma.conf.js', 'karma.conf.js');
 
     if (this.jsFramework === 'backbone') {
       if (this.jsOption === 'requirejs') {
-        this.template('test/spec/backbone/requirejs/routes.spec.js', 'test/spec/routes.spec.js');
-        this.template('test/spec/backbone/requirejs/views/index.spec.js', 'test/spec/views/index.spec.js');
+        this.template('client/app/backbone/requirejs/routes/routes.spec.js', 'client/app/routes.spec.js');
+        this.template('client/app/backbone/requirejs/index/index.spec.js', 'client/app/index/index.spec.js');
       }
 
       if (this.jsOption === 'browserify') {
-        this.template('test/spec/backbone/browserify/routes.spec.js', 'test/spec/routes.spec.js');
-        this.template('test/spec/backbone/browserify/views/index.spec.js', 'test/spec/views/index.spec.js');
+        this.template('client/app/backbone/browserify/routes/routes.spec.js', 'client/app/routes.spec.js');
+        this.template('client/app/backbone/browserify/index/index.spec.js', 'client/app/index/index.spec.js');
       }
 
       if (this.jsOption === 'none') {
-        this.template('test/spec/backbone/js/routes.spec.js', 'test/spec/routes.spec.js');
-        this.template('test/spec/backbone/js/views/index.spec.js', 'test/spec/views/index.spec.js');
+        this.template('client/app/backbone/js/routes/routes.spec.js', 'client/app/routes.spec.js');
+        this.template('client/app/backbone/js/index/index.spec.js', 'client/app/index/index.spec.js');
       }
     }
     else if (this.jsFramework === 'react') {
-      this.template('test/helpers/phantomjs-shims.js', 'test/helpers/phantomjs-shims.js');
+      this.template('test/karma/phantomjs-shims.js', 'client/lib/test/phantomjs-shims.js');
 
       // Router
-      this.template('test/spec/react/routes.spec.js', 'test/spec/routes.spec.js');
+      this.template('client/app/react/routes/routes.spec.js', 'client/app/routes.spec.js');
 
       // Components
-      this.template('test/spec/react/components/index.spec.js', 'test/spec/components/index.spec.js');
+      this.template('client/app/react/index/index.spec.js', 'client/app/index/index.spec.js');
+
+      if (this.useServer) {
+        this.template('client/app/react/modules/link/link.spec.js', 'client/modules/link/link.spec.js');
+      }
 
       // Dispatchers
-      this.template('test/spec/react/dispatchers/default.spec.js', 'test/spec/dispatchers/default.spec.js');
+      this.template(
+        'client/app/react/lib/core/dispatcher.spec.js',
+        'client/lib/core/dispatcher.spec.js'
+      );
 
       // Stores
-      this.template('test/spec/react/stores/page.spec.js', 'test/spec/stores/page.spec.js');
-      this.template('test/spec/react/stores/default.spec.js', 'test/spec/stores/default.spec.js');
+      this.template('client/app/react/modules/page/page.spec.js', 'client/modules/page/page.spec.js');
+      this.template('client/app/react/lib/core/store.spec.js', 'client/lib/core/store.spec.js');
 
       // Actions
-      this.template('test/spec/react/actions/page.spec.js', 'test/spec/actions/page.spec.js');
-      this.template('test/spec/react/actions/routes.spec.js', 'test/spec/actions/routes.spec.js');
+      this.template(
+        'client/app/react/modules/route/route.spec.js',
+        'client/modules/route/route.spec.js'
+      );
     }
     else if (this.jsFramework === 'angular') {
-      this.template('client/scripts/angular/app/index/index.spec.js', 'client/app/index/index.spec.js');
+      this.template('client/app/angular/index/index.spec.js', 'client/app/index/index.spec.js');
     }
     else {
-      this.template('test/spec/main.spec.js', 'test/spec/main.spec.js');
+      if (this.jsOption === 'none') {
+        this.template('client/app/noframework/js/main.spec.js', 'client/app/main.spec.js');
+      }
     }
   }
 
   if (this.useE2e) {
-    this.template('protractor.conf.js', 'protractor.conf.js');
+    this.template('test/e2e/protractor.conf.js', 'protractor.conf.js');
 
     this.template('test/e2e/index/index.po.js', 'e2e/index/index.po.js');
     this.template('test/e2e/index/index.spec.js', 'e2e/index/index.spec.js');
+  }
+
+  if (this.useServerTesting) {
+    this.template('server/app/index/index.spec.js', 'server/app/index/index.spec.js');
   }
 };
 
