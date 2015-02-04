@@ -1,8 +1,8 @@
 // Test specific configuration
 'use strict';
 
-var testConfig = {
+var config = {
   logLevel: 'common'
 };
 
-module.exports = testConfig;
+module.exports = config;

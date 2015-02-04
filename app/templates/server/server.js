@@ -1,5 +1,3 @@
-// Node Server Configuration
-//
 'use strict';
 
 var express = require('express');<% if (dbOption === 'mongodb') { %>

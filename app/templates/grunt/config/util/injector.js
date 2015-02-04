@@ -92,7 +92,7 @@ var taskConfig = function(grunt) {
         endtag: '// [endinjector]'
       },
       files: {
-        '<%%= yeogurt.client %>/{app,modules,lib}/main.less': [
+	'<%%= yeogurt.client %>/app/main.less': [
           '<%%= yeogurt.client %>/{app,modules,lib}/**/*.less',
           '!<%%= yeogurt.client %>/{app,modules,lib}/main.less'
         ]
@@ -111,11 +111,11 @@ var taskConfig = function(grunt) {
         endtag: '// [endinjector]'
       },
       files: {<% if (sassSyntax === 'scss') { %>
-        '<%%= yeogurt.client %>/{app,modules,lib}/main.scss': [
+	'<%%= yeogurt.client %>/app/main.scss': [
           '<%%= yeogurt.client %>/{app,modules,lib}/**/*.scss',
           '!<%%= yeogurt.client %>/{app,modules,lib}/main.scss'
         ]<% } else { %>
-        '<%%= yeogurt.client %>/{app,modules,lib}/main.sass': [
+	'<%%= yeogurt.client %>/app/main.sass': [
           '<%%= yeogurt.client %>/{app,modules,lib}/**/*.sass',
           '!<%%= yeogurt.client %>/{app,modules,lib}/main.sass'
         ]<% } %>
@@ -132,7 +132,7 @@ var taskConfig = function(grunt) {
         endtag: '// [endinjector]'
       },
       files: {
-        '<%%= yeogurt.client %>/{app,modules,lib}/main.styl': [
+	'<%%= yeogurt.client %>/app/main.styl': [
           '<%%= yeogurt.client %>/{app,modules,lib}/**/*.styl',
           '!<%%= yeogurt.client %>/{app,modules,lib}/main.styl'<% if (jsFramework === 'angular') { %>,
           '<%%= yeogurt.client %>/{app,modules,lib}/**/*.styl'<% } %>

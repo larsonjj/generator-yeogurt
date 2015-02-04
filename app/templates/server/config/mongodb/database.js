@@ -4,9 +4,6 @@
 var mongoose = require('mongoose');
 var settings = require('./env/default');
 
-// Add coloring for console output
-require('colors');
-
 var databaseConfig = function(app) {
 
   // Get current server environment
