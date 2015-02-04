@@ -5,6 +5,8 @@ require.config({
   paths: {}
 });
 
+// Main javascript entry point
+// Should handle bootstrapping/starting application
 define('init', function(require) {
 
   var router = require('./routes');

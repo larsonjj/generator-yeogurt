@@ -60,7 +60,9 @@ var testingFiles = function testingFiles() {
       this.template('client/app/angular/index/index.spec.js', 'client/app/index/index.spec.js');
     }
     else {
-      this.template('client/app/noframework/main.spec.js', 'client/app/main.spec.js');
+      if (this.jsOption === 'none') {
+        this.template('client/app/noframework/js/main.spec.js', 'client/app/main.spec.js');
+      }
     }
   }
 
