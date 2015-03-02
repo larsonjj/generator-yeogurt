@@ -48,6 +48,7 @@ ServiceGenerator.prototype.ask = function ask() {
     this.testFile = path.join(
         answers.serviceFile,
         this._.slugify(this.name.toLowerCase()),
+        '__tests__',
         this._.slugify(this.name.toLowerCase())
       );
     done();

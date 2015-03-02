@@ -53,6 +53,7 @@ DirectiveGenerator.prototype.ask = function ask() {
     this.testFile = path.join(
         answers.directiveFile,
         this._.slugify(this.name.toLowerCase()),
+        '__tests__',
         this._.slugify(this.name.toLowerCase())
       );
     this.htmlUrl = path.join(

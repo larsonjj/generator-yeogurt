@@ -52,13 +52,14 @@ DirectiveGenerator.prototype.ask = function ask() {
       );
     this.testFile = path.join(answers.routeFile,
         this._.slugify(this.name.toLowerCase()),
+        '__tests__',
         this._.slugify(this.name.toLowerCase())
       );
     this.routeURL = answers.routeURL;
     this.htmlURL = path.join(
         answers.routeFile.replace('client', ''),
         this._.slugify(this.name.toLowerCase()),
-        this._.slugify(this.name.toLowerCase())
+        this._.slugify(this.name.toLowerCase()),
       ) + '.html';
 
     done();

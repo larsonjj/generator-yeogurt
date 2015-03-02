@@ -56,7 +56,7 @@ ModelGenerator.prototype.ask = function ask() {
     this.modelFile = path.join(answers.modelFile, this._.slugify(this.name.toLowerCase()));
 
     if (answers.testFile) {
-      this.testFile = path.join(answers.testFile, this._.slugify(this.name.toLowerCase()));
+      this.testFile = path.join(answers.testFile, '__tests__', this._.slugify(this.name.toLowerCase()));
     }
     done();
   }.bind(this));

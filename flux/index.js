@@ -54,9 +54,9 @@ FluxGenerator.prototype.ask = function ask() {
     this.storeFile = path.join(answers.fluxFile, '/stores/', this._.slugify(this.name.toLowerCase()));
 
     if (answers.testFile) {
-      this.testConstantFile = path.join(answers.testFile, '/constants/' , this._.slugify(this.name.toLowerCase()));
-      this.testActionFile = path.join(answers.testFile, '/actions/' , this._.slugify(this.name.toLowerCase()));
-      this.testStoreFile = path.join(answers.testFile, '/stores/' , this._.slugify(this.name.toLowerCase()));
+      this.testConstantFile = path.join(answers.testFile, '/constants/', '__tests__' , this._.slugify(this.name.toLowerCase()));
+      this.testActionFile = path.join(answers.testFile, '/actions/', '__tests__' , this._.slugify(this.name.toLowerCase()));
+      this.testStoreFile = path.join(answers.testFile, '/stores/', '__tests__' , this._.slugify(this.name.toLowerCase()));
     }
     done();
   }.bind(this));
