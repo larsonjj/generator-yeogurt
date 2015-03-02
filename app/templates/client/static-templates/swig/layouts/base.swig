@@ -13,7 +13,7 @@
     <meta name="csrf-token" content="{{_csrf}}" />
 
     {% if env != 'production' %}<% } %>
-    <!-- build:css(client) lib/styles/global.css -->
+    <!-- build:css(client) app/global.css -->
       <!-- bower:css -->
     <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css" />
       <!-- endbower -->
@@ -28,21 +28,21 @@
     <link rel="stylesheet" href="/app/main.css" />
     {% endif %}<% } %><% } else { %><% if (useServer) { %>
     {% else %}
-    <link rel="stylesheet" href="/lib/styles/global.css" />
+    <link rel="stylesheet" href="/app/global.css" />
     {% endif %}<% } %>
 
     <link rel="stylesheet" href="/app/main.css"><% } %><% if (useServer) { %>
 
     {% if env != 'production' %}<% } %>
-    <!-- build:js(client) lib/modernizr.js -->
+    <!-- build:js(client) app/modernizr.js -->
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild --><% if (useServer) { %>
     {% else %}
-    <script src="/lib/modernizr.js"></script>
+    <script src="/app/modernizr.js"></script>
     {% endif %}<% } %>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- build:js(client) lib/shims.js -->
+    <!-- build:js(client) app/shims.js -->
     <!--[if lt IE 9]>
     <script src="/bower_components/consolelog/consolelog.js"></script>
     <script src="/bower_components/html5shiv/dist/html5shiv-printshiv.js"></script>
@@ -58,7 +58,7 @@
     {% block content %}{% endblock %}
     {% endblock %}<% if (jsFramework === 'react') { %>
 
-    <!-- build:js(client) lib/lt-ie9.js -->
+    <!-- build:js(client) app/lt-ie9.js -->
     <!--[if lt IE 9]>
     <script src="/bower_components/es5-shim/es5-shim.js"></script>
     <script src="/bower_components/es5-shim/es5-sham.js"></script>
@@ -66,13 +66,13 @@
     <!-- endbuild --><% } %><% if (useServer) { %>
 
     {% if env != 'production' %}<% } %>
-    <!-- build:js(client) lib/global.js -->
+    <!-- build:js(client) app/global.js -->
       <!-- bower:js -->
       <script src="/bower_components/jquery/dist/jquery.js"></script>
       <!-- endbower -->
     <!-- endbuild --><% if (useServer) { %>
     {% else %}
-    <script src="/lib/global.js"></script>
+    <script src="/app/global.js"></script>
     {% endif %}<% } %><% if  (jsOption === 'requirejs') { %>
 
     <script data-main="app/main", src="bower_components/requirejs/require.js"></script><% } else if (jsOption === 'browserify') { %>

@@ -13,57 +13,40 @@ var testingFiles = function testingFiles() {
 
     if (this.jsFramework === 'backbone') {
       if (this.jsOption === 'requirejs') {
-        this.template('client/app/backbone/requirejs/routes/routes.spec.js', 'client/app/routes.spec.js');
-        this.template('client/app/backbone/requirejs/index/index.spec.js', 'client/app/index/index.spec.js');
+        this.template('client/app/backbone/requirejs/routes/__tests__/routes.spec.js', 'client/app/__tests__/routes.spec.js');
+        this.template('client/app/backbone/requirejs/index/__tests__/index.spec.js', 'client/app/index/__tests__/index.spec.js');
       }
 
       if (this.jsOption === 'browserify') {
-        this.template('client/app/backbone/browserify/routes/routes.spec.js', 'client/app/routes.spec.js');
-        this.template('client/app/backbone/browserify/index/index.spec.js', 'client/app/index/index.spec.js');
+        this.template('client/app/backbone/browserify/routes/__tests__/routes.spec.js', 'client/app/__tests__/routes.spec.js');
+        this.template('client/app/backbone/browserify/index/__tests__/index.spec.js', 'client/app/index/__tests__/index.spec.js');
       }
 
       if (this.jsOption === 'none') {
-        this.template('client/app/backbone/js/routes/routes.spec.js', 'client/app/routes.spec.js');
-        this.template('client/app/backbone/js/index/index.spec.js', 'client/app/index/index.spec.js');
+        this.template('client/app/backbone/js/routes/__tests__/routes.spec.js', 'client/app/__tests__/routes.spec.js');
+        this.template('client/app/backbone/js/index/__tests__/index.spec.js', 'client/app/index/__tests__/index.spec.js');
       }
     }
     else if (this.jsFramework === 'react') {
-      this.template('test/karma/phantomjs-shims.js', 'client/lib/test/phantomjs-shims.js');
+      this.template('test/karma/phantomjs-shims.js', 'client/app/vendor/phantomjs-shims.js');
 
       // Router
-      this.template('client/app/react/routes/routes.spec.js', 'client/app/routes.spec.js');
+      this.template('client/app/react/routes/__tests__/routes.spec.js', 'client/app/__tests__/routes.spec.js');
 
       // Components
-      this.template('client/app/react/index/index.spec.js', 'client/app/index/index.spec.js');
+      this.template('client/app/react/index/__tests__/index.spec.js', 'client/app/index/__tests__/index.spec.js');
+      this.template('client/app/react/layout/__tests__/base.spec.js', 'client/app/layout/__tests__/base.spec.js');
 
-      if (this.useServer) {
-        this.template('client/app/react/modules/link/link.spec.js', 'client/modules/link/link.spec.js');
-      }
+      this.template('client/app/react/main/__tests__/main.spec.js', 'client/app/__tests__/main.spec.js');
 
-      // Dispatchers
-      this.template(
-        'client/app/react/lib/core/dispatcher.spec.js',
-        'client/lib/core/dispatcher.spec.js'
-      );
+      this.template('client/app/react/modules/link/__tests__/link.spec.js', 'client/app/modules/__tests__/link.spec.js');
 
       // Stores
-      this.template('client/app/react/modules/page/page.spec.js', 'client/modules/page/page.spec.js');
-      this.template('client/app/react/lib/core/store.spec.js', 'client/lib/core/store.spec.js');
+      this.template('client/app/react/lib/store/__tests__/store.spec.js', 'client/app/lib/__tests__/store.spec.js');
 
-      // Actions
-      this.template(
-        'client/app/react/modules/route/route.spec.js',
-        'client/modules/route/route.spec.js'
-      );
     }
     else if (this.jsFramework === 'angular') {
-      this.template('client/app/angular/index/index.spec.js', 'client/app/index/index.spec.js');
-    }
-    // No js framework
-    else {
-      if (this.jsOption === 'none') {
-        this.template('client/app/noframework/js/main.spec.js', 'client/app/main.spec.js');
-      }
+      this.template('client/app/angular/index/__tests__/index.spec.js', 'client/app/index/__tests__/index.spec.js');
     }
   }
 
@@ -75,7 +58,7 @@ var testingFiles = function testingFiles() {
   }
 
   if (this.useServerTesting) {
-    this.template('server/app/index/index.spec.js', 'server/app/index/index.spec.js');
+    this.template('server/app/index/__tests__/index.spec.js', 'server/app/index/__tests__/index.spec.js');
   }
 };
 

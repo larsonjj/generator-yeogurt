@@ -1,5 +1,3 @@
-/*jshint newcap:false */
-
 'use strict';
 
 var React = require('react');

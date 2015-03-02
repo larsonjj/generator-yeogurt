@@ -116,7 +116,7 @@ var taskFiles = function taskFiles() {
   // Test
   // ========
 
-  this.template('grunt/config/test/jshint.js', 'grunt/config/test/jshint.js');
+  this.template('grunt/config/test/eslint.js', 'grunt/config/test/eslint.js');
 
   if (this.useServerTesting) {
     this.template('grunt/config/test/mochaTest.js', 'grunt/config/test/mochaTest.js');

@@ -333,9 +333,9 @@ describe('Flux sub-generator', function() {
       // Filename
       var flux = 'myflux';
       var fileContentToTest = [
-        ['test/spec/flux/stores/' + flux + '.spec.js', /jshint expr/i],
-        ['test/spec/flux/actions/' + flux + '.spec.js', /jshint expr/i],
-        ['test/spec/flux/constants/' + flux + '.spec.js', /jshint expr/i],
+        ['test/spec/flux/stores/' + flux + '.spec.js', /to\.be/i],
+        ['test/spec/flux/actions/' + flux + '.spec.js', /to\.be/i],
+        ['test/spec/flux/constants/' + flux + '.spec.js', /to\.be/i],
       ];
 
       helpers.mockPrompt(this.app, {

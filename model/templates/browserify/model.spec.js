@@ -1,5 +1,3 @@
-<% if (testFramework === 'mocha') { %>/*jshint expr: true*/<% } %>
-
 'use strict';
 
 var <%= _.classify(name) %> = require('<%= rootDir %><%= modelFile %>.js');

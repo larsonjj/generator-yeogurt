@@ -13,7 +13,7 @@ head
   meta(name='csrf-token', content=_csrf)
 
   if (env != 'production')<% } %>
-  <% if (useServer) { %>  <% } %>// build:css(client) lib/styles/global.css
+  <% if (useServer) { %>  <% } %>// build:css(client) app/global.css
   <% if (useServer) { %>  <% } %>// bower:css
   <% if (useServer) { %>  <% } %>link(rel='stylesheet', href='/bower_components/normalize.css/normalize.css')
   <% if (useServer) { %>  <% } %>// endbower
@@ -25,22 +25,22 @@ head
   <% if (useServer) { %>  <% } %>link(rel='stylesheet', href='/app/main.css')
   <% if (useServer) { %>  <% } %>// endbuild<% if (useServer) { %>
   else
-    link(rel='stylesheet', href='/lib/styles/global.css')
+    link(rel='stylesheet', href='/app/global.css')
     link(rel='stylesheet', href='/app/main.css')<% } %><% } else { %><% if (useServer) { %>
   else
-    link(rel='stylesheet', href='/lib/styles/global.css')<% } %>
+    link(rel='stylesheet', href='/app/global.css')<% } %>
 
   link(rel='stylesheet', href='/app/main.css')<% } %><% if (useServer) { %>
 
   if (env != 'production')<% } %>
-  <% if (useServer) { %>  <% } %>// build:js(client) lib/modernizr.js
+  <% if (useServer) { %>  <% } %>// build:js(client) app/modernizr.js
   <% if (useServer) { %>  <% } %>script(src='/bower_components/modernizr/modernizr.js')
   <% if (useServer) { %>  <% } %>// endbuild<% if (useServer) { %>
   else
-    script(src='/lib/modernizr.js')<% } %>
+    script(src='/app/modernizr.js')<% } %>
 
   // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
-  // build:js(client) lib/shims.js
+  // build:js(client) app/shims.js
   <!--[if lt IE 9]>
   script(src='/bower_components/consolelog/consolelog.js')
   script(src='/bower_components/html5shiv/dist/html5shiv-printshiv.js')
@@ -54,20 +54,20 @@ body
   block layout
     block content<% if (jsFramework === 'react') { %>
 
-  // build:js(client) lib/lt-ie9.js
+  // build:js(client) app/lt-ie9.js
   <!--[if lt IE 9]>
   script(src='/bower_components/es5-shim/es5-shim.js')
   script (src='/bower_components/es5-shim/es5-sham.js')
   <![endif]--><% } %><% if (useServer) { %>
 
   if (env != 'production')<% } %>
-  <% if (useServer) { %>  <% } %>// build:js(client) /lib/global.js
+  <% if (useServer) { %>  <% } %>// build:js(client) /app/global.js
   <% if (useServer) { %>  <% } %>// bower:js
   <% if (useServer) { %>  <% } %>script(src='/bower_components/jquery/dist/jquery.js')
   <% if (useServer) { %>  <% } %>// endbower
   <% if (useServer) { %>  <% } %>// endbuild<% if (useServer) { %>
   else
-    script(src='/lib/global.js')<% } %><% if (jsOption === 'requirejs') { %>
+    script(src='/app/global.js')<% } %><% if (jsOption === 'requirejs') { %>
 
   script(data-main='/app/main', src='/bower_components/requirejs/require.js')<% } else if (jsOption === 'browserify') { %>
 

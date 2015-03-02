@@ -271,7 +271,6 @@ describe('React sub-generator', function() {
       ];
       var fileContentToTest = [
         ['test/spec/components/' + react + '.spec.js', /React\.createFactory/i],
-        ['client/scripts/components/' + react + '.jsx', /jshint ignore/i]
       ];
 
       helpers.mockPrompt(this.app, {
@@ -295,9 +294,6 @@ describe('React sub-generator', function() {
       var filesToTest = [
         'client/scripts/components/' + react + '.jsx'
       ];
-      var fileContentToTest = [
-        ['client/scripts/components/' + react + '.jsx', /jshint ignore/i]
-      ];
       var filesNotCreated = [
         'test/spec/components/' + react + '.spec.js',
       ];
@@ -314,7 +310,6 @@ describe('React sub-generator', function() {
         }, function() {
           assert.file(filesToTest);
           assert.noFile(filesNotCreated);
-          assert.fileContent(fileContentToTest);
           done();
         });
       });
@@ -323,7 +318,7 @@ describe('React sub-generator', function() {
       // Filename
       var react = 'myreact';
       var fileContentToTest = [
-        ['test/spec/components/' + react + '.spec.js', /jshint expr/i],
+        ['test/spec/components/' + react + '.spec.js', /to\.be/i],
       ];
 
       helpers.mockPrompt(this.app, {

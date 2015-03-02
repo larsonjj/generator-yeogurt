@@ -65,15 +65,15 @@ module.exports = function(grunt) {
   var compileConfig = loadTasks('./grunt/config/compile');<% if (useKss || useDashboard || useJsdoc) { %>
   var docConfig = loadTasks('./grunt/config/docs');<% } %>
   var optimizeConfig = loadTasks('./grunt/config/optimize');
-  var serverConfig = loadTasks('./grunt/config/server');<% if (useTesting || useServerTesting || useE2e) { %>
-  var testConfig = loadTasks('./grunt/config/test');<% } %>
+  var serverConfig = loadTasks('./grunt/config/server');
+  var testConfig = loadTasks('./grunt/config/test');
   var registerDefinitions = loadTasks('./grunt/tasks');
 
   // (ensure that a default task exists)
   if (!registerDefinitions.default) {
     registerDefinitions.
-    default = function(grunt) {
-      grunt.registerTask('default', []);
+    default = function(task) {
+      task.registerTask('default', []);
     };
   }
 
@@ -82,8 +82,8 @@ module.exports = function(grunt) {
   invokeConfigFn(compileConfig);<% if (useKss || useDashboard || useJsdoc) { %>
   invokeConfigFn(docConfig);<% } %>
   invokeConfigFn(optimizeConfig);
-  invokeConfigFn(serverConfig);<% if (useTesting || useServerTesting || useE2e) { %>
-  invokeConfigFn(testConfig);<% } %>
+  invokeConfigFn(serverConfig);
+  invokeConfigFn(testConfig);
   invokeConfigFn(registerDefinitions);
 
 };

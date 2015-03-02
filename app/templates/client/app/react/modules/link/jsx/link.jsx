@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-var routeActions = require('../../modules/route/route.action');
+var mainActions = require('../main.actions');
 
 // Link Component
 // Handles pushState route changes within app
@@ -14,15 +14,13 @@ var LinkComponent = React.createClass({
 
   render: function() {
     return (
-      /* jshint ignore:start */
       <a onClick={this.handleClick} href={this.props.url} {...this.props}>{this.props.children}</a>
-      /* jshint ignore:end */
     );
   },
 
   handleClick: function(e) {
     e.preventDefault();
-    routeActions.setRoute(this.props.url);
+    mainActions.setRoute(this.props.url);
   }
 
 });

@@ -53,40 +53,23 @@ var scriptFiles = function scriptFiles() {
   }
   else if (this.jsFramework === 'react') {
     this.template('client/app/react/routes/routes.js', 'client/app/routes.js');
-    this.template('client/app/react/main/main.js', 'client/app/main.js');
 
-    // Constants
-    this.template('client/app/react/modules/page/page.constant.js', 'client/modules/page/page.constant.js');
-    this.template('client/app/react/modules/route/route.constant.js', 'client/modules/route/route.constant.js');
-    this.template(
-      'client/app/react/lib/constants/default.js',
-      'client/lib/constants/default.js'
-    );
-    this.template(
-      'client/app/react/lib/constants/payload-sources.js',
-      'client/lib/constants/payload-sources.js'
-    );
+    this.template('client/app/react/main/main.js', 'client/app/main.js');
+    this.template('client/app/react/main/main.actions.js', 'client/app/main.actions.js');
+    this.template('client/app/react/main/main.constants.js', 'client/app/main.constants.js');
+    this.template('client/app/react/main/main.store.js', 'client/app/main.store.js');
+    this.template('client/app/react/main/main.dispatcher.js', 'client/app/main.dispatcher.js');
 
     // Stores
-    this.template('client/app/react/lib/core/store.js', 'client/lib/core/store.js');
-    this.template('client/app/react/modules/page/page.store.js', 'client/modules/page/page.store.js');
-
-    // Distpatcher
-    this.template('client/app/react/lib/core/dispatcher.js', 'client/lib/core/dispatcher.js');
-
-    // Actions
-    this.template('client/app/react/modules/route/route.action.js', 'client/modules/route/route.action.js');
-    this.template('client/app/react/modules/page/page.action.js', 'client/modules/page/page.action.js');
+    this.template('client/app/react/lib/store/store.js', 'client/app/lib/store.js');
 
     if (this.useJsx) {
       this.template('client/app/react/index/jsx/index.jsx', 'client/app/index/index.jsx');
 
       // Modules
-      if (this.useServer) {
-        this.template(
-          'client/app/react/modules/link/jsx/link.jsx', 'client/modules/link/link.jsx'
-        );
-      }
+      this.template(
+        'client/app/react/modules/link/jsx/link.jsx', 'client/app/modules/link.jsx'
+      );
 
       // Layouts
       this.template(
@@ -97,7 +80,7 @@ var scriptFiles = function scriptFiles() {
       this.template('client/app/react/index/js/index.js', 'client/app/index/index.js');
 
       // Modules
-      this.template('client/app/react/modules/link/js/link.js', 'client/modules/link/link.js');
+      this.template('client/app/react/modules/link/js/link.js', 'client/app/modules/link.js');
 
       // Layouts
       this.template(

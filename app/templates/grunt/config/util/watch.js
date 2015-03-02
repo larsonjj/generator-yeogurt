@@ -115,7 +115,7 @@ var taskConfig = function(grunt) {
         '!<%%= yeogurt.client %>/{app,modules,lib}/**/components/*.js'<% } %>
       ],
       tasks: [
-        'newer:jshint'
+        'newer:eslint'
       ]
     },<% if (jsTemplate === 'handlebars') { %>
     handlebars: {

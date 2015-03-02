@@ -373,7 +373,7 @@ describe('Model sub-generator', function() {
       // Filename
       var model = 'mymodel';
       var fileContentToTest = [
-        ['test/spec/models/' + model + '.spec.js', /jshint expr/i],
+        ['test/spec/models/' + model + '.spec.js', /to\.be/i],
       ];
 
       helpers.mockPrompt(this.app, {
@@ -398,7 +398,7 @@ describe('Model sub-generator', function() {
       // Filename
       var model = 'mymodel';
       var fileContentToTest = [
-        ['test/spec/models/' + model + '.spec.js', /jshint expr/i],
+        ['test/spec/models/' + model + '.spec.js', /to\.be/i],
       ];
 
       helpers.mockPrompt(this.app, {

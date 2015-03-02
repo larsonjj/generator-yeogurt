@@ -2,15 +2,14 @@
 
 var React = require('react');
 var BaseLayout = require('../layout/base.jsx');
-var pageAction = require('../../modules/page/page.action');
+var mainAction = require('../main.actions');
 
 var IndexComponent = React.createClass({
   componentWillMount: function() {
-    pageAction.set({title: '<%= projectName %>'});
+    mainAction.setPage({title: '<%= projectName %>'});
   },
   render: function() {
     return (
-      /* jshint ignore:start */
       <BaseLayout>
         <div className="main-container">
           <div className="yeogurt-info">
@@ -29,7 +28,6 @@ var IndexComponent = React.createClass({
         </div>
         <code className="version">v<%= pkg.version %></code>
       </BaseLayout>
-      /* jshint ignore:end */
     );
   }
 });

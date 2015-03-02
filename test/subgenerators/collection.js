@@ -334,7 +334,7 @@ describe('Collection sub-generator', function() {
       // Filename
       var collection = 'mycollection';
       var fileContentToTest = [
-        ['test/spec/collections/' + collection + '.spec.js', /jshint expr/i],
+        ['test/spec/collections/' + collection + '.spec.js', /to\.be/i],
       ];
 
       helpers.mockPrompt(this.app, {
@@ -359,7 +359,7 @@ describe('Collection sub-generator', function() {
       // Filename
       var collection = 'mycollection';
       var fileContentToTest = [
-        ['test/spec/collections/' + collection + '.spec.js', /jshint expr/i],
+        ['test/spec/collections/' + collection + '.spec.js', /to\.be/i],
       ];
 
       helpers.mockPrompt(this.app, {

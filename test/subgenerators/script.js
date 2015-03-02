@@ -121,7 +121,7 @@ describe('Script sub-generator', function() {
       // Filename
       var script = 'myscript';
       var fileContentToTest = [
-        ['test/spec/' + script + '.spec.js', /jshint expr/i]
+        ['test/spec/' + script + '.spec.js', /to\.be/i]
       ];
 
       helpers.mockPrompt(this.app, {
@@ -143,7 +143,7 @@ describe('Script sub-generator', function() {
       // Filename
       var script = 'myscript';
       var fileContentToTest = [
-        ['test/spec/' + script + '.spec.js', /jshint expr/i]
+        ['test/spec/' + script + '.spec.js', /to\.be/i]
       ];
 
       helpers.mockPrompt(this.app, {

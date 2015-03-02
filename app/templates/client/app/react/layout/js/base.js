@@ -1,21 +1,21 @@
 'use strict';
 
 var React = require('react');
-var pageStore = require('../../modules/page/page.store');
+var mainStore = require('../main.store');
 
 // Alias for making element creation less verbose
 var DOM = React.createElement;
 
 var getState = function() {
   return {
-    title: pageStore.get().title
+    title: mainStore.getPage().title
   };
 };
 
 var DefaultComponent = React.createClass({
-  mixins: [pageStore.mixin],
+  mixins: [mainStore.mixin],
   componentDidMount: function() {
-    pageStore.emitChange();
+    mainStore.emitChange();
   },
   getInitialState: function() {
     return getState();

@@ -1,5 +1,3 @@
-<% if (testFramework === 'mocha') { %>/*jshint expr: true*/<% } %>
-
 'use strict';
 
 describe('Give it some context', function() {

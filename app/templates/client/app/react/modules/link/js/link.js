@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-var routeActions = require('../../modules/route/route.action');
+var mainActions = require('../main.actions');
 
 // Alias for making element creation less verbose
 var DOM = React.createElement;
@@ -26,7 +26,7 @@ var LinkComponent = React.createClass({
 
   handleClick: function(e) {
     e.preventDefault();
-    routeActions.setRoute(this.props.url);
+    mainActions.setRoute(this.props.url);
   }
 
 });

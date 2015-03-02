@@ -18,8 +18,11 @@ var taskConfig = function(grunt) {
       }
     },
     dist: {
-      options: {<% if (jsFramework === 'react') { %>
-        transform:  [ require('grunt-react').browserify ],<% } %>
+      options: {
+        transform:  [
+          require('envify')<% if (jsFramework === 'react') { %>,
+          require('grunt-react').browserify<% } %>
+        ],
         browserifyOptions: {
           debug: true
         },

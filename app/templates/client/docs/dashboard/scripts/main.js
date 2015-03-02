@@ -1,5 +1,3 @@
-/*jshint browser: true*/
-/*global $: true*/
 'use strict';
 $(function() {
 

@@ -5,9 +5,8 @@
 
 var Router = require('director').Router;
 var routes = require('./routes');
-var Dispatcher = require('../lib/core/dispatcher');
-var pageConstants = require('../modules/page/page.constant');
-var routeConstants = require('../modules/route/route.constant');
+var Dispatcher = require('./main.dispatcher');
+var mainConstants = require('./main.constants');
 
 // Setup router
 var router = new Router(routes);
@@ -17,13 +16,15 @@ Dispatcher.register(function(payload) {
 
   var action = payload.action;
 
-  if (action.actionType === routeConstants.SET_CURRENT_ROUTE) {
-    router.setRoute(action.route);
-  }
+  switch (action.actionType) {
+    case mainConstants.SET_CURRENT_ROUTE:
+      router.setRoute(action.route);
+      break;
 
-  else if (action.actionType === pageConstants.SET_CURRENT_PAGE) {
-    // Set current page title
-    document.title = action.page.title;
+    case mainConstants.SET_CURRENT_PAGE:
+      // Set current page title
+      document.title = action.page.title;
+      break;
   }
 
   return true; // No errors.  Needed by promise in Dispatcher.

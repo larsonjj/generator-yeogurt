@@ -104,7 +104,7 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets (Except Stylus. [Waiting on PR](https://github.com/gruntjs/grunt-contrib-stylus/pull/121))
 - IE8+ Support via [HTML5shiv](https://github.com/aFarkas/html5shiv) and [consolelog](https://github.com/patik/console.log-wrapper)
   - [ES5-Shim and ES5-Sham](https://github.com/es-shims/es5-shim) Included for React apps
-- JavaScript Linting with [JSHint](http://www.jshint.com/)
+- JavaScript Linting with [ESLint](http://eslint.org//)
 - Feature detection with [Modernizr](http://modernizr.com/)
 
 ### Available Options
@@ -191,7 +191,7 @@ Starts up a development server that watches files and automatically reloads them
 Builds out an optimized site through compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, optimization of images, and processing of [usemin blocks](Usemin blocks). All files created from this task are put in the `{project root}/dist/` folder.
 
 ### `grunt test`
-Runs JSHint and Karma to lint and run JavaScript tests, respectively.
+Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 
 **Extra Task Target(s)**
 
@@ -641,7 +641,7 @@ These comments will ensure all libraries and their dependencies found in your `b
 
 If you can't [find the package on bower](http://bower.io/search/) (very rare), or you have your own in-house libraries that you like to use, then you should:
 
-- Put your scripts within a `client/scripts/vendor` folder (jshint is setup to ignore this folder)
+- Put your scripts within a `client/scripts/vendor` folder (eslint is setup to ignore this folder)
 - Put your stylesheets within a `client/styles/vendor` folder (to keep things consistant)
 - Place all other file types somewhere within the `client` folder (This will make sure that your base template can access them).
 
@@ -692,7 +692,7 @@ This does a couple things:
 
 Your library should now load correctly (assuming your source path is correct).
 
-> IMPORTANT: If you have third-party script that will be referenced within your own code (ex. using jQuery), you need to make sure that JSHint is aware it. Check out [JSHint giving errors for third-party scripts](#jshint-giving-errors-for-third-party-scripts) to see how to make this happen.
+> IMPORTANT: If you have third-party script that will be referenced within your own code (ex. using jQuery), you need to make sure that ESLint is aware it. Check out [ESLint giving errors for third-party scripts](#eslint-giving-errors-for-third-party-scripts) to see how to make this happen.
 
 ## Vagrant Setup
 If you would like to use Yeogurt with [Vagrant](https://www.vagrantup.com/), head over to the [yeogurt-vagrant](https://github.com/larsonjj/yeogurt-vagrant) repository for installation and setup instructions.
@@ -716,21 +716,21 @@ git config --global url."https://".insteadOf git://
 
 [Source](http://stackoverflow.com/questions/16298986/unable-to-connect-to-github-com-for-cloning)
 
-### JSHint giving errors for third-party scripts
+### ESLint giving errors for third-party scripts
 ##### Typical error message:
 > Backbone is not defined
 
-When adding third-party scripts, you should always link to them using `<script>` tags within your base template file (See [Adding third-party libraries](#adding-third-party-libraries)). However, doing so does not inform JSHint that your new library is defined globally. Thus, giving you errors.
+When adding third-party scripts, you should always link to them using `<script>` tags within your base template file (See [Adding third-party libraries](#adding-third-party-libraries)). However, doing so does not inform ESLint that your new library is defined globally. Thus, giving you errors.
 
 ##### Solution
-To remedy this situation, all you need to do is open up your `.jshintrc` file in the root directory of you project, and add your new library name to the `global:` property array:
+To remedy this situation, all you need to do is open up your `.eslintrc` file in the root directory of you project, and add your new library name to the `global:` property array:
 
 ```
-// .jshintrc
+// .eslintrc
 {
 ...
   globals: {
-    Backbone: true // Tells JSHint that Backbone is defined globally
+    Backbone: true // Tells ESLint that Backbone is defined globally
   }
 ...
 }

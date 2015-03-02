@@ -1,4 +1,3 @@
-/*jshint newcap:false */
 'use strict';
 
 var React = require('react');
@@ -6,12 +5,12 @@ var React = require('react');
 // Alias for making element creation less verbose
 var DOM = React.createElement;
 var BaseLayout = require('../layout/base');
-var pageAction = require('../../modules/page/page.action');
+var mainAction = require('../main.actions');
 
 var IndexComponent = React.createClass({
   displayName: 'IndexComponent',
   componentWillMount: function() {
-    pageAction.set({title: '<%= projectName %>'});
+    mainAction.setPage({title: '<%= projectName %>'});
   },
   render: function() {
     return (
@@ -30,7 +29,7 @@ var IndexComponent = React.createClass({
             ),
             DOM('p' ,null,
               DOM('img', {
-                src: '/images/yeogurt-swirl.png',
+                src: '/assets/images/yeogurt-swirl.png',
                 width: '75px',
                 className: 'logo'
               })

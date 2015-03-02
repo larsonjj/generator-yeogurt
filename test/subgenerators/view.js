@@ -328,7 +328,7 @@ describe('View sub-generator', function() {
             ['client/templates/' + view + '.jst', /<div>/i],
             ['client/scripts/views/' + view + '.js', /module\.exports/i],
             ['test/spec/views/' + view + '.spec.js', /describe/i],
-            ['test/spec/views/' + view + '.spec.js', /jshint expr/i]
+            ['test/spec/views/' + view + '.spec.js', /to\.be/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -399,7 +399,7 @@ describe('View sub-generator', function() {
             ['client/templates/' + view + '.jst', /<div>/i],
             ['client/scripts/views/' + view + '.js', /define\(function\(require\)/i],
             ['test/spec/views/' + view + '.spec.js', /define\(function\(require\)/i],
-            ['test/spec/views/' + view + '.spec.js', /jshint expr/i]
+            ['test/spec/views/' + view + '.spec.js', /to\.be/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -472,7 +472,7 @@ describe('View sub-generator', function() {
             ['client/templates/' + view + '.hbs', /<div>/i],
             ['client/scripts/views/' + view + '.js', /module\.exports/i],
             ['test/spec/views/' + view + '.spec.js', /describe/i],
-            ['test/spec/views/' + view + '.spec.js', /jshint expr/i]
+            ['test/spec/views/' + view + '.spec.js', /to\.be/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -543,7 +543,7 @@ describe('View sub-generator', function() {
             ['client/templates/' + view + '.hbs', /<div>/i],
             ['client/scripts/views/' + view + '.js', /define\(function\(require\)/i],
             ['test/spec/views/' + view + '.spec.js', /define\(function\(require\)/i],
-            ['test/spec/views/' + view + '.spec.js', /jshint expr/i]
+            ['test/spec/views/' + view + '.spec.js', /to\.be/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -618,7 +618,7 @@ describe('View sub-generator', function() {
           var fileContentToTest = [
             ['client/scripts/views/' + view + '.js', /module\.exports/i],
             ['test/spec/views/' + view + '.spec.js', /describe/i],
-            ['test/spec/views/' + view + '.spec.js', /jshint expr/i]
+            ['test/spec/views/' + view + '.spec.js', /to\.be/i]
           ];
           var fileContentToNotFind = [
             ['client/templates/' + view + '.jade', /<div>/i]
@@ -695,7 +695,7 @@ describe('View sub-generator', function() {
           var fileContentToTest = [
             ['client/scripts/views/' + view + '.js', /define\(function\(require\)/i],
             ['test/spec/views/' + view + '.spec.js', /define\(function\(require\)/i],
-            ['test/spec/views/' + view + '.spec.js', /jshint expr/i]
+            ['test/spec/views/' + view + '.spec.js', /to\.be/i]
           ];
           var fileContentToNotFind = [
             ['client/templates/' + view + '.jade', /<div>/i]

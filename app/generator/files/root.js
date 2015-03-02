@@ -32,7 +32,7 @@ var rootFiles = function rootFiles() {
   this.copy('client/favicon.ico', 'client/favicon.ico');
 
   this.copy('editorconfig', '.editorconfig');
-  this.template('jshintrc', '.jshintrc');
+  this.template('eslintrc', '.eslintrc');
 
 };
 

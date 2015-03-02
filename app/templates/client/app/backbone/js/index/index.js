@@ -3,7 +3,7 @@
 var App = App || {};
 App.Views = App.Views || {};
 
-App.Views.Index  = Backbone.View.extend({
+App.Views.Index = Backbone.View.extend({
 
   el: '#app-wrapper',
 

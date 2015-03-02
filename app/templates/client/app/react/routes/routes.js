@@ -1,7 +1,6 @@
 'use strict';
 
-var React = require('react');
-var routeActions = require('../modules/route/route.action');<% if (useJsx) { %>
+var React = require('react');<% if (useJsx) { %>
 var IndexPage = React.createFactory(require('./index/index.jsx'));<% } else { %>
 var IndexPage = React.createFactory(require('./index/index'));<% } %>
 

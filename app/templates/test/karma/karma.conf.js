@@ -18,7 +18,7 @@ module.exports = function(config) {
       'client/bower_components/angular-route/angular-route.js',<% } %><% if (jsFramework === 'backbone') { %>
       'client/bower_components/underscore/underscore.js',
       'client/bower_components/backbone/backbone.js',<% } %><% if (jsFramework === 'react') { %>
-      './phantomjs-shims.js',<% } %><% if (jsTemplate === 'handlebars') { %>
+      'client/app/vendor/phantomjs-shims.js',<% } %><% if (jsTemplate === 'handlebars') { %>
       'client/bower_components/handlebars/handlebars.runtime.js',<% } else if (jsTemplate === 'jade') { %>'client/bower_components/jade/runtime.js',<% } %><% if (jsFramework === 'backbone') { %>
       '.tmp/test/templates.js',<% } %><% if (jsOption === 'requirejs') { %>
       'client/bower_components/requirejs/require.js',

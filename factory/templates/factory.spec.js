@@ -1,3 +1,4 @@
+<% if (testFramework === 'mocha') { %>/*eslint no-unused-expressions:0 */<% } %>
 'use strict';
 
 describe('Factory Service: <%= _.camelize(name) %>', function() {

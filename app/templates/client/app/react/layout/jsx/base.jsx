@@ -1,25 +1,24 @@
 'use strict';
 
 var React = require('react');
-var pageStore = require('../../modules/page/page.store');
+var mainStore = require('../main.store');
 
 var getState = function() {
   return {
-    title: pageStore.get().title
+    title: mainStore.getPage().title
   };
 };
 
 var DefaultComponent = React.createClass({
-  mixins: [pageStore.mixin],
+  mixins: [mainStore.mixin],
   componentDidMount: function() {
-    pageStore.emitChange();
+    mainStore.emitChange();
   },
   getInitialState: function() {
     return getState();
   },
   render: function() {
     return (
-      /* jshint ignore:start */
       <div>
         <div className="default">
           <div className="main-container">
@@ -29,7 +28,6 @@ var DefaultComponent = React.createClass({
           </div>
         </div>
       </div>
-      /* jshint ignore:end */
     );
   },
   // Event handler for 'change' events coming from store mixins.
