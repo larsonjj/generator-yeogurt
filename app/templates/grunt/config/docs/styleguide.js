@@ -20,16 +20,15 @@ var taskConfig = function(grunt) {
     },
     server: {
       files: {
-        '<%%= yeogurt.tmp %>/docs/styleguide': [<% if (cssOption !== 'css') { %>
-          '<%%= yeogurt.tmp %>/**/*.css'<% } else { %>
-          '<%%= yeogurt.client %>/{app,modules,lib}/**/*.css'<% } %>
+        '<%%= yeogurt.tmp %>/docs/styleguide': [
+          '<%%= yeogurt.client %>/styles/*.*'
         ]
       }
     },
     dist: {
       files: {
         '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>docs/styleguide': [
-          '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>app/**/*.css'
+          '<%%= yeogurt.client %>/styles/*.*'
         ]
       }
     }
@@ -38,4 +37,3 @@ var taskConfig = function(grunt) {
 };
 
 module.exports = taskConfig;
-

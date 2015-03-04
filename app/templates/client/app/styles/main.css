@@ -1,7 +1,13 @@
-/*
-  Box sizing styles:
-  Apply a natural box layout model to all elements
-*/
+/*<% if (useKss) { %>
+Main Stylesheet
+
+Global styles
+Define all of your global styles within this file
+
+Styleguide 1.
+<% } else { %> Main Stylesheet <% } %>*/
+
+/* Box sizing styles: Apply a natural box layout model to all elements */
 *,
 *:before,
 *:after {
