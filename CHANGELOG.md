@@ -1,3 +1,13 @@
+### v0.14.3:
+#### date: 2015-3-04
+##### changes:
+* Fixed issue where KSS styleguides were not being generated correctly
+* Fixed [#112](https://github.com/larsonjj/generator-yeogurt/issues/112) where wiredep was erroring out when using CSS
+* Fixed logo within generator prompt
+* Updated installation instructions to be more accurate within README.md
+* Updated [grunt-sass](https://github.com/sindresorhus/grunt-sass) to v0.18.0 which should allow for error-free installation on Node v.0.12.0
+
+
 ### v0.14.2:
 #### date: 2015-1-20
 ##### changes:
