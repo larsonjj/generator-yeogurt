@@ -67,7 +67,7 @@ Once you have Node installed, make sure you have these tools by opening up a ter
 | `bower -v` | at or above `v1.3.x`
 | `grunt -V` | `grunt-cli` at or above `v0.1.10`
 
-If you get any errors and/or you're version(s) are too low, you should run `npm install -g yo`. This will install all three tools and update them to their latest versions.
+If you get any errors and/or you're version(s) are too low, you should run `npm install -g yo grunt-cli bower`. This will install all three tools and update them to their latest versions.
 
 > IMPORTANT: Bower requires the use of [Git](http://git-scm.com/) to install packages.
 
