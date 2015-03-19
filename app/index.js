@@ -10,7 +10,6 @@ require('colors');
 var order = [
   /* Prompts */
   'logo',
-  /* Config */
   'existing', // Check for existing .yo-rc.json file
   'project',
   'server',
@@ -59,7 +58,6 @@ config.sort(function(a, b) {
 config.forEach(function(item) {
   tasks[item.name] = item.code;
 });
-
 
 var YeogurtGenerator = yeoman.generators.Base.extend(_.merge({
   init: function() {

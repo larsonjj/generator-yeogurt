@@ -9,7 +9,7 @@ var grabFiles = function(filepaths, order) {
   var tempArray = [];
   filepaths.forEach(function(filepath) {
     fs.readdirSync(filepath).forEach(function(file) {
-      var filename = file.substring(file.lastIndexOf('/')+1).split('.');
+      var filename = file.substring(file.lastIndexOf('/') + 1).split('.');
       if (file.substr(-3) === '.js') {
         tempArray.push({
           name: filename[0],
