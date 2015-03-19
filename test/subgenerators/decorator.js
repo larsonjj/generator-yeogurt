@@ -43,26 +43,5 @@ describe('Decorator sub-generator', function() {
         });
       });
     });
-    it('Handles funky path', function(done) {
-      // Filename
-      var funkyPath = '/////funkypath/////';
-      var filesToTest = [
-        'client/app/funkypath/funkypath.decorator.js'
-      ];
-
-      helpers.mockPrompt(this.app, {
-        jsFramework: 'angular',
-        singlePageApplication: true
-      });
-      this.app.run([], function() {
-        createSubGenerator('decorator', funkyPath, {}, {
-          // mock prompt data
-          decoratorFile: 'client/app',
-        }, function() {
-          assert.file(filesToTest);
-          done();
-        });
-      });
-    });
   });
 });

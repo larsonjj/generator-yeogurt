@@ -27,7 +27,7 @@ describe('Filter sub-generator', function() {
       var filter = 'myfilter';
       var filesToTest = [
         'client/app/' + filter + '/' + filter + '.filter.js',
-        'client/app/' + filter + '/' + filter + '.filter.spec.js'
+        'client/app/' + filter + '/__tests__/' + filter + '.filter.spec.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -38,28 +38,6 @@ describe('Filter sub-generator', function() {
         createSubGenerator('filter', filter, {}, {
           // mock prompt data
           filterFile: 'client/app'
-        }, function() {
-          assert.file(filesToTest);
-          done();
-        });
-      });
-    });
-    it('Handles funky path', function(done) {
-      // Filename
-      var funkyPath = '/////funkypath/////';
-      var filesToTest = [
-        'client/app/funkypath/funkypath.filter.js',
-        'client/app/funkypath/funkypath.filter.spec.js'
-      ];
-
-      helpers.mockPrompt(this.app, {
-        jsFramework: 'angular',
-        singlePageApplication: true
-      });
-      this.app.run([], function() {
-        createSubGenerator('filter', funkyPath, {}, {
-          // mock prompt data
-          filterFile: 'client/app',
         }, function() {
           assert.file(filesToTest);
           done();

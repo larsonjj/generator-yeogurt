@@ -37,6 +37,7 @@ describe('Yeogurt generator using Angular', function() {
         helpers.mockPrompt(this.app, {
           singlePageApplication: true,
           jsFramework: 'angular',
+          useServerTesting: false,
           jsOption: 'none',
           useServer: false,
         });
@@ -53,11 +54,11 @@ describe('Yeogurt generator using Angular', function() {
         describe('With Jasmine', function() {
           it ('Creates expected files', function(done) {
             var expected = [
-              'client/app/index/index.spec.js'
+              'client/app/index/__tests__/index.spec.js'
             ];
 
             var fileContentToTest = [
-              ['client/app/index/index.spec.js', /toBe/i]
+              ['client/app/index/__tests__/index.spec.js', /toBe/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -65,6 +66,7 @@ describe('Yeogurt generator using Angular', function() {
               jsFramework: 'angular',
               jsOption: 'none',
               useServer: false,
+              useServerTesting: false,
               useTesting: true,
               testFramework: 'jasmine'
             });
@@ -79,11 +81,11 @@ describe('Yeogurt generator using Angular', function() {
         describe('With Mocha', function() {
           it ('Creates expected files', function(done) {
             var expected = [
-              'client/app/index/index.spec.js'
+              'client/app/index/__tests__/index.spec.js'
             ];
 
             var fileContentToTest = [
-              ['client/app/index/index.spec.js', /to\./i]
+              ['client/app/index/__tests__/index.spec.js', /to\./i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -91,6 +93,7 @@ describe('Yeogurt generator using Angular', function() {
               jsFramework: 'angular',
               jsOption: 'none',
               useServer: false,
+              useServerTesting: false,
               useTesting: true,
               testFramework: 'mocha'
             });

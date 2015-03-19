@@ -1,12 +1,12 @@
 'use strict';
 
-var Dispatcher = require('../dispatchers/default');
-var <%= _.classify(name) %> = require('../constants/<%= _.slugify(name.toLowerCase()) %>');
+var Dispatcher = require('<%= rootDir %>/client/app/main.dispatcher');
+var <%= _.classify(name) %>Constants = require('./<%= _.slugify(name.toLowerCase()) %>.constants');
 
 var <%= _.classify(name) %>Actions = {
   sample: function(data) {
     Dispatcher.handleViewAction({
-      actionType: <%= _.classify(name) %>.<%= name.toUpperCase() %>_CONSTANT,
+      actionType: <%= _.classify(name) %>Constants.<%= name.toUpperCase() %>_CONSTANT,
       data: data
     });
   }

@@ -4,9 +4,9 @@
 
 'use strict';
 
-var Store = require('./default');
-var Dispatcher = require('../dispatchers/default');
-var <%= _.classify(name) %>Constants = require('../constants/<%= _.slugify(name.toLowerCase()) %>');
+var Dispatcher = require('<%= rootDir %>/client/app/main.dispatcher');
+var <%= _.classify(name) %>Store = require('./<%= _.slugify(name.toLowerCase()) %>.store');
+var <%= _.classify(name) %>Constants = require('./<%= _.slugify(name.toLowerCase()) %>.constants');
 
 var _data;
 

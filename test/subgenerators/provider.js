@@ -27,7 +27,7 @@ describe('Provider sub-generator', function() {
       var provider = 'myprovider';
       var filesToTest = [
         'client/app/' + provider + '/' + provider + '.provider.js',
-        'client/app/' + provider + '/' + provider + '.provider.spec.js'
+        'client/app/' + provider + '/__tests__/' + provider + '.provider.spec.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -38,28 +38,6 @@ describe('Provider sub-generator', function() {
         createSubGenerator('provider', provider, {}, {
           // mock prompt data
           providerFile: 'client/app'
-        }, function() {
-          assert.file(filesToTest);
-          done();
-        });
-      });
-    });
-    it('Handles funky path', function(done) {
-      // Filename
-      var funkyPath = '/////funkypath/////';
-      var filesToTest = [
-        'client/app/funkypath/funkypath.provider.js',
-        'client/app/funkypath/funkypath.provider.spec.js'
-      ];
-
-      helpers.mockPrompt(this.app, {
-        jsFramework: 'angular',
-        singlePageApplication: true
-      });
-      this.app.run([], function() {
-        createSubGenerator('provider', funkyPath, {}, {
-          // mock prompt data
-          providerFile: 'client/app',
         }, function() {
           assert.file(filesToTest);
           done();

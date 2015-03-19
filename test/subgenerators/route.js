@@ -28,7 +28,7 @@ describe('Route sub-generator', function() {
       var url = '/myroute';
       var filesToTest = [
         'client/app/' + route + '/' + route + '.js',
-        'client/app/' + route + '/' + route + '.controller.spec.js',
+        'client/app/' + route + '/__tests__/' + route + '.controller.spec.js',
         'client/app/' + route + '/' + route + '.controller.js',
         'client/app/' + route + '/' + route + '.html'
       ];
@@ -39,32 +39,6 @@ describe('Route sub-generator', function() {
       });
       this.app.run([], function() {
         createSubGenerator('route', route, {}, {
-          // mock prompt data
-          routeFile: 'client/app',
-          routeURL: url
-        }, function() {
-          assert.file(filesToTest);
-          done();
-        });
-      });
-    });
-    it('Handles funky path', function(done) {
-      // Filename
-      var funkyPath = '/////funkypath/////';
-      var url = '/myroute';
-      var filesToTest = [
-        'client/app/funkypath/funkypath.js',
-        'client/app/funkypath/funkypath.controller.spec.js',
-        'client/app/funkypath/funkypath.controller.js',
-        'client/app/funkypath/funkypath.html'
-      ];
-
-      helpers.mockPrompt(this.app, {
-        jsFramework: 'angular',
-        singlePageApplication: true
-      });
-      this.app.run([], function() {
-        createSubGenerator('route', funkyPath, {}, {
           // mock prompt data
           routeFile: 'client/app',
           routeURL: url

@@ -41,10 +41,10 @@ FactoryGenerator.prototype.ask = function ask() {
     // Get root directory
     this.rootDir = getRootDir(answers.factoryFile);
     this.factoryFile = path.join(
-      answers.factoryFile,
+        answers.factoryFile,
         this._.slugify(this.name.toLowerCase()),
-        this._.slugify(this.name.toLowerCase()
-        ));
+        this._.slugify(this.name.toLowerCase())
+      );
     this.testFile = path.join(answers.factoryFile,
         this._.slugify(this.name.toLowerCase()),
         '__tests__',

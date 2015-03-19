@@ -57,31 +57,32 @@ ViewGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'viewFile',
     message: 'Where would you like to create this view?',
-    default: 'client/scripts/views'
-  },
-  {
-    name: 'templateFile',
-    message: 'Where would you like to create this view\'s template?',
-    default: 'client/templates'
-  },
-  {
-    when: function() {
-      return self.useTesting;
-    },
-    name: 'testFile',
-    message: 'Where would you like to create this view\'s test?',
-    default: 'test/spec/views'
+    default: 'client/app'
   }];
 
   this.prompt(prompts, function(answers) {
     // Get root directory
     this.rootDir = getRootDir(answers.viewFile);
 
-    this.viewFile = path.join(answers.viewFile, this._.slugify(this.name.toLowerCase()));
-    this.templateFile = path.join(answers.templateFile, this._.slugify(this.name.toLowerCase()));
-    if (answers.testFile) {
-      this.testFile = path.join(answers.testFile, '__tests__', this._.slugify(this.name.toLowerCase()));
-    }
+    this.viewFile = path.join(
+        answers.viewFile,
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase())
+      );
+
+    this.templateFile = path.join(
+        answers.viewFile,
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase())
+      );
+
+    this.testFile = path.join(
+        answers.viewFile,
+        this._.slugify(this.name.toLowerCase()),
+        '__tests__',
+        this._.slugify(this.name.toLowerCase())
+      );
+
     done();
   }.bind(this));
 };

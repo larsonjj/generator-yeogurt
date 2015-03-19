@@ -26,7 +26,9 @@ describe('React sub-generator', function() {
       // Filename
       var react = 'myreact';
       var filesToTest = [
-        'test/spec/components/' + react + '.js'
+        'client/app/' + react + '/__tests__/' + react + '.spec.js',
+        'client/app/' + react + '/' + react + '.js',
+        'client/app/' + react + '/' + react + '.jsx'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -39,58 +41,7 @@ describe('React sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('react', react, {}, {
           // mock prompt data
-          reactFile: 'client/scripts/components/',
-          testFile: 'test/spec/components/'
-        }, function() {
-          assert.noFile(filesToTest);
-          done();
-        });
-      });
-    });
-    it('Handles folder option', function(done) {
-      helpers.mockPrompt(this.app, {
-        jsFramework: 'backbone',
-        singlePageApplication: true,
-        jsTemplate: 'underscore',
-        jsOption: 'browserify',
-        testFramework: 'jasmine'
-      });
-      // Filename
-      var react = 'myreact';
-      var folder = 'folder/';
-      var filesToTest = [
-        'test/spec/components/' + folder + react + '.jsx'
-      ];
-      this.app.run([], function() {
-        createSubGenerator('react', react, {}, {
-          // mock prompt data
-          reactFile: 'client/scripts/components/' + folder,
-          testFile: 'test/spec/components/' + folder
-        }, function() {
-          assert.noFile(filesToTest);
-          done();
-        });
-      });
-    });
-    it('Handles folder option with funky path', function(done) {
-      helpers.mockPrompt(this.app, {
-        jsFramework: 'backbone',
-        singlePageApplication: true,
-        jsTemplate: 'underscore',
-        jsOption: 'browserify',
-        testFramework: 'jasmine'
-      });
-      // Filename
-      var react = 'myreact';
-      var folder = '/////folder/////';
-      var filesToTest = [
-        'test/spec/components/folder/' + react + '.jsx'
-      ];
-      this.app.run([], function() {
-        createSubGenerator('react', react, {}, {
-          // mock prompt data
-          reactFile: 'client/scripts/components/' + folder,
-          testFile: 'test/spec/components/' + folder
+          reactFile: 'client/app'
         }, function() {
           assert.noFile(filesToTest);
           done();
@@ -104,7 +55,9 @@ describe('React sub-generator', function() {
       // Filename
       var react = 'myreact';
       var filesToTest = [
-        'test/spec/components/' + react + '.js'
+        'client/app/' + react + '/__tests__/' + react + '.spec.js',
+        'client/app/' + react + '/' + react + '.js',
+        'client/app/' + react + '/' + react + '.jsx'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -113,50 +66,7 @@ describe('React sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('react', react, {}, {
           // mock prompt data
-          reactFile: 'client/scripts/components/',
-          testFile: 'test/spec/components/'
-        }, function() {
-          assert.noFile(filesToTest);
-          done();
-        });
-      });
-    });
-    it('Handles folder option', function(done) {
-      helpers.mockPrompt(this.app, {
-        htmlOption: 'jade'
-      });
-      // Filename
-      var react = 'myreact';
-      var folder = 'folder/';
-      var filesToTest = [
-        'test/spec/components/' + folder + react + '.jsx'
-      ];
-      this.app.run([], function() {
-        createSubGenerator('react', react, {}, {
-          // mock prompt data
-          reactFile: 'client/scripts/components/' + folder,
-          testFile: 'test/spec/components/' + folder
-        }, function() {
-          assert.noFile(filesToTest);
-          done();
-        });
-      });
-    });
-    it('Handles folder option with funky path', function(done) {
-      helpers.mockPrompt(this.app, {
-        htmlOption: 'jade'
-      });
-      // Filename
-      var react = 'myreact';
-      var folder = '/////folder/////';
-      var filesToTest = [
-        'test/spec/components/folder/' + react + '.jsx'
-      ];
-      this.app.run([], function() {
-        createSubGenerator('react', react, {}, {
-          // mock prompt data
-          reactFile: 'client/scripts/components/' + folder,
-          testFile: 'test/spec/components/' + folder
+          reactFile: 'client/app'
         }, function() {
           assert.noFile(filesToTest);
           done();
@@ -173,55 +83,14 @@ describe('React sub-generator', function() {
       // Filename
       var react = 'myreact';
       var filesToTest = [
-        'test/spec/components/' + react + '.js'
+        'client/app/' + react + '/__tests__/' + react + '.spec.js',
+        'client/app/' + react + '/' + react + '.js',
+        'client/app/' + react + '/' + react + '.jsx'
       ];
       this.app.run([], function() {
         createSubGenerator('react', react, {}, {
           // mock prompt data
-          reactFile: 'client/scripts/components/',
-          testFile: 'test/spec/components/'
-        }, function() {
-          assert.noFile(filesToTest);
-          done();
-        });
-      });
-    });
-    it('Handles folder option', function(done) {
-      helpers.mockPrompt(this.app, {
-        htmlOption: 'swig'
-      });
-      // Filename
-      var react = 'myreact';
-      var folder = 'folder/';
-      var filesToTest = [
-        'test/spec/components/' + folder + react + '.jsx'
-      ];
-      this.app.run([], function() {
-        createSubGenerator('react', react, {}, {
-          // mock prompt data
-          reactFile: 'client/scripts/components/' + folder,
-          testFile: 'test/spec/components/' + folder
-        }, function() {
-          assert.noFile(filesToTest);
-          done();
-        });
-      });
-    });
-    it('Handles folder option with funky path', function(done) {
-      helpers.mockPrompt(this.app, {
-        htmlOption: 'swig'
-      });
-      // Filename
-      var react = 'myreact';
-      var folder = '/////folder/////';
-      var filesToTest = [
-        'test/spec/components/folder/' + react + '.jsx'
-      ];
-      this.app.run([], function() {
-        createSubGenerator('react', react, {}, {
-          // mock prompt data
-          reactFile: 'client/scripts/components/' + folder,
-          testFile: 'test/spec/components/' + folder
+          reactFile: 'client/app'
         }, function() {
           assert.noFile(filesToTest);
           done();
@@ -235,14 +104,14 @@ describe('React sub-generator', function() {
       // Filename
       var react = 'myreact';
       var filesToTest = [
-        'test/spec/components/' + react + '.spec.js',
-        'client/scripts/components/' + react + '.js'
+        'client/app/' + react + '/__tests__/' + react + '.spec.js',
+        'client/app/' + react + '/' + react + '.js'
       ];
       var fileContentToTest = [
-        ['client/scripts/components/' + react + '.js', /React\.createElement/i]
+        ['client/app/' + react + '/' + react + '.js', /React\.createElement/i]
       ];
       var fileContentNotThere = [
-        ['test/spec/components/' + react + '.spec.js', /\jsx/i]
+        ['client/app/' + react + '/__tests__/' + react + '.spec.js', /\jsx/i]
       ];
 
       helpers.mockPrompt(this.app, {
@@ -252,8 +121,7 @@ describe('React sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('react', react, {}, {
           // mock prompt data
-          reactFile: 'client/scripts/components/',
-          testFile: 'test/spec/components/'
+          reactFile: 'client/app'
         }, function() {
           assert.file(filesToTest);
           assert.fileContent(fileContentToTest);
@@ -266,11 +134,11 @@ describe('React sub-generator', function() {
       // Filename
       var react = 'myreact';
       var filesToTest = [
-        'test/spec/components/' + react + '.spec.js',
-        'client/scripts/components/' + react + '.jsx'
+        'client/app/' + react + '/__tests__/' + react + '.spec.js',
+        'client/app/' + react + '/' + react + '.jsx'
       ];
       var fileContentToTest = [
-        ['test/spec/components/' + react + '.spec.js', /React\.createFactory/i],
+        ['client/app/' + react + '/__tests__/' + react + '.spec.js', /React\.createFactory/i],
       ];
 
       helpers.mockPrompt(this.app, {
@@ -279,8 +147,7 @@ describe('React sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('react', react, {}, {
           // mock prompt data
-          reactFile: 'client/scripts/components/',
-          testFile: 'test/spec/components/'
+          reactFile: 'client/app'
         }, function() {
           assert.file(filesToTest);
           assert.fileContent(fileContentToTest);
@@ -292,10 +159,10 @@ describe('React sub-generator', function() {
       // Filename
       var react = 'myreact';
       var filesToTest = [
-        'client/scripts/components/' + react + '.jsx'
+        'client/app/' + react + '/' + react + '.jsx'
       ];
       var filesNotCreated = [
-        'test/spec/components/' + react + '.spec.js',
+        'client/app/' + react + '/__tests__/' + react + '.spec.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -305,79 +172,10 @@ describe('React sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('react', react, {}, {
           // mock prompt data
-          reactFile: 'client/scripts/components/',
-          testFile: 'test/spec/components/'
+          reactFile: 'client/app'
         }, function() {
           assert.file(filesToTest);
           assert.noFile(filesNotCreated);
-          done();
-        });
-      });
-    });
-    it('Handles defaults with Mocha', function(done) {
-      // Filename
-      var react = 'myreact';
-      var fileContentToTest = [
-        ['test/spec/components/' + react + '.spec.js', /to\.be/i],
-      ];
-
-      helpers.mockPrompt(this.app, {
-        jsFramework: 'react',
-        testFramework: 'mocha'
-      });
-      this.app.run([], function() {
-        createSubGenerator('react', react, {}, {
-          // mock prompt data
-          reactFile: 'client/scripts/components/',
-          testFile: 'test/spec/components/'
-        }, function() {
-          assert.fileContent(fileContentToTest);
-          done();
-        });
-      });
-    });
-    it('Handles folder option', function(done) {
-      // Filename
-      var react = 'myreact';
-      var folder = 'folder/';
-      var filesToTest = [
-        'test/spec/components/' + folder + react + '.spec.js',
-        'client/scripts/components/' + folder + react + '.jsx'
-      ];
-
-      helpers.mockPrompt(this.app, {
-        jsFramework: 'react'
-      });
-      this.app.run([], function() {
-        createSubGenerator('react', react, {}, {
-          // mock prompt data
-          reactFile: 'client/scripts/components/' + folder,
-          testFile: 'test/spec/components/' + folder
-        }, function() {
-          assert.file(filesToTest);
-          done();
-        });
-      });
-    });
-    it('Handles folder option with funky path', function(done) {
-      // Filename
-      var react = 'myreact';
-      var folder = '/////folder/////';
-      var filesToTest = [
-        'test/spec/components/folder/' + react + '.spec.js',
-        'client/scripts/components/folder/' + react + '.jsx'
-      ];
-
-      helpers.mockPrompt(this.app, {
-        jsFramework: 'react'
-      });
-      this.app.run([], function() {
-        createSubGenerator('react', react, {}, {
-          // mock prompt data
-          reactFile: 'client/scripts/components/' + folder,
-          testFile: 'test/spec/components/' + folder
-        }, function() {
-          assert.file(filesToTest);
           done();
         });
       });

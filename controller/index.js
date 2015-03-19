@@ -45,6 +45,7 @@ ControllerGenerator.prototype.ask = function ask() {
         this._.slugify(this.name.toLowerCase()),
         this._.slugify(this.name.toLowerCase())
       );
+
     this.testFile = path.join(
         answers.controllerFile,
         this._.slugify(this.name.toLowerCase()),

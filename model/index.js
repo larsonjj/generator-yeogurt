@@ -40,24 +40,24 @@ ModelGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'modelFile',
     message: 'Where would you like to create this model?',
-    default: 'client/scripts/models'
-  }, {
-    when: function() {
-      return self.useTesting;
-    },
-    name: 'testFile',
-    message: 'Where would you like to create this model\'s test?',
-    default: 'test/spec/models'
+    default: 'client/app'
   }];
 
   this.prompt(prompts, function(answers) {
     // Get root directory
     this.rootDir = getRootDir(answers.modelFile);
-    this.modelFile = path.join(answers.modelFile, this._.slugify(this.name.toLowerCase()));
+    this.modelFile = path.join(
+        answers.modelFile,
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase())
+      );
 
-    if (answers.testFile) {
-      this.testFile = path.join(answers.testFile, '__tests__', this._.slugify(this.name.toLowerCase()));
-    }
+    this.testFile = path.join(
+        answers.modelFile,
+        this._.slugify(this.name.toLowerCase()),
+        '__tests__',
+        this._.slugify(this.name.toLowerCase())
+      );
     done();
   }.bind(this));
 };

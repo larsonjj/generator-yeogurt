@@ -44,48 +44,6 @@ describe('Template sub-generator', function() {
         });
       });
     });
-    it('Handles folder option', function(done) {
-      helpers.mockPrompt(this.app, {
-        jsFramework: 'react'
-      });
-      // Filename
-      var template = 'mytemplate';
-      var folder = 'folder/';
-      var filesToTest = [
-        'test/spec/components/' + folder + template + '.js',
-        'client/scripts/components/' + folder + template + '.jsx'
-      ];
-      this.app.run([], function() {
-        createSubGenerator('template', template, {}, {
-          // mock prompt data
-          templateFile: 'client/templates/'
-        }, function() {
-          assert.noFile(filesToTest);
-          done();
-        });
-      });
-    });
-    it('Handles folder option with funky path', function(done) {
-      helpers.mockPrompt(this.app, {
-        jsFramework: 'react'
-      });
-      // Filename
-      var template = 'mytemplate';
-      var folder = '/////folder/////';
-      var filesToTest = [
-        'test/spec/components/folder/' + template + '.js',
-        'client/scripts/components/folder/' + template + '.jsx'
-      ];
-      this.app.run([], function() {
-        createSubGenerator('template', template, {}, {
-          // mock prompt data
-          templateFile: 'client/templates/' + folder
-        }, function() {
-          assert.noFile(filesToTest);
-          done();
-        });
-      });
-    });
   });
 
   describe('Does not create template files when using Static HTML', function() {
@@ -299,56 +257,6 @@ describe('Template sub-generator', function() {
           });
         });
       });
-      it('Handles folder option', function(done) {
-        helpers.mockPrompt(this.app, {
-          htmlOption: 'jade',
-          singlePageApplication: false,
-          useServer: false
-        });
-        // Filename
-        var template = 'mytemplate';
-        var type = 'module';
-        var folder = 'folder/';
-        var filesToTest = [
-          // add files and folders you expect to NOT exist here.
-          'client/templates/modules/' + folder + template + '.jade'
-        ];
-        this.app.run([], function() {
-          createSubGenerator('template', template, {}, {
-            // mock prompt data
-            templateFile: 'client/templates/modules/' + folder,
-            type: type
-          }, function() {
-          assert.file(filesToTest);
-          done();
-        });
-        });
-      });
-      it('Handles folder option with funky path', function(done) {
-        helpers.mockPrompt(this.app, {
-          htmlOption: 'jade',
-          singlePageApplication: false,
-          useServer: false
-        });
-        // Filename
-        var template = 'mytemplate';
-        var type = 'module';
-        var folder = '/////folder/////';
-        var filesToTest = [
-          // add files and folders you expect to NOT exist here.
-          'client/templates/modules/' + folder + template + '.jade'
-        ];
-        this.app.run([], function() {
-          createSubGenerator('template', template, {}, {
-            // mock prompt data
-            templateFile: 'client/templates/modules/' + folder,
-            type: type
-          }, function() {
-          assert.file(filesToTest);
-          done();
-        });
-        });
-      });
     });
     describe('Client templates with Dashboard', function() {
       it('Handles defaults with type: Page', function(done) {
@@ -496,56 +404,6 @@ describe('Template sub-generator', function() {
           createSubGenerator('template', template, {}, {
             // mock prompt data
             templateFile: 'server/templates/layouts/',
-            type: type
-          }, function() {
-            assert.file(filesToTest);
-            done();
-          });
-        });
-      });
-      it('Handles folder option', function(done) {
-        helpers.mockPrompt(this.app, {
-          htmlOption: 'jade',
-          singlePageApplication: false,
-          useServer: true
-        });
-        // Filename
-        var template = 'mytemplate';
-        var type = 'module';
-        var folder = 'folder/';
-        var filesToTest = [
-          // add files and folders you expect to NOT exist here.
-          'server/templates/modules/' + folder + template + '.jade'
-        ];
-        this.app.run([], function() {
-          createSubGenerator('template', template, {}, {
-            // mock prompt data
-            templateFile: 'server/templates/modules/' + folder,
-            type: type
-          }, function() {
-            assert.file(filesToTest);
-            done();
-          });
-        });
-      });
-      it('Handles folder option with funky path', function(done) {
-        helpers.mockPrompt(this.app, {
-          htmlOption: 'jade',
-          singlePageApplication: false,
-          useServer: true
-        });
-        // Filename
-        var template = 'mytemplate';
-        var type = 'module';
-        var folder = '/////folder/////';
-        var filesToTest = [
-          // add files and folders you expect to NOT exist here.
-          'server/templates/modules/' + folder + template + '.jade'
-        ];
-        this.app.run([], function() {
-          createSubGenerator('template', template, {}, {
-            // mock prompt data
-            templateFile: 'server/templates/modules/' + folder,
             type: type
           }, function() {
             assert.file(filesToTest);
@@ -735,56 +593,6 @@ describe('Template sub-generator', function() {
           });
         });
       });
-      it('Handles folder option', function(done) {
-        helpers.mockPrompt(this.app, {
-          htmlOption: 'swig',
-          singlePageApplication: false,
-          useServer: false
-        });
-        // Filename
-        var template = 'mytemplate';
-        var type = 'module';
-        var folder = 'folder/';
-        var filesToTest = [
-          // add files and folders you expect to NOT exist here.
-          'client/templates/modules/' + folder + template + '.swig'
-        ];
-        this.app.run([], function() {
-          createSubGenerator('template', template, {}, {
-            // mock prompt data
-            templateFile: 'client/templates/modules/' + folder,
-            type: type
-          }, function() {
-            assert.file(filesToTest);
-            done();
-          });
-        });
-      });
-      it('Handles folder option with funky path', function(done) {
-        helpers.mockPrompt(this.app, {
-          htmlOption: 'swig',
-          singlePageApplication: false,
-          useServer: false
-        });
-        // Filename
-        var template = 'mytemplate';
-        var type = 'module';
-        var folder = '/////folder/////';
-        var filesToTest = [
-          // add files and folders you expect to NOT exist here.
-          'client/templates/modules/' + folder + template + '.swig'
-        ];
-        this.app.run([], function() {
-          createSubGenerator('template', template, {}, {
-            // mock prompt data
-            templateFile: 'client/templates/modules/' + folder,
-            type: type
-          }, function() {
-            assert.file(filesToTest);
-            done();
-          });
-        });
-      });
     });
     describe('Client templates with Dashboard', function() {
       it('Handles defaults with type: Page', function(done) {
@@ -939,56 +747,6 @@ describe('Template sub-generator', function() {
           });
         });
       });
-      it('Handles folder option', function(done) {
-        helpers.mockPrompt(this.app, {
-          htmlOption: 'swig',
-          singlePageApplication: false,
-          useServer: true
-        });
-        // Filename
-        var template = 'mytemplate';
-        var type = 'module';
-        var folder = 'folder/';
-        var filesToTest = [
-          // add files and folders you expect to NOT exist here.
-          'server/templates/modules/' + folder + template + '.swig'
-        ];
-        this.app.run([], function() {
-          createSubGenerator('template', template, {}, {
-            // mock prompt data
-            templateFile: 'server/templates/modules/' + folder,
-            type: type
-          }, function() {
-            assert.file(filesToTest);
-            done();
-          });
-        });
-      });
-      it('Handles folder option with funky path', function(done) {
-        helpers.mockPrompt(this.app, {
-          htmlOption: 'swig',
-          singlePageApplication: false,
-          useServer: true
-        });
-        // Filename
-        var template = 'mytemplate';
-        var type = 'module';
-        var folder = '/////folder/////';
-        var filesToTest = [
-          // add files and folders you expect to NOT exist here.
-          'server/templates/modules/' + folder + template + '.swig'
-        ];
-        this.app.run([], function() {
-          createSubGenerator('template', template, {}, {
-            // mock prompt data
-            templateFile: 'server/templates/modules/' + folder,
-            type: type
-          }, function() {
-            assert.file(filesToTest);
-            done();
-          });
-        });
-      });
     });
     describe('Server templates with Dashboard', function() {
       it('Handles defaults with type: Page', function(done) {
@@ -1123,84 +881,6 @@ describe('Template sub-generator', function() {
         }, function() {
           assert.file(filesToTest);
           assert.fileContent(fileContentToTest);
-          done();
-        });
-      });
-    });
-    it('Handles defaults with Jade', function(done) {
-      // Filename
-      var template = 'mytemplate';
-      var filesToTest = [
-        'client/templates/' + template + '.jade'
-      ];
-      var fileContentToTest = [
-        ['client/templates/' + template + '.jade', /<div>/i]
-      ];
-
-      helpers.mockPrompt(this.app, {
-        jsFramework: 'backbone',
-        singlePageApplication: true,
-        jsTemplate: 'jade',
-        jsOption: 'browserify',
-        testFramework: 'jasmine'
-      });
-      this.app.run([], function() {
-        createSubGenerator('template', template, {}, {
-          // mock prompt data
-          templateFile: 'client/templates/'
-        }, function() {
-          assert.file(filesToTest);
-          assert.noFileContent(fileContentToTest);
-          done();
-        });
-      });
-    });
-    it('Handles folder option', function(done) {
-      // Filename
-      var template = 'mytemplate';
-      var folder = 'folder/';
-      var filesToTest = [
-        'client/templates/folder/' + template + '.jst'
-      ];
-
-      helpers.mockPrompt(this.app, {
-        jsFramework: 'backbone',
-        singlePageApplication: true,
-        jsTemplate: 'underscore',
-        jsOption: 'browserify',
-        testFramework: 'jasmine'
-      });
-      this.app.run([], function() {
-        createSubGenerator('template', template, {}, {
-          // mock prompt data
-          templateFile: 'client/templates/' + folder
-        }, function() {
-          assert.file(filesToTest);
-          done();
-        });
-      });
-    });
-    it('Handles folder option with funky path', function(done) {
-      // Filename
-      var template = 'mytemplate';
-      var folder = '/////folder/////';
-      var filesToTest = [
-        'client/templates/folder/' + template + '.jst'
-      ];
-
-      helpers.mockPrompt(this.app, {
-        jsFramework: 'backbone',
-        singlePageApplication: true,
-        jsTemplate: 'underscore',
-        jsOption: 'browserify',
-        testFramework: 'jasmine'
-      });
-      this.app.run([], function() {
-        createSubGenerator('template', template, {}, {
-          // mock prompt data
-          templateFile: 'client/templates/' + folder
-        }, function() {
-          assert.file(filesToTest);
           done();
         });
       });

@@ -35,24 +35,25 @@ ReactGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'reactFile',
     message: 'Where would you like to create this react component?',
-    default: 'client/scripts/components'
-  }, {
-    when: function() {
-      return self.useTesting;
-    },
-    name: 'testFile',
-    message: 'Where would you like to create this react component\'s test?',
-    default: 'test/spec/components'
+    default: 'client/app'
   }];
 
   this.prompt(prompts, function(answers) {
     // Get root directory
     this.rootDir = getRootDir(answers.reactFile);
-    this.reactFile = path.join(answers.reactFile, this._.slugify(this.name.toLowerCase()));
 
-    if (answers.testFile) {
-      this.testFile = path.join(answers.testFile, '__tests__', this._.slugify(this.name.toLowerCase()));
-    }
+    this.reactFile = path.join(
+        answers.reactFile,
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase())
+      );
+
+    this.testFile = path.join(
+        answers.reactFile,
+        this._.slugify(this.name.toLowerCase()),
+        '__tests__',
+        this._.slugify(this.name.toLowerCase())
+      );
     done();
   }.bind(this));
 };

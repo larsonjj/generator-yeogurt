@@ -27,7 +27,7 @@ describe('Factory sub-generator', function() {
       var factory = 'myfactory';
       var filesToTest = [
         'client/app/' + factory + '/' + factory + '.factory.js',
-        'client/app/' + factory + '/' + factory + '.factory.spec.js'
+        'client/app/' + factory + '/__tests__/' + factory + '.factory.spec.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -38,28 +38,6 @@ describe('Factory sub-generator', function() {
         createSubGenerator('factory', factory, {}, {
           // mock prompt data
           factoryFile: 'client/app'
-        }, function() {
-          assert.file(filesToTest);
-          done();
-        });
-      });
-    });
-    it('Handles funky path', function(done) {
-      // Filename
-      var funkyPath = '/////funkypath/////';
-      var filesToTest = [
-        'client/app/funkypath/funkypath.factory.js',
-        'client/app/funkypath/funkypath.factory.spec.js'
-      ];
-
-      helpers.mockPrompt(this.app, {
-        jsFramework: 'angular',
-        singlePageApplication: true
-      });
-      this.app.run([], function() {
-        createSubGenerator('factory', funkyPath, {}, {
-          // mock prompt data
-          factoryFile: 'client/app',
         }, function() {
           assert.file(filesToTest);
           done();

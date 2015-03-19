@@ -1,6 +1,6 @@
 'use strict';
 
-var server = require('../../server');
+var server = require('../../../server');
 var request = require('supertest');
 
 describe('GET /', function() {

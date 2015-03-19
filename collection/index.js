@@ -41,7 +41,7 @@ CollectionGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'collectionFile',
     message: 'Where would you like to create this collection?',
-    default: 'client/scripts/collections'
+    default: 'client/app'
   }, {
     name: 'existingModelName',
     message: 'What is the name of the model you would like to use with this collection?',
@@ -49,14 +49,7 @@ CollectionGenerator.prototype.ask = function ask() {
   }, {
     name: 'existingModelLocation',
     message: 'What folder is the model file located in?',
-    default: 'client/scripts/models'
-  }, {
-    when: function() {
-      return self.useTesting;
-    },
-    name: 'testFile',
-    message: 'Where would you like to create this collection\'s test?',
-    default: 'test/spec/collections'
+    default: 'client/app'
   }];
 
   this.prompt(prompts, function(answers) {
@@ -64,12 +57,20 @@ CollectionGenerator.prototype.ask = function ask() {
     this.rootDir = getRootDir(answers.collectionFile);
     this.modelName = answers.existingModelName;
 
-    this.collectionFile = path.join(answers.collectionFile, this._.slugify(this.name.toLowerCase()));
+    this.collectionFile = path.join(
+        answers.collectionFile,
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase())
+      );
     this.modelFile = path.join(answers.existingModelLocation, this._.slugify(answers.existingModelName.toLowerCase()));
 
-    if (answers.testFile) {
-      this.testFile = path.join(answers.testFile, '__tests__', this._.slugify(this.name.toLowerCase()));
-    }
+    this.testFile = path.join(
+        answers.collectionFile,
+        this._.slugify(this.name.toLowerCase()),
+        '__tests__',
+        this._.slugify(this.name.toLowerCase())
+      );
+
     done();
   }.bind(this));
 };

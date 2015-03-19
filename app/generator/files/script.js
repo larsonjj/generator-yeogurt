@@ -68,7 +68,7 @@ var scriptFiles = function scriptFiles() {
 
       // Modules
       this.template(
-        'client/app/react/modules/link/jsx/link.jsx', 'client/app/modules/link.jsx'
+        'client/app/react/modules/link/jsx/link.jsx', 'client/app/modules/link/link.jsx'
       );
 
       // Layouts
@@ -80,7 +80,7 @@ var scriptFiles = function scriptFiles() {
       this.template('client/app/react/index/js/index.js', 'client/app/index/index.js');
 
       // Modules
-      this.template('client/app/react/modules/link/js/link.js', 'client/app/modules/link.js');
+      this.template('client/app/react/modules/link/js/link.js', 'client/app/modules/link/link.js');
 
       // Layouts
       this.template(

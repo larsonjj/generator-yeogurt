@@ -35,29 +35,24 @@ FluxGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'fluxFile',
     message: 'Where would you like to create flux files?',
-    default: 'client/scripts'
-  }, {
-    when: function() {
-      return self.useTesting;
-    },
-    name: 'testFile',
-    message: 'Where would you like to create flux file tests?',
-    default: 'test/spec'
+    default: 'client/app/modules'
   }];
 
   this.prompt(prompts, function(answers) {
     // Get root directory
     this.rootDir = getRootDir(answers.fluxFile);
 
-    this.constantFile = path.join(answers.fluxFile, '/constants/' , this._.slugify(this.name.toLowerCase()));
-    this.actionFile = path.join(answers.fluxFile, '/actions/', this._.slugify(this.name.toLowerCase()));
-    this.storeFile = path.join(answers.fluxFile, '/stores/', this._.slugify(this.name.toLowerCase()));
-
-    if (answers.testFile) {
-      this.testConstantFile = path.join(answers.testFile, '/constants/', '__tests__' , this._.slugify(this.name.toLowerCase()));
-      this.testActionFile = path.join(answers.testFile, '/actions/', '__tests__' , this._.slugify(this.name.toLowerCase()));
-      this.testStoreFile = path.join(answers.testFile, '/stores/', '__tests__' , this._.slugify(this.name.toLowerCase()));
-    }
+    this.fluxFile = path.join(
+        answers.fluxFile,
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase())
+      );
+    this.testFile = path.join(
+        answers.fluxFile,
+        this._.slugify(this.name.toLowerCase()),
+        '__tests__',
+        this._.slugify(this.name.toLowerCase())
+      );
     done();
   }.bind(this));
 };
@@ -69,14 +64,12 @@ FluxGenerator.prototype.files = function files() {
   }
 
   // Create constant, action, and store files
-  this.template('constant.js', this.constantFile + '.js');
-  this.template('action.js', this.actionFile + '.js');
-  this.template('store.js', this.storeFile + '.js');
+  this.template('constant.js', this.fluxFile + '.constants.js');
+  this.template('action.js', this.fluxFile + '.actions.js');
+  this.template('store.js', this.fluxFile + '.store.js');
 
   if (this.useTesting) {
-    this.template('constant.spec.js', this.testConstantFile + '.spec.js');
-    this.template('action.spec.js', this.testActionFile + '.spec.js');
-    this.template('store.spec.js', this.testStoreFile + '.spec.js');
+    this.template('spec.js', this.testFile + '.spec.js');
   }
 
 };

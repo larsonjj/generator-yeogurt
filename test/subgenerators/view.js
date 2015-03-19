@@ -47,54 +47,6 @@ describe('View sub-generator', function() {
         });
       });
     });
-    it('Handles folder option', function(done) {
-      helpers.mockPrompt(this.app, {
-        jsFramework: 'react'
-      });
-      // Filename
-      var view = 'myview';
-      var folder = 'folder/';
-      var filesToTest = [
-        'test/spec/views/' + folder + view + '.js',
-        'client/scripts/views/' + folder + view + '.js'
-      ];
-
-      this.app.run([], function() {
-        createSubGenerator('view', view, {}, {
-          // mock prompt data
-          viewFile: 'client/scripts/views/' + folder,
-          templateFile: 'client/templates/' + folder,
-          testFile: 'test/spec/views/' + folder
-        }, function() {
-          assert.noFile(filesToTest);
-          done();
-        });
-      });
-    });
-    it('Handles folder option with funky path', function(done) {
-      helpers.mockPrompt(this.app, {
-        jsFramework: 'react'
-      });
-      // Filename
-      var view = 'myview';
-      var folder = '/////folder/////';
-      var filesToTest = [
-        'test/spec/views/folder/' + view + '.js',
-        'client/scripts/views/folder/' + view + '.js'
-      ];
-
-      this.app.run([], function() {
-        createSubGenerator('view', view, {}, {
-          // mock prompt data
-          viewFile: 'client/scripts/views/' + folder,
-          templateFile: 'client/templates/' + folder,
-          testFile: 'test/spec/views/' + folder
-        }, function() {
-          assert.noFile(filesToTest);
-          done();
-        });
-      });
-    });
   });
 
   describe('Does not create any view files when using Static Jade', function() {
@@ -123,56 +75,6 @@ describe('View sub-generator', function() {
         });
       });
     });
-    it('Handles folder option', function(done) {
-      helpers.mockPrompt(this.app, {
-        htmlOption: 'jade',
-        singlePageApplication: false
-      });
-      // Filename
-      var view = 'myview';
-      var folder = 'folder/';
-      var filesToTest = [
-        'test/spec/views/' + folder + view + '.js',
-        'client/scripts/views/' + folder + view + '.js'
-      ];
-
-      this.app.run([], function() {
-        createSubGenerator('view', view, {}, {
-          // mock prompt data
-          viewFile: 'client/scripts/views/' + folder,
-          templateFile: 'client/templates/' + folder,
-          testFile: 'test/spec/views/' + folder
-        }, function() {
-          assert.noFile(filesToTest);
-          done();
-        });
-      });
-    });
-    it('Handles folder option with funky path', function(done) {
-      helpers.mockPrompt(this.app, {
-        htmlOption: 'jade',
-        singlePageApplication: false
-      });
-      // Filename
-      var view = 'myview';
-      var folder = '/////folder/////';
-      var filesToTest = [
-        'test/spec/views/folder/' + view + '.js',
-        'client/scripts/views/folder/' + view + '.js'
-      ];
-
-      this.app.run([], function() {
-        createSubGenerator('view', view, {}, {
-          // mock prompt data
-          viewFile: 'client/scripts/views/' + folder,
-          templateFile: 'client/templates/' + folder,
-          testFile: 'test/spec/views/' + folder
-        }, function() {
-          assert.noFile(filesToTest);
-          done();
-        });
-      });
-    });
   });
 
   describe('Does not create any view files when using Static Swig', function() {
@@ -194,56 +96,6 @@ describe('View sub-generator', function() {
           viewFile: 'client/scripts/views/',
           templateFile: 'client/templates',
           testFile: 'test/spec/views'
-        }, function() {
-          assert.noFile(filesToTest);
-          done();
-        });
-      });
-    });
-    it('Handles folder option', function(done) {
-      helpers.mockPrompt(this.app, {
-        htmlOption: 'swig',
-        singlePageApplication: false
-      });
-      // Filename
-      var view = 'myview';
-      var folder = 'folder/';
-      var filesToTest = [
-        'test/spec/views/' + folder + view + '.js',
-        'client/scripts/views/' + folder + view + '.js'
-      ];
-
-      this.app.run([], function() {
-        createSubGenerator('view', view, {}, {
-          // mock prompt data
-          viewFile: 'client/scripts/views/' + folder,
-          templateFile: 'client/templates/' + folder,
-          testFile: 'test/spec/views/' + folder
-        }, function() {
-          assert.noFile(filesToTest);
-          done();
-        });
-      });
-    });
-    it('Handles folder option with funky path', function(done) {
-      helpers.mockPrompt(this.app, {
-        htmlOption: 'swig',
-        singlePageApplication: false
-      });
-      // Filename
-      var view = 'myview';
-      var folder = '/////folder/////';
-      var filesToTest = [
-        'test/spec/views/folder/' + view + '.js',
-        'client/scripts/views/folder/' + view + '.js'
-      ];
-
-      this.app.run([], function() {
-        createSubGenerator('view', view, {}, {
-          // mock prompt data
-          viewFile: 'client/scripts/views/' + folder,
-          templateFile: 'client/templates/' + folder,
-          testFile: 'test/spec/views/' + folder
         }, function() {
           assert.noFile(filesToTest);
           done();
@@ -721,64 +573,6 @@ describe('View sub-generator', function() {
               done();
             });
           });
-        });
-      });
-    });
-    it('Handles folder option', function(done) {
-      // Filename
-      var view = 'myview';
-      var folder = 'folder/';
-      var filesToTest = [
-        'test/spec/views/' + folder + view + '.spec.js',
-        'client/scripts/views/' + folder + view + '.js'
-      ];
-
-      helpers.mockPrompt(this.app, {
-        jsFramework: 'backbone',
-        singlePageApplication: true,
-        jsTemplate: 'underscore',
-        jsOption: 'browserify',
-        testFramework: 'jasmine'
-      });
-
-      this.app.run([], function() {
-        createSubGenerator('view', view, {}, {
-          // mock prompt data
-          viewFile: 'client/scripts/views/' + folder,
-          templateFile: 'client/templates/' + folder,
-          testFile: 'test/spec/views/' + folder
-        }, function() {
-          assert.file(filesToTest);
-          done();
-        });
-      });
-    });
-    it('Handles folder option with funky path', function(done) {
-      // Filename
-      var view = 'myview';
-      var folder = '/////folder/////';
-      var filesToTest = [
-        'test/spec/views/folder/' + view + '.spec.js',
-        'client/scripts/views/folder/' + view + '.js'
-      ];
-
-      helpers.mockPrompt(this.app, {
-        jsFramework: 'backbone',
-        singlePageApplication: true,
-        jsTemplate: 'underscore',
-        jsOption: 'browserify',
-        testFramework: 'jasmine'
-      });
-
-      this.app.run([], function() {
-        createSubGenerator('view', view, {}, {
-          // mock prompt data
-          viewFile: 'client/scripts/views/' + folder,
-          templateFile: 'client/templates/' + folder,
-          testFile: 'test/spec/views/' + folder
-        }, function() {
-          assert.file(filesToTest);
-          done();
         });
       });
     });

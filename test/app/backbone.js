@@ -46,6 +46,7 @@ describe('Yeogurt generator using Backbone', function() {
               jsTemplate: 'handlebars',
               jsOption: 'none',
               useServer: false,
+              useServerTesting: false,
               testFramework: 'jasmine'
             });
             this.app.run([], function() {
@@ -78,6 +79,7 @@ describe('Yeogurt generator using Backbone', function() {
               jsTemplate: 'handlebars',
               jsOption: 'none',
               useServer: false,
+              useServerTesting: false,
               testFramework: 'mocha'
             });
             this.app.run([], function() {
@@ -112,6 +114,7 @@ describe('Yeogurt generator using Backbone', function() {
               jsTemplate: 'underscore',
               jsOption: 'none',
               useServer: false,
+              useServerTesting: false,
               testFramework: 'jasmine'
             });
             this.app.run([], function() {
@@ -144,6 +147,7 @@ describe('Yeogurt generator using Backbone', function() {
               jsTemplate: 'underscore',
               jsOption: 'none',
               useServer: false,
+              useServerTesting: false,
               testFramework: 'mocha'
             });
             this.app.run([], function() {
@@ -178,6 +182,7 @@ describe('Yeogurt generator using Backbone', function() {
               jsTemplate: 'jade',
               jsOption: 'none',
               useServer: false,
+              useServerTesting: false,
               testFramework: 'jasmine'
             });
             this.app.run([], function() {
@@ -210,6 +215,7 @@ describe('Yeogurt generator using Backbone', function() {
               jsTemplate: 'jade',
               jsOption: 'none',
               useServer: false,
+              useServerTesting: false,
               testFramework: 'mocha'
             });
             this.app.run([], function() {
@@ -245,6 +251,7 @@ describe('Yeogurt generator using Backbone', function() {
               jsTemplate: 'handlebars',
               jsOption: 'browserify',
               useServer: false,
+              useServerTesting: false,
               testFramework: 'jasmine'
             });
             this.app.run([], function() {
@@ -276,6 +283,7 @@ describe('Yeogurt generator using Backbone', function() {
               jsTemplate: 'handlebars',
               jsOption: 'browserify',
               useServer: false,
+              useServerTesting: false,
               testFramework: 'mocha'
             });
             this.app.run([], function() {
@@ -309,6 +317,7 @@ describe('Yeogurt generator using Backbone', function() {
               jsTemplate: 'underscore',
               jsOption: 'browserify',
               useServer: false,
+              useServerTesting: false,
               testFramework: 'jasmine'
             });
             this.app.run([], function() {
@@ -340,6 +349,7 @@ describe('Yeogurt generator using Backbone', function() {
               jsTemplate: 'underscore',
               jsOption: 'browserify',
               useServer: false,
+              useServerTesting: false,
               testFramework: 'mocha'
             });
             this.app.run([], function() {
@@ -373,6 +383,7 @@ describe('Yeogurt generator using Backbone', function() {
               jsTemplate: 'jade',
               jsOption: 'browserify',
               useServer: false,
+              useServerTesting: false,
               testFramework: 'jasmine'
             });
             this.app.run([], function() {
@@ -404,6 +415,7 @@ describe('Yeogurt generator using Backbone', function() {
               jsTemplate: 'jade',
               jsOption: 'browserify',
               useServer: false,
+              useServerTesting: false,
               testFramework: 'mocha'
             });
             this.app.run([], function() {
@@ -439,6 +451,7 @@ describe('Yeogurt generator using Backbone', function() {
               jsTemplate: 'handlebars',
               jsOption: 'requirejs',
               useServer: false,
+              useServerTesting: false,
               testFramework: 'jasmine'
             });
             this.app.run([], function() {
@@ -470,6 +483,7 @@ describe('Yeogurt generator using Backbone', function() {
               jsTemplate: 'handlebars',
               jsOption: 'requirejs',
               useServer: false,
+              useServerTesting: false,
               testFramework: 'mocha'
             });
             this.app.run([], function() {
@@ -503,6 +517,7 @@ describe('Yeogurt generator using Backbone', function() {
               jsTemplate: 'underscore',
               jsOption: 'requirejs',
               useServer: false,
+              useServerTesting: false,
               testFramework: 'jasmine'
             });
             this.app.run([], function() {
@@ -534,6 +549,7 @@ describe('Yeogurt generator using Backbone', function() {
               jsTemplate: 'underscore',
               jsOption: 'requirejs',
               useServer: false,
+              useServerTesting: false,
               testFramework: 'mocha'
             });
             this.app.run([], function() {
@@ -567,6 +583,7 @@ describe('Yeogurt generator using Backbone', function() {
               jsTemplate: 'jade',
               jsOption: 'requirejs',
               useServer: false,
+              useServerTesting: false,
               testFramework: 'jasmine'
             });
             this.app.run([], function() {
@@ -598,6 +615,7 @@ describe('Yeogurt generator using Backbone', function() {
               jsTemplate: 'jade',
               jsOption: 'requirejs',
               useServer: false,
+              useServerTesting: false,
               testFramework: 'mocha'
             });
             this.app.run([], function() {
