@@ -13,18 +13,28 @@ var testingFiles = function testingFiles() {
 
     if (this.jsFramework === 'backbone') {
       if (this.jsOption === 'requirejs') {
-        this.template('client/app/backbone/requirejs/routes/__tests__/routes.spec.js', 'client/app/__tests__/routes.spec.js');
-        this.template('client/app/backbone/requirejs/index/__tests__/index.spec.js', 'client/app/index/__tests__/index.spec.js');
+        this.template(
+          'client/app/backbone/requirejs/routes/__tests__/routes.spec.js', 'client/app/__tests__/routes.spec.js'
+        );
+        this.template(
+          'client/app/backbone/requirejs/index/__tests__/index.spec.js', 'client/app/index/__tests__/index.spec.js'
+        );
       }
 
       if (this.jsOption === 'browserify') {
-        this.template('client/app/backbone/browserify/routes/__tests__/routes.spec.js', 'client/app/__tests__/routes.spec.js');
-        this.template('client/app/backbone/browserify/index/__tests__/index.spec.js', 'client/app/index/__tests__/index.spec.js');
+        this.template(
+          'client/app/backbone/browserify/routes/__tests__/routes.spec.js', 'client/app/__tests__/routes.spec.js'
+        );
+        this.template(
+          'client/app/backbone/browserify/index/__tests__/index.spec.js', 'client/app/index/__tests__/index.spec.js'
+        );
       }
 
       if (this.jsOption === 'none') {
         this.template('client/app/backbone/js/routes/__tests__/routes.spec.js', 'client/app/__tests__/routes.spec.js');
-        this.template('client/app/backbone/js/index/__tests__/index.spec.js', 'client/app/index/__tests__/index.spec.js');
+        this.template(
+          'client/app/backbone/js/index/__tests__/index.spec.js', 'client/app/index/__tests__/index.spec.js'
+        );
       }
     }
     else if (this.jsFramework === 'react') {
@@ -39,7 +49,9 @@ var testingFiles = function testingFiles() {
 
       this.template('client/app/react/main/__tests__/main.spec.js', 'client/app/__tests__/main.spec.js');
 
-      this.template('client/app/react/modules/link/__tests__/link.spec.js', 'client/app/modules/__tests__/link.spec.js');
+      this.template(
+        'client/app/react/modules/link/__tests__/link.spec.js', 'client/app/modules/__tests__/link.spec.js'
+      );
 
       // Stores
       this.template('client/app/react/lib/store/__tests__/store.spec.js', 'client/app/lib/__tests__/store.spec.js');

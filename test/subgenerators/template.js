@@ -299,7 +299,7 @@ describe('Template sub-generator', function() {
           useDashboard: true
         });
         this.app.run([], function() {
-            createSubGenerator('template', template, {}, {
+          createSubGenerator('template', template, {}, {
               // mock prompt data
               templateFile: 'client/templates/modules/',
               type: type
@@ -558,7 +558,7 @@ describe('Template sub-generator', function() {
           useServer: false
         });
         this.app.run([], function() {
-            createSubGenerator('template', template, {}, {
+          createSubGenerator('template', template, {}, {
               // mock prompt data
             templateFile: 'client/templates/layouts/',
             type: type
@@ -635,7 +635,7 @@ describe('Template sub-generator', function() {
           useDashboard: true
         });
         this.app.run([], function() {
-            createSubGenerator('template', template, {}, {
+          createSubGenerator('template', template, {}, {
               // mock prompt data
             templateFile: 'client/templates/modules/',
             type: type
@@ -660,7 +660,7 @@ describe('Template sub-generator', function() {
           useDashboard: true
         });
         this.app.run([], function() {
-            createSubGenerator('template', template, {}, {
+          createSubGenerator('template', template, {}, {
               // mock prompt data
               templateFile: 'client/templates/layouts/',
               type: type
@@ -865,7 +865,6 @@ describe('Template sub-generator', function() {
       var fileContentToTest = [
         ['client/templates/' + template + '.hbs', /<div>/i]
       ];
-
 
       helpers.mockPrompt(this.app, {
         jsFramework: 'backbone',
