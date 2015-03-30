@@ -8,7 +8,7 @@ var assert  = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
-describe('React sub-generator', function() {
+describe('React module sub-generator', function() {
   beforeEach(function(done) {
     helpers.testDirectory(path.join(__dirname, 'temp'), function(err) {
       if (err) {
@@ -19,84 +19,6 @@ describe('React sub-generator', function() {
 
       done();
     }.bind(this));
-  });
-
-  describe('Does not create any react files when using Backbone', function() {
-    it('Handles defaults', function(done) {
-      // Filename
-      var react = 'myreact';
-      var filesToTest = [
-        'client/app/' + react + '/__tests__/' + react + '.spec.js',
-        'client/app/' + react + '/' + react + '.js',
-        'client/app/' + react + '/' + react + '.jsx'
-      ];
-
-      helpers.mockPrompt(this.app, {
-        jsFramework: 'backbone',
-        singlePageApplication: true,
-        jsTemplate: 'underscore',
-        jsOption: 'browserify',
-        testFramework: 'jasmine'
-      });
-      this.app.run([], function() {
-        createSubGenerator('react', react, {}, {
-          // mock prompt data
-          reactFile: 'client/app'
-        }, function() {
-          assert.noFile(filesToTest);
-          done();
-        });
-      });
-    });
-  });
-
-  describe('Does not create any react files when using Static Jade', function() {
-    it('Handles defaults', function(done) {
-      // Filename
-      var react = 'myreact';
-      var filesToTest = [
-        'client/app/' + react + '/__tests__/' + react + '.spec.js',
-        'client/app/' + react + '/' + react + '.js',
-        'client/app/' + react + '/' + react + '.jsx'
-      ];
-
-      helpers.mockPrompt(this.app, {
-        htmlOption: 'jade'
-      });
-      this.app.run([], function() {
-        createSubGenerator('react', react, {}, {
-          // mock prompt data
-          reactFile: 'client/app'
-        }, function() {
-          assert.noFile(filesToTest);
-          done();
-        });
-      });
-    });
-  });
-
-  describe('Does not create any react files when using Static Swig', function() {
-    it('Handles defaults', function(done) {
-      helpers.mockPrompt(this.app, {
-        htmlOption: 'swig'
-      });
-      // Filename
-      var react = 'myreact';
-      var filesToTest = [
-        'client/app/' + react + '/__tests__/' + react + '.spec.js',
-        'client/app/' + react + '/' + react + '.js',
-        'client/app/' + react + '/' + react + '.jsx'
-      ];
-      this.app.run([], function() {
-        createSubGenerator('react', react, {}, {
-          // mock prompt data
-          reactFile: 'client/app'
-        }, function() {
-          assert.noFile(filesToTest);
-          done();
-        });
-      });
-    });
   });
 
   describe('Create react files when using React', function() {
