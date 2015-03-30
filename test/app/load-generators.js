@@ -7,17 +7,15 @@ describe('Yeogurt generator and sub-generators', function() {
   it('can be imported without blowing up', function() {
     assert(require('../../app') !== undefined);
     // Sub-generators
-    assert(require('../../react') !== undefined);
-    assert(require('../../view') !== undefined);
     assert(require('../../model') !== undefined);
     assert(require('../../collection') !== undefined);
-    assert(require('../../template') !== undefined);
     assert(require('../../filter') !== undefined);
     assert(require('../../factory') !== undefined);
     assert(require('../../decorator') !== undefined);
+    assert(require('../../directive') !== undefined);
     assert(require('../../service') !== undefined);
     assert(require('../../controller') !== undefined);
     assert(require('../../provider') !== undefined);
-    assert(require('../../route') !== undefined);
+    assert(require('../../module') !== undefined);
   });
 });
