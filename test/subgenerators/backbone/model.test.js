@@ -38,7 +38,7 @@ describe('Model sub-generator', function() {
         testFramework: 'jasmine'
       });
       this.app.run([], function() {
-        createSubGenerator('model', model, {path:'../../../../'}, {
+        createSubGenerator('model', model, {path: '../../../../'}, {
           // mock prompt data
           modelFile: 'client/app'
         }, function() {
@@ -66,7 +66,7 @@ describe('Model sub-generator', function() {
         testFramework: 'jasmine'
       });
       this.app.run([], function() {
-        createSubGenerator('model', model, {path:'../../../../'}, {
+        createSubGenerator('model', model, {path: '../../../../'}, {
           // mock prompt data
           modelFile: 'client/app'
         }, function() {
@@ -96,7 +96,7 @@ describe('Model sub-generator', function() {
         testFramework: 'jasmine'
       });
       this.app.run([], function() {
-        createSubGenerator('model', model, {path:'../../../../'}, {
+        createSubGenerator('model', model, {path: '../../../../'}, {
           // mock prompt data
           modelFile: 'client/app'
         }, function() {
@@ -122,7 +122,7 @@ describe('Model sub-generator', function() {
         testFramework: 'jasmine'
       });
       this.app.run([], function() {
-        createSubGenerator('model', model, {path:'../../../../'}, {
+        createSubGenerator('model', model, {path: '../../../../'}, {
           // mock prompt data
           modelFile: 'client/app'
         }, function() {
@@ -147,7 +147,7 @@ describe('Model sub-generator', function() {
         testFramework: 'jasmine'
       });
       this.app.run([], function() {
-        createSubGenerator('model', model, {path:'../../../../'}, {
+        createSubGenerator('model', model, {path: '../../../../'}, {
           // mock prompt data
           modelFile: 'client/app'
         }, function() {
@@ -169,7 +169,7 @@ describe('Model sub-generator', function() {
         singlePageApplication: true
       });
       this.app.run([], function() {
-        createSubGenerator('model', model, {path:'../../../../'}, {
+        createSubGenerator('model', model, {path: '../../../../'}, {
           // mock prompt data
           modelFile: 'client/app'
         }, function() {

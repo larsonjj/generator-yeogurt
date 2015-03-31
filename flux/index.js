@@ -30,7 +30,6 @@ FluxGenerator.prototype.ask = function ask() {
     return;
   }
 
-  var self = this;
   var done = this.async();
   var prompts = [{
     name: 'fluxFile',
@@ -39,14 +38,14 @@ FluxGenerator.prototype.ask = function ask() {
   }];
 
   this.prompt(prompts, function(answers) {
-    // Get root directory
-    this.rootDir = getRootDir(answers.fluxFile);
 
     this.fluxFile = path.join(
         answers.fluxFile,
         this._.slugify(this.name.toLowerCase()),
         this._.slugify(this.name.toLowerCase())
       );
+    // Get root directory
+    this.rootDir = getRootDir(this.fluxFile);
     this.testFile = path.join(
         answers.fluxFile,
         this._.slugify(this.name.toLowerCase()),

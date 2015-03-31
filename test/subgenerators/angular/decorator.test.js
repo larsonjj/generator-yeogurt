@@ -34,7 +34,7 @@ describe('Decorator sub-generator', function() {
         singlePageApplication: true
       });
       this.app.run([], function() {
-        createSubGenerator('decorator', decorator, {path:'../../../../'}, {
+        createSubGenerator('decorator', decorator, {path: '../../../../'}, {
           // mock prompt data
           decoratorFile: 'client/app'
         }, function() {
@@ -55,7 +55,7 @@ describe('Decorator sub-generator', function() {
         singlePageApplication: true
       });
       this.app.run([], function() {
-        createSubGenerator('decorator', decorator, {path:'../../../../'}, {
+        createSubGenerator('decorator', decorator, {path: '../../../../'}, {
           // mock prompt data
           decoratorFile: 'client/app'
         }, function() {

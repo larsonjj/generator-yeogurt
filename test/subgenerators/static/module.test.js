@@ -55,7 +55,7 @@ describe('Static Site module sub-generator', function() {
             });
 
             this.app.run([], function() {
-              createSubGenerator('module', module, {path:'../../../../'}, {
+              createSubGenerator('module', module, {path: '../../../../'}, {
                 // mock prompt data
                 moduleFile: 'client/app',
                 type: type,
@@ -101,7 +101,7 @@ describe('Static Site module sub-generator', function() {
             });
 
             this.app.run([], function() {
-              createSubGenerator('module', module, {path:'../../../../'}, {
+              createSubGenerator('module', module, {path: '../../../../'}, {
                 // mock prompt data
                 moduleFile: 'client/app',
                 type: type,
@@ -151,7 +151,7 @@ describe('Static Site module sub-generator', function() {
             });
 
             this.app.run([], function() {
-              createSubGenerator('module', module, {path:'../../../../'}, {
+              createSubGenerator('module', module, {path: '../../../../'}, {
                 // mock prompt data
                 moduleFile: 'client/app',
                 type: type,
@@ -195,7 +195,7 @@ describe('Static Site module sub-generator', function() {
             });
 
             this.app.run([], function() {
-              createSubGenerator('module', module, {path:'../../../../'}, {
+              createSubGenerator('module', module, {path: '../../../../'}, {
                 // mock prompt data
                 moduleFile: 'client/app/modules',
                 moduleLocation: 'client',
@@ -220,7 +220,7 @@ describe('Static Site module sub-generator', function() {
           'client/app/layout/' + module + '/' + module + '.scss'
         ];
         var fileContentToTest = [
-          ['client/app/layout/' + module + '/' + module + '.jade', /extend base/i]
+          ['client/app/layout/' + module + '/' + module + '.jade', /extend/i]
         ];
 
         helpers.mockPrompt(this.app, {
@@ -232,7 +232,7 @@ describe('Static Site module sub-generator', function() {
           sassSyntax: 'scss'
         });
         this.app.run([], function() {
-          createSubGenerator('module', module, {path:'../../../../'}, {
+          createSubGenerator('module', module, {path: '../../../../'}, {
             // mock prompt data
             moduleFile: 'client/app/layout',
             type: type,
@@ -262,7 +262,7 @@ describe('Static Site module sub-generator', function() {
           useDashboard: true
         });
         this.app.run([], function() {
-          createSubGenerator('module', module, {path:'../../../../'}, {
+          createSubGenerator('module', module, {path: '../../../../'}, {
             // mock prompt data
             moduleFile: 'client/app',
             type: type,
@@ -289,7 +289,7 @@ describe('Static Site module sub-generator', function() {
           useDashboard: true
         });
         this.app.run([], function() {
-          createSubGenerator('module', module, {path:'../../../../'}, {
+          createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app/modules',
               type: type,
@@ -335,7 +335,7 @@ describe('Static Site module sub-generator', function() {
             });
 
             this.app.run([], function() {
-              createSubGenerator('module', module, {path:'../../../../'}, {
+              createSubGenerator('module', module, {path: '../../../../'}, {
                 // mock prompt data
                 moduleFile: 'client/app',
                 type: type,
@@ -379,7 +379,7 @@ describe('Static Site module sub-generator', function() {
             });
 
             this.app.run([], function() {
-              createSubGenerator('module', module, {path:'../../../../'}, {
+              createSubGenerator('module', module, {path: '../../../../'}, {
                 // mock prompt data
                 moduleFile: 'client/app',
                 type: type,
@@ -425,7 +425,7 @@ describe('Static Site module sub-generator', function() {
             });
 
             this.app.run([], function() {
-              createSubGenerator('module', module, {path:'../../../../'}, {
+              createSubGenerator('module', module, {path: '../../../../'}, {
                 // mock prompt data
                 moduleFile: 'client/app',
                 type: type,
@@ -468,7 +468,7 @@ describe('Static Site module sub-generator', function() {
             });
 
             this.app.run([], function() {
-              createSubGenerator('module', module, {path:'../../../../'}, {
+              createSubGenerator('module', module, {path: '../../../../'}, {
                 // mock prompt data
                 moduleFile: 'client/app/modules',
                 type: type,
@@ -493,7 +493,7 @@ describe('Static Site module sub-generator', function() {
           'client/app/layout/' + module + '/' + module + '.scss'
         ];
         var fileContentToTest = [
-          ['client/app/layout/' + module + '/' + module + '.swig', /extends 'base\.swig'/i]
+          ['client/app/layout/' + module + '/' + module + '.swig', /extends/i]
         ];
 
         helpers.mockPrompt(this.app, {
@@ -505,7 +505,7 @@ describe('Static Site module sub-generator', function() {
           sassSyntax: 'scss'
         });
         this.app.run([], function() {
-          createSubGenerator('module', module, {path:'../../../../'}, {
+          createSubGenerator('module', module, {path: '../../../../'}, {
             // mock prompt data
             moduleFile: 'client/app/layout',
             type: type,
@@ -535,7 +535,7 @@ describe('Static Site module sub-generator', function() {
           useDashboard: true
         });
         this.app.run([], function() {
-          createSubGenerator('module', module, {path:'../../../../'}, {
+          createSubGenerator('module', module, {path: '../../../../'}, {
             // mock prompt data
             moduleFile: 'client/app',
             type: type,
@@ -562,7 +562,7 @@ describe('Static Site module sub-generator', function() {
           useDashboard: true
         });
         this.app.run([], function() {
-          createSubGenerator('module', module, {path:'../../../../'}, {
+          createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app/modules',
               type: type,

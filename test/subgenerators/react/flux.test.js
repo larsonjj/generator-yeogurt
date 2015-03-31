@@ -40,7 +40,7 @@ describe('Flux sub-generator', function() {
         testFramework: 'jasmine'
       });
       this.app.run([], function() {
-        createSubGenerator('flux', flux, {path:'../../../../'}, {
+        createSubGenerator('flux', flux, {path: '../../../../'}, {
           // mock prompt data
           fluxFile: 'client/app'
         }, function() {
@@ -66,7 +66,7 @@ describe('Flux sub-generator', function() {
         htmlOption: 'jade'
       });
       this.app.run([], function() {
-        createSubGenerator('flux', flux, {path:'../../../../'}, {
+        createSubGenerator('flux', flux, {path: '../../../../'}, {
           // mock prompt data
           fluxFile: 'client/app'
         }, function() {
@@ -91,7 +91,7 @@ describe('Flux sub-generator', function() {
         'client/app/' + flux + '/__tests__/' + flux + '.spec.js'
       ];
       this.app.run([], function() {
-        createSubGenerator('flux', flux, {path:'../../../../'}, {
+        createSubGenerator('flux', flux, {path: '../../../../'}, {
           // mock prompt data
           fluxFile: 'client/app'
         }, function() {
@@ -124,7 +124,7 @@ describe('Flux sub-generator', function() {
         useJsx: false
       });
       this.app.run([], function() {
-        createSubGenerator('flux', flux, {path:'../../../../'}, {
+        createSubGenerator('flux', flux, {path: '../../../../'}, {
           // mock prompt data
           fluxFile: 'client/app'
         }, function() {
@@ -157,7 +157,7 @@ describe('Flux sub-generator', function() {
         useTesting: false
       });
       this.app.run([], function() {
-        createSubGenerator('flux', flux, {path:'../../../../'}, {
+        createSubGenerator('flux', flux, {path: '../../../../'}, {
           // mock prompt data
           fluxFile: 'client/app'
         }, function() {

@@ -38,7 +38,7 @@ describe('Backbone module sub-generator', function() {
         testFramework: 'jasmine'
       });
       this.app.run([], function() {
-        createSubGenerator('module', module, {path:'../../../../'}, {
+        createSubGenerator('module', module, {path: '../../../../'}, {
           // mock prompt data
           moduleFile: 'client/app',
         }, function() {
@@ -75,7 +75,7 @@ describe('Backbone module sub-generator', function() {
             sassSyntax: 'scss'
           });
           this.app.run([], function() {
-            createSubGenerator('module', module, {path:'../../../../'}, {
+            createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app'
             }, function() {
@@ -111,7 +111,7 @@ describe('Backbone module sub-generator', function() {
             sassSyntax: 'scss'
           });
           this.app.run([], function() {
-            createSubGenerator('module', module, {path:'../../../../'}, {
+            createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app'
             }, function() {
@@ -145,7 +145,7 @@ describe('Backbone module sub-generator', function() {
             testFramework: 'jasmine'
           });
           this.app.run([], function() {
-            createSubGenerator('module', module, {path:'../../../../'}, {
+            createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app'
             }, function() {
@@ -177,7 +177,7 @@ describe('Backbone module sub-generator', function() {
             testFramework: 'mocha'
           });
           this.app.run([], function() {
-            createSubGenerator('module', module, {path:'../../../../'}, {
+            createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app'
             }, function() {
@@ -209,7 +209,7 @@ describe('Backbone module sub-generator', function() {
             testFramework: 'jasmine'
           });
           this.app.run([], function() {
-            createSubGenerator('module', module, {path:'../../../../'}, {
+            createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app'
             }, function() {
@@ -239,7 +239,7 @@ describe('Backbone module sub-generator', function() {
             testFramework: 'mocha'
           });
           this.app.run([], function() {
-            createSubGenerator('module', module, {path:'../../../../'}, {
+            createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app'
             }, function() {
@@ -275,7 +275,7 @@ describe('Backbone module sub-generator', function() {
             testFramework: 'jasmine'
           });
           this.app.run([], function() {
-            createSubGenerator('module', module, {path:'../../../../'}, {
+            createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app'
             }, function() {
@@ -307,7 +307,7 @@ describe('Backbone module sub-generator', function() {
             testFramework: 'mocha'
           });
           this.app.run([], function() {
-            createSubGenerator('module', module, {path:'../../../../'}, {
+            createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app'
             }, function() {
@@ -341,7 +341,7 @@ describe('Backbone module sub-generator', function() {
             testFramework: 'jasmine'
           });
           this.app.run([], function() {
-            createSubGenerator('module', module, {path:'../../../../'}, {
+            createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app'
             }, function() {
@@ -373,7 +373,7 @@ describe('Backbone module sub-generator', function() {
             testFramework: 'mocha'
           });
           this.app.run([], function() {
-            createSubGenerator('module', module, {path:'../../../../'}, {
+            createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app'
             }, function() {
@@ -405,7 +405,7 @@ describe('Backbone module sub-generator', function() {
             testFramework: 'jasmine'
           });
           this.app.run([], function() {
-            createSubGenerator('module', module, {path:'../../../../'}, {
+            createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app'
             }, function() {
@@ -435,7 +435,7 @@ describe('Backbone module sub-generator', function() {
             testFramework: 'mocha'
           });
           this.app.run([], function() {
-            createSubGenerator('module', module, {path:'../../../../'}, {
+            createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app'
             }, function() {
@@ -471,7 +471,7 @@ describe('Backbone module sub-generator', function() {
             testFramework: 'jasmine'
           });
           this.app.run([], function() {
-            createSubGenerator('module', module, {path:'../../../../'}, {
+            createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app'
             }, function() {
@@ -503,7 +503,7 @@ describe('Backbone module sub-generator', function() {
             testFramework: 'mocha'
           });
           this.app.run([], function() {
-            createSubGenerator('module', module, {path:'../../../../'}, {
+            createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app'
             }, function() {
@@ -537,7 +537,7 @@ describe('Backbone module sub-generator', function() {
             testFramework: 'jasmine'
           });
           this.app.run([], function() {
-            createSubGenerator('module', module, {path:'../../../../'}, {
+            createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app'
             }, function() {
@@ -569,7 +569,7 @@ describe('Backbone module sub-generator', function() {
             testFramework: 'mocha'
           });
           this.app.run([], function() {
-            createSubGenerator('module', module, {path:'../../../../'}, {
+            createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app'
             }, function() {
@@ -601,7 +601,7 @@ describe('Backbone module sub-generator', function() {
             testFramework: 'jasmine'
           });
           this.app.run([], function() {
-            createSubGenerator('module', module, {path:'../../../../'}, {
+            createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app'
             }, function() {
@@ -631,7 +631,7 @@ describe('Backbone module sub-generator', function() {
             testFramework: 'mocha'
           });
           this.app.run([], function() {
-            createSubGenerator('module', module, {path:'../../../../'}, {
+            createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app'
             }, function() {

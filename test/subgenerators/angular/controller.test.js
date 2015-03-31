@@ -35,7 +35,7 @@ describe('Controller sub-generator', function() {
         singlePageApplication: true
       });
       this.app.run([], function() {
-        createSubGenerator('controller', controller, {path:'../../../../'}, {
+        createSubGenerator('controller', controller, {path: '../../../../'}, {
           // mock prompt data
           controllerFile: 'client/app'
         }, function() {
@@ -57,7 +57,7 @@ describe('Controller sub-generator', function() {
         singlePageApplication: true
       });
       this.app.run([], function() {
-        createSubGenerator('controller', controller, {path:'../../../../'}, {
+        createSubGenerator('controller', controller, {path: '../../../../'}, {
           // mock prompt data
           controllerFile: 'client/app'
         }, function() {

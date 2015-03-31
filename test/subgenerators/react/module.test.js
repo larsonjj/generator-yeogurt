@@ -41,9 +41,9 @@ describe('React module sub-generator', function() {
         useJsx: false
       });
       this.app.run([], function() {
-        createSubGenerator('module', module, {path:'../../../../'}, {
+        createSubGenerator('module', module, {path: '../../../../'}, {
           // mock prompt data
-          reactFile: 'client/app'
+          moduleFile: 'client/app'
         }, function() {
           assert.file(filesToTest);
           assert.fileContent(fileContentToTest);
@@ -60,16 +60,16 @@ describe('React module sub-generator', function() {
         'client/app/' + module + '/' + module + '.jsx'
       ];
       var fileContentToTest = [
-        ['client/app/' + module + '/__tests__/' + module + '.spec.js', /React\.createFactory/i],
+        ['client/app/' + module + '/__tests__/' + module + '.spec.js', /React\.createFactory/i]
       ];
 
       helpers.mockPrompt(this.app, {
         jsFramework: 'react'
       });
       this.app.run([], function() {
-        createSubGenerator('module', module, {path:'../../../../'}, {
+        createSubGenerator('module', module, {path: '../../../../'}, {
           // mock prompt data
-          reactFile: 'client/app'
+          moduleFile: 'client/app'
         }, function() {
           assert.file(filesToTest);
           assert.fileContent(fileContentToTest);
@@ -92,9 +92,9 @@ describe('React module sub-generator', function() {
         useTesting: false
       });
       this.app.run([], function() {
-        createSubGenerator('module', module, {path:'../../../../'}, {
+        createSubGenerator('module', module, {path: '../../../../'}, {
           // mock prompt data
-          reactFile: 'client/app'
+          moduleFile: 'client/app'
         }, function() {
           assert.file(filesToTest);
           assert.noFile(filesNotCreated);

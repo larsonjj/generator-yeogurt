@@ -38,7 +38,7 @@ describe('Angular module sub-generator', function() {
         singlePageApplication: true
       });
       this.app.run([], function() {
-        createSubGenerator('module', module, {path:'../../../../'}, {
+        createSubGenerator('module', module, {path: '../../../../'}, {
           // mock prompt data
           moduleFile: 'client/app',
           moduleURL: url

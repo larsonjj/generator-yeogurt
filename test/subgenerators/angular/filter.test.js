@@ -35,7 +35,7 @@ describe('Filter sub-generator', function() {
         singlePageApplication: true
       });
       this.app.run([], function() {
-        createSubGenerator('filter', filter, {path:'../../../../'}, {
+        createSubGenerator('filter', filter, {path: '../../../../'}, {
           // mock prompt data
           filterFile: 'client/app'
         }, function() {
@@ -56,7 +56,7 @@ describe('Filter sub-generator', function() {
         singlePageApplication: true
       });
       this.app.run([], function() {
-        createSubGenerator('filter', filter, {path:'../../../../'}, {
+        createSubGenerator('filter', filter, {path: '../../../../'}, {
           // mock prompt data
           filterFile: 'client/app'
         }, function() {

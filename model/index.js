@@ -31,7 +31,6 @@ ModelGenerator.prototype.ask = function ask() {
     return;
   }
 
-  var self = this;
   var done = this.async();
   var prompts = [{
     name: 'modelFile',
@@ -40,13 +39,14 @@ ModelGenerator.prototype.ask = function ask() {
   }];
 
   this.prompt(prompts, function(answers) {
-    // Get root directory
-    this.rootDir = getRootDir(answers.modelFile);
     this.modelFile = path.join(
         answers.modelFile,
         this._.slugify(this.name.toLowerCase()),
         this._.slugify(this.name.toLowerCase())
       );
+
+    // Get root directory
+    this.rootDir = getRootDir(this.modelFile);
 
     this.testFile = path.join(
         answers.modelFile,

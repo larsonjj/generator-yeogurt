@@ -32,7 +32,6 @@ CollectionGenerator.prototype.ask = function ask() {
     return;
   }
 
-  var self = this;
   var done = this.async();
   var prompts = [{
     name: 'collectionFile',
@@ -49,8 +48,6 @@ CollectionGenerator.prototype.ask = function ask() {
   }];
 
   this.prompt(prompts, function(answers) {
-    // Get root directory
-    this.rootDir = getRootDir(answers.collectionFile);
     this.modelName = answers.existingModelName;
 
     this.collectionFile = path.join(
@@ -58,6 +55,10 @@ CollectionGenerator.prototype.ask = function ask() {
         this._.slugify(this.name.toLowerCase()),
         this._.slugify(this.name.toLowerCase())
       );
+
+    // Get root directory
+    this.rootDir = getRootDir(this.collectionFile);
+
     this.modelFile = path.join(answers.existingModelLocation, this._.slugify(answers.existingModelName.toLowerCase()));
 
     this.testFile = path.join(

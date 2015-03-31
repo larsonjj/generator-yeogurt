@@ -14,7 +14,7 @@ var <%= _.classify(name) %> = require('./<%= _.slugify(name.toLowerCase()) %>.mo
 // Get list of data
 var index = function(req, res) {
   <%= _.classify(name) %>.findAll().then(function (data) {
-    return res.json(200, data);
+    return res.status(200).json(data);
   })
   .catch(function(err) {
     return handleError(err, res);
@@ -27,7 +27,7 @@ var show = function(req, res) {
     if (!data) {
       return res.send(404);
     }
-    return res.json(data);
+    return res.status(200).json(data);
   })
   .catch(function(err) {
     return handleError(err, res);
@@ -37,7 +37,7 @@ var show = function(req, res) {
 // Creates a new piece os data in the DB.
 var create = function(req, res) {
   <%= _.classify(name) %>.create(req.body).then(function (data) {
-    return res.json(201, data);
+    return res.status(201).json(data);
   })
   .catch(function(err) {
     return handleError(err, res);
@@ -55,7 +55,7 @@ var update = function(req, res) {
     }
     var updated = _.merge(data, req.body);
     updated.save().then(function (err) {
-      return res.json(200, data);
+      return res.status(200).json(data);
     })
     .catch(function(err) {
       return handleError(err, res);

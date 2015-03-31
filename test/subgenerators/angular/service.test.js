@@ -35,7 +35,7 @@ describe('Service sub-generator', function() {
         singlePageApplication: true
       });
       this.app.run([], function() {
-        createSubGenerator('service', service, {path:'../../../../'}, {
+        createSubGenerator('service', service, {path: '../../../../'}, {
           // mock prompt data
           serviceFile: 'client/app'
         }, function() {
@@ -56,7 +56,7 @@ describe('Service sub-generator', function() {
         singlePageApplication: true
       });
       this.app.run([], function() {
-        createSubGenerator('service', service, {path:'../../../../'}, {
+        createSubGenerator('service', service, {path: '../../../../'}, {
           // mock prompt data
           serviceFile: 'client/app'
         }, function() {

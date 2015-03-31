@@ -35,7 +35,7 @@ describe('Factory sub-generator', function() {
         singlePageApplication: true
       });
       this.app.run([], function() {
-        createSubGenerator('factory', factory, {path:'../../../../'}, {
+        createSubGenerator('factory', factory, {path: '../../../../'}, {
           // mock prompt data
           factoryFile: 'client/app'
         }, function() {
@@ -56,7 +56,7 @@ describe('Factory sub-generator', function() {
         singlePageApplication: true
       });
       this.app.run([], function() {
-        createSubGenerator('factory', factory, {path:'../../../../'}, {
+        createSubGenerator('factory', factory, {path: '../../../../'}, {
           // mock prompt data
           factoryFile: 'client/app'
         }, function() {

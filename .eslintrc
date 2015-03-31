@@ -8,11 +8,7 @@
       "DocumentFragment": true,
       "expect": true,
       "$": true,
-      "Modernizr": true,<% if (jsFramework === 'backbone') { %>
-      "Backbone": true,
-      "JST": true,<% } %><% if (jsFramework === 'angular') { %>
-      "angular": true,
-      "inject": true,<% } %>
+      "Modernizr": true,
       "jQuery": true,
       "it": true,
       "describe": true,
@@ -21,9 +17,7 @@
       "spyOn": true,
       "spyOnEvent": true,
       "waitsFor": true,
-      "expect": true,<% if (testFramework === 'jasmine') { %>
-      "jasmine": true,<% } %><% if (jsOption === 'requirejs') { %>
-      "requirejs": true,<% } %>
+      "expect": true,
       "afterEach": true
   },
   "rules": {

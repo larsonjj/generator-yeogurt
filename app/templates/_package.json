@@ -29,8 +29,8 @@
     "mysql": "2.3.2",<% } else if (dbType === 'postgres') { %>
     "pg": "~4.1.1",<% } %>
     "sequelize": "1.7.9"<% } %><% if (htmlOption === 'swig') { %>,
-    "swig": "~1.4.1"<% } %><% if (jsTemplate === 'jade' || htmlOption === 'jade') { %>,
-    "jade": "~1.8.2"<% } %><% if (jsTemplate === 'handlebars') { %>,
+    "swig": "~1.4.2"<% } %><% if (jsTemplate === 'jade' || htmlOption === 'jade') { %>,
+    "jade": "~1.9.1"<% } %><% if (jsTemplate === 'handlebars') { %>,
     "handlebars": "~2.0.0"<% } %><% } %>
   },
   "devDependencies": {
@@ -43,7 +43,7 @@
     "grunt-contrib-watch": "~0.6.1",
     "grunt-contrib-clean": "0.5.0",<% if (useKss) { %>
     "grunt-styleguide": "~0.2.17",<% } %><% if (htmlOption === 'jade' || jsTemplate === 'jade') { %>
-    "grunt-contrib-jade": "~0.14.0",<% } %><% if (htmlOption === 'swig') { %>
+    "grunt-contrib-jade": "~0.14.1",<% } %><% if (htmlOption === 'swig') { %>
     "grunt-swig-templates": "~0.1.2",<% } %>
     "grunt-autoprefixer": "~1.0.1",
     "grunt-contrib-htmlmin": "~0.3.0",<% if (jsOption === 'requirejs') { %>

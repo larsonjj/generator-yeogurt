@@ -17,7 +17,7 @@
   <p>This is an example paragraph</p>
 </div>
 {% endmacro %}<% } else if (type === 'layout') { %>
-{% extends 'base.swig' %}
+{% extends '<%= rootDir %>server/app/layout/base.swig' %}
 
 {# Provides layout level markup #}
 {% block layout %}
@@ -34,7 +34,7 @@
   }
   [/dash] #}
 <% } %>
-{% extends './<%= rootDir.replace('../../', '') %><%= useLayout %>.swig' %}
+{% extends '<%= rootDir %>server/app/<%= useLayout %>.swig' %}
 
 {% block content %}
 <p><%= name || 'empty' %> page</p>

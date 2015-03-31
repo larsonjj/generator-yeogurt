@@ -43,7 +43,7 @@ describe('Server api sub-generator', function() {
         dbOption: 'mongodb'
       });
       this.app.run([], function() {
-        createSubGenerator('api', api, {path:'../../../../'}, {
+        createSubGenerator('api', api, {path: '../../../../'}, {
           // mock prompt data
           apiFile: 'server/app/api',
         }, function() {
@@ -73,7 +73,7 @@ describe('Server api sub-generator', function() {
         dbOption: 'none'
       });
       this.app.run([], function() {
-        createSubGenerator('api', api, {path:'../../../../'}, {
+        createSubGenerator('api', api, {path: '../../../../'}, {
           // mock prompt data
           apiFile: 'server/app/api',
         }, function() {
@@ -103,7 +103,7 @@ describe('Server api sub-generator', function() {
         dbOption: 'mysql'
       });
       this.app.run([], function() {
-        createSubGenerator('api', api, {path:'../../../../'}, {
+        createSubGenerator('api', api, {path: '../../../../'}, {
           // mock prompt data
           apiFile: 'server/app/api',
         }, function() {

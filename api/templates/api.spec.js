@@ -1,6 +1,6 @@
 'use strict';
 
-var server = require('<%= rootDir %>/server/server');
+var server = require('<%= rootDir %>../server/server');
 var request = require('supertest');
 
 describe('GET /api/<%= name.toLowerCase() %>', function() {

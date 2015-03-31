@@ -42,7 +42,7 @@ describe('Server route sub-generator', function() {
           useServer: true
         });
         this.app.run([], function() {
-          createSubGenerator('module', route, {path:'../../../../'}, {
+          createSubGenerator('module', route, {path: '../../../../'}, {
             // mock prompt data
             moduleFile: 'server/app',
             moduleLocation: 'server',
@@ -77,7 +77,7 @@ describe('Server route sub-generator', function() {
           useServer: true
         });
         this.app.run([], function() {
-          createSubGenerator('module', route, {path:'../../../../'}, {
+          createSubGenerator('module', route, {path: '../../../../'}, {
             // mock prompt data
             moduleFile: 'server/app',
             moduleLocation: 'server',

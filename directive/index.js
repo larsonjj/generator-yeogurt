@@ -43,8 +43,7 @@ DirectiveGenerator.prototype.ask = function ask() {
   }];
 
   this.prompt(prompts, function(answers) {
-    // Get root directory
-    this.rootDir = getRootDir(answers.directiveFile);
+
     this.directiveFile = path.join(
         answers.directiveFile,
         this._.slugify(this.name.toLowerCase()),

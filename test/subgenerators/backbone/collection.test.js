@@ -39,7 +39,7 @@ describe('Collection sub-generator', function() {
         testFramework: 'jasmine'
       });
       this.app.run([], function() {
-        createSubGenerator('collection', collection, {path:'../../../../'}, {
+        createSubGenerator('collection', collection, {path: '../../../../'}, {
           // mock prompt data
           collectionFile: 'client/app'
         }, function() {
@@ -67,7 +67,7 @@ describe('Collection sub-generator', function() {
         testFramework: 'jasmine'
       });
       this.app.run([], function() {
-        createSubGenerator('collection', collection, {path:'../../../../'}, {
+        createSubGenerator('collection', collection, {path: '../../../../'}, {
           // mock prompt data
           collectionFile: 'client/app'
         }, function() {
@@ -97,7 +97,7 @@ describe('Collection sub-generator', function() {
         testFramework: 'jasmine'
       });
       this.app.run([], function() {
-        createSubGenerator('collection', collection, {path:'../../../../'}, {
+        createSubGenerator('collection', collection, {path: '../../../../'}, {
           // mock prompt data
           collectionFile: 'client/app'
         }, function() {
@@ -123,7 +123,7 @@ describe('Collection sub-generator', function() {
         testFramework: 'jasmine'
       });
       this.app.run([], function() {
-        createSubGenerator('collection', collection, {path:'../../../../'}, {
+        createSubGenerator('collection', collection, {path: '../../../../'}, {
           // mock prompt data
           collectionFile: 'client/app'
         }, function() {
@@ -148,7 +148,7 @@ describe('Collection sub-generator', function() {
         testFramework: 'jasmine'
       });
       this.app.run([], function() {
-        createSubGenerator('collection', collection, {path:'../../../../'}, {
+        createSubGenerator('collection', collection, {path: '../../../../'}, {
           // mock prompt data
           collectionFile: 'client/app'
         }, function() {
@@ -170,7 +170,7 @@ describe('Collection sub-generator', function() {
         singlePageApplication: true
       });
       this.app.run([], function() {
-        createSubGenerator('collection', collection, {path:'../../../../'}, {
+        createSubGenerator('collection', collection, {path: '../../../../'}, {
           // mock prompt data
           collectionFile: 'client/app'
         }, function() {

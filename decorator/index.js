@@ -37,8 +37,7 @@ DecoratorGenerator.prototype.ask = function ask() {
   }];
 
   this.prompt(prompts, function(answers) {
-    // Get root directory
-    this.rootDir = getRootDir(answers.decoratorFile);
+
     this.decoratorFile = path.join(
         answers.decoratorFile,
         this._.slugify(this.name.toLowerCase()),

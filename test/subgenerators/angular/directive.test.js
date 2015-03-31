@@ -35,7 +35,7 @@ describe('Directive sub-generator', function() {
         singlePageApplication: true
       });
       this.app.run([], function() {
-        createSubGenerator('directive', directive, {path:'../../../../'}, {
+        createSubGenerator('directive', directive, {path: '../../../../'}, {
           // mock prompt data
           directiveFile: 'client/app',
         }, function() {
@@ -58,7 +58,7 @@ describe('Directive sub-generator', function() {
         singlePageApplication: true
       });
       this.app.run([], function() {
-        createSubGenerator('directive', directive, {path:'../../../../'}, {
+        createSubGenerator('directive', directive, {path: '../../../../'}, {
           // mock prompt data
           directiveFile: 'client/app',
           directiveHTML: true,
@@ -80,7 +80,7 @@ describe('Directive sub-generator', function() {
         singlePageApplication: true
       });
       this.app.run([], function() {
-        createSubGenerator('directive', directive, {path:'../../../../'}, {
+        createSubGenerator('directive', directive, {path: '../../../../'}, {
           // mock prompt data
           directiveFile: 'client/app'
         }, function() {

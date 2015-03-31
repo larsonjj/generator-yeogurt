@@ -43,14 +43,15 @@ APIGenerator.prototype.ask = function ask() {
   }];
 
   this.prompt(prompts, function(answers) {
-    // Get root directory
-    this.rootDir = getRootDir(answers.apiFile);
 
     this.apiFile = path.join(
         answers.apiFile,
         this._.slugify(this.name.toLowerCase()),
         this._.slugify(this.name.toLowerCase())
       );
+
+    // Get root directory
+    this.rootDir = getRootDir(this.apiFile);
 
     this.packageFile = path.join(
         answers.apiFile,

@@ -35,7 +35,7 @@ describe('Provider sub-generator', function() {
         singlePageApplication: true
       });
       this.app.run([], function() {
-        createSubGenerator('provider', provider, {path:'../../../../'}, {
+        createSubGenerator('provider', provider, {path: '../../../../'}, {
           // mock prompt data
           providerFile: 'client/app'
         }, function() {
@@ -56,7 +56,7 @@ describe('Provider sub-generator', function() {
         singlePageApplication: true
       });
       this.app.run([], function() {
-        createSubGenerator('provider', provider, {path:'../../../../'}, {
+        createSubGenerator('provider', provider, {path: '../../../../'}, {
           // mock prompt data
           providerFile: 'client/app'
         }, function() {

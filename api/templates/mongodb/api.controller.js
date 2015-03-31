@@ -17,7 +17,7 @@ var index = function(req, res) {
     if (err) {
       return handleError(err, res);
     }
-    return res.json(200, data);
+    return res.status(200).json(data);
   });
 };
 
@@ -40,7 +40,7 @@ var create = function(req, res) {
     if (err) {
       return handleError(err, res);
     }
-    return res.json(201, data);
+    return res.status(201).json(data);
   });
 };
 
@@ -61,7 +61,7 @@ var update = function(req, res) {
       if (err) {
         return handleError(err, res);
       }
-      return res.json(200, data);
+      return res.status(200).json(data);
     });
   });
 };

@@ -2,8 +2,8 @@
 
 var getRootDir = function(path) {
   var getNumberOfPaths = [];
-  path.split('/').forEach(function(item) {
-    if (item) {
+  path.split('/').forEach(function(item, index) {
+    if (index > 0 && item) {
       getNumberOfPaths.push('../');
     }
   });

@@ -53,9 +53,6 @@ ModuleGenerator.prototype.ask = function ask() {
         'Server': 'server'
       };
 
-      // Update module location based on user choice
-      this.moduleLocation = filterMap[val];
-
       return filterMap[val];
     }
   }, {
@@ -81,35 +78,43 @@ ModuleGenerator.prototype.ask = function ask() {
     },
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
-    default: this.moduleLocation + '/app'
-  },  {
+    default: function(answers) {
+      return answers.moduleLocation + '/app';
+    }
+  }, {
     when: function(answers) {
       return answers.type === 'page';
     },
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
-    default: this.moduleLocation + '/app'
+    default: function(answers) {
+      return answers.moduleLocation + '/app';
+    }
   }, {
     when: function(answers) {
       return answers.type === 'page';
     },
     name: 'useLayout',
     message: 'What layout would you like to extend from?',
-    default: 'layouts/base'
+    default: 'layout/base'
   }, {
     when: function(answers) {
       return answers.type === 'module';
     },
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
-    default: this.moduleLocation + '/app/modules'
+    default: function(answers) {
+      return answers.moduleLocation + '/app/modules';
+    }
   }, {
     when: function(answers) {
       return answers.type === 'layout';
     },
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
-    default: this.moduleLocation + '/app/layout'
+    default: function(answers) {
+      return answers.moduleLocation + '/app/layout';
+    }
   }, {
     when: function(answers) {
       return self.jsFramework === 'angular';
@@ -137,14 +142,23 @@ ModuleGenerator.prototype.ask = function ask() {
         'package'
       );
 
-    // Get root directory
-    this.rootDir = getRootDir(answers.moduleFile);
-
-    this.moduleFile = path.join(
+    if (this.moduleLocation === 'server' && this.type === 'layout') {
+      this.moduleFile = path.join(
+        answers.moduleFile,
+        this._.slugify(this.name.toLowerCase())
+      );
+    }
+    else {
+      this.moduleFile = path.join(
         answers.moduleFile,
         this._.slugify(this.name.toLowerCase()),
         this._.slugify(this.name.toLowerCase())
       );
+    }
+
+    // Get root directory
+    this.rootDir = getRootDir(this.moduleFile);
+
     this.testFile = path.join(
         answers.moduleFile,
         this._.slugify(this.name.toLowerCase()),
@@ -176,6 +190,9 @@ ModuleGenerator.prototype.files = function files() {
         }
         else if (this.type === 'layout') {
           this.template('module.jade', this.moduleFile + '.jade');
+          if (this.moduleLocation === 'server') {
+            return;
+          }
         }
         // Default to page type
         else {
@@ -188,6 +205,9 @@ ModuleGenerator.prototype.files = function files() {
         }
         else if (this.type === 'layout') {
           this.template('module.swig', this.moduleFile + '.swig');
+          if (this.moduleLocation === 'server') {
+            return;
+          }
         }
         // Default to page type
         else {

@@ -15,7 +15,7 @@
 <% } %>mixin <%= name || 'example' %>()
   div.<%= _.slugify(name.toLowerCase()) %>
     p This is an example paragraph<% } else if (type === 'layout') { %>
-extend base
+extend <%= rootDir %>server/app/layout/base
 
 block layout
   //- Provides layout level markup
@@ -30,7 +30,7 @@ block layout
   }
   [/dash]
 <% } %>
-extend ./<%= rootDir.replace('../../', '') %><%= useLayout %>
+extend <%= rootDir %>server/app/<%= useLayout %>
 
 block content
   p <%= name || 'empty' %> page<% } %>
