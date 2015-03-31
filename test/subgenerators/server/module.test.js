@@ -32,7 +32,6 @@ describe('Server route sub-generator', function() {
           'server/app/' + route + '/' + route + '.js',
           'server/app/' + route + '/' + route + '.controller.js',
           'server/app/' + route + '/' + route + '.jade',
-          'server/app/' + route + '/' + route + '.scss',
           'server/app/' + route + '/package.json',
           'server/app/' + route + '/__tests__/' + route + '.spec.js'
         ];
@@ -40,9 +39,7 @@ describe('Server route sub-generator', function() {
         helpers.mockPrompt(this.app, {
           htmlOption: 'jade',
           singlePageApplication: false,
-          useServer: true,
-          cssOption: 'sass',
-          sassSyntax: 'scss'
+          useServer: true
         });
         this.app.run([], function() {
           createSubGenerator('module', route, {path:'../../../../'}, {
@@ -70,7 +67,6 @@ describe('Server route sub-generator', function() {
           'server/app/' + route + '/' + route + '.js',
           'server/app/' + route + '/' + route + '.controller.js',
           'server/app/' + route + '/' + route + '.swig',
-          'server/app/' + route + '/' + route + '.scss',
           'server/app/' + route + '/package.json',
           'server/app/' + route + '/__tests__/' + route + '.spec.js'
         ];
@@ -78,9 +74,7 @@ describe('Server route sub-generator', function() {
         helpers.mockPrompt(this.app, {
           htmlOption: 'swig',
           singlePageApplication: false,
-          useServer: true,
-          cssOption: 'sass',
-          sassSyntax: 'scss'
+          useServer: true
         });
         this.app.run([], function() {
           createSubGenerator('module', route, {path:'../../../../'}, {

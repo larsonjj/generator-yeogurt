@@ -27,7 +27,8 @@ var ModuleGenerator = module.exports = function ModuleGenerator() {
   this.useServer = fileJSON.useServer;
   this.useServerTesting = fileJSON.useServerTesting;
 
-  this.moduleLocation = this.moduleLocation || 'client';
+  // Default module location to client folder
+  this.moduleLocation = 'client';
 
 };
 
@@ -52,6 +53,7 @@ ModuleGenerator.prototype.ask = function ask() {
         'Server': 'server'
       };
 
+      // Update module location based on user choice
       this.moduleLocation = filterMap[val];
 
       return filterMap[val];
@@ -122,7 +124,7 @@ ModuleGenerator.prototype.ask = function ask() {
     this.type = answers.type;
     this.useLayout = answers.useLayout || false;
 
-    this.moduleLocation = answers.moduleLocation;
+    this.moduleLocation = answers.moduleLocation || 'client';
 
     this.templateFile = path.join(
         answers.moduleFile,
@@ -167,32 +169,34 @@ ModuleGenerator.prototype.files = function files() {
 
   if (!this.singlePageApplication) {
 
-    if (this.htmlOption === 'jade') {
-      if (this.type === 'module') {
-        this.template('module.jade', this.moduleFile + '.jade');
+    if (!this.useServer && this.moduleLocation !== 'server' || this.moduleLocation === 'server') {
+      if (this.htmlOption === 'jade') {
+        if (this.type === 'module') {
+          this.template('module.jade', this.moduleFile + '.jade');
+        }
+        else if (this.type === 'layout') {
+          this.template('module.jade', this.moduleFile + '.jade');
+        }
+        // Default to page type
+        else {
+          this.template('module.jade', this.moduleFile + '.jade');
+        }
       }
-      else if (this.type === 'layout') {
-        this.template('module.jade', this.moduleFile + '.jade');
-      }
-      // Default to page type
-      else {
-        this.template('module.jade', this.moduleFile + '.jade');
-      }
-    }
-    else if (this.htmlOption === 'swig') {
-      if (this.type === 'module') {
-        this.template('module.swig', this.moduleFile + '.swig');
-      }
-      else if (this.type === 'layout') {
-        this.template('module.swig', this.moduleFile + '.swig');
-      }
-      // Default to page type
-      else {
-        this.template('module.swig', this.moduleFile + '.swig');
+      else if (this.htmlOption === 'swig') {
+        if (this.type === 'module') {
+          this.template('module.swig', this.moduleFile + '.swig');
+        }
+        else if (this.type === 'layout') {
+          this.template('module.swig', this.moduleFile + '.swig');
+        }
+        // Default to page type
+        else {
+          this.template('module.swig', this.moduleFile + '.swig');
+        }
       }
     }
 
-    if (this.moduleLocation === 'client') {
+    if (this.moduleLocation !== 'server') {
       if (this.jsOption === 'requirejs') {
         this.template(this.moduleLocation + '/requirejs/module.js', this.moduleFile + '.js');
         if (this.useTesting) {
@@ -277,21 +281,23 @@ ModuleGenerator.prototype.files = function files() {
     }
   }
 
-  if (this.cssOption === 'sass') {
-    if (this.sassSyntax === 'sass') {
-      this.template('module.css', this.moduleFile + '.sass');
+  if (this.moduleLocation !== 'server') {
+    if (this.cssOption === 'sass') {
+      if (this.sassSyntax === 'sass') {
+        this.template('module.css', this.moduleFile + '.sass');
+      }
+      else {
+        this.template('module.css', this.moduleFile + '.scss');
+      }
+    }
+    else if (this.cssOption === 'less') {
+      this.template('module.css', this.moduleFile + '.less');
+    }
+    else if (this.cssOption === 'stylus') {
+      this.template('module.css', this.moduleFile + '.styl');
     }
     else {
-      this.template('module.css', this.moduleFile + '.scss');
+      this.template('module.css', this.moduleFile + '.css');
     }
-  }
-  else if (this.cssOption === 'less') {
-    this.template('module.css', this.moduleFile + '.less');
-  }
-  else if (this.cssOption === 'stylus') {
-    this.template('module.css', this.moduleFile + '.styl');
-  }
-  else {
-    this.template('module.css', this.moduleFile + '.css');
   }
 };

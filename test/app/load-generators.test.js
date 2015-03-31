@@ -17,5 +17,6 @@ describe('Yeogurt generator and sub-generators', function() {
     assert(require('../../controller') !== undefined);
     assert(require('../../provider') !== undefined);
     assert(require('../../module') !== undefined);
+    assert(require('../../api') !== undefined);
   });
 });
