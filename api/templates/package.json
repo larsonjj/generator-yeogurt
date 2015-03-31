@@ -1,0 +1,3 @@
+{
+  "main": "<%= _.slugify(name.toLowerCase()) %>.js"
+}

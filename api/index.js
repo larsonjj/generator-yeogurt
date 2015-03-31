@@ -17,6 +17,7 @@ var APIGenerator = module.exports = function APIGenerator() {
   this.useTesting = fileJSON.useTesting;
   this.useServer = fileJSON.useServer;
   this.useServerTesting = fileJSON.useServerTesting;
+  this.dbOption = fileJSON.dbOption;
 
 };
 
@@ -25,8 +26,9 @@ util.inherits(APIGenerator, yeoman.generators.NamedBase);
 // Prompts
 APIGenerator.prototype.ask = function ask() {
 
-  if (!this.useServer) {
-    this.log('This subgenerator is only used for Server Applications. It seems as though you are not using a Server');
+  if (this.dbOption === 'none' || !this.dbOption) {
+    this.log('This subgenerator is only used for Applications using a database.');
+    this.log('It seems as though you are not using a database');
     this.log('Operation aborted');
     this.abort = true;
     return;
@@ -72,11 +74,18 @@ APIGenerator.prototype.files = function files() {
     return;
   }
 
-  // Create constant, action, and store files
   this.template('api.js', this.apiFile + '.js');
-  this.template('api.controller.js', this.apiFile + '.controller.js');
-  this.template('api.model.js', this.apiFile + '.model.js');
   this.template('package.json', this.packageFile + '.json');
+
+  if (this.dbOption === 'mongodb') {
+    this.template('mongodb/api.controller.js', this.apiFile + '.controller.js');
+    this.template('mongodb/api.model.js', this.apiFile + '.model.js');
+  }
+  // Default to SQL database
+  else {
+    this.template('sql/api.controller.js', this.apiFile + '.controller.js');
+    this.template('sql/api.model.js', this.apiFile + '.model.js');
+  }
 
   if (this.useTesting) {
     this.template('api.spec.js', this.testFile + '.spec.js');
