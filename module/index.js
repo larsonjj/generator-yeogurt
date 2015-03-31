@@ -87,7 +87,14 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: this.moduleLocation + '/app'
-  },  {
+  }, {
+    when: function(answers) {
+      return answers.type === 'page';
+    },
+    name: 'useLayout',
+    message: 'What layout would you like to extend from?',
+    default: 'layouts/base'
+  }, {
     when: function(answers) {
       return answers.type === 'module';
     },
@@ -101,13 +108,6 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: this.moduleLocation + '/app/layout'
-  }, {
-    when: function(answers) {
-      return answers.type === 'layout';
-    },
-    name: 'useLayout',
-    message: 'What layout would you like to extend from?',
-    default: 'base'
   }, {
     when: function(answers) {
       return self.jsFramework === 'angular';
