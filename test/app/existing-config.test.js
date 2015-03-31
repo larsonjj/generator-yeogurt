@@ -17,43 +17,6 @@ describe('Yeogurt generator using existing configuration', function() {
 
       this.app = createAppGenerator();
 
-      // create dummy yo config file
-      fs.writeFile(path.join(__dirname, 'temp/.yo-rc.json'), '{"config": {"htmlOption": "swig"}}');
-
-      done();
-    }.bind(this));
-  });
-
-  it('Creates expected files with expected content', function(done) {
-    var expected = [
-      '.yo-rc.json'
-    ];
-    var fileContentToTest = [
-      ['.yo-rc.json', /swig/i]
-    ];
-
-    helpers.mockPrompt(this.app, {
-      existingConfig: true,
-      htmlOption: 'jade'
-    });
-
-    this.app.run([], function() {
-      assert.file(expected);
-      assert.fileContent(fileContentToTest);
-      done();
-    });
-  });
-});
-
-describe('Yeogurt generator without existing configuration', function() {
-  beforeEach(function(done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function(err) {
-      if (err) {
-        return done(err);
-      }
-
-      this.app = createAppGenerator();
-
       done();
     }.bind(this));
   });
@@ -69,6 +32,26 @@ describe('Yeogurt generator without existing configuration', function() {
     helpers.mockPrompt(this.app, {
       existingConfig: false,
       htmlOption: 'jade'
+    });
+
+    this.app.run([], function() {
+      assert.file(expected);
+      assert.fileContent(fileContentToTest);
+      done();
+    });
+  });
+
+  it('Creates expected files with expected content', function(done) {
+    var expected = [
+      '.yo-rc.json'
+    ];
+    var fileContentToTest = [
+      ['.yo-rc.json', /swig/i]
+    ];
+
+    helpers.mockPrompt(this.app, {
+      existingConfig: true,
+      htmlOption: 'swig'
     });
 
     this.app.run([], function() {
