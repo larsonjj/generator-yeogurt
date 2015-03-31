@@ -5,8 +5,8 @@ var path  = require('path');
 var yeoman  = require('yeoman-generator');
 var helpers = yeoman.test;
 var assert  = yeoman.assert;
-var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
-var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
+var createAppGenerator = require('../../helpers/create-generator').createAppGenerator;
+var createSubGenerator = require('../../helpers/create-generator').createSubGenerator;
 
 describe('React module sub-generator', function() {
   beforeEach(function(done) {
@@ -15,7 +15,7 @@ describe('React module sub-generator', function() {
         return done(err);
       }
 
-      this.app = createAppGenerator();
+      this.app = createAppGenerator([], {path: '../../../../app'});
 
       done();
     }.bind(this));
@@ -24,16 +24,16 @@ describe('React module sub-generator', function() {
   describe('Create react files when using React', function() {
     it('Handles defaults', function(done) {
       // Filename
-      var react = 'myreact';
+      var module = 'mymodule';
       var filesToTest = [
-        'client/app/' + react + '/__tests__/' + react + '.spec.js',
-        'client/app/' + react + '/' + react + '.js'
+        'client/app/' + module + '/__tests__/' + module + '.spec.js',
+        'client/app/' + module + '/' + module + '.js'
       ];
       var fileContentToTest = [
-        ['client/app/' + react + '/' + react + '.js', /React\.createElement/i]
+        ['client/app/' + module + '/' + module + '.js', /React\.createElement/i]
       ];
       var fileContentNotThere = [
-        ['client/app/' + react + '/__tests__/' + react + '.spec.js', /\jsx/i]
+        ['client/app/' + module + '/__tests__/' + module + '.spec.js', /\jsx/i]
       ];
 
       helpers.mockPrompt(this.app, {
@@ -41,7 +41,7 @@ describe('React module sub-generator', function() {
         useJsx: false
       });
       this.app.run([], function() {
-        createSubGenerator('react', react, {}, {
+        createSubGenerator('module', module, {path:'../../../../'}, {
           // mock prompt data
           reactFile: 'client/app'
         }, function() {
@@ -54,20 +54,20 @@ describe('React module sub-generator', function() {
     });
     it('Handles defaults with JSX', function(done) {
       // Filename
-      var react = 'myreact';
+      var module = 'mymodule';
       var filesToTest = [
-        'client/app/' + react + '/__tests__/' + react + '.spec.js',
-        'client/app/' + react + '/' + react + '.jsx'
+        'client/app/' + module + '/__tests__/' + module + '.spec.js',
+        'client/app/' + module + '/' + module + '.jsx'
       ];
       var fileContentToTest = [
-        ['client/app/' + react + '/__tests__/' + react + '.spec.js', /React\.createFactory/i],
+        ['client/app/' + module + '/__tests__/' + module + '.spec.js', /React\.createFactory/i],
       ];
 
       helpers.mockPrompt(this.app, {
         jsFramework: 'react'
       });
       this.app.run([], function() {
-        createSubGenerator('react', react, {}, {
+        createSubGenerator('module', module, {path:'../../../../'}, {
           // mock prompt data
           reactFile: 'client/app'
         }, function() {
@@ -79,12 +79,12 @@ describe('React module sub-generator', function() {
     });
     it('Handles defaults without testing', function(done) {
       // Filename
-      var react = 'myreact';
+      var module = 'mymodule';
       var filesToTest = [
-        'client/app/' + react + '/' + react + '.jsx'
+        'client/app/' + module + '/' + module + '.jsx'
       ];
       var filesNotCreated = [
-        'client/app/' + react + '/__tests__/' + react + '.spec.js'
+        'client/app/' + module + '/__tests__/' + module + '.spec.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -92,7 +92,7 @@ describe('React module sub-generator', function() {
         useTesting: false
       });
       this.app.run([], function() {
-        createSubGenerator('react', react, {}, {
+        createSubGenerator('module', module, {path:'../../../../'}, {
           // mock prompt data
           reactFile: 'client/app'
         }, function() {

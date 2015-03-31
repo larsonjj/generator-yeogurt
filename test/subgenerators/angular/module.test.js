@@ -5,8 +5,8 @@ var path  = require('path');
 var yeoman  = require('yeoman-generator');
 var helpers = yeoman.test;
 var assert  = yeoman.assert;
-var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
-var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
+var createAppGenerator = require('../../helpers/create-generator').createAppGenerator;
+var createSubGenerator = require('../../helpers/create-generator').createSubGenerator;
 
 describe('Angular module sub-generator', function() {
   beforeEach(function(done) {
@@ -15,7 +15,7 @@ describe('Angular module sub-generator', function() {
         return done(err);
       }
 
-      this.app = createAppGenerator();
+      this.app = createAppGenerator([], {path: '../../../../app'});
 
       done();
     }.bind(this));
@@ -38,7 +38,7 @@ describe('Angular module sub-generator', function() {
         singlePageApplication: true
       });
       this.app.run([], function() {
-        createSubGenerator('module', module, {}, {
+        createSubGenerator('module', module, {path:'../../../../'}, {
           // mock prompt data
           moduleFile: 'client/app',
           moduleURL: url

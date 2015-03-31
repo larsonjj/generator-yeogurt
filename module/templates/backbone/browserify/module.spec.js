@@ -1,6 +1,6 @@
 'use strict';
 
-var <%= _.classify(name) %> = require('<%= rootDir %><%= viewFile %>');
+var <%= _.classify(name) %> = require('../<%= _.slugify(name.toLowerCase()) %>');
 
 describe('<%= _.classify(name) %> View', function() {
 
@@ -9,7 +9,7 @@ describe('<%= _.classify(name) %> View', function() {
   });
 
   it('Should run a few assertions', function(){
-
+    expect(this.<%= _.camelize(name) %>)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.exist<% } %>;
   });
 
 });

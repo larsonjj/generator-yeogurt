@@ -5,8 +5,8 @@ var path  = require('path');
 var yeoman  = require('yeoman-generator');
 var helpers = yeoman.test;
 var assert  = yeoman.assert;
-var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
-var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
+var createAppGenerator = require('../../helpers/create-generator').createAppGenerator;
+var createSubGenerator = require('../../helpers/create-generator').createSubGenerator;
 
 describe('Provider sub-generator', function() {
   beforeEach(function(done) {
@@ -15,7 +15,7 @@ describe('Provider sub-generator', function() {
         return done(err);
       }
 
-      this.app = createAppGenerator();
+      this.app = createAppGenerator([], {path: '../../../../app'});
 
       done();
     }.bind(this));
@@ -35,11 +35,32 @@ describe('Provider sub-generator', function() {
         singlePageApplication: true
       });
       this.app.run([], function() {
-        createSubGenerator('provider', provider, {}, {
+        createSubGenerator('provider', provider, {path:'../../../../'}, {
           // mock prompt data
           providerFile: 'client/app'
         }, function() {
           assert.file(filesToTest);
+          done();
+        });
+      });
+    });
+    it('Non-angular warning', function(done) {
+      // Filename
+      var provider = 'myprovider';
+      var filesToNotExist = [
+        'client/app/' + provider + '/' + provider + '.decorator.js'
+      ];
+
+      helpers.mockPrompt(this.app, {
+        jsFramework: 'backbone',
+        singlePageApplication: true
+      });
+      this.app.run([], function() {
+        createSubGenerator('provider', provider, {path:'../../../../'}, {
+          // mock prompt data
+          providerFile: 'client/app'
+        }, function() {
+          assert.noFile(filesToNotExist);
           done();
         });
       });

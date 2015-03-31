@@ -69,7 +69,7 @@ var testingFiles = function testingFiles() {
     this.template('test/e2e/index/index.spec.js', 'e2e/index/index.spec.js');
   }
 
-  if (this.useServerTesting) {
+  if (this.useServer && this.useServerTesting) {
     this.template('server/app/index/__tests__/index.spec.js', 'server/app/index/__tests__/index.spec.js');
   }
 };

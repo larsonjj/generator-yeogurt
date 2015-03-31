@@ -3,7 +3,7 @@
 angular.module('<%= _.camelize(projectName) %>')
   .config(function($routeProvider) {
     $routeProvider
-      .when('<%= routeURL %>', {
+      .when('<%= moduleURL %>', {
         templateUrl: '<%= htmlURL %>',
         controller: '<%= _.classify(name) %>Ctrl'
       });

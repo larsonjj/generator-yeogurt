@@ -5,8 +5,8 @@ var path  = require('path');
 var yeoman  = require('yeoman-generator');
 var helpers = yeoman.test;
 var assert  = yeoman.assert;
-var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
-var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
+var createAppGenerator = require('../../helpers/create-generator').createAppGenerator;
+var createSubGenerator = require('../../helpers/create-generator').createSubGenerator;
 
 describe('Flux sub-generator', function() {
   beforeEach(function(done) {
@@ -15,7 +15,7 @@ describe('Flux sub-generator', function() {
         return done(err);
       }
 
-      this.app = createAppGenerator();
+      this.app = createAppGenerator([], {path: '../../../../app'});
 
       done();
     }.bind(this));
@@ -40,7 +40,7 @@ describe('Flux sub-generator', function() {
         testFramework: 'jasmine'
       });
       this.app.run([], function() {
-        createSubGenerator('flux', flux, {}, {
+        createSubGenerator('flux', flux, {path:'../../../../'}, {
           // mock prompt data
           fluxFile: 'client/app'
         }, function() {
@@ -66,7 +66,7 @@ describe('Flux sub-generator', function() {
         htmlOption: 'jade'
       });
       this.app.run([], function() {
-        createSubGenerator('flux', flux, {}, {
+        createSubGenerator('flux', flux, {path:'../../../../'}, {
           // mock prompt data
           fluxFile: 'client/app'
         }, function() {
@@ -91,7 +91,7 @@ describe('Flux sub-generator', function() {
         'client/app/' + flux + '/__tests__/' + flux + '.spec.js'
       ];
       this.app.run([], function() {
-        createSubGenerator('flux', flux, {}, {
+        createSubGenerator('flux', flux, {path:'../../../../'}, {
           // mock prompt data
           fluxFile: 'client/app'
         }, function() {
@@ -124,7 +124,7 @@ describe('Flux sub-generator', function() {
         useJsx: false
       });
       this.app.run([], function() {
-        createSubGenerator('flux', flux, {}, {
+        createSubGenerator('flux', flux, {path:'../../../../'}, {
           // mock prompt data
           fluxFile: 'client/app'
         }, function() {
@@ -157,7 +157,7 @@ describe('Flux sub-generator', function() {
         useTesting: false
       });
       this.app.run([], function() {
-        createSubGenerator('flux', flux, {}, {
+        createSubGenerator('flux', flux, {path:'../../../../'}, {
           // mock prompt data
           fluxFile: 'client/app'
         }, function() {

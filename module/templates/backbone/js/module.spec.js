@@ -10,7 +10,7 @@ describe('<%= _.classify(name) %> View', function() {
   });
 
   it('Should run a few assertions', function(){
-
+    expect(this.<%= _.camelize(name) %>)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.exist<% } %>;
   });
 
 });

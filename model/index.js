@@ -24,13 +24,9 @@ util.inherits(ModelGenerator, yeoman.generators.NamedBase);
 
 // Prompts
 ModelGenerator.prototype.ask = function ask() {
-  if (!this.singlePageApplication) {
-    this.log('This subgenerator is not available for Static Sites.\nOperation aborted');
-    this.abort = true;
-    return;
-  }
-  else if (this.jsFramework === 'react') {
-    this.log('This subgenerator is not available for React application.\nOperation aborted');
+  if (this.jsFramework !== 'backbone') {
+    this.log('This subgenerator is only used for Backbone Applications. It seems as though you are not using Backbone');
+    this.log('Operation aborted');
     this.abort = true;
     return;
   }
@@ -85,9 +81,6 @@ ModelGenerator.prototype.files = function files() {
     if (this.useTesting) {
       this.template('browserify/model.spec.js', this.testFile + '.spec.js');
     }
-  }
-  else {
-    return;
   }
 
 };

@@ -1,7 +1,7 @@
 define(function(require) {
   'use strict';
 
-  var <%= _.classify(name) %> = require('<%= viewFile %>');
+  var <%= _.classify(name) %> = require('../<%= _.slugify(name.toLowerCase()) %>');
 
   describe('<%= _.classify(name) %> View', function() {
 
@@ -10,7 +10,7 @@ define(function(require) {
     });
 
     it('Should run a few assertions', function(){
-
+      expect(this.<%= _.camelize(name) %>)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.exist<% } %>;
     });
 
   });
