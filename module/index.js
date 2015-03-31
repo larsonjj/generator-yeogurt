@@ -24,6 +24,10 @@ var ModuleGenerator = module.exports = function ModuleGenerator() {
   this.useJsx = fileJSON.useJsx;
   this.htmlOption = fileJSON.htmlOption;
   this.useDashboard = fileJSON.useDashboard;
+  this.useServer = fileJSON.useServer;
+  this.useServerTesting = fileJSON.useServerTesting;
+
+  this.moduleLocation = this.moduleLocation || 'client';
 
 };
 
@@ -36,11 +40,29 @@ ModuleGenerator.prototype.ask = function ask() {
   var done = this.async();
   var prompts = [{
     when: function() {
+      return self.useServer;
+    },
+    type: 'list',
+    name: 'moduleLocation',
+    message: 'Where would you like to create this module?',
+    choices: ['Client', 'Server'],
+    filter: function(val) {
+      var filterMap = {
+        'Client': 'client',
+        'Server': 'server'
+      };
+
+      this.moduleLocation = filterMap[val];
+
+      return filterMap[val];
+    }
+  }, {
+    when: function() {
       return self.htmlOption === 'jade' || self.htmlOption === 'swig';
     },
     type: 'list',
     name: 'type',
-    message: 'What type of template do you want to create?',
+    message: 'What type of module do you want to create?',
     choices: ['Page', 'Layout', 'Module'],
     filter: function(val) {
       var filterMap = {
@@ -57,28 +79,28 @@ ModuleGenerator.prototype.ask = function ask() {
     },
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
-    default: 'client/app'
+    default: this.moduleLocation + '/app'
   },  {
     when: function(answers) {
       return answers.type === 'page';
     },
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
-    default: 'client/app'
+    default: this.moduleLocation + '/app'
   },  {
     when: function(answers) {
       return answers.type === 'module';
     },
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
-    default: 'client/app/modules'
+    default: this.moduleLocation + '/app/modules'
   },  {
     when: function(answers) {
       return answers.type === 'layout';
     },
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
-    default: 'client/app/layout'
+    default: this.moduleLocation + '/app/layout'
   }, {
     when: function(answers) {
       return self.jsFramework === 'angular';
@@ -89,12 +111,21 @@ ModuleGenerator.prototype.ask = function ask() {
   }];
 
   this.prompt(prompts, function(answers) {
+
     this.type = answers.type;
     this.useLayout = answers.useLayout || false;
+
+    this.moduleLocation = answers.moduleLocation;
 
     this.templateFile = path.join(
         answers.moduleFile,
         this._.slugify(this.name.toLowerCase())
+      );
+
+    this.packageFile = path.join(
+        answers.moduleFile,
+        this._.slugify(this.name.toLowerCase()),
+        'package'
       );
 
     // Get root directory
@@ -130,49 +161,59 @@ ModuleGenerator.prototype.files = function files() {
 
     if (this.htmlOption === 'jade') {
       if (this.type === 'module') {
-        this.template('static/module.jade', this.moduleFile + '.jade');
+        this.template('module.jade', this.moduleFile + '.jade');
       }
       else if (this.type === 'layout') {
-        this.template('static/module.jade', this.moduleFile + '.jade');
+        this.template('module.jade', this.moduleFile + '.jade');
       }
       // Default to page type
       else {
-        this.template('static/module.jade', this.moduleFile + '.jade');
+        this.template('module.jade', this.moduleFile + '.jade');
       }
     }
     else if (this.htmlOption === 'swig') {
       if (this.type === 'module') {
-        this.template('static/module.swig', this.moduleFile + '.swig');
+        this.template('module.swig', this.moduleFile + '.swig');
       }
       else if (this.type === 'layout') {
-        this.template('static/module.swig', this.moduleFile + '.swig');
+        this.template('module.swig', this.moduleFile + '.swig');
       }
       // Default to page type
       else {
-        this.template('static/module.swig', this.moduleFile + '.swig');
+        this.template('module.swig', this.moduleFile + '.swig');
       }
     }
 
-    if (this.jsOption === 'requirejs') {
-      this.template('static/requirejs/module.js', this.moduleFile + '.js');
-      if (this.useTesting) {
-        this.template('static/requirejs/module.spec.js', this.testFile + '.spec.js');
+    if (this.moduleLocation === 'client') {
+      if (this.jsOption === 'requirejs') {
+        this.template(this.moduleLocation + '/requirejs/module.js', this.moduleFile + '.js');
+        if (this.useTesting) {
+          this.template(this.moduleLocation + '/requirejs/module.spec.js', this.testFile + '.spec.js');
+        }
       }
-    }
-    else if (this.jsOption === 'browserify') {
-      this.template('static/browserify/module.js', this.moduleFile + '.js');
-      if (this.useTesting) {
-        this.template('static/browserify/module.spec.js', this.testFile + '.spec.js');
+      else if (this.jsOption === 'browserify') {
+        this.template(this.moduleLocation + '/browserify/module.js', this.moduleFile + '.js');
+        if (this.useTesting) {
+          this.template(this.moduleLocation + '/browserify/module.spec.js', this.testFile + '.spec.js');
+        }
       }
-    }
-    // Default to vanilla JS
-    else {
-      this.template('static/js/module.js', this.moduleFile + '.js');
-      if (this.useTesting) {
-        this.template('static/js/module.spec.js', this.testFile + '.spec.js');
+      // Default to vanilla JS
+      else {
+        this.template(this.moduleLocation + '/js/module.js', this.moduleFile + '.js');
+        if (this.useTesting) {
+          this.template(this.moduleLocation + '/js/module.spec.js', this.testFile + '.spec.js');
+        }
       }
     }
 
+    if (this.moduleLocation === 'server') {
+      this.template('server/package.json', this.packageFile + '.json');
+      this.template('server/module.js', this.moduleFile + '.js');
+      this.template('server/module.controller.js', this.moduleFile + '.controller.js');
+      if (this.useServerTesting) {
+        this.template('server/module.spec.js', this.testFile + '.spec.js');
+      }
+    }
   }
   else if (this.jsFramework === 'angular') {
     this.template('angular/module.js', this.moduleFile + '.js');

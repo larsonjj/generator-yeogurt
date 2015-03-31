@@ -26,15 +26,15 @@ describe('Server route sub-generator', function() {
       it('Handles defaults', function(done) {
         // Filename
         var route = 'myroute';
-        var type = 'page';
+
         var filesToTest = [
           // add files and folders you expect to NOT exist here.
-          'client/app/' + route + '/' + route + '.js',
-          'client/app/' + route + '/' + route + '.controller.js',
-          'client/app/' + route + '/' + route + '.jade',
-          'client/app/' + route + '/' + route + '.scss',
-          'client/app/' + route + '/package.json',
-          'client/app/' + route + '/__tests__/' + route + '.spec.js'
+          'server/app/' + route + '/' + route + '.js',
+          'server/app/' + route + '/' + route + '.controller.js',
+          'server/app/' + route + '/' + route + '.jade',
+          'server/app/' + route + '/' + route + '.scss',
+          'server/app/' + route + '/package.json',
+          'server/app/' + route + '/__tests__/' + route + '.spec.js'
         ];
 
         helpers.mockPrompt(this.app, {
@@ -45,10 +45,11 @@ describe('Server route sub-generator', function() {
           sassSyntax: 'scss'
         });
         this.app.run([], function() {
-          createSubGenerator('route', route, {path:'../../../../'}, {
+          createSubGenerator('module', route, {path:'../../../../'}, {
             // mock prompt data
-            routeFile: 'server/routes/',
-            type: type
+            moduleFile: 'server/app',
+            moduleLocation: 'server',
+            type: 'page'
           }, function() {
             assert.file(filesToTest);
             done();
@@ -63,15 +64,15 @@ describe('Server route sub-generator', function() {
       it('Handles defaults', function(done) {
         // Filename
         var route = 'myroute';
-        var type = 'page';
+
         var filesToTest = [
           // add files and folders you expect to NOT exist here.
-          'client/app/' + route + '/' + route + '.js',
-          'client/app/' + route + '/' + route + '.controller.js',
-          'client/app/' + route + '/' + route + '.swig',
-          'client/app/' + route + '/' + route + '.scss',
-          'client/app/' + route + '/package.json',
-          'client/app/' + route + '/__tests__/' + route + '.spec.js'
+          'server/app/' + route + '/' + route + '.js',
+          'server/app/' + route + '/' + route + '.controller.js',
+          'server/app/' + route + '/' + route + '.swig',
+          'server/app/' + route + '/' + route + '.scss',
+          'server/app/' + route + '/package.json',
+          'server/app/' + route + '/__tests__/' + route + '.spec.js'
         ];
 
         helpers.mockPrompt(this.app, {
@@ -82,10 +83,11 @@ describe('Server route sub-generator', function() {
           sassSyntax: 'scss'
         });
         this.app.run([], function() {
-          createSubGenerator('route', route, {path:'../../../../'}, {
+          createSubGenerator('module', route, {path:'../../../../'}, {
             // mock prompt data
-            routeFile: 'server/routes/',
-            type: type
+            moduleFile: 'server/app',
+            moduleLocation: 'server',
+            type: 'page'
           }, function() {
             assert.file(filesToTest);
             done();

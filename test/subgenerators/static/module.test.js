@@ -59,7 +59,8 @@ describe('Static Site module sub-generator', function() {
                 // mock prompt data
                 moduleFile: 'client/app',
                 type: type,
-                useLayout: 'testTemplate'
+                useLayout: 'testTemplate',
+                moduleLocation: 'client'
               }, function() {
                 assert.file(filesToTest);
                 assert.fileContent(fileContentToTest);
@@ -104,7 +105,8 @@ describe('Static Site module sub-generator', function() {
                 // mock prompt data
                 moduleFile: 'client/app',
                 type: type,
-                useLayout: 'testTemplate'
+                useLayout: 'testTemplate',
+                moduleLocation: 'client'
               }, function() {
                 assert.file(filesToTest);
                 assert.fileContent(fileContentToTest);
@@ -144,14 +146,16 @@ describe('Static Site module sub-generator', function() {
               testFramework: 'jasmine',
               jsOption: 'browserify',
               cssOption: 'sass',
-              sassSyntax: 'sass'
+              sassSyntax: 'sass',
+              moduleLocation: 'client'
             });
 
             this.app.run([], function() {
               createSubGenerator('module', module, {path:'../../../../'}, {
                 // mock prompt data
                 moduleFile: 'client/app',
-                type: type
+                type: type,
+                moduleLocation: 'client'
               }, function() {
                 assert.file(filesToTest);
                 assert.fileContent(fileContentToTest);
@@ -186,13 +190,15 @@ describe('Static Site module sub-generator', function() {
               useServer: false,
               useServerTesting: false,
               testFramework: 'mocha',
-              jsOption: 'requirejs'
+              jsOption: 'requirejs',
+              moduleLocation: 'client'
             });
 
             this.app.run([], function() {
               createSubGenerator('module', module, {path:'../../../../'}, {
                 // mock prompt data
                 moduleFile: 'client/app/modules',
+                moduleLocation: 'client',
                 type: type
               }, function() {
                 assert.file(filesToTest);
@@ -229,7 +235,8 @@ describe('Static Site module sub-generator', function() {
           createSubGenerator('module', module, {path:'../../../../'}, {
             // mock prompt data
             moduleFile: 'client/app/layout',
-            type: type
+            type: type,
+            moduleLocation: 'client'
           }, function() {
             assert.file(filesToTest);
             assert.fileContent(fileContentToTest);
@@ -258,7 +265,8 @@ describe('Static Site module sub-generator', function() {
           createSubGenerator('module', module, {path:'../../../../'}, {
             // mock prompt data
             moduleFile: 'client/app',
-            type: type
+            type: type,
+            moduleLocation: 'client'
           }, function() {
             assert.fileContent(fileContentToTest);
             done();
@@ -284,7 +292,8 @@ describe('Static Site module sub-generator', function() {
           createSubGenerator('module', module, {path:'../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app/modules',
-              type: type
+              type: type,
+              moduleLocation: 'client'
             }, function() {
             assert.fileContent(fileContentToTest);
             done();
@@ -330,7 +339,8 @@ describe('Static Site module sub-generator', function() {
                 // mock prompt data
                 moduleFile: 'client/app',
                 type: type,
-                useLayout: 'testTemplate'
+                useLayout: 'testTemplate',
+                moduleLocation: 'client'
               }, function() {
                 assert.file(filesToTest);
                 assert.fileContent(fileContentToTest);
@@ -373,7 +383,8 @@ describe('Static Site module sub-generator', function() {
                 // mock prompt data
                 moduleFile: 'client/app',
                 type: type,
-                useLayout: 'testTemplate'
+                useLayout: 'testTemplate',
+                moduleLocation: 'client'
               }, function() {
                 assert.file(filesToTest);
                 assert.fileContent(fileContentToTest);
@@ -417,7 +428,8 @@ describe('Static Site module sub-generator', function() {
               createSubGenerator('module', module, {path:'../../../../'}, {
                 // mock prompt data
                 moduleFile: 'client/app',
-                type: type
+                type: type,
+                moduleLocation: 'client'
               }, function() {
                 assert.file(filesToTest);
                 assert.fileContent(fileContentToTest);
@@ -459,7 +471,8 @@ describe('Static Site module sub-generator', function() {
               createSubGenerator('module', module, {path:'../../../../'}, {
                 // mock prompt data
                 moduleFile: 'client/app/modules',
-                type: type
+                type: type,
+                moduleLocation: 'client'
               }, function() {
                 assert.file(filesToTest);
                 assert.fileContent(fileContentToTest);
@@ -495,7 +508,8 @@ describe('Static Site module sub-generator', function() {
           createSubGenerator('module', module, {path:'../../../../'}, {
             // mock prompt data
             moduleFile: 'client/app/layout',
-            type: type
+            type: type,
+            moduleLocation: 'client'
           }, function() {
             assert.file(filesToTest);
             assert.fileContent(fileContentToTest);
@@ -524,7 +538,8 @@ describe('Static Site module sub-generator', function() {
           createSubGenerator('module', module, {path:'../../../../'}, {
             // mock prompt data
             moduleFile: 'client/app',
-            type: type
+            type: type,
+            moduleLocation: 'client'
           }, function() {
             assert.fileContent(fileContentToTest);
             done();
@@ -550,7 +565,8 @@ describe('Static Site module sub-generator', function() {
           createSubGenerator('module', module, {path:'../../../../'}, {
               // mock prompt data
               moduleFile: 'client/app/modules',
-              type: type
+              type: type,
+              moduleLocation: 'client'
             }, function() {
             assert.fileContent(fileContentToTest);
             done();
