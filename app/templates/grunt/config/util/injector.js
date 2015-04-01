@@ -2,21 +2,18 @@
 // Injects Link/Import statements in to specified files
 'use strict';
 
-var _str = require('underscore.string');
-
 var taskConfig = function(grunt) {
 
   grunt.config.set('injector', {
     options: {
 
-    },<% if (htmlOption === 'jade') { %>
+    }<% if (htmlOption === 'jade') { %>,
     // Inject application script files into index.html (doesn't include bower)
     jade: {
       options: {
         transform: function(filePath) {<% if (useServer) { %>
-          filePath = filePath.replace('/server/templates/', '../');
-          <% } else { %>
-          filePath = filePath.replace('/client/templates/', '../');<% } %>
+          filePath = filePath.replace('/server/app/', '../');<% } else { %>
+          filePath = filePath.replace('/client/app/', '../');<% } %>
           return 'include ' + filePath;
         },
         starttag: '//- [injector:jade]',
@@ -25,17 +22,16 @@ var taskConfig = function(grunt) {
       files: {<% if (useServer) { %>
         '<%%= yeogurt.server %>/app/layout/base.jade'<% } else { %>
         '<%%= yeogurt.client %>/app/layout/base.jade'<% } %>: [
-          '<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/modules/*.jade',
+          '<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/app/modules/**/*.jade'
         ]
       }
-    },<% } %><% if (htmlOption === 'swig') { %>
+    }<% } %><% if (htmlOption === 'swig') { %>,
     // Inject application script files into index.html (doesn't include bower)
     swig: {
       options: {
         transform: function(filePath) {<% if (useServer) { %>
-          filePath = filePath.replace('/server/templates/', '../');
-          <% } else { %>
-          filePath = filePath.replace('/client/templates/', '../');<% } %>
+          filePath = filePath.replace('/server/app/', '../');<% } else { %>
+          filePath = filePath.replace('/client/app/', '../');<% } %>
           var fileName = filePath.substring(filePath.lastIndexOf('/')+1).slice(0, -5);
           return '{% import "' + filePath + '" as ' + _str.camelize(fileName) + ' %}';
         },
@@ -45,10 +41,10 @@ var taskConfig = function(grunt) {
       files: {<% if (useServer) { %>
         '<%%= yeogurt.server %>/app/layout/base.swig'<% } else { %>
         '<%%= yeogurt.client %>/app/layout/base.swig'<% } %>: [
-          '<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/templates/modules/*.swig',
+          '<% if (useServer) { %><%%= yeogurt.server %><% } else { %><%%= yeogurt.client %><% } %>/app/modules/**/*.swig'
         ]
       }
-    },<% } %><% if (jsOption === 'none') { %>
+    }<% } %><% if (jsOption === 'none') { %>,
     // Inject application script files into index.html (doesn't include bower)
     scripts: {
       options: {
@@ -74,7 +70,7 @@ var taskConfig = function(grunt) {
           '!<%%= yeogurt.client %>/{app,modules,lib}/routes.js'<% } %><% } %>
         ]
       }
-    },<% } %><% if (cssOption === 'less') { %>
+    }<% } %><% if (cssOption === 'less') { %>,
     // Inject component less into main.less
     less: {
       options: {
@@ -92,18 +88,17 @@ var taskConfig = function(grunt) {
         endtag: '// [endinjector]'
       },
       files: {
-	'<%%= yeogurt.client %>/app/main.less': [
+          '<%%= yeogurt.client %>/app/main.less': [
           '<%%= yeogurt.client %>/{app,modules,lib}/**/*.less',
           '!<%%= yeogurt.client %>/{app,modules,lib}/main.less'
         ]
       }
-    },<% } %><% if (cssOption === 'sass') { %>
+    }<% } %><% if (cssOption === 'sass') { %>,
     // Inject component scss into main.scss
     sass: {
       options: {
         transform: function(filePath) {
-          filePath = filePath.replace('/client/app/', '');
-          <% if (sassSyntax === 'scss') { %>
+          filePath = filePath.replace('/client/app/', '');<% if (sassSyntax === 'scss') { %>
           return '@import \'' + filePath.slice(0, -5) + '\';';<% } else { %>
           return '@import ' + filePath.slice(0, -5);<% } %>
         },
@@ -111,16 +106,16 @@ var taskConfig = function(grunt) {
         endtag: '// [endinjector]'
       },
       files: {<% if (sassSyntax === 'scss') { %>
-	'<%%= yeogurt.client %>/app/main.scss': [
+          '<%%= yeogurt.client %>/app/main.scss': [
           '<%%= yeogurt.client %>/{app,modules,lib}/**/*.scss',
           '!<%%= yeogurt.client %>/{app,modules,lib}/main.scss'
         ]<% } else { %>
-	'<%%= yeogurt.client %>/app/main.sass': [
+          '<%%= yeogurt.client %>/app/main.sass': [
           '<%%= yeogurt.client %>/{app,modules,lib}/**/*.sass',
           '!<%%= yeogurt.client %>/{app,modules,lib}/main.sass'
         ]<% } %>
       }
-    },<% } %><% if (cssOption === 'stylus') { %>
+    }<% } %><% if (cssOption === 'stylus') { %>,
     // Inject component scss into main.scss
     stylus: {
       options: {
@@ -132,13 +127,13 @@ var taskConfig = function(grunt) {
         endtag: '// [endinjector]'
       },
       files: {
-	'<%%= yeogurt.client %>/app/main.styl': [
+          '<%%= yeogurt.client %>/app/main.styl': [
           '<%%= yeogurt.client %>/{app,modules,lib}/**/*.styl',
           '!<%%= yeogurt.client %>/{app,modules,lib}/main.styl'<% if (jsFramework === 'angular') { %>,
           '<%%= yeogurt.client %>/{app,modules,lib}/**/*.styl'<% } %>
         ]
       }
-    },<% } %><% if (cssOption === 'css') { %>
+    }<% } %><% if (cssOption === 'css') { %>,
     // Inject component css into index.html
     css: {
       options: {

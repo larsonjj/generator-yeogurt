@@ -27,8 +27,12 @@ var ModuleGenerator = module.exports = function ModuleGenerator() {
   this.useServer = fileJSON.useServer;
   this.useServerTesting = fileJSON.useServerTesting;
 
-  // Default module location to client folder
-  this.moduleLocation = 'client';
+  if (this.useServer) {
+    this.moduleLocation = 'server';
+  }
+  else {
+    this.moduleLocation = 'client';
+  }
 
 };
 
@@ -40,22 +44,6 @@ ModuleGenerator.prototype.ask = function ask() {
   var self = this;
   var done = this.async();
   var prompts = [{
-    when: function() {
-      return self.useServer;
-    },
-    type: 'list',
-    name: 'moduleLocation',
-    message: 'Where would you like to create this module?',
-    choices: ['Client', 'Server'],
-    filter: function(val) {
-      var filterMap = {
-        'Client': 'client',
-        'Server': 'server'
-      };
-
-      return filterMap[val];
-    }
-  }, {
     when: function() {
       return self.htmlOption === 'jade' || self.htmlOption === 'swig';
     },
@@ -79,7 +67,7 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return answers.moduleLocation + '/app';
+      return self.moduleLocation + '/app';
     }
   }, {
     when: function(answers) {
@@ -88,7 +76,7 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return answers.moduleLocation + '/app';
+      return self.moduleLocation + '/app';
     }
   }, {
     when: function(answers) {
@@ -104,7 +92,7 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return answers.moduleLocation + '/app/modules';
+      return self.moduleLocation + '/app/modules';
     }
   }, {
     when: function(answers) {
@@ -113,8 +101,15 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return answers.moduleLocation + '/app/layout';
+      return self.moduleLocation + '/app/layout';
     }
+  }, {
+    when: function() {
+      return self.useServer;
+    },
+    name: 'generateFrontend',
+    message: 'Would you like to generate client assets (JS, ' + self.cssOption.toUpperCase() + ') for this module?',
+    type: 'confirm'
   }, {
     when: function(answers) {
       return self.jsFramework === 'angular';
@@ -129,7 +124,7 @@ ModuleGenerator.prototype.ask = function ask() {
     this.type = answers.type;
     this.useLayout = answers.useLayout || false;
 
-    this.moduleLocation = answers.moduleLocation || 'client';
+    this.generateFrontend = answers.generateFrontend;
 
     this.templateFile = path.join(
         answers.moduleFile,
@@ -216,24 +211,24 @@ ModuleGenerator.prototype.files = function files() {
       }
     }
 
-    if (this.moduleLocation !== 'server') {
+    if (this.moduleLocation !== 'server' || this.generateFrontend) {
       if (this.jsOption === 'requirejs') {
-        this.template(this.moduleLocation + '/requirejs/module.js', this.moduleFile + '.js');
+        this.template('client/requirejs/module.js', this.moduleFile.replace('server', 'client') + '.js');
         if (this.useTesting) {
-          this.template(this.moduleLocation + '/requirejs/module.spec.js', this.testFile + '.spec.js');
+          this.template('client/requirejs/module.spec.js', this.testFile.replace('server', 'client') + '.spec.js');
         }
       }
       else if (this.jsOption === 'browserify') {
-        this.template(this.moduleLocation + '/browserify/module.js', this.moduleFile + '.js');
+        this.template('client/browserify/module.js', this.moduleFile.replace('server', 'client') + '.js');
         if (this.useTesting) {
-          this.template(this.moduleLocation + '/browserify/module.spec.js', this.testFile + '.spec.js');
+          this.template('client/browserify/module.spec.js', this.testFile.replace('server', 'client') + '.spec.js');
         }
       }
       // Default to vanilla JS
       else {
-        this.template(this.moduleLocation + '/js/module.js', this.moduleFile + '.js');
+        this.template('client/js/module.js', this.moduleFile.replace('server', 'client') + '.js');
         if (this.useTesting) {
-          this.template(this.moduleLocation + '/js/module.spec.js', this.testFile + '.spec.js');
+          this.template('client/js/module.spec.js', this.testFile.replace('server', 'client') + '.spec.js');
         }
       }
     }

@@ -3,8 +3,6 @@
 describe('Give it some context', function() {
 
   beforeEach(function() {
-    // ReactTestUtils = require('react/addons').addons.TestUtils;
-    // reactRender = ReactTestUtils.renderIntoDocument;
     this.<%= _.classify(name) %> = require('../<%= _.slugify(name.toLowerCase()) %>');
   });
 
