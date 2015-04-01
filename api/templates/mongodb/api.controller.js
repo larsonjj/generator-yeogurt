@@ -11,6 +11,10 @@
 var _ = require('lodash');
 var <%= _.classify(name) %> = require('./<%= _.slugify(name.toLowerCase()) %>.model');
 
+var handleError = function handleError(err, res) {
+  return res.send(500, err);
+};
+
 // Get list of data
 var index = function(req, res) {
   <%= _.classify(name) %>.find(function (err, data) {
@@ -82,10 +86,6 @@ var destroy = function(req, res) {
       return res.send(204);
     });
   });
-};
-
-var handleError = function handleError(err, res) {
-  return res.send(500, err);
 };
 
 module.exports = {

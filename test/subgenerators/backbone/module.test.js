@@ -35,12 +35,13 @@ describe('Backbone module sub-generator', function() {
         useTesting: false,
         jsTemplate: 'underscore',
         jsOption: 'browserify',
-        testFramework: 'jasmine'
+        testFramework: 'jasmine',
+        useServer: false
       });
       this.app.run([], function() {
         createSubGenerator('module', module, {path: '../../../../'}, {
           // mock prompt data
-          moduleFile: 'client/app',
+          moduleFile: 'client/app'
         }, function() {
           assert.noFile(filesNotCreated);
           done();
@@ -72,7 +73,8 @@ describe('Backbone module sub-generator', function() {
             jsOption: 'browserify',
             testFramework: 'jasmine',
             cssOption: 'sass',
-            sassSyntax: 'scss'
+            sassSyntax: 'scss',
+            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -108,7 +110,8 @@ describe('Backbone module sub-generator', function() {
             jsOption: 'browserify',
             testFramework: 'mocha',
             cssOption: 'sass',
-            sassSyntax: 'scss'
+            sassSyntax: 'scss',
+            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -142,7 +145,8 @@ describe('Backbone module sub-generator', function() {
             singlePageApplication: true,
             jsTemplate: 'underscore',
             jsOption: 'requirejs',
-            testFramework: 'jasmine'
+            testFramework: 'jasmine',
+            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -174,7 +178,8 @@ describe('Backbone module sub-generator', function() {
             singlePageApplication: true,
             jsTemplate: 'underscore',
             jsOption: 'requirejs',
-            testFramework: 'mocha'
+            testFramework: 'mocha',
+            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -206,7 +211,8 @@ describe('Backbone module sub-generator', function() {
             singlePageApplication: true,
             jsTemplate: 'underscore',
             jsOption: 'none',
-            testFramework: 'jasmine'
+            testFramework: 'jasmine',
+            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -236,7 +242,8 @@ describe('Backbone module sub-generator', function() {
             singlePageApplication: true,
             jsTemplate: 'underscore',
             jsOption: 'none',
-            testFramework: 'mocha'
+            testFramework: 'mocha',
+            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -272,7 +279,8 @@ describe('Backbone module sub-generator', function() {
             singlePageApplication: true,
             jsTemplate: 'handlebars',
             jsOption: 'browserify',
-            testFramework: 'jasmine'
+            testFramework: 'jasmine',
+            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -304,7 +312,8 @@ describe('Backbone module sub-generator', function() {
             singlePageApplication: true,
             jsTemplate: 'handlebars',
             jsOption: 'browserify',
-            testFramework: 'mocha'
+            testFramework: 'mocha',
+            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -338,7 +347,8 @@ describe('Backbone module sub-generator', function() {
             singlePageApplication: true,
             jsTemplate: 'handlebars',
             jsOption: 'requirejs',
-            testFramework: 'jasmine'
+            testFramework: 'jasmine',
+            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -370,7 +380,8 @@ describe('Backbone module sub-generator', function() {
             singlePageApplication: true,
             jsTemplate: 'handlebars',
             jsOption: 'requirejs',
-            testFramework: 'mocha'
+            testFramework: 'mocha',
+            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -402,7 +413,8 @@ describe('Backbone module sub-generator', function() {
             singlePageApplication: true,
             jsTemplate: 'handlebars',
             jsOption: 'none',
-            testFramework: 'jasmine'
+            testFramework: 'jasmine',
+            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -432,7 +444,8 @@ describe('Backbone module sub-generator', function() {
             singlePageApplication: true,
             jsTemplate: 'handlebars',
             jsOption: 'none',
-            testFramework: 'mocha'
+            testFramework: 'mocha',
+            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -468,7 +481,8 @@ describe('Backbone module sub-generator', function() {
             singlePageApplication: true,
             jsTemplate: 'jade',
             jsOption: 'browserify',
-            testFramework: 'jasmine'
+            testFramework: 'jasmine',
+            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -500,7 +514,8 @@ describe('Backbone module sub-generator', function() {
             singlePageApplication: true,
             jsTemplate: 'jade',
             jsOption: 'browserify',
-            testFramework: 'mocha'
+            testFramework: 'mocha',
+            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -534,7 +549,8 @@ describe('Backbone module sub-generator', function() {
             singlePageApplication: true,
             jsTemplate: 'jade',
             jsOption: 'requirejs',
-            testFramework: 'jasmine'
+            testFramework: 'jasmine',
+            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -566,7 +582,8 @@ describe('Backbone module sub-generator', function() {
             singlePageApplication: true,
             jsTemplate: 'jade',
             jsOption: 'requirejs',
-            testFramework: 'mocha'
+            testFramework: 'mocha',
+            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -598,7 +615,8 @@ describe('Backbone module sub-generator', function() {
             singlePageApplication: true,
             jsTemplate: 'jade',
             jsOption: 'none',
-            testFramework: 'jasmine'
+            testFramework: 'jasmine',
+            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -628,7 +646,8 @@ describe('Backbone module sub-generator', function() {
             singlePageApplication: true,
             jsTemplate: 'jade',
             jsOption: 'none',
-            testFramework: 'mocha'
+            testFramework: 'mocha',
+            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {

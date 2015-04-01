@@ -3,7 +3,7 @@
 var <%= _.classify(name) %> = (function() {
 
   var init = function() {
-     // Intialize module
+    // Intialize module
   };
 
   return init;

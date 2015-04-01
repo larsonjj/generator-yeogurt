@@ -17,7 +17,7 @@ var ModuleGenerator = module.exports = function ModuleGenerator() {
   this.singlePageApplication = fileJSON.singlePageApplication;
   this.jsOption = fileJSON.jsOption;
   this.jsTemplate = fileJSON.jsTemplate;
-  this.cssOption = fileJSON.cssOption;
+  this.cssOption = fileJSON.cssOption || 'css';
   this.sassSyntax = fileJSON.sassSyntax;
   this.testFramework = fileJSON.testFramework;
   this.useTesting = fileJSON.useTesting;
@@ -296,23 +296,23 @@ ModuleGenerator.prototype.files = function files() {
     }
   }
 
-  if (this.moduleLocation !== 'server') {
+  if (this.moduleLocation !== 'server' || this.generateFrontend) {
     if (this.cssOption === 'sass') {
       if (this.sassSyntax === 'sass') {
-        this.template('module.css', this.moduleFile + '.sass');
+        this.template('module.css', this.moduleFile.replace('server', 'client') + '.sass');
       }
       else {
-        this.template('module.css', this.moduleFile + '.scss');
+        this.template('module.css', this.moduleFile.replace('server', 'client') + '.scss');
       }
     }
     else if (this.cssOption === 'less') {
-      this.template('module.css', this.moduleFile + '.less');
+      this.template('module.css', this.moduleFile.replace('server', 'client') + '.less');
     }
     else if (this.cssOption === 'stylus') {
-      this.template('module.css', this.moduleFile + '.styl');
+      this.template('module.css', this.moduleFile.replace('server', 'client') + '.styl');
     }
     else {
-      this.template('module.css', this.moduleFile + '.css');
+      this.template('module.css', this.moduleFile.replace('server', 'client') + '.css');
     }
   }
 };

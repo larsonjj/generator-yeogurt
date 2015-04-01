@@ -6,7 +6,6 @@
   },
   "globals": {
       "DocumentFragment": true,
-      "expect": true,
       "$": true,
       "Modernizr": true,<% if (jsFramework === 'backbone') { %>
       "Backbone": true,
@@ -32,9 +31,11 @@
     "brace-style": [1, "stroustrup"],
     "no-constant-condition": 1,
     "no-underscore-dangle": 0,
-    "no-use-before-define": 1,
+    "no-use-before-define": 1,<% if (testFramework === 'mocha') { %>
+    "no-unused-expressions": 0,<% } %>
     "func-names": 0,
     "no-new": false,
+    "new-cap": 0,
     "new-parens": 2,
     "no-ternary": 0,
     "no-unused-vars": [1, {"vars": "local", "args": "none"}],
