@@ -1,6 +1,8 @@
 # Changing the root directory
 Need to change the location of a Yeogurt site from `/` to `/subdir/`? Follow this guide to set up your project.
 
+*Note: This guide has only been tested for a Yeogurt project using the static site generator. Other setups may vary.
+
 ## Steps
 
 ### 1. Change location of `.tmp` folder
