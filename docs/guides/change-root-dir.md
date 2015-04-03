@@ -1,7 +1,7 @@
 # Changing the root directory
 Need to change the location of a Yeogurt site from `/` to `/subdir/`? Follow this guide to set up your project.
 
-*Note: This guide has only been tested for a Yeogurt project using the static site generator. Other setups may vary.
+*Note: This guide has only been tested for static sites. Other setups may vary.
 
 ## Steps
 
@@ -63,3 +63,6 @@ grunt.config.set('connect', {
     }
   });
   ```
+  
+## Usage
+After following all of the steps outlined above, you should be all set. Start up your development server with `grunt serve` and begin building with your updated root directory.
