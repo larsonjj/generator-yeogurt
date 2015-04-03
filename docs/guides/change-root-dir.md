@@ -1,0 +1,65 @@
+# Changing the root directory
+Need to change the location of a Yeogurt site from `/` to `/subdir/`? Follow this guide to set up your project.
+
+*Note: This guide has only been tested for a Yeogurt project using the static site generator. Other setups may vary.
+
+## Steps
+
+### 1. Change location of `.tmp` folder
+In `/Gruntfile.js` change the following lines of code from
+```
+var config = {
+  client: 'client',
+  tmp: '.tmp',
+  dist: 'dist',
+  server: 'server'
+};
+```
+to
+```
+var config = {
+  client: 'client',
+  tmp: '.tmp/subdir',
+  dist: 'dist',
+  server: 'server'
+};
+```
+
+### 2. Change Grunt Connect settings
+In `/grunt/config/server/connect.js` edit the `grunt.config.set()` function so that it looks like this:
+```
+grunt.config.set('connect', {
+    options: {
+      port: 9010,
+      livereload: 35729,
+      hostname: '127.0.0.1'
+    },
+    server: {
+      options: {
+        open: 'http://127.0.0.1:9010/subdir',
+        base: '<%= yeogurt.client %>/',
+        middleware: function(connect) {
+          return [
+            connect.static('.tmp'),
+            connect().use('/subdir/bower_components', connect.static('./client/bower_components')),
+            connect().use('/subdir/images', connect.static('./client/images')),
+            connect.static('client')
+          ];
+        }
+      }
+    },
+    dist: {
+      options: {
+        open: 'http://127.0.0.1:9010/subdir',
+        base: '<%= yeogurt.dist %>/',
+        middleware: function(connect) {
+          return [
+            connect.static('dist'),
+            connect().use('/subdir/', connect.static('dist'))
+          ];
+        },
+        livereload: false
+      }
+    }
+  });
+  ```
