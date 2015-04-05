@@ -10,26 +10,52 @@ var taskConfig = function(grunt) {
         env: 'development'
       }
     },<% } %><% if (!useServer) { %>
+    serverIndex: {
+      options: {
+        cache: false
+      },
+      files: {
+        '<%= yeogurt.tmp %>/index.html': ['<%= yeogurt.client %>/app/index/index.swig']
+      }
+    },
     server: {
+      options: {
+        cache: false
+      },
       expand: true,
-      cwd: '<%%= yeogurt.client %>/{app,modules,lib}/index',
-      dest: '<%%= yeogurt.tmp %>/',
+      cwd: '<%= yeogurt.client %>/',
+      dest: '<%= yeogurt.tmp %>/',
       src: [
-        '**/index.swig',
-        '../**/!(index).swig',
-        '!../**/layout/**'
+        'app/**/*.swig',
+        '!**/layout/**',
+        '!**/index/**'
       ],
       ext: '.html'
     },<% } %>
+    distIndex: {
+      options: {
+        pretty: true,
+        client: false,
+        data: {
+          debug: false
+        }
+      },
+      files: {
+        '<%= yeogurt.dist %>/index.html': ['<%= yeogurt.client %>/app/index/index.swig']
+      }
+    },
     dist: {
+      options: {
+        cache: false
+      },
       expand: true,
-      cwd: '<% if (useServer) { %><%%= yeogurt.server %><% } %><% if (!useServer) { %><%%= yeogurt.client %><% } %>/app/index',<% if (!useServer) { %>
+      cwd: '<% if (useServer) { %><%%= yeogurt.server %><% } %><% if (!useServer) { %><%%= yeogurt.client %><% } %>',<% if (!useServer) { %>
       dest: '<%%= yeogurt.dist %>/',<% } %><% if (useServer) { %>
       dest: '<%%= yeogurt.tmp %>/',<% } %>
       src: [
-        '**/index.swig',
-        '../**/!(index).swig',
-        '!../**/layout/**'
+        'app/**/*.swig',
+        '!**/layout/**',
+        '!**/index/**'
       ],
       ext: '.html'
     }

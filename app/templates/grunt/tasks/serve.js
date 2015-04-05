@@ -26,7 +26,9 @@ var taskConfig = function(grunt) {
       'jst:server',<% } else if (jsTemplate === 'handlebars') { %>
       'handlebars:server',<% } else if (jsTemplate === 'jade') { %>
       'jade:server',<% } %><% if (htmlOption === 'jade' && !useServer ) { %>
+      'jade:serverIndex',
       'jade:server',<% } else if (htmlOption === 'swig' && !useServer ) {  %>
+      'swig:serverIndex',
       'swig:server',<% } %><% if (cssOption === 'less') { %>
       'less:server',<% } %><% if (cssOption === 'sass') { %>
       'sass:server',<% } %><% if (cssOption === 'stylus') { %>
@@ -38,7 +40,7 @@ var taskConfig = function(grunt) {
     ]);
 
     if (target === 'nowatch') {
-      return;
+      return false;
     }
 
     grunt.task.run([<% if (useServer) { %>
@@ -46,17 +48,14 @@ var taskConfig = function(grunt) {
       'wait',
       'open'<% } else { %>
       'connect:server'<% } %>
-    ]);
+    ]);<% if (useKss || useJsdoc || useDashboard) { %>
 
-    <% if (useKss || useJsdoc || useDashboard) { %>
     if (target === 'docs') {
       return grunt.task.run(['listen:docs']);
     }
 
-    return grunt.task.run(['watch']);
-    <% } else { %>
-    return grunt.task.run(['watch']);
-    <% } %>
+    return grunt.task.run(['watch']);<% } else { %>
+    return grunt.task.run(['watch']);<% } %>
   });
 };
 

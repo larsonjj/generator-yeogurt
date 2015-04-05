@@ -7,6 +7,18 @@
 var taskConfig = function(grunt) {
 
   grunt.config.set('jade', {<% if (!useServer && jsTemplate !== 'jade') { %>
+    serverIndex: {
+      options: {
+        pretty: true,
+        client: false,
+        data: {
+          debug: true
+        }
+      },
+      files: {
+        '<%%= yeogurt.tmp %>/index.html': ['<% if (useServer) { %><%%= yeogurt.server %><% } %><% if (!useServer) { %><%%= yeogurt.client %><% } %>/app/index/index.jade']
+      }
+    },
     server: {
       options: {
         pretty: true,
@@ -16,15 +28,27 @@ var taskConfig = function(grunt) {
         }
       },
       expand: true,
-      cwd: '<%%= yeogurt.client %>/{app,modules,lib}/index',
+      cwd: '<%%= yeogurt.client %>/',
       dest: '<%%= yeogurt.tmp %>/',
       src: [
-        '**/index.jade',
-        '../**/!(index).jade',
-        '!../**/layout/**'
+        'app/**/*.jade',
+        '!**/layout/**',
+        '!**/index/**'
       ],
       ext: '.html'
     },<% } %><% if (jsTemplate !== 'jade') { %>
+    distIndex: {
+      options: {
+        pretty: true,
+        client: false,
+        data: {
+          debug: false
+        }
+      },
+      files: {
+        '<%%= yeogurt.dist %>/index.html': ['<% if (useServer) { %><%%= yeogurt.server %><% } %><% if (!useServer) { %><%%= yeogurt.client %><% } %>/app/index/index.jade']
+      }
+    },
     dist: {
       options: {
         pretty: true,
@@ -36,16 +60,16 @@ var taskConfig = function(grunt) {
         }
       },
       expand: true,
-      cwd: '<% if (useServer) { %><%%= yeogurt.server %><% } %><% if (!useServer) { %><%%= yeogurt.client %><% } %>/app/index/',<% if (!useServer) { %>
+      cwd: '<% if (useServer) { %><%%= yeogurt.server %><% } %><% if (!useServer) { %><%%= yeogurt.client %><% } %>',<% if (!useServer) { %>
       dest: '<%%= yeogurt.dist %>/',<% } %><% if (useServer) { %>
       dest: '<%%= yeogurt.tmp %>/',<% } %>
       src: [
-        '**/index.jade',
-        '../**/!(index).jade',
-        '!../**/layout/**'
+        'app/**/*.jade',
+        '!**/layout/**',
+        '!**/index/**'
       ],
       ext: '.html'
-    },<% } %><% if (jsTemplate === 'jade') { %>
+    }<% } %><% if (jsTemplate === 'jade') { %>
     server: {
       options: {
         pretty: true,
@@ -55,7 +79,7 @@ var taskConfig = function(grunt) {
         }
       },
       files: {
-        '<%%= yeogurt.tmp %>/app/templates.js': ['<%%= yeogurt.client %>/{app,modules,lib}/**/*.jade']
+        '<%%= yeogurt.tmp %>/app/templates.js': ['<%%= yeogurt.client %>/app/**/*.jade']
       }
     },
     dist: {
@@ -67,7 +91,7 @@ var taskConfig = function(grunt) {
         }
       },
       files: {
-        '<%%= yeogurt.tmp %>/app/templates.js': ['<%%= yeogurt.client %>/{app,modules,lib}/**/*.jade']
+        '<%%= yeogurt.tmp %>/app/templates.js': ['<%%= yeogurt.client %>/app/**/*.jade']
       }
     }<% } %><% if (jsFramework === 'backbone') { %>,
     test: {
@@ -79,7 +103,7 @@ var taskConfig = function(grunt) {
         }
       },
       files: {
-        '<%%= yeogurt.tmp %>/test/templates.js': ['<%%= yeogurt.client %>/{app,modules,lib}/**/*.jade']
+        '<%%= yeogurt.tmp %>/test/templates.js': ['<%%= yeogurt.client %>/app/**/*.jade']
       }
     }<% } %>
   });
