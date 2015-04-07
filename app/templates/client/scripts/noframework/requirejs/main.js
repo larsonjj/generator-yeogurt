@@ -5,7 +5,7 @@ require.config({
   paths: {}
 });
 
-define('init', function() {
+define('init', function(require) {
 
   console.log('Welcome to Yeogurt!');
 
