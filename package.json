@@ -1,74 +1,74 @@
 {
   "name": "generator-yeogurt",
-  "version": "0.14.3",
+  "version": "0.14.4",
   "description": "A “Choose your own adventure” generator for creating static sites and single page applications. Helps you harness the power of your favorite tools: Angular, React + Flux, Backbone, Jade, Swig, Express, Grunt and much more!",
   "keywords": [
-  "yeoman-generator",
-  "yeogurt",
-  "frontend",
-  "html5",
-  "modernizr",
-  "jade",
-  "swig",
-  "sass",
-  "less",
-  "requirejs",
-  "browserify",
-  "dashboard",
-  "backbone",
-  "react",
-  "angular",
-  "jsx",
-  "flux",
-  "express",
-  "jsdoc",
-  "kss",
-  "styleguide",
-  "api",
-  "handlebars",
-  "underscore"
+    "yeoman-generator",
+    "yeogurt",
+    "frontend",
+    "html5",
+    "modernizr",
+    "jade",
+    "swig",
+    "sass",
+    "less",
+    "requirejs",
+    "browserify",
+    "dashboard",
+    "backbone",
+    "react",
+    "angular",
+    "jsx",
+    "flux",
+    "express",
+    "jsdoc",
+    "kss",
+    "styleguide",
+    "api",
+    "handlebars",
+    "underscore"
   ],
   "homepage": "https://github.com/larsonjj/generator-yeogurt",
   "bugs": "https://github.com/larsonjj/generator-yeogurt/issues",
   "author": {
-  "name": "Jake Larson",
-  "email": "jake.j.larson@gmail.com",
-  "url": "https://github.com/larsonjj"
+    "name": "Jake Larson",
+    "email": "jake.j.larson@gmail.com",
+    "url": "https://github.com/larsonjj"
   },
   "main": "app/index.js",
   "repository": {
-  "type": "git",
-  "url": "git://github.com/larsonjj/generator-yeogurt.git"
+    "type": "git",
+    "url": "git://github.com/larsonjj/generator-yeogurt.git"
   },
   "scripts": {
-  "clean": "rimraf node_modules coverage test/app/temp test/subgenerators/temp",
-  "test": "istanbul cover _mocha -- test/**/*.js --reporter list --timeout 100000 && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-  "localtest": "mocha test/**/*.js -b --reporter nyan",
-  "localtest-report": "istanbul cover _mocha test/**/*.js && open ./coverage/lcov-report/index.html"
+    "clean": "rimraf node_modules coverage test/app/temp test/subgenerators/temp",
+    "test": "istanbul cover _mocha -- test/app/*.test.js test/subgenerators/angular/*.test.js test/subgenerators/backbone/*.test.js test/subgenerators/react/*.test.js  test/subgenerators/server/*.test.js test/subgenerators/static/*.test.js --reporter list --timeout 100000 && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "localtest": "mocha test/app/*.test.js test/subgenerators/angular/*.test.js test/subgenerators/backbone/*.test.js test/subgenerators/react/*.test.js test/subgenerators/server/*.test.js test/subgenerators/static/*.test.js -b --reporter spec",
+    "localtest-report": "istanbul cover _mocha test/app/*.test.js test/subgenerators/angular/*.test.js test/subgenerators/backbone/*.test.js test/subgenerators/react/*.test.js test/subgenerators/server/*.test.js test/subgenerators/static/*.test.js && open ./coverage/lcov-report/index.html"
   },
   "dependencies": {
-  "yeoman-generator": "~0.17.7",
-  "colors": "~0.6.2",
-  "lodash": "~2.4.1",
-  "rimraf": "2.2.8"
+    "yeoman-generator": "~0.17.7",
+    "colors": "~0.6.2",
+    "lodash": "~2.4.1",
+    "rimraf": "2.2.8"
   },
   "devDependencies": {
-  "coveralls": "~2.11.0",
-  "fixture-stdout": "~0.2.1",
-  "istanbul": "~0.3.2",
-  "mocha": "~1.17.0",
-  "mocha-lcov-reporter": "~0.0.1"
+    "coveralls": "~2.11.2",
+    "fixture-stdout": "~0.2.1",
+    "istanbul": "~0.3.6",
+    "mocha": "~2.1.0",
+    "mocha-lcov-reporter": "~0.0.2"
   },
   "peerDependencies": {
-  "yo": ">=1.1.0"
+    "yo": ">=1.1.0"
   },
   "engines": {
-  "node": ">=0.10.0",
-  "npm": ">=1.2.10"
+    "node": ">=0.10.0",
+    "npm": ">=1.2.10"
   },
   "licenses": [
-  {
-    "type": "MIT"
-  }
+    {
+      "type": "MIT"
+    }
   ]
 }

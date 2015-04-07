@@ -1,3 +1,11 @@
+### v0.14.4:
+#### date: 2015-4-06
+##### changes:
+* Fixed issue where RequireJS was throwing module loading errors for static sites [#122](https://github.com/larsonjj/generator-yeogurt/pull/122)
+* Added new guide to help simulate a subdirectory for your site [#121](https://github.com/larsonjj/generator-yeogurt/pull/121)
+* Added better no-cache option for static assets within node apps [#119](https://github.com/larsonjj/generator-yeogurt/pull/119)
+* Added logic to remove `_` from sass imports to allieve sass linting errors/warnings [#101](https://github.com/larsonjj/generator-yeogurt/pull/101)
+
 ### v0.14.3:
 #### date: 2015-3-04
 ##### changes:
@@ -6,7 +14,6 @@
 * Fixed logo within generator prompt
 * Updated installation instructions to be more accurate within README.md
 * Updated [grunt-sass](https://github.com/sindresorhus/grunt-sass) to v0.18.0 which should allow for error-free installation on Node v.0.12.0
-
 
 ### v0.14.2:
 #### date: 2015-1-20
