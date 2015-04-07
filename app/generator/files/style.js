@@ -8,47 +8,27 @@ var styleFiles = function styleFiles() {
   // client/styles
 
   if (this.useKss) {
-    this.template('client/app/styles/styleguide.md', 'client/app/styleguide.md');
+    this.template('client/styles/styleguide.md', 'client/styleguide.md');
   }
 
   if (this.cssOption !== 'css') {
     if (this.cssOption === 'less') {
-      this.template('client/app/styles/main.less', 'client/app/main.less');
-
-      if (!this.useServer || this.singlePageApplication && this.useServer) {
-        this.template('client/app/styles/index/index.less', 'client/app/index/index.less');
-      }
+      this.template('client/styles/main.less', 'client/main.less');
     }
     if (this.cssOption === 'sass') {
       if (this.sassSyntax === 'sass') {
-        this.template('client/app/styles/main.sass', 'client/app/main.sass');
-
-        if (!this.useServer || this.singlePageApplication && this.useServer) {
-          this.template('client/app/styles/index/index.sass', 'client/app/index/index.sass');
-        }
+        this.template('client/styles/main.sass', 'client/main.sass');
       }
       else {
-        this.template('client/app/styles/main.scss', 'client/app/main.scss');
-
-        if (!this.useServer || this.singlePageApplication && this.useServer) {
-          this.template('client/app/styles/index/index.scss', 'client/app/index/index.scss');
-        }
+        this.template('client/styles/main.scss', 'client/main.scss');
       }
     }
     if (this.cssOption === 'stylus') {
-      this.template('client/app/styles/main.styl', 'client/app/main.styl');
-
-      if (!this.useServer || this.singlePageApplication && this.useServer) {
-        this.template('client/app/styles/index/index.styl', 'client/app/index/index.styl');
-      }
+      this.template('client/styles/main.styl', 'client/main.styl');
     }
   }
   else {
-    this.template('client/app/styles/main.css', 'client/app/main.css');
-
-    if (!this.useServer || this.singlePageApplication && this.useServer) {
-      this.template('client/app/styles/index/index.css', 'client/app/index/index.css');
-    }
+    this.template('client/styles/main.css', 'client/main.css');
   }
 };
 

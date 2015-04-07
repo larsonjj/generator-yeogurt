@@ -26,8 +26,8 @@ describe('Model sub-generator', function() {
       // Filename
       var model = 'mymodel';
       var filesToTest = [
-        'client/app/' + model + '/__tests__/' + model + '.spec.js',
-        'client/app/' + model + '/' + model + '.js'
+        'client/' + model + '/__tests__/' + model + '.spec.js',
+        'client/' + model + '/' + model + '.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -40,7 +40,7 @@ describe('Model sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('model', model, {path: '../../../../'}, {
           // mock prompt data
-          modelFile: 'client/app'
+          modelFile: 'client'
         }, function() {
           assert.file(filesToTest);
           done();
@@ -51,10 +51,10 @@ describe('Model sub-generator', function() {
       // Filename
       var model = 'mymodel';
       var filesToTest = [
-        'client/app/' + model + '/' + model + '.js'
+        'client/' + model + '/' + model + '.js'
       ];
       var filesNotCreated = [
-        'client/app/' + model + '/__tests__/' + model + '.spec.js'
+        'client/' + model + '/__tests__/' + model + '.spec.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -68,7 +68,7 @@ describe('Model sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('model', model, {path: '../../../../'}, {
           // mock prompt data
-          modelFile: 'client/app'
+          modelFile: 'client'
         }, function() {
           assert.file(filesToTest);
           assert.noFile(filesNotCreated);
@@ -80,12 +80,12 @@ describe('Model sub-generator', function() {
       // Filename
       var model = 'mymodel';
       var fileContentToTest = [
-        ['client/app/' + model + '/__tests__/' + model + '.spec.js', /describe/i],
+        ['client/' + model + '/__tests__/' + model + '.spec.js', /describe/i],
       ];
 
       var fileContentThatShouldntExist = [
-          ['client/app/' + model + '/' + model + '.js', /module\.exports/i],
-          ['client/app/' + model + '/' + model + '.js', /define\(function\(require\)/i]
+          ['client/' + model + '/' + model + '.js', /module\.exports/i],
+          ['client/' + model + '/' + model + '.js', /define\(function\(require\)/i]
         ];
 
       helpers.mockPrompt(this.app, {
@@ -98,7 +98,7 @@ describe('Model sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('model', model, {path: '../../../../'}, {
           // mock prompt data
-          modelFile: 'client/app'
+          modelFile: 'client'
         }, function() {
           assert.fileContent(fileContentToTest);
           assert.noFileContent(fileContentThatShouldntExist);
@@ -110,8 +110,8 @@ describe('Model sub-generator', function() {
       // Filename
       var model = 'mymodel';
       var fileContentToTest = [
-        ['client/app/' + model + '/__tests__/' + model + '.spec.js', /describe/i],
-        ['client/app/' + model + '/' + model + '.js', /module\.exports/i]
+        ['client/' + model + '/__tests__/' + model + '.spec.js', /describe/i],
+        ['client/' + model + '/' + model + '.js', /module\.exports/i]
       ];
 
       helpers.mockPrompt(this.app, {
@@ -124,7 +124,7 @@ describe('Model sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('model', model, {path: '../../../../'}, {
           // mock prompt data
-          modelFile: 'client/app'
+          modelFile: 'client'
         }, function() {
           assert.fileContent(fileContentToTest);
           done();
@@ -135,8 +135,8 @@ describe('Model sub-generator', function() {
       // Filename
       var model = 'mymodel';
       var fileContentToTest = [
-        ['client/app/' + model + '/__tests__/' + model + '.spec.js', /define\(function\(require\)/i],
-        ['client/app/' + model + '/' + model + '.js', /define\(function\(require\)/i]
+        ['client/' + model + '/__tests__/' + model + '.spec.js', /define\(function\(require\)/i],
+        ['client/' + model + '/' + model + '.js', /define\(function\(require\)/i]
       ];
 
       helpers.mockPrompt(this.app, {
@@ -149,7 +149,7 @@ describe('Model sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('model', model, {path: '../../../../'}, {
           // mock prompt data
-          modelFile: 'client/app'
+          modelFile: 'client'
         }, function() {
           assert.fileContent(fileContentToTest);
           done();
@@ -160,8 +160,8 @@ describe('Model sub-generator', function() {
       // Filename
       var model = 'mymodel';
       var filesToNotExist = [
-        'client/app/' + model + '/__tests__/' + model + '.spec.js',
-        'client/app/' + model + '/' + model + '.js'
+        'client/' + model + '/__tests__/' + model + '.spec.js',
+        'client/' + model + '/' + model + '.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -171,7 +171,7 @@ describe('Model sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('model', model, {path: '../../../../'}, {
           // mock prompt data
-          modelFile: 'client/app'
+          modelFile: 'client'
         }, function() {
           assert.noFile(filesToNotExist);
           done();

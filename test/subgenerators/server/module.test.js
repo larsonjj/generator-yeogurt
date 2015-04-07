@@ -1,10 +1,10 @@
 /*global describe, beforeEach, it*/
 'use strict';
 
-var path  = require('path');
-var yeoman  = require('yeoman-generator');
+var path = require('path');
+var yeoman = require('yeoman-generator');
 var helpers = yeoman.test;
-var assert  = yeoman.assert;
+var assert = yeoman.assert;
 var createAppGenerator = require('../../helpers/create-generator').createAppGenerator;
 var createSubGenerator = require('../../helpers/create-generator').createSubGenerator;
 
@@ -29,13 +29,13 @@ describe('Server module sub-generator', function() {
 
         var filesToTest = [
           // add files and folders you expect to NOT exist here.
-          'client/app/' + module + '/' + module + '.js',
-          'client/app/' + module + '/__tests__/' + module + '.spec.js',
-          'server/app/' + module + '/' + module + '.js',
-          'server/app/' + module + '/' + module + '.controller.js',
-          'server/app/' + module + '/' + module + '.jade',
-          'server/app/' + module + '/package.json',
-          'server/app/' + module + '/__tests__/' + module + '.spec.js'
+          'client/' + module + '/' + module + '.js',
+          'client/' + module + '/__tests__/' + module + '.spec.js',
+          'server/' + module + '/' + module + '.js',
+          'server/' + module + '/' + module + '.controller.js',
+          'server/' + module + '/' + module + '.jade',
+          'server/' + module + '/package.json',
+          'server/' + module + '/__tests__/' + module + '.spec.js'
         ];
 
         helpers.mockPrompt(this.app, {
@@ -46,7 +46,7 @@ describe('Server module sub-generator', function() {
         this.app.run([], function() {
           createSubGenerator('module', module, {path: '../../../../'}, {
             // mock prompt data
-            moduleFile: 'server/app',
+            moduleFile: 'server',
             moduleLocation: 'server',
             type: 'page',
             generateFrontend: true
@@ -67,11 +67,11 @@ describe('Server module sub-generator', function() {
 
         var filesToTest = [
           // add files and folders you expect to NOT exist here.
-          'server/app/' + module + '/' + module + '.js',
-          'server/app/' + module + '/' + module + '.controller.js',
-          'server/app/' + module + '/' + module + '.swig',
-          'server/app/' + module + '/package.json',
-          'server/app/' + module + '/__tests__/' + module + '.spec.js'
+          'server/' + module + '/' + module + '.js',
+          'server/' + module + '/' + module + '.controller.js',
+          'server/' + module + '/' + module + '.swig',
+          'server/' + module + '/package.json',
+          'server/' + module + '/__tests__/' + module + '.spec.js'
         ];
 
         helpers.mockPrompt(this.app, {
@@ -82,7 +82,7 @@ describe('Server module sub-generator', function() {
         this.app.run([], function() {
           createSubGenerator('module', module, {path: '../../../../'}, {
             // mock prompt data
-            moduleFile: 'server/app',
+            moduleFile: 'server',
             moduleLocation: 'server',
             type: 'page'
           }, function() {

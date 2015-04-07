@@ -26,8 +26,8 @@ describe('Factory sub-generator', function() {
       // Filename
       var factory = 'myfactory';
       var filesToTest = [
-        'client/app/' + factory + '/' + factory + '.factory.js',
-        'client/app/' + factory + '/__tests__/' + factory + '.factory.spec.js'
+        'client/' + factory + '/' + factory + '.factory.js',
+        'client/' + factory + '/__tests__/' + factory + '.factory.spec.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -37,7 +37,7 @@ describe('Factory sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('factory', factory, {path: '../../../../'}, {
           // mock prompt data
-          factoryFile: 'client/app'
+          factoryFile: 'client'
         }, function() {
           assert.file(filesToTest);
           done();
@@ -48,7 +48,7 @@ describe('Factory sub-generator', function() {
       // Filename
       var factory = 'myfactory';
       var filesToNotExist = [
-        'client/app/' + factory + '/' + factory + '.decorator.js'
+        'client/' + factory + '/' + factory + '.decorator.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -58,7 +58,7 @@ describe('Factory sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('factory', factory, {path: '../../../../'}, {
           // mock prompt data
-          factoryFile: 'client/app'
+          factoryFile: 'client'
         }, function() {
           assert.noFile(filesToNotExist);
           done();

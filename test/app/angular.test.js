@@ -1,10 +1,10 @@
 /*global describe, beforeEach, it*/
 'use strict';
 
-var path  = require('path');
-var yeoman  = require('yeoman-generator');
+var path = require('path');
+var yeoman = require('yeoman-generator');
 var helpers = yeoman.test;
-var assert  = yeoman.assert;
+var assert = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 
 describe('Yeogurt generator using Angular', function() {
@@ -26,10 +26,10 @@ describe('Yeogurt generator using Angular', function() {
         var expected = [
           'grunt/config/compile/ng-templates.js',
           'grunt/config/compile/ng-annotate.js',
-          'client/app/main.js',
-          'client/app/index/index.js',
-          'client/app/index/index.controller.js',
-          'client/app/index/index.html'
+          'client/main.js',
+          'client/index/index.js',
+          'client/index/index.controller.js',
+          'client/index/index.html'
         ];
 
         var fileContentToTest = [];
@@ -39,7 +39,7 @@ describe('Yeogurt generator using Angular', function() {
           jsFramework: 'angular',
           useServerTesting: false,
           jsOption: 'none',
-          useServer: false,
+          useServer: false
         });
 
         this.app.run([], function() {
@@ -54,11 +54,11 @@ describe('Yeogurt generator using Angular', function() {
         describe('With Jasmine', function() {
           it ('Creates expected files', function(done) {
             var expected = [
-              'client/app/index/__tests__/index.spec.js'
+              'client/index/__tests__/index.spec.js'
             ];
 
             var fileContentToTest = [
-              ['client/app/index/__tests__/index.spec.js', /toBe/i]
+              ['client/index/__tests__/index.spec.js', /toBe/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -81,11 +81,11 @@ describe('Yeogurt generator using Angular', function() {
         describe('With Mocha', function() {
           it ('Creates expected files', function(done) {
             var expected = [
-              'client/app/index/__tests__/index.spec.js'
+              'client/index/__tests__/index.spec.js'
             ];
 
             var fileContentToTest = [
-              ['client/app/index/__tests__/index.spec.js', /to\./i]
+              ['client/index/__tests__/index.spec.js', /to\./i]
             ];
 
             helpers.mockPrompt(this.app, {

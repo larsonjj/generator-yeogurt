@@ -7,18 +7,6 @@
 var taskConfig = function(grunt) {
 
   grunt.config.set('jade', {<% if (!useServer && jsTemplate !== 'jade') { %>
-    serverIndex: {
-      options: {
-        pretty: true,
-        client: false,
-        data: {
-          debug: true
-        }
-      },
-      files: {
-        '<%%= yeogurt.tmp %>/index.html': ['<% if (useServer) { %><%%= yeogurt.server %><% } %><% if (!useServer) { %><%%= yeogurt.client %><% } %>/app/index/index.jade']
-      }
-    },
     server: {
       options: {
         pretty: true,
@@ -31,32 +19,18 @@ var taskConfig = function(grunt) {
       cwd: '<%%= yeogurt.client %>/',
       dest: '<%%= yeogurt.tmp %>/',
       src: [
-        'app/**/*.jade',
-        '!**/layout/**',
-        '!**/index/**'
+        '**/*.jade',
+        '!**/\_*/**'
       ],
       ext: '.html'
     },<% } %><% if (jsTemplate !== 'jade') { %>
-    distIndex: {
-      options: {
-        pretty: true,
-        client: false,
-        data: {
-          debug: false
-        }
-      },
-      files: {
-        '<%%= yeogurt.dist %>/index.html': ['<% if (useServer) { %><%%= yeogurt.server %><% } %><% if (!useServer) { %><%%= yeogurt.client %><% } %>/app/index/index.jade']
-      }
-    },
     dist: {
       options: {
         pretty: true,
         client: false,
         data: {
           debug: false<% if (useServer) { %>,
-          env: 'development',
-          messages: {} // Avoid errors with navbar<% } %>
+          env: 'development'<% } %>
         }
       },
       expand: true,
@@ -64,9 +38,8 @@ var taskConfig = function(grunt) {
       dest: '<%%= yeogurt.dist %>/',<% } %><% if (useServer) { %>
       dest: '<%%= yeogurt.tmp %>/',<% } %>
       src: [
-        'app/**/*.jade',
-        '!**/layout/**',
-        '!**/index/**'
+        '**/*.jade',
+        '!**/\_*/**'
       ],
       ext: '.html'
     }<% } %><% if (jsTemplate === 'jade') { %>
@@ -79,7 +52,10 @@ var taskConfig = function(grunt) {
         }
       },
       files: {
-        '<%%= yeogurt.tmp %>/app/templates.js': ['<%%= yeogurt.client %>/app/**/*.jade']
+        '<%%= yeogurt.tmp %>/templates.js': [
+          '<%%= yeogurt.client %>/**/*.jade',
+          '<%%= yeogurt.client %>/!**/\_*/**'
+        ]
       }
     },
     dist: {
@@ -91,7 +67,10 @@ var taskConfig = function(grunt) {
         }
       },
       files: {
-        '<%%= yeogurt.tmp %>/app/templates.js': ['<%%= yeogurt.client %>/app/**/*.jade']
+        '<%%= yeogurt.tmp %>/templates.js': [
+          '<%%= yeogurt.client %>/**/*.jade',
+          '<%%= yeogurt.client %>/!**/\_*/**'
+        ]
       }
     }<% } %><% if (jsFramework === 'backbone') { %>,
     test: {
@@ -103,7 +82,10 @@ var taskConfig = function(grunt) {
         }
       },
       files: {
-        '<%%= yeogurt.tmp %>/test/templates.js': ['<%%= yeogurt.client %>/app/**/*.jade']
+        '<%%= yeogurt.tmp %>/test/templates.js': [
+          '<%%= yeogurt.client %>/**/*.jade',
+          '<%%= yeogurt.client %>/!**/\_*/**'
+        ]
       }
     }<% } %>
   });

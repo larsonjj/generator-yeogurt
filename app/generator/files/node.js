@@ -23,12 +23,12 @@ var nodeFiles = function nodeFiles() {
     this.template('server/config/env/production.js', 'server/config/env/production.js');
     this.template('server/config/env/test.js', 'server/config/env/test.js');
 
-    this.template('server/app/routes.js', 'server/app/routes.js');
+    this.template('server/routes.js', 'server/routes.js');
 
     this.template('server/server.js', 'server/server.js');
-    this.template('server/app/index/index.js', 'server/app/index/index.js');
-    this.template('server/app/index/index.controller.js', 'server/app/index/index.controller.js');
-    this.template('server/app/index/package.json', 'server/app/index/package.json');
+    this.template('server/index/index.js', 'server/index/index.js');
+    this.template('server/index/index.controller.js', 'server/index/index.controller.js');
+    this.template('server/index/package.json', 'server/index/package.json');
   }
 };
 

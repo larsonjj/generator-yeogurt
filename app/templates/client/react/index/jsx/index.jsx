@@ -18,7 +18,7 @@ var IndexComponent = React.createClass({
               Take a look at the <a href="https://github.com/larsonjj/generator-yeogurt#yeogurt-generator">documentation</a> and start mixing up something awesome.
             </p>
             <p>
-              <img src="/assets/images/yeogurt-swirl.png" width="75px" className="logo" />
+              <img src="/images/yeogurt-swirl.png" width="75px" className="logo" />
             </p><% if (useJsdoc || useKss) { %>
             <p className="links"><% if (useKss) { %>
               <a href="/docs/styleguide/index.html">Styleguide</a><% } %><% if (useJsdoc) { %>

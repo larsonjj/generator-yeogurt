@@ -29,7 +29,7 @@ var IndexComponent = React.createClass({
             ),
             DOM('p' ,null,
               DOM('img', {
-                src: '/assets/images/yeogurt-swirl.png',
+                src: '/images/yeogurt-swirl.png',
                 width: '75px',
                 className: 'logo'
               })

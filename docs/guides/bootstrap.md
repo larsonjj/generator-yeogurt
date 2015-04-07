@@ -62,7 +62,7 @@ Once you have located the base stylesheet file for your project, add the needed 
 
 ```
 // sass/scss (must be placed above the @import)
-$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/"
+$icon-font-path: "../bower_components/bootstrap-sass-official/fonts/bootstrap/"
 
 // less (must be placed below @import)
 @icon-font-path: "../bower_components/bootstrap/fonts/";
@@ -116,10 +116,10 @@ Once you have located the base stylesheet file for your project, add the needed 
 
 ```
 // sass
-@import ../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss
+@import ../bower_components/bootstrap-sass-official/stylesheets/_bootstrap.scss
 
 // scss
-@import "../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "../bower_components/bootstrap-sass-official/stylesheets/_bootstrap.scss";
 
 // less
 @import "../bower_components/bootstrap/less/bootstrap.less";
@@ -139,7 +139,7 @@ Once you have located the base template file for your project, navigate to the `
 <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
 <!-- Sass/Scss -->
-<script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+<script src="/bower_components/bootstrap-sass-official/javascripts/bootstrap.js"></script>
 
 <!-- Stylus -->
 <script src="/bower_components/bootstrap-stylus/javascripts/affix.js"></script>

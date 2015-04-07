@@ -26,7 +26,7 @@ describe('Backbone module sub-generator', function() {
       // Filename
       var module = 'mymodule';
       var filesNotCreated = [
-        'client/app/' + module + '/__tests__/' + module + '.controller.spec.js'
+        'client/' + module + '/__tests__/' + module + '.controller.spec.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -41,7 +41,7 @@ describe('Backbone module sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('module', module, {path: '../../../../'}, {
           // mock prompt data
-          moduleFile: 'client/app'
+          moduleFile: 'client'
         }, function() {
           assert.noFile(filesNotCreated);
           done();
@@ -54,16 +54,16 @@ describe('Backbone module sub-generator', function() {
           // Filename
           var module = 'mymodule';
           var filesToTest = [
-            'client/app/' + module + '/' + module + '.js',
-            'client/app/' + module + '/__tests__/' + module + '.spec.js',
-            'client/app/' + module + '/' + module + '.jst',
-            'client/app/' + module + '/' + module + '.scss'
+            'client/' + module + '/' + module + '.js',
+            'client/' + module + '/__tests__/' + module + '.spec.js',
+            'client/' + module + '/' + module + '.jst',
+            'client/' + module + '/' + module + '.scss'
           ];
 
           var fileContentToTest = [
-            ['client/app/' + module + '/' + module + '.jst', /<div>/i],
-            ['client/app/' + module + '/' + module + '.js', /module\.exports/i],
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
+            ['client/' + module + '/' + module + '.jst', /<div>/i],
+            ['client/' + module + '/' + module + '.js', /module\.exports/i],
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -79,7 +79,7 @@ describe('Backbone module sub-generator', function() {
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
-              moduleFile: 'client/app'
+              moduleFile: 'client'
             }, function() {
               assert.file(filesToTest);
               assert.fileContent(fileContentToTest);
@@ -91,16 +91,16 @@ describe('Backbone module sub-generator', function() {
           // Filename
           var module = 'mymodule';
           var filesToTest = [
-            'client/app/' + module + '/' + module + '.js',
-            'client/app/' + module + '/__tests__/' + module + '.spec.js',
-            'client/app/' + module + '/' + module + '.jst',
-            'client/app/' + module + '/' + module + '.scss'
+            'client/' + module + '/' + module + '.js',
+            'client/' + module + '/__tests__/' + module + '.spec.js',
+            'client/' + module + '/' + module + '.jst',
+            'client/' + module + '/' + module + '.scss'
           ];
 
           var fileContentToTest = [
-            ['client/app/' + module + '/' + module + '.jst', /<div>/i],
-            ['client/app/' + module + '/' + module + '.js', /module\.exports/i],
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
+            ['client/' + module + '/' + module + '.jst', /<div>/i],
+            ['client/' + module + '/' + module + '.js', /module\.exports/i],
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -116,7 +116,7 @@ describe('Backbone module sub-generator', function() {
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
-              moduleFile: 'client/app'
+              moduleFile: 'client'
             }, function() {
               assert.file(filesToTest);
               assert.fileContent(fileContentToTest);
@@ -130,14 +130,14 @@ describe('Backbone module sub-generator', function() {
           // Filename
           var module = 'mymodule';
           var filesToTest = [
-            'client/app/' + module + '/' + module + '.js',
-            'client/app/' + module + '/__tests__/' + module + '.spec.js'
+            'client/' + module + '/' + module + '.js',
+            'client/' + module + '/__tests__/' + module + '.spec.js'
           ];
 
           var fileContentToTest = [
-            ['client/app/' + module + '/' + module + '.js', /define\(function\(require\)/i],
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i],
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
+            ['client/' + module + '/' + module + '.js', /define\(function\(require\)/i],
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i],
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -151,7 +151,7 @@ describe('Backbone module sub-generator', function() {
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
-              moduleFile: 'client/app'
+              moduleFile: 'client'
             }, function() {
               assert.file(filesToTest);
               assert.fileContent(fileContentToTest);
@@ -163,14 +163,14 @@ describe('Backbone module sub-generator', function() {
           // Filename
           var module = 'mymodule';
           var filesToTest = [
-            'client/app/' + module + '/' + module + '.js',
-            'client/app/' + module + '/__tests__/' + module + '.spec.js'
+            'client/' + module + '/' + module + '.js',
+            'client/' + module + '/__tests__/' + module + '.spec.js'
           ];
 
           var fileContentToTest = [
-            ['client/app/' + module + '/' + module + '.js', /define\(function\(require\)/i],
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i],
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
+            ['client/' + module + '/' + module + '.js', /define\(function\(require\)/i],
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i],
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -184,7 +184,7 @@ describe('Backbone module sub-generator', function() {
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
-              moduleFile: 'client/app'
+              moduleFile: 'client'
             }, function() {
               assert.file(filesToTest);
               assert.fileContent(fileContentToTest);
@@ -198,12 +198,12 @@ describe('Backbone module sub-generator', function() {
           // Filename
           var module = 'mymodule';
           var filesToTest = [
-            'client/app/' + module + '/' + module + '.js',
-            'client/app/' + module + '/__tests__/' + module + '.spec.js'
+            'client/' + module + '/' + module + '.js',
+            'client/' + module + '/__tests__/' + module + '.spec.js'
           ];
 
           var fileContentToTest = [
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -217,7 +217,7 @@ describe('Backbone module sub-generator', function() {
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
-              moduleFile: 'client/app'
+              moduleFile: 'client'
             }, function() {
               assert.file(filesToTest);
               assert.fileContent(fileContentToTest);
@@ -229,12 +229,12 @@ describe('Backbone module sub-generator', function() {
           // Filename
           var module = 'mymodule';
           var filesToTest = [
-            'client/app/' + module + '/' + module + '.js',
-            'client/app/' + module + '/__tests__/' + module + '.spec.js'
+            'client/' + module + '/' + module + '.js',
+            'client/' + module + '/__tests__/' + module + '.spec.js'
           ];
 
           var fileContentToTest = [
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -248,7 +248,7 @@ describe('Backbone module sub-generator', function() {
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
-              moduleFile: 'client/app'
+              moduleFile: 'client'
             }, function() {
               assert.file(filesToTest);
               assert.fileContent(fileContentToTest);
@@ -264,14 +264,14 @@ describe('Backbone module sub-generator', function() {
           // Filename
           var module = 'mymodule';
           var filesToTest = [
-            'client/app/' + module + '/' + module + '.js',
-            'client/app/' + module + '/__tests__/' + module + '.spec.js',
-            'client/app/' + module + '/' + module + '.hbs'
+            'client/' + module + '/' + module + '.js',
+            'client/' + module + '/__tests__/' + module + '.spec.js',
+            'client/' + module + '/' + module + '.hbs'
           ];
 
           var fileContentToTest = [
-            ['client/app/' + module + '/' + module + '.js', /module\.exports/i],
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
+            ['client/' + module + '/' + module + '.js', /module\.exports/i],
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -285,7 +285,7 @@ describe('Backbone module sub-generator', function() {
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
-              moduleFile: 'client/app'
+              moduleFile: 'client'
             }, function() {
               assert.file(filesToTest);
               assert.fileContent(fileContentToTest);
@@ -297,14 +297,14 @@ describe('Backbone module sub-generator', function() {
           // Filename
           var module = 'mymodule';
           var filesToTest = [
-            'client/app/' + module + '/' + module + '.js',
-            'client/app/' + module + '/__tests__/' + module + '.spec.js',
-            'client/app/' + module + '/' + module + '.hbs'
+            'client/' + module + '/' + module + '.js',
+            'client/' + module + '/__tests__/' + module + '.spec.js',
+            'client/' + module + '/' + module + '.hbs'
           ];
 
           var fileContentToTest = [
-            ['client/app/' + module + '/' + module + '.js', /module\.exports/i],
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
+            ['client/' + module + '/' + module + '.js', /module\.exports/i],
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -318,7 +318,7 @@ describe('Backbone module sub-generator', function() {
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
-              moduleFile: 'client/app'
+              moduleFile: 'client'
             }, function() {
               assert.file(filesToTest);
               assert.fileContent(fileContentToTest);
@@ -332,14 +332,14 @@ describe('Backbone module sub-generator', function() {
           // Filename
           var module = 'mymodule';
           var filesToTest = [
-            'client/app/' + module + '/' + module + '.js',
-            'client/app/' + module + '/__tests__/' + module + '.spec.js'
+            'client/' + module + '/' + module + '.js',
+            'client/' + module + '/__tests__/' + module + '.spec.js'
           ];
 
           var fileContentToTest = [
-            ['client/app/' + module + '/' + module + '.js', /define\(function\(require\)/i],
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i],
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
+            ['client/' + module + '/' + module + '.js', /define\(function\(require\)/i],
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i],
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -353,7 +353,7 @@ describe('Backbone module sub-generator', function() {
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
-              moduleFile: 'client/app'
+              moduleFile: 'client'
             }, function() {
               assert.file(filesToTest);
               assert.fileContent(fileContentToTest);
@@ -365,14 +365,14 @@ describe('Backbone module sub-generator', function() {
           // Filename
           var module = 'mymodule';
           var filesToTest = [
-            'client/app/' + module + '/' + module + '.js',
-            'client/app/' + module + '/__tests__/' + module + '.spec.js'
+            'client/' + module + '/' + module + '.js',
+            'client/' + module + '/__tests__/' + module + '.spec.js'
           ];
 
           var fileContentToTest = [
-            ['client/app/' + module + '/' + module + '.js', /define\(function\(require\)/i],
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i],
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
+            ['client/' + module + '/' + module + '.js', /define\(function\(require\)/i],
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i],
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -386,7 +386,7 @@ describe('Backbone module sub-generator', function() {
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
-              moduleFile: 'client/app'
+              moduleFile: 'client'
             }, function() {
               assert.file(filesToTest);
               assert.fileContent(fileContentToTest);
@@ -400,12 +400,12 @@ describe('Backbone module sub-generator', function() {
           // Filename
           var module = 'mymodule';
           var filesToTest = [
-            'client/app/' + module + '/' + module + '.js',
-            'client/app/' + module + '/__tests__/' + module + '.spec.js'
+            'client/' + module + '/' + module + '.js',
+            'client/' + module + '/__tests__/' + module + '.spec.js'
           ];
 
           var fileContentToTest = [
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -419,7 +419,7 @@ describe('Backbone module sub-generator', function() {
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
-              moduleFile: 'client/app'
+              moduleFile: 'client'
             }, function() {
               assert.file(filesToTest);
               assert.fileContent(fileContentToTest);
@@ -431,12 +431,12 @@ describe('Backbone module sub-generator', function() {
           // Filename
           var module = 'mymodule';
           var filesToTest = [
-            'client/app/' + module + '/' + module + '.js',
-            'client/app/' + module + '/__tests__/' + module + '.spec.js'
+            'client/' + module + '/' + module + '.js',
+            'client/' + module + '/__tests__/' + module + '.spec.js'
           ];
 
           var fileContentToTest = [
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -450,7 +450,7 @@ describe('Backbone module sub-generator', function() {
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
-              moduleFile: 'client/app'
+              moduleFile: 'client'
             }, function() {
               assert.file(filesToTest);
               assert.fileContent(fileContentToTest);
@@ -466,14 +466,14 @@ describe('Backbone module sub-generator', function() {
           // Filename
           var module = 'mymodule';
           var filesToTest = [
-            'client/app/' + module + '/' + module + '.js',
-            'client/app/' + module + '/__tests__/' + module + '.spec.js',
-            'client/app/' + module + '/' + module + '.jade'
+            'client/' + module + '/' + module + '.js',
+            'client/' + module + '/__tests__/' + module + '.spec.js',
+            'client/' + module + '/' + module + '.jade'
           ];
 
           var fileContentToTest = [
-            ['client/app/' + module + '/' + module + '.js', /module\.exports/i],
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
+            ['client/' + module + '/' + module + '.js', /module\.exports/i],
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -487,7 +487,7 @@ describe('Backbone module sub-generator', function() {
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
-              moduleFile: 'client/app'
+              moduleFile: 'client'
             }, function() {
               assert.file(filesToTest);
               assert.fileContent(fileContentToTest);
@@ -499,14 +499,14 @@ describe('Backbone module sub-generator', function() {
           // Filename
           var module = 'mymodule';
           var filesToTest = [
-            'client/app/' + module + '/' + module + '.js',
-            'client/app/' + module + '/__tests__/' + module + '.spec.js',
-            'client/app/' + module + '/' + module + '.jade'
+            'client/' + module + '/' + module + '.js',
+            'client/' + module + '/__tests__/' + module + '.spec.js',
+            'client/' + module + '/' + module + '.jade'
           ];
 
           var fileContentToTest = [
-            ['client/app/' + module + '/' + module + '.js', /module\.exports/i],
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
+            ['client/' + module + '/' + module + '.js', /module\.exports/i],
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -520,7 +520,7 @@ describe('Backbone module sub-generator', function() {
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
-              moduleFile: 'client/app'
+              moduleFile: 'client'
             }, function() {
               assert.file(filesToTest);
               assert.fileContent(fileContentToTest);
@@ -534,14 +534,14 @@ describe('Backbone module sub-generator', function() {
           // Filename
           var module = 'mymodule';
           var filesToTest = [
-            'client/app/' + module + '/' + module + '.js',
-            'client/app/' + module + '/__tests__/' + module + '.spec.js'
+            'client/' + module + '/' + module + '.js',
+            'client/' + module + '/__tests__/' + module + '.spec.js'
           ];
 
           var fileContentToTest = [
-            ['client/app/' + module + '/' + module + '.js', /define\(function\(require\)/i],
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i],
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
+            ['client/' + module + '/' + module + '.js', /define\(function\(require\)/i],
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i],
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -555,7 +555,7 @@ describe('Backbone module sub-generator', function() {
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
-              moduleFile: 'client/app'
+              moduleFile: 'client'
             }, function() {
               assert.file(filesToTest);
               assert.fileContent(fileContentToTest);
@@ -567,14 +567,14 @@ describe('Backbone module sub-generator', function() {
           // Filename
           var module = 'mymodule';
           var filesToTest = [
-            'client/app/' + module + '/' + module + '.js',
-            'client/app/' + module + '/__tests__/' + module + '.spec.js'
+            'client/' + module + '/' + module + '.js',
+            'client/' + module + '/__tests__/' + module + '.spec.js'
           ];
 
           var fileContentToTest = [
-            ['client/app/' + module + '/' + module + '.js', /define\(function\(require\)/i],
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i],
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
+            ['client/' + module + '/' + module + '.js', /define\(function\(require\)/i],
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i],
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -588,7 +588,7 @@ describe('Backbone module sub-generator', function() {
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
-              moduleFile: 'client/app'
+              moduleFile: 'client'
             }, function() {
               assert.file(filesToTest);
               assert.fileContent(fileContentToTest);
@@ -602,12 +602,12 @@ describe('Backbone module sub-generator', function() {
           // Filename
           var module = 'mymodule';
           var filesToTest = [
-            'client/app/' + module + '/' + module + '.js',
-            'client/app/' + module + '/__tests__/' + module + '.spec.js'
+            'client/' + module + '/' + module + '.js',
+            'client/' + module + '/__tests__/' + module + '.spec.js'
           ];
 
           var fileContentToTest = [
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -621,7 +621,7 @@ describe('Backbone module sub-generator', function() {
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
-              moduleFile: 'client/app'
+              moduleFile: 'client'
             }, function() {
               assert.file(filesToTest);
               assert.fileContent(fileContentToTest);
@@ -633,12 +633,12 @@ describe('Backbone module sub-generator', function() {
           // Filename
           var module = 'mymodule';
           var filesToTest = [
-            'client/app/' + module + '/' + module + '.js',
-            'client/app/' + module + '/__tests__/' + module + '.spec.js'
+            'client/' + module + '/' + module + '.js',
+            'client/' + module + '/__tests__/' + module + '.spec.js'
           ];
 
           var fileContentToTest = [
-            ['client/app/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
+            ['client/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -652,7 +652,7 @@ describe('Backbone module sub-generator', function() {
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
-              moduleFile: 'client/app'
+              moduleFile: 'client'
             }, function() {
               assert.file(filesToTest);
               assert.fileContent(fileContentToTest);

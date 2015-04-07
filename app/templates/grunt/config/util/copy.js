@@ -25,8 +25,8 @@ var taskConfig = function(grunt) {
           'dashboard/**/*.*',<% } %><% if (useKss) { %>
           'app/styleguide.md',
           'docs/styleguide/public/images',<% } %>
-          'assets/fonts/**/*.{woff,otf,ttf,eot,svg}',
-          'assets/images/**/*.{webp}',
+          'fonts/**/*.{woff,otf,ttf,eot,svg}',
+          'images/**/*.{webp}',
           '!*.js',
           '*.{ico,png,txt}'<% if (singlePageApplication) { %>,
           '*.html'<% } %>

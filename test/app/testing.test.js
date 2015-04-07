@@ -1,10 +1,10 @@
 /*global describe, beforeEach, it*/
 'use strict';
 
-var path  = require('path');
-var yeoman  = require('yeoman-generator');
+var path = require('path');
+var yeoman = require('yeoman-generator');
 var helpers = yeoman.test;
-var assert  = yeoman.assert;
+var assert = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 
 describe('Yeogurt generator testing', function() {
@@ -41,7 +41,7 @@ describe('Yeogurt generator testing', function() {
     describe('With RequireJS', function() {
       it('Creates expected files', function(done) {
         var expected = [
-          'client/app/main.karma.js'
+          'client/main.karma.js'
         ];
 
         helpers.mockPrompt(this.app, {
@@ -78,7 +78,7 @@ describe('Yeogurt generator testing', function() {
   describe('Without unit tests', function() {
     it('Does not create certain files', function(done) {
       var notExpected = [
-        'client/app/main.karma.js',
+        'client/main.karma.js',
         'grunt/config/test/karma.js'
       ];
 
@@ -95,7 +95,7 @@ describe('Yeogurt generator testing', function() {
     describe('With RequireJS', function() {
       it('Does not create certain files', function(done) {
         var notExpected = [
-          'client/app/main.karma.js'
+          'client/main.karma.js'
         ];
 
         helpers.mockPrompt(this.app, {

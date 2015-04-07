@@ -17,7 +17,7 @@
       Take a look at the <a href="https://github.com/larsonjj/generator-yeogurt#yeogurt-generator---">documentation</a> and start mixing up something awesome.
     </p>
     <p>
-      <img src="/assets/images/yeogurt-swirl.png" width="75px" class="logo" />
+      <img src="/images/yeogurt-swirl.png" width="75px" class="logo" />
     </p><% if (useDashboard || useJsdoc || useKss) { %>
     <p class="links"><% if (useDashboard) { %>
       <a href="/docs/dashboard/index.html">Dashboard</a><% } %><% if (useKss) { %>

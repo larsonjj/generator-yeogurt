@@ -40,7 +40,7 @@ var taskConfig = function(grunt) {
     ]);
 
     if (target === 'nowatch') {
-      return false;
+      return true;
     }
 
     grunt.task.run([<% if (useServer) { %>
