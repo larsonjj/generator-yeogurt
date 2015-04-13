@@ -63,6 +63,9 @@ grunt.config.set('connect', {
     }
   });
   ```
-  
+
+## Change absolute paths to relative
+Be sure to change any absolute paths `/somePath.css` to relative paths: `somePath.css` otherwise your resources will not load correctly. Check `client/templates/layouts/base.jade` and `client/templates/index.jade`, as they will most likely have absolute pathing for all resources.
+
 ## Usage
 After following all of the steps outlined above, you should be all set. Start up your development server with `grunt serve` and begin building with your updated root directory.

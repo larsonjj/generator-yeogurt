@@ -52,11 +52,16 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     // Load bower_components
     app.use(express.static(path.join(settings.root, '.tmp'), {maxAge: 0}));
     app.use('/bower_components', express.static(path.join(settings.root, 'client/bower_components'), {maxAge: 0}));
+
+    // Load static assets with no-cache
+    app.use(express.static(path.join(settings.root, settings.staticAssets), {maxAge: 0}));
   }
   // Load favicon
   app.use(favicon(path.join(settings.root, settings.staticAssets, '/favicon.ico')));
-  // Load static assets
-  app.use(express.static(path.join(settings.root, settings.staticAssets), {maxAge: week}));
+  if (env !== 'development') {
+    // Load static assets cached
+    app.use(express.static(path.join(settings.root, settings.staticAssets), {maxAge: week}));
+  }
 
   // Returns middleware that parses both json and urlencoded.
   app.use(bodyParser.json());

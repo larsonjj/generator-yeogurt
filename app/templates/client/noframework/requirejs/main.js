@@ -7,7 +7,7 @@ require.config({
 
 // Main javascript entry point
 // Should handle bootstrapping/starting application
-define('init', function() {
+define('init', function(require) {
 
   console.log('Welcome to Yeogurt!');
 
