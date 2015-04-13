@@ -26,8 +26,8 @@ describe('Controller sub-generator', function() {
       // Filename
       var controller = 'mycontroller';
       var filesToTest = [
-        'client/' + controller + '/' + controller + '.controller.js',
-        'client/' + controller + '/__tests__/' + controller + '.controller.spec.js'
+        'src/' + controller + '/' + controller + '.controller.js',
+        'src/' + controller + '/__tests__/' + controller + '.controller.spec.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -37,7 +37,7 @@ describe('Controller sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('controller', controller, {path: '../../../../'}, {
           // mock prompt data
-          controllerFile: 'client'
+          controllerFile: 'src'
         }, function() {
           assert.file(filesToTest);
           done();
@@ -48,8 +48,8 @@ describe('Controller sub-generator', function() {
       // Filename
       var controller = 'mycontroller';
       var filesToNotExist = [
-        'client/' + controller + '/' + controller + '.controller.js',
-        'client/' + controller + '/__tests__/' + controller + '.controller.spec.js'
+        'src/' + controller + '/' + controller + '.controller.js',
+        'src/' + controller + '/__tests__/' + controller + '.controller.spec.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -59,7 +59,7 @@ describe('Controller sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('controller', controller, {path: '../../../../'}, {
           // mock prompt data
-          controllerFile: 'client'
+          controllerFile: 'src'
         }, function() {
           assert.noFile(filesToNotExist);
           done();

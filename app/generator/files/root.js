@@ -28,8 +28,8 @@ var rootFiles = function rootFiles() {
     this.copy('svnignore', '.svnignore');
   }
 
-  this.copy('client/robots.txt', 'client/robots.txt');
-  this.copy('client/favicon.ico', 'client/favicon.ico');
+  this.copy('src/robots.txt', 'src/robots.txt');
+  this.copy('src/favicon.ico', 'src/favicon.ico');
 
   this.copy('editorconfig', '.editorconfig');
   this.template('eslintrc', '.eslintrc');

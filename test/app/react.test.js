@@ -25,19 +25,19 @@ describe('Yeogurt generator using React', function() {
       describe('With Defaults', function() {
         it ('Creates expected files', function(done) {
           var expected = [
-            'client',
-            'client/main.js',
-            'client/routes.js',
-            'client/main.constants.js',
-            'client/main.actions.js',
-            'client/lib/store.js',
-            'client/main.dispatcher.js',
-            'client/main.store.js'
+            'src',
+            'src/main.js',
+            'src/routes.js',
+            'src/main.constants.js',
+            'src/main.actions.js',
+            'src/lib/store.js',
+            'src/main.dispatcher.js',
+            'src/main.store.js'
           ];
 
           var fileContentToTest = [
-            ['client/routes.js', /module\.exports/i],
-            ['client/index.html', /app\-wrapper/i]
+            ['src/routes.js', /module\.exports/i],
+            ['src/index.html', /app\-wrapper/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -60,13 +60,13 @@ describe('Yeogurt generator using React', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.jsx',
-              'client/layout/base.jsx'
+              'src/index/index.jsx',
+              'src/layout/base.jsx'
             ];
             var fileContentToTest = [
-              ['client/index/index.jsx', /<div/i],
+              ['src/index/index.jsx', /<div/i],
               ['package.json', /node-jsx/i],
-              ['client/routes.js', /jsx/i]
+              ['src/routes.js', /jsx/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -89,14 +89,14 @@ describe('Yeogurt generator using React', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.js',
+              'src/index/index.js',
             ];
             var fileContentToTest = [
-              ['client/index/index.js', /React\.createElement/i],
+              ['src/index/index.js', /React\.createElement/i],
             ];
             var fileContentNotThere = [
               ['package.json', /node-jsx/i],
-              ['client/routes.js', /jsx/i]
+              ['src/routes.js', /jsx/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -123,13 +123,13 @@ describe('Yeogurt generator using React', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.jsx',
-              'client/layout/base.jsx'
+              'src/index/index.jsx',
+              'src/layout/base.jsx'
             ];
             var fileContentToTest = [
-              ['client/index/index.jsx', /<div/i],
+              ['src/index/index.jsx', /<div/i],
               ['package.json', /node-jsx/i],
-              ['client/routes.js', /jsx/i]
+              ['src/routes.js', /jsx/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -152,14 +152,14 @@ describe('Yeogurt generator using React', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.js',
+              'src/index/index.js',
             ];
             var fileContentToTest = [
-              ['client/index/index.js', /React\.createElement/i],
+              ['src/index/index.js', /React\.createElement/i],
             ];
             var fileContentNotThere = [
               ['package.json', /node-jsx/i],
-              ['client/routes.js', /jsx/i]
+              ['src/routes.js', /jsx/i]
             ];
 
             helpers.mockPrompt(this.app, {

@@ -27,16 +27,16 @@ describe('Yeogurt generator using Backbone', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.js',
-              'client/index/index.hbs',
-              'client/routes.js',
-              'client/index.html'
+              'src/index/index.js',
+              'src/index/index.hbs',
+              'src/routes.js',
+              'src/index.html'
             ];
             var fileContentToTest = [
-              ['client/index/index.js', /app/i],
-              ['client/index/index.hbs', /<\/div>/i],
-              ['client/routes.js', /app/i],
-              ['client/index.html', /app\-wrapper/i]
+              ['src/index/index.js', /app/i],
+              ['src/index/index.hbs', /<\/div>/i],
+              ['src/routes.js', /app/i],
+              ['src/index.html', /app\-wrapper/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -58,16 +58,16 @@ describe('Yeogurt generator using Backbone', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.js',
-              'client/index/index.hbs',
-              'client/routes.js',
-              'client/index.html'
+              'src/index/index.js',
+              'src/index/index.hbs',
+              'src/routes.js',
+              'src/index.html'
             ];
             var fileContentToTest = [
-              ['client/index/index.js', /app/i],
-              ['client/index/index.hbs', /<\/div>/i],
-              ['client/routes.js', /app/i],
-              ['client/index.html', /app\-wrapper/i]
+              ['src/index/index.js', /app/i],
+              ['src/index/index.hbs', /<\/div>/i],
+              ['src/routes.js', /app/i],
+              ['src/index.html', /app\-wrapper/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -91,16 +91,16 @@ describe('Yeogurt generator using Backbone', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.js',
-              'client/index/index.jst',
-              'client/routes.js',
-              'client/index.html'
+              'src/index/index.js',
+              'src/index/index.jst',
+              'src/routes.js',
+              'src/index.html'
             ];
             var fileContentToTest = [
-              ['client/index/index.js', /app/i],
-              ['client/index/index.jst', /<\/div>/i],
-              ['client/routes.js', /app/i],
-              ['client/index.html', /app\-wrapper/i]
+              ['src/index/index.js', /app/i],
+              ['src/index/index.jst', /<\/div>/i],
+              ['src/routes.js', /app/i],
+              ['src/index.html', /app\-wrapper/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -122,16 +122,16 @@ describe('Yeogurt generator using Backbone', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.js',
-              'client/index/index.jst',
-              'client/routes.js',
-              'client/index.html'
+              'src/index/index.js',
+              'src/index/index.jst',
+              'src/routes.js',
+              'src/index.html'
             ];
             var fileContentToTest = [
-              ['client/index/index.js', /app/i],
-              ['client/index/index.jst', /<\/div>/i],
-              ['client/routes.js', /app/i],
-              ['client/index.html', /app\-wrapper/i]
+              ['src/index/index.js', /app/i],
+              ['src/index/index.jst', /<\/div>/i],
+              ['src/routes.js', /app/i],
+              ['src/index.html', /app\-wrapper/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -155,16 +155,16 @@ describe('Yeogurt generator using Backbone', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.js',
-              'client/index.jade',
-              'client/routes.js',
-              'client/index.html'
+              'src/index/index.js',
+              'src/index.jade',
+              'src/routes.js',
+              'src/index.html'
             ];
             var fileContentToTest = [
-              ['client/index/index.js', /app/i],
-              ['client/index.jade', /code\.version/i],
-              ['client/routes.js', /app/i],
-              ['client/index.html', /app\-wrapper/i]
+              ['src/index/index.js', /app/i],
+              ['src/index.jade', /code\.version/i],
+              ['src/routes.js', /app/i],
+              ['src/index.html', /app\-wrapper/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -186,16 +186,16 @@ describe('Yeogurt generator using Backbone', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.js',
-              'client/index.jade',
-              'client/routes.js',
-              'client/index.html'
+              'src/index/index.js',
+              'src/index.jade',
+              'src/routes.js',
+              'src/index.html'
             ];
             var fileContentToTest = [
-              ['client/index/index.js', /app/i],
-              ['client/index.jade', /code\.version/i],
-              ['client/routes.js', /app/i],
-              ['client/index.html', /app\-wrapper/i]
+              ['src/index/index.js', /app/i],
+              ['src/index.jade', /code\.version/i],
+              ['src/routes.js', /app/i],
+              ['src/index.html', /app\-wrapper/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -221,16 +221,16 @@ describe('Yeogurt generator using Backbone', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.js',
-              'client/index/index.hbs',
-              'client/routes.js',
-              'client/index.html'
+              'src/index/index.js',
+              'src/index/index.hbs',
+              'src/routes.js',
+              'src/index.html'
             ];
             var fileContentToTest = [
-              ['client/index/index.js', /module\.exports/i],
-              ['client/index/index.hbs', /<\/div>/i],
-              ['client/routes.js', /module\.exports/i],
-              ['client/index.html', /app\-wrapper/i]
+              ['src/index/index.js', /module\.exports/i],
+              ['src/index/index.hbs', /<\/div>/i],
+              ['src/routes.js', /module\.exports/i],
+              ['src/index.html', /app\-wrapper/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -251,16 +251,16 @@ describe('Yeogurt generator using Backbone', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.js',
-              'client/index/index.hbs',
-              'client/routes.js',
-              'client/index.html'
+              'src/index/index.js',
+              'src/index/index.hbs',
+              'src/routes.js',
+              'src/index.html'
             ];
             var fileContentToTest = [
-              ['client/index/index.js', /module\.exports/i],
-              ['client/index/index.hbs', /<\/div>/i],
-              ['client/routes.js', /module\.exports/i],
-              ['client/index.html', /app\-wrapper/i]
+              ['src/index/index.js', /module\.exports/i],
+              ['src/index/index.hbs', /<\/div>/i],
+              ['src/routes.js', /module\.exports/i],
+              ['src/index.html', /app\-wrapper/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -283,16 +283,16 @@ describe('Yeogurt generator using Backbone', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.js',
-              'client/index/index.jst',
-              'client/routes.js',
-              'client/index.html'
+              'src/index/index.js',
+              'src/index/index.jst',
+              'src/routes.js',
+              'src/index.html'
             ];
             var fileContentToTest = [
-              ['client/index/index.js', /module\.exports/i],
-              ['client/index/index.jst', /<\/div>/i],
-              ['client/routes.js', /module\.exports/i],
-              ['client/index.html', /app\-wrapper/i]
+              ['src/index/index.js', /module\.exports/i],
+              ['src/index/index.jst', /<\/div>/i],
+              ['src/routes.js', /module\.exports/i],
+              ['src/index.html', /app\-wrapper/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -313,16 +313,16 @@ describe('Yeogurt generator using Backbone', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.js',
-              'client/index/index.jst',
-              'client/routes.js',
-              'client/index.html'
+              'src/index/index.js',
+              'src/index/index.jst',
+              'src/routes.js',
+              'src/index.html'
             ];
             var fileContentToTest = [
-              ['client/index/index.js', /module\.exports/i],
-              ['client/index/index.jst', /<\/div>/i],
-              ['client/routes.js', /module\.exports/i],
-              ['client/index.html', /app\-wrapper/i]
+              ['src/index/index.js', /module\.exports/i],
+              ['src/index/index.jst', /<\/div>/i],
+              ['src/routes.js', /module\.exports/i],
+              ['src/index.html', /app\-wrapper/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -345,16 +345,16 @@ describe('Yeogurt generator using Backbone', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.js',
-              'client/index.jade',
-              'client/routes.js',
-              'client/index.html'
+              'src/index/index.js',
+              'src/index.jade',
+              'src/routes.js',
+              'src/index.html'
             ];
             var fileContentToTest = [
-              ['client/index/index.js', /module\.exports/i],
-              ['client/index.jade', /code\.version/i],
-              ['client/routes.js', /module\.exports/i],
-              ['client/index.html', /app\-wrapper/i]
+              ['src/index/index.js', /module\.exports/i],
+              ['src/index.jade', /code\.version/i],
+              ['src/routes.js', /module\.exports/i],
+              ['src/index.html', /app\-wrapper/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -375,16 +375,16 @@ describe('Yeogurt generator using Backbone', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.js',
-              'client/index.jade',
-              'client/routes.js',
-              'client/index.html'
+              'src/index/index.js',
+              'src/index.jade',
+              'src/routes.js',
+              'src/index.html'
             ];
             var fileContentToTest = [
-              ['client/index/index.js', /module\.exports/i],
-              ['client/index.jade', /code\.version/i],
-              ['client/routes.js', /module\.exports/i],
-              ['client/index.html', /app\-wrapper/i]
+              ['src/index/index.js', /module\.exports/i],
+              ['src/index.jade', /code\.version/i],
+              ['src/routes.js', /module\.exports/i],
+              ['src/index.html', /app\-wrapper/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -409,16 +409,16 @@ describe('Yeogurt generator using Backbone', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.js',
-              'client/index/index.hbs',
-              'client/routes.js',
-              'client/index.html'
+              'src/index/index.js',
+              'src/index/index.hbs',
+              'src/routes.js',
+              'src/index.html'
             ];
             var fileContentToTest = [
-              ['client/index/index.js', /define\(function/i],
-              ['client/index/index.hbs', /<\/div>/i],
-              ['client/routes.js', /define\(function/i],
-              ['client/index.html', /app\-wrapper/i]
+              ['src/index/index.js', /define\(function/i],
+              ['src/index/index.hbs', /<\/div>/i],
+              ['src/routes.js', /define\(function/i],
+              ['src/index.html', /app\-wrapper/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -439,16 +439,16 @@ describe('Yeogurt generator using Backbone', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.js',
-              'client/index/index.hbs',
-              'client/routes.js',
-              'client/index.html'
+              'src/index/index.js',
+              'src/index/index.hbs',
+              'src/routes.js',
+              'src/index.html'
             ];
             var fileContentToTest = [
-              ['client/index/index.js', /define\(function/i],
-              ['client/index/index.hbs', /<\/div>/i],
-              ['client/routes.js', /define\(function/i],
-              ['client/index.html', /app\-wrapper/i]
+              ['src/index/index.js', /define\(function/i],
+              ['src/index/index.hbs', /<\/div>/i],
+              ['src/routes.js', /define\(function/i],
+              ['src/index.html', /app\-wrapper/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -471,16 +471,16 @@ describe('Yeogurt generator using Backbone', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.js',
-              'client/index/index.jst',
-              'client/routes.js',
-              'client/index.html'
+              'src/index/index.js',
+              'src/index/index.jst',
+              'src/routes.js',
+              'src/index.html'
             ];
             var fileContentToTest = [
-              ['client/index/index.js', /define\(function/i],
-              ['client/index/index.jst', /<\/div>/i],
-              ['client/routes.js', /define\(function/i],
-              ['client/index.html', /app\-wrapper/i]
+              ['src/index/index.js', /define\(function/i],
+              ['src/index/index.jst', /<\/div>/i],
+              ['src/routes.js', /define\(function/i],
+              ['src/index.html', /app\-wrapper/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -501,16 +501,16 @@ describe('Yeogurt generator using Backbone', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.js',
-              'client/index/index.jst',
-              'client/routes.js',
-              'client/index.html'
+              'src/index/index.js',
+              'src/index/index.jst',
+              'src/routes.js',
+              'src/index.html'
             ];
             var fileContentToTest = [
-              ['client/index/index.js', /define\(function/i],
-              ['client/index/index.jst', /<\/div>/i],
-              ['client/routes.js', /define\(function/i],
-              ['client/index.html', /app\-wrapper/i]
+              ['src/index/index.js', /define\(function/i],
+              ['src/index/index.jst', /<\/div>/i],
+              ['src/routes.js', /define\(function/i],
+              ['src/index.html', /app\-wrapper/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -533,16 +533,16 @@ describe('Yeogurt generator using Backbone', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.js',
-              'client/index.jade',
-              'client/routes.js',
-              'client/index.html'
+              'src/index/index.js',
+              'src/index.jade',
+              'src/routes.js',
+              'src/index.html'
             ];
             var fileContentToTest = [
-              ['client/index/index.js', /define\(function/i],
-              ['client/index.jade', /code\.version/i],
-              ['client/routes.js', /define\(function/i],
-              ['client/index.html', /app\-wrapper/i]
+              ['src/index/index.js', /define\(function/i],
+              ['src/index.jade', /code\.version/i],
+              ['src/routes.js', /define\(function/i],
+              ['src/index.html', /app\-wrapper/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -563,16 +563,16 @@ describe('Yeogurt generator using Backbone', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'client/index/index.js',
-              'client/index.jade',
-              'client/routes.js',
-              'client/index.html'
+              'src/index/index.js',
+              'src/index.jade',
+              'src/routes.js',
+              'src/index.html'
             ];
             var fileContentToTest = [
-              ['client/index/index.js', /define\(function/i],
-              ['client/index.jade', /code\.version/i],
-              ['client/routes.js', /define\(function/i],
-              ['client/index.html', /app\-wrapper/i]
+              ['src/index/index.js', /define\(function/i],
+              ['src/index.jade', /code\.version/i],
+              ['src/routes.js', /define\(function/i],
+              ['src/index.html', /app\-wrapper/i]
             ];
 
             helpers.mockPrompt(this.app, {

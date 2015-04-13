@@ -26,8 +26,8 @@ describe('Provider sub-generator', function() {
       // Filename
       var provider = 'myprovider';
       var filesToTest = [
-        'client/' + provider + '/' + provider + '.provider.js',
-        'client/' + provider + '/__tests__/' + provider + '.provider.spec.js'
+        'src/' + provider + '/' + provider + '.provider.js',
+        'src/' + provider + '/__tests__/' + provider + '.provider.spec.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -37,7 +37,7 @@ describe('Provider sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('provider', provider, {path: '../../../../'}, {
           // mock prompt data
-          providerFile: 'client'
+          providerFile: 'src'
         }, function() {
           assert.file(filesToTest);
           done();
@@ -48,7 +48,7 @@ describe('Provider sub-generator', function() {
       // Filename
       var provider = 'myprovider';
       var filesToNotExist = [
-        'client/' + provider + '/' + provider + '.decorator.js'
+        'src/' + provider + '/' + provider + '.decorator.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -58,7 +58,7 @@ describe('Provider sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('provider', provider, {path: '../../../../'}, {
           // mock prompt data
-          providerFile: 'client'
+          providerFile: 'src'
         }, function() {
           assert.noFile(filesToNotExist);
           done();

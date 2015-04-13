@@ -26,8 +26,8 @@ describe('Filter sub-generator', function() {
       // Filename
       var filter = 'myfilter';
       var filesToTest = [
-        'client/' + filter + '/' + filter + '.filter.js',
-        'client/' + filter + '/__tests__/' + filter + '.filter.spec.js'
+        'src/' + filter + '/' + filter + '.filter.js',
+        'src/' + filter + '/__tests__/' + filter + '.filter.spec.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -37,7 +37,7 @@ describe('Filter sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('filter', filter, {path: '../../../../'}, {
           // mock prompt data
-          filterFile: 'client'
+          filterFile: 'src'
         }, function() {
           assert.file(filesToTest);
           done();
@@ -48,7 +48,7 @@ describe('Filter sub-generator', function() {
       // Filename
       var filter = 'myfilter';
       var filesToNotExist = [
-        'client/' + filter + '/' + filter + '.decorator.js'
+        'src/' + filter + '/' + filter + '.decorator.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -58,7 +58,7 @@ describe('Filter sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('filter', filter, {path: '../../../../'}, {
           // mock prompt data
-          filterFile: 'client'
+          filterFile: 'src'
         }, function() {
           assert.noFile(filesToNotExist);
           done();

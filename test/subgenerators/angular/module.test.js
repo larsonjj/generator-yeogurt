@@ -27,10 +27,10 @@ describe('Angular module sub-generator', function() {
       var module = 'mymodule';
       var url = '/mymodule';
       var filesToTest = [
-        'client/' + module + '/' + module + '.js',
-        'client/' + module + '/__tests__/' + module + '.controller.spec.js',
-        'client/' + module + '/' + module + '.controller.js',
-        'client/' + module + '/' + module + '.html'
+        'src/' + module + '/' + module + '.js',
+        'src/' + module + '/__tests__/' + module + '.controller.spec.js',
+        'src/' + module + '/' + module + '.controller.js',
+        'src/' + module + '/' + module + '.html'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -40,7 +40,7 @@ describe('Angular module sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('module', module, {path: '../../../../'}, {
           // mock prompt data
-          moduleFile: 'client',
+          moduleFile: 'src',
           moduleURL: url
         }, function() {
           assert.file(filesToTest);

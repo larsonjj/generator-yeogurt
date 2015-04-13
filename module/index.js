@@ -31,7 +31,7 @@ var ModuleGenerator = module.exports = function ModuleGenerator() {
     this.moduleLocation = 'server';
   }
   else {
-    this.moduleLocation = 'client';
+    this.moduleLocation = 'src';
   }
 
 };
@@ -108,7 +108,7 @@ ModuleGenerator.prototype.ask = function ask() {
       return self.useServer;
     },
     name: 'generateFrontend',
-    message: 'Would you like to generate client assets (JS, ' + self.cssOption.toUpperCase() + ') for this module?',
+    message: 'Would you like to generate src assets (JS, ' + self.cssOption.toUpperCase() + ') for this module?',
     type: 'confirm'
   }, {
     when: function(answers) {
@@ -164,7 +164,7 @@ ModuleGenerator.prototype.ask = function ask() {
     this.moduleURL = answers.moduleURL;
 
     this.htmlURL = path.join(
-        answers.moduleFile.replace('client', ''),
+        answers.moduleFile.replace('src', ''),
         this._.slugify(this.name.toLowerCase()),
         this._.slugify(this.name.toLowerCase()),
         '.html'
@@ -213,22 +213,22 @@ ModuleGenerator.prototype.files = function files() {
 
     if (this.moduleLocation !== 'server' || this.generateFrontend) {
       if (this.jsOption === 'requirejs') {
-        this.template('client/requirejs/module.js', this.moduleFile.replace('server', 'client') + '.js');
+        this.template('src/requirejs/module.js', this.moduleFile.replace('server', 'src') + '.js');
         if (this.useTesting) {
-          this.template('client/requirejs/module.spec.js', this.testFile.replace('server', 'client') + '.spec.js');
+          this.template('src/requirejs/module.spec.js', this.testFile.replace('server', 'src') + '.spec.js');
         }
       }
       else if (this.jsOption === 'browserify') {
-        this.template('client/browserify/module.js', this.moduleFile.replace('server', 'client') + '.js');
+        this.template('src/browserify/module.js', this.moduleFile.replace('server', 'src') + '.js');
         if (this.useTesting) {
-          this.template('client/browserify/module.spec.js', this.testFile.replace('server', 'client') + '.spec.js');
+          this.template('src/browserify/module.spec.js', this.testFile.replace('server', 'src') + '.spec.js');
         }
       }
       // Default to vanilla JS
       else {
-        this.template('client/js/module.js', this.moduleFile.replace('server', 'client') + '.js');
+        this.template('src/js/module.js', this.moduleFile.replace('server', 'src') + '.js');
         if (this.useTesting) {
-          this.template('client/js/module.spec.js', this.testFile.replace('server', 'client') + '.spec.js');
+          this.template('src/js/module.spec.js', this.testFile.replace('server', 'src') + '.spec.js');
         }
       }
     }
@@ -299,20 +299,20 @@ ModuleGenerator.prototype.files = function files() {
   if (this.moduleLocation !== 'server' || this.generateFrontend) {
     if (this.cssOption === 'sass') {
       if (this.sassSyntax === 'sass') {
-        this.template('module.css', this.moduleFile.replace('server', 'client') + '.sass');
+        this.template('module.css', this.moduleFile.replace('server', 'src') + '.sass');
       }
       else {
-        this.template('module.css', this.moduleFile.replace('server', 'client') + '.scss');
+        this.template('module.css', this.moduleFile.replace('server', 'src') + '.scss');
       }
     }
     else if (this.cssOption === 'less') {
-      this.template('module.css', this.moduleFile.replace('server', 'client') + '.less');
+      this.template('module.css', this.moduleFile.replace('server', 'src') + '.less');
     }
     else if (this.cssOption === 'stylus') {
-      this.template('module.css', this.moduleFile.replace('server', 'client') + '.styl');
+      this.template('module.css', this.moduleFile.replace('server', 'src') + '.styl');
     }
     else {
-      this.template('module.css', this.moduleFile.replace('server', 'client') + '.css');
+      this.template('module.css', this.moduleFile.replace('server', 'src') + '.css');
     }
   }
 };

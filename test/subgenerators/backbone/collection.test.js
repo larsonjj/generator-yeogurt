@@ -26,8 +26,8 @@ describe('Collection sub-generator', function() {
       // Filename
       var collection = 'mycollection';
       var filesToTest = [
-        'client/' + collection + '/__tests__/' + collection + '.spec.js',
-        'client/' + collection + '/' + collection + '.js'
+        'src/' + collection + '/__tests__/' + collection + '.spec.js',
+        'src/' + collection + '/' + collection + '.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -41,7 +41,7 @@ describe('Collection sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('collection', collection, {path: '../../../../'}, {
           // mock prompt data
-          collectionFile: 'client'
+          collectionFile: 'src'
         }, function() {
           assert.file(filesToTest);
           done();
@@ -52,10 +52,10 @@ describe('Collection sub-generator', function() {
       // Filename
       var collection = 'mycollection';
       var filesToTest = [
-        'client/' + collection + '/' + collection + '.js'
+        'src/' + collection + '/' + collection + '.js'
       ];
       var filesNotCreated = [
-        'client/' + collection + '/__tests__/' + collection + '.spec.js'
+        'src/' + collection + '/__tests__/' + collection + '.spec.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -69,7 +69,7 @@ describe('Collection sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('collection', collection, {path: '../../../../'}, {
           // mock prompt data
-          collectionFile: 'client'
+          collectionFile: 'src'
         }, function() {
           assert.file(filesToTest);
           assert.noFile(filesNotCreated);
@@ -81,12 +81,12 @@ describe('Collection sub-generator', function() {
       // Filename
       var collection = 'mycollection';
       var fileContentToTest = [
-        ['client/' + collection + '/__tests__/' + collection + '.spec.js', /describe/i],
+        ['src/' + collection + '/__tests__/' + collection + '.spec.js', /describe/i],
       ];
 
       var fileContentThatShouldntExist = [
-          ['client/' + collection + '/' + collection + '.js', /module\.exports/i],
-          ['client/' + collection + '/' + collection + '.js', /define\(function\(require\)/i]
+          ['src/' + collection + '/' + collection + '.js', /module\.exports/i],
+          ['src/' + collection + '/' + collection + '.js', /define\(function\(require\)/i]
         ];
 
       helpers.mockPrompt(this.app, {
@@ -99,7 +99,7 @@ describe('Collection sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('collection', collection, {path: '../../../../'}, {
           // mock prompt data
-          collectionFile: 'client'
+          collectionFile: 'src'
         }, function() {
           assert.fileContent(fileContentToTest);
           assert.noFileContent(fileContentThatShouldntExist);
@@ -111,8 +111,8 @@ describe('Collection sub-generator', function() {
       // Filename
       var collection = 'mycollection';
       var fileContentToTest = [
-        ['client/' + collection + '/__tests__/' + collection + '.spec.js', /describe/i],
-        ['client/' + collection + '/' + collection + '.js', /module\.exports/i]
+        ['src/' + collection + '/__tests__/' + collection + '.spec.js', /describe/i],
+        ['src/' + collection + '/' + collection + '.js', /module\.exports/i]
       ];
 
       helpers.mockPrompt(this.app, {
@@ -125,7 +125,7 @@ describe('Collection sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('collection', collection, {path: '../../../../'}, {
           // mock prompt data
-          collectionFile: 'client'
+          collectionFile: 'src'
         }, function() {
           assert.fileContent(fileContentToTest);
           done();
@@ -136,8 +136,8 @@ describe('Collection sub-generator', function() {
       // Filename
       var collection = 'mycollection';
       var fileContentToTest = [
-        ['client/' + collection + '/__tests__/' + collection + '.spec.js', /define\(function\(require\)/i],
-        ['client/' + collection + '/' + collection + '.js', /define\(function\(require\)/i]
+        ['src/' + collection + '/__tests__/' + collection + '.spec.js', /define\(function\(require\)/i],
+        ['src/' + collection + '/' + collection + '.js', /define\(function\(require\)/i]
       ];
 
       helpers.mockPrompt(this.app, {
@@ -150,7 +150,7 @@ describe('Collection sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('collection', collection, {path: '../../../../'}, {
           // mock prompt data
-          collectionFile: 'client'
+          collectionFile: 'src'
         }, function() {
           assert.fileContent(fileContentToTest);
           done();
@@ -161,8 +161,8 @@ describe('Collection sub-generator', function() {
       // Filename
       var collection = 'mycollection';
       var filesToNotExist = [
-        'client/' + collection + '/__tests__/' + collection + '.spec.js',
-        'client/' + collection + '/' + collection + '.js'
+        'src/' + collection + '/__tests__/' + collection + '.spec.js',
+        'src/' + collection + '/' + collection + '.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -172,7 +172,7 @@ describe('Collection sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('collection', collection, {path: '../../../../'}, {
           // mock prompt data
-          collectionFile: 'client'
+          collectionFile: 'src'
         }, function() {
           assert.noFile(filesToNotExist);
           done();

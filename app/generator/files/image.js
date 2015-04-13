@@ -5,7 +5,7 @@
 'use strict';
 
 var imageFiles = function imageFiles() {
-  this.copy('client/images/yeogurt-swirl.png', 'client/images/yeogurt-swirl.png');
+  this.copy('src/images/yeogurt-swirl.png', 'src/images/yeogurt-swirl.png');
 };
 
 module.exports = imageFiles;

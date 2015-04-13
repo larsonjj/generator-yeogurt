@@ -34,7 +34,7 @@ ServiceGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'serviceFile',
     message: 'Where would you like to create this service?',
-    default: 'client/app'
+    default: 'src/app'
   }];
 
   this.prompt(prompts, function(answers) {

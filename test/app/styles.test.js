@@ -22,7 +22,7 @@ describe('Yeogurt generator using Styles', function() {
   describe('With CSS', function() {
     it('Creates expected files', function(done) {
       var expected = [
-        'client/main.css',
+        'src/main.css',
         'grunt/config/optimize/cssmin.js'
       ];
 
@@ -38,8 +38,8 @@ describe('Yeogurt generator using Styles', function() {
   describe('With Sass', function() {
     it('Creates expected files', function(done) {
       var expected = [
-        'client',
-        'client/main.scss',
+        'src',
+        'src/main.scss',
         'grunt/',
         'grunt/config',
         'grunt/config/compile/sass.js'
@@ -56,7 +56,7 @@ describe('Yeogurt generator using Styles', function() {
     describe('With Sass (not Scss) syntax', function() {
       it('Creates expected content', function(done) {
         var expected = [
-          'client/main.sass',
+          'src/main.sass',
           'grunt/',
           'grunt/config',
           'grunt/config/compile/sass.js'
@@ -80,8 +80,8 @@ describe('Yeogurt generator using Styles', function() {
   describe('With Less', function() {
     it('Creates expected files', function(done) {
       var expected = [
-        'client',
-        'client/main.less',
+        'src',
+        'src/main.less',
         'grunt/',
         'grunt/config',
         'grunt/config/compile/less.js'
@@ -103,8 +103,8 @@ describe('Yeogurt generator using Styles', function() {
   describe('With Stylus', function() {
     it('Creates expected files', function(done) {
       var expected = [
-        'client',
-        'client/main.styl',
+        'src',
+        'src/main.styl',
         'grunt/',
         'grunt/config',
         'grunt/config/compile/stylus.js'

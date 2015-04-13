@@ -26,7 +26,7 @@ describe('Decorator sub-generator', function() {
       // Filename
       var decorator = 'mydecorator';
       var filesToTest = [
-        'client/' + decorator + '/' + decorator + '.decorator.js'
+        'src/' + decorator + '/' + decorator + '.decorator.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -36,7 +36,7 @@ describe('Decorator sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('decorator', decorator, {path: '../../../../'}, {
           // mock prompt data
-          decoratorFile: 'client'
+          decoratorFile: 'src'
         }, function() {
           assert.file(filesToTest);
           done();
@@ -47,7 +47,7 @@ describe('Decorator sub-generator', function() {
       // Filename
       var decorator = 'mydecorator';
       var filesToNotExist = [
-        'client/' + decorator + '/' + decorator + '.decorator.js'
+        'src/' + decorator + '/' + decorator + '.decorator.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -57,7 +57,7 @@ describe('Decorator sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('decorator', decorator, {path: '../../../../'}, {
           // mock prompt data
-          decoratorFile: 'client'
+          decoratorFile: 'src'
         }, function() {
           assert.noFile(filesToNotExist);
           done();

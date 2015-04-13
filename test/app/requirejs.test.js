@@ -22,7 +22,7 @@ describe('Yeogurt generator using RequireJS', function() {
 
   it('Creates expected files', function(done) {
     var expected = [
-      'client/main.js',
+      'src/main.js',
       'grunt/config/compile/requirejs.js'
     ];
 

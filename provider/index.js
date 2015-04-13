@@ -34,7 +34,7 @@ ProviderGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'providerFile',
     message: 'Where would you like to create this provider?',
-    default: 'client/app'
+    default: 'src/app'
   }];
 
   this.prompt(prompts, function(answers) {

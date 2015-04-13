@@ -35,7 +35,7 @@ ModelGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'modelFile',
     message: 'Where would you like to create this model?',
-    default: 'client/app'
+    default: 'src/app'
   }];
 
   this.prompt(prompts, function(answers) {

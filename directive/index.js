@@ -34,7 +34,7 @@ DirectiveGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'directiveFile',
     message: 'Where would you like to create this directive?',
-    default: 'client/app'
+    default: 'src/app'
   }, {
     type: 'confirm',
     name: 'directiveHTML',
@@ -56,7 +56,7 @@ DirectiveGenerator.prototype.ask = function ask() {
         this._.slugify(this.name.toLowerCase())
       );
     this.htmlUrl = path.join(
-        answers.directiveFile.replace('client', ''),
+        answers.directiveFile.replace('src', ''),
         this._.slugify(this.name.toLowerCase()),
         this._.slugify(this.name.toLowerCase())
       ) + '.html';

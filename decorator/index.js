@@ -33,7 +33,7 @@ DecoratorGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'decoratorFile',
     message: 'Where would you like to create this decorator?',
-    default: 'client/app'
+    default: 'src/app'
   }];
 
   this.prompt(prompts, function(answers) {

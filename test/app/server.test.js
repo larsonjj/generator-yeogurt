@@ -143,7 +143,7 @@ describe('Yeogurt generator using Server', function() {
     describe('With Defaults', function() {
       it('Creates expected files', function(done) {
         var expected = [
-          'client/index.html'
+          'src/index.html'
         ];
 
         helpers.mockPrompt(this.app, {
@@ -162,7 +162,7 @@ describe('Yeogurt generator using Server', function() {
           ['server/index/index.js', /router\.get\('\/'/i]
         ];
         var fileContentToTest = [
-          ['client/index.html', /<\%\- body \%\>/i],
+          ['src/index.html', /<\%\- body \%\>/i],
           ['server/index/index.js', /reactRender/i]
         ];
 

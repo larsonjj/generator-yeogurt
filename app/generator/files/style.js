@@ -5,30 +5,30 @@
 'use strict';
 
 var styleFiles = function styleFiles() {
-  // client/styles
+  // src/styles
 
   if (this.useKss) {
-    this.template('client/styles/styleguide.md', 'client/styleguide.md');
+    this.template('src/styles/styleguide.md', 'src/styleguide.md');
   }
 
   if (this.cssOption !== 'css') {
     if (this.cssOption === 'less') {
-      this.template('client/styles/main.less', 'client/main.less');
+      this.template('src/styles/main.less', 'src/main.less');
     }
     if (this.cssOption === 'sass') {
       if (this.sassSyntax === 'sass') {
-        this.template('client/styles/main.sass', 'client/main.sass');
+        this.template('src/styles/main.sass', 'src/main.sass');
       }
       else {
-        this.template('client/styles/main.scss', 'client/main.scss');
+        this.template('src/styles/main.scss', 'src/main.scss');
       }
     }
     if (this.cssOption === 'stylus') {
-      this.template('client/styles/main.styl', 'client/main.styl');
+      this.template('src/styles/main.styl', 'src/main.styl');
     }
   }
   else {
-    this.template('client/styles/main.css', 'client/main.css');
+    this.template('src/styles/main.css', 'src/main.css');
   }
 };
 

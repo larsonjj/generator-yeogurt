@@ -26,8 +26,8 @@ describe('Directive sub-generator', function() {
       // Filename
       var directive = 'mydirective';
       var filesToTest = [
-        'client/' + directive + '/' + directive + '.directive.js',
-        'client/' + directive + '/__tests__/' + directive + '.directive.spec.js'
+        'src/' + directive + '/' + directive + '.directive.js',
+        'src/' + directive + '/__tests__/' + directive + '.directive.spec.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -37,7 +37,7 @@ describe('Directive sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('directive', directive, {path: '../../../../'}, {
           // mock prompt data
-          directiveFile: 'client',
+          directiveFile: 'src',
         }, function() {
           assert.file(filesToTest);
           done();
@@ -48,9 +48,9 @@ describe('Directive sub-generator', function() {
       // Filename
       var directive = 'mydirective';
       var filesToTest = [
-        'client/' + directive + '/' + directive + '.directive.js',
-        'client/' + directive + '/' + directive + '.html',
-        'client/' + directive + '/__tests__/' + directive + '.directive.spec.js'
+        'src/' + directive + '/' + directive + '.directive.js',
+        'src/' + directive + '/' + directive + '.html',
+        'src/' + directive + '/__tests__/' + directive + '.directive.spec.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -60,7 +60,7 @@ describe('Directive sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('directive', directive, {path: '../../../../'}, {
           // mock prompt data
-          directiveFile: 'client',
+          directiveFile: 'src',
           directiveHTML: true,
         }, function() {
           assert.file(filesToTest);
@@ -72,7 +72,7 @@ describe('Directive sub-generator', function() {
       // Filename
       var directive = 'mydirective';
       var filesToNotExist = [
-        'client/' + directive + '/' + directive + '.decorator.js'
+        'src/' + directive + '/' + directive + '.decorator.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -82,7 +82,7 @@ describe('Directive sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('directive', directive, {path: '../../../../'}, {
           // mock prompt data
-          directiveFile: 'client'
+          directiveFile: 'src'
         }, function() {
           assert.noFile(filesToNotExist);
           done();

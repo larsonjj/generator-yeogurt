@@ -29,8 +29,8 @@ describe('Server module sub-generator', function() {
 
         var filesToTest = [
           // add files and folders you expect to NOT exist here.
-          'client/' + module + '/' + module + '.js',
-          'client/' + module + '/__tests__/' + module + '.spec.js',
+          'src/' + module + '/' + module + '.js',
+          'src/' + module + '/__tests__/' + module + '.spec.js',
           'server/' + module + '/' + module + '.js',
           'server/' + module + '/' + module + '.controller.js',
           'server/' + module + '/' + module + '.jade',

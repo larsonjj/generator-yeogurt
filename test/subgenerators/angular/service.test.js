@@ -26,8 +26,8 @@ describe('Service sub-generator', function() {
       // Filename
       var service = 'myservice';
       var filesToTest = [
-        'client/' + service + '/' + service + '.service.js',
-        'client/' + service + '/__tests__/' + service + '.service.spec.js'
+        'src/' + service + '/' + service + '.service.js',
+        'src/' + service + '/__tests__/' + service + '.service.spec.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -37,7 +37,7 @@ describe('Service sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('service', service, {path: '../../../../'}, {
           // mock prompt data
-          serviceFile: 'client'
+          serviceFile: 'src'
         }, function() {
           assert.file(filesToTest);
           done();
@@ -48,7 +48,7 @@ describe('Service sub-generator', function() {
       // Filename
       var service = 'myservice';
       var filesToNotExist = [
-        'client/' + service + '/' + service + '.decorator.js'
+        'src/' + service + '/' + service + '.decorator.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -58,7 +58,7 @@ describe('Service sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('service', service, {path: '../../../../'}, {
           // mock prompt data
-          serviceFile: 'client'
+          serviceFile: 'src'
         }, function() {
           assert.noFile(filesToNotExist);
           done();

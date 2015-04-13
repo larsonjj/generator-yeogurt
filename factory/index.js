@@ -34,7 +34,7 @@ FactoryGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'factoryFile',
     message: 'Where would you like to create this factory?',
-    default: 'client/app'
+    default: 'src/app'
   }];
 
   this.prompt(prompts, function(answers) {

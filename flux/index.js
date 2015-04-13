@@ -34,7 +34,7 @@ FluxGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'fluxFile',
     message: 'Where would you like to create flux files?',
-    default: 'client/app/modules'
+    default: 'src/app/modules'
   }];
 
   this.prompt(prompts, function(answers) {

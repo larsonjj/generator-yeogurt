@@ -34,7 +34,7 @@ FilterGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'filterFile',
     message: 'Where would you like to create this filter?',
-    default: 'client/app'
+    default: 'src/app'
   }];
 
   this.prompt(prompts, function(answers) {

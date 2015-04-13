@@ -34,7 +34,7 @@ ControllerGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'controllerFile',
     message: 'Where would you like to create this controller?',
-    default: 'client/app'
+    default: 'src/app'
   }];
 
   this.prompt(prompts, function(answers) {
