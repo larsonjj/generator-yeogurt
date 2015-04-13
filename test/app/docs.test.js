@@ -22,10 +22,10 @@ describe('Yeogurt generator using Documentation', function() {
   describe('With JSDoc', function() {
     it('Creates expected files', function(done) {
       var expected = [
-        'client/docs',
-        'client/docs/jsdoc',
-        'client/docs/jsdoc/theme/static/scripts/less.js',
-        'client/docs/jsdoc/theme/static/scripts/jquery.js'
+        'client/autodocs',
+        'client/autodocs/jsdoc',
+        'client/autodocs/jsdoc/theme/static/scripts/less.js',
+        'client/autodocs/jsdoc/theme/static/scripts/jquery.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -41,15 +41,15 @@ describe('Yeogurt generator using Documentation', function() {
   describe('With KSS', function() {
     it('Creates expected files', function(done) {
       var expected = [
-        'client/docs',
-        'client/docs/styleguide',
-        'client/docs/styleguide/index.html',
-        'client/docs/styleguide/public/kss.js',
-        'client/docs/styleguide/public/kss.less',
-        'client/docs/styleguide/public/less.js',
-        'client/docs/styleguide/public/markdown.less',
-        'client/docs/styleguide/public/prettify.js',
-        'client/docs/styleguide/public/images/yeogurt-logo.png'
+        'client/autodocs',
+        'client/autodocs/styleguide',
+        'client/autodocs/styleguide/index.html',
+        'client/autodocs/styleguide/public/kss.js',
+        'client/autodocs/styleguide/public/kss.less',
+        'client/autodocs/styleguide/public/less.js',
+        'client/autodocs/styleguide/public/markdown.less',
+        'client/autodocs/styleguide/public/prettify.js',
+        'client/autodocs/styleguide/public/images/yeogurt-logo.png'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -65,17 +65,17 @@ describe('Yeogurt generator using Documentation', function() {
   describe('With Dashboard', function() {
     it('Creates expected files', function(done) {
       var expected = [
-        'client/docs',
-        'client/docs/dashboard',
-        'client/docs/dashboard/images',
-        'client/docs/dashboard/scripts',
-        'client/docs/dashboard/styles',
-        'client/docs/dashboard/styles/dashboard.less',
-        'client/docs/dashboard/scripts/less.js',
-        'client/docs/dashboard/scripts/jquery.js',
-        'client/docs/dashboard/scripts/main.js',
-        'client/docs/dashboard/images/yeogurt-logo.png',
-        'client/docs/dashboard/template.hbs'
+        'client/autodocs',
+        'client/autodocs/dashboard',
+        'client/autodocs/dashboard/images',
+        'client/autodocs/dashboard/scripts',
+        'client/autodocs/dashboard/styles',
+        'client/autodocs/dashboard/styles/dashboard.less',
+        'client/autodocs/dashboard/scripts/less.js',
+        'client/autodocs/dashboard/scripts/jquery.js',
+        'client/autodocs/dashboard/scripts/main.js',
+        'client/autodocs/dashboard/images/yeogurt-logo.png',
+        'client/autodocs/dashboard/template.hbs'
       ];
 
       helpers.mockPrompt(this.app, {
