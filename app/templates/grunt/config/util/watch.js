@@ -24,8 +24,8 @@ var taskConfig = function(grunt) {
     },<% if (htmlOption === 'jade' && !useServer) { %>
     jade: {
       files: [
-        '<%= yeogurt.client %>/**/*.jade',
-        '!<%= yeogurt.client %>/**/+(_modules,_layouts)/*.jade'
+        '<%%= yeogurt.client %>/**/*.jade',
+        '!<%%= yeogurt.client %>/**/+(_modules,_layouts)/*.jade'
       ],
       tasks: [
         'newer:jade:server'
@@ -33,7 +33,7 @@ var taskConfig = function(grunt) {
     },
     jadePartials: {
       files: [
-        '<%= yeogurt.client %>/**/+(_modules,_layouts)/*.jade'
+        '<%%= yeogurt.client %>/**/+(_modules,_layouts)/*.jade'
       ],
       tasks: [
         'injector:jade',
@@ -42,8 +42,8 @@ var taskConfig = function(grunt) {
     },<% } %><% if (htmlOption === 'swig' && !useServer) { %>
     swig: {
       files: [
-        '<%= yeogurt.client %>/**/*.jade',
-        '!<%= yeogurt.client %>/**/+(_modules,_layouts)/*.swig'
+        '<%%= yeogurt.client %>/**/*.jade',
+        '!<%%= yeogurt.client %>/**/+(_modules,_layouts)/*.swig'
       ],
       tasks: [
         'newer:swig:server'
@@ -51,7 +51,7 @@ var taskConfig = function(grunt) {
     },
     swigPartials: {
       files: [
-        '<%= yeogurt.client %>/**/+(_modules,_layouts)/*.swig'
+        '<%%= yeogurt.client %>/**/+(_modules,_layouts)/*.swig'
       ],
       tasks: [
         'injector:swig',
