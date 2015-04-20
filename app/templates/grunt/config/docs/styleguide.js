@@ -14,21 +14,21 @@ var taskConfig = function(grunt) {
       name: 'Style Guide',
 
       template: {
-        src: '<%%= yeogurt.client %>/docs/styleguide'
+        src: '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.docs %>/styleguide'
       }
 
     },
     server: {
       files: {
-        '<%%= yeogurt.tmp %>/docs/styleguide': [
-          '<%%= yeogurt.client %>/styles/*.*'
+        '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.docs.replace(/^_/, "") %>/styleguide': [
+          '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.styles %>/*.*'
         ]
       }
     },
     dist: {
       files: {
-        '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>docs/styleguide': [
-          '<%%= yeogurt.client %>/styles/*.*'
+        '<%%= yeogurt.directories.destination %>/<%%= yeogurt.directories.docs.replace(/^_/, "") %>/styleguide': [
+          '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.styles %>/*.*'
         ]
       }
     }

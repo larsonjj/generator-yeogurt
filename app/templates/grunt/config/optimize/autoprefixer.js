@@ -13,8 +13,8 @@ var taskConfig = function(grunt) {
       files: [{
         expand: true,
         flatten: true,
-        src: '<%%= yeogurt.tmp %>/**/*.css',
-        dest: '<%%= yeogurt.tmp %>/'
+        src: '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.styles %>/**/*.css',
+        dest: '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.styles.replace(/^_/, "") %>/'
       }]
     },
     dist: {
@@ -25,8 +25,8 @@ var taskConfig = function(grunt) {
       files: [{
         expand: true,
         flatten: true,
-        src: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>**/*.css',
-        dest: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>'
+        src: '<%%= yeogurt.directories.destination %>/<%%= yeogurt.directories.styles %>/**/*.css',
+        dest: '<%%= yeogurt.directories.destination %>/<%%= yeogurt.directories.styles.replace(/^_/, "") %>/'
       }]
     }
   });

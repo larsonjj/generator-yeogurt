@@ -4,6 +4,9 @@
 
 var taskConfig = function(grunt) {
 
+  // Load config for use with non-grunt logic
+  var yeogurt = grunt.config.get('yeogurt');
+
   grunt.config.set('browserify', {
     server: {
       options: {<% if (jsFramework === 'react') { %>
@@ -14,7 +17,9 @@ var taskConfig = function(grunt) {
         watch: true
       },
       files: {
-        '<%%= yeogurt.tmp %>/app/main.js': ['<%%= yeogurt.client %>/app/main.js']
+        '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.scripts.replace(/^_/, "") %>/main.js': [
+          '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.scripts %>/main.js'
+        ]
       }
     },
     dist: {
@@ -30,12 +35,14 @@ var taskConfig = function(grunt) {
           // Minify code
           return b.plugin('minifyify', {
             map: 'main.js.map',
-            output: 'dist/<% if (useServer) { %>client/<% } %>app/main.js.map'
+            output: yeogurt.directories.destination + '/' + yeogurt.directories.scripts + '/main.js.map'
           });
         }
       },
       files: {
-        '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>app/main.js': ['<%%= yeogurt.client %>/app/main.js']
+        '<%%= yeogurt.directories.destination %>/<%%= yeogurt.directories.scripts.replace(/^_/, "") %>/main.js': [
+          '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.scripts %>/main.js'
+        ]
       }
     },<% if (useTesting) { %>
     test: {
@@ -47,7 +54,7 @@ var taskConfig = function(grunt) {
         watch: true
       },
       files: {
-        '<%%= yeogurt.tmp %>/test/bundle.js': ['<%%= yeogurt.client %>/app/**/*.spec.js']
+        '<%%= yeogurt.directories.temporary %>/bundle.js': ['<%%= yeogurt.directories.source %>/**/*.spec.js']
       }
     }<% } %>
   });

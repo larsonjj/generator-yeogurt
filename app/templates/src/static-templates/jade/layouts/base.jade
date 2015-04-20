@@ -1,6 +1,3 @@
-//- [injector:jade]
-//- [endinjector]
-
 doctype html
 <!--[if lte IE 8]><html class='lt-ie9 no-js' lang='en'><![endif]-->
 <!--[if gt IE 8]><!--><html class=' no-js' lang='en'><!--<![endif]-->
@@ -10,72 +7,33 @@ head
   title <%= projectName %>
   meta(name='description', content='')
   meta(name='viewport', content='width=device-width, initial-scale=1.0')<% if (useServer) { %>
-  meta(name='csrf-token', content=_csrf)
+  meta(name='csrf-token', content=_csrf)<% } %>
 
-  if (env != 'production')<% } %>
-  <% if (useServer) { %>  <% } %>// build:css(client) app/global.css
-  <% if (useServer) { %>  <% } %>// bower:css
-  <% if (useServer) { %>  <% } %>link(rel='stylesheet', href='/bower_components/normalize.css/normalize.css')
-  <% if (useServer) { %>  <% } %>// endbower
-  <% if (useServer) { %>  <% } %>// endbuild<% if (cssOption === 'css') { %>
+  link(rel='stylesheet', href='/node_modules/normalize.css/normalize.css')
+  link(rel='stylesheet', href='/styles/main.css')
 
-  <% if (useServer) { %>  <% } %>// build:css(client) app/main.css
-  <% if (useServer) { %>  <% } %>// [injector:css]
-  <% if (useServer) { %>  <% } %>// [endinjector]
-  <% if (useServer) { %>  <% } %>link(rel='stylesheet', href='/app/main.css')
-  <% if (useServer) { %>  <% } %>// endbuild<% if (useServer) { %>
-  else
-    link(rel='stylesheet', href='/app/global.css')
-    link(rel='stylesheet', href='/app/main.css')<% } %><% } else { %><% if (useServer) { %>
-  else
-    link(rel='stylesheet', href='/app/global.css')<% } %>
+  script(src='/node_modules/modernizr/modernizr.js')
 
-  link(rel='stylesheet', href='/app/main.css')<% } %><% if (useServer) { %>
-
-  if (env != 'production')<% } %>
-  <% if (useServer) { %>  <% } %>// build:js(client) app/modernizr.js
-  <% if (useServer) { %>  <% } %>script(src='/bower_components/modernizr/modernizr.js')
-  <% if (useServer) { %>  <% } %>// endbuild<% if (useServer) { %>
-  else
-    script(src='/app/modernizr.js')<% } %>
-
-  // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
-  // build:js(client) app/shims.js
+  //- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
   <!--[if lt IE 9]>
-  script(src='/bower_components/consolelog/consolelog.js')
-  script(src='/bower_components/html5shiv/dist/html5shiv-printshiv.js')
+  script(src='/node_modules/consolelog/consolelog.js')
+  script(src='/node_modules/html5shiv/dist/html5shiv-printshiv.js')
   <![endif]-->
-  // endbuild
+
 body
   <!--[if lte IE 7]>
-  <p class='browsehappy'>You are using an <strong>outdated</strong> browser. Please <a href='http://browsehappy.com/''>upgrade your browser</a> to improve your experience.</p>
+  <p class='browsehappy'>You are using an <strong>outdated</strong> browser. Please <a href='http://browsehappy.com/'>upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  block layout
-    block content<% if (jsFramework === 'react') { %>
+  block content<% if (jsFramework === 'react') { %>
 
-  // build:js(client) app/lt-ie9.js
   <!--[if lt IE 9]>
-  script(src='/bower_components/es5-shim/es5-shim.js')
-  script (src='/bower_components/es5-shim/es5-sham.js')
-  <![endif]--><% } %><% if (useServer) { %>
+  script(src='/node_modules/es5-shim/es5-shim.js')
+  script (src='/node_modules/es5-shim/es5-sham.js')
+  <![endif]--><% } %>
 
-  if (env != 'production')<% } %>
-  <% if (useServer) { %>  <% } %>// build:js(client) /app/global.js
-  <% if (useServer) { %>  <% } %>// bower:js
-  <% if (useServer) { %>  <% } %>script(src='/bower_components/jquery/dist/jquery.js')
-  <% if (useServer) { %>  <% } %>// endbower
-  <% if (useServer) { %>  <% } %>// endbuild<% if (useServer) { %>
-  else
-    script(src='/app/global.js')<% } %><% if (jsOption === 'requirejs') { %>
+  script(src='/node_modules/jquery/dist/jquery.js')<% if (jsOption === 'requirejs') { %>
 
-  script(data-main='/app/main', src='/bower_components/requirejs/require.js')<% } else if (jsOption === 'browserify') { %>
-
-  script(src='/app/main.js')<% } else { %>
-
-  // build:js(client) app/main.js
-  // [injector:js]
-  // [endinjector]<% if (jsFramework === 'backbone') { %>
-  script(src='/app/routes.js')<% } %>
-  script(src='/app/main.js')
-  // endbuild<% } %>
+  script(data-main='/scripts/main', src='/node_modules/requirejs/require.js')<% } else { %><% if (jsFramework === 'backbone') { %>
+  script(src='/scripts/routes.js')<% } %>
+  script(src='/scripts/main.js')<% } %>

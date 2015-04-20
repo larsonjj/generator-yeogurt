@@ -17,18 +17,18 @@ var taskConfig = function(grunt) {
         removeRedundantAttributes: true,
         collapseWhitespace: true
       },
-      usemin: 'app/main.js',
+      usemin: '<%%= yeogurt.scripts %>/main.js',
       prefix: '/'
     },
     main: {
-      cwd: '<%%= yeogurt.client %>',
-      src: ['app/**/*.html'],
-      dest: '<%%= yeogurt.tmp %>/templates.js'
+      cwd: '<%%= yeogurt.directories.source %>',
+      src: ['**/*.html'],
+      dest: '<%%= yeogurt.directories.temporary %>/templates.js'
     },
     tmp: {
-      cwd: '<%%= yeogurt.tmp %>',
-      src: ['app/**/*.html'],
-      dest: '<%%= yeogurt.tmp %>/tmp-templates.js'
+      cwd: '<%%= yeogurt.directories.temporary %>',
+      src: ['**/*.html'],
+      dest: '<%%= yeogurt.directories.temporary %>/tmp-templates.js'
     }
   });
 };

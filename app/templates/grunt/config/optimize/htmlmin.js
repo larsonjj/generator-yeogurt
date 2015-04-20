@@ -16,11 +16,11 @@ var taskConfig = function(grunt) {
       },
       files: [{
         expand: true,
-        cwd: '<%%= yeogurt.dist %>/<% if (useServer) { %>client<% } %>',
+        cwd: '<%%= yeogurt.directories.destination %>/',
         src: [
-          '*.html'<% if (!singlePageApplication && !useServer) { %>, 'templates/**/*.html'<% } %>
+          '**/*.html'
         ],
-        dest: '<%%= yeogurt.dist %>/<% if (useServer) { %>client<% } %>'
+        dest: '<%%= yeogurt.directories.destination %>/'
       }]
     }
   });

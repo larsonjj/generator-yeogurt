@@ -10,13 +10,12 @@ var taskConfig = function(grunt) {
         compress: false,
         sourcemap: false, // not supported yet
         paths: [
-          '<%%= yeogurt.client %>/bower_components',
-          '<%%= yeogurt.client %>/{app,modules,lib}/'<% if (jsFramework === 'angular') { %>,
-          '<%%= yeogurt.client %>/{app,modules,lib}/'<% } %>
+          '<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.styles %>}/'<% if (jsFramework === 'angular') { %>,
+          '<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.styles %>}/'<% } %>
         ]
       },
       files: {
-        '<%%= yeogurt.tmp %>/app/main.css': '<%%= yeogurt.client %>/{app,modules,lib}/main.styl'
+        '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.styles.replace(/^_/, "") %>/main.css': '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.styles %>/main.styl'
       }
     },
     dist: {
@@ -24,13 +23,12 @@ var taskConfig = function(grunt) {
         compress: true,
         sourcemap: false, // not supported yet
         paths: [
-          '<%%= yeogurt.client %>/bower_components',
-          '<%%= yeogurt.client %>/{app,modules,lib}/'<% if (jsFramework === 'angular') { %>,
-          '<%%= yeogurt.client %>/{app,modules,lib}/'<% } %>
+          '<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.styles %>}/'<% if (jsFramework === 'angular') { %>,
+          '<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.styles %>}/'<% } %>
         ]
       },
       files: {
-        '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>app/main.css': '<%%= yeogurt.client %>/{app,modules,lib}/main.styl'
+        '<%%= yeogurt.directories.destination %>/<%%= yeogurt.directories.styles.replace(/^_/, "") %>/main.css': '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.styles %>/main.styl'
       }
     }
   });

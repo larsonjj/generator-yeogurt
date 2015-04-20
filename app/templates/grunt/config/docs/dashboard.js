@@ -4,14 +4,17 @@
 
 var taskConfig = function(grunt) {
 
+  // Load config for use with non-grunt logic
+  var yeogurt = grunt.config.get('yeogurt');
+
   grunt.config.set('dashboard', {
     server: {
       options: {
-        dashTemplate: '<%%= yeogurt.client %>/docs/dashboard/template.hbs',
-        logo: 'images/yeogurt-logo.png',
-        generatedDir: '<%%= yeogurt.tmp %>/docs/dashboard/generated',
+        dashTemplate: '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.docs %>/dashboard/template.hbs',
+        logo: yeogurt.directories.images + '/yeogurt-logo.png',
+        generatedDir: '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.docs.replace(/^_/, "") %>/dashboard/generated',
         assets: [{
-          cwd: '<%%= yeogurt.client %>/docs/dashboard/',
+          cwd: '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.docs %>/dashboard/',
           src: [
             '**/*',
             '!*.hbs'
@@ -19,18 +22,18 @@ var taskConfig = function(grunt) {
         }]
       },
       files: {
-        '<%%= yeogurt.tmp %>/docs/dashboard/index.html': [
-          '<%%= yeogurt.client %>/**/*.<% if (htmlOption === "jade") { %>jade<% } else if (htmlOption === "swig") { %>swig<% } %>'
+        '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.docs.replace(/^_/, "") %>/dashboard/index.html': [
+          '<%%= yeogurt.directories.source %>/**/*.<% if (htmlOption === "jade") { %>jade<% } else if (htmlOption === "swig") { %>swig<% } %>'
         ]
       }
     },
     dist: {
       options: {
-        dashTemplate: '<%%= yeogurt.client %>/docs/dashboard/template.hbs',
-        logo: 'images/yeogurt-logo.png',
-        generatedDir: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>docs/dashboard/generated',
+        dashTemplate: '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.docs.replace(/^_/, "") %>/dashboard/template.hbs',
+        logo: yeogurt.directories.images + '/yeogurt-logo.png',
+        generatedDir: '<%%= yeogurt.directories.destination %>/<%%= yeogurt.directories.docs.replace(/^_/, "") %>/dashboard/generated',
         assets: [{
-          cwd: '<%%= yeogurt.client %>/docs/dashboard/',
+          cwd: '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.docs %>/dashboard/',
           src: [
             '**/*',
             '!*.hbs'
@@ -38,8 +41,8 @@ var taskConfig = function(grunt) {
         }]
       },
       files: {
-        '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>docs/dashboard/index.html': [
-          '<%%= yeogurt.client %>/**/*.<% if (htmlOption === "jade") { %>jade<% } else if (htmlOption === "swig") { %>swig<% } %>'
+        '<%%= yeogurt.directories.destination %>/<%%= yeogurt.directories.docs.replace(/^_/, "") %>/dashboard/index.html': [
+          '<%%= yeogurt.directories.source %>/**/*.<% if (htmlOption === "jade") { %>jade<% } else if (htmlOption === "swig") { %>swig<% } %>'
         ]
       }
     }

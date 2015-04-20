@@ -9,33 +9,33 @@ var scriptFiles = function scriptFiles() {
 
   if (!this.jsFramework) {
     if (this.jsOption === 'requirejs') {
-      this.template('src/noframework/requirejs/main.js', 'src/main.js');
+      this.template('src/noframework/requirejs/main.js', 'src/_scripts/main.js');
     }
 
     if (this.jsOption === 'browserify') {
-      this.template('src/noframework/browserify/main.js', 'src/main.js');
+      this.template('src/noframework/browserify/main.js', 'src/_scripts/main.js');
     }
 
     if (this.jsOption === 'none') {
-      this.template('src/noframework/js/main.js', 'src/main.js');
+      this.template('src/noframework/js/main.js', 'src/scripts/main.js');
     }
   }
 
   if (this.jsFramework === 'backbone') {
     if (this.jsOption === 'requirejs') {
-      this.template('src/backbone/requirejs/main/main.js', 'src/main.js');
+      this.template('src/backbone/requirejs/main/main.js', 'src/scripts/main.js');
       this.template('src/backbone/requirejs/routes/routes.js', 'src/routes.js');
       this.template('src/backbone/requirejs/index/index.js', 'src/index/index.js');
     }
 
     if (this.jsOption === 'browserify') {
-      this.template('src/backbone/browserify/main/main.js', 'src/main.js');
+      this.template('src/backbone/browserify/main/main.js', 'src/scripts/main.js');
       this.template('src/backbone/browserify/routes/routes.js', 'src/routes.js');
       this.template('src/backbone/browserify/index/index.js', 'src/index/index.js');
     }
 
     if (this.jsOption === 'none') {
-      this.template('src/backbone/js/main/main.js', 'src/main.js');
+      this.template('src/backbone/js/main/main.js', 'src/scripts/main.js');
       this.template('src/backbone/js/routes/routes.js', 'src/routes.js');
       this.template('src/backbone/js/index/index.js', 'src/index/index.js');
     }
@@ -54,7 +54,7 @@ var scriptFiles = function scriptFiles() {
   else if (this.jsFramework === 'react') {
     this.template('src/react/routes/routes.js', 'src/routes.js');
 
-    this.template('src/react/main/main.js', 'src/main.js');
+    this.template('src/react/main/main.js', 'src/scripts/main.js');
     this.template('src/react/main/main.actions.js', 'src/main.actions.js');
     this.template('src/react/main/main.constants.js', 'src/main.constants.js');
     this.template('src/react/main/main.store.js', 'src/main.store.js');
@@ -73,7 +73,7 @@ var scriptFiles = function scriptFiles() {
 
       // Layouts
       this.template(
-        'src/react/layout/jsx/base.jsx', 'src/layout/base.jsx'
+        'src/react/layouts/jsx/base.jsx', 'src/layouts/base.jsx'
       );
     }
     else {
@@ -84,12 +84,12 @@ var scriptFiles = function scriptFiles() {
 
       // Layouts
       this.template(
-        'src/react/layout/js/base.js', 'src/layout/base.js'
+        'src/react/layouts/js/base.js', 'src/layouts/base.js'
       );
     }
   }
   else if (this.jsFramework === 'angular') {
-    this.template('src/angular/main/main.js', 'src/main.js');
+    this.template('src/angular/main/main.js', 'src/scripts/main.js');
 
     // Modules
     this.template('src/angular/index/index.html', 'src/index/index.html');

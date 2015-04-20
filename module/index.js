@@ -84,7 +84,7 @@ ModuleGenerator.prototype.ask = function ask() {
     },
     name: 'useLayout',
     message: 'What layout would you like to extend from?',
-    default: 'layout/base'
+    default: 'layouts/base'
   }, {
     when: function(answers) {
       return answers.type === 'module';
@@ -101,7 +101,7 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return self.moduleLocation + '/app/layout';
+      return self.moduleLocation + '/app/layouts';
     }
   }, {
     when: function() {

@@ -94,7 +94,7 @@ describe('Yeogurt generator using Server', function() {
         'server/modules/error/404.jade',
         'server/modules/error/500.jade',
         'server/modules/error/index.js',
-        'server/layout/base.jade',
+        'server/layouts/base.jade',
         'server/index/index.jade',
       ];
       var expectedContent = [
@@ -120,7 +120,7 @@ describe('Yeogurt generator using Server', function() {
         'server/modules/error/500.swig',
         'server/modules/error/index.js',
         'server/routes.js',
-        'server/layout/base.swig',
+        'server/layouts/base.swig',
         'server/index/index.swig',
       ];
       var expectedContent = [

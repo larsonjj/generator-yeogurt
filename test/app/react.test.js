@@ -61,7 +61,7 @@ describe('Yeogurt generator using React', function() {
             var expected = [
               // add files and folders you expect to exist here.
               'src/index/index.jsx',
-              'src/layout/base.jsx'
+              'src/layouts/base.jsx'
             ];
             var fileContentToTest = [
               ['src/index/index.jsx', /<div/i],
@@ -124,7 +124,7 @@ describe('Yeogurt generator using React', function() {
             var expected = [
               // add files and folders you expect to exist here.
               'src/index/index.jsx',
-              'src/layout/base.jsx'
+              'src/layouts/base.jsx'
             ];
             var fileContentToTest = [
               ['src/index/index.jsx', /<div/i],

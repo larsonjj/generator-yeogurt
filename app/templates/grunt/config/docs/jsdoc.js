@@ -6,17 +6,17 @@ var taskConfig = function(grunt) {
 
   grunt.config.set('jsdoc', {
     server: {
-      src: ['<%%= yeogurt.client %>/{app,modules,lib}/**/*.js', '*.md'],
-      dest: '<%%= yeogurt.tmp %>/docs/jsdoc',
+      src: ['<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.styles %>}/**/*.js', '*.md'],
+      dest: '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.docs.replace(/^_/, "") %>/jsdoc',
       options: {
-        template: '<%%= yeogurt.client %>/docs/jsdoc/theme'
+        template: '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.docs %>/jsdoc/theme'
       }
     },
     dist: {
-      src: ['<%%= yeogurt.client %>/{app,modules,lib}/**/*.js', '*.md'],
-      dest: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>docs/jsdoc',
+      src: ['<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.styles %>}/**/*.js', '*.md'],
+      dest: '<%%= yeogurt.directories.destination %>/<%%= yeogurt.directories.docs.replace(/^_/, "") %>/jsdoc',
       options: {
-        template: '<%%= yeogurt.client %>/docs/jsdoc/theme'
+        template: '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.docs %>/jsdoc/theme'
       }
     }
   });

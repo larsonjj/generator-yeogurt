@@ -9,11 +9,11 @@ var viewFiles = function viewFiles() {
   if (this.htmlOption === 'jade') {
     if (!this.useServer) {
       this.template('src/static-templates/jade/index.jade', 'src/index.jade');
-      this.template('src/static-templates/jade/layouts/base.jade', 'src/layout/base.jade');
+      this.template('src/static-templates/jade/layouts/base.jade', 'src/_layouts/base.jade');
     }
     else {
       this.template('src/static-templates/jade/index.jade', 'server/index/index.jade');
-      this.template('src/static-templates/jade/layouts/base.jade', 'server/layout/base.jade');
+      this.template('src/static-templates/jade/layouts/base.jade', 'server/layouts/base.jade');
       this.template('server/modules/error/jade/404.jade', 'server/modules/error/404.jade');
       this.template('server/modules/error/jade/500.jade', 'server/modules/error/500.jade');
       this.template('server/modules/error/index.js', 'server/modules/error/index.js');
@@ -22,11 +22,11 @@ var viewFiles = function viewFiles() {
   else if (this.htmlOption === 'swig') {
     if (!this.useServer) {
       this.template('src/static-templates/swig/index.swig', 'src/index.swig');
-      this.template('src/static-templates/swig/layouts/base.swig', 'src/layout/base.swig');
+      this.template('src/static-templates/swig/layouts/base.swig', 'src/_layouts/base.swig');
     }
     else {
       this.template('src/static-templates/swig/index.swig', 'server/index/index.swig');
-      this.template('src/static-templates/swig/layouts/base.swig', 'server/layout/base.swig');
+      this.template('src/static-templates/swig/layouts/base.swig', 'server/layouts/base.swig');
       this.template('server/modules/error/swig/404.swig', 'server/modules/error/404.swig');
       this.template('server/modules/error/swig/500.swig', 'server/modules/error/500.swig');
       this.template('server/modules/error/index.js', 'server/modules/error/index.js');

@@ -18,7 +18,7 @@ var taskConfig = function(grunt) {
       'stylus:dist'<% } %><% if (jsTemplate === 'underscore') { %>,
       'jst:dist'<% } else if (jsTemplate === 'handlebars') { %>,
       'handlebars:dist'<% } %><% if (jsOption === 'requirejs') { %>,
-      'requirejs'<% } %><% if (jsOption === 'browserify') { %>
+      'requirejs'<% } %><% if (jsOption === 'browserify') { %>,
       'browserify:dist'<% } %>
     ],<% if (useDashboard || useJsdoc || useKss) { %>
     docs: [<% if (useDashboard) { %>

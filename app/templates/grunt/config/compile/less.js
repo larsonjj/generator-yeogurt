@@ -8,46 +8,36 @@ var taskConfig = function(grunt) {
     server: {
       options: {
         paths: [
-          '<%%= yeogurt.client %>/bower_components',
-          '<%%= yeogurt.client %>/styles'<% if (jsFramework === 'angular') { %>,
-          '<%%= yeogurt.client %>/{app,modules,lib}/'<% } %>
+          '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.styles %>'<% if (jsFramework === 'angular') { %>,
+          '<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.styles %>}/'<% } %>
         ],
         sourceMap: true,
-        sourceMapFilename: '<%%= yeogurt.tmp %>/app/main.css.map',
-        sourceMapBasepath: '<%%= yeogurt.tmp %>/app/',
+        sourceMapFilename: '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.styles %>/main.css.map',
+        sourceMapBasepath: '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.styles %>/',
         sourceMapRootpath: '',
         dumpLineNumbers: 'comments',
         outputSourceFiles: true
       },
-      expand: true,
-      cwd: '<%%= yeogurt.client %>/',
-      dest: '<%%= yeogurt.tmp %>/',
-      src: [
-        'app/main.less'
-      ],
-      ext: '.css'
+      files: {
+        '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.styles.replace(/^_/, "") %>/main.css': '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.styles %>/main.less'
+      }
     },
     dist: {
       options: {
         paths: [
-          '<%%= yeogurt.client %>/bower_components',
-          '<%%= yeogurt.client %>/styles'<% if (jsFramework === 'angular') { %>,
-          '<%%= yeogurt.client %>/{app,modules,lib}/'<% } %>
+          '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.styles %>'<% if (jsFramework === 'angular') { %>,
+          '<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.styles %>}/'<% } %>
         ],
         sourceMap: true,
-        sourceMapFilename: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>app/main.css.map',
-        sourceMapBasepath: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>app/',
+        sourceMapFilename: '<%%= yeogurt.directories.destination %>/<%%= yeogurt.directories.styles %>/main.css.map',
+        sourceMapBasepath: '<%%= yeogurt.directories.destination %>/<%%= yeogurt.directories.styles %>/',
         sourceMapRootpath: './',
         compress: true,
         outputSourceFiles: true
       },
-      expand: true,
-      cwd: '<%%= yeogurt.client %>/',
-      dest: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>',
-      src: [
-        'app/main.less'
-      ],
-      ext: '.css'
+      files: {
+        '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.styles.replace(/^_/, "") %>/main.css': '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.styles %>/main.less'
+      }
     }
   });
 

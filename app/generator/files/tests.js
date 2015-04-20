@@ -45,7 +45,7 @@ var testingFiles = function testingFiles() {
 
       // Components
       this.template('src/react/index/__tests__/index.spec.js', 'src/index/__tests__/index.spec.js');
-      this.template('src/react/layout/__tests__/base.spec.js', 'src/layout/__tests__/base.spec.js');
+      this.template('src/react/layouts/__tests__/base.spec.js', 'src/layouts/__tests__/base.spec.js');
 
       this.template('src/react/main/__tests__/main.spec.js', 'src/__tests__/main.spec.js');
 

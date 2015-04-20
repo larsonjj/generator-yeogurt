@@ -11,14 +11,14 @@ var taskConfig = function(grunt) {
     },
     server: {
       options: {
-        script: 'server/server.js',
+        script: '<%%= yeogurt.directories.server %>/server.js',
         node_env: 'development',
         debug: true
       }
     },
     dist: {
       options: {
-        script: 'dist/server/server.js',
+        script: '<%%= yeogurt.directories.destination %>/<%%= yeogurt.directories.server %>/server.js',
         node_env: 'production'
       }
     }

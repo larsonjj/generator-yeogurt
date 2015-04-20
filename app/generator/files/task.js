@@ -10,9 +10,7 @@ var taskFiles = function taskFiles() {
   // Util
   // ========
 
-  this.template('grunt/config/util/injector.js', 'grunt/config/util/injector.js');
   this.template('grunt/config/util/watch.js', 'grunt/config/util/watch.js');
-  this.template('grunt/config/util/wiredep.js', 'grunt/config/util/wiredep.js');
   this.template('grunt/config/util/clean.js', 'grunt/config/util/clean.js');
   this.template('grunt/config/util/concurrent.js', 'grunt/config/util/concurrent.js');
   this.template('grunt/config/util/copy.js', 'grunt/config/util/copy.js');
@@ -95,7 +93,6 @@ var taskFiles = function taskFiles() {
   this.template('grunt/config/optimize/imagemin.js', 'grunt/config/optimize/imagemin.js');
   this.template('grunt/config/optimize/uglify.js', 'grunt/config/optimize/uglify.js');
   this.template('grunt/config/optimize/cssmin.js', 'grunt/config/optimize/cssmin.js');
-  this.template('grunt/config/optimize/usemin.js', 'grunt/config/optimize/usemin.js');
 
   // ========
   // Server
@@ -103,7 +100,7 @@ var taskFiles = function taskFiles() {
 
   if (!this.useServer) {
     // Connect (simple webserver)
-    this.template('grunt/config/server/connect.js', 'grunt/config/server/connect.js');
+    this.template('grunt/config/server/browsersync.js', 'grunt/config/server/browsersync.js');
   }
 
   if (this.useServer) {

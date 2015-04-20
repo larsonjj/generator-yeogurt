@@ -15,8 +15,8 @@ var taskConfig = function(grunt) {
         cache: false
       },
       expand: true,
-      cwd: '<%%= yeogurt.client %>/',
-      dest: '<%%= yeogurt.tmp %>/',
+      cwd: '<%%= yeogurt.directories.source %>/',
+      dest: '<%%= yeogurt.directories.temporary %>/',
       src: [
         '**/*.swig',
         '!**/\_*/**'
@@ -28,9 +28,9 @@ var taskConfig = function(grunt) {
         cache: false
       },
       expand: true,
-      cwd: '<% if (useServer) { %><%%= yeogurt.server %><% } %><% if (!useServer) { %><%%= yeogurt.client %><% } %>',<% if (!useServer) { %>
-      dest: '<%%= yeogurt.dist %>/',<% } %><% if (useServer) { %>
-      dest: '<%%= yeogurt.tmp %>/',<% } %>
+      cwd: '<% if (useServer) { %><%%= yeogurt.directories.server %><% } %><% if (!useServer) { %><%%= yeogurt.directories.source %><% } %>',<% if (!useServer) { %>
+      dest: '<%%= yeogurt.directories.destination %>/',<% } %><% if (useServer) { %>
+      dest: '<%%= yeogurt.directories.temporary %>/',<% } %>
       src: [
         '**/*.swig',
         '!**/\_*/**'

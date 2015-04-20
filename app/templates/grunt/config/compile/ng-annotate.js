@@ -9,9 +9,9 @@ var taskConfig = function(grunt) {
     dist: {
       files: [{
         expand: true,
-        cwd: '<%%= yeogurt.tmp %>/concat',
-        src: '*/**.js',
-        dest: '<%%= yeogurt.tmp %>/concat'
+        cwd: '<%%= yeogurt.directories.temporary %>/',
+        src: 'templates.js',
+        dest: '<%%= yeogurt.directories.temporary %>/'
       }]
     }
   });

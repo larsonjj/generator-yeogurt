@@ -14,9 +14,9 @@ var taskConfig = function(grunt) {
       },
       files: [{
         expand: true,
-        cwd: '<%%= yeogurt.client %>/images',
+        cwd: '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.images.replace(/^_/, "") %>',
         src: '**/*.{jpg,jpeg,gif,png,svg}',
-        dest: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>images'
+        dest: '<%%= yeogurt.directories.destination %>/<%%= yeogurt.directories.images.replace(/^_/, "") %>'
       }]
     }
   });

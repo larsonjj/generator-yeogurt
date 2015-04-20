@@ -1,7 +1,19 @@
 {
   "name": "<%= _.slugify(projectName) %>",
   "version": "0.0.1",
-  "dependencies": {<% if (jsFramework === 'react') { %>
+  "dependencies": {
+    "consolelog": "~2.0.1",
+    "html5shiv": "~3.7.2",
+    "normalize.css": "~3.0.1"<% if (jsFramework === 'angular') { %>,
+    "angular": "~1.2.28",
+    "angular-route": "~1.2.28",
+    "json3": "~3.3.1"<% } %><% if (jsFramework !== 'react') { %>,
+    "jquery": "~1.11.1"<% } %><% if (jsFramework === 'backbone') { %>,
+    "backbone": "~1.1.2"<% } %><% if (jsFramework === 'react') { %>,
+    "es5-shim": "~3.4.0"<% } %><% if (jsTemplate === 'handlebars') { %>,
+    "handlebars": "~2.0.0"<% } else if (jsTemplate === 'jade') { %>,
+    "jade": "~1.5.0"<% } %><% if (jsOption === 'requirejs') { %>,
+    "requirejs": "~2.1.11"<% } %><% if (jsFramework === 'react') { %>,
     "flux": "~2.0.0",
     "object-assign": "~1.0.0",
     "superagent": "~0.21.0",
@@ -33,7 +45,8 @@
     "jade": "~1.9.1"<% } %><% if (jsTemplate === 'handlebars') { %>,
     "handlebars": "~2.0.0"<% } %><% } %>
   },
-  "devDependencies": {
+  "devDependencies": {<% if (jsFramework === 'angular') { %>
+    "angular-mocks": "~1.2.28",<% } %>
     "rimraf": "~2.2.8",
     "grunt": "~0.4.2",<% if (useServer) { %>
     "grunt-open": "~0.2.0",<% if (useServerTesting) { %>
@@ -64,7 +77,6 @@
     "mocha": "~2.1.0",
     "chai": "~1.10.0",
     "chai-as-promised": "4.1.1",<% } %><% } %>
-    "grunt-wiredep": "~2.0.0",
     "grunt-contrib-cssmin": "~0.10.0",
     "grunt-contrib-imagemin": "~0.9.1",
     "imagemin-svgo": "~4.0.0",
@@ -75,8 +87,7 @@
     "grunt-sass": "~0.18.0",<% } %><% if (cssOption === 'less') { %>
     "grunt-contrib-less": "~0.12.0",<% } %><% if (cssOption === 'stylus') { %>
     "grunt-contrib-stylus": "~0.20.0",<% } %>
-    "grunt-open": "~0.2.3",
-    "grunt-injector": "~0.5.3",<% if (jsFramework === 'angular') { %>
+    "grunt-open": "~0.2.3",<% if (jsFramework === 'angular') { %>
     "grunt-angular-templates": "~0.5.7",
     "grunt-ng-annotate": "~0.8.0",<% } %>
     "grunt-env": "~0.4.1",
@@ -95,13 +106,12 @@
     "lodash": "~2.4.1",<% } %>
     "time-grunt": "0.2.10",<% if (useDashboard) { %>
     "grunt-dashboard": "~0.3.0",<% } %>
-    "bower": "~1.3.3",
     "jit-grunt": "~0.9.0"<% if (useServer) { %>,
     "connect-livereload": "~0.5.2",
     "grunt-express-server": "~0.4.5"<% } %>
   },
   "scripts": {
-    "clean": "rimraf node_modules client/bower_components .tmp dist"<% if (useServer) { %>,
+    "clean": "rimraf node_modules .tmp dist"<% if (useServer) { %>,
     "start": "NODE_ENV=production node server/server.js"<% } %><% if (useE2e) { %>,
     "update-webdriver": "node node_modules/protractor/bin/webdriver-manager update",
     "postinstall": "npm run update-webdriver"<% } %>

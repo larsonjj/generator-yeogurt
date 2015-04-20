@@ -7,7 +7,13 @@
 var installConfig = function installConfig() {
 
   this.on('end', function() {
-    this.installDependencies({skipInstall: this.options['skip-install']});
+    this.installDependencies({
+      bower: false,
+      skipInstall: this.options['skip-install'],
+      callback: function() {
+        console.log('Everything looks ready! Get started by running "grunt serve".');
+      }
+    });
   });
 };
 

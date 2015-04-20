@@ -13,17 +13,7 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
-
-// Injects all bower_component files automatically
-// bower:scss
-// endbower
-// bower:sass
-// endbower
-
-// Injects all import files automatically
-// [injector]
-// [endinjector]<% if (useServer && !singlePageApplication) { %>
+}<% if (useServer && !singlePageApplication) { %>
 
 .yeogurt-info {
   text-align: center;

@@ -8,42 +8,38 @@ var taskConfig = function(grunt) {
     server: {
       files: [{
          expand: true,
-          cwd: '<%%= yeogurt.client %>/',
-          dest: '<%%= yeogurt.tmp %>',
+          cwd: '<%%= yeogurt.directories.source %>/',
+          dest: '<%%= yeogurt.directories.temporary %>/',
           src: [
-            'app/styleguide.md'
+            '**/*',
+            '!**/\_*/**',
+            '!**/*.{scss,sass,jade,swig,less,styl}'
           ]
         }]
     },<% } %>
     dist: {
       files: [{
         expand: true,
-        cwd: '<%%= yeogurt.client %>/',
-        dest: '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>',
-        src: [<% if (jsOption === 'requirejs') { %>
-          'bower_components/requirejs/require.js',<% } %><% if (useDashboard) { %>
-          'dashboard/**/*.*',<% } %><% if (useKss) { %>
-          'app/styleguide.md',
-          'docs/styleguide/public/images',<% } %>
-          'fonts/**/*.{woff,otf,ttf,eot,svg}',
-          'images/**/*.{webp}',
-          '!*.js',
-          '*.{ico,png,txt}'<% if (singlePageApplication) { %>,
-          '*.html'<% } %>
+        cwd: '<%%= yeogurt.directories.source %>/',
+        dest: '<%%= yeogurt.directories.destination %>/',
+        src: [
+          '**/*',
+          '!**/\_*/**',
+          '!**/*.{scss,sass,jade,swig,less,styl}'
         ]
       }<% if (useServer && singlePageApplication) { %>, {
         expand: true,
-        cwd: '<%%= yeogurt.server %>/templates/',
-        dest: '<%%= yeogurt.tmp %>',
+        cwd: '<%%= yeogurt.directories.server %>/templates/',
+        dest: '<%%= yeogurt.directories.temporary %>',
         src: [
           'index.html'
         ]
       }<% } %><% if (useServer) { %>, {
         expand: true,
         cwd: './',
-        dest: '<%%= yeogurt.dist %>/',
+        dest: '<%%= yeogurt.directories.destination %>/',
         src: [
-          '<%%= yeogurt.server %>/**/*',
+          '<%%= yeogurt.directories.server %>/**/*',
           'server.js',
           'package.json'
         ]

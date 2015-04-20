@@ -216,11 +216,11 @@ describe('Static Site module sub-generator', function() {
         var type = 'layout';
         var filesToTest = [
           // add files and folders you expect to NOT exist here.
-          'src/layout/' + module + '/' + module + '.jade',
-          'src/layout/' + module + '/' + module + '.scss'
+          'src/layouts/' + module + '/' + module + '.jade',
+          'src/layouts/' + module + '/' + module + '.scss'
         ];
         var fileContentToTest = [
-          ['src/layout/' + module + '/' + module + '.jade', /extend/i]
+          ['src/layouts/' + module + '/' + module + '.jade', /extend/i]
         ];
 
         helpers.mockPrompt(this.app, {
@@ -234,7 +234,7 @@ describe('Static Site module sub-generator', function() {
         this.app.run([], function() {
           createSubGenerator('module', module, {path: '../../../../'}, {
             // mock prompt data
-            moduleFile: 'src/layout',
+            moduleFile: 'src/layouts',
             type: type,
             moduleLocation: 'src'
           }, function() {
@@ -489,11 +489,11 @@ describe('Static Site module sub-generator', function() {
         var type = 'layout';
         var filesToTest = [
           // add files and folders you expect to NOT exist here.
-          'src/layout/' + module + '/' + module + '.swig',
-          'src/layout/' + module + '/' + module + '.scss'
+          'src/layouts/' + module + '/' + module + '.swig',
+          'src/layouts/' + module + '/' + module + '.scss'
         ];
         var fileContentToTest = [
-          ['src/layout/' + module + '/' + module + '.swig', /extends/i]
+          ['src/layouts/' + module + '/' + module + '.swig', /extends/i]
         ];
 
         helpers.mockPrompt(this.app, {
@@ -507,7 +507,7 @@ describe('Static Site module sub-generator', function() {
         this.app.run([], function() {
           createSubGenerator('module', module, {path: '../../../../'}, {
             // mock prompt data
-            moduleFile: 'src/layout',
+            moduleFile: 'src/layouts',
             type: type,
             moduleLocation: 'src'
           }, function() {

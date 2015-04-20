@@ -9,16 +9,14 @@ var rootFiles = function rootFiles() {
 
   // root (/)
   this.template('Gruntfile.js', 'Gruntfile.js');
-  this.template('_bower.json', 'bower.json');
   this.template('_package.json', 'package.json');
+  this.template('_config.json', 'config.json');
   this.template('README.md', 'README.md');
 
   if (this.versionControl === 'svn') {
     this.copy('svn-init.sh', 'svn-init.sh');
     this.copy('svn-init.bat', 'svn-init.bat');
   }
-
-  this.copy('bowerrc', '.bowerrc');
 
   if (this.versionControl === 'git') {
     this.copy('gitignore', '.gitignore');

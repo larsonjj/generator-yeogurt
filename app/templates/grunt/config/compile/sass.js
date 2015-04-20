@@ -11,11 +11,11 @@ var taskConfig = function(grunt) {
         outputStyle: 'nested',
         sourceMap: true,
         includePaths: [
-          '<%%= yeogurt.client %>'
+          '<%%= yeogurt.directories.source %>'
         ]
       },
       files: {
-        '<%%= yeogurt.tmp %>/main.css': '<%%= yeogurt.client %>/main.{scss,sass}'
+        '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.styles.replace(/^_/, "") %>/main.css': '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.styles %>/main.{scss,sass}'
       }
     },
     dist: {
@@ -24,11 +24,11 @@ var taskConfig = function(grunt) {
         outputStyle: 'compressed',
         sourceMap: true,
         includePaths: [
-          '<%%= yeogurt.client %>'
+          '<%%= yeogurt.directories.source %>'
         ]
       },
       files: {
-        '<%%= yeogurt.dist %>/<% if (useServer) { %>client/<% } %>main.css': '<%%= yeogurt.client %>/main.{scss,sass}'
+        '<%%= yeogurt.directories.destination %>/<%%= yeogurt.directories.styles.replace(/^_/, "") %>/main.css': '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.styles %>/main.{scss,sass}'
       }
     }
   });

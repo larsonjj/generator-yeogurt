@@ -1,17 +1,10 @@
 // Generated on <%= (new Date).toISOString().split('T')[0] %> using <%= pkg.name %> <%= pkg.version %>
 'use strict';
 
-// Folder paths for:
-// - client (location for files pertaining to 'client' folder)
-// - tmp (location for files created when running 'grunt serve')
-// - dist (location for files created when running 'grunt' or 'grunt build')
-// - server (location for files pertaining to 'server' folder)
-var config = {
-  client: 'client',
-  tmp: '.tmp',
-  dist: 'dist',
-  server: 'server'
-};
+var fs = require('fs');
+var path = require('path');
+
+var config = JSON.parse(fs.readFileSync(path.join(__dirname, 'config.json'), 'utf8'));
 
 module.exports = function(grunt) {
 
@@ -23,10 +16,10 @@ module.exports = function(grunt) {
 
   // Load all grunt tasks with JIT (Makes task loading super fast!)
   require('jit-grunt')(grunt, {
-    // translate task useminPrepare to use the 'grunt-usemin' plugin
-    useminPrepare: 'grunt-usemin',
-    // translate swig task to use the 'grunt-wobble-swig' plugin
-    swig: 'grunt-swig-templates'<% if (useServer) { %>,
+    // translate browsersync task to use the 'grunt-browser-sync' plugin
+    browserSync: 'grunt-browser-sync'<% if (htmlOption === 'swig') { %>,
+    // translate swig task to use the 'grunt-swig-templates' plugin
+    swig: 'grunt-swig-templates'<% } %><% if (useServer) { %>,
     // translate express task to use the 'grunt-express-server' plugin
     express: 'grunt-express-server'<% } %><% if (jsFramework === 'angular') { %>,
     // translate ngtemplates task to use the 'grunt-angular-templates' plugin
