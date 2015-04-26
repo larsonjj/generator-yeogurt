@@ -54,7 +54,7 @@ var taskConfig = function(grunt) {
         watch: true
       },
       files: {
-        '<%%= yeogurt.directories.temporary %>/bundle.js': ['<%%= yeogurt.directories.source %>/**/*.spec.js']
+        '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.scripts.replace(/^_/, "") %>/bundle.js': ['<%%= yeogurt.directories.source %>/**/*.spec.js']
       }
     }<% } %>
   });

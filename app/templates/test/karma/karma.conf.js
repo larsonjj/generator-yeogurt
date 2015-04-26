@@ -22,12 +22,9 @@ var karmaConf = function(config) {
       'node_modules/handlebars/dist/handlebars.runtime.js',<% } else if (jsTemplate === 'jade') { %>'node_modules/jade/runtime.js',<% } %><% if (jsFramework === 'backbone') { %>
       '.tmp/scripts/templates.js',<% } %><% if (jsOption === 'requirejs') { %>
       'node_modules/requirejs/require.js',
-      'src/main.karma.js',
+      'src/*scripts/main.karma.js',
       {
-        pattern: 'node_modules/**/*.js',
-        included: false
-      }, {
-        pattern: 'src/**/*.js',
+        pattern: 'src/*scripts/**/*.js',
         included: false
       }, {
         pattern: 'src/**/*.spec.js',
@@ -35,21 +32,22 @@ var karmaConf = function(config) {
       },
       // Karma adapter to run tests (must be loaded last)
       'node_modules/karma-requirejs/lib/adapter.js',<% } else if (jsOption === 'browserify') { %>
-      '.tmp/bundle.js'<% } else { %><% if (jsFramework === 'angular') { %>
-      'src/main.js',
-      'src/**/!(main).js',
-      'src/**/*.html'<% } %><% if (jsFramework === 'backbone') { %>
+      '.tmp/scripts/bundle.js'<% } else { %><% if (jsFramework === 'angular') { %>
+      'src/*scripts/main.js',
+      'src/*scripts/**/!(main).js',
+      'src/_screens/**/*.html',
+      'src/_modules/**/*.html'<% } %><% if (jsFramework === 'backbone') { %>
       // Load all scripts except ones that require a specific order (ie. 'main' and 'routes')
-      'src/**/!(main|routes<% if (jsFramework === 'backbone' && jsOption === 'none') { %>|layouts)/*<% } else { %>)<% } %>.js',<% if (jsFramework === 'backbone' && jsOption === 'none') { %>
-      'src/**/layouts/**/*.js',<% } %>
-      'src/routes.js',<% } %><% if (jsFramework !== 'angular') { %>
-      'src/main.js',
+      'src/*scripts/**/!(main|routes).js',<% if (jsFramework === 'backbone' && jsOption === 'none') { %>
+      'src/**/_layouts/**/*.js',<% } %>
+      'src/*scripts/routes.js',<% } %><% if (jsFramework !== 'angular') { %>
+      'src/*scripts/main.js',
       'src/**/*.spec.js'<% } %><% } %>
     ],
 
     // list of files to exclude
     exclude: [<% if (jsOption === 'requirejs') { %>
-      'src/main.js'
+      'src/*scripts/main.js'
     <% } %>],
 
     // test results reporter to use

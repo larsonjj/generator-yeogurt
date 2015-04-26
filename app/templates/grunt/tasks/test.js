@@ -15,7 +15,7 @@ var taskConfig = function(grunt) {
       grunt.config.set('connect.server.options.livereload', false);<% } %>
       grunt.task.run([
         'serve:nowatch',<% if (!useServer) { %>
-        'connect:server',<% } else { %>
+        'browserify:server',<% } else { %>
         'express:server',<% } %>
         'protractor'<% if (jsFramework !== 'backbone' || jsOption !== 'requirejs') { %>,
         'clean:tmp'<% } %>
