@@ -9,7 +9,7 @@ var taskConfig = function(grunt) {
   var serverUrl = 'http://' + yeogurt.host + ':' + yeogurt.port + '/' + yeogurt.baseUrl
 
   grunt.config.set('open', {
-    server: {
+    serve: {
       url: serverUrl
     }
   });

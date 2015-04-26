@@ -5,7 +5,7 @@
 var taskConfig = function(grunt) {
 
   grunt.config.set('autoprefixer', {
-    server: {
+    serve: {
       options: {
         browsers: ['last 2 versions', 'ie 8', 'ie 9'],
         map: true
@@ -17,7 +17,7 @@ var taskConfig = function(grunt) {
         dest: '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.styles.replace(/^_/, "") %>/'
       }]
     },
-    dist: {
+    build: {
       options: {
         browsers: ['last 2 versions', 'ie 8', 'ie 9'],
         map: true

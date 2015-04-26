@@ -10,7 +10,7 @@ var taskConfig = function(grunt) {
   var yeogurt = grunt.config.get('yeogurt');
 
   grunt.config.set('uglify', {
-    dist: {
+    build: {
       options: {
         sourceMap: true,
         sourceMapIncludeSources: true

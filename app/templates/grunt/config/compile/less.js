@@ -5,7 +5,7 @@
 var taskConfig = function(grunt) {
 
   grunt.config.set('less', {
-    server: {
+    serve: {
       options: {
         paths: [
           '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.styles %>'<% if (jsFramework === 'angular') { %>,
@@ -22,7 +22,7 @@ var taskConfig = function(grunt) {
         '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.styles.replace(/^_/, "") %>/main.css': '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.styles %>/main.less'
       }
     },
-    dist: {
+    build: {
       options: {
         paths: [
           '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.styles %>'<% if (jsFramework === 'angular') { %>,

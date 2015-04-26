@@ -7,7 +7,7 @@
 var taskConfig = function(grunt) {
 
   grunt.config.set('jade', {<% if (!useServer && jsTemplate !== 'jade') { %>
-    server: {
+    serve: {
       options: {
         pretty: true,
         client: false,
@@ -24,7 +24,7 @@ var taskConfig = function(grunt) {
       ],
       ext: '.html'
     },<% } %><% if (jsTemplate !== 'jade') { %>
-    dist: {
+    build: {
       options: {
         pretty: true,
         client: false,
@@ -43,7 +43,7 @@ var taskConfig = function(grunt) {
       ],
       ext: '.html'
     }<% } %><% if (jsTemplate === 'jade') { %>
-    server: {
+    serve: {
       options: {
         pretty: true,
         client: true,
@@ -57,7 +57,7 @@ var taskConfig = function(grunt) {
         ]
       }
     },
-    dist: {
+    build: {
       options: {
         pretty: false,
         client: true,

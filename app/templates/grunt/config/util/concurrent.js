@@ -6,23 +6,23 @@ var taskConfig = function(grunt) {
 
   grunt.config.set('concurrent', {
     images: [
-      'imagemin:dist'
+      'imagemin:build'
     ],
     compile: [<% if (htmlOption === 'jade' || jsTemplate === 'jade') { %>
-      'jade:dist',<% } else if (htmlOption === 'swig') {  %>
-      'swig:dist',<% } %><% if (cssOption === 'less') { %>
-      'less:dist',<% } %><% if (cssOption === 'sass') { %>
-      'sass:dist',<% } %><% if (cssOption === 'stylus') { %>
-      'stylus:dist',<% } %><% if (jsTemplate === 'underscore') { %>
-      'jst:dist',<% } else if (jsTemplate === 'handlebars') { %>
-      'handlebars:dist',<% } %><% if (jsOption === 'requirejs') { %>
+      'jade:build',<% } else if (htmlOption === 'swig') {  %>
+      'swig:build',<% } %><% if (cssOption === 'less') { %>
+      'less:build',<% } %><% if (cssOption === 'sass') { %>
+      'sass:build',<% } %><% if (cssOption === 'stylus') { %>
+      'stylus:build',<% } %><% if (jsTemplate === 'underscore') { %>
+      'jst:build',<% } else if (jsTemplate === 'handlebars') { %>
+      'handlebars:build',<% } %><% if (jsOption === 'requirejs') { %>
       'requirejs',<% } %><% if (jsOption === 'browserify') { %>
-      'browserify:dist'<% } %>
+      'browserify:build'<% } %>
     ],<% if (useDashboard || useJsdoc || useKss) { %>
     docs: [<% if (useDashboard) { %>
-      'dashboard:dist',<% } %><% if (useJsdoc) { %>
-      'jsdoc:dist',<% } %><% if (useKss) { %>
-      'styleguide:dist'<% } %>
+      'dashboard:build',<% } %><% if (useJsdoc) { %>
+      'jsdoc:build',<% } %><% if (useKss) { %>
+      'styleguide:build'<% } %>
     ]<% } %>
   });
 

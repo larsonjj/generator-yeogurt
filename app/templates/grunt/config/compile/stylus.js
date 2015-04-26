@@ -5,7 +5,7 @@
 var taskConfig = function(grunt) {
 
   grunt.config.set('stylus', {
-    server: {
+    serve: {
       options: {
         compress: false,
         sourcemap: false, // not supported yet
@@ -18,7 +18,7 @@ var taskConfig = function(grunt) {
         '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.styles.replace(/^_/, "") %>/main.css': '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.styles %>/main.styl'
       }
     },
-    dist: {
+    build: {
       options: {
         compress: true,
         sourcemap: false, // not supported yet

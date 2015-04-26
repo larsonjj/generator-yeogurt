@@ -13,27 +13,27 @@ var taskConfig = function(grunt) {
 
     if (target === 'dist') {
       return grunt.task.run(['build',<% if (useServer) { %>
-      'env:all', 'env:prod', 'express:dist', 'open', 'keepalive'<% } else { %> 'browserSync:dist:keepalive'<% } %>]);
+      'env:all', 'env:prod', 'express:build', 'open', 'keepalive'<% } else { %> 'browserSync:build:keepalive'<% } %>]);
     }
 
     grunt.task.run([
       'clean:tmp',<% if (useServer) { %>
       'env:all',<% } %><% if (useKss && cssOption !== 'css') { %>
-      'copy:server',<% } %>
-      'concat:server',<% if (jsOption === 'browserify') { %>
-      'browserify:server',<% } %><% if (jsTemplate === 'underscore') { %>
-      'jst:server',<% } else if (jsTemplate === 'handlebars') { %>
-      'handlebars:server',<% } else if (jsTemplate === 'jade') { %>
-      'jade:server',<% } %><% if (htmlOption === 'jade' && !useServer ) { %>
-      'jade:server',<% } else if (htmlOption === 'swig' && !useServer ) {  %>
-      'swig:server',<% } %><% if (cssOption === 'less') { %>
-      'less:server',<% } %><% if (cssOption === 'sass') { %>
-      'sass:server',<% } %><% if (cssOption === 'stylus') { %>
-      'stylus:server',<% } %><% if (useDashboard) { %>
-      'dashboard:server',<% } %><% if (useKss) { %>
-      'styleguide:server',<% } %><% if (useJsdoc) { %>
-      'jsdoc:server',<% } %>
-      'autoprefixer:server'
+      'copy:serve',<% } %>
+      'concat:serve',<% if (jsOption === 'browserify') { %>
+      'browserify:serve',<% } %><% if (jsTemplate === 'underscore') { %>
+      'jst:serve',<% } else if (jsTemplate === 'handlebars') { %>
+      'handlebars:serve',<% } else if (jsTemplate === 'jade') { %>
+      'jade:serve',<% } %><% if (htmlOption === 'jade' && !useServer ) { %>
+      'jade:serve',<% } else if (htmlOption === 'swig' && !useServer ) {  %>
+      'swig:serve',<% } %><% if (cssOption === 'less') { %>
+      'less:serve',<% } %><% if (cssOption === 'sass') { %>
+      'sass:serve',<% } %><% if (cssOption === 'stylus') { %>
+      'stylus:serve',<% } %><% if (useDashboard) { %>
+      'dashboard:serve',<% } %><% if (useKss) { %>
+      'styleguide:serve',<% } %><% if (useJsdoc) { %>
+      'jsdoc:serve',<% } %>
+      'autoprefixer:serve'
     ]);
 
     if (target === 'nowatch') {
@@ -41,10 +41,10 @@ var taskConfig = function(grunt) {
     }
 
     grunt.task.run([<% if (useServer) { %>
-      'express:server',
+      'express:serve',
       'wait',
       'open'<% } else { %>
-      'browserSync:server'<% } %>
+      'browserSync:serve'<% } %>
     ]);<% if (useKss || useJsdoc || useDashboard) { %>
 
     if (target === 'docs') {

@@ -5,14 +5,14 @@
 var taskConfig = function(grunt) {
 
   grunt.config.set('jsdoc', {
-    server: {
+    serve: {
       src: ['<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.scripts %>}/**/*.js', '*.md'],
       dest: '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.docs.replace(/^_/, "") %>/jsdoc',
       options: {
         template: '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.docs %>/jsdoc/theme'
       }
     },
-    dist: {
+    build: {
       src: ['<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.scripts %>}/**/*.js', '*.md'],
       dest: '<%%= yeogurt.directories.destination %>/<%%= yeogurt.directories.docs.replace(/^_/, "") %>/jsdoc',
       options: {

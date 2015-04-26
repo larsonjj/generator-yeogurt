@@ -24,7 +24,7 @@ var taskConfig = function(grunt) {
       host: yeogurt.host,
       port: yeogurt.port
     },
-  server: {
+    serve: {
       options: {
         files: [
           '<%%= yeogurt.directories.source %>/*.{ico,png,txt,html}',
@@ -39,7 +39,7 @@ var taskConfig = function(grunt) {
         }
       }
     },
-    dist: {
+    build: {
       options: {
         background: false,
         server: '<%%= yeogurt.directories.destination %>'

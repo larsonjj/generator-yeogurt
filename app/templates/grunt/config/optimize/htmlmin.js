@@ -5,7 +5,7 @@
 var taskConfig = function(grunt) {
 
   grunt.config.set('htmlmin', {
-    dist: {
+    build: {
       options: {
         collapseBooleanAttributes: true,
         conservativeCollapse: true,

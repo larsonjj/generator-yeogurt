@@ -6,7 +6,7 @@
 var taskConfig = function(grunt) {
 
   grunt.config.set('handlebars', {
-    server: {
+    serve: {
       options: {
         namespace: 'JST'
       },
@@ -16,7 +16,7 @@ var taskConfig = function(grunt) {
         ]
       }
     },
-    dist: {
+    build: {
       options: {
         namespace: 'JST'
       },

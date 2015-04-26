@@ -10,7 +10,7 @@ var taskConfig = function(grunt) {
         env: 'development'
       }
     },<% } %><% if (!useServer) { %>
-    server: {
+    serve: {
       options: {
         cache: false
       },
@@ -23,7 +23,7 @@ var taskConfig = function(grunt) {
       ],
       ext: '.html'
     },<% } %>
-    dist: {
+    build: {
       options: {
         cache: false
       },

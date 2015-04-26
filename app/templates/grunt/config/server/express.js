@@ -9,14 +9,14 @@ var taskConfig = function(grunt) {
     options: {
       port: process.env.PORT || 9010
     },
-    server: {
+    serve: {
       options: {
         script: '<%%= yeogurt.directories.server %>/server.js',
         node_env: 'development',
         debug: true
       }
     },
-    dist: {
+    build: {
       options: {
         script: '<%%= yeogurt.directories.destination %>/<%%= yeogurt.directories.server %>/server.js',
         node_env: 'production'

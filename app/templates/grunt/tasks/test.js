@@ -15,8 +15,8 @@ var taskConfig = function(grunt) {
       grunt.config.set('connect.server.options.livereload', false);<% } %>
       grunt.task.run([
         'serve:nowatch',<% if (!useServer) { %>
-        'browserify:server',<% } else { %>
-        'express:server',<% } %>
+        'browserSync:serve',<% } else { %>
+        'express:serve',<% } %>
         'protractor'<% if (jsFramework !== 'backbone' || jsOption !== 'requirejs') { %>,
         'clean:tmp'<% } %>
       ]);
@@ -33,9 +33,9 @@ var taskConfig = function(grunt) {
     if (!target || target === 'client') {
       grunt.task.run([
         'eslint'<% if (useTesting) { %><% if (jsTemplate === 'underscore') { %>,
-        'jst:server'<% } else if (jsTemplate === 'handlebars') { %>,
-        'handlebars:server'<% } else if (jsTemplate === 'jade') { %>,
-        'jade:server'<% } %><% if (jsOption === 'browserify') { %>,
+        'jst:serve'<% } else if (jsTemplate === 'handlebars') { %>,
+        'handlebars:serve'<% } else if (jsTemplate === 'jade') { %>,
+        'jade:serve'<% } %><% if (jsOption === 'browserify') { %>,
         'browserify:test'<% } %><% } %>
       ]);<% if (useTesting) { %>
 

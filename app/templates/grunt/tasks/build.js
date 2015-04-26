@@ -6,17 +6,17 @@
 
 var taskConfig = function(grunt) {
   grunt.registerTask('build', 'Build a production ready version of your site.', [
-    'clean:dist',<% if (useServer) { %>
+    'clean:build',<% if (useServer) { %>
     'env:prod',<% } %>
-    'copy:dist',
-    'concat:dist',
+    'copy:build',
+    'concat:build',
     'concurrent:images',
     'concurrent:compile',<% if (jsFramework === 'angular') { %>
     'ngtemplates:main',<% } %><% if (jsFramework === 'angular') { %>
     'ngAnnotate',<% } %>
     'cssmin',
-    'autoprefixer:server',
-    'htmlmin:dist',
+    'autoprefixer:serve',
+    'htmlmin:build',
     'uglify',<% if (useKss || useJsdoc || useDashboard) { %>
     'concurrent:docs',<% } %>
     'clean:tmp'

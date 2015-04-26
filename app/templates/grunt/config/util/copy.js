@@ -5,7 +5,7 @@
 var taskConfig = function(grunt) {
 
   grunt.config.set('copy', {<% if (useKss && cssOption !== 'css') { %>
-    server: {
+    serve: {
       files: [{
          expand: true,
           cwd: '<%%= yeogurt.directories.source %>/',
@@ -17,7 +17,7 @@ var taskConfig = function(grunt) {
           ]
         }]
     },<% } %>
-    dist: {
+    build: {
       files: [{
         expand: true,
         cwd: '<%%= yeogurt.directories.source %>/',

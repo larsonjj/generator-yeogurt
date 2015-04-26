@@ -6,7 +6,7 @@
 var taskConfig = function(grunt) {
 
   grunt.config.set('ngAnnotate', {
-    dist: {
+    build: {
       files: [{
         expand: true,
         cwd: '<%%= yeogurt.directories.temporary %>/',

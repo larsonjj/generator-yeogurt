@@ -18,14 +18,14 @@ var taskConfig = function(grunt) {
       }
 
     },
-    server: {
+    serve: {
       files: {
         '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.docs.replace(/^_/, "") %>/styleguide': [
           '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.styles %>/*.*'
         ]
       }
     },
-    dist: {
+    build: {
       files: {
         '<%%= yeogurt.directories.destination %>/<%%= yeogurt.directories.docs.replace(/^_/, "") %>/styleguide': [
           '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.styles %>/*.*'

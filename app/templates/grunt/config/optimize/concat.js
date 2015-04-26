@@ -10,10 +10,10 @@ var taskConfig = function(grunt) {
   var yeogurt = grunt.config.get('yeogurt');
 
   grunt.config.set('concat', {
-    server: {
+    serve: {
       files: processConfig('temporary', yeogurt)
     },
-    dist: {
+    build: {
       files: processConfig('destination', yeogurt, 'styles')
     }
   });

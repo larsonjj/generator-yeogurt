@@ -5,7 +5,7 @@
 var taskConfig = function(grunt) {
 
   grunt.config.set('requirejs', {
-    dist: {
+    build: {
       options: {
         name: 'main',
         baseUrl: '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.scripts %>/',

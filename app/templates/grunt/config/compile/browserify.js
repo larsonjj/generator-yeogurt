@@ -8,7 +8,7 @@ var taskConfig = function(grunt) {
   var yeogurt = grunt.config.get('yeogurt');
 
   grunt.config.set('browserify', {
-    server: {
+    serve: {
       options: {<% if (jsFramework === 'react') { %>
         transform:  [require('grunt-react').browserify],<% } %>
         browserifyOptions: {
@@ -22,7 +22,7 @@ var taskConfig = function(grunt) {
         ]
       }
     },
-    dist: {
+    build: {
       options: {
         transform: [
           require('envify')<% if (jsFramework === 'react') { %>,

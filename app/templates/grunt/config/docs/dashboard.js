@@ -8,7 +8,7 @@ var taskConfig = function(grunt) {
   var yeogurt = grunt.config.get('yeogurt');
 
   grunt.config.set('dashboard', {
-    server: {
+    serve: {
       options: {
         dashTemplate: '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.docs %>/dashboard/template.hbs',
         logo: yeogurt.directories.images.replace(/^_/, '') + '/yeogurt-logo.png',
@@ -27,7 +27,7 @@ var taskConfig = function(grunt) {
         ]
       }
     },
-    dist: {
+    build: {
       options: {
         dashTemplate: '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.docs %>/dashboard/template.hbs',
         logo: yeogurt.directories.images.replace(/^_/, '') + '/yeogurt-logo.png',

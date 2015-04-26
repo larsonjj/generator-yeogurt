@@ -5,7 +5,7 @@
 var taskConfig = function(grunt) {
 
   grunt.config.set('cssmin', {
-    dist: {
+    build: {
       files: [{
         expand: true,
         cwd: '<%%= yeogurt.directories.destination %>/',

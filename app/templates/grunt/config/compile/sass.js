@@ -5,7 +5,7 @@
 var taskConfig = function(grunt) {
 
   grunt.config.set('sass', {
-    server: {
+    serve: {
       options: {
         precision: 10,
         outputStyle: 'nested',
@@ -18,7 +18,7 @@ var taskConfig = function(grunt) {
         '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.styles.replace(/^_/, "") %>/main.css': '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.styles %>/main.{scss,sass}'
       }
     },
-    dist: {
+    build: {
       options: {
         precision: 10,
         outputStyle: 'compressed',

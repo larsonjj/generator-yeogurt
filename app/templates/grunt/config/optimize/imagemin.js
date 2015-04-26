@@ -8,7 +8,7 @@ var svgo = require('imagemin-svgo');
 var taskConfig = function(grunt) {
 
   grunt.config.set('imagemin', {
-    dist: {
+    build: {
       options: {
         use: [pngquant({quality: '65-80', speed: 4}), svgo()]
       },
