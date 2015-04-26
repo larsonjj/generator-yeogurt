@@ -7,7 +7,7 @@ var vendorLoader = function vendorLoader(dir, config, type) {
   if (config.vendor) {
     for (var key in config.vendor) {
       // output file(s) to directory that maps to current vendor key
-      typeDir = config.directories[key] ? '/' + config.directories[key].replace(/^_/, '') + '/' : '/'
+      typeDir = config.directories[key] ? '/' + config.directories[key].replace(/^_/, '') + '/' : '/';
       for (var file in config.vendor[key]) {
         if (!type || type === key) {
           fileObj[config.directories[dir] +

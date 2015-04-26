@@ -12,44 +12,44 @@ var karmaConf = function(config) {
 
     // list of files / patterns to load in the browser
     files: [<% if (jsFramework !== 'react') { %>
-      'client/bower_components/jquery/dist/jquery.js',<% } %><% if (jsFramework === 'angular') { %>
-      'client/bower_components/angular/angular.js',
-      'client/bower_components/angular-mocks/angular-mocks.js',
-      'client/bower_components/angular-route/angular-route.js',<% } %><% if (jsFramework === 'backbone') { %>
-      'client/bower_components/underscore/underscore.js',
-      'client/bower_components/backbone/backbone.js',<% } %><% if (jsFramework === 'react') { %>
-      'client/app/vendor/phantomjs-shims.js',<% } %><% if (jsTemplate === 'handlebars') { %>
-      'client/bower_components/handlebars/handlebars.runtime.js',<% } else if (jsTemplate === 'jade') { %>'client/bower_components/jade/runtime.js',<% } %><% if (jsFramework === 'backbone') { %>
-      '.tmp/test/templates.js',<% } %><% if (jsOption === 'requirejs') { %>
-      'client/bower_components/requirejs/require.js',
-      'client/app/main.karma.js',
+      'node_modules/jquery/dist/jquery.js',<% } %><% if (jsFramework === 'angular') { %>
+      'node_modules/angular/angular.js',
+      'node_modules/angular-mocks/angular-mocks.js',
+      'node_modules/angular-route/angular-route.js',<% } %><% if (jsFramework === 'backbone') { %>
+      'node_modules/backbone/node_modules/underscore/underscore.js',
+      'node_modules/backbone/backbone.js',<% } %><% if (jsFramework === 'react') { %>
+      'src/_vendor/phantomjs-shims.js',<% } %><% if (jsTemplate === 'handlebars') { %>
+      'node_modules/handlebars/dist/handlebars.runtime.js',<% } else if (jsTemplate === 'jade') { %>'node_modules/jade/runtime.js',<% } %><% if (jsFramework === 'backbone') { %>
+      '.tmp/templates.js',<% } %><% if (jsOption === 'requirejs') { %>
+      'node_modules/requirejs/require.js',
+      'src/main.karma.js',
       {
-        pattern: 'client/bower_components/**/*.js',
+        pattern: 'node_modules/**/*.js',
         included: false
       }, {
-        pattern: 'client/app/**/*.js',
+        pattern: 'src/**/*.js',
         included: false
       }, {
-        pattern: 'client/app/**/*.spec.js',
+        pattern: 'src/**/*.spec.js',
         included: false
       },
       // Karma adapter to run tests (must be loaded last)
       'node_modules/karma-requirejs/lib/adapter.js',<% } else if (jsOption === 'browserify') { %>
-      '.tmp/test/bundle.js'<% } else { %><% if (jsFramework === 'angular') { %>
-      'client/app/main.js',
-      'client/app/**/!(main).js',
-      'client/app/**/*.html'<% } %><% if (jsFramework === 'backbone') { %>
+      '.tmp/bundle.js'<% } else { %><% if (jsFramework === 'angular') { %>
+      'src/main.js',
+      'src/**/!(main).js',
+      'src/**/*.html'<% } %><% if (jsFramework === 'backbone') { %>
       // Load all scripts except ones that require a specific order (ie. 'main' and 'routes')
-      'client/app/**/!(main|routes<% if (jsFramework === 'backbone' && jsOption === 'none') { %>|layouts)/*<% } else { %>)<% } %>.js',<% if (jsFramework === 'backbone' && jsOption === 'none') { %>
-      'client/app/**/layouts/**/*.js',<% } %>
-      'client/app/routes.js',<% } %><% if (jsFramework !== 'angular') { %>
-      'client/app/main.js',
-      'client/app/**/*.spec.js'<% } %><% } %>
+      'src/**/!(main|routes<% if (jsFramework === 'backbone' && jsOption === 'none') { %>|layouts)/*<% } else { %>)<% } %>.js',<% if (jsFramework === 'backbone' && jsOption === 'none') { %>
+      'src/**/layouts/**/*.js',<% } %>
+      'src/routes.js',<% } %><% if (jsFramework !== 'angular') { %>
+      'src/main.js',
+      'src/**/*.spec.js'<% } %><% } %>
     ],
 
     // list of files to exclude
     exclude: [<% if (jsOption === 'requirejs') { %>
-      'client/app/main.js'
+      'src/main.js'
     <% } %>],
 
     // test results reporter to use

@@ -38,7 +38,7 @@ var testingFiles = function testingFiles() {
       }
     }
     else if (this.jsFramework === 'react') {
-      this.template('test/karma/phantomjs-shims.js', 'src/vendor/phantomjs-shims.js');
+      this.template('test/karma/phantomjs-shims.js', 'src/_vendor/phantomjs-shims.js');
 
       // Router
       this.template('src/react/routes/__tests__/routes.spec.js', 'src/__tests__/routes.spec.js');

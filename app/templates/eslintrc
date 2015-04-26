@@ -33,6 +33,7 @@
     "no-underscore-dangle": 0,
     "no-use-before-define": 1,<% if (testFramework === 'mocha') { %>
     "no-unused-expressions": 0,<% } %>
+    "no-comma-dangle": 0,
     "func-names": 0,
     "no-new": false,
     "new-cap": 0,
