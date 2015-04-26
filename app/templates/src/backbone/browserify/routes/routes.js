@@ -1,6 +1,6 @@
 'use strict';
 
-var IndexView = require('./_screens/index/index');
+var IndexView = require('../_screens/index/index');
 
 var Router = Backbone.Router.extend({
 

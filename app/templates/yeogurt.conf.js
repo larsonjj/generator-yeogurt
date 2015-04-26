@@ -33,11 +33,9 @@ var yeogurtConfig = {
     screens: '_screens',<% } %>
     modules: '_modules',
     layouts: '_layouts',
-    images: '_images',<% if (singlePageApplication) { %>
-    styles: '/',<% } else { %>
-    styles: '<% if (cssOption !== 'css') { %>_<% } %>styles',<% } %><% if (singlePageApplication) { %>
-    scripts: '/',<% } else { %>
-    scripts: '<% if (jsOption !== 'none') { %>_<% } %>scripts',<% } %>
+    images: '_images',
+    styles: '<% if (cssOption !== 'css') { %>_<% } %>styles',
+    scripts: '<% if (jsOption !== 'none') { %>_<% } %>scripts',
     docs: '_autodocs'
   },
 

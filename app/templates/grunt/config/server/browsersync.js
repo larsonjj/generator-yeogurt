@@ -34,7 +34,7 @@ var taskConfig = function(grunt) {
           '<%%= yeogurt.directories.source %>/**/*.{png,jpg,jpeg,gif,webp,svg}'
         ],
         server: {
-          baseDir: [yeogurt.directories.temporary],
+          baseDir: [yeogurt.directories.temporary, yeogurt.directories.source],
           routes: routeObj
         }
       }

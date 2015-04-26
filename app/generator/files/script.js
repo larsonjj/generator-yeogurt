@@ -23,20 +23,20 @@ var scriptFiles = function scriptFiles() {
 
   if (this.jsFramework === 'backbone') {
     if (this.jsOption === 'requirejs') {
-      this.template('src/backbone/requirejs/main/main.js', 'src/main.js');
-      this.template('src/backbone/requirejs/routes/routes.js', 'src/routes.js');
+      this.template('src/backbone/requirejs/main/main.js', 'src/_scripts/main.js');
+      this.template('src/backbone/requirejs/routes/routes.js', 'src/_scripts/routes.js');
       this.template('src/backbone/requirejs/index/index.js', 'src/_screens/index/index.js');
     }
 
     if (this.jsOption === 'browserify') {
-      this.template('src/backbone/browserify/main/main.js', 'src/main.js');
-      this.template('src/backbone/browserify/routes/routes.js', 'src/routes.js');
+      this.template('src/backbone/browserify/main/main.js', 'src/_scripts/main.js');
+      this.template('src/backbone/browserify/routes/routes.js', 'src/_scripts/routes.js');
       this.template('src/backbone/browserify/index/index.js', 'src/_screens/index/index.js');
     }
 
     if (this.jsOption === 'none') {
-      this.template('src/backbone/js/main/main.js', 'src/main.js');
-      this.template('src/backbone/js/routes/routes.js', 'src/routes.js');
+      this.template('src/backbone/js/main/main.js', 'src/_scripts/main.js');
+      this.template('src/backbone/js/routes/routes.js', 'src/_scripts/routes.js');
       this.template('src/backbone/js/index/index.js', 'src/_screens/index/index.js');
     }
 
@@ -52,13 +52,13 @@ var scriptFiles = function scriptFiles() {
 
   }
   else if (this.jsFramework === 'react') {
-    this.template('src/react/routes/routes.js', 'src/routes.js');
+    this.template('src/react/routes/routes.js', 'src/_scripts/routes.js');
 
-    this.template('src/react/main/main.js', 'src/main.js');
-    this.template('src/react/main/main.actions.js', 'src/main.actions.js');
-    this.template('src/react/main/main.constants.js', 'src/main.constants.js');
-    this.template('src/react/main/main.store.js', 'src/main.store.js');
-    this.template('src/react/main/main.dispatcher.js', 'src/main.dispatcher.js');
+    this.template('src/react/main/main.js', 'src/_scripts/main.js');
+    this.template('src/react/main/main.actions.js', 'src/_scripts/main.actions.js');
+    this.template('src/react/main/main.constants.js', 'src/_scripts/main.constants.js');
+    this.template('src/react/main/main.store.js', 'src/_scripts/main.store.js');
+    this.template('src/react/main/main.dispatcher.js', 'src/_scripts/main.dispatcher.js');
 
     // Stores
     this.template('src/react/lib/store/store.js', 'src/_lib/store.js');
@@ -89,7 +89,7 @@ var scriptFiles = function scriptFiles() {
     }
   }
   else if (this.jsFramework === 'angular') {
-    this.template('src/angular/main/main.js', 'src/main.js');
+    this.template('src/angular/main/main.js', 'src/_scripts/main.js');
 
     // Modules
     this.template('src/angular/index/index.html', 'src/_screens/index/index.html');

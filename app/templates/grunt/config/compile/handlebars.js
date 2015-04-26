@@ -11,7 +11,7 @@ var taskConfig = function(grunt) {
         namespace: 'JST'
       },
       files: {
-        '<%%= yeogurt.directories.temporary %>/templates.js': [
+        '<%%= yeogurt.directories.temporary %>/scripts/templates.js': [
           '<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.screens %>}/**/*.hbs'
         ]
       }
@@ -21,21 +21,11 @@ var taskConfig = function(grunt) {
         namespace: 'JST'
       },
       files: {
-        '<%%= yeogurt.directories.destination %>/templates.js': [
+        '<%%= yeogurt.directories.destination %>/scripts/templates.js': [
           '<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.screens %>}/**/*.hbs'
         ]
       }
-    }<% if (jsFramework === 'backbone') { %>,
-    test: {
-      options: {
-        namespace: 'JST'
-      },
-      files: {
-        '<%%= yeogurt.directories.temporary %>/templates.js': [
-          '<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.screens %>}/**/*.hbs'
-        ]
-      }
-    }<% } %>
+    }
   });
 
 };

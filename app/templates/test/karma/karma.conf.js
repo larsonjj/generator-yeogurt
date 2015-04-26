@@ -20,7 +20,7 @@ var karmaConf = function(config) {
       'node_modules/backbone/backbone.js',<% } %><% if (jsFramework === 'react') { %>
       'src/_vendor/phantomjs-shims.js',<% } %><% if (jsTemplate === 'handlebars') { %>
       'node_modules/handlebars/dist/handlebars.runtime.js',<% } else if (jsTemplate === 'jade') { %>'node_modules/jade/runtime.js',<% } %><% if (jsFramework === 'backbone') { %>
-      '.tmp/templates.js',<% } %><% if (jsOption === 'requirejs') { %>
+      '.tmp/scripts/templates.js',<% } %><% if (jsOption === 'requirejs') { %>
       'node_modules/requirejs/require.js',
       'src/main.karma.js',
       {

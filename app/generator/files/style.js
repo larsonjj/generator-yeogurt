@@ -7,32 +7,30 @@
 var styleFiles = function styleFiles() {
   // src/styles
 
-  var stylesFolder = this.singlePageApplication ? '' : '_styles';
-
   if (this.cssOption !== 'css') {
     if (this.useKss) {
-      this.template('src/styles/styleguide.md', 'src/' + stylesFolder + '/styleguide.md');
+      this.template('src/styles/styleguide.md', 'src/_styles/styleguide.md');
     }
     if (this.cssOption === 'less') {
-      this.template('src/styles/main.less', 'src/' + stylesFolder + '/main.less');
+      this.template('src/styles/main.less', 'src/_styles/main.less');
     }
     if (this.cssOption === 'sass') {
       if (this.sassSyntax === 'sass') {
-        this.template('src/styles/main.sass', 'src/' + stylesFolder + '/main.sass');
+        this.template('src/styles/main.sass', 'src/_styles/main.sass');
       }
       else {
-        this.template('src/styles/main.scss', 'src/' + stylesFolder + '/main.scss');
+        this.template('src/styles/main.scss', 'src/_styles/main.scss');
       }
     }
     if (this.cssOption === 'stylus') {
-      this.template('src/styles/main.styl', 'src/' + stylesFolder + '/main.styl');
+      this.template('src/styles/main.styl', 'src/_styles/main.styl');
     }
   }
   else {
     if (this.useKss) {
-      this.template('src/styles/styleguide.md', 'src/' + stylesFolder + '/styleguide.md');
+      this.template('src/styles/styleguide.md', 'src/styles/styleguide.md');
     }
-    this.template('src/styles/main.css', 'src/' + stylesFolder + '/main.css');
+    this.template('src/styles/main.css', 'src/styles/main.css');
   }
 };
 
