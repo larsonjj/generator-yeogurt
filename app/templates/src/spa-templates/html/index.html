@@ -1,14 +1,4 @@
-<!DOCTYPE html><% if (useDashboard) { %>
-<!-- [dash:data]
-  {
-    "status": "development",
-    "category": "page",
-    "label": "Home",
-    "link": "../index.html"
-  }
-  [/dash] -->
-<% } %>
-<!--[if lte IE 8]><html class="lt-ie9 <% if (jsFramework === 'angular') { %>ng-app="<%= projectName %>"<% } %> no-js" lang="en"><![endif]-->
+<!DOCTYPE html><!--[if lte IE 8]><html class="lt-ie9 <% if (jsFramework === 'angular') { %>ng-app="<%= projectName %>"<% } %> no-js" lang="en"><![endif]-->
 <!--[if gt IE 8]><!--><html lang="en" <% if (jsFramework === 'angular') { %>ng-app="<%= projectName %>"<% } %> class="no-js"><!--<![endif]-->
   <head>
     <meta charset="utf-8"/>
@@ -18,89 +8,24 @@
     <meta name="author" content=""/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <!-- build:css(client) app/global.css -->
-      <!-- bower:css -->
-      <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css" />
-      <!-- endbower -->
-    <!-- endbuild --><% if (cssOption === 'css') { %>
-
-    <!-- build:css(client) app/main.css -->
-      <!-- [injector:css] -->
-      <!-- [endinjector] -->
-    <link rel="stylesheet" href="/app/main.css" />
-    <!-- endbuild --><% } else { %>
-
-    <link rel="stylesheet" href="/app/main.css" /><% } %>
-
-    <!-- build:js(client) app/modernizr.js -->
-    <script src="/bower_components/modernizr/modernizr.js"></script>
-    <!-- endbuild -->
-
-    <!-- HTML5 and consolelog shims for IE8 support -->
-    <!-- build:js(client) app/lt-ie9.js -->
-    <!--[if lt IE 9]>
-    <script src="/bower_components/consolelog/consolelog.js"></script>
-    <script src="/bower_components/html5shiv/dist/html5shiv-printshiv.js"></script>
-    <![endif]-->
-    <!-- endbuild -->
+    <link rel="stylesheet" href="global.css"/>
+    <link rel="stylesheet" href="main.css"/>
   </head>
   <body>
-    <!--[if lt IE 8]>
-    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]--><% if (!singlePageApplication) { %>
-
-    <div class="main-container">
-      <div class="yeogurt-info">
-        <h1>Welcome to Yeogurt!</h1>
-        <p>
-          Take a look at the <a href="https://github.com/larsonjj/generator-yeogurt#yeogurt-generator---">documentation</a> and start mixing up something awesome.
-        </p>
-        <p>
-          <img src="/images/yeogurt-swirl.png" width="75px" class="logo" />
-        </p><% if (useDashboard || useJsdoc || useKss) { %>
-        <p class="links"><% if (useKss) { %>
-          <a href="/autodocs/styleguide/index.html">Styleguide</a><% } %><% if (useJsdoc) { %>
-          <a href="/autodocs/jsdoc/index.html">API</a><% } %>
-        </p><% } %>
-      </div>
-    </div>
-    <code class="version">v<%= pkg.version %></code><% } else if (singlePageApplication) { %>
+    <!--[if lte IE 8]>
+    <p class="browsehappy">
+      You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+    </p>
+    <![endif]-->
 
     <!-- Application loads here -->
-    <div id="app-wrapper" <% if (jsFramework === 'angular') { %>ng-view<% } %>></div><% } %><% if (jsFramework === 'react') { %>
+    <div id="app-wrapper" <% if (jsFramework === 'angular') { %>ng-view<% } %>></div>
 
-    <!-- build:js(client) app/lt-ie9.js -->
-    <!--[if lt IE 9]>
-    <script src="/bower_components/es5-shim/es5-shim.js"></script>
-    <script src="/bower_components/es5-shim/es5-sham.js"></script>
-    <![endif]-->
-    <!-- endbuild --><% } %>
+    <script src="global.js"></script><% if (singlePageApplication && jsFramework !== 'react' && jsFramework !== 'angular') { %>
+    <script src="templates.js"></script><% } %><% if  (jsOption === 'requirejs') { %>
 
-    <!-- build:js(<% if (jsFramework === 'backbone') { %>{client,.tmp}<% } else { %>client<% } %>) app/global.js -->
-      <!-- bower:js -->
-      <script src="/bower_components/jquery/dist/jquery.js"></script><% if (jsFramework === 'backbone') { %>
-      <script src="/bower_components/underscore/underscore.js"></script>
-      <script src="/bower_components/backbone/backbone.js"></script><% } %><% if (jsFramework === 'angular') { %>
-      <script src="/bower_components/angular/angular.js"></script>
-      <script src="/bower_components/angular-route/angular-route.js"></script>
-      <script src="/bower_components/json3/lib/json3.js"></script><% } %><% if (jsTemplate === 'handlebars') { %>
-      <script src="/bower_components/handlebars/handlebars.runtime.js"></script><% } else if (jsTemplate === 'jade') { %>
-      <script src="/bower_components/jade/runtime.js"></script><% } %>
-      <!-- endbower --><% if (singlePageApplication && jsFramework !== 'react' && jsFramework !== 'angular') { %>
-    <script src="/app/templates.js"></script><% } %>
-    <!-- endbuild --><% if (jsOption === 'requirejs') { %>
-
-    <script data-main="/app/main", src="/bower_components/requirejs/require.js"></script><% } else if (jsOption === 'browserify') { %>
-
-    <script src="/app/main.js"></script><% } else { %>
-
-    <!-- build:js(client) app/main.js --><% if (jsFramework !== 'angular') { %>
-      <!-- [injector:js] -->
-      <!-- [endinjector] -->
-    <script src="/app/routes.js"></script><% } %>
-    <script src="/app/main.js"></script><% if (jsFramework === 'angular') { %>
-    <!-- [injector:js] -->
-    <!-- [endinjector] --><% } %>
-    <!-- endbuild --><% } %>
+    <script data-main="main", src="node_modules/requirejs/require.js"></script><% } else { %><% if (jsFramework === 'backbone' && jsOption === 'none') { %>
+    <script src="routes.js"></script><% } %>
+    <script src="main.js"></script><% } %>
   </body>
 </html>

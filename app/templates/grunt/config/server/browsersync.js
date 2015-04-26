@@ -12,7 +12,7 @@ var taskConfig = function(grunt) {
   // Ex. _images -> images
   var routeObj = {};
   for (var dir in yeogurt.directories) {
-    if (yeogurt.directories[dir].match(/^_/)) {
+    if (yeogurt.directories[dir].match(/^_/) || yeogurt.directories[dir] === '/') {
       routeObj['/' + yeogurt.directories[dir].replace(/^_/, '')] = yeogurt.directories.source + '/' + yeogurt.directories[dir];
     }
   }
@@ -24,14 +24,14 @@ var taskConfig = function(grunt) {
       host: yeogurt.host,
       port: yeogurt.port
     },
-    server: {
+  server: {
       options: {
         files: [
-          '<%%= yeogurt.directories.source %>/*.{ico,png,txt}',
+          '<%%= yeogurt.directories.source %>/*.{ico,png,txt,html}',
           '<%%= yeogurt.directories.temporary %>/**/*.html',
           '<%%= yeogurt.directories.temporary %>/**/*.{css,ttf,otf,woff,svg,eot}',
           '<%%= yeogurt.directories.temporary %>/**/*.js',
-          '<%%= yeogurt.directories.source %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
+          '<%%= yeogurt.directories.source %>/**/*.{png,jpg,jpeg,gif,webp,svg}'
         ],
         server: {
           baseDir: [yeogurt.directories.temporary],

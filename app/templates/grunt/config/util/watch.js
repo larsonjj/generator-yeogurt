@@ -18,7 +18,6 @@ var taskConfig = function(grunt) {
         interrupt: true
       },
       tasks: [
-        'wiredep',
         'serve:nowatch'
       ]
     },<% if (htmlOption === 'jade' && !useServer) { %>
@@ -36,7 +35,6 @@ var taskConfig = function(grunt) {
         '<%%= yeogurt.directories.source %>/**/+(<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.layouts %>)/*.jade'
       ],
       tasks: [
-        'injector:jade',
         'jade:server'
       ]
     },<% } %><% if (htmlOption === 'swig' && !useServer) { %>
@@ -54,7 +52,6 @@ var taskConfig = function(grunt) {
         '<%%= yeogurt.directories.source %>/**/+(<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.layouts %>)/*.swig'
       ],
       tasks: [
-        'injector:swig',
         'swig:server'
       ]
     },<% } %><% if (jsFramework === 'backbone') { %>
@@ -69,7 +66,6 @@ var taskConfig = function(grunt) {
     sass: {
       files: ['<%%= yeogurt.directories.source %>/**/*.<% if (useKss) { %>{scss,sass,md}<% } else { %>{scss,sass}<% } %>'],
       tasks: [
-        'injector:sass',
         'sass:server',
         'autoprefixer:server'
       ]
@@ -77,7 +73,6 @@ var taskConfig = function(grunt) {
     less: {
       files: ['<%%= yeogurt.directories.source %>/**/*.<% if (useKss) { %>{less,md}<% } else { %>less<% } %>'],
       tasks: [
-        'injector:less',
         'less:server',
         'autoprefixer:server'
       ]
@@ -85,7 +80,6 @@ var taskConfig = function(grunt) {
     stylus: {
       files: ['<%%= yeogurt.directories.source %>/**/*.<% if (useKss) { %>{styl,md}<% } else { %>styl<% } %>'],
       tasks: [
-        'injector:stylus',
         'stylus:server',
         'autoprefixer:server'
       ]
@@ -95,18 +89,9 @@ var taskConfig = function(grunt) {
         '<%%= yeogurt.directories.source %>/**/*.css'
       ],
       tasks: [
-        'injector:css',
         'autoprefixer:server'
       ]
-    },<% if (jsOption === 'none') { %>
-    injectJs: {
-      files: [
-        '<%%= yeogurt.directories.source %>/**/*.js',
-        '!<%%= yeogurt.directories.source %>/{main,app}.js'<% if (jsFramework === 'backbone') { %>,
-        '!<%%= yeogurt.directories.source %>/routes.js'<% } %>
-      ],
-      tasks: ['injector:app']
-    },<% } %>
+    },
     js: {
       files: [<% if (jsFramework === 'angular') { %>
         '<%%= yeogurt.directories.source %>/**/*.js',
@@ -162,9 +147,7 @@ var taskConfig = function(grunt) {
         '<%%= yeogurt.directories.server %>/**/*.swig'<% } %><% if (htmlOption === 'jade') { %>,
         '<%%= yeogurt.directories.server %>/**/*.jade'<% } %>
       ],
-      tasks: [<% if (htmlOption === 'swig') { %>
-        'injector:swig',<% } %><% if (htmlOption === 'jade') { %>
-        'injector:jade',<% } %>
+      tasks: [
         'express:server',
         'wait'
       ],

@@ -1,15 +1,17 @@
+'use strict';
+
 var yeogurtConfig = {
 
   // Site information
-  title: "<%= projectName %>",
-  description: "A new Yeogurt site.",
+  title: '<%= projectName %>',
+  description: 'A new Yeogurt site.',
 
   // Local server settings
-  host: "127.0.0.1",
-  port: "9010",
+  host: '127.0.0.1',
+  port: '9010',
 
   // URL that site will be served from
-  baseUrl: "/",
+  baseUrl: '/',
 
   // Directories
   // Relative to project root and used within Grunt tasks
@@ -20,20 +22,23 @@ var yeogurtConfig = {
   directories: {
 
     // Source directory: author files location
-    source: "src",
+    source: 'src',
 
     // Destination directory: build target location
-    destination: "build",
+    destination: 'build',
 
     // Temporary directory: temporary development files location
-    temporary: ".tmp",
+    temporary: '.tmp',<% if (singlePageApplication) { %>
 
-    modules: "_modules",
-    layouts: "_layouts",
-    images: "_images",
-    styles: "<% if (cssOption !== 'css') { %>_<% } %>styles",
-    scripts: "<% if (jsOption !== 'none') { %>_<% } %>scripts",
-    docs: "_autodocs"
+    screens: '_screens',<% } %>
+    modules: '_modules',
+    layouts: '_layouts',
+    images: '_images',<% if (singlePageApplication) { %>
+    styles: '/',<% } else { %>
+    styles: '<% if (cssOption !== 'css') { %>_<% } %>styles',<% } %><% if (singlePageApplication) { %>
+    scripts: '/',<% } else { %>
+    scripts: '<% if (jsOption !== 'none') { %>_<% } %>scripts',<% } %>
+    docs: '_autodocs'
   },
 
   // Vendor/Third-Party scripts and styles
@@ -43,24 +48,31 @@ var yeogurtConfig = {
       global: {
         // Input script files relative to project root
         input: [
-          "node_modules/jquery/dist/jquery.js"
+          'node_modules/jquery/dist/jquery.js',<% if (jsFramework === 'backbone') { %>
+          'node_modules/backbone/node_modules/underscore/underscore.js',
+          'node_modules/backbone/backbone.js',<% } %><% if (jsFramework === 'angular') { %>
+          'node_modules/angular/angular.js',
+          'node_modules/angular-route/angular-route.js',
+          'node_modules/json3/lib/json3.js',<% } %><% if (jsTemplate === 'handlebars') { %>
+          'node_modules/handlebars/dist/handlebars.runtime.js',<% } else if (jsTemplate === 'jade') { %>
+          'node_modules/jade/runtime.js'<% } %>
         ],
         // Output script file relative to build target
-        // "grunt serve" -> <temporary directory>/<scripts directory>/global.js
-        // "grunt build" -> <destination directory>/<scripts directory>/global.js
-        output: "global.js"
+        // 'grunt serve' -> <temporary directory>/<scripts directory>/global.js
+        // 'grunt build' -> <destination directory>/<scripts directory>/global.js
+        output: 'global.js'
       }
     },
     styles: {
       global: {
         // Input style files relative to project root
         input: [
-          "node_modules/normalize.css/normalize.css"
+          'node_modules/normalize.css/normalize.css'
         ],
         // Output style file relative to build target
-        // "grunt serve" -> <temporary directory>/<styles directory>/global.js
-        // "grunt build" -> <destination directory>/<styles directory>/global.js
-        output: "global.css"
+        // 'grunt serve' -> <temporary directory>/<styles directory>/global.js
+        // 'grunt build' -> <destination directory>/<styles directory>/global.js
+        output: 'global.css'
       }
     }
   }

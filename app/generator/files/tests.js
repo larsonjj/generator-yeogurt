@@ -17,7 +17,7 @@ var testingFiles = function testingFiles() {
           'src/backbone/requirejs/routes/__tests__/routes.spec.js', 'src/__tests__/routes.spec.js'
         );
         this.template(
-          'src/backbone/requirejs/index/__tests__/index.spec.js', 'src/index/__tests__/index.spec.js'
+          'src/backbone/requirejs/index/__tests__/index.spec.js', 'src/_screens/index/__tests__/index.spec.js'
         );
       }
 
@@ -26,14 +26,14 @@ var testingFiles = function testingFiles() {
           'src/backbone/browserify/routes/__tests__/routes.spec.js', 'src/__tests__/routes.spec.js'
         );
         this.template(
-          'src/backbone/browserify/index/__tests__/index.spec.js', 'src/index/__tests__/index.spec.js'
+          'src/backbone/browserify/index/__tests__/index.spec.js', 'src/_screens/index/__tests__/index.spec.js'
         );
       }
 
       if (this.jsOption === 'none') {
         this.template('src/backbone/js/routes/__tests__/routes.spec.js', 'src/__tests__/routes.spec.js');
         this.template(
-          'src/backbone/js/index/__tests__/index.spec.js', 'src/index/__tests__/index.spec.js'
+          'src/backbone/js/index/__tests__/index.spec.js', 'src/_screens/index/__tests__/index.spec.js'
         );
       }
     }
@@ -44,21 +44,21 @@ var testingFiles = function testingFiles() {
       this.template('src/react/routes/__tests__/routes.spec.js', 'src/__tests__/routes.spec.js');
 
       // Components
-      this.template('src/react/index/__tests__/index.spec.js', 'src/index/__tests__/index.spec.js');
-      this.template('src/react/layouts/__tests__/base.spec.js', 'src/layouts/__tests__/base.spec.js');
+      this.template('src/react/index/__tests__/index.spec.js', 'src/_screens/index/__tests__/index.spec.js');
+      this.template('src/react/layouts/__tests__/base.spec.js', 'src/_layouts/__tests__/base.spec.js');
 
       this.template('src/react/main/__tests__/main.spec.js', 'src/__tests__/main.spec.js');
 
       this.template(
-        'src/react/modules/link/__tests__/link.spec.js', 'src/modules/__tests__/link.spec.js'
+        'src/react/modules/link/__tests__/link.spec.js', 'src/_modules/__tests__/link.spec.js'
       );
 
       // Stores
-      this.template('src/react/lib/store/__tests__/store.spec.js', 'src/lib/__tests__/store.spec.js');
+      this.template('src/react/lib/store/__tests__/store.spec.js', 'src/_lib/__tests__/store.spec.js');
 
     }
     else if (this.jsFramework === 'angular') {
-      this.template('src/angular/index/__tests__/index.spec.js', 'src/index/__tests__/index.spec.js');
+      this.template('src/angular/index/__tests__/index.spec.js', 'src/_screens/index/__tests__/index.spec.js');
     }
   }
 
