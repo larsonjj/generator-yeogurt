@@ -11,7 +11,8 @@ var taskConfig = function(grunt) {
     target: [
       'Gruntfile.js',
       'grunt/**/*.js',
-      '<%%= yeogurt.directories.source %>/**/*.js'
+      '<%%= yeogurt.directories.source %>/**/*.js',
+      '!<%%= yeogurt.directories.source %>/**/<%%= yeogurt.directories.docs %>/**/*.js'
     ]
   });
 

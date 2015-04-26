@@ -10,7 +10,7 @@ var rootFiles = function rootFiles() {
   // root (/)
   this.template('Gruntfile.js', 'Gruntfile.js');
   this.template('_package.json', 'package.json');
-  this.template('_config.json', 'config.json');
+  this.template('yeogurt.conf.js', 'yeogurt.conf.js');
   this.template('README.md', 'README.md');
 
   if (this.versionControl === 'svn') {

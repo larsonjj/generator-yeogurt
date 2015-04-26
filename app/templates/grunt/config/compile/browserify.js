@@ -10,7 +10,7 @@ var taskConfig = function(grunt) {
   grunt.config.set('browserify', {
     server: {
       options: {<% if (jsFramework === 'react') { %>
-        transform:  [ require('grunt-react').browserify ],<% } %>
+        transform:  [require('grunt-react').browserify],<% } %>
         browserifyOptions: {
           debug: true
         },
@@ -24,7 +24,7 @@ var taskConfig = function(grunt) {
     },
     dist: {
       options: {
-        transform:  [
+        transform: [
           require('envify')<% if (jsFramework === 'react') { %>,
           require('grunt-react').browserify<% } %>
         ],
@@ -35,7 +35,7 @@ var taskConfig = function(grunt) {
           // Minify code
           return b.plugin('minifyify', {
             map: 'main.js.map',
-            output: yeogurt.directories.destination + '/' + yeogurt.directories.scripts + '/main.js.map'
+            output: yeogurt.directories.destination + '/' + yeogurt.directories.scripts.replace(/^_/, '') + '/main.js.map'
           });
         }
       },
@@ -47,7 +47,7 @@ var taskConfig = function(grunt) {
     },<% if (useTesting) { %>
     test: {
       options: {<% if (jsFramework === 'react') { %>
-        transform:  [ require('grunt-react').browserify ],<% } %>
+        transform:  [require('grunt-react').browserify],<% } %>
         browserifyOptions: {
           debug: true
         },

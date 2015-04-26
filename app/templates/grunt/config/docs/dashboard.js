@@ -11,7 +11,7 @@ var taskConfig = function(grunt) {
     server: {
       options: {
         dashTemplate: '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.docs %>/dashboard/template.hbs',
-        logo: yeogurt.directories.images + '/yeogurt-logo.png',
+        logo: yeogurt.directories.images.replace(/^_/, '') + '/yeogurt-logo.png',
         generatedDir: '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.docs.replace(/^_/, "") %>/dashboard/generated',
         assets: [{
           cwd: '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.docs %>/dashboard/',
@@ -29,8 +29,8 @@ var taskConfig = function(grunt) {
     },
     dist: {
       options: {
-        dashTemplate: '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.docs.replace(/^_/, "") %>/dashboard/template.hbs',
-        logo: yeogurt.directories.images + '/yeogurt-logo.png',
+        dashTemplate: '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.docs %>/dashboard/template.hbs',
+        logo: yeogurt.directories.images.replace(/^_/, '') + '/yeogurt-logo.png',
         generatedDir: '<%%= yeogurt.directories.destination %>/<%%= yeogurt.directories.docs.replace(/^_/, "") %>/dashboard/generated',
         assets: [{
           cwd: '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.docs %>/dashboard/',

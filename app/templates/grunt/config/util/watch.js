@@ -139,7 +139,7 @@ var taskConfig = function(grunt) {
     },<% } %>
     livereload: {
       options: {
-        livereload: <% if (!useServer) { %>'<%%= connect.options.livereload %>'<% } else { %>true<% } %>
+        livereload: <% if (!useServer) { %>35729<% } else { %>true<% } %>
       },
       files: [
         '<%%= yeogurt.directories.source %>/*.{ico,png,txt}',<% if (htmlOption === 'swig' || htmlOption === 'jade') { %>
@@ -173,8 +173,8 @@ var taskConfig = function(grunt) {
         nospawn: true //Without this option specified express won't be reloaded
       }
     }<% } %>
-  };
-  <% if (useKss || useJsdoc || useDashboard) { %>
+  };<% if (useKss || useJsdoc || useDashboard) { %>
+
   // Documentation specific configuration
   var docsConfig = {<% if (htmlOption === 'jade' && useDashboard) { %>
     jade: {
@@ -248,8 +248,7 @@ var taskConfig = function(grunt) {
       return _.isArray(a) ? a.concat(b) : undefined;
     }));
     grunt.task.run('watch');
-  });
-  <% } %>
+  });<% } %>
 
 };
 

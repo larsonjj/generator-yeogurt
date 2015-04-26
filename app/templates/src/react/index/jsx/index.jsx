@@ -21,8 +21,8 @@ var IndexComponent = React.createClass({
               <img src="/images/yeogurt-swirl.png" width="75px" className="logo" />
             </p><% if (useJsdoc || useKss) { %>
             <p className="links"><% if (useKss) { %>
-              <a href="/docs/styleguide/index.html">Styleguide</a><% } %><% if (useJsdoc) { %>
-              <a href="/docs/jsdoc/index.html">API</a><% } %>
+              <a href="/autodocs/styleguide/index.html">Styleguide</a><% } %><% if (useJsdoc) { %>
+              <a href="/autodocs/jsdoc/index.html">API</a><% } %>
             </p><% } %>
           </div>
         </div>

@@ -7,6 +7,12 @@
 var taskFiles = function taskFiles() {
 
   // ========
+  // Helpers
+  // ========
+
+  this.template('grunt/helpers/vendor-loader.js', 'grunt/helpers/vendor-loader.js');
+
+  // ========
   // Util
   // ========
 

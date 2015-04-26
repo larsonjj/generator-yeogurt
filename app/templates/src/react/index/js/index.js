@@ -38,10 +38,10 @@ var IndexComponent = React.createClass({
                 className: 'links'
               },<% if (useKss) { %>
               DOM('a', {
-                href: '/docs/styleguide/index.html'
+                href: '/autodocs/styleguide/index.html'
               }, 'Styleguide')<% } %><% if (useJsdoc) { %>,
               DOM('a', {
-                href: '/docs/jsdoc/index.html'
+                href: '/autodocs/jsdoc/index.html'
               }, 'API')<% } %>
             )<% } %>
           )

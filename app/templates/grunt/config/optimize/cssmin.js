@@ -5,8 +5,15 @@
 var taskConfig = function(grunt) {
 
   grunt.config.set('cssmin', {
-    options: {
-      sourceMap: true
+    dist: {
+      files: [{
+        expand: true,
+        cwd: '<%%= yeogurt.directories.destination %>/',
+        src: [
+          '**/*.css'
+        ],
+        dest: '<%%= yeogurt.directories.destination %>/'
+      }]
     }
   });
 

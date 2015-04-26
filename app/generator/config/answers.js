@@ -9,13 +9,6 @@ var _ = require('lodash');
 
 var answersConfig = function answersConfig() {
 
-  // Determine if feature exists within a given object
-  // var hasFeature = function(feat, obj) {
-  //   if (obj) {
-  //     return obj.indexOf(feat) !== -1;
-  //   }
-  // };
-
   // If user chooses to use exsiting yo-rc file, then skip prompts
   if (this.existingConfig) {
     this.answers = this.config.get('config');

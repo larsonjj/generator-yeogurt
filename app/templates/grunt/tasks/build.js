@@ -9,10 +9,10 @@ var taskConfig = function(grunt) {
     'clean:dist',<% if (useServer) { %>
     'env:prod',<% } %>
     'copy:dist',
+    'concat:dist',
     'concurrent:images',
     'concurrent:compile',<% if (jsFramework === 'angular') { %>
-    'ngtemplates:main',<% } %>
-    'concat:generated',<% if (jsFramework === 'angular') { %>
+    'ngtemplates:main',<% } %><% if (jsFramework === 'angular') { %>
     'ngAnnotate',<% } %>
     'cssmin',
     'autoprefixer:server',

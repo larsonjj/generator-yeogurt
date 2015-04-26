@@ -11,8 +11,7 @@ var taskConfig = function(grunt) {
         conservativeCollapse: true,
         removeCommentsFromCDATA: true,
         removeEmptyAttributes: true,
-        removeRedundantAttributes: true,
-        collapseWhitespace: true
+        removeRedundantAttributes: true
       },
       files: [{
         expand: true,

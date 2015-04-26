@@ -11,7 +11,9 @@ var installConfig = function installConfig() {
       bower: false,
       skipInstall: this.options['skip-install'],
       callback: function() {
-        console.log('Everything looks ready! Get started by running "grunt serve".');
+        console.log('\n' + 'Everything looks ready!'.blue +
+          ' Get started by running "' + 'grunt serve'.green + '".\n'
+        );
       }
     });
   });

@@ -2,7 +2,7 @@
 // http://karma-runner.github.io/0.10/config/configuration-file.html
 'use strict';
 
-module.exports = function(config) {
+var karmaConf = function(config) {
   config.set({
     // base path, that will be used to resolve files and exclude
     basePath: '',
@@ -93,3 +93,5 @@ module.exports = function(config) {
     singleRun: false
   });
 };
+
+module.exports = karmaConf;

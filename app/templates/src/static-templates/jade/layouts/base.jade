@@ -9,30 +9,17 @@ head
   meta(name='viewport', content='width=device-width, initial-scale=1.0')<% if (useServer) { %>
   meta(name='csrf-token', content=_csrf)<% } %>
 
-  link(rel='stylesheet', href='/node_modules/normalize.css/normalize.css')
+  link(rel='stylesheet', href='/styles/global.css')
   link(rel='stylesheet', href='/styles/main.css')
 
-  script(src='/node_modules/modernizr/modernizr.js')
-
-  //- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
-  <!--[if lt IE 9]>
-  script(src='/node_modules/consolelog/consolelog.js')
-  script(src='/node_modules/html5shiv/dist/html5shiv-printshiv.js')
-  <![endif]-->
-
 body
-  <!--[if lte IE 7]>
+  <!--[if lte IE 8]>
   <p class='browsehappy'>You are using an <strong>outdated</strong> browser. Please <a href='http://browsehappy.com/'>upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  block content<% if (jsFramework === 'react') { %>
+  block content
 
-  <!--[if lt IE 9]>
-  script(src='/node_modules/es5-shim/es5-shim.js')
-  script (src='/node_modules/es5-shim/es5-sham.js')
-  <![endif]--><% } %>
-
-  script(src='/node_modules/jquery/dist/jquery.js')<% if (jsOption === 'requirejs') { %>
+  script(src='/scripts/global.js')<% if (jsOption === 'requirejs') { %>
 
   script(data-main='/scripts/main', src='/node_modules/requirejs/require.js')<% } else { %><% if (jsFramework === 'backbone') { %>
   script(src='/scripts/routes.js')<% } %>

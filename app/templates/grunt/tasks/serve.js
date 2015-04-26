@@ -19,7 +19,8 @@ var taskConfig = function(grunt) {
     grunt.task.run([
       'clean:tmp',<% if (useServer) { %>
       'env:all',<% } %><% if (useKss && cssOption !== 'css') { %>
-      'copy:server',<% } %><% if (jsOption === 'browserify') { %>
+      'copy:server',<% } %>
+      'concat:server',<% if (jsOption === 'browserify') { %>
       'browserify:server',<% } %><% if (jsTemplate === 'underscore') { %>
       'jst:server',<% } else if (jsTemplate === 'handlebars') { %>
       'handlebars:server',<% } else if (jsTemplate === 'jade') { %>
