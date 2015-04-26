@@ -7,7 +7,8 @@ var taskConfig = function(grunt) {
   grunt.config.set('autoprefixer', {
     serve: {
       options: {
-        browsers: ['last 2 versions', 'ie 8', 'ie 9'],
+        // Target browsers IE9 and up
+        browsers: ['ie >= 9'],
         map: true
       },
       files: [{

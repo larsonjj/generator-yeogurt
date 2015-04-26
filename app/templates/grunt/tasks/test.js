@@ -4,15 +4,9 @@
 'use strict';
 
 var taskConfig = function(grunt) {
-  grunt.registerTask('test', 'Peform tests on JavaScript', function(target) {<% if (useTesting) { %>
-    // Allow for remote access to app/site via the 0.0.0.0 ip address
-    if (grunt.option('allow-remote')) {
-      grunt.config.set('karma.options.hostname', '0.0.0.0');
-    }<% } %>
+  grunt.registerTask('test', 'Peform tests on JavaScript', function(target) {
 
-    if (target === 'e2e') {<% if (!useServer) { %>
-      grunt.config.set('connect.server.options.open', false);
-      grunt.config.set('connect.server.options.livereload', false);<% } %>
+    if (target === 'e2e') {
       grunt.task.run([
         'serve:nowatch',<% if (!useServer) { %>
         'browserSync:serve',<% } else { %>

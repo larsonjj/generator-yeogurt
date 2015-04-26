@@ -54,6 +54,10 @@ var karmaConf = function(config) {
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
     reporters: ['progress'],
 
+    // Setup to allow external devices to access karma tests
+    // Change to '127.0.0.1' to disallow external access
+    host: '0.0.0.0',
+
     // web server port
     port: 9011,
 

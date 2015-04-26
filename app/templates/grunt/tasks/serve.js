@@ -6,10 +6,6 @@
 
 var taskConfig = function(grunt) {
   grunt.registerTask('serve', 'Open a development server within your browser', function(target) {
-    // Allow for remote access to app/site via the 0.0.0.0 ip address
-    if (grunt.option('allow-remote')) {
-      grunt.config.set('browserSync.options.host', '0.0.0.0');
-    }
 
     if (target === 'dist') {
       return grunt.task.run(['build',<% if (useServer) { %>
