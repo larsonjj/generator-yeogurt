@@ -7,7 +7,7 @@
     "link": "../../index.html"
   }
   [/dash] #}<% } %>
-{% extends '../layout/base.swig' %}
+{% extends '_layouts/base.swig' %}
 
 {% block content %}
 <div class="main-container">

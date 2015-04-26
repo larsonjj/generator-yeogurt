@@ -9,7 +9,7 @@ var taskConfig = function(grunt) {
       'imagemin:dist'
     ],
     compile: [<% if (htmlOption === 'jade' || jsTemplate === 'jade') { %>
-      'jade:dist'<% } else if (htmlOption === 'swig') {  %>,
+      'jade:dist'<% } else if (htmlOption === 'swig') {  %>
       'swig:dist'<% } %><% if (cssOption === 'less') { %>,
       'less:dist'<% } %><% if (cssOption === 'sass') { %>,
       'sass:dist'<% } %><% if (cssOption === 'stylus') { %>,
