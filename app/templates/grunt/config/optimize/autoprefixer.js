@@ -20,7 +20,7 @@ var taskConfig = function(grunt) {
     },
     build: {
       options: {
-        browsers: ['last 2 versions', 'ie 8', 'ie 9'],
+        browsers: ['ie >= 9'],
         map: true
       },
       files: [{
