@@ -13,8 +13,8 @@
   -moz-box-sizing: border-box
   -webkit-box-sizing: border-box
   box-sizing: border-box
-
-@import ../_screens/index/index<% if (useServer && !singlePageApplication) { %>
+<% if (singlePageApplication) { %>
+@import ../_screens/index/index<% } %><% if (useServer && !singlePageApplication) { %>
 
 .yeogurt-info
   text-align: center
