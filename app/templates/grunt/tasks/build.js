@@ -12,8 +12,7 @@ var taskConfig = function(grunt) {
     'concat:build',
     'concurrent:images',
     'concurrent:compile',<% if (jsFramework === 'angular') { %>
-    'ngtemplates:main',<% } %><% if (jsFramework === 'angular') { %>
-    'ngAnnotate',<% } %>
+    'ngtemplates:build',<% } %>
     'cssmin',
     'autoprefixer:serve',
     'htmlmin:build',

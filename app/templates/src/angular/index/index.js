@@ -1,10 +1,12 @@
 'use strict';
 
+require('./index.controller');
+
 angular.module('<%= _.camelize(projectName) %>')
   .config(function($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: '/app/index/index.html',
+        templateUrl: '/_screens/index/index.html',
         controller: 'IndexCtrl'
       });
   });

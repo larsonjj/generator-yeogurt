@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/><% if (useServer) { %>
     <meta name="csrf-token" content="{{_csrf}}" /><% } %>
 
-    <link rel="stylesheet" href="styles/global.css"/>
+    <link rel="stylesheet" href="styles/vendor.css"/>
     <link rel="stylesheet" href="styles/main.css"/>
   </head>
   <body>
@@ -21,7 +21,7 @@
 
     {% block content %}{% endblock %}
 
-    <script src="scripts/global.js"></script><% if  (jsOption === 'requirejs') { %>
+    <script src="scripts/vendor.js"></script><% if  (jsOption === 'requirejs') { %>
 
     <script data-main="scripts/main", src="node_modules/requirejs/require.js"></script><% } else { %><% if (jsFramework === 'backbone') { %>
     <script src="scripts/routes.js"></script><% } %>

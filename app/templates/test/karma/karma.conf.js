@@ -32,11 +32,7 @@ var karmaConf = function(config) {
       },
       // Karma adapter to run tests (must be loaded last)
       'node_modules/karma-requirejs/lib/adapter.js',<% } else if (jsOption === 'browserify') { %>
-      '.tmp/scripts/bundle.js'<% } else { %><% if (jsFramework === 'angular') { %>
-      'src/*scripts/main.js',
-      'src/*scripts/**/!(main).js',
-      'src/_screens/**/*.html',
-      'src/_modules/**/*.html'<% } %><% if (jsFramework === 'backbone') { %>
+      '.tmp/scripts/bundle.js'<% } else { %><% if (jsFramework === 'backbone') { %>
       // Load all scripts except ones that require a specific order (ie. 'main' and 'routes')
       'src/*scripts/**/!(main|routes).js',<% if (jsFramework === 'backbone' && jsOption === 'none') { %>
       'src/**/_layouts/**/*.js',<% } %>

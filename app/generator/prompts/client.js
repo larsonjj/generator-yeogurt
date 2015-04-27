@@ -70,7 +70,7 @@ var clientPrompts = function clientPrompts() {
       return filterMap[val];
     }
   }, {
-    when: function(answers) { return answers.jsFramework !== 'react' && answers.jsFramework !== 'angular'; },
+    when: function(answers) { return answers.jsFramework !== 'react' },
     type: 'list',
     name: 'jsOption',
     message: 'Which ' + 'JavaScript module library'.blue + ' would you like to use?',

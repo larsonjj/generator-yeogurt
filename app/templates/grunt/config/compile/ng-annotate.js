@@ -9,9 +9,9 @@ var taskConfig = function(grunt) {
     build: {
       files: [{
         expand: true,
-        cwd: '<%%= yeogurt.directories.temporary %>/',
-        src: 'templates.js',
-        dest: '<%%= yeogurt.directories.temporary %>/'
+        cwd: '<%%= yeogurt.directories.source %>/',
+        src: '{<%%= yeogurt.directories.scripts %>,<%%= yeogurt.directories.screens %>,<%%= yeogurt.directories.modules %>}/**/*.js',
+        dest: '<%%= yeogurt.directories.destination %>/'
       }]
     }
   });

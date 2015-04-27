@@ -2,7 +2,7 @@
 // Minifies JavaScript files
 'use strict';
 
-var processConfig = require('../../helpers/vendor-loader');
+var processConfig = require('../../helpers/process-loader');
 
 var taskConfig = function(grunt) {
 

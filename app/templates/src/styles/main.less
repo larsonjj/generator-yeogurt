@@ -13,7 +13,11 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}<% if (useServer && !singlePageApplication) { %>
+}
+
+@import '../_screens/index/index.less';
+
+<% if (useServer && !singlePageApplication) { %>
 
 .yeogurt-info {
   text-align: center;

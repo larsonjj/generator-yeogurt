@@ -115,9 +115,6 @@ var answersConfig = function answersConfig() {
   if (this.jsFramework === 'react') {
     this.jsOption   = this.answers.jsOption   = 'browserify';
   }
-  else if (this.jsFramework === 'angular') {
-    this.jsOption   = this.answers.jsOption   = 'none';
-  }
 
   // Default jsOption to Browserify
   this.jsOption = this.answers.jsOption || 'browserify';

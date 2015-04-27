@@ -3,13 +3,16 @@
 
 'use strict';
 
-angular.module('<%= _.camelize(projectName) %>', [
-  'ngRoute'
-])
-  .config(['$routeProvider'<% if (useServer) { %>, '$locationProvider'<% } %>, function($routeProvider<% if (useServer) { %>, $locationProvider<% } %>) {
-    $routeProvider.otherwise({redirectTo: '/'});<% if (useServer) { %>
-
-    $locationProvider.html5Mode(true);<% } %>
+// Main module. Must be loaded first
+angular
+  .module('<%= _.camelize(projectName) %>', [
+    'ngRoute'
+  ])
+  .config(['$routeProvider', function($routeProvider) {
+    $routeProvider.otherwise({redirectTo: '/'});
   }]);
+
+// Screens and Modules
+require('../_screens/index/index');
 
 console.log('Welcome to Yeogurt!');

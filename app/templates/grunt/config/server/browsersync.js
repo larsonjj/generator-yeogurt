@@ -12,7 +12,7 @@ var taskConfig = function(grunt) {
   // Ex. _images -> images
   var routeObj = {};
   for (var dir in yeogurt.directories) {
-    if (yeogurt.directories[dir].match(/^_/) || yeogurt.directories[dir] === '/') {
+    if (yeogurt.directories[dir].match(/^_/)) {
       routeObj['/' + yeogurt.directories[dir].replace(/^_/, '')] = yeogurt.directories.source + '/' + yeogurt.directories[dir];
     }
   }

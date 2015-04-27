@@ -17,7 +17,8 @@ var taskConfig = function(grunt) {
       'env:all',<% } %><% if (useKss && cssOption !== 'css') { %>
       'copy:serve',<% } %>
       'concat:serve',<% if (jsOption === 'browserify') { %>
-      'browserify:serve',<% } %><% if (jsTemplate === 'underscore') { %>
+      'browserify:serve',<% } %><% if (jsFramework === 'angular') { %>
+      'ngtemplates',<% } %><% if (jsTemplate === 'underscore') { %>
       'jst:serve',<% } else if (jsTemplate === 'handlebars') { %>
       'handlebars:serve',<% } else if (jsTemplate === 'jade') { %>
       'jade:serve',<% } %><% if (htmlOption === 'jade' && !useServer ) { %>

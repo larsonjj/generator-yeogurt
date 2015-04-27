@@ -9,8 +9,12 @@ var taskConfig = function(grunt) {
 
   grunt.config.set('browserify', {
     serve: {
-      options: {<% if (jsFramework === 'react') { %>
-        transform:  [require('grunt-react').browserify],<% } %>
+      options: {
+        transform: [
+          require('envify')<% if (jsFramework === 'react') { %>,
+          require('grunt-react').browserify<% } else if (jsFramework === 'angular') { %>,
+          require('browserify-ngannotate')<% } %>
+        ],
         browserifyOptions: {
           debug: true
         },
@@ -26,7 +30,8 @@ var taskConfig = function(grunt) {
       options: {
         transform: [
           require('envify')<% if (jsFramework === 'react') { %>,
-          require('grunt-react').browserify<% } %>
+          require('grunt-react').browserify<% } else if (jsFramework === 'angular') { %>,
+          require('browserify-ngannotate')<% } %>
         ],
         browserifyOptions: {
           debug: true
@@ -46,8 +51,12 @@ var taskConfig = function(grunt) {
       }
     },<% if (useTesting) { %>
     test: {
-      options: {<% if (jsFramework === 'react') { %>
-        transform:  [require('grunt-react').browserify],<% } %>
+      options: {
+        transform: [
+          require('envify')<% if (jsFramework === 'react') { %>,
+          require('grunt-react').browserify<% } else if (jsFramework === 'angular') { %>,
+          require('browserify-ngannotate')<% } %>
+        ],
         browserifyOptions: {
           debug: true
         },

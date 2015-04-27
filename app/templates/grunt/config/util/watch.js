@@ -9,9 +9,8 @@ var taskConfig = function(grunt) {
   var config = {
     configFiles: {
       files: [
-        'Gruntfile.js',
         'grunt/**/*.js',
-        '*.json'
+        '*.{json,js}'
       ],
       options: {
         reload: true,
@@ -24,80 +23,80 @@ var taskConfig = function(grunt) {
     jade: {
       files: [
         '<%%= yeogurt.directories.source %>/**/*.jade',
-        '!<%%= yeogurt.directories.source %>/**/+(<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.layouts %>)/*.jade'
+        '!<%%= yeogurt.directories.source %>/**/+(<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.layouts %>)/**/*.jade'
       ],
       tasks: [
-        'newer:jade:server'
+        'newer:jade:serve'
       ]
     },
     jadePartials: {
       files: [
-        '<%%= yeogurt.directories.source %>/**/+(<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.layouts %>)/*.jade'
+        '<%%= yeogurt.directories.source %>/**/+(<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.layouts %>)/**/*.jade'
       ],
       tasks: [
-        'jade:server'
+        'jade:serve'
       ]
     },<% } %><% if (htmlOption === 'swig' && !useServer) { %>
     swig: {
       files: [
         '<%%= yeogurt.directories.source %>/**/*.jade',
-        '!<%%= yeogurt.directories.source %>/**/+(<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.layouts %>)/*.swig'
+        '!<%%= yeogurt.directories.source %>/**/+(<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.layouts %>)/**/*.swig'
       ],
       tasks: [
-        'newer:swig:server'
+        'newer:swig:serve'
       ]
     },
     swigPartials: {
       files: [
-        '<%%= yeogurt.directories.source %>/**/+(<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.layouts %>)/*.swig'
+        '<%%= yeogurt.directories.source %>/**/+(<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.layouts %>)/**/*.swig'
       ],
       tasks: [
-        'swig:server'
+        'swig:serve'
       ]
-    },<% } %><% if (jsFramework === 'backbone') { %>
+    },<% } %><% if (jsFramework === 'angular') { %>
     html: {
       files: [
-        '<%%= yeogurt.directories.source %>/templates/**/*.html'
+        '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.screens %>/**/*.html',
+        '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.modules %>/**/*.html'
       ],
       tasks: [
-        'clean:tmp'
+        'ngtemplates'
       ]
     },<% } %><% if (cssOption === 'sass') { %>
     sass: {
       files: ['<%%= yeogurt.directories.source %>/**/*.<% if (useKss) { %>{scss,sass,md}<% } else { %>{scss,sass}<% } %>'],
       tasks: [
-        'sass:server',
-        'autoprefixer:server'
+        'sass:serve',
+        'autoprefixer:serve'
       ]
     },<% } %><% if (cssOption === 'less') { %>
     less: {
       files: ['<%%= yeogurt.directories.source %>/**/*.<% if (useKss) { %>{less,md}<% } else { %>less<% } %>'],
       tasks: [
-        'less:server',
-        'autoprefixer:server'
+        'less:serve',
+        'autoprefixer:serve'
       ]
     },<% } %><% if (cssOption === 'stylus') { %>
     stylus: {
       files: ['<%%= yeogurt.directories.source %>/**/*.<% if (useKss) { %>{styl,md}<% } else { %>styl<% } %>'],
       tasks: [
-        'stylus:server',
-        'autoprefixer:server'
+        'stylus:serve',
+        'autoprefixer:serve'
       ]
     },<% } %>
-    injectCss: {
+    css: {
       files: [
         '<%%= yeogurt.directories.source %>/**/*.css'
       ],
       tasks: [
-        'autoprefixer:server'
+        'autoprefixer:serve'
       ]
     },
     js: {
-      files: [<% if (jsFramework === 'angular') { %>
-        '<%%= yeogurt.directories.source %>/**/*.js',
-        '!<%%= yeogurt.directories.source %>/**/*.{spec,mock}.js'<% } else { %>
-        '<%%= yeogurt.directories.source %>/**/*.js'<% } %><% if (jsFramework === 'react' && !useJsx) { %>,
-        '!<%%= yeogurt.directories.source %>/**/components/*.js'<% } %>
+      files: [<% if (singlePageApplication) { %>
+        '<%%= yeogurt.directories.source %>/+(<%%= yeogurt.directories.screens %>)/**/*.js',<% } %>
+        '<%%= yeogurt.directories.source %>/+(<%%= yeogurt.directories.scripts %>)/**/*.js',
+        '<%%= yeogurt.directories.source %>/+(<%%= yeogurt.directories.modules %>)/**/*.js'
       ],
       tasks: [
         'newer:eslint'
@@ -106,20 +105,20 @@ var taskConfig = function(grunt) {
     handlebars: {
       files: ['<%%= yeogurt.directories.source %>/templates/**/*.hbs'],
       tasks: [
-        'handlebars:server'
+        'handlebars:serve'
       ]
     },<% } %><% if (jsTemplate === 'underscore') { %>
     jst: {
       files: ['<%%= yeogurt.directories.source %>/templates/**/*.jst'],
       tasks: [
-        'jst:server'
+        'jst:serve'
       ]
     },<% } %><% if (jsTemplate === 'jade') { %>
     jade: {
       files: ['<%%= yeogurt.directories.source %>/templates/**/*.jade'],
       tasks: [
-        'jade:server'<% if (useServer) { %>,
-        'express:server'<% } %>
+        'jade:serve'<% if (useServer) { %>,
+        'express:serve'<% } %>
       ]
     },<% } %>
     livereload: {
@@ -148,7 +147,7 @@ var taskConfig = function(grunt) {
         '<%%= yeogurt.directories.server %>/**/*.jade'<% } %>
       ],
       tasks: [
-        'express:server',
+        'express:serve',
         'wait'
       ],
       options: {
@@ -162,37 +161,37 @@ var taskConfig = function(grunt) {
   var docsConfig = {<% if (htmlOption === 'jade' && useDashboard) { %>
     jade: {
       tasks: [
-        'dashboard:server'
+        'dashboard:serve'
       ]
     },
     jadePartials: {
       tasks: [
-        'dashboard:server'
+        'dashboard:serve'
       ]
     },<% } %><% if (htmlOption === 'swig' && useDashboard) { %>
     swig: {
       tasks: [
-        'dashboard:server'
+        'dashboard:serve'
       ]
     },
     swigPartials: {
       tasks: [
-        'dashboard:server'
+        'dashboard:serve'
       ]
     },<% } %><% if (jsFramework === 'backbone') { %>
     html: {
       tasks: [
-        'dashboard:server',
+        'dashboard:serve',
       ]
     },<% } %><% if (cssOption === 'sass' && useKss) { %>
     sass: {
       tasks: [
-        'styleguide:server'
+        'styleguide:serve'
       ]
     },<% } %><% if (cssOption === 'less' && useKss) { %>
     less: {
       tasks: [
-        'styleguide:server'
+        'styleguide:serve'
       ]
     },<% } %><% if (useJsdoc) { %>
     js: {
@@ -200,25 +199,25 @@ var taskConfig = function(grunt) {
         'README.md'
       ],
       tasks: [
-        'jsdoc:server'
+        'jsdoc:serve'
       ]
     },<% } %><% if (jsFramework === 'react' && useJsdoc) { %>
     react: {
       tasks: [
-        'jsdoc:server'
+        'jsdoc:serve'
       ]
     },<% } %><% if (useKss) { %>
     kss: {
       files: [
         '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.docs %>/styleguide/**/*'
       ],
-      tasks: ['styleguide:server']
+      tasks: ['styleguide:serve']
     },<% } %><% if (useDashboard) { %>
     dashboard: {
       files: [
         '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.docs %>/dashboard/**/*'
       ],
-      tasks: ['dashboard:server']
+      tasks: ['dashboard:serve']
     }<% } %>
   };<% } %>
 

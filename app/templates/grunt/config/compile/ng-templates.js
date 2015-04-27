@@ -17,18 +17,17 @@ var taskConfig = function(grunt) {
         removeRedundantAttributes: true,
         collapseWhitespace: true
       },
-      usemin: '<%%= yeogurt.scripts %>/main.js',
       prefix: '/'
     },
-    main: {
-      cwd: '<%%= yeogurt.directories.source %>',
-      src: ['**/*.html'],
-      dest: '<%%= yeogurt.directories.temporary %>/templates.js'
+    serve: {
+      cwd: '<%%= yeogurt.directories.source %>/',
+      src: ['{<%%= yeogurt.directories.screens %>,<%%= yeogurt.directories.modules %>}/**/*.html'],
+      dest: '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.scripts.replace(/^_/, "") %>/templates.js'
     },
-    tmp: {
-      cwd: '<%%= yeogurt.directories.temporary %>',
-      src: ['**/*.html'],
-      dest: '<%%= yeogurt.directories.temporary %>/tmp-templates.js'
+    build: {
+      cwd: '<%%= yeogurt.directories.source %>/',
+      src: ['{<%%= yeogurt.directories.screens %>,<%%= yeogurt.directories.modules %>}/**/*.html'],
+      dest: '<%%= yeogurt.directories.destination %>/<%%= yeogurt.directories.scripts.replace(/^_/, "") %>/templates.js'
     }
   });
 };
