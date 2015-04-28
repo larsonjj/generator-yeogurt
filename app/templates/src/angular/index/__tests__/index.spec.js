@@ -24,10 +24,10 @@ describe('Controller: IndexCtrl', function() {
   }));
 
   it('should have IndexCtrl defined', function() {
-    expect(IndexCtrl).to.be.ok;
+    expect(IndexCtrl)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
   });
 
   it('should have scope.yeogurt defined as "awesome"', function() {
-    expect(scope.yeogurt).to.equal('awesome');
+    expect(scope.yeogurt)<% if (testFramework === 'jasmine') { %>.toEqual('awesome')<% } else if (testFramework === 'mocha') { %>.to.equal('awesome')<% } %>;
   });
 });
