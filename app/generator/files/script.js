@@ -61,7 +61,7 @@ var scriptFiles = function scriptFiles() {
     this.template('src/react/main/main.dispatcher.js', 'src/_scripts/main.dispatcher.js');
 
     // Stores
-    this.template('src/react/lib/store/store.js', 'src/_lib/store.js');
+    this.template('src/react/lib/store/store.js', 'src/_scripts/_lib/store.js');
 
     if (this.useJsx) {
       this.template('src/react/index/jsx/index.jsx', 'src/_screens/index/index.jsx');

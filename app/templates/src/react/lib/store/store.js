@@ -52,7 +52,6 @@ var Store = function(methods) {
     this.on(CHANGE_EVENT, callback);
   };
 
-
   // Removes a change listener.
   this.removeChangeListener = function(callback) {
     this.removeListener(CHANGE_EVENT, callback);
