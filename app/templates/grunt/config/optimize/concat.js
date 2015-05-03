@@ -2,7 +2,7 @@
 // Concatenates files together
 'use strict';
 
-var processConfig = require('../../helpers/process-loader');
+var vendorConfig = require('../../helpers/vendor-loader');
 
 var taskConfig = function(grunt) {
 
@@ -11,10 +11,17 @@ var taskConfig = function(grunt) {
 
   grunt.config.set('concat', {
     serve: {
-      files: processConfig('temporary', yeogurt)
+      files: vendorConfig({
+        dir: 'temporary',   // confObj.directories.temporary
+        confObj: yeogurt    // configuration object (yeogurt.conf.js)
+      })
     },
     build: {
-      files: processConfig('destination', yeogurt, 'styles')
+      files: vendorConfig({
+        dir: 'destination', // confObj.directories.destination
+        type: 'styles',     // restrict processing to specific key (confObj.directories.styles)
+        confObj: yeogurt    // configuration object (yeogurt.conf.js)
+      })
     }
   });
 

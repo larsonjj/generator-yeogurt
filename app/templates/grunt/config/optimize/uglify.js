@@ -2,7 +2,7 @@
 // Minifies JavaScript files
 'use strict';
 
-var processConfig = require('../../helpers/process-loader');
+var vendorConfig = require('../../helpers/vendor-loader');
 
 var taskConfig = function(grunt) {
 
@@ -15,7 +15,11 @@ var taskConfig = function(grunt) {
         sourceMap: true,
         sourceMapIncludeSources: true
       },
-      files: processConfig('destination', yeogurt, 'scripts')
+      files: vendorConfig({
+        dir: 'destination', // confObj.directories.destination
+        type: 'scripts',     // restrict processing to specific key (confObj.directories.scripts)
+        confObj: yeogurt    // configuration object (yeogurt.conf.js)
+      })
     }
   });
 
