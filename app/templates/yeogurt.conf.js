@@ -74,5 +74,5 @@ module.exports = {
   port: port,
   baseUrl: baseUrl,
   directories: directories,
-  process: process
+  vendor: vendor
 };

@@ -64,7 +64,7 @@
     "grunt-contrib-requirejs": "~0.4.4",<% } else if (jsOption === 'browserify') { %>
     "minifyify": "~5.0.0",
     "envify": "~3.2.0",
-    "grunt-browserify": "~3.2.0",<% } %>
+    "grunt-browserify": "~3.8.0",<% } %>
     "grunt-usemin": "2.1.1",<% if (useJsdoc) { %>
     "grunt-jsdoc": "beta",<% } %>
     "grunt-concurrent": "~1.0.0",<% if (jsTemplate === 'underscore') { %>
@@ -89,7 +89,7 @@
     "grunt-contrib-less": "~0.12.0",<% } %><% if (cssOption === 'stylus') { %>
     "grunt-contrib-stylus": "~0.20.0",<% } %>
     "grunt-open": "~0.2.3",<% if (jsFramework === 'angular') { %>
-    "grunt-angular-templates": "~0.5.7"<% } %>
+    "grunt-angular-templates": "~0.5.7",<% } %>
     "grunt-env": "~0.4.1",
     "grunt-newer": "~0.7.0",
     "underscore.string": "~2.3.3",

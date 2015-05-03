@@ -5,18 +5,14 @@ var vendorLoader = function vendorLoader(config) {
   var _config = config || {};
   var fileObj = {};
   var typeDir;
-  if (_config.vendor) {
-    for (var key in _config.vendor) {
+  if (_config.confObj.vendor) {
+    for (var key in _config.confObj.vendor) {
       // output file(s) to directory that maps to current vendor key
       typeDir = _config.confObj.directories[key] ?
         '/' + _config.confObj.directories[key].replace(/^_/, '') + '/' : '/';
-      for (var file in _config.vendor[key]) {
-        if (!_config.type || _config.type === key) {
-          fileObj[_config.confObj.directories[_config.dir] +
-          typeDir +
-          _config.vendor[key][file].output] = _config.vendor[key][file].input;
-        }
-      }
+      fileObj[_config.confObj.directories[_config.dir] +
+      typeDir +
+      _config.confObj.vendor[key].output] = _config.confObj.vendor[key].input;
     }
   }
   return fileObj;

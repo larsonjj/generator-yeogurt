@@ -6,7 +6,7 @@
 var taskConfig = function(grunt) {
 
   // Load config for use with non-grunt logic
-  var yeogurt = grunt.config.get('yeogurt');
+  var yeogurt = require('../../../yeogurt.conf');
 
   // Build object that maps prefixed directories to be non-prefixed
   // Ex. _images -> images

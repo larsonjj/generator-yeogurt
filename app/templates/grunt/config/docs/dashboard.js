@@ -5,7 +5,7 @@
 var taskConfig = function(grunt) {
 
   // Load config for use with non-grunt logic
-  var yeogurt = grunt.config.get('yeogurt');
+  var yeogurt = require('../../../yeogurt.conf');
 
   grunt.config.set('dashboard', {
     serve: {
