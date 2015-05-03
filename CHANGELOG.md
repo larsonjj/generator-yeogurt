@@ -1,3 +1,9 @@
+### v0.14.5:
+#### date: 2015-5-03
+##### changes:
+* Fixed issue where Backbone view sub-generator was an unneeded `.jade` extension to JST namespace [#127](https://github.com/larsonjj/generator-yeogurt/issues/127)
+* Fixed issue where `autoprefixer:server` was running during build when it should have been `autoprefixer:build` [#126](https://github.com/larsonjj/generator-yeogurt/pull/126)
+
 ### v0.14.4:
 #### date: 2015-4-06
 ##### changes:
