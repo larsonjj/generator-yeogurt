@@ -17,7 +17,7 @@ var taskConfig = function(grunt) {
     'concat:generated',<% if (jsFramework === 'angular') { %>
     'ngAnnotate',<% } %>
     'cssmin',
-    'autoprefixer:server',
+    'autoprefixer:dist',
     'usemin',
     'htmlmin:dist',
     'uglify',
