@@ -1,16 +1,15 @@
 'use strict';
 
 var React = require('react');
-var BaseLayout = require('../layout/base.jsx');
-var mainAction = require('../main.actions');
+var mainActions = require('../_scripts/actions/main.actions');
 
 var IndexComponent = React.createClass({
   componentWillMount: function() {
-    mainAction.setPage({title: '<%= projectName %>'});
+    mainActions.setPage({title: '<%= projectName %>'});
   },
   render: function() {
     return (
-      <BaseLayout>
+      <div>
         <div className="main-container">
           <div className="yeogurt-info">
             <h1>Welcome to Yeogurt!</h1>
@@ -27,7 +26,7 @@ var IndexComponent = React.createClass({
           </div>
         </div>
         <code className="version">v<%= pkg.version %></code>
-      </BaseLayout>
+      </div>
     );
   }
 });

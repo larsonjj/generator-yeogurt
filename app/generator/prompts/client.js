@@ -49,12 +49,6 @@ var clientPrompts = function clientPrompts() {
       return filterMap[val];
     }
   }, {
-    when: function(answers) { return answers.jsFramework === 'react'; },
-    type: 'confirm',
-    name: 'useJsx',
-    message: 'Would you like to use ' + 'React\'s JSX syntax'.blue + '?',
-    default: true
-  }, {
     when: function(answers) {return answers.jsFramework === 'backbone';},
     type: 'list',
     name: 'jsTemplate',
@@ -74,12 +68,11 @@ var clientPrompts = function clientPrompts() {
     type: 'list',
     name: 'jsOption',
     message: 'Which ' + 'JavaScript module library'.blue + ' would you like to use?',
-    choices: ['Browserify', 'RequireJS', 'None'],
+    choices: ['Browserify', 'Webpack'],
     filter: function(val) {
       var filterMap = {
         'Browserify': 'browserify',
-        'RequireJS': 'requirejs',
-        'None': 'none'
+        'Webpack': 'webpack'
       };
 
       return filterMap[val];
@@ -88,13 +81,12 @@ var clientPrompts = function clientPrompts() {
     type: 'list',
     name: 'cssOption',
     message: 'What would you like to use to ' + 'write styles'.blue + '?',
-    choices: ['Sass', 'Less', 'Stylus', 'CSS'],
+    choices: ['Sass', 'Less', 'Stylus'],
     filter: function(val) {
       var filterMap = {
         'Sass': 'sass',
         'Less': 'less',
-        'Stylus': 'stylus',
-        'CSS': 'css'
+        'Stylus': 'stylus'
       };
 
       return filterMap[val];

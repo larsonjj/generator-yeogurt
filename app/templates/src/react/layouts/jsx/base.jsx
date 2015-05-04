@@ -1,19 +1,17 @@
 'use strict';
 
 var React = require('react');
-var mainStore = require('../main.store');
+var mainStore = require('../_scripts/stores/main.store');
+var mainActions = require('../_scripts/actions/main.actions');
 
 var getState = function() {
   return {
-    title: mainStore.getPage().title
+    page: mainStore.getPage()
   };
 };
 
 var DefaultComponent = React.createClass({
-  mixins: [mainStore.mixin],
-  componentDidMount: function() {
-    mainStore.emitChange();
-  },
+  mixins: [Reflux.listenTo(mainStore, '_onStoreUpdate')],
   getInitialState: function() {
     return getState();
   },
@@ -23,7 +21,7 @@ var DefaultComponent = React.createClass({
         <div className="default">
           <div className="main-container">
             <div className="content">
-              {this.props.children}
+              <RouteHandler />
             </div>
           </div>
         </div>
@@ -31,7 +29,7 @@ var DefaultComponent = React.createClass({
     );
   },
   // Event handler for 'change' events coming from store mixins.
-  _onChange: function() {
+  _onStoreUpdate: function() {
     this.setState(getState());
   }
 });
