@@ -2,9 +2,10 @@
 
 var React = require('react');
 var Router = require('react-router');
+var IndexPage = require('../_screens/index/index.jsx');
+var BaseLayout = require('../_layouts/base.jsx');
 var Route = Router.Route;
-var IndexPage = React.createFactory(require('./_screens/index/index.jsx'));
-var BaseLayout = React.createFactory(require('./_layouts/base.jsx'));
+var DefaultRoute = Router.DefaultRoute;
 
 var routes = (
   <Route handler={BaseLayout} path="/">

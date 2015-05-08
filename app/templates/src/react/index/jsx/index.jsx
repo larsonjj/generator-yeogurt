@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-var mainActions = require('../_scripts/actions/main.actions');
+var mainActions = require('../../_scripts/actions/main.actions');
 
 var IndexComponent = React.createClass({
   componentWillMount: function() {

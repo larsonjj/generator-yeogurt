@@ -1,8 +1,10 @@
 'use strict';
 
 var React = require('react');
+var Router = require('react-router');
+var Reflux = require('reflux');
 var mainStore = require('../_scripts/stores/main.store');
-var mainActions = require('../_scripts/actions/main.actions');
+var RouteHandler = Router.RouteHandler;
 
 var getState = function() {
   return {

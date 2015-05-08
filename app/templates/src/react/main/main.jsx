@@ -3,9 +3,9 @@
 
 'use strict';
 
+var React = require('react');
 var Router = require('react-router');
 var routes = require('./routes.jsx');
-var mainActions = require('./actions/main.actions');
 
 // Start listening to route changes
 Router.run(routes, function(Handler) {

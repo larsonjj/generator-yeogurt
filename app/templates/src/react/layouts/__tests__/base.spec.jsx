@@ -2,7 +2,7 @@
 'use strict';
 
 var React = require('react');
-var BaseLayout = React.createFactory(require('../base<% if (useJsx) { %>.jsx<% } %>'));
+var BaseLayout = require('../base.jsx');
 
 describe('Base Component', function() {
 
@@ -13,7 +13,7 @@ describe('Base Component', function() {
   beforeEach(function() {
     // ReactTestUtils = require('react/addons').addons.TestUtils;
     // reactRender = ReactTestUtils.renderIntoDocument;
-    this.baseLayout = new BaseLayout();
+    this.baseLayout = <BaseLayout />;
   });
 
   it('provides the "Base Component" instance', function() {

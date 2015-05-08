@@ -7,7 +7,7 @@
 var taskConfig = function(grunt) {
   grunt.registerTask('serve', 'Open a development server within your browser', function(target) {
 
-    if (target === 'dist') {
+    if (target === 'build') {
       return grunt.task.run(['build',<% if (useServer) { %>
       'env:all', 'env:prod', 'express:build', 'open', 'keepalive'<% } else { %> 'browserSync:build:keepalive'<% } %>]);
     }

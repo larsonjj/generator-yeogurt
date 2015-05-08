@@ -8,7 +8,7 @@ var _page;
 var mainStore = new Reflux.createStore({
 
   init: function() {
-    this.listenTo(mainActions.setPage, this.updatePage)
+    this.listenTo(mainActions.setPage, this.updatePage);
   },
 
   updatePage: function(page) {

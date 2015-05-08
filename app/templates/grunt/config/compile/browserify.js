@@ -13,7 +13,7 @@ var taskConfig = function(grunt) {
       options: {
         transform: [
           require('envify')<% if (jsFramework === 'react') { %>,
-          require('grunt-react').browserify<% } else if (jsFramework === 'angular') { %>,
+          require('babelify')<% } else if (jsFramework === 'angular') { %>,
           require('browserify-ngannotate')<% } %>
         ],
         browserifyOptions: {
@@ -23,7 +23,7 @@ var taskConfig = function(grunt) {
       },
       files: {
         '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.scripts.replace(/^_/, "") %>/main.js': [
-          '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.scripts %>/main.js'
+          '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.scripts %>/main.<% if (jsFramework === 'react') { %>jsx<% } else { %>js<% } %>'
         ]
       }
     },
@@ -31,7 +31,7 @@ var taskConfig = function(grunt) {
       options: {
         transform: [
           require('envify')<% if (jsFramework === 'react') { %>,
-          require('grunt-react').browserify<% } else if (jsFramework === 'angular') { %>,
+          require('babelify')<% } else if (jsFramework === 'angular') { %>,
           require('browserify-ngannotate')<% } %>
         ],
         browserifyOptions: {
@@ -47,7 +47,7 @@ var taskConfig = function(grunt) {
       },
       files: {
         '<%%= yeogurt.directories.destination %>/<%%= yeogurt.directories.scripts.replace(/^_/, "") %>/main.js': [
-          '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.scripts %>/main.js'
+          '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.scripts %>/main.<% if (jsFramework === 'react') { %>jsx<% } else { %>js<% } %>'
         ]
       }
     },<% if (useTesting) { %>
@@ -55,7 +55,7 @@ var taskConfig = function(grunt) {
       options: {
         transform: [
           require('envify')<% if (jsFramework === 'react') { %>,
-          require('grunt-react').browserify<% } else if (jsFramework === 'angular') { %>,
+          require('babelify')<% } else if (jsFramework === 'angular') { %>,
           require('browserify-ngannotate')<% } %>
         ],
         browserifyOptions: {
@@ -64,7 +64,7 @@ var taskConfig = function(grunt) {
         watch: true
       },
       files: {
-        '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.scripts.replace(/^_/, "") %>/bundle.js': ['<%%= yeogurt.directories.source %>/**/*.spec.js']
+        '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.scripts.replace(/^_/, "") %>/bundle.js': ['<%%= yeogurt.directories.source %>/**/*.spec.<% if (jsFramework === 'react') { %>{js,jsx}<% } else { %>js<% } %>']
       }
     }<% } %>
   });

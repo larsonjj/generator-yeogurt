@@ -2,9 +2,9 @@
 'use strict';
 
 var React = require('react');
-var IndexComponent = React.createFactory(require('../index<% if (useJsx) { %>.jsx<% } %>'));
+var routes = require('../routes.jsx');
 
-describe('Index Component', function() {
+describe('Routes for router', function() {
 
   // Uncomment to use React testing tools
   // var ReactTestUtils;
@@ -13,12 +13,12 @@ describe('Index Component', function() {
   beforeEach(function() {
     // ReactTestUtils = require('react/addons').addons.TestUtils;
     // reactRender = ReactTestUtils.renderIntoDocument;
-    this.indexComponent = new IndexComponent();
+    this.routes = routes;
   });
 
-  it('provides the "Index Component" instance', function() {
+  it('provides the "Router" instance', function() {
     // Expect it to exist
-    expect(this.indexComponent)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+    expect(this.routes)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
   });
 
 });

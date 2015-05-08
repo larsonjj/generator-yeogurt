@@ -94,9 +94,9 @@ var taskConfig = function(grunt) {
     },
     js: {
       files: [<% if (singlePageApplication) { %>
-        '<%%= yeogurt.directories.source %>/+(<%%= yeogurt.directories.screens %>)/**/*.js',<% } %>
-        '<%%= yeogurt.directories.source %>/+(<%%= yeogurt.directories.scripts %>)/**/*.js',
-        '<%%= yeogurt.directories.source %>/+(<%%= yeogurt.directories.modules %>)/**/*.js'
+        '<%%= yeogurt.directories.source %>/+(<%%= yeogurt.directories.screens %>)/**/*.<% if (jsFramework === 'react') { %>{js,jsx}<% } else { %>js<% } %>',<% } %>
+        '<%%= yeogurt.directories.source %>/+(<%%= yeogurt.directories.scripts %>)/**/*.<% if (jsFramework === 'react') { %>{js,jsx}<% } else { %>js<% } %>',
+        '<%%= yeogurt.directories.source %>/+(<%%= yeogurt.directories.modules %>)/**/*.<% if (jsFramework === 'react') { %>{js,jsx}<% } else { %>js<% } %>'
       ],
       tasks: [
         'newer:eslint'
@@ -123,7 +123,7 @@ var taskConfig = function(grunt) {
     },<% } %>
     livereload: {
       options: {
-        livereload: <% if (!useServer) { %>35729<% } else { %>true<% } %>
+        livereload: 35729
       },
       files: [
         '<%%= yeogurt.directories.source %>/*.{ico,png,txt}',<% if (htmlOption === 'swig' || htmlOption === 'jade') { %>
@@ -131,8 +131,8 @@ var taskConfig = function(grunt) {
         '<%%= yeogurt.directories.source %>/**/*.html',<% } %><% if (cssOption !== 'css') { %>
         '<%%= yeogurt.directories.temporary %>/**/*.{css,ttf,otf,woff,svg,eot}',<% } else { %>
         '<%%= yeogurt.directories.source %>/**/*.{css,ttf,otf,woff,svg,eot}',<% } %><% if (jsOption === 'browserify') { %>
-        '<%%= yeogurt.directories.temporary %>/**/*.js',<% } else { %><% if (jsFramework === 'angular') { %>
-        '<%%= yeogurt.directories.source %>/**/*.js',
+        '<%%= yeogurt.directories.temporary %>/**/*.<% if (jsFramework === 'react') { %>{js,jsx}<% } else { %>js<% } %>',<% } else { %><% if (jsFramework === 'angular') { %>
+        '<%%= yeogurt.directories.source %>/**/*.<% if (jsFramework === 'react') { %>{js,jsx}<% } else { %>js<% } %>',
         '!<%%= yeogurt.directories.source %>/**/*.{spec,mock}.js',<% } else { %>
         '<%%= yeogurt.directories.source %>/**/*.js',<% } %><% } %><% if (singlePageApplication && jsFramework !== 'react') { %>
         '<%%= yeogurt.directories.temporary %>/templates/**/*.js',<% } %>
@@ -152,7 +152,7 @@ var taskConfig = function(grunt) {
       ],
       options: {
         livereload: true,
-        nospawn: true //Without this option specified express won't be reloaded
+        nospawn: true // Without this option specified express won't be reloaded
       }
     }<% } %>
   };<% if (useKss || useJsdoc || useDashboard) { %>
