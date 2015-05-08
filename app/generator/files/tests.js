@@ -41,21 +41,13 @@ var testingFiles = function testingFiles() {
       this.template('test/karma/phantomjs-shims.js', 'src/_vendor/phantomjs-shims.js');
 
       // Router
-      this.template('src/react/routes/__tests__/routes.spec.js', 'src/_scripts__tests__/routes.spec.js');
+      this.template('src/react/routes/__tests__/routes.spec.js', 'src/_scripts/__tests__/routes.spec.js');
 
       // Components
       this.template('src/react/index/__tests__/index.spec.js', 'src/_screens/index/__tests__/index.spec.js');
       this.template('src/react/layouts/__tests__/base.spec.js', 'src/_layouts/__tests__/base.spec.js');
 
       this.template('src/react/main/__tests__/main.spec.js', 'src/_scripts/__tests__/main.spec.js');
-
-      this.template(
-        'src/react/modules/link/__tests__/link.spec.js', 'src/_modules/__tests__/link.spec.js'
-      );
-
-      // Stores
-      this.template('src/react/lib/store/__tests__/store.spec.js', 'src/_scripts/core/__tests__/store.spec.js');
-
     }
     else if (this.jsFramework === 'angular') {
       this.template('src/angular/index/__tests__/index.spec.js', 'src/_screens/index/__tests__/index.spec.js');

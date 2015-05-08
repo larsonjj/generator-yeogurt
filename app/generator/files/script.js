@@ -52,41 +52,18 @@ var scriptFiles = function scriptFiles() {
 
   }
   else if (this.jsFramework === 'react') {
-    this.template('src/react/routes/routes.js', 'src/_scripts/routes.js');
+    this.template('src/react/routes/routes.jsx', 'src/_scripts/routes.jsx');
 
-    this.template('src/react/main/main.js', 'src/_scripts/main.js');
-    this.template('src/react/main/main.actions.js', 'src/_scripts/main.actions.js');
-    this.template('src/react/main/main.constants.js', 'src/_scripts/main.constants.js');
-    this.template('src/react/main/main.store.js', 'src/_scripts/main.store.js');
-    this.template('src/react/main/main.dispatcher.js', 'src/_scripts/main.dispatcher.js');
+    this.template('src/react/main/main.jsx', 'src/_scripts/main.jsx');
+    this.template('src/react/actions/main.actions.js', 'src/_scripts/actions/main.actions.js');
+    this.template('src/react/stores/main.store.js', 'src/_scripts/stores/main.store.js');
 
-    // Stores
-    this.template('src/react/lib/store/store.js', 'src/_scripts/_lib/store.js');
+    this.template('src/react/index/jsx/index.jsx', 'src/_screens/index/index.jsx');
 
-    if (this.useJsx) {
-      this.template('src/react/index/jsx/index.jsx', 'src/_screens/index/index.jsx');
-
-      // Modules
-      this.template(
-        'src/react/modules/link/jsx/link.jsx', 'src/_modules/link/link.jsx'
-      );
-
-      // Layouts
-      this.template(
-        'src/react/layouts/jsx/base.jsx', 'src/_layouts/base.jsx'
-      );
-    }
-    else {
-      this.template('src/react/index/js/index.js', 'src/_screens/index/index.js');
-
-      // Modules
-      this.template('src/react/modules/link/js/link.js', 'src/_modules/link/link.js');
-
-      // Layouts
-      this.template(
-        'src/react/layouts/js/base.js', 'src/_layouts/base.js'
-      );
-    }
+    // Layouts
+    this.template(
+      'src/react/layouts/jsx/base.jsx', 'src/_layouts/base.jsx'
+    );
   }
   else if (this.jsFramework === 'angular') {
     this.template('src/angular/main/main.js', 'src/_scripts/main.js');
