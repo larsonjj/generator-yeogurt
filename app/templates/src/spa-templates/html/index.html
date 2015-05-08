@@ -8,7 +8,6 @@
     <meta name="author" content=""/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <link rel="stylesheet" href="styles/vendor.css"/>
     <link rel="stylesheet" href="styles/main.css"/>
   </head>
   <body>
@@ -19,14 +18,11 @@
     <![endif]-->
 
     <!-- Application loads here -->
-    <div id="app-wrapper" <% if (jsFramework === 'angular') { %>ng-view<% } %>></div>
+    <div id="app-wrapper" <% if (jsFramework === 'angular') { %>ng-view<% } %>></div><% if (jsFramework === 'backbone') { %>
 
-    <script src="scripts/vendor.js"></script><% if (jsFramework === 'backbone') { %>
-    <script src="scripts/templates.js"></script><% } %><% if  (jsOption === 'requirejs') { %>
-
-    <script data-main="scripts/main", src="node_modules/requirejs/require.js"></script><% } else { %><% if (jsFramework === 'backbone' && jsOption === 'none') { %>
+    <script src="scripts/templates.js"></script><% } %><% if (jsFramework === 'backbone' && jsOption === 'none') { %>
     <script src="scripts/routes.js"></script><% } %>
-    <script src="scripts/main.js"></script><% } %><% if (jsFramework === 'angular') { %>
+    <script src="scripts/main.js"></script><% if (jsFramework === 'angular') { %>
     <script src="scripts/templates.js"></script><% } %>
   </body>
 </html>

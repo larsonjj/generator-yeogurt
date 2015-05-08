@@ -35,44 +35,11 @@ var directories = {
   docs: '_autodocs'
 };
 
-// Vendor/Third-Party scripts and styles loader
-// Concatenate and minify input files to a single output file
-var vendor = {
-  scripts: {
-    // Input script files relative to project root
-    input: [
-      'node_modules/jquery/dist/jquery.js',<% if (jsFramework === 'backbone') { %>
-      'node_modules/backbone/node_modules/underscore/underscore.js',
-      'node_modules/backbone/backbone.js',<% } %><% if (jsFramework === 'angular') { %>
-      'node_modules/angular/angular.js',
-      'node_modules/angular-route/angular-route.js',
-      'node_modules/json3/lib/json3.js',<% } %><% if (jsTemplate === 'handlebars') { %>
-      'node_modules/handlebars/dist/handlebars.runtime.js',<% } else if (jsTemplate === 'jade') { %>
-      'node_modules/jade/runtime.js'<% } %>
-    ],
-    // Output script file relative to build target
-    // 'grunt serve' -> <temporary directory>/<scripts directory>/global.js
-    // 'grunt build' -> <destination directory>/<scripts directory>/global.js
-    output: 'vendor.js'
-  },
-  styles: {
-    // Input style files relative to project root
-    input: [
-      'node_modules/normalize.css/normalize.css'
-    ],
-    // Output style file relative to build target
-    // 'grunt serve' -> <temporary directory>/<styles directory>/global.js
-    // 'grunt build' -> <destination directory>/<styles directory>/global.js
-    output: 'vendor.css'
-  }
-};
-
 module.exports = {
   title: title,
   description: description,
   host: host,
   port: port,
   baseUrl: baseUrl,
-  directories: directories,
-  vendor: vendor
+  directories: directories
 };

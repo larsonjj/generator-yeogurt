@@ -7,12 +7,6 @@
 var taskFiles = function taskFiles() {
 
   // ========
-  // Helpers
-  // ========
-
-  this.template('grunt/helpers/vendor-loader.js', 'grunt/helpers/vendor-loader.js');
-
-  // ========
   // Util
   // ========
 
@@ -93,11 +87,9 @@ var taskFiles = function taskFiles() {
   // Optimize
   // ========
 
-  this.template('grunt/config/optimize/concat.js', 'grunt/config/optimize/concat.js');
   this.template('grunt/config/optimize/htmlmin.js', 'grunt/config/optimize/htmlmin.js');
   this.template('grunt/config/optimize/autoprefixer.js', 'grunt/config/optimize/autoprefixer.js');
   this.template('grunt/config/optimize/imagemin.js', 'grunt/config/optimize/imagemin.js');
-  this.template('grunt/config/optimize/uglify.js', 'grunt/config/optimize/uglify.js');
   this.template('grunt/config/optimize/cssmin.js', 'grunt/config/optimize/cssmin.js');
 
   // ========

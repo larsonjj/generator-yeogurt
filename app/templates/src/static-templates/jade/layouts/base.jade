@@ -9,7 +9,6 @@ head
   meta(name='viewport', content='width=device-width, initial-scale=1.0')<% if (useServer) { %>
   meta(name='csrf-token', content=_csrf)<% } %>
 
-  link(rel='stylesheet', href='styles/vendor.css')
   link(rel='stylesheet', href='styles/main.css')
 
 body
@@ -19,8 +18,4 @@ body
 
   block content
 
-  script(src='scripts/vendor.js')<% if (jsOption === 'requirejs') { %>
-
-  script(data-main='scripts/main', src='node_modules/requirejs/require.js')<% } else { %><% if (jsFramework === 'backbone') { %>
-  script(src='scripts/routes.js')<% } %>
-  script(src='scripts/main.js')<% } %>
+  script(src='scripts/main.js')

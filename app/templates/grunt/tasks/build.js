@@ -9,14 +9,12 @@ var taskConfig = function(grunt) {
     'clean:build',<% if (useServer) { %>
     'env:prod',<% } %>
     'copy:build',
-    'concat:build',
     'concurrent:images',
     'concurrent:compile',<% if (jsFramework === 'angular') { %>
     'ngtemplates:build',<% } %>
     'cssmin',
     'autoprefixer:serve',
-    'htmlmin:build',
-    'uglify',<% if (useKss || useJsdoc || useDashboard) { %>
+    'htmlmin:build',<% if (useKss || useJsdoc || useDashboard) { %>
     'concurrent:docs',<% } %>
     'clean:tmp'
   ]);

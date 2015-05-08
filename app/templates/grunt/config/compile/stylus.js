@@ -8,7 +8,9 @@ var taskConfig = function(grunt) {
     serve: {
       options: {
         compress: false,
-        sourcemap: false, // not supported yet
+        sourcemap: {
+          inline: true
+        },
         paths: [
           '<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.styles %>}/'<% if (jsFramework === 'angular') { %>,
           '<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.styles %>}/'<% } %>
@@ -21,7 +23,7 @@ var taskConfig = function(grunt) {
     build: {
       options: {
         compress: true,
-        sourcemap: false, // not supported yet
+        sourcemap: false, // external sourcemap not supported yet
         paths: [
           '<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.styles %>}/'<% if (jsFramework === 'angular') { %>,
           '<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.styles %>}/'<% } %>
