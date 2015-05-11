@@ -27,9 +27,8 @@ var taskConfig = function(grunt) {
     if (!target || target === 'client') {
       grunt.task.run([
         'eslint'<% if (useTesting) { %><% if (jsTemplate === 'underscore') { %>,
-        'jst:serve'<% } else if (jsTemplate === 'handlebars') { %>,
-        'handlebars:serve'<% } else if (jsTemplate === 'jade') { %>,
-        'jade:serve'<% } %><% if (jsOption === 'browserify') { %>,
+        'jst:compile'<% } else if (jsTemplate === 'handlebars') { %>,
+        'handlebars:compile'<% } %><% if (jsOption === 'browserify') { %>,
         'browserify:test'<% } %><% } %>
       ]);<% if (useTesting) { %>
 

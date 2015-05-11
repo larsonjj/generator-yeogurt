@@ -9,6 +9,7 @@ var IndexView = require('../_screens/index/index');
 var Router = Backbone.Router.extend({
 
   routes: {
+    // Default route
     '': 'index'
   },
 

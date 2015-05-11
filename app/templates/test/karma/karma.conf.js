@@ -11,27 +11,13 @@ var karmaConf = function(config) {
     frameworks: [<% if (testFramework === 'jasmine') { %>'jasmine'<% } else if (testFramework === 'mocha') { %>'mocha', 'chai'<% } %>],
 
     // list of files / patterns to load in the browser
-    files: [<% if (jsFramework !== 'react') { %>
-      'node_modules/jquery/dist/jquery.js',<% } %><% if (jsFramework === 'angular') { %>
+    files: [<% if (jsFramework === 'angular') { %>
       'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'node_modules/angular-route/angular-route.js',<% } %><% if (jsFramework === 'backbone') { %>
       'node_modules/backbone/node_modules/underscore/underscore.js',
       'node_modules/backbone/backbone.js',<% } %><% if (jsFramework === 'react') { %>
-      'src/_vendor/phantomjs-shims.js',<% } %><% if (jsTemplate === 'handlebars') { %>
-      'node_modules/handlebars/dist/handlebars.runtime.js',<% } else if (jsTemplate === 'jade') { %>'node_modules/jade/runtime.js',<% } %><% if (jsFramework === 'backbone') { %>
-      '.tmp/scripts/templates.js',<% } %><% if (jsOption === 'requirejs') { %>
-      'node_modules/requirejs/require.js',
-      'src/*scripts/main.karma.js',
-      {
-        pattern: 'src/*scripts/**/*.js',
-        included: false
-      }, {
-        pattern: 'src/**/*.spec.js',
-        included: false
-      },
-      // Karma adapter to run tests (must be loaded last)
-      'node_modules/karma-requirejs/lib/adapter.js',<% } else if (jsOption === 'browserify') { %>
+      'src/_vendor/phantomjs-shims.js',<% } %><% if (jsOption === 'browserify') { %>
       '.tmp/scripts/bundle.js'<% } else { %><% if (jsFramework === 'backbone') { %>
       // Load all scripts except ones that require a specific order (ie. 'main' and 'routes')
       'src/*scripts/**/!(main|routes).js',<% if (jsFramework === 'backbone' && jsOption === 'none') { %>
