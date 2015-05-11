@@ -6,22 +6,13 @@
 var taskConfig = function(grunt) {
 
   grunt.config.set('handlebars', {
-    serve: {
+    compile: {
       options: {
-        namespace: 'JST'
+        namespace: 'JST',
+        commonjs: true
       },
       files: {
         '<%%= yeogurt.directories.temporary %>/scripts/templates.js': [
-          '<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.screens %>}/**/*.hbs'
-        ]
-      }
-    },
-    build: {
-      options: {
-        namespace: 'JST'
-      },
-      files: {
-        '<%%= yeogurt.directories.destination %>/scripts/templates.js': [
           '<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.screens %>}/**/*.hbs'
         ]
       }

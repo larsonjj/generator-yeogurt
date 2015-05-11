@@ -6,16 +6,12 @@
 var taskConfig = function(grunt) {
 
   grunt.config.set('jst', {
-    serve: {
+    compile: {
+      options: {
+        commonjs: true
+      },
       files: {
         '<%%= yeogurt.directories.temporary %>/scripts/templates.js': [
-          '<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.screens %>}/**/*.jst'
-        ]
-      }
-    },
-    build: {
-      files: {
-        '<%%= yeogurt.directories.destination %>/scripts/templates.js': [
           '<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.screens %>}/**/*.jst'
         ]
       }

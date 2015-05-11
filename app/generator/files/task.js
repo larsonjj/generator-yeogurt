@@ -47,7 +47,7 @@ var taskFiles = function taskFiles() {
     this.template('grunt/config/compile/handlebars.js', 'grunt/config/compile/handlebars.js');
   }
 
-  if (this.htmlOption === 'jade' || this.jsTemplate === 'jade') {
+  if (this.htmlOption === 'jade') {
     this.template('grunt/config/compile/jade.js', 'grunt/config/compile/jade.js');
   }
   else if (this.htmlOption === 'swig') {

@@ -53,12 +53,11 @@ var clientPrompts = function clientPrompts() {
     type: 'list',
     name: 'jsTemplate',
     message: 'Which ' + 'JavaScript templating library'.blue + ' would you like to use?',
-    choices: ['Underscore', 'Handlebars', 'Jade'],
+    choices: ['Underscore', 'Handlebars'],
     filter: function(val) {
       var filterMap = {
         'Underscore': 'underscore',
-        'Handlebars': 'handlebars',
-        'Jade': 'jade'
+        'Handlebars': 'handlebars'
       };
 
       return filterMap[val];

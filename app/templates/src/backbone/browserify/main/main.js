@@ -3,32 +3,26 @@
 
 'use strict';
 
+var $ = require('jquery');
+var Backbone = require('backbone');
+Backbone.$ = $;
+<% if (jsTemplate === 'handlebars') { %>
+// Attach Handlebars runtime to window
+var Handlebars = require('../../node_modules/handlebars/runtime');
+
+// Include compiled Handlebars templates
+// Templates are compiled by the handlebars grunt task
+window.JST = require('../../.tmp/scripts/templates')(Handlebars);<% } else if (jsTemplate === 'underscore') { %>
+var _ = require('underscore');
+
+// Include compiled Underscore templates
+// Templates are compiled by the jst grunt task
+window.JST = require('../../.tmp/scripts/templates')(_);<% } %>
+
 var router = require('./routes');
 
-// Use GET and POST to support all browsers
-// Also adds '_method' parameter with correct HTTP headers
-Backbone.emulateHTTP = true;<% if (useServer) { %>
-// Enable pushState for compatible browsers
-var enablePushState = true;
-
-// Detect is pushState is available
-var pushState = !!(enablePushState && window.history && window.history.pushState);
-
-if (pushState) {
-  // Start listening to route changes with pushState
-  Backbone.history.start({ pushState: true, root: '/' });
-} else {
-  // Start listening to route changes without pushState
-  Backbone.history.start();
-}
-
-// Handle pushState for incompatible browsers (IE9 and below)
-if (!pushState && window.location.pathname !== '/') {
-  window.location.replace('/#' + window.location.pathname);
-}<% } else { %>
-
 // Start listening to route changes
-Backbone.history.start();<% } %>
+Backbone.history.start();
 
 // Set up global click event handler to use pushState for links
 // use 'data-bypass' attribute on anchors to allow normal link behavior

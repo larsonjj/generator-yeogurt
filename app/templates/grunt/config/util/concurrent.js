@@ -8,14 +8,14 @@ var taskConfig = function(grunt) {
     images: [
       'imagemin:build'
     ],
-    compile: [<% if (htmlOption === 'jade' || jsTemplate === 'jade') { %>
+    compile: [<% if (htmlOption === 'jade') { %>
       'jade:build',<% } else if (htmlOption === 'swig') {  %>
       'swig:build',<% } %><% if (cssOption === 'less') { %>
       'less:build',<% } %><% if (cssOption === 'sass') { %>
       'sass:build',<% } %><% if (cssOption === 'stylus') { %>
       'stylus:build',<% } %><% if (jsTemplate === 'underscore') { %>
-      'jst:build',<% } else if (jsTemplate === 'handlebars') { %>
-      'handlebars:build',<% } %><% if (jsOption === 'requirejs') { %>
+      'jst:serve',<% } else if (jsTemplate === 'handlebars') { %>
+      'handlebars:compile',<% } %><% if (jsOption === 'requirejs') { %>
       'requirejs',<% } %><% if (jsOption === 'browserify') { %>
       'browserify:build'<% } %>
     ],<% if (useDashboard || useJsdoc || useKss) { %>

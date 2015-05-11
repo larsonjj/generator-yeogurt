@@ -1,5 +1,9 @@
 'use strict';
 
+var $ = require('jquery');
+var Backbone = require('backbone');
+Backbone.$ = $;
+
 var IndexView = Backbone.View.extend({
 
   el: '#app-wrapper',
