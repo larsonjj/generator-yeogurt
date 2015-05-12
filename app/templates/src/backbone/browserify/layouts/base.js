@@ -4,14 +4,16 @@ var $ = require('jquery');
 var Backbone = require('backbone');
 Backbone.$ = $;
 var Marionette = require('backbone.marionette');
-var templates = require('../../_scripts/templates');
+var templates = require('../_scripts/templates');
 
-var IndexView = Marionette.ItemView.extend({
+var BaseLayoutView = Marionette.LayoutView.extend({
 
   template: templates['src/_screens/index/index<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } %>'],
 
-  events: {},
+  regions: {
+    content: "#base-layout-wrapper"
+  }
 
 });
 
-module.exports = IndexView;
+module.exports = BaseLayoutView;

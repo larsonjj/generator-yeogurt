@@ -22,32 +22,23 @@ var scriptFiles = function scriptFiles() {
   }
 
   if (this.jsFramework === 'backbone') {
-    if (this.jsOption === 'requirejs') {
-      this.template('src/backbone/requirejs/main/main.js', 'src/_scripts/main.js');
-      this.template('src/backbone/requirejs/routes/routes.js', 'src/_scripts/routes.js');
-      this.template('src/backbone/requirejs/index/index.js', 'src/_screens/index/index.js');
-    }
 
     if (this.jsOption === 'browserify') {
       this.template('src/backbone/browserify/main/main.js', 'src/_scripts/main.js');
+      this.template('src/backbone/browserify/app/app.js', 'src/_scripts/app.js');
+      this.template('src/backbone/browserify/templates/templates.js', 'src/_scripts/templates.js');
       this.template('src/backbone/browserify/routes/routes.js', 'src/_scripts/routes.js');
       this.template('src/backbone/browserify/index/index.js', 'src/_screens/index/index.js');
-    }
-
-    if (this.jsOption === 'none') {
-      this.template('src/backbone/js/main/main.js', 'src/_scripts/main.js');
-      this.template('src/backbone/js/routes/routes.js', 'src/_scripts/routes.js');
-      this.template('src/backbone/js/index/index.js', 'src/_screens/index/index.js');
+      this.template('src/backbone/browserify/layouts/base.js', 'src/_layouts/base.js');
     }
 
     if (this.jsTemplate === 'underscore') {
       this.template('src/backbone/templates/underscore/index.jst', 'src/_screens/index/index.jst');
+      this.template('src/backbone/templates/underscore/base.jst', 'src/_layouts/base.jst');
     }
     else if (this.jsTemplate === 'handlebars') {
       this.template('src/backbone/templates/handlebars/index.hbs', 'src/_screens/index/index.hbs');
-    }
-    else if (this.jsTemplate === 'jade') {
-      this.template('src/backbone/templates/jade/index.jade', 'src/_screens/index/index.jade');
+      this.template('src/backbone/templates/handlebars/base.hbs', 'src/_layouts/base.hbs');
     }
 
   }
