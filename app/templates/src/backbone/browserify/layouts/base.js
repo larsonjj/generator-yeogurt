@@ -8,7 +8,7 @@ var templates = require('../_scripts/templates');
 
 var BaseLayoutView = Marionette.LayoutView.extend({
 
-  template: templates['src/_screens/index/index<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } %>'],
+  template: templates['src/_layouts/base<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } %>'],
 
   regions: {
     content: "#base-layout-wrapper"

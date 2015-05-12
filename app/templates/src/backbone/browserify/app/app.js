@@ -13,9 +13,9 @@ App.addRegions({
   appRegion: "#app-wrapper"
 });
 
-App.on("initialize:after", function() {
+App.on("start", function() {
   // Start listening to route changes
-  if (Backbone.history){
+  if (Backbone.history) {
     Backbone.history.start();
   }
 });

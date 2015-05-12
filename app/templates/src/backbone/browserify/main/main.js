@@ -25,7 +25,6 @@ $(document).on('click', 'a:not([data-bypass])', function(event) {
 
 });
 
-
 // App configuration
 var config = {
   router: router,

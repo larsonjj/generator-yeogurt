@@ -13,7 +13,7 @@ var _initializeLayout = function() {
   var baseLayout = new BaseLayoutView();
 
   // Trigger mounting base layout within DOM
-  vent.trigger('app:show', baseLayout);
+  App.vent.trigger('app:show', baseLayout);
 
   return baseLayout;
 };

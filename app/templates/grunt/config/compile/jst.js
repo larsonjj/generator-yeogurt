@@ -12,7 +12,7 @@ var taskConfig = function(grunt) {
       },
       files: {
         '<%%= yeogurt.directories.temporary %>/scripts/templates.js': [
-          '<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.screens %>}/**/*.jst'
+          '<%%= yeogurt.directories.source %>/{<%%= yeogurt.directories.modules %>,<%%= yeogurt.directories.screens %>,<%%= yeogurt.directories.layouts %>}/**/*.jst'
         ]
       }
     }
