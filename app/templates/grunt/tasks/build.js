@@ -11,7 +11,7 @@ var taskConfig = function(grunt) {
     'copy:build',
     'concurrent:images',
     'concurrent:compile',<% if (jsFramework === 'angular') { %>
-    'ngtemplates:build',<% } %>
+    'ngtemplates:compile',<% } %>
     'cssmin',
     'autoprefixer:serve',
     'htmlmin:build',<% if (useKss || useJsdoc || useDashboard) { %>

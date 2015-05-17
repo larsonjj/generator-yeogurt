@@ -18,10 +18,8 @@
     <![endif]-->
 
     <!-- Application loads here -->
-    <div id="app-wrapper" <% if (jsFramework === 'angular') { %>ng-view<% } %>></div><% if (jsFramework === 'backbone' && jsOption === 'none') { %>
+    <div id="app-wrapper" <% if (jsFramework === 'angular') { %>ng-view<% } %>></div>
 
-    <script src="scripts/routes.js"></script><% } %>
-    <script src="scripts/main.js"></script><% if (jsFramework === 'angular') { %>
-    <script src="scripts/templates.js"></script><% } %>
+    <script src="scripts/main.js"></script>
   </body>
 </html>

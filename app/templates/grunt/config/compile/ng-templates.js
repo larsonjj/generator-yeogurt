@@ -19,15 +19,10 @@ var taskConfig = function(grunt) {
       },
       prefix: '/'
     },
-    serve: {
+    compile: {
       cwd: '<%%= yeogurt.directories.source %>/',
       src: ['{<%%= yeogurt.directories.screens %>,<%%= yeogurt.directories.modules %>}/**/*.html'],
       dest: '<%%= yeogurt.directories.temporary %>/<%%= yeogurt.directories.scripts.replace(/^_/, "") %>/templates.js'
-    },
-    build: {
-      cwd: '<%%= yeogurt.directories.source %>/',
-      src: ['{<%%= yeogurt.directories.screens %>,<%%= yeogurt.directories.modules %>}/**/*.html'],
-      dest: '<%%= yeogurt.directories.destination %>/<%%= yeogurt.directories.scripts.replace(/^_/, "") %>/templates.js'
     }
   });
 };

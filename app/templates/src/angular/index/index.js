@@ -1,5 +1,7 @@
 'use strict';
 
+var angular = require('angular');
+
 require('./index.controller');
 
 angular.module('<%= _.camelize(projectName) %>')

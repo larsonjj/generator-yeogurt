@@ -16,7 +16,7 @@ var taskConfig = function(grunt) {
       'clean:tmp',<% if (useServer) { %>
       'env:all',<% } %><% if (useKss && cssOption !== 'css') { %>
       'copy:serve',<% } %><% if (jsFramework === 'angular') { %>
-      'ngtemplates',<% } %><% if (jsTemplate === 'underscore') { %>
+      'ngtemplates:compile',<% } %><% if (jsTemplate === 'underscore') { %>
       'jst:compile',<% } else if (jsTemplate === 'handlebars') { %>
       'handlebars:compile',<% } %><% if (htmlOption === 'jade' && !useServer ) { %>
       'jade:serve',<% } else if (htmlOption === 'swig' && !useServer ) {  %>

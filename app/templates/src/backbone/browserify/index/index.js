@@ -10,7 +10,7 @@ var IndexView = Marionette.ItemView.extend({
 
   template: templates['src/_screens/index/index<% if (jsTemplate === 'handlebars') { %>.hbs<% } else if (jsTemplate === 'underscore') { %>.jst<% } %>'],
 
-  events: {},
+  events: {}
 
 });
 

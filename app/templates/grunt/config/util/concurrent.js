@@ -14,7 +14,7 @@ var taskConfig = function(grunt) {
       'less:build',<% } %><% if (cssOption === 'sass') { %>
       'sass:build',<% } %><% if (cssOption === 'stylus') { %>
       'stylus:build',<% } %><% if (jsTemplate === 'underscore') { %>
-      'jst:serve',<% } else if (jsTemplate === 'handlebars') { %>
+      'jst:compile',<% } else if (jsTemplate === 'handlebars') { %>
       'handlebars:compile',<% } %><% if (jsOption === 'requirejs') { %>
       'requirejs',<% } %><% if (jsOption === 'browserify') { %>
       'browserify:build'<% } %>

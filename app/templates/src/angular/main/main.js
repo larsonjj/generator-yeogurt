@@ -3,6 +3,9 @@
 
 'use strict';
 
+var angular = require('angular');
+require('angular-route');
+
 // Main module. Must be loaded first
 angular
   .module('<%= _.camelize(projectName) %>', [
@@ -14,5 +17,9 @@ angular
 
 // Screens and Modules
 require('../_screens/index/index');
+
+// Load Templates
+// templates are compiled by the 'ngtemplates:compile' grunt task
+require('../../.tmp/scripts/templates');
 
 console.log('Welcome to Yeogurt!');

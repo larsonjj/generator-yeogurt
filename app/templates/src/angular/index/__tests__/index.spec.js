@@ -1,6 +1,8 @@
 <% if (testFramework === 'mocha') { %>/*eslint no-unused-expressions:0 */<% } %>
 'use strict';
 
+var angular = require('angular');
+
 // Mock application module
 angular.module('Sample', []);
 
