@@ -42,7 +42,7 @@ var taskConfig = function(grunt) {
         '!**/\_*/**'
       ],
       ext: '.html'
-    }<% } %>
+    }
   });
 
 };
