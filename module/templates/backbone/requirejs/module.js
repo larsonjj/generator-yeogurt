@@ -9,7 +9,7 @@ define(function(require) {
 
     className: '',
 
-    template: JST['<%= templateFile %>.<% if (jsTemplate === 'underscore') { %>jst<% } else if (jsTemplate === 'handlebars') { %>hbs<% } else if (jsTemplate === 'jade') { %>jade<% } else if (jsTemplate === 'swig') { %>swig<% } %>'],
+    template: JST['<%= templateFile %>.jst'],
 
     events: {},
 

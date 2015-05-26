@@ -14,13 +14,12 @@ var karmaConf = function(config) {
     files: [<% if (jsFramework === 'angular') { %>
       'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
-      'node_modules/angular-route/angular-route.js',<% } %><% if (jsFramework === 'backbone') { %>
+      'node_modules/angular-route/angular-route.js',<% } %><% if (jsFramework === 'marionette') { %>
       'node_modules/backbone/node_modules/underscore/underscore.js',
-      'node_modules/backbone/backbone.js',<% } %><% if (jsFramework === 'react') { %>
-      'src/_vendor/phantomjs-shims.js',<% } %><% if (jsOption === 'browserify') { %>
-      '.tmp/scripts/bundle.js'<% } else { %><% if (jsFramework === 'backbone') { %>
+      'node_modules/backbone/backbone.js',<% } %><% if (jsOption === 'browserify') { %>
+      '.tmp/scripts/bundle.js'<% } else { %><% if (jsFramework === 'marionette') { %>
       // Load all scripts except ones that require a specific order (ie. 'main' and 'routes')
-      'src/*scripts/**/!(main|routes).js',<% if (jsFramework === 'backbone' && jsOption === 'none') { %>
+      'src/*scripts/**/!(main|routes).js',<% if (jsFramework === 'marionette' && jsOption === 'none') { %>
       'src/**/_layouts/**/*.js',<% } %>
       'src/*scripts/routes.js',<% } %><% if (jsFramework !== 'angular') { %>
       'src/*scripts/main.js',

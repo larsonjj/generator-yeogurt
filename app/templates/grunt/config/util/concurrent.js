@@ -13,9 +13,8 @@ var taskConfig = function(grunt) {
       'swig:build',<% } %><% if (cssOption === 'less') { %>
       'less:build',<% } %><% if (cssOption === 'sass') { %>
       'sass:build',<% } %><% if (cssOption === 'stylus') { %>
-      'stylus:build',<% } %><% if (jsTemplate === 'underscore') { %>
-      'jst:compile',<% } else if (jsTemplate === 'handlebars') { %>
-      'handlebars:compile',<% } %><% if (jsOption === 'requirejs') { %>
+      'stylus:build',<% } %><% if (jsFramework === 'marionette') { %>
+      'jst:compile',<% } %><% if (jsOption === 'requirejs') { %>
       'requirejs',<% } %><% if (jsOption === 'browserify') { %>
       'browserify:build'<% } %>
     ],<% if (useDashboard || useJsdoc || useKss) { %>

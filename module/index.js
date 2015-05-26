@@ -263,7 +263,7 @@ ModuleGenerator.prototype.files = function files() {
       this.template('react/module.spec.js', this.testFile + '.spec.js');
     }
   }
-  else if (this.jsFramework === 'backbone') {
+  else if (this.jsFramework === 'marionette') {
     if (this.jsOption === 'requirejs') {
       this.template('backbone/requirejs/module.js', this.moduleFile + '.js');
       if (this.useTesting) {
@@ -284,16 +284,7 @@ ModuleGenerator.prototype.files = function files() {
       }
     }
 
-    if (this.jsTemplate === 'handlebars') {
-      this.template('backbone/module.html', this.moduleFile + '.hbs');
-    }
-    else if (this.jsTemplate === 'jade') {
-      this.template('backbone/module.html', this.moduleFile + '.jade');
-    }
-    // Default to underscore templates
-    else {
-      this.template('backbone/module.html', this.moduleFile + '.jst');
-    }
+    this.template('backbone/module.html', this.moduleFile + '.jst');
   }
 
   if (this.moduleLocation !== 'server' || this.generateFrontend) {

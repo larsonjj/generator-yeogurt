@@ -91,7 +91,6 @@ var answersConfig = function answersConfig() {
   this.htmlOption            = this.answers.htmlOption;
   this.jsFramework           = this.answers.jsFramework;
   this.useJsx                = this.answers.useJsx;
-  this.jsTemplate            = this.answers.jsTemplate;
   this.jsOption              = this.answers.jsOption;
   this.cssOption             = this.answers.cssOption;
   this.sassSyntax            = this.answers.sassSyntax;
@@ -118,6 +117,7 @@ var answersConfig = function answersConfig() {
 
   // Default jsOption to Browserify
   this.jsOption = this.answers.jsOption || 'browserify';
+
 };
 
 module.exports = answersConfig;

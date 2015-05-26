@@ -7,7 +7,7 @@
   "globals": {
       "DocumentFragment": true,
       "$": true,
-      "Modernizr": true,<% if (jsFramework === 'backbone') { %>
+      "Modernizr": true,<% if (jsFramework === 'marionette') { %>
       "Backbone": true,
       "JST": true,<% } %><% if (jsFramework === 'angular') { %>
       "angular": true,

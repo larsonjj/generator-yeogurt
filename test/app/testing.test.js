@@ -56,24 +56,6 @@ describe('Yeogurt generator testing', function() {
         });
       });
     });
-    describe('With React', function() {
-      it('Does not create certain files', function(done) {
-        var expected = [
-          'src/vendor/phantomjs-shims.js'
-        ];
-
-        helpers.mockPrompt(this.app, {
-          useTesting: true,
-          jsFramework: 'react',
-          testFramework: 'jasmine'
-        });
-
-        this.app.run([], function() {
-          assert.file(expected);
-          done();
-        });
-      });
-    });
   });
   describe('Without unit tests', function() {
     it('Does not create certain files', function(done) {
@@ -101,24 +83,6 @@ describe('Yeogurt generator testing', function() {
         helpers.mockPrompt(this.app, {
           useTesting: false,
           jsOption: 'requirejs',
-          testFramework: 'jasmine'
-        });
-
-        this.app.run([], function() {
-          assert.noFile(notExpected);
-          done();
-        });
-      });
-    });
-    describe('With React', function() {
-      it('Does not create certain files', function(done) {
-        var notExpected = [
-          'src/vendor/phantomjs-shims.js'
-        ];
-
-        helpers.mockPrompt(this.app, {
-          useTesting: false,
-          jsFramework: 'react',
           testFramework: 'jasmine'
         });
 

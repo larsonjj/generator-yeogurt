@@ -101,24 +101,11 @@ var taskConfig = function(grunt) {
       tasks: [
         'newer:eslint'
       ]
-    },<% if (jsTemplate === 'handlebars') { %>
-    handlebars: {
-      files: ['<%%= yeogurt.directories.source %>/templates/**/*.hbs'],
-      tasks: [
-        'handlebars:serve'
-      ]
-    },<% } %><% if (jsTemplate === 'underscore') { %>
+    },<% if (jsFramework === 'marionette') { %>
     jst: {
       files: ['<%%= yeogurt.directories.source %>/templates/**/*.jst'],
       tasks: [
         'jst:serve'
-      ]
-    },<% } %><% if (jsTemplate === 'jade') { %>
-    jade: {
-      files: ['<%%= yeogurt.directories.source %>/templates/**/*.jade'],
-      tasks: [
-        'jade:serve'<% if (useServer) { %>,
-        'express:serve'<% } %>
       ]
     },<% } %>
     livereload: {
@@ -178,7 +165,7 @@ var taskConfig = function(grunt) {
       tasks: [
         'dashboard:serve'
       ]
-    },<% } %><% if (jsFramework === 'backbone') { %>
+    },<% } %><% if (jsFramework === 'marionette') { %>
     html: {
       tasks: [
         'dashboard:serve',

@@ -38,26 +38,12 @@ var clientPrompts = function clientPrompts() {
     type: 'list',
     name: 'jsFramework',
     message: 'Which ' + 'JavaScript framework/library'.blue + ' would you like to use?',
-    choices: ['React', 'Backbone', 'Angular'],
+    choices: ['React + Reflux + React Router', 'Backbone + Marionette', 'Angular'],
     filter: function(val) {
       var filterMap = {
-        'React': 'react',
-        'Backbone': 'backbone',
+        'React + Reflux + React Router': 'react',
+        'Backbone + Marionette': 'marionette',
         'Angular': 'angular'
-      };
-
-      return filterMap[val];
-    }
-  }, {
-    when: function(answers) {return answers.jsFramework === 'backbone';},
-    type: 'list',
-    name: 'jsTemplate',
-    message: 'Which ' + 'JavaScript templating library'.blue + ' would you like to use?',
-    choices: ['Underscore', 'Handlebars'],
-    filter: function(val) {
-      var filterMap = {
-        'Underscore': 'underscore',
-        'Handlebars': 'handlebars'
       };
 
       return filterMap[val];

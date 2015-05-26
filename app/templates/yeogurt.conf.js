@@ -15,7 +15,7 @@ var baseUrl = '/';
 // Relative to project root and used within Grunt tasks
 // NOTE: folders prefixed with an underscore (_) will have it removed when moved to build target
 // EX: src/_images -> build/images
-// NOTE: folders NOT prefixed with underscore (_) will be copied to build target
+// NOTE: folders NOT prefixed with underscore (_) will be copied to build target 1 to 1
 // EX: src/fonts -> build/fonts
 var directories = {
   // Source directory: author files location
@@ -25,13 +25,15 @@ var directories = {
   destination: 'build',
 
   // Temporary directory: temporary development files location
-  temporary: '.tmp',<% if (singlePageApplication) { %>
+  temporary: '.tmp',
+
+  // Extra configurable directories<% if (singlePageApplication) { %>
   screens: '_screens',<% } %>
   modules: '_modules',
   layouts: '_layouts',
   images: '_images',
-  styles: '<% if (cssOption !== 'css') { %>_<% } %>styles',
-  scripts: '<% if (jsOption !== 'none' || jsFramework === 'angular') { %>_<% } %>scripts',
+  styles: '_styles',
+  scripts: '_scripts',
   docs: '_autodocs'
 };
 
