@@ -19,6 +19,23 @@ var taskConfig = function(grunt) {
       tasks: [
         'serve:nowatch'
       ]
+    },
+    images: {
+      files: [
+        '<%%= yeogurt.directories.images %>/**/*.{jpg,jpeg,gif,png,svg}',
+      ],
+      tasks: [
+        'newer:imagemin:serve'
+      ]
+    },
+    copy: {
+      files: [
+        '<%%= yeogurt.directories.source %>/**/*',
+        '!<%%= yeogurt.directories.source %>/**/\_*/**',
+      ],
+      tasks: [
+        'newer:copy:serve'
+      ]
     },<% if (htmlOption === 'jade' && !useServer) { %>
     jade: {
       files: [

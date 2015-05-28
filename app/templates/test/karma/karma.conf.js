@@ -17,7 +17,7 @@ var karmaConf = function(config) {
       'node_modules/angular-route/angular-route.js',<% } %><% if (jsFramework === 'marionette') { %>
       'node_modules/backbone/node_modules/underscore/underscore.js',
       'node_modules/backbone/backbone.js',<% } %><% if (jsOption === 'browserify') { %>
-      '.tmp/scripts/bundle.js'<% } else { %><% if (jsFramework === 'marionette') { %>
+      'tmp/scripts/bundle.js'<% } else { %><% if (jsFramework === 'marionette') { %>
       // Load all scripts except ones that require a specific order (ie. 'main' and 'routes')
       'src/*scripts/**/!(main|routes).js',<% if (jsFramework === 'marionette' && jsOption === 'none') { %>
       'src/**/_layouts/**/*.js',<% } %>

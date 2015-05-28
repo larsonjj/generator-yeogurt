@@ -70,7 +70,7 @@
     "chai": "~1.10.0",
     "chai-as-promised": "4.1.1",<% } %><% } %>
     "grunt-contrib-cssmin": "~0.10.0",
-    "grunt-contrib-imagemin": "~0.9.1",
+    "grunt-contrib-imagemin": "~0.9.4",
     "imagemin-svgo": "~4.0.0",
     "imagemin-pngquant": "~4.0.0",
     "grunt-eslint": "~7.0.1",
@@ -101,7 +101,7 @@
     "grunt-express-server": "~0.4.5"<% } %>
   },
   "scripts": {
-    "clean": "rimraf node_modules .tmp build"<% if (useServer) { %>,
+    "clean": "rimraf node_modules tmp build"<% if (useServer) { %>,
     "start": "NODE_ENV=production node server/server.js"<% } %><% if (useE2e) { %>,
     "update-webdriver": "node node_modules/protractor/bin/webdriver-manager update"<% } %>
   },

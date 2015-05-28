@@ -34,7 +34,7 @@ var taskConfig = function(grunt) {
       },
       src: '<%= yeogurt.dist %>',
       dest: '<%= secret.serverPath %>',
-      exclusions: ['*.svn', '.svn/', '.svn', '*.git', '.git/', '.git', '.tmp'],
+      exclusions: ['*.svn', '.svn/', '.svn', '*.git', '.git/', '.git', 'tmp'],
       server_sep: '/'
     }
   });

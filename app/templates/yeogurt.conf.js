@@ -25,7 +25,7 @@ var directories = {
   destination: 'build',
 
   // Temporary directory: temporary development files location
-  temporary: '.tmp',
+  temporary: 'tmp',
 
   // Extra configurable directories<% if (singlePageApplication) { %>
   screens: '_screens',<% } %>

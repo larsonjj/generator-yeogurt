@@ -1,7 +1,7 @@
 node_modules
 *.log
 build
-.tmp
+tmp
 .grunt
 server/config/secrets.js
 .DS_Store

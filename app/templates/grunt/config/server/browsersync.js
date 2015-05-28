@@ -8,15 +8,6 @@ var taskConfig = function(grunt) {
   // Load config for use with non-grunt logic
   var yeogurt = require('../../../yeogurt.conf');
 
-  // Build object that maps prefixed directories to be non-prefixed
-  // Ex. _images -> images
-  var routeObj = {};
-  for (var dir in yeogurt.directories) {
-    if (yeogurt.directories[dir].match(/^_/)) {
-      routeObj['/' + yeogurt.directories[dir].replace(/^_/, '')] = yeogurt.directories.source + '/' + yeogurt.directories[dir];
-    }
-  }
-
   grunt.config.set('browserSync', {
     options: {
       notify: false,
@@ -33,16 +24,35 @@ var taskConfig = function(grunt) {
           '<%%= yeogurt.directories.temporary %>/**/*.js',
           '<%%= yeogurt.directories.source %>/**/*.{png,jpg,jpeg,gif,webp,svg}'
         ],
+        startPath: yeogurt.baseUrl,
         server: {
-          baseDir: [yeogurt.directories.temporary, yeogurt.directories.source],
-          routes: routeObj
+          baseDir: yeogurt.directories.temporary,
+          routes: (function(yeogurt) {
+            var routes = {};
+
+            // Map base URL to routes
+            routes[yeogurt.baseUrl] = yeogurt.directories.temporary;
+
+            return routes;
+          })(yeogurt)
         }
       }
     },
     build: {
       options: {
         background: false,
-        server: '<%%= yeogurt.directories.destination %>'
+        startPath: yeogurt.baseUrl,
+        server: {
+          baseDir: '<%%= yeogurt.directories.destination %>',
+          routes: (function(yeogurt) {
+            var routes = {};
+
+            // Map base URL to routes
+            routes[yeogurt.baseUrl] = yeogurt.directories.destination;
+
+            return routes;
+          })(yeogurt)
+        }
       }
     }
   });

@@ -5,12 +5,12 @@ Need to change the location of a Yeogurt site from `/` to `/subdir/`? Follow thi
 
 ## Steps
 
-### 1. Change location of `.tmp` folder
+### 1. Change location of `tmp` folder
 In `/Gruntfile.js` change the following lines of code from
 ```
 var config = {
   client: 'client',
-  tmp: '.tmp',
+  tmp: 'tmp',
   dist: 'dist',
   server: 'server'
 };
@@ -19,7 +19,7 @@ to
 ```
 var config = {
   client: 'client',
-  tmp: '.tmp/subdir',
+  tmp: 'tmp/subdir',
   dist: 'dist',
   server: 'server'
 };
@@ -40,7 +40,7 @@ grunt.config.set('connect', {
         base: '<%= yeogurt.client %>/',
         middleware: function(connect) {
           return [
-            connect.static('.tmp'),
+            connect.static('tmp'),
             connect().use('/subdir/bower_components', connect.static('./client/bower_components')),
             connect().use('/subdir/images', connect.static('./client/images')),
             connect.static('client')

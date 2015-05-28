@@ -3,7 +3,7 @@ node_modules
 build
 .grunt
 .serve
-.tmp
+tmp
 secrets.js
 .DS_Store
 .yo-rc.json

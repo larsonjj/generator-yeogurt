@@ -50,7 +50,7 @@ var expressConfig = function(app, express<% if (dbOption !== 'none') { %>, db<% 
     // Include livereload script on all pages
     app.use(require('connect-livereload')());
     // Load bower_components
-    app.use(express.static(path.join(settings.root, '.tmp'), {maxAge: 0}));
+    app.use(express.static(path.join(settings.root, 'tmp'), {maxAge: 0}));
     app.use('/bower_components', express.static(path.join(settings.root, 'client/bower_components'), {maxAge: 0}));
 
     // Load static assets with no-cache

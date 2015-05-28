@@ -4,7 +4,7 @@
 
 var taskConfig = function(grunt) {
 
-  grunt.config.set('copy', {<% if (useKss && cssOption !== 'css') { %>
+  grunt.config.set('copy', {
     serve: {
       files: [{
          expand: true,
@@ -12,11 +12,10 @@ var taskConfig = function(grunt) {
           dest: '<%%= yeogurt.directories.temporary %>/',
           src: [
             '**/*',
-            '!**/\_*/**',
-            '!**/*.{scss,sass,jade,swig,less,styl}'
+            '!**/\_*/**'
           ]
         }]
-    },<% } %>
+    },
     build: {
       files: [{
         expand: true,
@@ -24,8 +23,7 @@ var taskConfig = function(grunt) {
         dest: '<%%= yeogurt.directories.destination %>/',
         src: [
           '**/*',
-          '!**/\_*/**',
-          '!**/*.{scss,sass,jade,swig,less,styl}'
+          '!**/\_*/**'
         ]
       }<% if (useServer && singlePageApplication) { %>, {
         expand: true,

@@ -50,7 +50,7 @@ Make the changes below to setup the needed configuration for `grunt-contrib-sass
 -        ]
        },
        files: {
-         '<%%= yeogurt.tmp %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.scss'
+         '<%%= yeogurttmp %>/styles/main.css': '<%%= yeogurt.client %>/styles/main.scss'
        }
      },
      dist: {

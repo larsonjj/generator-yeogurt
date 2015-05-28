@@ -14,8 +14,9 @@ var taskConfig = function(grunt) {
 
     grunt.task.run([
       'clean:tmp',<% if (useServer) { %>
-      'env:all',<% } %><% if (useKss && cssOption !== 'css') { %>
-      'copy:serve',<% } %><% if (jsFramework === 'angular') { %>
+      'env:all',<% } %>
+      'imagemin:serve',
+      'copy:serve',<% if (jsFramework === 'angular') { %>
       'ngtemplates:compile',<% } %><% if (jsFramework === 'marionette') { %>
       'jst:compile',<% } %><% if (htmlOption === 'jade' && !useServer ) { %>
       'jade:serve',<% } else if (htmlOption === 'swig' && !useServer ) {  %>
