@@ -4,12 +4,16 @@
 
 var taskConfig = function(grunt) {
 
-  grunt.config.set('swig', {<% if (useServer) { %>
+  // Load config for use with non-grunt logic
+  var yeogurt = grunt.config.get('yeogurt');
+
+  grunt.config.set('swig', {
     options: {
       data: {
-        env: 'development'
+        yeogurt: yeogurt,<% if (useServer) { %>
+        env: 'development'<% } %>
       }
-    },<% } %><% if (!useServer) { %>
+    },<% if (!useServer) { %>
     serve: {
       options: {
         cache: false

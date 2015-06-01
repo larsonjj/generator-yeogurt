@@ -4,8 +4,8 @@ doctype html
 head
   meta(charset='utf-8')
   meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
-  title <%= projectName %>
-  meta(name='description', content='')
+  title= yeogurt.title || ''
+  meta(name='description', content= yeogurt.description || '')
   meta(name='viewport', content='width=device-width, initial-scale=1.0')<% if (useServer) { %>
   meta(name='csrf-token', content=_csrf)<% } %>
 

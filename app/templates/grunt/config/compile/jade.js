@@ -6,13 +6,17 @@
 
 var taskConfig = function(grunt) {
 
+  // Load config for use with non-grunt logic
+  var yeogurt = grunt.config.get('yeogurt');
+
   grunt.config.set('jade', {<% if (!useServer) { %>
     serve: {
       options: {
         pretty: true,
         client: false,
         data: {
-          debug: true
+          debug: true,
+          yeogurt: yeogurt
         }
       },
       expand: true,
@@ -29,7 +33,8 @@ var taskConfig = function(grunt) {
         pretty: true,
         client: false,
         data: {
-          debug: false<% if (useServer) { %>,
+          debug: false,
+          yeogurt: yeogurt,<% if (useServer) { %>,
           env: 'development'<% } %>
         }
       },

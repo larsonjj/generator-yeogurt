@@ -1,4 +1,8 @@
 {
+  "settings": {
+    "jsx": true,
+    "ecmascript": 6
+  },
   "env": {
       "browser": true,
       "amd": true,

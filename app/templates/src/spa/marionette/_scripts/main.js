@@ -34,7 +34,7 @@ var config = {
 // Start Application
 App.start(config);
 
-// Attach app to window
+// Attach app to window for easier debugging/testing
 window.App = App;
 
 console.log('Welcome to Yeogurt');

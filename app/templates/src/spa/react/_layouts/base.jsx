@@ -19,13 +19,9 @@ var DefaultComponent = React.createClass({
   },
   render: function() {
     return (
-      <div>
-        <div className="default">
-          <div className="main-container">
-            <div className="content">
-              <RouteHandler />
-            </div>
-          </div>
+      <div className="base-layout">
+        <div className="main-container">
+          <RouteHandler />
         </div>
       </div>
     );

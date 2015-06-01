@@ -1,4 +1,8 @@
 {
+  "settings": {
+    "ecmascript": 6<% if (jsFramework === 'react') { %>,
+    "jsx": true<% } %>
+  },
   "env": {
       "browser": true,
       "amd": true,
