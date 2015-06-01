@@ -18,12 +18,7 @@
     </p>
     <p>
       <img src="/images/yeogurt-swirl.png" width="75px" class="logo" />
-    </p><% if (useDashboard || useJsdoc || useKss) { %>
-    <p class="links"><% if (useDashboard) { %>
-      <a href="/autodocs/dashboard/index.html">Dashboard</a><% } %><% if (useKss) { %>
-      <a href="/autodocs/styleguide/index.html">Styleguide</a><% } %><% if (useJsdoc) { %>
-      <a href="/autodocs/jsdoc/index.html">API</a><% } %>
-    </p><% } %>
+    </p>
   </div>
 </div>
 <code class="version">v<%= pkg.version %></code>
