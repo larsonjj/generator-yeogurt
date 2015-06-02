@@ -1,5 +1,4 @@
-{# Homepage Markup #}<% if (useDashboard) { %>
-{# [dash:data]
+<% if (useDashboard) { %>{# [dash:data]
   {
     "status": "development",
     "category": "page",
