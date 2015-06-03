@@ -15,7 +15,7 @@ var docFiles = function docFiles() {
     this.template('src/docs/dashboard/scripts/main.js', 'src/_docs/dashboard/scripts/main.js');
     this.copy('src/docs/dashboard/template.hbs', 'src/_docs/dashboard/template.hbs');
     this.copy('src/docs/dashboard/module-template.hbs', 'src/_docs/dashboard/module-template.hbs');
-    this.copy('src/default/_images/yeogurt-logo.png', 'src/_docs/dashboard/images/yeogurt-logo.png');
+    this.copy('src/docs/dashboard/_images/yeogurt-logo.png', 'src/_docs/dashboard/images/yeogurt-logo.png');
   }
 
 };
