@@ -166,6 +166,9 @@ var taskConfig = function(grunt) {
     jade: {
       tasks: [
         'dashboard:serve'
+      ],
+      files: [
+        '<%%= yeogurt.directories.source %>/**/*.dash.json'
       ]
     },
     jadePartials: {
@@ -176,46 +179,15 @@ var taskConfig = function(grunt) {
     swig: {
       tasks: [
         'dashboard:serve'
+      ],
+      files: [
+        '<%%= yeogurt.directories.source %>/**/*.dash.json'
       ]
     },
     swigPartials: {
       tasks: [
         'dashboard:serve'
       ]
-    },<% } %><% if (jsFramework === 'marionette') { %>
-    html: {
-      tasks: [
-        'dashboard:serve',
-      ]
-    },<% } %><% if (cssOption === 'sass' && useKss) { %>
-    sass: {
-      tasks: [
-        'styleguide:serve'
-      ]
-    },<% } %><% if (cssOption === 'less' && useKss) { %>
-    less: {
-      tasks: [
-        'styleguide:serve'
-      ]
-    },<% } %><% if (useJsdoc) { %>
-    js: {
-      files: [
-        'README.md'
-      ],
-      tasks: [
-        'jsdoc:serve'
-      ]
-    },<% } %><% if (jsFramework === 'react' && useJsdoc) { %>
-    react: {
-      tasks: [
-        'jsdoc:serve'
-      ]
-    },<% } %><% if (useKss) { %>
-    kss: {
-      files: [
-        '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.docs %>/styleguide/**/*'
-      ],
-      tasks: ['styleguide:serve']
     },<% } %><% if (useDashboard) { %>
     dashboard: {
       files: [

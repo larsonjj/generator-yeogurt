@@ -1,0 +1,31 @@
+<!DOCTYPE html><!--[if lte IE 9]>
+<html class='lt-ie9 no-js' lang='en'><![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="en"><!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{{name}}</title>
+    <meta name="description" content="A Simple Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Load Site CSS -->
+    <link rel="stylesheet" type="text/css" href="../../../{{data.styles}}/main.css">
+    <link rel="stylesheet/less" type="text/css" href="../styles/module-syntax.less" />
+    <script type="text/javascript" src="../scripts/less.js"></script>
+  </head>
+  <body class="html-body">
+    <!-- Show markup example -->
+    <div class="dashboard-markup-example">
+      <pre>
+        <code class="html">
+          {{source}}
+        </code>
+      </pre>
+    </div>
+    {{{source}}}
+    <script type="text/javascript" src="../scripts/highlight.js"></script>
+    <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+    <!-- Load Site JS -->
+    <script type="text/javascript" src="../../../{{data.scripts}}/main.js"></script>
+  </body>
+</html>

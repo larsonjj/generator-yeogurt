@@ -10,7 +10,6 @@ var clientPrompts = function clientPrompts() {
   }
 
   var cb = this.async();
-  var self = this;
 
   this.log('\n---- ' + 'Client'.red.underline + ' ----\n');
 
@@ -20,7 +19,9 @@ var clientPrompts = function clientPrompts() {
     message: 'Will this be a ' + 'Single Page Application'.blue + '?',
     default: true
   }, {
-    when: function(answers) { return !answers.singlePageApplication; },
+    when: function(answers) {
+      return !answers.singlePageApplication;
+    },
     type: 'list',
     name: 'htmlOption',
     message: 'Which ' + 'HTML preprocessor'.blue + ' would you like to use?',
@@ -34,7 +35,9 @@ var clientPrompts = function clientPrompts() {
       return filterMap[val];
     }
   }, {
-    when: function(answers) { return answers.singlePageApplication; },
+    when: function(answers) {
+      return answers.singlePageApplication;
+    },
     type: 'list',
     name: 'jsFramework',
     message: 'Which ' + 'JavaScript framework/library'.blue + ' would you like to use?',
@@ -49,7 +52,9 @@ var clientPrompts = function clientPrompts() {
       return filterMap[val];
     }
   }, {
-    when: function(answers) { return answers.jsFramework !== 'react' },
+    when: function(answers) {
+      return answers.jsFramework !== 'react';
+    },
     type: 'list',
     name: 'jsOption',
     message: 'Which ' + 'JavaScript module library'.blue + ' would you like to use?',
@@ -77,7 +82,9 @@ var clientPrompts = function clientPrompts() {
       return filterMap[val];
     }
   }, {
-    when: function(answers) { return answers.cssOption === 'sass'; },
+    when: function(answers) {
+      return answers.cssOption === 'sass';
+    },
     type: 'list',
     name: 'sassSyntax',
     message: 'What ' + 'Sass syntax'.blue + ' would you like to use ?',

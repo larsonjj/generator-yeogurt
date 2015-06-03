@@ -6,7 +6,7 @@
 var taskConfig = function(grunt) {
 
   // Load config for use with non-grunt logic
-  var yeogurt = require('../../../yeogurt.conf');
+  var yeogurt = grunt.config.get('yeogurt');
 
   grunt.config.set('browserify', {
     serve: {

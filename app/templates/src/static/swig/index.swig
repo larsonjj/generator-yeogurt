@@ -1,11 +1,3 @@
-<% if (useDashboard) { %>{# [dash:data]
-  {
-    "status": "development",
-    "category": "page",
-    "label": "Home",
-    "link": "../../index.html"
-  }
-  [/dash] #}<% } %>
 {% extends '_layouts/base.swig' %}
 
 {% block content %}
