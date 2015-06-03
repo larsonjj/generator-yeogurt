@@ -23,7 +23,7 @@ var order = [
   /* Files */
   'root',
   'image',
-  'autodocs',
+  'docs',
   'task',
   'jade',
   'swig',

@@ -34,7 +34,7 @@ var directories = {
   images: '_images',
   styles: '_styles',
   scripts: '_scripts',
-  docs: '_autodocs'
+  docs: '_docs'
 };
 
 module.exports = {
