@@ -3,6 +3,15 @@ var util = require('util');
 var yeoman = require('yeoman-generator');
 var getRootDir = require('../helpers/get-root-dir');
 var path = require('path');
+var yeogurtConf;
+
+try {
+  yeogurtConf = require('./yeogurt.conf');
+  var directories = yeogurtConf.directories;
+}
+catch(e) {
+  return; // Do Nothing
+}
 
 var ModuleGenerator = module.exports = function ModuleGenerator() {
   // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -67,7 +76,7 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return self.moduleLocation + '/_modules';
+      return yeogurtConf ? self.moduleLocation + '/' + directories.modules : self.moduleLocation + '/_modules';
     }
   }, {
     when: function(answers) {
@@ -76,7 +85,7 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return self.moduleLocation + '/_modules';
+      return yeogurtConf ? self.moduleLocation + '/' + directories.modules : self.moduleLocation + '/_modules';
     }
   }, {
     when: function(answers) {
@@ -92,7 +101,7 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return self.moduleLocation + '/_modules';
+      return yeogurtConf ? self.moduleLocation + '/' + directories.modules : self.moduleLocation + '/_modules';
     }
   }, {
     when: function(answers) {
@@ -101,7 +110,7 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return self.moduleLocation + '/_layouts';
+      return yeogurtConf ? self.moduleLocation + '/' + directories.layouts : self.moduleLocation + '/_layouts';
     }
   }, {
     when: function() {
@@ -212,23 +221,10 @@ ModuleGenerator.prototype.files = function files() {
     }
 
     if (this.moduleLocation !== 'server' || this.generateFrontend) {
-      if (this.jsOption === 'requirejs') {
-        this.template('src/requirejs/module.js', this.moduleFile.replace('server', 'src') + '.js');
-        if (this.useTesting) {
-          this.template('src/requirejs/module.spec.js', this.testFile.replace('server', 'src') + '.spec.js');
-        }
-      }
-      else if (this.jsOption === 'browserify') {
+      if (this.jsOption === 'browserify') {
         this.template('src/browserify/module.js', this.moduleFile.replace('server', 'src') + '.js');
         if (this.useTesting) {
           this.template('src/browserify/module.spec.js', this.testFile.replace('server', 'src') + '.spec.js');
-        }
-      }
-      // Default to vanilla JS
-      else {
-        this.template('src/js/module.js', this.moduleFile.replace('server', 'src') + '.js');
-        if (this.useTesting) {
-          this.template('src/js/module.spec.js', this.testFile.replace('server', 'src') + '.spec.js');
         }
       }
     }
@@ -255,32 +251,16 @@ ModuleGenerator.prototype.files = function files() {
     if (this.useJsx) {
       this.template('react/module.jsx', this.moduleFile + '.jsx');
     }
-    else {
-      this.template('react/module.js', this.moduleFile + '.js');
-    }
 
     if (this.useTesting) {
       this.template('react/module.spec.js', this.testFile + '.spec.js');
     }
   }
   else if (this.jsFramework === 'marionette') {
-    if (this.jsOption === 'requirejs') {
-      this.template('backbone/requirejs/module.js', this.moduleFile + '.js');
-      if (this.useTesting) {
-        this.template('backbone/requirejs/module.spec.js', this.testFile + '.spec.js');
-      }
-    }
-    else if (this.jsOption === 'browserify') {
+    if (this.jsOption === 'browserify') {
       this.template('backbone/browserify/module.js', this.moduleFile + '.js');
       if (this.useTesting) {
         this.template('backbone/browserify/module.spec.js', this.testFile + '.spec.js');
-      }
-    }
-    // Default to Vanilla JS
-    else {
-      this.template('backbone/js/module.js', this.moduleFile + '.js');
-      if (this.useTesting) {
-        this.template('backbone/js/module.spec.js', this.testFile + '.spec.js');
       }
     }
 
@@ -301,9 +281,6 @@ ModuleGenerator.prototype.files = function files() {
     }
     else if (this.cssOption === 'stylus') {
       this.template('module.css', this.moduleFile.replace('server', 'src') + '.styl');
-    }
-    else {
-      this.template('module.css', this.moduleFile.replace('server', 'src') + '.css');
     }
   }
 };

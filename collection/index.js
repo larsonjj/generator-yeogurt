@@ -3,6 +3,15 @@ var util = require('util');
 var yeoman = require('yeoman-generator');
 var getRootDir = require('../helpers/get-root-dir');
 var path = require('path');
+var yeogurtConf;
+
+try {
+  yeogurtConf = require('./yeogurt.conf');
+  var directories = yeogurtConf.directories;
+}
+catch(e) {
+  return; // Do Nothing
+}
 
 var CollectionGenerator = module.exports = function CollectionGenerator() {
   // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -36,7 +45,7 @@ CollectionGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'collectionFile',
     message: 'Where would you like to create this collection?',
-    default: 'src/_scripts/collections'
+    default: yeogurtConf ? directories.source + '/' + directories.scripts + '/collections' : 'src/_scripts/collections'
   }, {
     name: 'existingModelName',
     message: 'What is the name of the model you would like to use with this collection?',
@@ -44,7 +53,7 @@ CollectionGenerator.prototype.ask = function ask() {
   }, {
     name: 'existingModelLocation',
     message: 'What folder is the model file located in?',
-    default: 'src/_scripts/models'
+    default: yeogurtConf ? directories.source + '/' + directories.scripts + '/models' : 'src/_scripts/models'
   }];
 
   this.prompt(prompts, function(answers) {

@@ -3,6 +3,15 @@ var util = require('util');
 var yeoman = require('yeoman-generator');
 var getRootDir = require('../helpers/get-root-dir');
 var path = require('path');
+var yeogurtConf;
+
+try {
+  yeogurtConf = require('./yeogurt.conf');
+  var directories = yeogurtConf.directories;
+}
+catch(e) {
+  return; // Do Nothing
+}
 
 var ModelGenerator = module.exports = function ModelGenerator() {
   // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -35,7 +44,7 @@ ModelGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'modelFile',
     message: 'Where would you like to create this model?',
-    default: 'src/_scripts/models'
+    default: yeogurtConf ? directories.source + '/' + directories.scripts + '/models' : 'src/_scripts/models'
   }];
 
   this.prompt(prompts, function(answers) {

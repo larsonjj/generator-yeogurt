@@ -3,6 +3,15 @@ var util = require('util');
 var yeoman = require('yeoman-generator');
 // var getRootDir = require('../helpers/get-root-dir');
 var path = require('path');
+var yeogurtConf;
+
+try {
+  yeogurtConf = require('./yeogurt.conf');
+  var directories = yeogurtConf.directories;
+}
+catch(e) {
+  return; // Do Nothing
+}
 
 var DirectiveGenerator = module.exports = function DirectiveGenerator() {
   // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -34,7 +43,7 @@ DirectiveGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'directiveFile',
     message: 'Where would you like to create this directive?',
-    default: 'src/_scripts'
+    default: yeogurtConf ? directories.source + '/' + directories.scripts : 'src/_scripts'
   }, {
     type: 'confirm',
     name: 'directiveHTML',
