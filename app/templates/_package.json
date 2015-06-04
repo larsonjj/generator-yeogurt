@@ -54,7 +54,8 @@
     "grunt-contrib-clean": "0.5.0",<% if (htmlOption === 'jade') { %>
     "grunt-contrib-jade": "~0.14.1",<% } %><% if (htmlOption === 'swig') { %>
     "grunt-swig-templates": "~0.1.2",<% } %>
-    "grunt-autoprefixer": "~1.0.1",
+    "grunt-postcss": "~0.4.0",
+    "autoprefixer-core": "~5.2.0",
     "grunt-contrib-htmlmin": "~0.3.0",<% if (jsOption === 'browserify') { %>
     "minifyify": "~7.0.0",
     "envify": "~3.4.0",

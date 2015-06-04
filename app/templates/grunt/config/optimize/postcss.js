@@ -4,11 +4,13 @@
 
 var taskConfig = function(grunt) {
 
-  grunt.config.set('autoprefixer', {
+  grunt.config.set('postcss', {
     serve: {
       options: {
         // Target browsers IE9 and up
-        browsers: ['ie >= 9'],
+        processors: [
+        require('autoprefixer-core')({browsers: 'ie >= 9'})
+      ],
         map: true
       },
       files: [{
@@ -20,7 +22,9 @@ var taskConfig = function(grunt) {
     },
     build: {
       options: {
-        browsers: ['ie >= 9'],
+        processors: [
+        require('autoprefixer-core')({browsers: 'ie >= 9'})
+      ],
         map: true
       },
       files: [{

@@ -28,7 +28,7 @@ var taskConfig = function(grunt) {
       'dashboard:serve',<% } %><% if (useKss) { %>
       'styleguide:serve',<% } %><% if (useJsdoc) { %>
       'jsdoc:serve',<% } %>
-      'autoprefixer:serve'
+      'postcss:serve'
     ]);
 
     if (target === 'nowatch') {

@@ -13,7 +13,7 @@ var taskConfig = function(grunt) {
     'concurrent:compile',<% if (jsFramework === 'angular') { %>
     'ngtemplates:compile',<% } %>
     'cssmin',
-    'autoprefixer:serve',
+    'postcss:serve',
     'htmlmin:build',<% if (useKss || useJsdoc || useDashboard) { %>
     'concurrent:docs',<% } %>
     'clean:tmp'
