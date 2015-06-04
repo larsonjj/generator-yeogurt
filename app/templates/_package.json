@@ -59,7 +59,7 @@
     "minifyify": "~5.0.0",
     "grunt-browserify": "~3.2.0",<% } %>
     "grunt-usemin": "2.1.1",<% if (useJsdoc) { %>
-    "grunt-jsdoc": "beta",<% } %>
+    "grunt-jsdoc": "0.6.7",<% } %>
     "grunt-concurrent": "~1.0.0",<% if (jsTemplate === 'underscore') { %>
     "grunt-contrib-jst": "~0.6.0",<% } else if (jsTemplate === 'handlebars') { %>
     "grunt-contrib-handlebars": "~0.9.0",<% } else if (jsFramework === 'react') { %>
