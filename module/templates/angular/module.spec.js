@@ -1,10 +1,10 @@
 <% if (testFramework === 'mocha') { %>/*eslint no-unused-expressions:0 */<% } %>
 'use strict';
 
-describe('Directive: <%= _.camelize(name) %>', function() {
+describe('Module: <%= _.classify(name) %>', function() {
 
   // Load module that the directive is associated with
-  beforeEach(module('<%= _.camelize(projectName) %>'));
+  beforeEach(module('<%= _.classify(projectName) %>'));
 
   var element;
   var scope;
@@ -16,6 +16,6 @@ describe('Directive: <%= _.camelize(name) %>', function() {
   it('should make hidden element visible', inject(function($compile) {
     element = angular.element('<<%= _.dasherize(name) %>></<%= _.dasherize(name) %>>');
     element = $compile(element)(scope);
-    expect(element.text())<% if (testFramework === 'jasmine') { %>.toBe('<%= _.camelize(name) %> directive')<% } else if (testFramework === 'mocha') { %>.to.equal('<%= _.camelize(name) %> directive')<% } %>;
+    expect(element.text())<% if (testFramework === 'jasmine') { %>.toBe('<%= _.classify(name) %> module')<% } else if (testFramework === 'mocha') { %>.to.equal('<%= _.classify(name) %> module')<% } %>;
   }));
 });

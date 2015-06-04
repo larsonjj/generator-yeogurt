@@ -1,6 +1,9 @@
 'use strict';
 
-angular.module('<%= _.camelize(projectName) %>')
+// Load Controller
+require('./<%= _.slugify(name.toLowerCase()) %>.controller');
+
+angular.module('<%= _.classify(projectName) %>')
   .config(function($routeProvider) {
     $routeProvider
       .when('<%= moduleURL %>', {

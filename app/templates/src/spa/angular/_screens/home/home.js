@@ -1,6 +1,6 @@
 'use strict';
 
-// Load home Controller
+// Load Controller
 require('./home.controller');
 
 angular.module('<%= _.camelize(projectName) %>')

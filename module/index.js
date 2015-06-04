@@ -191,33 +191,48 @@ ModuleGenerator.prototype.files = function files() {
       if (this.htmlOption === 'jade') {
         if (this.type === 'module') {
           this.template('module.jade', this.moduleFile + '.jade');
+          if (this.useDashboard) {
+            this.template('module.dash.jade', this.moduleFile + '.jade');
+            this.template('module.dash.json', this.moduleFile + '.json');
+          }
         }
         else if (this.type === 'layout') {
-          this.template('module.jade', this.moduleFile + '.jade');
+          this.template('module.layout.jade', this.moduleFile + '.jade');
           if (this.moduleLocation === 'server') {
             return;
           }
         }
         // Default to page type
         else {
-          this.template('module.jade', this.moduleFile + '.jade');
+          this.template('module.page.jade', this.moduleFile + '.jade');
+          if (this.useDashboard) {
+            this.template('module.dash.json', this.moduleFile + '.json');
+          }
         }
       }
       else if (this.htmlOption === 'swig') {
         if (this.type === 'module') {
           this.template('module.swig', this.moduleFile + '.swig');
+          if (this.useDashboard) {
+            this.template('module.dash.swig', this.moduleFile + '.swig');
+            this.template('module.dash.json', this.moduleFile + '.json');
+          }
         }
         else if (this.type === 'layout') {
-          this.template('module.swig', this.moduleFile + '.swig');
+          this.template('module.layout.swig', this.moduleFile + '.swig');
           if (this.moduleLocation === 'server') {
             return;
           }
         }
         // Default to page type
         else {
-          this.template('module.swig', this.moduleFile + '.swig');
+          this.template('module.page.swig', this.moduleFile + '.swig');
+          if (this.useDashboard) {
+            this.template('module.dash.json', this.moduleFile + '.json');
+          }
         }
       }
+
     }
 
     if (this.moduleLocation !== 'server' || this.generateFrontend) {
