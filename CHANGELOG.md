@@ -1,3 +1,8 @@
+### v0.14.6:
+#### date: 2015-5-03
+##### changes:
+* Fixed grunt-jsdoc dependency [#137](https://github.com/larsonjj/generator-yeogurt/pull/137)
+
 ### v0.14.5:
 #### date: 2015-5-03
 ##### changes:
