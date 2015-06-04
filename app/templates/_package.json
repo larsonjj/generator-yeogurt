@@ -47,7 +47,7 @@
     "grunt-mocha-test": "~0.12.7",
     "supertest": "~0.15.0",<% } %><% } else { %>
     "grunt-browser-sync": "~2.1.2",<% if (htmlOption === 'swig') { %>
-    "swig": "~1.4.2"<% } %><% if (htmlOption === 'jade') { %>
+    "swig": "~1.4.2",<% } %><% if (htmlOption === 'jade') { %>
     "jade": "~1.9.2",<% } %><% } %>
     "grunt-contrib-watch": "~0.6.1",
     "grunt-contrib-clean": "0.5.0",<% if (htmlOption === 'jade') { %>

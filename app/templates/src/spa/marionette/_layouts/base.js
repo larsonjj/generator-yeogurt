@@ -4,14 +4,14 @@ var $ = require('jquery');
 var Backbone = require('backbone');
 Backbone.$ = $;
 var Marionette = require('backbone.marionette');
-var templates = require('../_scripts/templates');
 
 var BaseLayoutView = Marionette.LayoutView.extend({
 
-  template: templates['src/_layouts/base.jst'],
+  // Template compiled by grunt-jst and attached to 'JST' namespace
+  template: JST['src/_layouts/base.jst'],
 
   regions: {
-    content: "#base-layout-wrapper"
+    content: '#base-layout-wrapper'
   }
 
 });

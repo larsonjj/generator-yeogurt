@@ -1,13 +1,13 @@
 'use strict';
 
-// Load Index Controller
-require('./index.controller');
+// Load home Controller
+require('./home.controller');
 
 angular.module('<%= _.camelize(projectName) %>')
   .config(function($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: '/_screens/index/index.html',
-        controller: 'IndexCtrl'
+        templateUrl: '/_screens/home/home.html',
+        controller: 'HomeCtrl'
       });
   });

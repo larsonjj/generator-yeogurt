@@ -4,11 +4,11 @@ var $ = require('jquery');
 var Backbone = require('backbone');
 Backbone.$ = $;
 var Marionette = require('backbone.marionette');
-var templates = require('../../_scripts/templates');
 
 var IndexView = Marionette.ItemView.extend({
 
-  template: templates['src/_screens/index/index.jst'],
+  // Template compiled by grunt-jst and attached to 'JST' namespace
+  template: JST['src/_screens/home/home.jst'],
 
   events: {}
 

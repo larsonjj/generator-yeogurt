@@ -5,10 +5,10 @@
 
 var angular = require('angular');
 
-// Require angular routing module
+// Include angular routing module
 require('angular-route');
 
-// Main module. Must be loaded first
+// Main module. Must be loaded before screens and modules
 angular
   .module('<%= _.camelize(projectName) %>', [
     'ngRoute'
@@ -17,11 +17,7 @@ angular
     $routeProvider.otherwise({redirectTo: '/'});
   }]);
 
-// Screens and Modules
-require('../_screens/index/index');
-
-// Load Templates
-// templates are compiled by the 'ngtemplates:compile' grunt task
-require('../../tmp/scripts/templates');
+// Include Screens and Modules
+require('../_screens/home/home');
 
 console.log('Welcome to Yeogurt!');

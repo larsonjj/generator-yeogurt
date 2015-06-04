@@ -3,9 +3,7 @@
 var Reflux = require('reflux');
 
 var actions = Reflux.createActions([
-
   'setPage'  // Action to update page title
-
 ]);
 
 actions.setPage.listen(function(page) {

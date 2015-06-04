@@ -5,26 +5,26 @@
 angular.module('Sample', []);
 
 // Load controller
-require('../index.controller');
+require('../home.controller');
 
-describe('Controller: IndexCtrl', function() {
+describe('Controller: HomeCtrl', function() {
 
   // load module that the controller is associated with
-  beforeEach(angular.mock.module('Sample'));
+  beforeEach(angular.mock.module('<%= projectName %>'));
 
-  var IndexCtrl;
+  var HomeCtrl;
   var scope;
 
   // Setup controller and mock it's scope
   beforeEach(inject(function($controller, $rootScope) {
     scope = $rootScope.$new();
-    IndexCtrl = $controller('IndexCtrl', {
+    HomeCtrl = $controller('HomeCtrl', {
       $scope: scope
     });
   }));
 
-  it('should have IndexCtrl defined', function() {
-    expect(IndexCtrl)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+  it('should have HomeCtrl defined', function() {
+    expect(HomeCtrl)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
   });
 
   it('should have scope.yeogurt defined as "awesome"', function() {

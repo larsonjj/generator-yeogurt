@@ -2,9 +2,9 @@
 'use strict';
 
 var React = require('react');
-var IndexComponent = require('../index.jsx');
+var HomeComponent = require('../home.jsx');
 
-describe('Index Component', function() {
+describe('Home Component', function() {
 
   // Uncomment to use React testing tools
   // var ReactTestUtils;
@@ -13,12 +13,12 @@ describe('Index Component', function() {
   beforeEach(function() {
     // ReactTestUtils = require('react/addons').addons.TestUtils;
     // reactRender = ReactTestUtils.renderIntoDocument;
-    this.indexComponent = <IndexComponent />;
+    this.homeComponent = <HomeComponent />;
   });
 
-  it('provides the "Index Component" instance', function() {
+  it('provides the "Home Component" instance', function() {
     // Expect it to exist
-    expect(this.indexComponent)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+    expect(this.homeComponent)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
   });
 
 });

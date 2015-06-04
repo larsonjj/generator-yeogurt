@@ -27,14 +27,14 @@ var taskConfig = function(grunt) {
         startPath: yeogurt.baseUrl,
         server: {
           baseDir: yeogurt.directories.temporary,
-          routes: (function(yeogurt) {
+          routes: (function() {
             var routes = {};
 
             // Map base URL to routes
             routes[yeogurt.baseUrl] = yeogurt.directories.temporary;
 
             return routes;
-          })(yeogurt)
+          })()
         }
       }
     },
@@ -44,14 +44,14 @@ var taskConfig = function(grunt) {
         startPath: yeogurt.baseUrl,
         server: {
           baseDir: '<%%= yeogurt.directories.destination %>',
-          routes: (function(yeogurt) {
+          routes: (function() {
             var routes = {};
 
             // Map base URL to routes
             routes[yeogurt.baseUrl] = yeogurt.directories.destination;
 
             return routes;
-          })(yeogurt)
+          })()
         }
       }
     }

@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('<%= _.camelize(projectName) %>')
-  .controller('IndexCtrl', function($scope) {
+  .controller('HomeCtrl', function($scope) {
     $scope.yeogurt = 'awesome';
   });

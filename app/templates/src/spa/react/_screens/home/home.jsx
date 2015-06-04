@@ -3,7 +3,7 @@
 var React = require('react');
 var mainActions = require('../../_scripts/actions/main.actions');
 
-var IndexComponent = React.createClass({
+var HomeComponent = React.createClass({
   componentWillMount: function() {
     mainActions.setPage({title: '<%= projectName %>'});
   },
@@ -25,4 +25,4 @@ var IndexComponent = React.createClass({
   }
 });
 
-module.exports = IndexComponent;
+module.exports = HomeComponent;

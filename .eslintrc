@@ -22,7 +22,9 @@
       "spyOnEvent": true,
       "waitsFor": true,
       "expect": true,
-      "afterEach": true
+      "afterEach": true,
+      "JST": true,
+      "angular": true
   },
   "rules": {
     "indent": [2, 2],
@@ -35,6 +37,7 @@
     "no-new": false,
     "new-parens": 2,
     "no-ternary": 0,
+    "new-cap": 0,
     "no-unused-vars": [1, {"vars": "local", "args": "none"}],
     "quotes": [2, "single"],
     "one-var": 0,

@@ -3,4 +3,8 @@
 
 'use strict';
 
-console.log('Welcome to Yeogurt!');
+var $ = require('jquery');
+
+$(function() {
+  console.log('Welcome to Yeogurt!');
+});
