@@ -1,7 +1,7 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var getRootDir = require('../helpers/get-root-dir');
+// var getRootDir = require('../helpers/get-root-dir');
 var path = require('path');
 
 var FilterGenerator = module.exports = function FilterGenerator() {
@@ -34,7 +34,7 @@ FilterGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'filterFile',
     message: 'Where would you like to create this filter?',
-    default: 'src/app'
+    default: 'src/_scripts'
   }];
 
   this.prompt(prompts, function(answers) {

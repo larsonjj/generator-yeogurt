@@ -1,7 +1,7 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var getRootDir = require('../helpers/get-root-dir');
+// var getRootDir = require('../helpers/get-root-dir');
 var path = require('path');
 
 var ControllerGenerator = module.exports = function ControllerGenerator() {
@@ -34,7 +34,7 @@ ControllerGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'controllerFile',
     message: 'Where would you like to create this controller?',
-    default: 'src/app'
+    default: 'src/_scripts'
   }];
 
   this.prompt(prompts, function(answers) {

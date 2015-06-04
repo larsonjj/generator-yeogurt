@@ -67,7 +67,7 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return self.moduleLocation + '/app';
+      return self.moduleLocation + '/_modules';
     }
   }, {
     when: function(answers) {
@@ -76,7 +76,7 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return self.moduleLocation + '/app';
+      return self.moduleLocation + '/_modules';
     }
   }, {
     when: function(answers) {
@@ -92,7 +92,7 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return self.moduleLocation + '/app/modules';
+      return self.moduleLocation + '/_modules';
     }
   }, {
     when: function(answers) {
@@ -101,7 +101,7 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return self.moduleLocation + '/app/layouts';
+      return self.moduleLocation + '/_layouts';
     }
   }, {
     when: function() {

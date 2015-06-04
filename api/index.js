@@ -34,7 +34,7 @@ APIGenerator.prototype.ask = function ask() {
     return;
   }
 
-  var self = this;
+  // var self = this;
   var done = this.async();
   var prompts = [{
     name: 'apiFile',

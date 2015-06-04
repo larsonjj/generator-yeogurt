@@ -1,7 +1,7 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var getRootDir = require('../helpers/get-root-dir');
+// var getRootDir = require('../helpers/get-root-dir');
 var path = require('path');
 
 var ServiceGenerator = module.exports = function ServiceGenerator() {
@@ -34,7 +34,7 @@ ServiceGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'serviceFile',
     message: 'Where would you like to create this service?',
-    default: 'src/app'
+    default: 'src/_scripts'
   }];
 
   this.prompt(prompts, function(answers) {

@@ -36,7 +36,7 @@ CollectionGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'collectionFile',
     message: 'Where would you like to create this collection?',
-    default: 'src/app'
+    default: 'src/_scripts/collections'
   }, {
     name: 'existingModelName',
     message: 'What is the name of the model you would like to use with this collection?',
@@ -44,7 +44,7 @@ CollectionGenerator.prototype.ask = function ask() {
   }, {
     name: 'existingModelLocation',
     message: 'What folder is the model file located in?',
-    default: 'src/app'
+    default: 'src/_scripts/models'
   }];
 
   this.prompt(prompts, function(answers) {
