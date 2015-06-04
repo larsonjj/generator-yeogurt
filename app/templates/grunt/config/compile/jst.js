@@ -8,7 +8,7 @@ var taskConfig = function(grunt) {
   grunt.config.set('jst', {
     compile: {
       options: {
-        commonjs: true
+        namespace: 'JST'
       },
       files: {
         '<%%= yeogurt.directories.temporary %>/scripts/templates.js': [

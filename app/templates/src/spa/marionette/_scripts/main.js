@@ -8,12 +8,11 @@ var Backbone = require('backbone');
 Backbone.$ = $;
 var App = require('./app');
 var router = require('./routes');
-var templates = require('./templates');
 
 // App configuration
 var config = {
   router: router,
-  templates: templates
+  templates: JST
 };
 
 // Start Application
