@@ -1,12 +1,12 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var getRootDir = require('../helpers/get-root-dir');
+// var getRootDir = require('../helpers/get-root-dir');
 var path = require('path');
 var yeogurtConf;
 
 try {
-  yeogurtConf = require('./yeogurt.conf');
+  yeogurtConf = require(path.join(process.cwd(), './yeogurt.conf'));
   var directories = yeogurtConf.directories;
 }
 catch(e) {

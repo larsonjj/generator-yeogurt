@@ -6,7 +6,7 @@ var path = require('path');
 var yeogurtConf;
 
 try {
-  yeogurtConf = require('./yeogurt.conf');
+  yeogurtConf = require(path.join(process.cwd(), './yeogurt.conf'));
   var directories = yeogurtConf.directories;
 }
 catch(e) {
@@ -85,7 +85,7 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return yeogurtConf ? self.moduleLocation + '/' + directories.modules : self.moduleLocation + '/_modules';
+      return yeogurtConf ? self.moduleLocation : self.moduleLocation;
     }
   }, {
     when: function(answers) {
@@ -93,7 +93,7 @@ ModuleGenerator.prototype.ask = function ask() {
     },
     name: 'useLayout',
     message: 'What layout would you like to extend from?',
-    default: 'layouts/base'
+    default: yeogurtConf ? self.moduleLocation + '/' + directories.layouts + '/base' : self.moduleLocation + '/_layouts/base'
   }, {
     when: function(answers) {
       return answers.type === 'module';
@@ -235,11 +235,11 @@ ModuleGenerator.prototype.files = function files() {
 
     }
 
-    if (this.moduleLocation !== 'server' || this.generateFrontend) {
+    if (this.type === 'module' && (this.moduleLocation !== 'server' || this.generateFrontend)) {
       if (this.jsOption === 'browserify') {
-        this.template('src/browserify/module.js', this.moduleFile.replace('server', 'src') + '.js');
+        this.template('module.js', this.moduleFile.replace('server', 'src') + '.js');
         if (this.useTesting) {
-          this.template('src/browserify/module.spec.js', this.testFile.replace('server', 'src') + '.spec.js');
+          this.template('module.spec.js', this.testFile.replace('server', 'src') + '.spec.js');
         }
       }
     }
@@ -282,7 +282,7 @@ ModuleGenerator.prototype.files = function files() {
     this.template('backbone/module.html', this.moduleFile + '.jst');
   }
 
-  if (this.moduleLocation !== 'server' || this.generateFrontend) {
+  if (this.type === 'module' && (this.moduleLocation !== 'server' || this.generateFrontend)) {
     if (this.cssOption === 'sass') {
       if (this.sassSyntax === 'sass') {
         this.template('module.css', this.moduleFile.replace('server', 'src') + '.sass');
