@@ -46,9 +46,9 @@ var tasks = {};
 // Grab all needed generator config files
 // and assign an index based on the order array
 config = grabFiles([
-  path.join(__dirname + '/generator/prompts'),
-  path.join(__dirname + '/generator/config'),
-  path.join(__dirname + '/generator/files')
+  path.join(__dirname, '/generator/prompts'),
+  path.join(__dirname, '/generator/config'),
+  path.join(__dirname, '/generator/files')
 ], order);
 
 // Sort config files based on their index ascending (ex. 3, 1, 2 -> 1, 2, 3)
