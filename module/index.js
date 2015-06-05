@@ -295,7 +295,7 @@ ModuleGenerator.prototype.files = function files() {
     this.template('backbone/module.html', this.moduleFile + '.jst');
   }
 
-  if (this.type === 'module' || this.type === 'layout' && (this.moduleLocation !== 'server' || this.generateFrontend)) {
+  if (this.type !== 'page' && (this.moduleLocation !== 'server' || this.generateFrontend)) {
     if (this.cssOption === 'sass') {
       if (this.sassSyntax === 'sass') {
         this.template('module.css', this.moduleFile.replace('server', 'src') + '.sass');

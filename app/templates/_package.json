@@ -60,8 +60,7 @@
     "minifyify": "~7.0.0",
     "envify": "~3.4.0",
     "grunt-browserify": "~3.8.0",<% } %>
-    "grunt-concurrent": "~1.0.0",<% if (jsFramework === 'marionette') { %>
-    "grunt-contrib-jst": "git://github.com/larsonjj/grunt-contrib-jst#patch-1",<% } %><% if (jsFramework === 'react') { %>
+    "grunt-concurrent": "~1.0.0",<% if (jsFramework === 'react') { %>
     "grunt-react": "~0.12.0",<% } %><% if (useE2e) { %>
     "protractor": "~2.0.0",
     "grunt-protractor-runner": "~2.0.0",

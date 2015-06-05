@@ -17,8 +17,7 @@ var taskConfig = function(grunt) {
       'env:all',<% } %>
       'imagemin:serve',
       'copy:serve',<% if (jsFramework === 'angular') { %>
-      'ngtemplates:compile',<% } %><% if (jsFramework === 'marionette') { %>
-      'jst:compile',<% } %><% if (htmlOption === 'jade' && !useServer ) { %>
+      'ngtemplates:compile',<% } %><% if (htmlOption === 'jade' && !useServer ) { %>
       'jade:serve',<% } else if (htmlOption === 'swig' && !useServer ) {  %>
       'swig:serve',<% } %><% if (jsOption === 'browserify') { %>
       'browserify:serve',<% } %><% if (cssOption === 'less') { %>

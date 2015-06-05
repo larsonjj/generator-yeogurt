@@ -26,8 +26,7 @@ var taskConfig = function(grunt) {
 
     if (!target || target === 'client') {
       grunt.task.run([
-        'eslint'<% if (useTesting) { %><% if (jsFramework === 'marionette') { %>,
-        'jst:compile'<% } %><% if (jsOption === 'browserify') { %>,
+        'eslint'<% if (useTesting) { %><% if (jsOption === 'browserify') { %>,
         'browserify:test'<% } %><% } %>
       ]);<% if (useTesting) { %>
 

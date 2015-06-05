@@ -1,6 +1,6 @@
 'use strict';
 
-var <%= _.classify(name) %> = require('<%= rootDir %><%= modelFile %>.js');
+var <%= _.classify(name) %> = require('../<%= _.slugify(name.toLowerCase()) %>');
 
 describe('<%= _.classify(name) %> Model', function() {
 

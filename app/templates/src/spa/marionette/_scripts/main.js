@@ -11,8 +11,7 @@ var router = require('./routes');
 
 // App configuration
 var config = {
-  router: router,
-  templates: JST
+  router: router
 };
 
 // Start Application

@@ -34,7 +34,7 @@ util.inherits(CollectionGenerator, yeoman.generators.NamedBase);
 
 // Prompts
 CollectionGenerator.prototype.ask = function ask() {
-  if (this.jsFramework !== 'backbone') {
+  if (this.jsFramework !== 'marionette') {
     this.log('This subgenerator is only used for Backbone Applications. It seems as though you are not using Backbone');
     this.log('Operation aborted');
     this.abort = true;
@@ -65,10 +65,16 @@ CollectionGenerator.prototype.ask = function ask() {
         this._.slugify(this.name.toLowerCase())
       );
 
-    // Get root directory
-    this.rootDir = getDirCount(this.collectionFile);
+    console.log(this.collectionFile);
 
-    this.modelFile = path.join(answers.existingModelLocation, this._.slugify(answers.existingModelName.toLowerCase()));
+    // Get root directory
+    this.rootDir = getDirCount(this.collectionFile.replace(directories.source + '/' + directories.scripts + '/collections', ''));
+
+    this.modelFile = path.join(
+      answers.existingModelLocation.replace(directories.source + '/' + directories.scripts + '/', ''),
+      this._.slugify(answers.existingModelName.toLowerCase()),
+      this._.slugify(answers.existingModelName.toLowerCase())
+    );
 
     this.testFile = path.join(
         answers.collectionFile,
@@ -87,19 +93,7 @@ CollectionGenerator.prototype.files = function files() {
     return;
   }
 
-  if (this.jsOption === 'none') {
-    this.template('js/collection.js', this.collectionFile + '.js');
-    if (this.useTesting) {
-      this.template('js/collection.spec.js', this.testFile + '.spec.js');
-    }
-  }
-  else if (this.jsOption === 'requirejs') {
-    this.template('requirejs/collection.js', this.collectionFile + '.js');
-    if (this.useTesting) {
-      this.template('requirejs/collection.spec.js', this.testFile + '.spec.js');
-    }
-  }
-  else if (this.jsOption === 'browserify') {
+  if (this.jsOption === 'browserify') {
     this.template('browserify/collection.js', this.collectionFile + '.js');
     if (this.useTesting) {
       this.template('browserify/collection.spec.js', this.testFile + '.spec.js');

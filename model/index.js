@@ -33,7 +33,7 @@ util.inherits(ModelGenerator, yeoman.generators.NamedBase);
 
 // Prompts
 ModelGenerator.prototype.ask = function ask() {
-  if (this.jsFramework !== 'backbone') {
+  if (this.jsFramework !== 'marionette') {
     this.log('This subgenerator is only used for Backbone Applications. It seems as though you are not using Backbone');
     this.log('Operation aborted');
     this.abort = true;
@@ -73,19 +73,7 @@ ModelGenerator.prototype.files = function files() {
     return;
   }
 
-  if (this.jsOption === 'none') {
-    this.template('js/model.js', this.modelFile + '.js');
-    if (this.useTesting) {
-      this.template('js/model.spec.js', this.testFile + '.spec.js');
-    }
-  }
-  else if (this.jsOption === 'requirejs') {
-    this.template('requirejs/model.js', this.modelFile + '.js');
-    if (this.useTesting) {
-      this.template('requirejs/model.spec.js', this.testFile + '.spec.js');
-    }
-  }
-  else if (this.jsOption === 'browserify') {
+  if (this.jsOption === 'browserify') {
     this.template('browserify/model.js', this.modelFile + '.js');
     if (this.useTesting) {
       this.template('browserify/model.spec.js', this.testFile + '.spec.js');

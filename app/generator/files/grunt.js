@@ -36,10 +36,6 @@ var taskFiles = function taskFiles() {
     this.template('grunt/config/compile/stylus.js', 'grunt/config/compile/stylus.js');
   }
 
-  if (this.jsFramework === 'marionette') {
-    this.template('grunt/config/compile/jst.js', 'grunt/config/compile/jst.js');
-  }
-
   if (this.htmlOption === 'jade') {
     this.template('grunt/config/compile/jade.js', 'grunt/config/compile/jade.js');
   }

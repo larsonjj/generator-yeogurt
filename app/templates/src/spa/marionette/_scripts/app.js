@@ -29,10 +29,6 @@ App.addInitializer(function(config) {
     // Attach router to App namespace for easier debugging/testing
     App.Router = config.router;
   }
-  if (config.templates) {
-    // Attach templates to App namespace for easier debugging/testing
-    App.Templates = config.templates;
-  }
 });
 
 module.exports = App;
