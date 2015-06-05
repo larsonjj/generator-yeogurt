@@ -1,7 +1,7 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var getRootDir = require('../helpers/get-root-dir');
+var getDirCount = require('../helpers/get-dir-count');
 var path = require('path');
 var yeogurtConf;
 
@@ -54,7 +54,7 @@ FluxGenerator.prototype.ask = function ask() {
         this._.slugify(this.name.toLowerCase())
       );
     // Get root directory
-    this.rootDir = getRootDir(this.fluxFile);
+    this.rootDir = getDirCount(this.fluxFile);
     this.testFile = path.join(
         answers.fluxFile,
         this._.slugify(this.name.toLowerCase()),

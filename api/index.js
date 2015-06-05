@@ -1,7 +1,7 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var getRootDir = require('../helpers/get-root-dir');
+var getDirCount = require('../helpers/get-dir-count');
 var path = require('path');
 
 var APIGenerator = module.exports = function APIGenerator() {
@@ -51,7 +51,7 @@ APIGenerator.prototype.ask = function ask() {
       );
 
     // Get root directory
-    this.rootDir = getRootDir(this.apiFile);
+    this.rootDir = getDirCount(this.apiFile);
 
     this.packageFile = path.join(
         answers.apiFile,

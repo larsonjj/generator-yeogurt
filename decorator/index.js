@@ -1,7 +1,7 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-// var getRootDir = require('../helpers/get-root-dir');
+// var getDirCount = require('../helpers/get-dir-count');
 var path = require('path');
 var yeogurtConf;
 
