@@ -83,7 +83,6 @@ var taskFiles = function taskFiles() {
   this.template('grunt/config/optimize/htmlmin.js', 'grunt/config/optimize/htmlmin.js');
   this.template('grunt/config/optimize/postcss.js', 'grunt/config/optimize/postcss.js');
   this.template('grunt/config/optimize/imagemin.js', 'grunt/config/optimize/imagemin.js');
-  this.template('grunt/config/optimize/cssmin.js', 'grunt/config/optimize/cssmin.js');
 
   // ========
   // Server

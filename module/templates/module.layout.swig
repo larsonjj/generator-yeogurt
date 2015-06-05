@@ -1,4 +1,4 @@
-{% extends '<%= rootDir %>/_layouts/base.swig' %}
+{% extends '<%= rootDir %>base.swig' %}
 
 {# Provides layout level markup #}
 {% block layout %}

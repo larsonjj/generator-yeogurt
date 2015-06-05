@@ -1,7 +1,7 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var getRootDir = require('../helpers/get-root-dir');
+var getDirCount = require('../helpers/get-dir-count');
 var path = require('path');
 var yeogurtConf;
 
@@ -36,13 +36,6 @@ var ModuleGenerator = module.exports = function ModuleGenerator() {
   this.useServer = fileJSON.useServer;
   this.useServerTesting = fileJSON.useServerTesting;
 
-  if (this.useServer) {
-    this.moduleLocation = 'server';
-  }
-  else {
-    this.moduleLocation = 'src';
-  }
-
 };
 
 util.inherits(ModuleGenerator, yeoman.generators.NamedBase);
@@ -76,7 +69,7 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return yeogurtConf ? self.moduleLocation + '/' + directories.modules : self.moduleLocation + '/_modules';
+      return yeogurtConf ? directories.source + '/' + directories.modules : directories.source + '/_modules';
     }
   }, {
     when: function(answers) {
@@ -85,7 +78,7 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return yeogurtConf ? self.moduleLocation : self.moduleLocation;
+      return yeogurtConf ? directories.source : directories.source;
     }
   }, {
     when: function(answers) {
@@ -93,7 +86,7 @@ ModuleGenerator.prototype.ask = function ask() {
     },
     name: 'useLayout',
     message: 'What layout would you like to extend from?',
-    default: yeogurtConf ? self.moduleLocation + '/' + directories.layouts + '/base' : self.moduleLocation + '/_layouts/base'
+    default: yeogurtConf ? directories.source + '/' + directories.layouts + '/base' : directories.source + '/_layouts/base'
   }, {
     when: function(answers) {
       return answers.type === 'module';
@@ -101,7 +94,7 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return yeogurtConf ? self.moduleLocation + '/' + directories.modules : self.moduleLocation + '/_modules';
+      return yeogurtConf ? directories.source + '/' + directories.modules : directories.source + '/_modules';
     }
   }, {
     when: function(answers) {
@@ -110,7 +103,7 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return yeogurtConf ? self.moduleLocation + '/' + directories.layouts : self.moduleLocation + '/_layouts';
+      return yeogurtConf ? directories.source + '/' + directories.layouts : directories.source + '/_layouts';
     }
   }, {
     when: function() {
@@ -131,12 +124,13 @@ ModuleGenerator.prototype.ask = function ask() {
   this.prompt(prompts, function(answers) {
 
     this.type = answers.type;
-    this.useLayout = answers.useLayout || false;
+    this.useLayout = answers.useLayout ? answers.useLayout.replace(directories.source + '/', '') : false;
 
     this.generateFrontend = answers.generateFrontend;
 
     this.templateFile = path.join(
         answers.moduleFile,
+        this._.slugify(this.name.toLowerCase()),
         this._.slugify(this.name.toLowerCase())
       );
 
@@ -152,6 +146,13 @@ ModuleGenerator.prototype.ask = function ask() {
         this._.slugify(this.name.toLowerCase())
       );
     }
+    else if (this.type === 'page') {
+      this.moduleFile = path.join(
+        answers.moduleFile,
+        this._.slugify(this.name.toLowerCase()),
+        'index'
+      );
+    }
     else {
       this.moduleFile = path.join(
         answers.moduleFile,
@@ -160,14 +161,26 @@ ModuleGenerator.prototype.ask = function ask() {
       );
     }
 
-    // Get root directory
-    this.rootDir = getRootDir(this.moduleFile);
+    // Get source directory
+    if (this.type === 'layout') {
+      this.rootDir = getDirCount(this.moduleFile.replace(directories.source + '/' + directories.layouts + '/', ''));
+    }
+    else {
+      this.rootDir = getDirCount(this.moduleFile.replace(directories.source + '/', ''));
+    }
 
     this.testFile = path.join(
         answers.moduleFile,
         this._.slugify(this.name.toLowerCase()),
         '__tests__',
         this._.slugify(this.name.toLowerCase())
+      );
+
+    this.dashFile = path.join(
+        answers.moduleFile,
+        this._.slugify(this.name.toLowerCase()),
+        '__dashboard__',
+        this._.slugify(this.name.toLowerCase()) + '.dash'
       );
 
     this.moduleURL = answers.moduleURL;
@@ -192,8 +205,8 @@ ModuleGenerator.prototype.files = function files() {
         if (this.type === 'module') {
           this.template('module.jade', this.moduleFile + '.jade');
           if (this.useDashboard) {
-            this.template('module.dash.jade', this.moduleFile + '.jade');
-            this.template('module.dash.json', this.moduleFile + '.json');
+            this.template('module.dash.jade', this.dashFile + '.jade');
+            this.template('module.dash.json', this.dashFile + '.json');
           }
         }
         else if (this.type === 'layout') {
@@ -206,7 +219,7 @@ ModuleGenerator.prototype.files = function files() {
         else {
           this.template('module.page.jade', this.moduleFile + '.jade');
           if (this.useDashboard) {
-            this.template('module.dash.json', this.moduleFile + '.json');
+            this.template('module.dash.json', this.dashFile + '.json');
           }
         }
       }
@@ -214,8 +227,8 @@ ModuleGenerator.prototype.files = function files() {
         if (this.type === 'module') {
           this.template('module.swig', this.moduleFile + '.swig');
           if (this.useDashboard) {
-            this.template('module.dash.swig', this.moduleFile + '.swig');
-            this.template('module.dash.json', this.moduleFile + '.json');
+            this.template('module.dash.swig', this.dashFile + '.swig');
+            this.template('module.dash.json', this.dashFile + '.json');
           }
         }
         else if (this.type === 'layout') {
@@ -228,7 +241,7 @@ ModuleGenerator.prototype.files = function files() {
         else {
           this.template('module.page.swig', this.moduleFile + '.swig');
           if (this.useDashboard) {
-            this.template('module.dash.json', this.moduleFile + '.json');
+            this.template('module.dash.json', this.dashFile + '.json');
           }
         }
       }
@@ -282,7 +295,7 @@ ModuleGenerator.prototype.files = function files() {
     this.template('backbone/module.html', this.moduleFile + '.jst');
   }
 
-  if (this.type === 'module' && (this.moduleLocation !== 'server' || this.generateFrontend)) {
+  if (this.type === 'module' || this.type === 'layout' && (this.moduleLocation !== 'server' || this.generateFrontend)) {
     if (this.cssOption === 'sass') {
       if (this.sassSyntax === 'sass') {
         this.template('module.css', this.moduleFile.replace('server', 'src') + '.sass');

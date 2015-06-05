@@ -12,7 +12,9 @@ var taskConfig = function(grunt) {
           dest: '<%%= yeogurt.directories.temporary %>/',
           src: [
             '**/*',
-            '!**/\_*/**'
+            '!**/\_*/**'<% if (htmlOption === 'swig') { %>,
+            '!**/*.swig'<% } else if (htmlOption === 'jade') { %>,
+            '!**/*.jade'<% } %>
           ]
         }]
     },
@@ -23,7 +25,9 @@ var taskConfig = function(grunt) {
         dest: '<%%= yeogurt.directories.destination %>/',
         src: [
           '**/*',
-          '!**/\_*/**'
+          '!**/\_*/**'<% if (htmlOption === 'swig') { %>,
+          '!**/*.swig'<% } else if (htmlOption === 'jade') { %>,
+          '!**/*.jade'<% } %>
         ]
       }<% if (useServer && singlePageApplication) { %>, {
         expand: true,

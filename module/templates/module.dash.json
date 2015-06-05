@@ -1,6 +1,7 @@
 {
   "status": "development",
   "category": "<%= type.toLowerCase() %>",
-  "label": "<%= _.titleize(name) %>",
-  "link": "generated/<%= _.slugify(name.toLowerCase()) %>.html"
+  "label": "<%= _.titleize(name) %>",<% if (type === 'module') { %>
+  "link": "generated/<%= _.slugify(name.toLowerCase()) %>.html"<% } else { %>
+  "link": "../../<%= _.slugify(name.toLowerCase()) %>/"<% } %>
 }
