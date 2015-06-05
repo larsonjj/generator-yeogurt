@@ -179,7 +179,7 @@ ModuleGenerator.prototype.ask = function ask() {
     this.dashFile = path.join(
         answers.moduleFile,
         this._.slugify(this.name.toLowerCase()),
-        '__dashboard__',
+        '__dash__',
         this._.slugify(this.name.toLowerCase()) + '.dash'
       );
 

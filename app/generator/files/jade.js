@@ -11,7 +11,7 @@ var jadeFiles = function jadeFiles() {
     this.template('src/static/jade/index.jade', 'src/index.jade');
 
     if (this.useDashboard) {
-      this.template('src/static/jade/index.dash.json', 'src/index.dash.json');
+      this.template('src/static/jade/__dash__/index.dash.json', 'src/__dash__/index.dash.json');
     }
   }
 };

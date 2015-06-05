@@ -11,7 +11,7 @@ var swigFiles = function swigFiles() {
     this.template('src/static/swig/index.swig', 'src/index.swig');
 
     if (this.useDashboard) {
-      this.template('src/static/swig/index.dash.json', 'src/index.dash.json');
+      this.template('src/static/swig/__dash__/index.dash.json', 'src/__dash__/index.dash.json');
     }
   }
 };
