@@ -4,7 +4,5 @@ var init = function() {
   // Intialize module
 };
 
-module.exports = {
-  init: init
-};
+module.exports = init;
 
