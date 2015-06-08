@@ -45,7 +45,6 @@ describe('Yeogurt generator using React', function() {
             jsFramework: 'react',
             jsTemplate: false,
             jsOption: 'browserify',
-            useServer: false,
           });
 
           this.app.run([], function() {
@@ -74,7 +73,6 @@ describe('Yeogurt generator using React', function() {
               jsFramework: 'react',
               jsTemplate: false,
               jsOption: 'browserify',
-              useServer: false,
               testFramework: 'jasmine'
             });
 
@@ -105,7 +103,6 @@ describe('Yeogurt generator using React', function() {
               useJsx: false,
               jsTemplate: false,
               jsOption: 'browserify',
-              useServer: false,
               testFramework: 'jasmine'
             });
 
@@ -137,7 +134,6 @@ describe('Yeogurt generator using React', function() {
               jsFramework: 'react',
               jsTemplate: false,
               jsOption: 'browserify',
-              useServer: false,
               testFramework: 'mocha'
             });
 
@@ -168,7 +164,6 @@ describe('Yeogurt generator using React', function() {
               useJsx: false,
               jsTemplate: false,
               jsOption: 'browserify',
-              useServer: false,
               testFramework: 'mocha'
             });
 

@@ -8,13 +8,11 @@ var taskConfig = function(grunt) {
   grunt.registerTask('serve', 'Open a development server within your browser', function(target) {
 
     if (target === 'build') {
-      return grunt.task.run(['build',<% if (useServer) { %>
-      'env:all', 'env:prod', 'express:build', 'open', 'keepalive'<% } else { %> 'browserSync:build:keepalive'<% } %>]);
+      return grunt.task.run(['build', 'browserSync:build:keepalive']);
     }
 
     grunt.task.run([
-      'clean:tmp',<% if (useServer) { %>
-      'env:all',<% } %>
+      'clean:tmp',
       'imagemin:serve',
       'copy:serve',<% if (jsFramework === 'angular') { %>
       'ngtemplates:compile',<% } %><% if (htmlOption === 'jade') { %>
@@ -24,9 +22,7 @@ var taskConfig = function(grunt) {
       'less:serve',<% } %><% if (cssOption === 'sass') { %>
       'sass:serve',<% } %><% if (cssOption === 'stylus') { %>
       'stylus:serve',<% } %><% if (useDashboard) { %>
-      'dashboard:serve',<% } %><% if (useKss) { %>
-      'styleguide:serve',<% } %><% if (useJsdoc) { %>
-      'jsdoc:serve',<% } %>
+      'dashboard:serve',<% } %>
       'postcss:serve'
     ]);
 
@@ -34,12 +30,9 @@ var taskConfig = function(grunt) {
       return true;
     }
 
-    grunt.task.run([<% if (useServer) { %>
-      'express:serve',
-      'wait',
-      'open'<% } else { %>
-      'browserSync:serve'<% } %>
-    ]);<% if (useKss || useJsdoc || useDashboard) { %>
+    grunt.task.run([
+      'browserSync:serve'
+    ]);<% if (useDashboard) { %>
 
     if (target === 'docs') {
       return grunt.task.run(['listen:docs']);

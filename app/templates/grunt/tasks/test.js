@@ -8,21 +8,12 @@ var taskConfig = function(grunt) {
 
     if (target === 'e2e') {
       grunt.task.run([
-        'serve:nowatch',<% if (!useServer) { %>
-        'browserSync:serve',<% } else { %>
-        'express:serve',<% } %>
+        'serve:nowatch',
+        'browserSync:serve',
         'protractor'<% if (jsFramework !== 'backbone' || jsOption !== 'requirejs') { %>,
         'clean:tmp'<% } %>
       ]);
-    }<% if (useServerTesting) { %>
-
-    if (target === 'server') {
-        grunt.task.run([
-          'env:all',
-          'env:test',
-          'mochaTest'
-        ]);
-    }<% } %>
+    }
 
     if (!target || target === 'client') {
       grunt.task.run([

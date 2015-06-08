@@ -36,7 +36,6 @@ describe('Backbone module sub-generator', function() {
         jsTemplate: 'underscore',
         jsOption: 'browserify',
         testFramework: 'jasmine',
-        useServer: false
       });
       this.app.run([], function() {
         createSubGenerator('module', module, {path: '../../../../'}, {
@@ -74,7 +73,6 @@ describe('Backbone module sub-generator', function() {
             testFramework: 'jasmine',
             cssOption: 'sass',
             sassSyntax: 'scss',
-            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -111,7 +109,6 @@ describe('Backbone module sub-generator', function() {
             testFramework: 'mocha',
             cssOption: 'sass',
             sassSyntax: 'scss',
-            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -146,7 +143,6 @@ describe('Backbone module sub-generator', function() {
             jsTemplate: 'underscore',
             jsOption: 'requirejs',
             testFramework: 'jasmine',
-            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -179,7 +175,6 @@ describe('Backbone module sub-generator', function() {
             jsTemplate: 'underscore',
             jsOption: 'requirejs',
             testFramework: 'mocha',
-            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -212,7 +207,6 @@ describe('Backbone module sub-generator', function() {
             jsTemplate: 'underscore',
             jsOption: 'none',
             testFramework: 'jasmine',
-            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -243,7 +237,6 @@ describe('Backbone module sub-generator', function() {
             jsTemplate: 'underscore',
             jsOption: 'none',
             testFramework: 'mocha',
-            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -280,7 +273,6 @@ describe('Backbone module sub-generator', function() {
             jsTemplate: 'handlebars',
             jsOption: 'browserify',
             testFramework: 'jasmine',
-            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -313,7 +305,6 @@ describe('Backbone module sub-generator', function() {
             jsTemplate: 'handlebars',
             jsOption: 'browserify',
             testFramework: 'mocha',
-            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -348,7 +339,6 @@ describe('Backbone module sub-generator', function() {
             jsTemplate: 'handlebars',
             jsOption: 'requirejs',
             testFramework: 'jasmine',
-            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -381,7 +371,6 @@ describe('Backbone module sub-generator', function() {
             jsTemplate: 'handlebars',
             jsOption: 'requirejs',
             testFramework: 'mocha',
-            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -414,7 +403,6 @@ describe('Backbone module sub-generator', function() {
             jsTemplate: 'handlebars',
             jsOption: 'none',
             testFramework: 'jasmine',
-            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -445,7 +433,6 @@ describe('Backbone module sub-generator', function() {
             jsTemplate: 'handlebars',
             jsOption: 'none',
             testFramework: 'mocha',
-            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -482,7 +469,6 @@ describe('Backbone module sub-generator', function() {
             jsTemplate: 'jade',
             jsOption: 'browserify',
             testFramework: 'jasmine',
-            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -515,7 +501,6 @@ describe('Backbone module sub-generator', function() {
             jsTemplate: 'jade',
             jsOption: 'browserify',
             testFramework: 'mocha',
-            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -550,7 +535,6 @@ describe('Backbone module sub-generator', function() {
             jsTemplate: 'jade',
             jsOption: 'requirejs',
             testFramework: 'jasmine',
-            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -583,7 +567,6 @@ describe('Backbone module sub-generator', function() {
             jsTemplate: 'jade',
             jsOption: 'requirejs',
             testFramework: 'mocha',
-            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -616,7 +599,6 @@ describe('Backbone module sub-generator', function() {
             jsTemplate: 'jade',
             jsOption: 'none',
             testFramework: 'jasmine',
-            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
@@ -647,7 +629,6 @@ describe('Backbone module sub-generator', function() {
             jsTemplate: 'jade',
             jsOption: 'none',
             testFramework: 'mocha',
-            useServer: false
           });
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {

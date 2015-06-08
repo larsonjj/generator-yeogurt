@@ -47,8 +47,6 @@ describe('Static Site module sub-generator', function() {
             helpers.mockPrompt(this.app, {
               htmlOption: 'jade',
               singlePageApplication: false,
-              useServer: false,
-              useServerTesting: false,
               testFramework: 'jasmine',
               jsOption: 'browserify',
               cssOption: 'stylus'
@@ -93,8 +91,6 @@ describe('Static Site module sub-generator', function() {
             helpers.mockPrompt(this.app, {
               htmlOption: 'jade',
               singlePageApplication: false,
-              useServer: false,
-              useServerTesting: false,
               testFramework: 'mocha',
               jsOption: 'requirejs',
               cssOption: 'less'
@@ -141,8 +137,6 @@ describe('Static Site module sub-generator', function() {
             helpers.mockPrompt(this.app, {
               htmlOption: 'jade',
               singlePageApplication: false,
-              useServer: false,
-              useServerTesting: false,
               testFramework: 'jasmine',
               jsOption: 'browserify',
               cssOption: 'sass',
@@ -187,8 +181,6 @@ describe('Static Site module sub-generator', function() {
             helpers.mockPrompt(this.app, {
               htmlOption: 'jade',
               singlePageApplication: false,
-              useServer: false,
-              useServerTesting: false,
               testFramework: 'mocha',
               jsOption: 'requirejs',
               moduleLocation: 'src'
@@ -226,8 +218,6 @@ describe('Static Site module sub-generator', function() {
         helpers.mockPrompt(this.app, {
           htmlOption: 'jade',
           singlePageApplication: false,
-          useServer: false,
-          useServerTesting: false,
           cssOption: 'sass',
           sassSyntax: 'scss'
         });
@@ -257,8 +247,6 @@ describe('Static Site module sub-generator', function() {
         helpers.mockPrompt(this.app, {
           htmlOption: 'jade',
           singlePageApplication: false,
-          useServer: false,
-          useServerTesting: false,
           useDashboard: true
         });
         this.app.run([], function() {
@@ -284,8 +272,6 @@ describe('Static Site module sub-generator', function() {
         helpers.mockPrompt(this.app, {
           htmlOption: 'jade',
           singlePageApplication: false,
-          useServer: false,
-          useServerTesting: false,
           useDashboard: true
         });
         this.app.run([], function() {
@@ -328,8 +314,6 @@ describe('Static Site module sub-generator', function() {
             helpers.mockPrompt(this.app, {
               htmlOption: 'swig',
               singlePageApplication: false,
-              useServer: false,
-              useServerTesting: false,
               testFramework: 'jasmine',
               jsOption: 'browserify'
             });
@@ -372,8 +356,6 @@ describe('Static Site module sub-generator', function() {
             helpers.mockPrompt(this.app, {
               htmlOption: 'swig',
               singlePageApplication: false,
-              useServer: false,
-              useServerTesting: false,
               testFramework: 'mocha',
               jsOption: 'requirejs'
             });
@@ -418,8 +400,6 @@ describe('Static Site module sub-generator', function() {
             helpers.mockPrompt(this.app, {
               htmlOption: 'swig',
               singlePageApplication: false,
-              useServer: false,
-              useServerTesting: false,
               testFramework: 'jasmine',
               jsOption: 'browserify'
             });
@@ -461,8 +441,6 @@ describe('Static Site module sub-generator', function() {
             helpers.mockPrompt(this.app, {
               htmlOption: 'swig',
               singlePageApplication: false,
-              useServer: false,
-              useServerTesting: false,
               testFramework: 'mocha',
               jsOption: 'requirejs'
             });
@@ -499,8 +477,6 @@ describe('Static Site module sub-generator', function() {
         helpers.mockPrompt(this.app, {
           htmlOption: 'swig',
           singlePageApplication: false,
-          useServer: false,
-          useServerTesting: false,
           cssOption: 'sass',
           sassSyntax: 'scss'
         });
@@ -530,8 +506,6 @@ describe('Static Site module sub-generator', function() {
         helpers.mockPrompt(this.app, {
           htmlOption: 'swig',
           singlePageApplication: false,
-          useServer: false,
-          useServerTesting: false,
           useDashboard: true
         });
         this.app.run([], function() {
@@ -557,8 +531,6 @@ describe('Static Site module sub-generator', function() {
         helpers.mockPrompt(this.app, {
           htmlOption: 'swig',
           singlePageApplication: false,
-          useServer: false,
-          useServerTesting: false,
           useDashboard: true
         });
         this.app.run([], function() {

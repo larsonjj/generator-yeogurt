@@ -37,9 +37,7 @@ describe('Yeogurt generator using Angular', function() {
         helpers.mockPrompt(this.app, {
           singlePageApplication: true,
           jsFramework: 'angular',
-          useServerTesting: false,
           jsOption: 'none',
-          useServer: false
         });
 
         this.app.run([], function() {
@@ -65,8 +63,6 @@ describe('Yeogurt generator using Angular', function() {
               singlePageApplication: true,
               jsFramework: 'angular',
               jsOption: 'none',
-              useServer: false,
-              useServerTesting: false,
               useTesting: true,
               testFramework: 'jasmine'
             });
@@ -92,8 +88,6 @@ describe('Yeogurt generator using Angular', function() {
               singlePageApplication: true,
               jsFramework: 'angular',
               jsOption: 'none',
-              useServer: false,
-              useServerTesting: false,
               useTesting: true,
               testFramework: 'mocha'
             });
