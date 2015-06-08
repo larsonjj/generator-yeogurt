@@ -26,17 +26,14 @@ describe('Yeogurt generator using React', function() {
         it ('Creates expected files', function(done) {
           var expected = [
             'src',
-            'src/main.js',
-            'src/routes.js',
-            'src/main.constants.js',
-            'src/main.actions.js',
-            'src/lib/store.js',
-            'src/main.dispatcher.js',
-            'src/main.store.js'
+            'src/_scripts/main.jsx',
+            'src/_scripts/routes.jsx',
+            'src/_scripts/stores/main.store.js',
+            'src/_scripts/actions/main.actions.js'
           ];
 
           var fileContentToTest = [
-            ['src/routes.js', /module\.exports/i],
+            ['src/_scripts/routes.jsx', /module\.exports/i],
             ['src/index.html', /app\-wrapper/i]
           ];
 
@@ -59,13 +56,13 @@ describe('Yeogurt generator using React', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'src/index/index.jsx',
-              'src/layouts/base.jsx'
+              'src/_screens/home/home.jsx',
+              'src/_layouts/base.jsx'
             ];
             var fileContentToTest = [
-              ['src/index/index.jsx', /<div/i],
+              ['src/_screens/home/home.jsx', /<div>/i],
               ['package.json', /node-jsx/i],
-              ['src/routes.js', /jsx/i]
+              ['src/_scripts/routes.jsx', /jsx/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -79,37 +76,6 @@ describe('Yeogurt generator using React', function() {
             this.app.run([], function() {
               assert.file(expected);
               assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
-        });
-        describe('Using JS', function() {
-          it ('Creates expected files with expected content', function(done) {
-            var expected = [
-              // add files and folders you expect to exist here.
-              'src/index/index.js',
-            ];
-            var fileContentToTest = [
-              ['src/index/index.js', /React\.createElement/i],
-            ];
-            var fileContentNotThere = [
-              ['package.json', /node-jsx/i],
-              ['src/routes.js', /jsx/i]
-            ];
-
-            helpers.mockPrompt(this.app, {
-              singlePageApplication: true,
-              jsFramework: 'react',
-              useJsx: false,
-              jsTemplate: false,
-              jsOption: 'browserify',
-              testFramework: 'jasmine'
-            });
-
-            this.app.run([], function() {
-              assert.file(expected);
-              assert.fileContent(fileContentToTest);
-              assert.noFileContent(fileContentNotThere);
               done();
             });
           });
@@ -120,13 +86,13 @@ describe('Yeogurt generator using React', function() {
           it ('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'src/index/index.jsx',
-              'src/layouts/base.jsx'
+              'src/_screens/home/home.jsx',
+              'src/_layouts/base.jsx'
             ];
             var fileContentToTest = [
-              ['src/index/index.jsx', /<div/i],
+              ['src/_screens/home/home.jsx', /<div>/i],
               ['package.json', /node-jsx/i],
-              ['src/routes.js', /jsx/i]
+              ['src/_scripts/routes.jsx', /jsx/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -140,37 +106,6 @@ describe('Yeogurt generator using React', function() {
             this.app.run([], function() {
               assert.file(expected);
               assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
-        });
-        describe('Using JS', function() {
-          it ('Creates expected files with expected content', function(done) {
-            var expected = [
-              // add files and folders you expect to exist here.
-              'src/index/index.js',
-            ];
-            var fileContentToTest = [
-              ['src/index/index.js', /React\.createElement/i],
-            ];
-            var fileContentNotThere = [
-              ['package.json', /node-jsx/i],
-              ['src/routes.js', /jsx/i]
-            ];
-
-            helpers.mockPrompt(this.app, {
-              singlePageApplication: true,
-              jsFramework: 'react',
-              useJsx: false,
-              jsTemplate: false,
-              jsOption: 'browserify',
-              testFramework: 'mocha'
-            });
-
-            this.app.run([], function() {
-              assert.file(expected);
-              assert.fileContent(fileContentToTest);
-              assert.noFileContent(fileContentNotThere);
               done();
             });
           });

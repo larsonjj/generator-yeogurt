@@ -24,12 +24,10 @@ describe('Yeogurt generator using Angular', function() {
     describe('With Defaults', function() {
       it ('Creates expected files', function(done) {
         var expected = [
-          'grunt/config/compile/ng-templates.js',
-          'grunt/config/compile/ng-annotate.js',
-          'src/main.js',
-          'src/index/index.js',
-          'src/index/index.controller.js',
-          'src/index/index.html'
+          'src/_scripts/main.js',
+          'src/_screens/home/home.js',
+          'src/_screens/home/home.controller.js',
+          'src/_screens/home/home.html'
         ];
 
         var fileContentToTest = [];
@@ -37,7 +35,7 @@ describe('Yeogurt generator using Angular', function() {
         helpers.mockPrompt(this.app, {
           singlePageApplication: true,
           jsFramework: 'angular',
-          jsOption: 'none',
+          jsOption: 'none'
         });
 
         this.app.run([], function() {
@@ -52,11 +50,11 @@ describe('Yeogurt generator using Angular', function() {
         describe('With Jasmine', function() {
           it ('Creates expected files', function(done) {
             var expected = [
-              'src/index/__tests__/index.spec.js'
+              'src/_screens/home/__tests__/home.spec.js'
             ];
 
             var fileContentToTest = [
-              ['src/index/__tests__/index.spec.js', /toBe/i]
+              ['src/_screens/home/__tests__/home.spec.js', /toBe/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -77,11 +75,11 @@ describe('Yeogurt generator using Angular', function() {
         describe('With Mocha', function() {
           it ('Creates expected files', function(done) {
             var expected = [
-              'src/index/__tests__/index.spec.js'
+              'src/_screens/home/__tests__/home.spec.js'
             ];
 
             var fileContentToTest = [
-              ['src/index/__tests__/index.spec.js', /to\./i]
+              ['src/_screens/home/__tests__/home.spec.js', /to\./i]
             ];
 
             helpers.mockPrompt(this.app, {

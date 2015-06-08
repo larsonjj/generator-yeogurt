@@ -19,27 +19,11 @@ describe('Yeogurt generator using Styles', function() {
       done();
     }.bind(this));
   });
-  describe('With CSS', function() {
-    it('Creates expected files', function(done) {
-      var expected = [
-        'src/main.css',
-        'grunt/config/optimize/cssmin.js'
-      ];
-
-      helpers.mockPrompt(this.app, {
-        cssOption: 'css'
-      });
-      this.app.run([], function() {
-        assert.file(expected);
-        done();
-      });
-    });
-  });
   describe('With Sass', function() {
     it('Creates expected files', function(done) {
       var expected = [
         'src',
-        'src/main.scss',
+        'src/_styles/main.scss',
         'grunt/',
         'grunt/config',
         'grunt/config/compile/sass.js'
@@ -56,13 +40,10 @@ describe('Yeogurt generator using Styles', function() {
     describe('With Sass (not Scss) syntax', function() {
       it('Creates expected content', function(done) {
         var expected = [
-          'src/main.sass',
+          'src/_styles/main.sass',
           'grunt/',
           'grunt/config',
           'grunt/config/compile/sass.js'
-        ];
-        var fileContentToTest = [
-          ['grunt/config/docs/styleguide.js', /kss/i]
         ];
 
         helpers.mockPrompt(this.app, {
@@ -71,7 +52,6 @@ describe('Yeogurt generator using Styles', function() {
         });
         this.app.run([], function() {
           assert.file(expected);
-          assert.fileContent(fileContentToTest);
           done();
         });
       });
@@ -81,7 +61,7 @@ describe('Yeogurt generator using Styles', function() {
     it('Creates expected files', function(done) {
       var expected = [
         'src',
-        'src/main.less',
+        'src/_styles/main.less',
         'grunt/',
         'grunt/config',
         'grunt/config/compile/less.js'
@@ -104,7 +84,7 @@ describe('Yeogurt generator using Styles', function() {
     it('Creates expected files', function(done) {
       var expected = [
         'src',
-        'src/main.styl',
+        'src/_styles/main.styl',
         'grunt/',
         'grunt/config',
         'grunt/config/compile/stylus.js'

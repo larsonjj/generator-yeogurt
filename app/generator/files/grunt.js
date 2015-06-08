@@ -45,26 +45,15 @@ var taskFiles = function taskFiles() {
 
   if (this.jsFramework === 'angular') {
     this.template('grunt/config/compile/ng-templates.js', 'grunt/config/compile/ng-templates.js');
-    this.template('grunt/config/compile/ng-annotate.js', 'grunt/config/compile/ng-annotate.js');
   }
 
   // ========
   // Docs
   // ========
 
-  // JSDoc
-  if (this.useJsdoc) {
-    this.template('grunt/config/docs/jsdoc.js', 'grunt/config/docs/jsdoc.js');
-  }
-
   // Auto-Dashboard
   if (this.useDashboard) {
     this.template('grunt/config/docs/dashboard.js', 'grunt/config/docs/dashboard.js');
-  }
-
-  // KSS Styleguide
-  if (this.useKss) {
-    this.template('grunt/config/docs/styleguide.js', 'grunt/config/docs/styleguide.js');
   }
 
   // ========

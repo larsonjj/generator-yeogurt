@@ -38,7 +38,7 @@
   "scripts": {
     "clean": "rimraf node_modules coverage test/app/temp test/subgenerators/temp",
     "test": "istanbul cover _mocha -- test/app/*.test.js test/subgenerators/angular/*.test.js test/subgenerators/backbone/*.test.js test/subgenerators/react/*.test.js  test/subgenerators/server/*.test.js test/subgenerators/static/*.test.js --reporter list --timeout 100000 && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "localtest": "mocha test/app/*.test.js test/subgenerators/angular/*.test.js test/subgenerators/backbone/*.test.js test/subgenerators/react/*.test.js test/subgenerators/server/*.test.js test/subgenerators/static/*.test.js -b --reporter spec",
+    "localtest": "mocha test/app/*.test.js test/subgenerators/angular/*.test.js test/subgenerators/backbone/*.test.js test/subgenerators/react/*.test.js test/subgenerators/static/*.test.js -b --reporter spec",
     "localtest-report": "istanbul cover _mocha test/app/*.test.js test/subgenerators/angular/*.test.js test/subgenerators/backbone/*.test.js test/subgenerators/react/*.test.js test/subgenerators/server/*.test.js test/subgenerators/static/*.test.js && open ./coverage/lcov-report/index.html"
   },
   "dependencies": {

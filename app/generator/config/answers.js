@@ -18,7 +18,7 @@ var answersConfig = function answersConfig() {
       this.projectPrompts,
       this.clientPrompts,
       this.documentationPrompts,
-      this.testingPrompts,
+      this.testingPrompts
     );
   }
 

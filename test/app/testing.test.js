@@ -38,29 +38,11 @@ describe('Yeogurt generator testing', function() {
         done();
       });
     });
-    describe('With RequireJS', function() {
-      it('Creates expected files', function(done) {
-        var expected = [
-          'src/main.karma.js'
-        ];
-
-        helpers.mockPrompt(this.app, {
-          useTesting: true,
-          jsOption: 'requirejs',
-          testFramework: 'jasmine'
-        });
-
-        this.app.run([], function() {
-          assert.file(expected);
-          done();
-        });
-      });
-    });
   });
   describe('Without unit tests', function() {
     it('Does not create certain files', function(done) {
       var notExpected = [
-        'src/main.karma.js',
+        'karma.conf.js',
         'grunt/config/test/karma.js'
       ];
 
@@ -72,24 +54,6 @@ describe('Yeogurt generator testing', function() {
       this.app.run([], function() {
         assert.noFile(notExpected);
         done();
-      });
-    });
-    describe('With RequireJS', function() {
-      it('Does not create certain files', function(done) {
-        var notExpected = [
-          'src/main.karma.js'
-        ];
-
-        helpers.mockPrompt(this.app, {
-          useTesting: false,
-          jsOption: 'requirejs',
-          testFramework: 'jasmine'
-        });
-
-        this.app.run([], function() {
-          assert.noFile(notExpected);
-          done();
-        });
       });
     });
   });

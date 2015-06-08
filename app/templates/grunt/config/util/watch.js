@@ -1,7 +1,7 @@
 // Configuration for Watch task(s)
 // Runs specified tasks when file changes are detected
 'use strict';
-<% if (useKss || useJsdoc || useDashboard) { %>
+<% if (useDashboard) { %>
 var _ = require('lodash');<% } %>
 
 var taskConfig = function(grunt) {
@@ -83,21 +83,21 @@ var taskConfig = function(grunt) {
       ]
     },<% } %><% if (cssOption === 'sass') { %>
     sass: {
-      files: ['<%%= yeogurt.directories.source %>/**/*.<% if (useKss) { %>{scss,sass,md}<% } else { %>{scss,sass}<% } %>'],
+      files: ['<%%= yeogurt.directories.source %>/**/*.{scss,sass}'],
       tasks: [
         'sass:serve',
         'autoprefixer:serve'
       ]
     },<% } %><% if (cssOption === 'less') { %>
     less: {
-      files: ['<%%= yeogurt.directories.source %>/**/*.<% if (useKss) { %>{less,md}<% } else { %>less<% } %>'],
+      files: ['<%%= yeogurt.directories.source %>/**/*.less'],
       tasks: [
         'less:serve',
         'autoprefixer:serve'
       ]
     },<% } %><% if (cssOption === 'stylus') { %>
     stylus: {
-      files: ['<%%= yeogurt.directories.source %>/**/*.<% if (useKss) { %>{styl,md}<% } else { %>styl<% } %>'],
+      files: ['<%%= yeogurt.directories.source %>/**/*.styl'],
       tasks: [
         'stylus:serve',
         'autoprefixer:serve'
@@ -144,24 +144,8 @@ var taskConfig = function(grunt) {
         '<%%= yeogurt.directories.temporary %>/templates/**/*.js',<% } %>
         '<%%= yeogurt.directories.source %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
       ]
-    }<% if (useServer) { %>,
-    express: {
-      files: [
-        '<%%= yeogurt.directories.server %>/server.js',
-        '<%%= yeogurt.directories.server %>/**/*.{js,json,html}'<% if (htmlOption === 'swig') { %>,
-        '<%%= yeogurt.directories.server %>/**/*.swig'<% } %><% if (htmlOption === 'jade') { %>,
-        '<%%= yeogurt.directories.server %>/**/*.jade'<% } %>
-      ],
-      tasks: [
-        'express:serve',
-        'wait'
-      ],
-      options: {
-        livereload: true,
-        nospawn: true // Without this option specified express won't be reloaded
-      }
-    }<% } %>
-  };<% if (useKss || useJsdoc || useDashboard) { %>
+    }
+  };<% if (useDashboard) { %>
 
   // Documentation specific configuration
   var docsConfig = {<% if (htmlOption === 'jade' && useDashboard) { %>
@@ -199,7 +183,7 @@ var taskConfig = function(grunt) {
     }<% } %>
   };<% } %>
 
-  grunt.config.set('watch', config);<% if (useKss || useJsdoc || useDashboard) { %>
+  grunt.config.set('watch', config);<% if (useDashboard) { %>
 
   grunt.registerTask('listen:docs', function() {
     // Merge docsConfig object with the config object without overwriting arrays
