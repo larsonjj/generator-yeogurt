@@ -16,7 +16,7 @@ var HomeComponent = React.createClass({
             Take a look at the <a href="https://github.com/larsonjj/generator-yeogurt#yeogurt-generator">documentation</a> and start mixing up something awesome.
           </p>
           <p>
-            <img src="/images/yeogurt-swirl.png" width="75px" className="logo" />
+            <img src="images/yeogurt-swirl.png" width="75px" className="logo" />
           </p>
         </div>
         <code className="version">v<%= pkg.version %></code>

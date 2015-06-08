@@ -29,23 +29,7 @@ var taskConfig = function(grunt) {
           '!**/*.swig'<% } else if (htmlOption === 'jade') { %>,
           '!**/*.jade'<% } %>
         ]
-      }<% if (useServer && singlePageApplication) { %>, {
-        expand: true,
-        cwd: '<%%= yeogurt.directories.server %>/templates/',
-        dest: '<%%= yeogurt.directories.temporary %>',
-        src: [
-          'index.html'
-        ]
-      }<% } %><% if (useServer) { %>, {
-        expand: true,
-        cwd: './',
-        dest: '<%%= yeogurt.directories.destination %>/',
-        src: [
-          '<%%= yeogurt.directories.server %>/**/*',
-          'server.js',
-          'package.json'
-        ]
-      }<% } %>]
+      }]
     }
   });
 

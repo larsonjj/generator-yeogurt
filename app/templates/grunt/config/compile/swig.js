@@ -10,10 +10,9 @@ var taskConfig = function(grunt) {
   grunt.config.set('swig', {
     options: {
       data: {
-        yeogurt: yeogurt,<% if (useServer) { %>
-        env: 'development'<% } %>
+        yeogurt: yeogurt
       }
-    },<% if (!useServer) { %>
+    },
     serve: {
       options: {
         cache: false
@@ -26,15 +25,14 @@ var taskConfig = function(grunt) {
         '!**/\_*/**'
       ],
       ext: '.html'
-    },<% } %>
+    },
     build: {
       options: {
         cache: false
       },
       expand: true,
-      cwd: '<% if (useServer) { %><%%= yeogurt.directories.server %><% } %><% if (!useServer) { %><%%= yeogurt.directories.source %><% } %>',<% if (!useServer) { %>
-      dest: '<%%= yeogurt.directories.destination %>/',<% } %><% if (useServer) { %>
-      dest: '<%%= yeogurt.directories.temporary %>/',<% } %>
+      cwd: '<%%= yeogurt.directories.source %>',
+      dest: '<%%= yeogurt.directories.destination %>/'
       src: [
         '**/*.swig',
         '!**/\_*/**'

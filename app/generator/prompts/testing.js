@@ -25,16 +25,8 @@ var testingPrompts = function testingPrompts() {
     message: 'Will you be ' + 'running end-to-end tests'.blue + '?',
     default: true
   }, {
-    when: function() {
-      return self.serverPrompts.useServer;
-    },
-    type: 'confirm',
-    name: 'useServerTesting',
-    message: 'Will you be ' + 'unit testing your server-side JavaScript'.blue + '?',
-    default: true
-  }, {
     when: function(answers) {
-      return answers.useTesting && !answers.useServerTesting || answers.useE2e && !answers.useServerTesting;
+      return answers.useTesting || answers.useE2e;
     },
     type: 'list',
     name: 'testFramework',

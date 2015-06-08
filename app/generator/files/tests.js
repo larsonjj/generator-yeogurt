@@ -12,13 +12,10 @@ var testingFiles = function testingFiles() {
   if (this.useE2e) {
     this.template('test/e2e/protractor.conf.js', 'protractor.conf.js');
 
-    this.template('test/e2e/index/index.po.js', 'e2e/index/index.po.js');
-    this.template('test/e2e/index/index.spec.js', 'e2e/index/index.spec.js');
+    this.template('test/e2e/home/home.po.js', 'e2e/home/home.po.js');
+    this.template('test/e2e/home/home.spec.js', 'e2e/home/home.spec.js');
   }
 
-  if (this.useServer && this.useServerTesting) {
-    this.template('server/index/__tests__/index.spec.js', 'server/index/__tests__/index.spec.js');
-  }
 };
 
 module.exports = testingFiles;

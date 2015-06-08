@@ -16,7 +16,7 @@ var documentationPrompts = function documentationPrompts() {
 
   this.prompt([{
     when: function() {
-      return !self.serverPrompts.useServer && !self.clientPrompts.singlePageApplication;
+      return !self.clientPrompts.singlePageApplication;
     },
     type: 'confirm',
     name: 'useDashboard',

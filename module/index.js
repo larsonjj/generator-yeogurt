@@ -33,8 +33,6 @@ var ModuleGenerator = module.exports = function ModuleGenerator() {
   this.useJsx = fileJSON.useJsx;
   this.htmlOption = fileJSON.htmlOption;
   this.useDashboard = fileJSON.useDashboard;
-  this.useServer = fileJSON.useServer;
-  this.useServerTesting = fileJSON.useServerTesting;
 
 };
 
@@ -77,9 +75,7 @@ ModuleGenerator.prototype.ask = function ask() {
     },
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
-    default: function(answers) {
-      return yeogurtConf ? directories.source : directories.source;
-    }
+    default: directories.source
   }, {
     when: function(answers) {
       return answers.type === 'page';
@@ -105,13 +101,6 @@ ModuleGenerator.prototype.ask = function ask() {
     default: function(answers) {
       return yeogurtConf ? directories.source + '/' + directories.layouts : directories.source + '/_layouts';
     }
-  }, {
-    when: function() {
-      return self.useServer;
-    },
-    name: 'generateFrontend',
-    message: 'Would you like to generate src assets (JS, ' + self.cssOption.toUpperCase() + ') for this module?',
-    type: 'confirm'
   }, {
     when: function(answers) {
       return self.jsFramework === 'angular';
@@ -140,13 +129,7 @@ ModuleGenerator.prototype.ask = function ask() {
         'package'
       );
 
-    if (this.moduleLocation === 'server' && this.type === 'layout') {
-      this.moduleFile = path.join(
-        answers.moduleFile,
-        this._.slugify(this.name.toLowerCase())
-      );
-    }
-    else if (this.type === 'page') {
+    if (this.type === 'page') {
       this.moduleFile = path.join(
         answers.moduleFile,
         this._.slugify(this.name.toLowerCase()),
@@ -200,69 +183,48 @@ ModuleGenerator.prototype.files = function files() {
 
   if (!this.singlePageApplication) {
 
-    if (!this.useServer && this.moduleLocation !== 'server' || this.moduleLocation === 'server') {
-      if (this.htmlOption === 'jade') {
-        if (this.type === 'module') {
-          this.template('module.jade', this.moduleFile + '.jade');
-          if (this.useDashboard) {
-            this.template('module.dash.jade', this.dashFile + '.jade');
-            this.template('module.dash.json', this.dashFile + '.json');
-          }
-        }
-        else if (this.type === 'layout') {
-          this.template('module.layout.jade', this.moduleFile + '.jade');
-          if (this.moduleLocation === 'server') {
-            return;
-          }
-        }
-        // Default to page type
-        else {
-          this.template('module.page.jade', this.moduleFile + '.jade');
-          if (this.useDashboard) {
-            this.template('module.dash.json', this.dashFile + '.json');
-          }
+    if (this.htmlOption === 'jade') {
+      if (this.type === 'module') {
+        this.template('module.jade', this.moduleFile + '.jade');
+        if (this.useDashboard) {
+          this.template('module.dash.jade', this.dashFile + '.jade');
+          this.template('module.dash.json', this.dashFile + '.json');
         }
       }
-      else if (this.htmlOption === 'swig') {
-        if (this.type === 'module') {
-          this.template('module.swig', this.moduleFile + '.swig');
-          if (this.useDashboard) {
-            this.template('module.dash.swig', this.dashFile + '.swig');
-            this.template('module.dash.json', this.dashFile + '.json');
-          }
-        }
-        else if (this.type === 'layout') {
-          this.template('module.layout.swig', this.moduleFile + '.swig');
-          if (this.moduleLocation === 'server') {
-            return;
-          }
-        }
-        // Default to page type
-        else {
-          this.template('module.page.swig', this.moduleFile + '.swig');
-          if (this.useDashboard) {
-            this.template('module.dash.json', this.dashFile + '.json');
-          }
+      else if (this.type === 'layout') {
+        this.template('module.layout.jade', this.moduleFile + '.jade');
+        if (this.moduleLocation === 'server') {
+          return;
         }
       }
-
-    }
-
-    if (this.type === 'module' && (this.moduleLocation !== 'server' || this.generateFrontend)) {
-      if (this.jsOption === 'browserify') {
-        this.template('module.js', this.moduleFile.replace('server', 'src') + '.js');
-        if (this.useTesting) {
-          this.template('module.spec.js', this.testFile.replace('server', 'src') + '.spec.js');
+      // Default to page type
+      else {
+        this.template('module.page.jade', this.moduleFile + '.jade');
+        if (this.useDashboard) {
+          this.template('module.dash.json', this.dashFile + '.json');
         }
       }
     }
-
-    if (this.moduleLocation === 'server') {
-      this.template('server/package.json', this.packageFile + '.json');
-      this.template('server/module.js', this.moduleFile + '.js');
-      this.template('server/module.controller.js', this.moduleFile + '.controller.js');
-      if (this.useServerTesting) {
-        this.template('server/module.spec.js', this.testFile + '.spec.js');
+    else if (this.htmlOption === 'swig') {
+      if (this.type === 'module') {
+        this.template('module.swig', this.moduleFile + '.swig');
+        if (this.useDashboard) {
+          this.template('module.dash.swig', this.dashFile + '.swig');
+          this.template('module.dash.json', this.dashFile + '.json');
+        }
+      }
+      else if (this.type === 'layout') {
+        this.template('module.layout.swig', this.moduleFile + '.swig');
+        if (this.moduleLocation === 'server') {
+          return;
+        }
+      }
+      // Default to page type
+      else {
+        this.template('module.page.swig', this.moduleFile + '.swig');
+        if (this.useDashboard) {
+          this.template('module.dash.json', this.dashFile + '.json');
+        }
       }
     }
   }
@@ -286,16 +248,16 @@ ModuleGenerator.prototype.files = function files() {
   }
   else if (this.jsFramework === 'marionette') {
     if (this.jsOption === 'browserify') {
-      this.template('backbone/browserify/module.js', this.moduleFile + '.js');
+      this.template('marionette/browserify/module.js', this.moduleFile + '.js');
       if (this.useTesting) {
-        this.template('backbone/browserify/module.spec.js', this.testFile + '.spec.js');
+        this.template('marionette/browserify/module.spec.js', this.testFile + '.spec.js');
       }
     }
 
-    this.template('backbone/module.html', this.moduleFile + '.jst');
+    this.template('marionette/module.html', this.moduleFile + '.jst');
   }
 
-  if (this.type !== 'page' && (this.moduleLocation !== 'server' || this.generateFrontend)) {
+  if (this.type !== 'page') {
     if (this.cssOption === 'sass') {
       if (this.sassSyntax === 'sass') {
         this.template('module.css', this.moduleFile.replace('server', 'src') + '.sass');

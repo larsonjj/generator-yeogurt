@@ -9,7 +9,7 @@ var taskConfig = function(grunt) {
   // Load config for use with non-grunt logic
   var yeogurt = grunt.config.get('yeogurt');
 
-  grunt.config.set('jade', {<% if (!useServer) { %>
+  grunt.config.set('jade', {
     serve: {
       options: {
         pretty: true,
@@ -27,21 +27,19 @@ var taskConfig = function(grunt) {
         '!**/\_*/**'
       ],
       ext: '.html'
-    },<% } %>
+    },
     build: {
       options: {
         pretty: true,
         client: false,
         data: {
           debug: false,
-          yeogurt: yeogurt,<% if (useServer) { %>,
-          env: 'development'<% } %>
+          yeogurt: yeogurt,
         }
       },
       expand: true,
-      cwd: '<% if (useServer) { %><%%= yeogurt.directories.server %><% } %><% if (!useServer) { %><%%= yeogurt.directories.source %>/<% } %>',<% if (!useServer) { %>
-      dest: '<%%= yeogurt.directories.destination %>/',<% } %><% if (useServer) { %>
-      dest: '<%%= yeogurt.directories.temporary %>/',<% } %>
+      cwd: '<%%= yeogurt.directories.source %>/',
+      dest: '<%%= yeogurt.directories.destination %>/'
       src: [
         '**/*.jade',
         '!**/\_*/**'

@@ -31,7 +31,6 @@ var order = [
   'marionette',
   'react',
   'style',
-  'node',
   'tests',
   /* Config */
   'install'   // Handle generator options and run `bower install & npm install`

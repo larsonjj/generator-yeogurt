@@ -19,9 +19,7 @@ module.exports = function(grunt) {
     // translate browsersync task to use the 'grunt-browser-sync' plugin
     browserSync: 'grunt-browser-sync'<% if (htmlOption === 'swig') { %>,
     // translate swig task to use the 'grunt-swig-templates' plugin
-    swig: 'grunt-swig-templates'<% } %><% if (useServer) { %>,
-    // translate express task to use the 'grunt-express-server' plugin
-    express: 'grunt-express-server'<% } %><% if (jsFramework === 'angular') { %>,
+    swig: 'grunt-swig-templates'<% } %><% if (jsFramework === 'angular') { %>,
     // translate ngtemplates task to use the 'grunt-angular-templates' plugin
     ngtemplates: 'grunt-angular-templates'<% } %><% if (useE2e) { %>,
     // translate protractor task to use the 'protractor-runner' plugin

@@ -31,12 +31,14 @@ var taskConfig = function(grunt) {
     copy: {
       files: [
         '<%%= yeogurt.directories.source %>/**/*',
-        '!<%%= yeogurt.directories.source %>/**/\_*/**',
+        '!<%%= yeogurt.directories.source %>/**/\_*/**',<% if (htmlOption === 'swig') { %>,
+        '!<%%= yeogurt.directories.source %>/**/*.swig'<% } else if (htmlOption === 'jade') { %>,
+        '!<%%= yeogurt.directories.source %>/**/*.jade'<% } %>
       ],
       tasks: [
         'newer:copy:serve'
       ]
-    },<% if (htmlOption === 'jade' && !useServer) { %>
+    },<% if (htmlOption === 'jade') { %>
     jade: {
       files: [
         '<%%= yeogurt.directories.source %>/**/*.jade',
@@ -53,7 +55,7 @@ var taskConfig = function(grunt) {
       tasks: [
         'jade:serve'
       ]
-    },<% } %><% if (htmlOption === 'swig' && !useServer) { %>
+    },<% } %><% if (htmlOption === 'swig') { %>
     swig: {
       files: [
         '<%%= yeogurt.directories.source %>/**/*.jade',
