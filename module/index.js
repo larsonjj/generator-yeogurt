@@ -30,7 +30,6 @@ var ModuleGenerator = module.exports = function ModuleGenerator() {
   this.sassSyntax = fileJSON.sassSyntax;
   this.testFramework = fileJSON.testFramework;
   this.useTesting = fileJSON.useTesting;
-  this.useJsx = fileJSON.useJsx;
   this.htmlOption = fileJSON.htmlOption;
   this.useDashboard = fileJSON.useDashboard;
 
@@ -193,9 +192,6 @@ ModuleGenerator.prototype.files = function files() {
       }
       else if (this.type === 'layout') {
         this.template('module.layout.jade', this.moduleFile + '.jade');
-        if (this.moduleLocation === 'server') {
-          return;
-        }
       }
       // Default to page type
       else {
@@ -215,9 +211,6 @@ ModuleGenerator.prototype.files = function files() {
       }
       else if (this.type === 'layout') {
         this.template('module.layout.swig', this.moduleFile + '.swig');
-        if (this.moduleLocation === 'server') {
-          return;
-        }
       }
       // Default to page type
       else {
@@ -238,9 +231,7 @@ ModuleGenerator.prototype.files = function files() {
     }
   }
   else if (this.jsFramework === 'react') {
-    if (this.useJsx) {
-      this.template('react/module.jsx', this.moduleFile + '.jsx');
-    }
+    this.template('react/module.jsx', this.moduleFile + '.jsx');
 
     if (this.useTesting) {
       this.template('react/module.spec.js', this.testFile + '.spec.js');

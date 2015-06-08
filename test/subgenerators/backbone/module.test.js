@@ -8,7 +8,7 @@ var assert  = yeoman.assert;
 var createAppGenerator = require('../../helpers/create-generator').createAppGenerator;
 var createSubGenerator = require('../../helpers/create-generator').createSubGenerator;
 
-describe('Backbone module sub-generator', function() {
+describe('Marionette module sub-generator', function() {
   beforeEach(function(done) {
     helpers.testDirectory(path.join(__dirname, 'temp'), function(err) {
       if (err) {
@@ -21,16 +21,16 @@ describe('Backbone module sub-generator', function() {
     }.bind(this));
   });
 
-  describe('Create module files when using Backbone', function() {
+  describe('Create module files when using Marionette', function() {
     it('Without testing', function(done) {
       // Filename
       var module = 'mymodule';
       var filesNotCreated = [
-        'src/' + module + '/__tests__/' + module + '.controller.spec.js'
+        'src/_modules/' + module + '/__tests__/' + module + '.controller.spec.js'
       ];
 
       helpers.mockPrompt(this.app, {
-        jsFramework: 'backbone',
+        jsFramework: 'marionette',
         singlePageApplication: true,
         useTesting: false,
         jsTemplate: 'underscore',
@@ -40,7 +40,7 @@ describe('Backbone module sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('module', module, {path: '../../../../'}, {
           // mock prompt data
-          moduleFile: 'src'
+          moduleFile: 'src/_modules'
         }, function() {
           assert.noFile(filesNotCreated);
           done();
@@ -53,20 +53,20 @@ describe('Backbone module sub-generator', function() {
           // Filename
           var module = 'mymodule';
           var filesToTest = [
-            'src/' + module + '/' + module + '.js',
-            'src/' + module + '/__tests__/' + module + '.spec.js',
-            'src/' + module + '/' + module + '.jst',
-            'src/' + module + '/' + module + '.scss'
+            'src/_modules/' + module + '/' + module + '.js',
+            'src/_modules/' + module + '/__tests__/' + module + '.spec.js',
+            'src/_modules/' + module + '/' + module + '.jst',
+            'src/_modules/' + module + '/' + module + '.scss'
           ];
 
           var fileContentToTest = [
-            ['src/' + module + '/' + module + '.jst', /<div>/i],
-            ['src/' + module + '/' + module + '.js', /module\.exports/i],
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
+            ['src/_modules/' + module + '/' + module + '.jst', /<div>/i],
+            ['src/_modules/' + module + '/' + module + '.js', /module\.exports/i],
+            ['src/_modules/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
           ];
 
           helpers.mockPrompt(this.app, {
-            jsFramework: 'backbone',
+            jsFramework: 'marionette',
             singlePageApplication: true,
             jsTemplate: 'underscore',
             jsOption: 'browserify',
@@ -77,7 +77,7 @@ describe('Backbone module sub-generator', function() {
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
-              moduleFile: 'src'
+              moduleFile: 'src/_modules'
             }, function() {
               assert.file(filesToTest);
               assert.fileContent(fileContentToTest);
@@ -89,20 +89,20 @@ describe('Backbone module sub-generator', function() {
           // Filename
           var module = 'mymodule';
           var filesToTest = [
-            'src/' + module + '/' + module + '.js',
-            'src/' + module + '/__tests__/' + module + '.spec.js',
-            'src/' + module + '/' + module + '.jst',
-            'src/' + module + '/' + module + '.scss'
+            'src/_modules/' + module + '/' + module + '.js',
+            'src/_modules/' + module + '/__tests__/' + module + '.spec.js',
+            'src/_modules/' + module + '/' + module + '.jst',
+            'src/_modules/' + module + '/' + module + '.scss'
           ];
 
           var fileContentToTest = [
-            ['src/' + module + '/' + module + '.jst', /<div>/i],
-            ['src/' + module + '/' + module + '.js', /module\.exports/i],
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
+            ['src/_modules/' + module + '/' + module + '.jst', /<div>/i],
+            ['src/_modules/' + module + '/' + module + '.js', /module\.exports/i],
+            ['src/_modules/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
           ];
 
           helpers.mockPrompt(this.app, {
-            jsFramework: 'backbone',
+            jsFramework: 'marionette',
             singlePageApplication: true,
             jsTemplate: 'underscore',
             jsOption: 'browserify',
@@ -113,527 +113,7 @@ describe('Backbone module sub-generator', function() {
           this.app.run([], function() {
             createSubGenerator('module', module, {path: '../../../../'}, {
               // mock prompt data
-              moduleFile: 'src'
-            }, function() {
-              assert.file(filesToTest);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
-        });
-      });
-      describe('Using RequireJS', function() {
-        it('Using Jasmine', function(done) {
-          // Filename
-          var module = 'mymodule';
-          var filesToTest = [
-            'src/' + module + '/' + module + '.js',
-            'src/' + module + '/__tests__/' + module + '.spec.js'
-          ];
-
-          var fileContentToTest = [
-            ['src/' + module + '/' + module + '.js', /define\(function\(require\)/i],
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i],
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            jsFramework: 'backbone',
-            singlePageApplication: true,
-            jsTemplate: 'underscore',
-            jsOption: 'requirejs',
-            testFramework: 'jasmine',
-          });
-          this.app.run([], function() {
-            createSubGenerator('module', module, {path: '../../../../'}, {
-              // mock prompt data
-              moduleFile: 'src'
-            }, function() {
-              assert.file(filesToTest);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
-        });
-        it('Using Mocha', function(done) {
-          // Filename
-          var module = 'mymodule';
-          var filesToTest = [
-            'src/' + module + '/' + module + '.js',
-            'src/' + module + '/__tests__/' + module + '.spec.js'
-          ];
-
-          var fileContentToTest = [
-            ['src/' + module + '/' + module + '.js', /define\(function\(require\)/i],
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i],
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            jsFramework: 'backbone',
-            singlePageApplication: true,
-            jsTemplate: 'underscore',
-            jsOption: 'requirejs',
-            testFramework: 'mocha',
-          });
-          this.app.run([], function() {
-            createSubGenerator('module', module, {path: '../../../../'}, {
-              // mock prompt data
-              moduleFile: 'src'
-            }, function() {
-              assert.file(filesToTest);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
-        });
-      });
-      describe('Using VanillaJS', function() {
-        it('Using Jasmine', function(done) {
-          // Filename
-          var module = 'mymodule';
-          var filesToTest = [
-            'src/' + module + '/' + module + '.js',
-            'src/' + module + '/__tests__/' + module + '.spec.js'
-          ];
-
-          var fileContentToTest = [
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            jsFramework: 'backbone',
-            singlePageApplication: true,
-            jsTemplate: 'underscore',
-            jsOption: 'none',
-            testFramework: 'jasmine',
-          });
-          this.app.run([], function() {
-            createSubGenerator('module', module, {path: '../../../../'}, {
-              // mock prompt data
-              moduleFile: 'src'
-            }, function() {
-              assert.file(filesToTest);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
-        });
-        it('Using Mocha', function(done) {
-          // Filename
-          var module = 'mymodule';
-          var filesToTest = [
-            'src/' + module + '/' + module + '.js',
-            'src/' + module + '/__tests__/' + module + '.spec.js'
-          ];
-
-          var fileContentToTest = [
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            jsFramework: 'backbone',
-            singlePageApplication: true,
-            jsTemplate: 'underscore',
-            jsOption: 'none',
-            testFramework: 'mocha',
-          });
-          this.app.run([], function() {
-            createSubGenerator('module', module, {path: '../../../../'}, {
-              // mock prompt data
-              moduleFile: 'src'
-            }, function() {
-              assert.file(filesToTest);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
-        });
-      });
-    });
-    describe('Handles defaults with Handlebars', function() {
-      describe('Using Browserify', function() {
-        it('Using Jasmine', function(done) {
-          // Filename
-          var module = 'mymodule';
-          var filesToTest = [
-            'src/' + module + '/' + module + '.js',
-            'src/' + module + '/__tests__/' + module + '.spec.js',
-            'src/' + module + '/' + module + '.hbs'
-          ];
-
-          var fileContentToTest = [
-            ['src/' + module + '/' + module + '.js', /module\.exports/i],
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            jsFramework: 'backbone',
-            singlePageApplication: true,
-            jsTemplate: 'handlebars',
-            jsOption: 'browserify',
-            testFramework: 'jasmine',
-          });
-          this.app.run([], function() {
-            createSubGenerator('module', module, {path: '../../../../'}, {
-              // mock prompt data
-              moduleFile: 'src'
-            }, function() {
-              assert.file(filesToTest);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
-        });
-        it('Using Mocha', function(done) {
-          // Filename
-          var module = 'mymodule';
-          var filesToTest = [
-            'src/' + module + '/' + module + '.js',
-            'src/' + module + '/__tests__/' + module + '.spec.js',
-            'src/' + module + '/' + module + '.hbs'
-          ];
-
-          var fileContentToTest = [
-            ['src/' + module + '/' + module + '.js', /module\.exports/i],
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            jsFramework: 'backbone',
-            singlePageApplication: true,
-            jsTemplate: 'handlebars',
-            jsOption: 'browserify',
-            testFramework: 'mocha',
-          });
-          this.app.run([], function() {
-            createSubGenerator('module', module, {path: '../../../../'}, {
-              // mock prompt data
-              moduleFile: 'src'
-            }, function() {
-              assert.file(filesToTest);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
-        });
-      });
-      describe('Using RequireJS', function() {
-        it('Using Jasmine', function(done) {
-          // Filename
-          var module = 'mymodule';
-          var filesToTest = [
-            'src/' + module + '/' + module + '.js',
-            'src/' + module + '/__tests__/' + module + '.spec.js'
-          ];
-
-          var fileContentToTest = [
-            ['src/' + module + '/' + module + '.js', /define\(function\(require\)/i],
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i],
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            jsFramework: 'backbone',
-            singlePageApplication: true,
-            jsTemplate: 'handlebars',
-            jsOption: 'requirejs',
-            testFramework: 'jasmine',
-          });
-          this.app.run([], function() {
-            createSubGenerator('module', module, {path: '../../../../'}, {
-              // mock prompt data
-              moduleFile: 'src'
-            }, function() {
-              assert.file(filesToTest);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
-        });
-        it('Using Mocha', function(done) {
-          // Filename
-          var module = 'mymodule';
-          var filesToTest = [
-            'src/' + module + '/' + module + '.js',
-            'src/' + module + '/__tests__/' + module + '.spec.js'
-          ];
-
-          var fileContentToTest = [
-            ['src/' + module + '/' + module + '.js', /define\(function\(require\)/i],
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i],
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            jsFramework: 'backbone',
-            singlePageApplication: true,
-            jsTemplate: 'handlebars',
-            jsOption: 'requirejs',
-            testFramework: 'mocha',
-          });
-          this.app.run([], function() {
-            createSubGenerator('module', module, {path: '../../../../'}, {
-              // mock prompt data
-              moduleFile: 'src'
-            }, function() {
-              assert.file(filesToTest);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
-        });
-      });
-      describe('Using VanillaJS', function() {
-        it('Using Jasmine', function(done) {
-          // Filename
-          var module = 'mymodule';
-          var filesToTest = [
-            'src/' + module + '/' + module + '.js',
-            'src/' + module + '/__tests__/' + module + '.spec.js'
-          ];
-
-          var fileContentToTest = [
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            jsFramework: 'backbone',
-            singlePageApplication: true,
-            jsTemplate: 'handlebars',
-            jsOption: 'none',
-            testFramework: 'jasmine',
-          });
-          this.app.run([], function() {
-            createSubGenerator('module', module, {path: '../../../../'}, {
-              // mock prompt data
-              moduleFile: 'src'
-            }, function() {
-              assert.file(filesToTest);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
-        });
-        it('Using Mocha', function(done) {
-          // Filename
-          var module = 'mymodule';
-          var filesToTest = [
-            'src/' + module + '/' + module + '.js',
-            'src/' + module + '/__tests__/' + module + '.spec.js'
-          ];
-
-          var fileContentToTest = [
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            jsFramework: 'backbone',
-            singlePageApplication: true,
-            jsTemplate: 'handlebars',
-            jsOption: 'none',
-            testFramework: 'mocha',
-          });
-          this.app.run([], function() {
-            createSubGenerator('module', module, {path: '../../../../'}, {
-              // mock prompt data
-              moduleFile: 'src'
-            }, function() {
-              assert.file(filesToTest);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
-        });
-      });
-    });
-    describe('Handles defaults with Jade', function() {
-      describe('Using Browserify', function() {
-        it('Using Jasmine', function(done) {
-          // Filename
-          var module = 'mymodule';
-          var filesToTest = [
-            'src/' + module + '/' + module + '.js',
-            'src/' + module + '/__tests__/' + module + '.spec.js',
-            'src/' + module + '/' + module + '.jade'
-          ];
-
-          var fileContentToTest = [
-            ['src/' + module + '/' + module + '.js', /module\.exports/i],
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            jsFramework: 'backbone',
-            singlePageApplication: true,
-            jsTemplate: 'jade',
-            jsOption: 'browserify',
-            testFramework: 'jasmine',
-          });
-          this.app.run([], function() {
-            createSubGenerator('module', module, {path: '../../../../'}, {
-              // mock prompt data
-              moduleFile: 'src'
-            }, function() {
-              assert.file(filesToTest);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
-        });
-        it('Using Mocha', function(done) {
-          // Filename
-          var module = 'mymodule';
-          var filesToTest = [
-            'src/' + module + '/' + module + '.js',
-            'src/' + module + '/__tests__/' + module + '.spec.js',
-            'src/' + module + '/' + module + '.jade'
-          ];
-
-          var fileContentToTest = [
-            ['src/' + module + '/' + module + '.js', /module\.exports/i],
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            jsFramework: 'backbone',
-            singlePageApplication: true,
-            jsTemplate: 'jade',
-            jsOption: 'browserify',
-            testFramework: 'mocha',
-          });
-          this.app.run([], function() {
-            createSubGenerator('module', module, {path: '../../../../'}, {
-              // mock prompt data
-              moduleFile: 'src'
-            }, function() {
-              assert.file(filesToTest);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
-        });
-      });
-      describe('Using RequireJS', function() {
-        it('Using Jasmine', function(done) {
-          // Filename
-          var module = 'mymodule';
-          var filesToTest = [
-            'src/' + module + '/' + module + '.js',
-            'src/' + module + '/__tests__/' + module + '.spec.js'
-          ];
-
-          var fileContentToTest = [
-            ['src/' + module + '/' + module + '.js', /define\(function\(require\)/i],
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i],
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            jsFramework: 'backbone',
-            singlePageApplication: true,
-            jsTemplate: 'jade',
-            jsOption: 'requirejs',
-            testFramework: 'jasmine',
-          });
-          this.app.run([], function() {
-            createSubGenerator('module', module, {path: '../../../../'}, {
-              // mock prompt data
-              moduleFile: 'src'
-            }, function() {
-              assert.file(filesToTest);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
-        });
-        it('Using Mocha', function(done) {
-          // Filename
-          var module = 'mymodule';
-          var filesToTest = [
-            'src/' + module + '/' + module + '.js',
-            'src/' + module + '/__tests__/' + module + '.spec.js'
-          ];
-
-          var fileContentToTest = [
-            ['src/' + module + '/' + module + '.js', /define\(function\(require\)/i],
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i],
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            jsFramework: 'backbone',
-            singlePageApplication: true,
-            jsTemplate: 'jade',
-            jsOption: 'requirejs',
-            testFramework: 'mocha',
-          });
-          this.app.run([], function() {
-            createSubGenerator('module', module, {path: '../../../../'}, {
-              // mock prompt data
-              moduleFile: 'src'
-            }, function() {
-              assert.file(filesToTest);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
-        });
-      });
-      describe('Using VanillaJS', function() {
-        it('Using Jasmine', function(done) {
-          // Filename
-          var module = 'mymodule';
-          var filesToTest = [
-            'src/' + module + '/' + module + '.js',
-            'src/' + module + '/__tests__/' + module + '.spec.js'
-          ];
-
-          var fileContentToTest = [
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            jsFramework: 'backbone',
-            singlePageApplication: true,
-            jsTemplate: 'jade',
-            jsOption: 'none',
-            testFramework: 'jasmine',
-          });
-          this.app.run([], function() {
-            createSubGenerator('module', module, {path: '../../../../'}, {
-              // mock prompt data
-              moduleFile: 'src'
-            }, function() {
-              assert.file(filesToTest);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
-        });
-        it('Using Mocha', function(done) {
-          // Filename
-          var module = 'mymodule';
-          var filesToTest = [
-            'src/' + module + '/' + module + '.js',
-            'src/' + module + '/__tests__/' + module + '.spec.js'
-          ];
-
-          var fileContentToTest = [
-            ['src/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            jsFramework: 'backbone',
-            singlePageApplication: true,
-            jsTemplate: 'jade',
-            jsOption: 'none',
-            testFramework: 'mocha',
-          });
-          this.app.run([], function() {
-            createSubGenerator('module', module, {path: '../../../../'}, {
-              // mock prompt data
-              moduleFile: 'src'
+              moduleFile: 'src/_modules'
             }, function() {
               assert.file(filesToTest);
               assert.fileContent(fileContentToTest);

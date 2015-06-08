@@ -9,7 +9,7 @@ var React = require('react');
 beforeEach(function() {
   // ReactTestUtils = require('react/addons').addons.TestUtils;
   // reactRender = ReactTestUtils.renderIntoDocument;
-  this.<%= _.classify(name) %> = React.createFactory(require('../<%= _.slugify(name.toLowerCase()) %><% if (useJsx) { %>.jsx<% } %>'));
+  this.<%= _.classify(name) %> = React.createFactory(require('../<%= _.slugify(name.toLowerCase()) %>.jsx'));
 });
 
 describe('Testing React Component: <%= _.classify(name) %>', function() {

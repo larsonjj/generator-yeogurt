@@ -31,23 +31,24 @@ describe('Static Site module sub-generator', function() {
             var type = 'page';
 
             var filesToTest = [
-              'src/' + module + '/__tests__/' + module + '.spec.js',
-              'src/' + module + '/' + module + '.js',
-              'src/' + module + '/' + module + '.jade',
-              'src/' + module + '/' + module + '.styl'
+              'src/_modules/' + module + '/__tests__/' + module + '.spec.js',
+              'src/_modules/' + module + '/' + module + '.js',
+              'src/_modules/' + module + '/' + module + '.jade',
+              'src/_modules/' + module + '/' + module + '.styl'
             ];
             var fileContentToTest = [
-              ['src/' + module + '/' + module + '.js', /module\.exports/i],
-              ['src/' + module + '/__tests__/' + module + '.spec.js', /describe/i]
+              ['src/_modules/' + module + '/' + module + '.js', /module\.exports/i],
+              ['src/_modules/' + module + '/__tests__/' + module + '.spec.js', /describe/i]
             ];
             var fileContentToNotFind = [
-              ['src/' + module + '/' + module + '.jade', /<div>/i]
+              ['src/_modules/' + module + '/' + module + '.jade', /<div>/i]
             ];
 
             helpers.mockPrompt(this.app, {
               htmlOption: 'jade',
               singlePageApplication: false,
               testFramework: 'jasmine',
+              useTesting: true,
               jsOption: 'browserify',
               cssOption: 'stylus'
             });
@@ -55,54 +56,9 @@ describe('Static Site module sub-generator', function() {
             this.app.run([], function() {
               createSubGenerator('module', module, {path: '../../../../'}, {
                 // mock prompt data
-                moduleFile: 'src',
+                moduleFile: 'src/_modules',
                 type: type,
                 useLayout: 'testTemplate',
-                moduleLocation: 'src'
-              }, function() {
-                assert.file(filesToTest);
-                assert.fileContent(fileContentToTest);
-                assert.noFileContent(fileContentToNotFind);
-                done();
-              });
-            });
-          });
-        });
-        describe('Using RequireJS', function() {
-          it('Using Mocha', function(done) {
-            // Filename
-            var module = 'mymodule';
-            var type = 'page';
-
-            var filesToTest = [
-              'src/' + module + '/__tests__/' + module + '.spec.js',
-              'src/' + module + '/' + module + '.js',
-              'src/' + module + '/' + module + '.jade',
-              'src/' + module + '/' + module + '.less'
-            ];
-            var fileContentToTest = [
-              ['src/' + module + '/' + module + '.js', /define\(function\(require\)/i],
-              ['src/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i]
-            ];
-            var fileContentToNotFind = [
-              ['src/' + module + '/' + module + '.jade', /<div>/i]
-            ];
-
-            helpers.mockPrompt(this.app, {
-              htmlOption: 'jade',
-              singlePageApplication: false,
-              testFramework: 'mocha',
-              jsOption: 'requirejs',
-              cssOption: 'less'
-            });
-
-            this.app.run([], function() {
-              createSubGenerator('module', module, {path: '../../../../'}, {
-                // mock prompt data
-                moduleFile: 'src',
-                type: type,
-                useLayout: 'testTemplate',
-                moduleLocation: 'src'
               }, function() {
                 assert.file(filesToTest);
                 assert.fileContent(fileContentToTest);
@@ -121,77 +77,34 @@ describe('Static Site module sub-generator', function() {
             var type = 'module';
 
             var filesToTest = [
-              'src/' + module + '/__tests__/' + module + '.spec.js',
-              'src/' + module + '/' + module + '.js',
-              'src/' + module + '/' + module + '.jade',
-              'src/' + module + '/' + module + '.sass'
+              'src/_modules/' + module + '/__tests__/' + module + '.spec.js',
+              'src/_modules/' + module + '/' + module + '.js',
+              'src/_modules/' + module + '/' + module + '.jade',
+              'src/_modules/' + module + '/' + module + '.sass'
             ];
             var fileContentToTest = [
-              ['src/' + module + '/' + module + '.js', /module\.exports/i],
-              ['src/' + module + '/__tests__/' + module + '.spec.js', /describe/i]
+              ['src/_modules/' + module + '/' + module + '.js', /module\.exports/i],
+              ['src/_modules/' + module + '/__tests__/' + module + '.spec.js', /describe/i]
             ];
             var fileContentToNotFind = [
-              ['src/' + module + '/' + module + '.jade', /<div>/i]
+              ['src/_modules/' + module + '/' + module + '.jade', /<div>/i]
             ];
 
             helpers.mockPrompt(this.app, {
               htmlOption: 'jade',
               singlePageApplication: false,
               testFramework: 'jasmine',
+              useTesting: true,
               jsOption: 'browserify',
               cssOption: 'sass',
               sassSyntax: 'sass',
-              moduleLocation: 'src'
             });
 
             this.app.run([], function() {
               createSubGenerator('module', module, {path: '../../../../'}, {
                 // mock prompt data
-                moduleFile: 'src',
+                moduleFile: 'src/_modules',
                 type: type,
-                moduleLocation: 'src'
-              }, function() {
-                assert.file(filesToTest);
-                assert.fileContent(fileContentToTest);
-                assert.noFileContent(fileContentToNotFind);
-                done();
-              });
-            });
-          });
-        });
-        describe('Using RequireJS', function() {
-          it('Using Mocha', function(done) {
-            // Filename
-            var module = 'mymodule';
-            var type = 'module';
-
-            var filesToTest = [
-              'src/modules/' + module + '/__tests__/' + module + '.spec.js',
-              'src/modules/' + module + '/' + module + '.js',
-              'src/modules/' + module + '/' + module + '.jade'
-            ];
-            var fileContentToTest = [
-              ['src/modules/' + module + '/' + module + '.js', /define\(function\(require\)/i],
-              ['src/modules/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i]
-            ];
-            var fileContentToNotFind = [
-              ['src/modules/' + module + '/' + module + '.jade', /<div>/i]
-            ];
-
-            helpers.mockPrompt(this.app, {
-              htmlOption: 'jade',
-              singlePageApplication: false,
-              testFramework: 'mocha',
-              jsOption: 'requirejs',
-              moduleLocation: 'src'
-            });
-
-            this.app.run([], function() {
-              createSubGenerator('module', module, {path: '../../../../'}, {
-                // mock prompt data
-                moduleFile: 'src/modules',
-                moduleLocation: 'src',
-                type: type
               }, function() {
                 assert.file(filesToTest);
                 assert.fileContent(fileContentToTest);
@@ -226,7 +139,6 @@ describe('Static Site module sub-generator', function() {
             // mock prompt data
             moduleFile: 'src/layouts',
             type: type,
-            moduleLocation: 'src'
           }, function() {
             assert.file(filesToTest);
             assert.fileContent(fileContentToTest);
@@ -241,7 +153,7 @@ describe('Static Site module sub-generator', function() {
         var module = 'mymodule';
         var type = 'page';
         var fileContentToTest = [
-          ['src/' + module + '/' + module + '.jade', /\[dash\:data\]/i]
+          ['src/_modules/' + module + '/' + module + '.jade', /\[dash\:data\]/i]
         ];
 
         helpers.mockPrompt(this.app, {
@@ -252,9 +164,8 @@ describe('Static Site module sub-generator', function() {
         this.app.run([], function() {
           createSubGenerator('module', module, {path: '../../../../'}, {
             // mock prompt data
-            moduleFile: 'src',
+            moduleFile: 'src/_modules',
             type: type,
-            moduleLocation: 'src'
           }, function() {
             assert.fileContent(fileContentToTest);
             done();
@@ -279,7 +190,6 @@ describe('Static Site module sub-generator', function() {
               // mock prompt data
               moduleFile: 'src/modules',
               type: type,
-              moduleLocation: 'src'
             }, function() {
             assert.fileContent(fileContentToTest);
             done();
@@ -299,74 +209,32 @@ describe('Static Site module sub-generator', function() {
             var type = 'page';
 
             var filesToTest = [
-              'src/' + module + '/__tests__/' + module + '.spec.js',
-              'src/' + module + '/' + module + '.js',
-              'src/' + module + '/' + module + '.swig'
+              'src/_modules/' + module + '/__tests__/' + module + '.spec.js',
+              'src/_modules/' + module + '/' + module + '.js',
+              'src/_modules/' + module + '/' + module + '.swig'
             ];
             var fileContentToTest = [
-              ['src/' + module + '/' + module + '.js', /module\.exports/i],
-              ['src/' + module + '/__tests__/' + module + '.spec.js', /describe/i]
+              ['src/_modules/' + module + '/' + module + '.js', /module\.exports/i],
+              ['src/_modules/' + module + '/__tests__/' + module + '.spec.js', /describe/i]
             ];
             var fileContentToNotFind = [
-              ['src/' + module + '/' + module + '.swig', /<div>/i]
+              ['src/_modules/' + module + '/' + module + '.swig', /<div>/i]
             ];
 
             helpers.mockPrompt(this.app, {
               htmlOption: 'swig',
               singlePageApplication: false,
               testFramework: 'jasmine',
+              useTesting: true,
               jsOption: 'browserify'
             });
 
             this.app.run([], function() {
               createSubGenerator('module', module, {path: '../../../../'}, {
                 // mock prompt data
-                moduleFile: 'src',
+                moduleFile: 'src/_modules',
                 type: type,
                 useLayout: 'testTemplate',
-                moduleLocation: 'src'
-              }, function() {
-                assert.file(filesToTest);
-                assert.fileContent(fileContentToTest);
-                assert.noFileContent(fileContentToNotFind);
-                done();
-              });
-            });
-          });
-        });
-        describe('Using RequireJS', function() {
-          it('Using Mocha', function(done) {
-            // Filename
-            var module = 'mymodule';
-            var type = 'page';
-
-            var filesToTest = [
-              'src/' + module + '/__tests__/' + module + '.spec.js',
-              'src/' + module + '/' + module + '.js',
-              'src/' + module + '/' + module + '.swig'
-            ];
-            var fileContentToTest = [
-              ['src/' + module + '/' + module + '.js', /define\(function\(require\)/i],
-              ['src/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i]
-            ];
-            var fileContentToNotFind = [
-              ['src/' + module + '/' + module + '.swig', /<div>/i]
-            ];
-
-            helpers.mockPrompt(this.app, {
-              htmlOption: 'swig',
-              singlePageApplication: false,
-              testFramework: 'mocha',
-              jsOption: 'requirejs'
-            });
-
-            this.app.run([], function() {
-              createSubGenerator('module', module, {path: '../../../../'}, {
-                // mock prompt data
-                moduleFile: 'src',
-                type: type,
-                useLayout: 'testTemplate',
-                moduleLocation: 'src'
               }, function() {
                 assert.file(filesToTest);
                 assert.fileContent(fileContentToTest);
@@ -385,72 +253,31 @@ describe('Static Site module sub-generator', function() {
             var type = 'module';
 
             var filesToTest = [
-              'src/' + module + '/__tests__/' + module + '.spec.js',
-              'src/' + module + '/' + module + '.js',
-              'src/' + module + '/' + module + '.swig'
+              'src/_modules/' + module + '/__tests__/' + module + '.spec.js',
+              'src/_modules/' + module + '/' + module + '.js',
+              'src/_modules/' + module + '/' + module + '.swig'
             ];
             var fileContentToTest = [
-              ['src/' + module + '/' + module + '.js', /module\.exports/i],
-              ['src/' + module + '/__tests__/' + module + '.spec.js', /describe/i]
+              ['src/_modules/' + module + '/' + module + '.js', /module\.exports/i],
+              ['src/_modules/' + module + '/__tests__/' + module + '.spec.js', /describe/i]
             ];
             var fileContentToNotFind = [
-              ['src/' + module + '/' + module + '.swig', /<div>/i]
+              ['src/_modules/' + module + '/' + module + '.swig', /<div>/i]
             ];
 
             helpers.mockPrompt(this.app, {
               htmlOption: 'swig',
               singlePageApplication: false,
               testFramework: 'jasmine',
+              useTesting: true,
               jsOption: 'browserify'
             });
 
             this.app.run([], function() {
               createSubGenerator('module', module, {path: '../../../../'}, {
                 // mock prompt data
-                moduleFile: 'src',
+                moduleFile: 'src/_modules',
                 type: type,
-                moduleLocation: 'src'
-              }, function() {
-                assert.file(filesToTest);
-                assert.fileContent(fileContentToTest);
-                assert.noFileContent(fileContentToNotFind);
-                done();
-              });
-            });
-          });
-        });
-        describe('Using RequireJS', function() {
-          it('Using Mocha', function(done) {
-            // Filename
-            var module = 'mymodule';
-            var type = 'module';
-
-            var filesToTest = [
-              'src/modules/' + module + '/__tests__/' + module + '.spec.js',
-              'src/modules/' + module + '/' + module + '.js',
-              'src/modules/' + module + '/' + module + '.swig'
-            ];
-            var fileContentToTest = [
-              ['src/modules/' + module + '/' + module + '.js', /define\(function\(require\)/i],
-              ['src/modules/' + module + '/__tests__/' + module + '.spec.js', /define\(function\(require\)/i]
-            ];
-            var fileContentToNotFind = [
-              ['src/modules/' + module + '/' + module + '.swig', /<div>/i]
-            ];
-
-            helpers.mockPrompt(this.app, {
-              htmlOption: 'swig',
-              singlePageApplication: false,
-              testFramework: 'mocha',
-              jsOption: 'requirejs'
-            });
-
-            this.app.run([], function() {
-              createSubGenerator('module', module, {path: '../../../../'}, {
-                // mock prompt data
-                moduleFile: 'src/modules',
-                type: type,
-                moduleLocation: 'src'
               }, function() {
                 assert.file(filesToTest);
                 assert.fileContent(fileContentToTest);
@@ -485,7 +312,6 @@ describe('Static Site module sub-generator', function() {
             // mock prompt data
             moduleFile: 'src/layouts',
             type: type,
-            moduleLocation: 'src'
           }, function() {
             assert.file(filesToTest);
             assert.fileContent(fileContentToTest);
@@ -500,7 +326,7 @@ describe('Static Site module sub-generator', function() {
         var module = 'mymodule';
         var type = 'page';
         var fileContentToTest = [
-          ['src/' + module + '/' + module + '.swig', /\[dash\:data\]/i]
+          ['src/_modules/' + module + '/' + module + '.swig', /\[dash\:data\]/i]
         ];
 
         helpers.mockPrompt(this.app, {
@@ -511,9 +337,8 @@ describe('Static Site module sub-generator', function() {
         this.app.run([], function() {
           createSubGenerator('module', module, {path: '../../../../'}, {
             // mock prompt data
-            moduleFile: 'src',
+            moduleFile: 'src/_modules',
             type: type,
-            moduleLocation: 'src'
           }, function() {
             assert.fileContent(fileContentToTest);
             done();
@@ -538,7 +363,6 @@ describe('Static Site module sub-generator', function() {
               // mock prompt data
               moduleFile: 'src/modules',
               type: type,
-              moduleLocation: 'src'
             }, function() {
             assert.fileContent(fileContentToTest);
             done();
