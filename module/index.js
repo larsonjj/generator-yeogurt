@@ -185,6 +185,10 @@ ModuleGenerator.prototype.files = function files() {
     if (this.htmlOption === 'jade') {
       if (this.type === 'module') {
         this.template('module.jade', this.moduleFile + '.jade');
+        this.template('module.js', this.moduleFile + '.js');
+        if (this.useTesting) {
+          this.template('module.spec.js', this.testFile + '.spec.js');
+        }
         if (this.useDashboard) {
           this.template('module.dash.jade', this.dashFile + '.jade');
           this.template('module.dash.json', this.dashFile + '.json');
@@ -204,6 +208,10 @@ ModuleGenerator.prototype.files = function files() {
     else if (this.htmlOption === 'swig') {
       if (this.type === 'module') {
         this.template('module.swig', this.moduleFile + '.swig');
+        this.template('module.js', this.moduleFile + '.js');
+        if (this.useTesting) {
+          this.template('module.spec.js', this.testFile + '.spec.js');
+        }
         if (this.useDashboard) {
           this.template('module.dash.swig', this.dashFile + '.swig');
           this.template('module.dash.json', this.dashFile + '.json');
