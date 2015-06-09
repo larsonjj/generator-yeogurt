@@ -26,7 +26,7 @@ var ModuleGenerator = module.exports = function ModuleGenerator() {
   this.singlePageApplication = fileJSON.singlePageApplication;
   this.jsOption = fileJSON.jsOption;
   this.jsTemplate = fileJSON.jsTemplate;
-  this.cssOption = fileJSON.cssOption || 'css';
+  this.cssOption = fileJSON.cssOption;
   this.sassSyntax = fileJSON.sassSyntax;
   this.testFramework = fileJSON.testFramework;
   this.useTesting = fileJSON.useTesting;
@@ -43,23 +43,6 @@ ModuleGenerator.prototype.ask = function ask() {
   var self = this;
   var done = this.async();
   var prompts = [{
-    when: function() {
-      return self.htmlOption === 'jade' || self.htmlOption === 'swig';
-    },
-    type: 'list',
-    name: 'type',
-    message: 'What type of module do you want to create?',
-    choices: ['Page', 'Layout', 'Module'],
-    filter: function(val) {
-      var filterMap = {
-        'Page': 'page',
-        'Layout': 'layout',
-        'Module': 'module'
-      };
-
-      return filterMap[val];
-    }
-  }, {
     when: function(answers) {
       return self.singlePageApplication;
     },
@@ -70,37 +53,14 @@ ModuleGenerator.prototype.ask = function ask() {
     }
   }, {
     when: function(answers) {
-      return answers.type === 'page';
-    },
-    name: 'moduleFile',
-    message: 'Where would you like to create this module?',
-    default: directories.source
-  }, {
-    when: function(answers) {
-      return answers.type === 'page';
-    },
-    name: 'useLayout',
-    message: 'What layout would you like to extend from?',
-    default: yeogurtConf ? directories.source + '/' + directories.layouts + '/base' : directories.source + '/_layouts/base'
-  }, {
-    when: function(answers) {
-      return answers.type === 'module';
+      return !self.singlePageApplication;
     },
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
       return yeogurtConf ? directories.source + '/' + directories.modules : directories.source + '/_modules';
     }
-  }, {
-    when: function(answers) {
-      return answers.type === 'layout';
-    },
-    name: 'moduleFile',
-    message: 'Where would you like to create this module?',
-    default: function(answers) {
-      return yeogurtConf ? directories.source + '/' + directories.layouts : directories.source + '/_layouts';
-    }
-  }, {
+  },{
     when: function(answers) {
       return self.jsFramework === 'angular';
     },
@@ -111,68 +71,43 @@ ModuleGenerator.prototype.ask = function ask() {
 
   this.prompt(prompts, function(answers) {
 
-    this.type = answers.type;
-    this.useLayout = answers.useLayout ? answers.useLayout.replace(directories.source + '/', '') : false;
-
-    this.generateFrontend = answers.generateFrontend;
-
     this.templateFile = path.join(
-        answers.moduleFile,
-        this._.slugify(this.name.toLowerCase()),
-        this._.slugify(this.name.toLowerCase())
-      );
+      answers.moduleFile,
+      this._.slugify(this.name.toLowerCase()),
+      this._.slugify(this.name.toLowerCase())
+    );
 
-    this.packageFile = path.join(
-        answers.moduleFile,
-        this._.slugify(this.name.toLowerCase()),
-        'package'
-      );
-
-    if (this.type === 'page') {
-      this.moduleFile = path.join(
-        answers.moduleFile,
-        this._.slugify(this.name.toLowerCase()),
-        'index'
-      );
-    }
-    else {
-      this.moduleFile = path.join(
-        answers.moduleFile,
-        this._.slugify(this.name.toLowerCase()),
-        this._.slugify(this.name.toLowerCase())
-      );
-    }
+    this.moduleFile = path.join(
+      answers.moduleFile,
+      this._.slugify(this.name.toLowerCase()),
+      this._.slugify(this.name.toLowerCase())
+    );
 
     // Get source directory
-    if (this.type === 'layout') {
-      this.rootDir = getDirCount(this.moduleFile.replace(directories.source + '/' + directories.layouts + '/', ''));
-    }
-    else {
-      this.rootDir = getDirCount(this.moduleFile.replace(directories.source + '/', ''));
-    }
+    this.rootDir = getDirCount(this.moduleFile.replace(directories.source + '/', ''));
 
     this.testFile = path.join(
-        answers.moduleFile,
-        this._.slugify(this.name.toLowerCase()),
-        '__tests__',
-        this._.slugify(this.name.toLowerCase())
-      );
+      answers.moduleFile,
+      this._.slugify(this.name.toLowerCase()),
+      '__tests__',
+      this._.slugify(this.name.toLowerCase())
+    );
 
     this.dashFile = path.join(
-        answers.moduleFile,
-        this._.slugify(this.name.toLowerCase()),
-        '__dash__',
-        this._.slugify(this.name.toLowerCase()) + '.dash'
-      );
+      answers.moduleFile,
+      this._.slugify(this.name.toLowerCase()),
+      '__dash__',
+      this._.slugify(this.name.toLowerCase()) + '.dash'
+    );
 
     this.moduleURL = answers.moduleURL;
 
     this.htmlURL = path.join(
-        answers.moduleFile.replace('src', ''),
-        this._.slugify(this.name.toLowerCase()),
-        this._.slugify(this.name.toLowerCase()),
-        '.html'
-      );
+      answers.moduleFile.replace('src', ''),
+      this._.slugify(this.name.toLowerCase()),
+      this._.slugify(this.name.toLowerCase()),
+      '.html'
+    );
 
     done();
   }.bind(this));
@@ -183,49 +118,25 @@ ModuleGenerator.prototype.files = function files() {
   if (!this.singlePageApplication) {
 
     if (this.htmlOption === 'jade') {
-      if (this.type === 'module') {
-        this.template('module.jade', this.moduleFile + '.jade');
-        this.template('module.js', this.moduleFile + '.js');
-        if (this.useTesting) {
-          this.template('module.spec.js', this.testFile + '.spec.js');
-        }
-        if (this.useDashboard) {
-          this.template('module.dash.jade', this.dashFile + '.jade');
-          this.template('module.dash.json', this.dashFile + '.json');
-        }
+      this.template('module.jade', this.moduleFile + '.jade');
+      this.template('module.js', this.moduleFile + '.js');
+      if (this.useTesting) {
+        this.template('module.spec.js', this.testFile + '.spec.js');
       }
-      else if (this.type === 'layout') {
-        this.template('module.layout.jade', this.moduleFile + '.jade');
-      }
-      // Default to page type
-      else {
-        this.template('module.page.jade', this.moduleFile + '.jade');
-        if (this.useDashboard) {
-          this.template('module.dash.json', this.dashFile + '.json');
-        }
+      if (this.useDashboard) {
+        this.template('module.dash.jade', this.dashFile + '.jade');
+        this.template('module.dash.json', this.dashFile + '.json');
       }
     }
     else if (this.htmlOption === 'swig') {
-      if (this.type === 'module') {
-        this.template('module.swig', this.moduleFile + '.swig');
-        this.template('module.js', this.moduleFile + '.js');
-        if (this.useTesting) {
-          this.template('module.spec.js', this.testFile + '.spec.js');
-        }
-        if (this.useDashboard) {
-          this.template('module.dash.swig', this.dashFile + '.swig');
-          this.template('module.dash.json', this.dashFile + '.json');
-        }
+      this.template('module.swig', this.moduleFile + '.swig');
+      this.template('module.js', this.moduleFile + '.js');
+      if (this.useTesting) {
+        this.template('module.spec.js', this.testFile + '.spec.js');
       }
-      else if (this.type === 'layout') {
-        this.template('module.layout.swig', this.moduleFile + '.swig');
-      }
-      // Default to page type
-      else {
-        this.template('module.page.swig', this.moduleFile + '.swig');
-        if (this.useDashboard) {
-          this.template('module.dash.json', this.dashFile + '.json');
-        }
+      if (this.useDashboard) {
+        this.template('module.dash.swig', this.dashFile + '.swig');
+        this.template('module.dash.json', this.dashFile + '.json');
       }
     }
   }
@@ -256,20 +167,18 @@ ModuleGenerator.prototype.files = function files() {
     this.template('marionette/module.html', this.moduleFile + '.jst');
   }
 
-  if (this.type !== 'page') {
-    if (this.cssOption === 'sass') {
-      if (this.sassSyntax === 'sass') {
-        this.template('module.css', this.moduleFile.replace('server', 'src') + '.sass');
-      }
-      else {
-        this.template('module.css', this.moduleFile.replace('server', 'src') + '.scss');
-      }
+  if (this.cssOption === 'sass') {
+    if (this.sassSyntax === 'sass') {
+      this.template('module.css', this.moduleFile.replace('server', 'src') + '.sass');
     }
-    else if (this.cssOption === 'less') {
-      this.template('module.css', this.moduleFile.replace('server', 'src') + '.less');
+    else {
+      this.template('module.css', this.moduleFile.replace('server', 'src') + '.scss');
     }
-    else if (this.cssOption === 'stylus') {
-      this.template('module.css', this.moduleFile.replace('server', 'src') + '.styl');
-    }
+  }
+  else if (this.cssOption === 'less') {
+    this.template('module.css', this.moduleFile.replace('server', 'src') + '.less');
+  }
+  else if (this.cssOption === 'stylus') {
+    this.template('module.css', this.moduleFile.replace('server', 'src') + '.styl');
   }
 };
