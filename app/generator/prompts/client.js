@@ -51,23 +51,23 @@ var clientPrompts = function clientPrompts() {
 
       return filterMap[val];
     }
-  }, {
-    when: function(answers) {
-      return answers.jsFramework !== 'react';
-    },
-    type: 'list',
-    name: 'jsOption',
-    message: 'Which ' + 'JavaScript module library'.blue + ' would you like to use?',
-    choices: ['Browserify', 'Webpack'],
-    filter: function(val) {
-      var filterMap = {
-        'Browserify': 'browserify',
-        'Webpack': 'webpack'
-      };
+  },
+  // TODO: Add webpack as an option for JS module loader
+  // {
+  //   type: 'list',
+  //   name: 'jsOption',
+  //   message: 'Which ' + 'JavaScript module library'.blue + ' would you like to use?',
+  //   choices: ['Browserify', 'Webpack'],
+  //   filter: function(val) {
+  //     var filterMap = {
+  //       'Browserify': 'browserify',
+  //       'Webpack': 'webpack'
+  //     };
 
-      return filterMap[val];
-    }
-  }, {
+  //     return filterMap[val];
+  //   }
+  // },
+  {
     type: 'list',
     name: 'cssOption',
     message: 'What would you like to use to ' + 'write styles'.blue + '?',
