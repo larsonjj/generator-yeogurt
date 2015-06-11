@@ -14,8 +14,7 @@ var taskConfig = function(grunt) {
     grunt.task.run([
       'clean:tmp',
       'imagemin:serve',
-      'copy:serve',<% if (jsFramework === 'angular') { %>
-      'ngtemplates:compile',<% } %><% if (htmlOption === 'jade') { %>
+      'copy:serve',<% if (htmlOption === 'jade') { %>
       'jade:serve',<% } else if (htmlOption === 'swig') {  %>
       'swig:serve',<% } %><% if (jsOption === 'browserify') { %>
       'browserify:serve',<% } %><% if (cssOption === 'less') { %>

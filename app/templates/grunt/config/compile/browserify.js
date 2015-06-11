@@ -14,7 +14,11 @@ var taskConfig = function(grunt) {
         transform: [
           require('envify'),
           require('babelify')<% if (jsFramework === 'angular') { %>,
-          require('browserify-ngannotate')<% } else if (jsFramework === 'marionette') { %>,
+          require('browserify-ngannotate'),
+          require('browserify-ng-html2js')({
+            module: '<%= _.camelize(projectName) %>',
+            extension: 'html'
+          })<% } else if (jsFramework === 'marionette') { %>,
           require('jstify')<% } %>
         ],
         browserifyOptions: {
@@ -33,7 +37,11 @@ var taskConfig = function(grunt) {
         transform: [
           require('envify'),
           require('babelify')<% if (jsFramework === 'angular') { %>,
-          require('browserify-ngannotate')<% } else if (jsFramework === 'marionette') { %>,
+          require('browserify-ngannotate'),
+          require('browserify-ng-html2js')({
+            module: '<%= _.camelize(projectName) %>',
+            extension: 'html'
+          })<% } else if (jsFramework === 'marionette') { %>,
           require('jstify')<% } %>
         ],
         browserifyOptions: {
@@ -58,7 +66,11 @@ var taskConfig = function(grunt) {
         transform: [
           require('envify'),
           require('babelify')<% if (jsFramework === 'angular') { %>,
-          require('browserify-ngannotate')<% } else if (jsFramework === 'marionette') { %>,
+          require('browserify-ngannotate'),
+          require('browserify-ng-html2js')({
+            module: '<%= _.camelize(projectName) %>',
+            extension: 'html'
+          })<% } else if (jsFramework === 'marionette') { %>,
           require('jstify')<% } %>
         ],
         browserifyOptions: {

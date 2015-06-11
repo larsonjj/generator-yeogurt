@@ -3,11 +3,14 @@
 // Load Controller
 require('./home.controller');
 
-angular.module('<%= _.camelize(projectName) %>')
+// Load Template
+require('./home.html');
+
+angular.module('Sample')
   .config(function($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: '/_screens/home/home.html',
+        templateUrl: 'home.html',
         controller: 'HomeCtrl'
       });
   });

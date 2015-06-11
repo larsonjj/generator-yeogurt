@@ -43,10 +43,6 @@ var taskFiles = function taskFiles() {
     this.template('grunt/config/compile/browserify.js', 'grunt/config/compile/browserify.js');
   }
 
-  if (this.jsFramework === 'angular') {
-    this.template('grunt/config/compile/ng-templates.js', 'grunt/config/compile/ng-templates.js');
-  }
-
   // ========
   // Docs
   // ========
