@@ -6,14 +6,14 @@ var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 var expect = chai.expect;
 <% } %>
-describe('Index Page', function() {
+describe('Home Page', function() {
   var page;
 
   beforeEach(function() {<% if (jsFramework !== 'angular') { %>
     // Inform protractor that it will run non-angular tests
     isAngularSite(false);<% } %>
     browser.get('/');
-    page = require('./index.po');
+    page = require('./home.po');
   });
 
   it('should include welcome message', function() {

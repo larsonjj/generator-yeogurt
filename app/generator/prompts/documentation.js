@@ -12,7 +12,9 @@ var documentationPrompts = function documentationPrompts() {
   var cb = this.async();
   var self = this;
 
-  this.log('\n---- ' + 'Documentation'.red.underline + ' ----\n');
+  if (!this.clientPrompts.singlePageApplication) {
+    this.log('\n---- ' + 'Documentation'.red.underline + ' ----\n');
+  }
 
   this.prompt([{
     when: function() {
@@ -27,6 +29,9 @@ var documentationPrompts = function documentationPrompts() {
 
     cb();
   }.bind(this));
+
+  // Add newline for some separation from next loaded text
+  this.log('\n');
 };
 
 module.exports = documentationPrompts;
