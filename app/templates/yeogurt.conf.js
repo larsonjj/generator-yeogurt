@@ -29,13 +29,12 @@ var config = {
     temporary: 'tmp',
 
     // Extra configurable directories<% if (singlePageApplication) { %>
-    modules: '_screens',<% } %>
+    screens: '_screens',<% } %>
     modules: '_modules',
     layouts: '_layouts',
     images: '_images',
     styles: '_styles',
-    scripts: '_scripts'<% if (useDashboard) { %>,
-    docs: '_docs'<% } %>
+    scripts: '_scripts'
   }
 };
 
