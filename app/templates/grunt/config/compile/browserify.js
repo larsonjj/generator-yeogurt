@@ -12,8 +12,8 @@ var taskConfig = function(grunt) {
     serve: {
       options: {
         transform: [
-          require('envify')<% if (jsFramework === 'react') { %>,
-          require('babelify')<% } else if (jsFramework === 'angular') { %>,
+          require('envify'),
+          require('babelify')<% if (jsFramework === 'angular') { %>,
           require('browserify-ngannotate')<% } else if (jsFramework === 'marionette') { %>,
           require('jstify')<% } %>
         ],
@@ -31,8 +31,8 @@ var taskConfig = function(grunt) {
     build: {
       options: {
         transform: [
-          require('envify')<% if (jsFramework === 'react') { %>,
-          require('babelify')<% } else if (jsFramework === 'angular') { %>,
+          require('envify'),
+          require('babelify')<% if (jsFramework === 'angular') { %>,
           require('browserify-ngannotate')<% } else if (jsFramework === 'marionette') { %>,
           require('jstify')<% } %>
         ],
@@ -56,8 +56,8 @@ var taskConfig = function(grunt) {
     test: {
       options: {
         transform: [
-          require('envify')<% if (jsFramework === 'react') { %>,
-          require('babelify')<% } else if (jsFramework === 'angular') { %>,
+          require('envify'),
+          require('babelify')<% if (jsFramework === 'angular') { %>,
           require('browserify-ngannotate')<% } else if (jsFramework === 'marionette') { %>,
           require('jstify')<% } %>
         ],
