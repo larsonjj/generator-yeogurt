@@ -3,6 +3,6 @@
 {# Provides layout level markup #}
 {% block layout %}
 <div class="layout-wrapper <% if (name) { %><%= _.slugify(name.toLowerCase()) %><% } %>">
-  {% block content %}{% endblock %}
+  {% block <%= _.slugify(name.toLowerCase()) %> %}{% endblock %}
 </div>
 {% endblock %}

@@ -28,12 +28,14 @@ var config = {
     // Temporary directory: temporary development files location
     temporary: 'tmp',
 
-    // Extra configurable directories
-    modules: 'modules',
-    layouts: 'layouts',
+    // Extra configurable directories<% if (singlePageApplication) { %>
+    modules: '_screens',<% } %>
+    modules: '_modules',
+    layouts: '_layouts',
     images: '_images',
     styles: '_styles',
-    scripts: '_scripts'
+    scripts: '_scripts'<% if (useDashboard) { %>,
+    docs: '_docs'<% } %>
   }
 };
 

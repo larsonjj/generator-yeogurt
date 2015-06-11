@@ -39,7 +39,7 @@ var taskConfig = function(grunt) {
       },
       expand: true,
       cwd: '<%%= yeogurt.directories.source %>/',
-      dest: '<%%= yeogurt.directories.destination %>/'
+      dest: '<%%= yeogurt.directories.destination %>/',
       src: [
         '**/*.jade',
         '!**/\_*/**'

@@ -31,7 +31,7 @@ var taskConfig = function(grunt) {
     copy: {
       files: [
         '<%%= yeogurt.directories.source %>/**/*',
-        '!<%%= yeogurt.directories.source %>/**/\_*/**',<% if (htmlOption === 'swig') { %>,
+        '!<%%= yeogurt.directories.source %>/**/\_*/**'<% if (htmlOption === 'swig') { %>,
         '!<%%= yeogurt.directories.source %>/**/*.swig'<% } else if (htmlOption === 'jade') { %>,
         '!<%%= yeogurt.directories.source %>/**/*.jade'<% } %>
       ],
