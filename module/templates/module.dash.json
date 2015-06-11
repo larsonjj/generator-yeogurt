@@ -1,6 +1,6 @@
 {
   "status": "development",
-  "category": "<%= type.toLowerCase() %>",
+  "category": "module",
   "label": "<%= _.titleize(name) %>",
   "link": "generated/<%= _.slugify(name.toLowerCase()) %>.html"
 }
