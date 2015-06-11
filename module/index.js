@@ -157,11 +157,9 @@ ModuleGenerator.prototype.files = function files() {
     }
   }
   else if (this.jsFramework === 'marionette') {
-    if (this.jsOption === 'browserify') {
-      this.template('marionette/browserify/module.js', this.moduleFile + '.js');
-      if (this.useTesting) {
-        this.template('marionette/browserify/module.spec.js', this.testFile + '.spec.js');
-      }
+    this.template('marionette/module.js', this.moduleFile + '.js');
+    if (this.useTesting) {
+      this.template('marionette/module.spec.js', this.testFile + '.spec.js');
     }
 
     this.template('marionette/module.html', this.moduleFile + '.jst');
@@ -169,16 +167,16 @@ ModuleGenerator.prototype.files = function files() {
 
   if (this.cssOption === 'sass') {
     if (this.sassSyntax === 'sass') {
-      this.template('module.css', this.moduleFile.replace('server', 'src') + '.sass');
+      this.template('module.css', this.moduleFile + '.sass');
     }
     else {
-      this.template('module.css', this.moduleFile.replace('server', 'src') + '.scss');
+      this.template('module.css', this.moduleFile + '.scss');
     }
   }
   else if (this.cssOption === 'less') {
-    this.template('module.css', this.moduleFile.replace('server', 'src') + '.less');
+    this.template('module.css', this.moduleFile + '.less');
   }
   else if (this.cssOption === 'stylus') {
-    this.template('module.css', this.moduleFile.replace('server', 'src') + '.styl');
+    this.template('module.css', this.moduleFile + '.styl');
   }
 };
