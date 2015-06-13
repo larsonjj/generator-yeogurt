@@ -4,15 +4,13 @@ var $ = require('jquery');
 var Backbone = require('backbone');
 Backbone.$ = $;
 var Marionette = require('backbone.marionette');
-var homeTemplate = require('./home.jst');
+var HomeController = require('./home.controller');
 
-var HomeView = Marionette.ItemView.extend({
-
-  // Template compiled by grunt-jst and attached to 'JST' namespace
-  template: homeTemplate,
-
-  events: {}
-
+var homeRouter = Marionette.AppRouter.extend({
+  appRoutes: {
+    '/': 'showHome'
+  },
+  controller: new HomeController()
 });
 
-module.exports = HomeView;
+module.exports = homeRouter;

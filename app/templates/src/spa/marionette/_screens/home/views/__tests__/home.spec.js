@@ -1,17 +1,17 @@
 <% if (testFramework === 'mocha') { %>/*eslint no-unused-expressions:0 */<% } %>
 'use strict';
 
-var HomeRouter = require('../home');
+var HomeView = require('../home.view');
 
 describe('Home View', function() {
 
   beforeEach(function() {
-    this.homeRouter = new HomeRouter();
+    this.homeView = new HomeView();
   });
 
   it('provides the "Home View" instance', function() {
     // Expect it to exist
-    expect(this.homeRouter)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+    expect(this.homeView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
   });
 
 });

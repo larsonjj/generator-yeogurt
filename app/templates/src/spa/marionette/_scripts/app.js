@@ -4,12 +4,15 @@ var $ = require('jquery');
 var Backbone = require('backbone');
 Backbone.$ = $;
 var Marionette = require('backbone.marionette');
+var HomeScreen = require('../_screens/home/home');
+var Wreqr = require('./wreqr');
 
 // Set up the app instance
 var App = new Marionette.Application();
 
 // Define app regions
 App.addRegions({
+  // Mount point for application
   appRegion: '#app-wrapper'
 });
 
@@ -20,15 +23,11 @@ App.on('start', function() {
   }
 });
 
-App.vent.on('app:show', function(appView) {
+Wreqr.on('app:show', function(appView) {
   App.appRegion.show(appView);
 });
 
-App.addInitializer(function(config) {
-  if (config.router) {
-    // Attach router to App namespace for easier debugging/testing
-    App.Router = config.router;
-  }
-});
+// Screens & Modules
+new HomeScreen();
 
 module.exports = App;
