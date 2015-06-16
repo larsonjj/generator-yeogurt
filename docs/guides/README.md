@@ -17,6 +17,7 @@ This section contains information on how to implement extra libraries and plugin
 
 ## Deployment
 - [FTP](ftp.md)
+- [Grunt Build Control](grunt-build-control.md)
 - [Change root directory](change-root-dir.md)
 
 ###Can't find a guide for your favorite library or plugin?
