@@ -1,0 +1,74 @@
+{
+  "name": "<%= _.slugify(projectName) %>",
+  "version": "0.0.1",
+  "dependencies": {<% if (!singlePageApplication || jsFramework === 'marionette') { %>
+    "jquery": "~2.1.3",<% } %>
+    "babelify": "~6.0.2",
+    "normalize.css": "~3.0.1"<% if (jsFramework === 'angular') { %>,
+    "angular": "~1.3.15",
+    "angular-route": "~1.3.15",
+    "json3": "~3.3.1"<% } %><% if (jsFramework === 'marionette') { %>,
+    "backbone": "~1.1.2",
+    "backbone.marionette": "~2.4.1",
+    "underscore": "~1.8.3"<% } %><% if (jsFramework === 'react') { %>,
+    "react-router": "~0.13.3",
+    "superagent": "~1.2.0",
+    "reflux": "~0.2.7",
+    "node-jsx": "~0.12.4",
+    "react": "~0.13.0"<% } %>
+  },
+  "devDependencies": {<% if (jsFramework === 'angular') { %>
+    "browserify-ngannotate": "0.7.2",
+    "browserify-ng-html2js": "~1.1.2",
+    "angular-mocks": "~1.3.15",<% } else if (jsFramework === 'marionette') { %>
+    "jstify": "0.9.0",<% } %>
+    "rimraf": "~2.2.0",
+    "gulp": "~3.9.0",
+    "browser-sync": "~2.7.12",
+    "gulp-clean": "~0.3.1 ",<% if (htmlOption === 'jade') { %>
+    "gulp-jade": "~1.0.1",
+    "jade": "~1.10.0",<% } %><% if (htmlOption === 'swig') { %>
+    "swig": "~1.4.2",
+    "gulp-swig": "~0.7.4",<% } %>
+    "gulp-postcss": "~5.1.8",
+    "autoprefixer-core": "~5.2.0",
+    "gulp-htmlmin": "~1.1.3",<% if (jsOption === 'browserify') { %>
+    "minifyify": "~7.0.0",
+    "envify": "~3.4.0",
+    "gulp-browserify": "~0.5.1",<% } %><% if (useE2e) { %>
+    "protractor": "~2.0.0",
+    "gulp-protractor": "~1.0.0",
+    "chromedriver": "~2.13.0 ",<% if (testFramework === 'mocha') { %>
+    "mocha": "~2.1.0",
+    "chai": "~1.10.0",
+    "chai-as-promised": "4.1.1",<% } %><% } %>
+    "gulp-imagemin": "~2.2.1",
+    "imagemin-svgo": "~4.0.0",
+    "imagemin-pngquant": "~4.0.0",
+    "gulp-eslint": "~0.14.0",
+    "gulp-copy": "~0.0.2",<% if (cssOption === 'sass') { %>
+    "gulp-sass": "~2.0.1",<% } %><% if (cssOption === 'less') { %>
+    "gulp-less": "~3.0.3",<% } %><% if (cssOption === 'stylus') { %>
+    "gulp-stylus": "~2.0.5",<% } %>
+    "gulp-newer": "~0.5.1",<% if (jsOption === 'browserify') { %>
+    "browserify" : "~10.0.0",<% } %><% if (useTesting) { %>
+    "karma-phantomjs-launcher": "~0.1.2",
+    "karma-chrome-launcher": "~0.1.2",<% if (testFramework === 'jasmine') { %>
+    "karma-jasmine": "~0.2.0",<% } else if (testFramework === 'mocha') { %>
+    "karma-chai": "~0.1.0",
+    "karma-mocha": "~0.1.3",<% } %>
+    "karma": "~0.12.21",<% } %><% if (useDashboard) { %>
+    "lodash": "~3.0.0",
+    "gulp-dashboard": "~1.0.0",<% } %>
+    "time-gulp": "0.2.10",
+    "jit-gulp": "~0.9.0"
+  },
+  "scripts": {
+    "clean": "rimraf node_modules tmp build"<% if (useE2e) { %>,
+    "update-webdriver": "node node_modules/protractor/bin/webdriver-manager update",
+    "postinstall": "npm run update-webdriver"<% } %>
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}

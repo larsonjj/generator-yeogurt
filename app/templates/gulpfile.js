@@ -103,8 +103,7 @@ gulp.task('build', [
   'less:build',<% } %><% if (cssOption === 'sass') { %>
   'sass:build',<% } %><% if (cssOption === 'stylus') { %>
   'stylus:build',<% } %>
-  'browserify:build'
-  'htmlmin:build',<% if (useDashboard) { %>
+  'browserify:build'<% if (useDashboard) { %>
   'dashboard:build',<% } %>
   'clean:tmp'
 ]);
@@ -226,6 +225,13 @@ gulp.task('swig:serve', function() {
       debug: true
     }
   }))
+  .pipe(htmlmin({
+    collapseBooleanAttributes: true,
+    conservativeCollapse: true,
+    removeCommentsFromCDATA: true,
+    removeEmptyAttributes: true,
+    removeRedundantAttributes: true
+  }))
   .pipe(gulp.dest(dest));
 });
 
@@ -240,6 +246,13 @@ gulp.task('swig:build', function() {
     data: {
       debug: false
     }
+  }))
+  .pipe(htmlmin({
+    collapseBooleanAttributes: true,
+    conservativeCollapse: true,
+    removeCommentsFromCDATA: true,
+    removeEmptyAttributes: true,
+    removeRedundantAttributes: true
   }))
   .pipe(gulp.dest(dest));
 });
@@ -257,6 +270,13 @@ gulp.task('jade:serve', function() {
       debug: true
     }
   }))
+  .pipe(htmlmin({
+    collapseBooleanAttributes: true,
+    conservativeCollapse: true,
+    removeCommentsFromCDATA: true,
+    removeEmptyAttributes: true,
+    removeRedundantAttributes: true
+  }))
   .pipe(gulp.dest(dest));
 });
 
@@ -271,6 +291,13 @@ gulp.task('jade:build', function() {
     locals: {
       debug: false
     }
+  }))
+  .pipe(htmlmin({
+    collapseBooleanAttributes: true,
+    conservativeCollapse: true,
+    removeCommentsFromCDATA: true,
+    removeEmptyAttributes: true,
+    removeRedundantAttributes: true
   }))
   .pipe(gulp.dest(dest));
 });<% } %>
