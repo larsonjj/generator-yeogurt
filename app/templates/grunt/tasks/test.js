@@ -17,8 +17,8 @@ var taskConfig = function(grunt) {
 
     if (!target || target === 'client') {
       grunt.task.run([
-        'eslint'<% if (useTesting) { %><% if (jsOption === 'browserify') { %>,
-        'browserify:test'<% } %><% } %>
+        'eslint'<% if (useTesting) { %>,
+        'browserify:test'<% } %>
       ]);<% if (useTesting) { %>
 
       if (grunt.option('watch')) {
@@ -26,12 +26,12 @@ var taskConfig = function(grunt) {
       }
       else {
         grunt.task.run(['karma:unit']);
-      }<% if (jsFramework !== 'backbone' || jsOption !== 'requirejs') { %>
+      }
 
       // Clean up temp files
       grunt.task.run([
         'clean:tmp'
-      ]);<% } %><% } %>
+      ]);<% } %>
     }
   });
 };

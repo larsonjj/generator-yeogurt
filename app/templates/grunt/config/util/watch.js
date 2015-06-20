@@ -72,15 +72,6 @@ var taskConfig = function(grunt) {
       tasks: [
         'swig:serve'
       ]
-    },<% } %><% if (jsFramework === 'angular') { %>
-    html: {
-      files: [
-        '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.screens %>/**/*.html',
-        '<%%= yeogurt.directories.source %>/<%%= yeogurt.directories.modules %>/**/*.html'
-      ],
-      tasks: [
-        'ngtemplates'
-      ]
     },<% } %><% if (cssOption === 'sass') { %>
     sass: {
       files: ['<%%= yeogurt.directories.source %>/**/*.{scss,sass}'],
@@ -103,14 +94,6 @@ var taskConfig = function(grunt) {
         'autoprefixer:serve'
       ]
     },<% } %>
-    css: {
-      files: [
-        '<%%= yeogurt.directories.source %>/**/*.css'
-      ],
-      tasks: [
-        'autoprefixer:serve'
-      ]
-    },
     js: {
       files: [<% if (singlePageApplication) { %>
         '<%%= yeogurt.directories.source %>/+(<%%= yeogurt.directories.screens %>)/**/*.<% if (jsFramework === 'react') { %>{js,jsx}<% } else { %>js<% } %>',<% } %>
@@ -120,13 +103,7 @@ var taskConfig = function(grunt) {
       tasks: [
         'newer:eslint'
       ]
-    },<% if (jsFramework === 'marionette') { %>
-    jst: {
-      files: ['<%%= yeogurt.directories.source %>/templates/**/*.jst'],
-      tasks: [
-        'jst:serve'
-      ]
-    },<% } %>
+    },
     livereload: {
       options: {
         livereload: 35729
