@@ -27,6 +27,7 @@
     "gulp-changed": "~1.2.1",
     "gulp-uglify": "~1.2.0",
     "gulp-if": "~1.2.5",
+    "glob": "~5.0.10",
     "gulp-sourcemaps": "~1.5.2",
     "gulp-load-plugins": "~0.10.0",
     "vinyl-source-stream": "~1.1.0",

@@ -9,6 +9,7 @@ var autoprefixer = require('autoprefixer-core');
 var browserSync = require('browser-sync').create();
 var karma = require('karma').server;
 var del = require('del');
+var glob = require('glob');
 var config = require('./yeogurt.conf');
 
 var plugins = gulpLoadPlugins();
@@ -49,8 +50,8 @@ gulp.task('serve:tmp', [
         return routes;
       })()
     }
-  });<% if (cssOption === 'sass') { %>
-
+  });
+<% if (cssOption === 'sass') { %>
   // Styles
   gulp.watch([
     path.join(__dirname, dirs.source, dirs.styles, '**/*.{scss,sass}')
@@ -115,15 +116,22 @@ gulp.task('build', [
 });
 
 // Testing
-gulp.task('test', ['lint', 'browserify:test', 'karma:unit', 'clean:tmp']);
-gulp.task('test:watch', ['lint', 'browserify:test', 'karma:unitWatch', 'clean:tmp']);
-gulp.task('test:e2e', ['lint', 'browserSync:serve', 'protractor', 'clean:tmp']);
+gulp.task('test', ['lint', 'browserify:test'], function() {
+  gulp.start('karma:unit');
+});
+
+gulp.task('test:watch', ['lint', 'browserify:test'], function() {
+  gulp.start('karma:unitWatch');
+});
+
+gulp.task('test:e2e', ['lint', 'serve'], function() {
+  gulp.start('protractor');
+});
 
 gulp.task('protractor', function() {
   gulp.src(path.join(__dirname, dirs.temporary, 'tests.js'))
-    .pipe(plugins.protractor({
-        configFile: path.join(__dirname, 'protractor.config.js'),
-        args: ['--baseUrl', 'http://127.0.0.1:9009']
+    .pipe(plugins.protractor.protractor({
+        configFile: path.join(__dirname, 'protractor.conf')
     }))
     .on('error', function(e) {
       throw e;
@@ -352,13 +360,28 @@ gulp.task('browserify:build', function() {
     .pipe(gulp.dest(dest));
 });
 
-gulp.task('browserify:test', function() {
+gulp.task('browserify:test', function(done) {
   var dest = path.join(__dirname, dirs.temporary, dirs.scripts.replace(/^_/, ''));
-
-  return browserifyOptions.bundle()
-    .pipe(vsource('main.js'))
-    .pipe(buffer())
-    .pipe(gulp.dest(dest));
+  glob(path.join(__dirname, dirs.source, '**/*.spec.<% if (jsFramework === 'react') { %>{js,jsx}<% } else { %>js<% } %>'), {}, function(err, files) {
+    if (err) {
+      return plugins.util.log('Error globbing browserify:test');
+    }
+    var b = browserify({
+      debug: true,
+      transform: [
+        require('envify'),
+        require('babelify')
+      ]
+    });
+    files.forEach(function(file) {
+      b.add(file);
+    });
+    b.bundle()
+      .pipe(vsource('main.js'))
+      .pipe(buffer())
+      .pipe(gulp.dest(dest));
+    done();
+  });
 });
 
 <% if (cssOption === 'less') { %>

@@ -11,13 +11,13 @@ var karmaConf = function(config) {
     frameworks: [<% if (testFramework === 'jasmine') { %>'jasmine'<% } else if (testFramework === 'mocha') { %>'mocha', 'chai'<% } %>],
 
     // list of files / patterns to load in the browser
-    files: [<% if (jsFramework === 'angular') { %>
+    files: [<% if (jsFramework === 'angular') { %>,
       'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'node_modules/angular-route/angular-route.js',<% } %><% if (jsFramework === 'marionette') { %>
       'node_modules/backbone/node_modules/underscore/underscore.js',
       'node_modules/backbone/backbone.js',<% } %><% if (jsOption === 'browserify') { %>
-      'tmp/scripts/bundle.js'<% } else { %><% if (jsFramework === 'marionette') { %>
+      'tmp/scripts/main.js'<% } else { %><% if (jsFramework === 'marionette') { %>
       // Load all scripts except ones that require a specific order (ie. 'main' and 'routes')
       'src/*scripts/**/!(main|routes).js',<% if (jsFramework === 'marionette' && jsOption === 'none') { %>
       'src/**/_layouts/**/*.js',<% } %>
