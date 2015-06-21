@@ -22,7 +22,7 @@ describe('Yeogurt generator using Angular', function() {
 
   describe('On the Client', function() {
     describe('With Defaults', function() {
-      it ('Creates expected files', function(done) {
+      it('Creates expected files', function(done) {
         var expected = [
           'src/_scripts/main.js',
           'src/_screens/home/home.js',
@@ -48,7 +48,7 @@ describe('Yeogurt generator using Angular', function() {
     describe('Without Server', function() {
       describe('With Testing', function() {
         describe('With Jasmine', function() {
-          it ('Creates expected files', function(done) {
+          it('Creates expected files', function(done) {
             var expected = [
               'src/_screens/home/__tests__/home.spec.js'
             ];
@@ -73,7 +73,7 @@ describe('Yeogurt generator using Angular', function() {
           });
         });
         describe('With Mocha', function() {
-          it ('Creates expected files', function(done) {
+          it('Creates expected files', function(done) {
             var expected = [
               'src/_screens/home/__tests__/home.spec.js'
             ];

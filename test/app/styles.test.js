@@ -23,10 +23,7 @@ describe('Yeogurt generator using Styles', function() {
     it('Creates expected files', function(done) {
       var expected = [
         'src',
-        'src/_styles/main.scss',
-        'grunt/',
-        'grunt/config',
-        'grunt/config/compile/sass.js'
+        'src/_styles/main.scss'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -40,15 +37,12 @@ describe('Yeogurt generator using Styles', function() {
     describe('With Sass (not Scss) syntax', function() {
       it('Creates expected content', function(done) {
         var expected = [
-          'src/_styles/main.sass',
-          'grunt/',
-          'grunt/config',
-          'grunt/config/compile/sass.js'
+          'src/_styles/main.sass'
         ];
 
         helpers.mockPrompt(this.app, {
           cssOption: 'sass',
-          sassSyntax: 'sass',
+          sassSyntax: 'sass'
         });
         this.app.run([], function() {
           assert.file(expected);
@@ -61,10 +55,7 @@ describe('Yeogurt generator using Styles', function() {
     it('Creates expected files', function(done) {
       var expected = [
         'src',
-        'src/_styles/main.less',
-        'grunt/',
-        'grunt/config',
-        'grunt/config/compile/less.js'
+        'src/_styles/main.less'
       ];
       var fileContentToTest = [
         ['package.json', /less/i]
@@ -84,10 +75,7 @@ describe('Yeogurt generator using Styles', function() {
     it('Creates expected files', function(done) {
       var expected = [
         'src',
-        'src/_styles/main.styl',
-        'grunt/',
-        'grunt/config',
-        'grunt/config/compile/stylus.js'
+        'src/_styles/main.styl'
       ];
 
       helpers.mockPrompt(this.app, {

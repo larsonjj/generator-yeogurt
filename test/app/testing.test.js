@@ -22,8 +22,7 @@ describe('Yeogurt generator testing', function() {
   describe('With unit tests', function() {
     it('Creates expected files', function(done) {
       var expected = [
-        'karma.conf.js',
-        'grunt/config/test/karma.js'
+        'karma.conf.js'
       ];
 
       helpers.mockPrompt(this.app, {

@@ -25,27 +25,14 @@ describe('Yeogurt generator using Default Configuration', function() {
       '.yo-rc.json',
       'README.md',
       '.editorconfig',
-      'Gruntfile.js',
+      'gulpfile.js',
       'package.json',
       'yeogurt.conf.js',
       '.editorconfig',
       'src/',
       'src/_images',
       'src/robots.txt',
-      'src/favicon.ico',
-      'grunt/',
-      'grunt/config',
-      'grunt/tasks',
-      'grunt/config/util/clean.js',
-      'grunt/config/util/copy.js',
-      'grunt/config/optimize/htmlmin.js',
-      'grunt/config/optimize/imagemin.js',
-      'grunt/config/optimize/postcss.js',
-      'grunt/config/util/watch.js',
-      'grunt/tasks/build.js',
-      'grunt/tasks/default.js',
-      'grunt/tasks/serve.js',
-      'grunt/tasks/test.js'
+      'src/favicon.ico'
     ];
 
     helpers.mockPrompt(this.app, {

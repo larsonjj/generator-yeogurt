@@ -23,7 +23,7 @@ describe('Yeogurt generator using React', function() {
   describe('On the Client', function() {
     describe('With Browserify', function() {
       describe('With Defaults', function() {
-        it ('Creates expected files', function(done) {
+        it('Creates expected files', function(done) {
           var expected = [
             'src',
             'src/_scripts/main.jsx',
@@ -53,7 +53,7 @@ describe('Yeogurt generator using React', function() {
       });
       describe('Using Jasmine', function() {
         describe('Using JSX', function() {
-          it ('Creates expected files with expected content', function(done) {
+          it('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
               'src/_screens/home/home.jsx',
@@ -83,7 +83,7 @@ describe('Yeogurt generator using React', function() {
       });
       describe('Using Mocha', function() {
         describe('Using JSX', function() {
-          it ('Creates expected files with expected content', function(done) {
+          it('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
               'src/_screens/home/home.jsx',
