@@ -77,7 +77,7 @@ gulp.task('serve:tmp', [
   // Copy
   gulp.watch([
     path.join(__dirname, dirs.source, '**/*'),
-    path.join('!', __dirname, dirs.source, '**/\_*/**')<% if (htmlOption === 'swig') { %>,
+    path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')<% if (htmlOption === 'swig') { %>,
     path.join('!', __dirname, dirs.source, '**/*.swig')<% } else if (htmlOption === 'jade') { %>,
     path.join('!', __dirname, dirs.source, '**/*.jade')<% } %>
   ], ['copy:serve']);
@@ -154,7 +154,7 @@ gulp.task('lint', function() {
     // Ignore all vendor folder files
     path.join('!', __dirname, '**/vendor/**', '*')
   ])
-  .pipe(plugins.reload({stream: true, once: true}))
+  .pipe(browserSync.reload({stream: true, once: true}))
   .pipe(plugins.eslint({
     useEslintrc: true
   }))
@@ -164,7 +164,7 @@ gulp.task('lint', function() {
 
 // Clean output directory
 gulp.task('clean:tmp', del.bind(null, [path.join(__dirname, dirs.temporary)]));
-gulp.task('clean:build', del.bind(null, [path.join(__dirname, dirs.temporary)]));
+gulp.task('clean:build', del.bind(null, [path.join(__dirname, dirs.destination)]));
 
 gulp.task('imagemin:serve', function() {
   var source = path.join(__dirname, dirs.source, dirs.images, '**/*.{jpg,jpeg,gif,svg,png}');
@@ -195,7 +195,7 @@ gulp.task('imagemin:build', function() {
 gulp.task('copy:serve', function() {
   var source = [
     path.join(__dirname, dirs.source, '**/*'),
-    path.join('!', __dirname, dirs.source, '**/\_*/**')<% if (htmlOption === 'swig') { %>,
+    path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')<% if (htmlOption === 'swig') { %>,
     path.join('!', __dirname, dirs.source, '**/*.swig')<% } else if (htmlOption === 'jade') { %>,
     path.join('!', __dirname, dirs.source, '**/*.jade')<% } %>
   ];
@@ -208,7 +208,7 @@ gulp.task('copy:serve', function() {
 gulp.task('copy:build', function() {
   var source = [
     path.join(__dirname, dirs.source, '**/*'),
-    path.join('!', __dirname, dirs.source, '**/\_*/**')<% if (htmlOption === 'swig') { %>,
+    path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')<% if (htmlOption === 'swig') { %>,
     path.join('!', __dirname, dirs.source, '**/*.swig')<% } else if (htmlOption === 'jade') { %>,
     path.join('!', __dirname, dirs.source, '**/*.jade')<% } %>
   ];
@@ -221,7 +221,7 @@ gulp.task('copy:build', function() {
 gulp.task('swig:serve', function() {
   var source = [
     path.join(__dirname, dirs.source, '**/*.swig'),
-    path.join('!', __dirname, dirs.source, '**/\_*/**')
+    path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')
   ];
   var dest = path.join(__dirname, dirs.temporary);
   return gulp.src(source)
@@ -245,7 +245,7 @@ gulp.task('swig:serve', function() {
 gulp.task('swig:build', function() {
   var source = [
     path.join(__dirname, dirs.source, '**/*.swig'),
-    path.join('!', __dirname, dirs.source, '**/\_*/**')
+    path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')
   ];
   var dest = path.join(__dirname, dirs.destination);
   return gulp.src(source)
@@ -267,7 +267,7 @@ gulp.task('swig:build', function() {
 gulp.task('jade:serve', function() {
   var source = [
     path.join(__dirname, dirs.source, '**/*.jade'),
-    path.join('!', __dirname, dirs.source, '**/\_*/**')
+    path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')
   ];
   var dest = path.join(__dirname, dirs.temporary);
   return gulp.src(source)
@@ -291,7 +291,7 @@ gulp.task('jade:serve', function() {
 gulp.task('jade:build', function() {
   var source = [
     path.join(__dirname, dirs.source, '**/*.jade'),
-    path.join('!', __dirname, dirs.source, '**/\_*/**')
+    path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')
   ];
   var dest = path.join(__dirname, dirs.destination);
   return gulp.src(source)
