@@ -1,10 +1,6 @@
 'use strict';
 
 var config = {
-  // Site information
-  title: 'Sample',
-  description: 'A new Pistacheo application.',
-
   // Local server settings
   host: '127.0.0.1',
   port: '9010',
