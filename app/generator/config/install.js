@@ -13,7 +13,7 @@ var installConfig = function installConfig() {
       skipInstall: this.options['skip-install'],
       callback: function() {
         self.log('\n' + 'Everything looks ready!'.blue +
-          ' Get started by running "' + 'grunt serve'.green + '".\n'
+          ' Get started by running "' + 'gulp serve'.green + '".\n'
         );
       }
     });

@@ -45,12 +45,12 @@ describe('Yeogurt generator using existing configuration', function() {
       '.yo-rc.json'
     ];
     var fileContentToTest = [
-      ['.yo-rc.json', /swig/i]
+      ['.yo-rc.json', /nunjucks/i]
     ];
 
     helpers.mockPrompt(this.app, {
       existingConfig: true,
-      htmlOption: 'swig'
+      htmlOption: 'nunjucks'
     });
 
     this.app.run([], function() {

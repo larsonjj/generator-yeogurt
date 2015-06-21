@@ -1,4 +1,4 @@
-{% extends '<%= rootDir %>base.swig' %}
+{% extends '<%= rootDir %>base.nunjucks' %}
 
 {# Provides layout level markup #}
 {% block layout %}

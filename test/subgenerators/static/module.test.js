@@ -106,7 +106,7 @@ describe('Static Site module sub-generator', function() {
             var filesToTest = [
               'src/_modules/' + module + '/__tests__/' + module + '.spec.js',
               'src/_modules/' + module + '/' + module + '.js',
-              'src/_modules/' + module + '/' + module + '.swig',
+              'src/_modules/' + module + '/' + module + '.nunjucks',
               'src/_modules/' + module + '/' + module + '.sass'
             ];
             var fileContentToTest = [
@@ -114,11 +114,11 @@ describe('Static Site module sub-generator', function() {
               ['src/_modules/' + module + '/__tests__/' + module + '.spec.js', /describe/i]
             ];
             var fileContentToNotFind = [
-              ['src/_modules/' + module + '/' + module + '.swig', /<div>/i]
+              ['src/_modules/' + module + '/' + module + '.nunjucks', /<div>/i]
             ];
 
             helpers.mockPrompt(this.app, {
-              htmlOption: 'swig',
+              htmlOption: 'nunjucks',
               singlePageApplication: false,
               testFramework: 'jasmine',
               useTesting: true,
@@ -148,11 +148,11 @@ describe('Static Site module sub-generator', function() {
         var module = 'mymodule';
         var fileContentToTest = [
           ['src/_modules/' + module + '/__dash__/' + module + '.dash.json', /status/i],
-          ['src/_modules/' + module + '/__dash__/' + module + '.dash.swig', /import/i]
+          ['src/_modules/' + module + '/__dash__/' + module + '.dash.nunjucks', /import/i]
         ];
 
         helpers.mockPrompt(this.app, {
-          htmlOption: 'swig',
+          htmlOption: 'nunjucks',
           singlePageApplication: false,
           useDashboard: true
         });

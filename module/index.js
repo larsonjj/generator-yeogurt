@@ -128,14 +128,14 @@ ModuleGenerator.prototype.files = function files() {
         this.template('module.dash.json', this.dashFile + '.json');
       }
     }
-    else if (this.htmlOption === 'swig') {
-      this.template('module.swig', this.moduleFile + '.swig');
+    else if (this.htmlOption === 'nunjucks') {
+      this.template('module.nunjucks', this.moduleFile + '.nunjucks');
       this.template('module.js', this.moduleFile + '.js');
       if (this.useTesting) {
         this.template('module.spec.js', this.testFile + '.spec.js');
       }
       if (this.useDashboard) {
-        this.template('module.dash.swig', this.dashFile + '.swig');
+        this.template('module.dash.nunjucks', this.dashFile + '.nunjucks');
         this.template('module.dash.json', this.dashFile + '.json');
       }
     }

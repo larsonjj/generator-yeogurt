@@ -9,9 +9,7 @@ var rootFiles = function rootFiles() {
 
   // root (/)
   this.template('gulpfile.js', 'gulpfile.js');
-  // this.template('Gruntfile.js', 'Gruntfile.js');
-  this.template('_package.gulp.json', 'package.json');
-  // this.template('_package.json', 'package.json');
+  this.template('_package.json', 'package.json');
   this.template('yeogurt.conf.js', 'yeogurt.conf.js');
   this.template('README.md', 'README.md');
 

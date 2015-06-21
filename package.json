@@ -9,7 +9,7 @@
     "html5",
     "modernizr",
     "jade",
-    "swig",
+    "nunjucks",
     "sass",
     "less",
     "browserify",

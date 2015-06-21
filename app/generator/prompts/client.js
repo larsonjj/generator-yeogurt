@@ -25,11 +25,11 @@ var clientPrompts = function clientPrompts() {
     type: 'list',
     name: 'htmlOption',
     message: 'Which ' + 'HTML preprocessor'.blue + ' would you like to use?',
-    choices: ['Jade', 'Swig'],
+    choices: ['Jade', 'Nunjucks'],
     filter: function(val) {
       var filterMap = {
         'Jade': 'jade',
-        'Swig': 'swig'
+        'Nunjucks': 'nunjucks'
       };
 
       return filterMap[val];

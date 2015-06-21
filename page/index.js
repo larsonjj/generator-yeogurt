@@ -81,8 +81,8 @@ PageGenerator.prototype.files = function files() {
       this.template('page.dash.json', this.dashFile + '.json');
     }
   }
-  else if (this.htmlOption === 'swig') {
-    this.template('page.swig', this.pageFile + '.swig');
+  else if (this.htmlOption === 'nunjucks') {
+    this.template('page.nunjucks', this.pageFile + '.nunjucks');
     if (this.useDashboard) {
       this.template('page.dash.json', this.dashFile + '.json');
     }

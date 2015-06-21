@@ -69,8 +69,8 @@ ModuleGenerator.prototype.files = function files() {
   if (this.htmlOption === 'jade') {
     this.template('layout.jade', this.layoutFile + '.jade');
   }
-  else if (this.htmlOption === 'swig') {
-    this.template('layout.swig', this.layoutFile + '.swig');
+  else if (this.htmlOption === 'nunjucks') {
+    this.template('layout.nunjucks', this.layoutFile + '.nunjucks');
   }
 
   if (this.cssOption === 'sass') {

@@ -62,15 +62,15 @@ describe('Static Site layout sub-generator', function() {
         var layout = 'mylayout';
         var filesToTest = [
           // add files and folders you expect to NOT exist here.
-          'src/_layouts/' + layout + '/' + layout + '.swig',
+          'src/_layouts/' + layout + '/' + layout + '.nunjucks',
           'src/_layouts/' + layout + '/' + layout + '.scss'
         ];
         var fileContentToTest = [
-          ['src/_layouts/' + layout + '/' + layout + '.swig', /extends/i]
+          ['src/_layouts/' + layout + '/' + layout + '.nunjucks', /extends/i]
         ];
 
         helpers.mockPrompt(this.app, {
-          htmlOption: 'swig',
+          htmlOption: 'nunjucks',
           singlePageApplication: false,
           cssOption: 'sass',
           sassSyntax: 'scss'

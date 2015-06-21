@@ -96,17 +96,17 @@ describe('Static Site page sub-generator', function() {
           var page = 'mypage';
 
           var filesToTest = [
-            'src/_pages/' + page + '/' + 'index.swig',
+            'src/_pages/' + page + '/' + 'index.nunjucks',
           ];
           var fileContentToTest = [
-            ['src/_pages/' + page + '/' + 'index.swig', /extends/i],
+            ['src/_pages/' + page + '/' + 'index.nunjucks', /extends/i],
           ];
           var fileContentToNotFind = [
-            ['src/_pages/' + page + '/' + 'index.swig', /<div>/i]
+            ['src/_pages/' + page + '/' + 'index.nunjucks', /<div>/i]
           ];
 
           helpers.mockPrompt(this.app, {
-            htmlOption: 'swig',
+            htmlOption: 'nunjucks',
             singlePageApplication: false,
             testFramework: 'jasmine',
             useTesting: true,
@@ -137,7 +137,7 @@ describe('Static Site page sub-generator', function() {
         ];
 
         helpers.mockPrompt(this.app, {
-          htmlOption: 'swig',
+          htmlOption: 'nunjucks',
           singlePageApplication: false,
           useDashboard: true
         });

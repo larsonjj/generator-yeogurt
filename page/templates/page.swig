@@ -1,4 +1,4 @@
-{% extends '<%= rootDir %><%= useLayout %>.swig' %}
+{% extends '<%= rootDir %><%= useLayout %>.nunjucks' %}
 
 {% block content %}
 <p><%= _.slugify(name.toLowerCase()) %> page</p>

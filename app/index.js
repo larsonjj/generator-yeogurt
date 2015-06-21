@@ -26,7 +26,7 @@ var order = [
   'docs',
   'task',
   'jade',
-  'swig',
+  'nunjucks',
   'angular',
   'marionette',
   'react',
