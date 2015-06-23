@@ -20,7 +20,7 @@ var imageminTask = function imageminTask(options) {
       .pipe(plugins.imagemin({
         progressive: true,
         svgoPlugins: [{removeViewBox: false}],
-        use: [pngquant({quality: '65-80', speed: 10})]
+        use: [pngquant({speed: 10})]
       }))
       .pipe(gulp.dest(dest));
   });

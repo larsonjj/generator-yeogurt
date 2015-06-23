@@ -2,6 +2,7 @@
 // Compiles nunjucks templates to HTML
 
 var path = require('path');
+var jade = require('jade');
 
 var jadeTask = function jadeTask(options) {
   var gulp = options.gulp;
@@ -21,6 +22,7 @@ var jadeTask = function jadeTask(options) {
     return gulp.src(source)
     .pipe(plugins.changed(dest))
     .pipe(plugins.jade({
+      jade: jade,
       locals: {
         debug: true
       }
@@ -41,6 +43,7 @@ var jadeTask = function jadeTask(options) {
     var dest = path.join(rootPath, dirs.destination);
     return gulp.src(source)
     .pipe(plugins.jade({
+      jade: jade,
       locals: {
         debug: false
       }

@@ -1,3 +1,5 @@
+// generated on <%= date %> using <%= name %> <%= version %>
+
 var fs = require('fs');
 var path = require('path');
 var gulp = require('gulp');
@@ -9,15 +11,15 @@ var config = require('./yeogurt.conf');
 // EX: gulp-copy -> copy
 var plugins = gulpLoadPlugins();
 
-// Gulp tasks folders
+// Gulp task folders
 var subtasksDir = path.join(__dirname, 'gulp', 'subtasks');
 var tasksDir = path.join(__dirname, 'gulp', 'tasks');
 
-// Load gulp tasks based on filepath
+// Require files based on filepath
 var readTasks = function readTasks(filepath) {
   fs.readdirSync(filepath).forEach(function(file) {
     require(path.join(filepath, file))({
-      // Pass options data to each tasks
+      // Pass options data to each task
       gulp: gulp,
       config: config,
       plugins: plugins,
