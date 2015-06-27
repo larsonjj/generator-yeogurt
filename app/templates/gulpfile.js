@@ -1,4 +1,4 @@
-// generated on <%= date %> using <%= name %> <%= version %>
+// generated on <%%= date %> using <%%= name %> <%%= version %>
 
 var fs = require('fs');
 var path = require('path');

@@ -55,7 +55,7 @@ describe('Static Site layout sub-generator', function() {
     });
   });
 
-  describe('Create layout files when using Static Swig', function() {
+  describe('Create layout files when using Static Nunjucks', function() {
     describe('Client layouts', function() {
       it('Handles defaults', function(done) {
         // Filename

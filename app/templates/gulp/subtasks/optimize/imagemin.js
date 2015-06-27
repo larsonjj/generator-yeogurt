@@ -14,7 +14,7 @@ var imageminTask = function imageminTask(options) {
 
   // Serve
   gulp.task('imagemin:serve', function() {
-    var dest = path.join(rootPath, dirs.source, dirs.images.replace(/^_/, ''));
+    var dest = path.join(rootPath, dirs.temporary, dirs.images.replace(/^_/, ''));
     return gulp.src(source)
       .pipe(plugins.changed(dest))
       .pipe(plugins.imagemin({
@@ -27,7 +27,7 @@ var imageminTask = function imageminTask(options) {
 
   // Build
   gulp.task('imagemin:build', function() {
-    var dest = path.join(rootPath, dirs.source, dirs.images.replace(/^_/, ''));
+    var dest = path.join(rootPath, dirs.destination, dirs.images.replace(/^_/, ''));
     return gulp.src(source)
       .pipe(plugins.changed(dest))
       .pipe(plugins.imagemin({
