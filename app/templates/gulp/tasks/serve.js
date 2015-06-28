@@ -25,6 +25,7 @@ var serveTask = function serveTask(options) {
     'less:serve'<% } %><% if (cssOption === 'sass') { %>,
     'sass:serve'<% } %><% if (cssOption === 'stylus') { %>,
     'stylus:serve'<% } %><% if (useDashboard) { %>,
+    'copy:dashboard:serve',
     'dashboard:serve'<% } %>
   ], function() {
     browserSync.init({

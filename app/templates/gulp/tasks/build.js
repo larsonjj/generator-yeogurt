@@ -19,6 +19,7 @@ var buildTask = function buildTask(options) {
     'sass:build',<% } else if (cssOption === 'stylus') { %>
     'stylus:build',<% } %>
     'browserify:build'<% if (useDashboard) { %>,
+    'copy:dashboard:build',
     'dashboard:build'<% } %>
   ], function() {
     gulp.start('clean:tmp'); // Cleanup any tmp files

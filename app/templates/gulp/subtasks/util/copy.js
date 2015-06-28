@@ -14,7 +14,11 @@ var copyTask = function copyTask(options) {
     path.join('!', rootPath, dirs.source, '{**/\_*,**/\_*/**}')<% if (htmlOption === 'nunjucks') { %>,
     path.join('!', rootPath, dirs.source, '**/*.nunjucks')<% } else if (htmlOption === 'jade') { %>,
     path.join('!', rootPath, dirs.source, '**/*.jade')<% } %>
-  ];
+  ];<% if (useDashboard) { %>
+  var dashSource = [
+      path.join(rootPath, dirs.source, dirs.docs, 'dashboard/**/*'),
+      path.join('!', rootPath, dirs.source, dirs.docs, 'dashboard/*.hbs')
+  ];<% } %>
 
   // Serve
   gulp.task('copy:serve', function() {
@@ -30,7 +34,23 @@ var copyTask = function copyTask(options) {
     return gulp.src(source)
       .pipe(plugins.changed(dest))
       .pipe(gulp.dest(dest));
+  });<% if (useDashboard) { %>
+
+  // Dashboard Serve
+  gulp.task('copy:dashboard:serve', function() {
+    var dest = path.join(rootPath, dirs.temporary, dirs.docs.replace(/^_/, ''), 'dashboard');
+    return gulp.src(dashSource)
+      .pipe(plugins.changed(dest))
+      .pipe(gulp.dest(dest));
   });
+
+  // Dashboard Build
+  gulp.task('copy:dashboard:build', function() {
+    var dest = path.join(rootPath, dirs.destination, dirs.docs.replace(/^_/, ''), 'dashboard');
+    return gulp.src(dashSource)
+      .pipe(plugins.changed(dest))
+      .pipe(gulp.dest(dest));
+  });<% } %>
 };
 
 module.exports = copyTask;
