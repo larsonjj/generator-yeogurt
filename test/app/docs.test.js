@@ -32,7 +32,7 @@ describe('Yeogurt generator using Documentation', function() {
         'src/_docs/dashboard/scripts/jquery.js',
         'src/_docs/dashboard/scripts/main.js',
         'src/_docs/dashboard/images/yeogurt-logo.png',
-        'src/_docs/dashboard/template.hbs'
+        'src/_docs/dashboard/dashboard-template.hbs'
       ];
 
       helpers.mockPrompt(this.app, {
