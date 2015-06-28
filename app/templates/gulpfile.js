@@ -33,7 +33,8 @@ var readTasks = function readTasks(filepath) {
 readTasks(path.join(subtasksDir, 'compile'));
 readTasks(path.join(subtasksDir, 'optimize'));
 readTasks(path.join(subtasksDir, 'test'));
-readTasks(path.join(subtasksDir, 'util'));
+readTasks(path.join(subtasksDir, 'util'));<% if (useDashboard) { %>
+readTasks(path.join(subtasksDir, 'docs'));<% } %>
 
 // Load gulp tasks
 readTasks(tasksDir);

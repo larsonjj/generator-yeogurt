@@ -25,7 +25,8 @@ var config = {
     temporary: 'tmp',
 
     // Extra configurable directories<% if (singlePageApplication) { %>
-    screens: '_screens',<% } %>
+    screens: '_screens',<% } %><% if (useDashboard) { %>
+    docs: '_docs',<% } %>
     modules: '_modules',
     layouts: '_layouts',
     images: '_images',

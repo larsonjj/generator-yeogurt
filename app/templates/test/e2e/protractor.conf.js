@@ -1,3 +1,4 @@
+/* global browser */
 // Protractor configuration
 // https://github.com/angular/protractor/blob/master/referenceConf.js
 'use strict';
@@ -56,9 +57,9 @@ exports.config = {
 
   // Setup globals for protractor tests
   onPrepare: function() {
-      // Lets protractor know if it should be looking for angular in tests
-      global.isAngularSite = function(flag) {
-          browser.ignoreSynchronization = !flag;
-      };
+    // Lets protractor know if it should be looking for angular in tests
+    global.isAngularSite = function(flag) {
+      browser.ignoreSynchronization = !flag;
+    };
   }<% } %>
 };

@@ -9,13 +9,13 @@ var dashboardTask = function dashboardTask(options) {
   var dirs = config.directories;
   var plugins = options.plugins;
   var rootPath = options.rootPath;
-  var source = path.join(rootPath, dirs.source, '**/*.dash.<% if (htmlOption === "jade") { %>jade<% } else if (htmlOption === "nunjucks") { %>nunjucks<% } %>');
+  var source = path.join(rootPath, dirs.source, '**/*.dash.{json,<% if (htmlOption === "jade") { %>jade<% } else if (htmlOption === "nunjucks") { %>nunjucks<% } %>}');
 
   // Serve
   gulp.task('dashboard:serve', function() {
-    var dest = path.join(rootPath, dirs.source, dirs.docs.replace(/^_/, ''));
+    var dest = path.join(rootPath, dirs.temporary, dirs.docs.replace(/^_/, ''));
     return gulp.src(source)
-      .pipe(dashboard({<% if (htmlOption === "jade") { %>
+      .pipe(plugins.dashboard({<% if (htmlOption === "jade") { %>
         compiler: require('jade'),
         compilerOptions: {pretty: true, filename: true},<% } else if (htmlOption === "nunjucks") { %>
         compiler: require('nunjucks'),<% } %>
@@ -27,9 +27,9 @@ var dashboardTask = function dashboardTask(options) {
 
   // Build
   gulp.task('dashboard:build', function() {
-    var dest = path.join(rootPath, dirs.source, dirs.docs.replace(/^_/, ''));
+    var dest = path.join(rootPath, dirs.destination, dirs.docs.replace(/^_/, ''));
     return gulp.src(source)
-      .pipe(dashboard({<% if (htmlOption === "jade") { %>
+      .pipe(plugins.dashboard({<% if (htmlOption === "jade") { %>
         compiler: require('jade'),
         compilerOptions: {pretty: true, filename: true},<% } else if (htmlOption === "nunjucks") { %>
         compiler: require('nunjucks'),<% } %>
