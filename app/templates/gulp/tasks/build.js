@@ -5,7 +5,7 @@ var buildTask = function buildTask(options) {
   var gulp = options.gulp;
 
   // Main task
-  gulp.task('build', ['clean:tmp'], function() {
+  gulp.task('build', ['clean:build'], function() {
     gulp.start('build:tasks');
   });
 

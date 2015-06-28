@@ -1,6 +1,8 @@
 // Serve task
 // Boot-up development server
 
+// Help to ensure tasks run in order
+var runSequence = require('run-sequence');
 var path = require('path');
 
 var serveTask = function serveTask(options) {
@@ -10,13 +12,7 @@ var serveTask = function serveTask(options) {
   var rootPath = options.rootPath;
   var browserSync = options.browserSync;
 
-  // Main task
-  gulp.task('serve', ['clean:tmp'], function() {
-    gulp.start('serve:tasks');
-  });
-
-  // Development server tasks
-  gulp.task('serve:tasks', [
+  var tasks = [
     'imagemin:serve',
     'copy:serve'<% if (htmlOption === 'jade') { %>,
     'jade:serve'<% } else if (htmlOption === 'nunjucks') {  %>,
@@ -27,21 +23,37 @@ var serveTask = function serveTask(options) {
     'stylus:serve'<% } %><% if (useDashboard) { %>,
     'copy:dashboard:serve',
     'dashboard:serve'<% } %>
-  ], function() {
+  ];
+
+  // Main task
+  gulp.task('serve', ['clean:tmp'], function() {
+    gulp.start('serve:tasks:dev');
+  });
+
+  gulp.task('serve:build', ['clean:build'], function() {
+    runSequence('build:tasks', 'serve:tasks:prod');
+  });
+
+  // Server tasks
+  gulp.task('serve:tasks:prod', function() {
     browserSync.init({
       startPath: config.baseUrl,
       server: {
-        baseDir: dirs.temporary,
+        baseDir: dirs.destination,
         routes: (function() {
           var routes = {};
 
           // Map base URL to routes
-          routes[config.baseUrl] = dirs.temporary;
+          routes[config.baseUrl] = dirs.destination;
 
           return routes;
         })()
       }
     });
+  });
+
+  // Server tasks with watch
+  gulp.task('serve:tasks:dev', tasks, function() {
 <% if (cssOption === 'sass') { %>
     // Styles
     gulp.watch([
@@ -58,12 +70,12 @@ var serveTask = function serveTask(options) {
     // Jade Templates
     gulp.watch([
       path.join(rootPath, dirs.source, '**/*.jade')
-    ], ['jade:serve']);<% } else if (htmlOption === 'nunjucks') { %>
+    ], ['jade:serve'<% if (useDashboard) { %>, 'dashboard:serve'<% } %>]);<% } else if (htmlOption === 'nunjucks') { %>
 
     // Swig Templates
     gulp.watch([
       path.join(rootPath, dirs.source, '**/*.nunjucks')
-    ], ['nunjucks:serve']);
+    ], ['nunjucks:serve'<% if (useDashboard) { %>, 'dashboard:serve'<% } %>]);
     <% } %>
 
     // Copy
@@ -82,7 +94,14 @@ var serveTask = function serveTask(options) {
     // Images
     gulp.watch([
       path.join(rootPath, dirs.source, dirs.images, '**/*.{jpg,jpeg,gif,svg,png}')
-    ], ['imagemin:serve']);
+    ], ['imagemin:serve']);<% if (useDashboard) { %>
+
+    // Dashboard
+    gulp.watch([
+      path.join(rootPath, dirs.source, dirs.docs, 'dashboard/**/*'),<% if (htmlOption === 'jade') { %>
+      path.join(rootPath, dirs.source, '**/*.dash.{json,jade}')<% } else if (htmlOption === 'nunjucks') { %>
+      path.join(rootPath, dirs.source, '**/*.dash.{json,nunjucks}')<% } %>
+    ], ['dashboard:serve']);<% } %>
 
     // All other files
     gulp.watch([
