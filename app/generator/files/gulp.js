@@ -66,10 +66,6 @@ var taskFiles = function taskFiles() {
     this.template('gulp/subtasks/test/karma.js', 'gulp/subtasks/test/karma.js');
   }
 
-  if (this.useE2e) {
-    this.template('gulp/subtasks/test/protractor.js', 'gulp/subtasks/test/protractor.js');
-  }
-
   // ========
   // Tasks
   // ========

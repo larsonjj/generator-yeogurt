@@ -12,7 +12,7 @@ var protractorTask = function protractorTask(options) {
   var rootPath = options.rootPath;
 
   gulp.task('protractor', function(done) {
-    gulp.src(path.join(rootPath, dirs.temporary, dirs.scripts.replace(/^_/, ''), 'main.js'))
+    gulp.src(path.join(rootPath, 'e2e/**/*.spec.js'))
       .pipe(plugins.protractor.protractor({
           configFile: path.join(rootPath, 'protractor.conf')
       }))

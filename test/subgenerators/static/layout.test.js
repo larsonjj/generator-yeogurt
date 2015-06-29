@@ -37,7 +37,6 @@ describe('Static Site layout sub-generator', function() {
 
         helpers.mockPrompt(this.app, {
           htmlOption: 'jade',
-          singlePageApplication: false,
           cssOption: 'sass',
           sassSyntax: 'scss'
         });
@@ -71,7 +70,6 @@ describe('Static Site layout sub-generator', function() {
 
         helpers.mockPrompt(this.app, {
           htmlOption: 'nunjucks',
-          singlePageApplication: false,
           cssOption: 'sass',
           sassSyntax: 'scss'
         });
@@ -82,6 +80,96 @@ describe('Static Site layout sub-generator', function() {
           }, function() {
             assert.file(filesToTest);
             assert.fileContent(fileContentToTest);
+            done();
+          });
+        });
+      });
+      it('Handles Sass with sass syntax', function(done) {
+        // Filename
+        var layout = 'mylayout';
+        var filesToTest = [
+          // add files and folders you expect to NOT exist here.
+          'src/_layouts/' + layout + '/' + layout + '.sass'
+        ];
+
+        helpers.mockPrompt(this.app, {
+          htmlOption: 'nunjucks',
+          cssOption: 'sass',
+          sassSyntax: 'sass'
+        });
+        this.app.run([], function() {
+          createSubGenerator('layout', layout, {path: '../../../../'}, {
+            // mock prompt data
+            layoutFile: 'src/_layouts'
+          }, function() {
+            assert.file(filesToTest);
+            done();
+          });
+        });
+      });
+      it('Handles Sass with sass syntax', function(done) {
+        // Filename
+        var layout = 'mylayout';
+        var filesToTest = [
+          // add files and folders you expect to NOT exist here.
+          'src/_layouts/' + layout + '/' + layout + '.sass'
+        ];
+
+        helpers.mockPrompt(this.app, {
+          htmlOption: 'nunjucks',
+          cssOption: 'sass',
+          sassSyntax: 'sass'
+        });
+        this.app.run([], function() {
+          createSubGenerator('layout', layout, {path: '../../../../'}, {
+            // mock prompt data
+            layoutFile: 'src/_layouts'
+          }, function() {
+            assert.file(filesToTest);
+            done();
+          });
+        });
+      });
+      it('Handles Less', function(done) {
+        // Filename
+        var layout = 'mylayout';
+        var filesToTest = [
+          // add files and folders you expect to NOT exist here.
+          'src/_layouts/' + layout + '/' + layout + '.less'
+        ];
+
+        helpers.mockPrompt(this.app, {
+          htmlOption: 'nunjucks',
+          cssOption: 'less',
+        });
+        this.app.run([], function() {
+          createSubGenerator('layout', layout, {path: '../../../../'}, {
+            // mock prompt data
+            layoutFile: 'src/_layouts'
+          }, function() {
+            assert.file(filesToTest);
+            done();
+          });
+        });
+      });
+      it('Handles stylus', function(done) {
+        // Filename
+        var layout = 'mylayout';
+        var filesToTest = [
+          // add files and folders you expect to NOT exist here.
+          'src/_layouts/' + layout + '/' + layout + '.styl'
+        ];
+
+        helpers.mockPrompt(this.app, {
+          htmlOption: 'nunjucks',
+          cssOption: 'stylus',
+        });
+        this.app.run([], function() {
+          createSubGenerator('layout', layout, {path: '../../../../'}, {
+            // mock prompt data
+            layoutFile: 'src/_layouts'
+          }, function() {
+            assert.file(filesToTest);
             done();
           });
         });

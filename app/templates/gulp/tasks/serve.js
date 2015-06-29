@@ -13,12 +13,12 @@ var serveTask = function serveTask(options) {
   var browserSync = options.browserSync;
 
   // Main task
-  gulp.task('serve', ['clean:tmp'], function() {
-    gulp.start('serve:tasks:dev');
+  gulp.task('serve', function() {
+    runSequence('clean:tmp', 'serve:tasks:dev');
   });
 
-  gulp.task('serve:build', ['clean:build'], function() {
-    runSequence('build:tasks', 'serve:tasks:prod');
+  gulp.task('serve:build', function() {
+    runSequence('clean:build', 'build:tasks', 'serve:tasks:prod');
   });
 
   // Server tasks
@@ -101,7 +101,7 @@ var serveTask = function serveTask(options) {
 
       // Scripts
       gulp.watch([
-        path.join(rootPath, dirs.source, '**/*.<% if (jsFramework === 'react') { %>{js,jsx}<% } else { %>js<% } %>')
+        path.join(rootPath, dirs.source, '**/*.js')
       ], ['browserify:serve']);
 
       // Images

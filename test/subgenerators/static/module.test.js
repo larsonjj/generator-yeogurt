@@ -168,4 +168,73 @@ describe('Static Site module sub-generator', function() {
       });
     });
   });
+  describe('Handles Stylesheet Preprocessors', function() {
+    it('Handles Sass with sass syntax', function(done) {
+      // Filename
+      var module = 'mymodule';
+      var filesToTest = [
+        // add files and folders you expect to NOT exist here.
+        'src/_modules/' + module + '/' + module + '.sass'
+      ];
+
+      helpers.mockPrompt(this.app, {
+        htmlOption: 'nunjucks',
+        cssOption: 'sass',
+        sassSyntax: 'sass'
+      });
+      this.app.run([], function() {
+        createSubGenerator('module', module, {path: '../../../../'}, {
+          // mock prompt data
+          moduleFile: 'src/_modules'
+        }, function() {
+          assert.file(filesToTest);
+          done();
+        });
+      });
+    });
+    it('Handles Less', function(done) {
+      // Filename
+      var module = 'mymodule';
+      var filesToTest = [
+        // add files and folders you expect to NOT exist here.
+        'src/_modules/' + module + '/' + module + '.less'
+      ];
+
+      helpers.mockPrompt(this.app, {
+        htmlOption: 'nunjucks',
+        cssOption: 'less',
+      });
+      this.app.run([], function() {
+        createSubGenerator('module', module, {path: '../../../../'}, {
+          // mock prompt data
+          moduleFile: 'src/_modules'
+        }, function() {
+          assert.file(filesToTest);
+          done();
+        });
+      });
+    });
+    it('Handles stylus', function(done) {
+      // Filename
+      var module = 'mymodule';
+      var filesToTest = [
+        // add files and folders you expect to NOT exist here.
+        'src/_modules/' + module + '/' + module + '.styl'
+      ];
+
+      helpers.mockPrompt(this.app, {
+        htmlOption: 'nunjucks',
+        cssOption: 'stylus',
+      });
+      this.app.run([], function() {
+        createSubGenerator('module', module, {path: '../../../../'}, {
+          // mock prompt data
+          moduleFile: 'src/_modules'
+        }, function() {
+          assert.file(filesToTest);
+          done();
+        });
+      });
+    });
+  });
 });

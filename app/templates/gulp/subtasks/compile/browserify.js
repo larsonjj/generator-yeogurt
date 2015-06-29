@@ -21,13 +21,7 @@ var browserifyTask = function browserifyTask(options) {
     debug: true,
     transform: [
       require('envify'),
-      require('babelify')<% if (jsFramework === 'angular') { %>,
-      require('browserify-ngannotate'),
-      require('browserify-ng-html2js')({
-        module: '<%= _.camelize(projectName) %>',
-        extension: 'html'
-      })<% } else if (jsFramework === 'marionette') { %>,
-      require('jstify')<% } %>
+      require('babelify')
     ]
   });
 
@@ -62,7 +56,7 @@ var browserifyTask = function browserifyTask(options) {
   // Test
   gulp.task('browserify:test', function(done) {
     var dest = path.join(rootPath, dirs.temporary, dirs.scripts.replace(/^_/, ''));
-    glob(path.join(rootPath, dirs.source, '**/*.spec.<% if (jsFramework === 'react') { %>{js,jsx}<% } else { %>js<% } %>'), {}, function(err, files) {
+    glob(path.join(rootPath, dirs.source, '**/*.spec.js'), {}, function(err, files) {
       if (err) {
         return plugins.util.log('Error globbing browserify:test');
       }

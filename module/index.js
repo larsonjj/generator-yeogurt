@@ -43,30 +43,11 @@ ModuleGenerator.prototype.ask = function ask() {
   var self = this;
   var done = this.async();
   var prompts = [{
-    when: function(answers) {
-      return self.singlePageApplication;
-    },
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
       return yeogurtConf ? directories.source + '/' + directories.modules : directories.source + '/_modules';
     }
-  }, {
-    when: function(answers) {
-      return !self.singlePageApplication;
-    },
-    name: 'moduleFile',
-    message: 'Where would you like to create this module?',
-    default: function(answers) {
-      return yeogurtConf ? directories.source + '/' + directories.modules : directories.source + '/_modules';
-    }
-  },{
-    when: function(answers) {
-      return self.jsFramework === 'angular';
-    },
-    name: 'moduleURL',
-    message: 'URL of new module?',
-    default: '/someurl'
   }];
 
   this.prompt(prompts, function(answers) {
@@ -100,69 +81,33 @@ ModuleGenerator.prototype.ask = function ask() {
       this._.slugify(this.name.toLowerCase()) + '.dash'
     );
 
-    this.moduleURL = answers.moduleURL;
-
-    this.htmlURL = path.join(
-      answers.moduleFile.replace('src', ''),
-      this._.slugify(this.name.toLowerCase()),
-      this._.slugify(this.name.toLowerCase()),
-      '.html'
-    );
-
     done();
   }.bind(this));
 };
 
 ModuleGenerator.prototype.files = function files() {
 
-  if (!this.singlePageApplication) {
-
-    if (this.htmlOption === 'jade') {
-      this.template('module.jade', this.moduleFile + '.jade');
-      this.template('module.js', this.moduleFile + '.js');
-      if (this.useTesting) {
-        this.template('module.spec.js', this.testFile + '.spec.js');
-      }
-      if (this.useDashboard) {
-        this.template('module.dash.jade', this.dashFile + '.jade');
-        this.template('module.dash.json', this.dashFile + '.json');
-      }
+  if (this.htmlOption === 'jade') {
+    this.template('module.jade', this.moduleFile + '.jade');
+    this.template('module.js', this.moduleFile + '.js');
+    if (this.useTesting) {
+      this.template('module.spec.js', this.testFile + '.spec.js');
     }
-    else if (this.htmlOption === 'nunjucks') {
-      this.template('module.nunjucks', this.moduleFile + '.nunjucks');
-      this.template('module.js', this.moduleFile + '.js');
-      if (this.useTesting) {
-        this.template('module.spec.js', this.testFile + '.spec.js');
-      }
-      if (this.useDashboard) {
-        this.template('module.dash.nunjucks', this.dashFile + '.nunjucks');
-        this.template('module.dash.json', this.dashFile + '.json');
-      }
+    if (this.useDashboard) {
+      this.template('module.dash.jade', this.dashFile + '.jade');
+      this.template('module.dash.json', this.dashFile + '.json');
     }
   }
-  else if (this.jsFramework === 'angular') {
-    this.template('angular/module.js', this.moduleFile + '.js');
-    this.template('angular/module.controller.js', this.moduleFile + '.controller.js');
-    this.template('angular/module.html', this.moduleFile + '.html');
-
+  else if (this.htmlOption === 'nunjucks') {
+    this.template('module.nunjucks', this.moduleFile + '.nunjucks');
+    this.template('module.js', this.moduleFile + '.js');
     if (this.useTesting) {
-      this.template('angular/module.spec.js', this.testFile + '.controller.spec.js');
+      this.template('module.spec.js', this.testFile + '.spec.js');
     }
-  }
-  else if (this.jsFramework === 'react') {
-    this.template('react/module.jsx', this.moduleFile + '.jsx');
-
-    if (this.useTesting) {
-      this.template('react/module.spec.js', this.testFile + '.spec.js');
+    if (this.useDashboard) {
+      this.template('module.dash.nunjucks', this.dashFile + '.nunjucks');
+      this.template('module.dash.json', this.dashFile + '.json');
     }
-  }
-  else if (this.jsFramework === 'marionette') {
-    this.template('marionette/module.js', this.moduleFile + '.js');
-    if (this.useTesting) {
-      this.template('marionette/module.spec.js', this.testFile + '.spec.js');
-    }
-
-    this.template('marionette/module.html', this.moduleFile + '.jst');
   }
 
   if (this.cssOption === 'sass') {

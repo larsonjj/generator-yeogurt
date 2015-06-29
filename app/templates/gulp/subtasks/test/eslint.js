@@ -14,7 +14,7 @@ var eslintTask = function eslintTask(options) {
   gulp.task('eslint', function() {
     gulp.src([
       path.join(rootPath, 'gulpfile.js'),
-      path.join(rootPath, dirs.source, '**/*.<% if (jsFramework === 'react') { %>{js,jsx}<% } else { %>js<% } %>'),
+      path.join(rootPath, dirs.source, '**/*.js'),
       // Ignore all vendor folder files
       path.join('!', rootPath, '**/vendor/**', '*')
     ])

@@ -43,15 +43,9 @@ var answersConfig = function answersConfig() {
   // Testing
   this.testFramework = this.answers.testFramework;
   this.useTesting    = this.answers.useTesting;
-  this.useE2e        = this.answers.useE2e;
 
   // Documentation
   this.useDashboard  = this.answers.useDashboard;
-
-  // Default Overwrites
-  if (this.jsFramework === 'react') {
-    this.jsOption   = this.answers.jsOption   = 'browserify';
-  }
 
   // Default jsOption to Browserify
   this.jsOption = this.answers.jsOption || 'browserify';

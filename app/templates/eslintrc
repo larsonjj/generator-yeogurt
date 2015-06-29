@@ -1,7 +1,6 @@
 {
   "settings": {
-    "ecmascript": 6<% if (jsFramework === 'react') { %>,
-    "jsx": true<% } %>
+    "ecmascript": 6
   },
   "env": {
       "browser": true,
@@ -11,11 +10,6 @@
   "globals": {
       "DocumentFragment": true,
       "$": true,
-      "Modernizr": true,<% if (jsFramework === 'marionette') { %>
-      "Backbone": true,
-      "JST": true,<% } %><% if (jsFramework === 'angular') { %>
-      "angular": true,
-      "inject": true,<% } %>
       "jQuery": true,
       "it": true,
       "describe": true,
@@ -25,8 +19,7 @@
       "spyOnEvent": true,
       "waitsFor": true,
       "expect": true,<% if (testFramework === 'jasmine') { %>
-      "jasmine": true,<% } %><% if (jsOption === 'requirejs') { %>
-      "requirejs": true,<% } %>
+      "jasmine": true,<% } %>
       "afterEach": true
   },
   "rules": {

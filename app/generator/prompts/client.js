@@ -14,14 +14,6 @@ var clientPrompts = function clientPrompts() {
   this.log('\n---- ' + 'Client'.red.underline + ' ----\n');
 
   this.prompt([{
-    type: 'confirm',
-    name: 'singlePageApplication',
-    message: 'Will this be a ' + 'Single Page Application'.blue + '?',
-    default: true
-  }, {
-    when: function(answers) {
-      return !answers.singlePageApplication;
-    },
     type: 'list',
     name: 'htmlOption',
     message: 'Which ' + 'HTML preprocessor'.blue + ' would you like to use?',
@@ -35,39 +27,6 @@ var clientPrompts = function clientPrompts() {
       return filterMap[val];
     }
   }, {
-    when: function(answers) {
-      return answers.singlePageApplication;
-    },
-    type: 'list',
-    name: 'jsFramework',
-    message: 'Which ' + 'JavaScript framework/library'.blue + ' would you like to use?',
-    choices: ['React + Reflux + React Router', 'Backbone + Marionette', 'Angular'],
-    filter: function(val) {
-      var filterMap = {
-        'React + Reflux + React Router': 'react',
-        'Backbone + Marionette': 'marionette',
-        'Angular': 'angular'
-      };
-
-      return filterMap[val];
-    }
-  },
-  // TODO: Add webpack as an option for JS module loader
-  // {
-  //   type: 'list',
-  //   name: 'jsOption',
-  //   message: 'Which ' + 'JavaScript module library'.blue + ' would you like to use?',
-  //   choices: ['Browserify', 'Webpack'],
-  //   filter: function(val) {
-  //     var filterMap = {
-  //       'Browserify': 'browserify',
-  //       'Webpack': 'webpack'
-  //     };
-
-  //     return filterMap[val];
-  //   }
-  // },
-  {
     type: 'list',
     name: 'cssOption',
     message: 'What would you like to use to ' + 'write styles'.blue + '?',

@@ -23,10 +23,6 @@ var testTask = function testTask(options) {
     ], ['browserify:test']);
   });
 
-  gulp.task('test:e2e', function() {
-    runSequence('eslint', 'serve', 'protractor');
-  });
-
 };
 
 module.exports = testTask;
