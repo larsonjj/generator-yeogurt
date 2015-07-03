@@ -15,8 +15,6 @@ A "Choose your own adventure" generator for creating static sites and single pag
 - [Sub-Generators](#sub-generators)
 - [Automated Documentation](#automated-documentation)
 - [Adding third-party libraries](#adding-third-party-libraries)
-- [Vagrant Setup](#vagrant-setup)
-- [Extending Yeogurt](#extending-yeogurt)
 - [Common Issues](#common-issues)
 - [Testing](#testing)
 - [Roadmap](#roadmap)
@@ -694,27 +692,7 @@ Your library should now load correctly (assuming your source path is correct).
 
 > IMPORTANT: If you have third-party script that will be referenced within your own code (ex. using jQuery), you need to make sure that ESLint is aware it. Check out [ESLint giving errors for third-party scripts](#eslint-giving-errors-for-third-party-scripts) to see how to make this happen.
 
-## Vagrant Setup
-If you would like to use Yeogurt with [Vagrant](https://www.vagrantup.com/), head over to the [yeogurt-vagrant](https://github.com/larsonjj/yeogurt-vagrant) repository for installation and setup instructions.
-
-## Extending Yeogurt
-Check out the [Guides](docs/guides/README.md) section to learn how to integrate other technologies like Ruby Sass, Bootstrap, Animate.css, etc
-
 ## Common Issues
-### Bower not installing dependencies using Git
-##### Typical error message:
-> fatal: unable to connect to github.com: github.com
-
-By default, Bower uses Git to make requests for packages. If Git's request port is blocked, by a corporate VPN or network for example, bower will be unable to  download the necessary/desired packages.
-
-##### Solution
-Configure your local Git to use HTTPS instead via the following command:
-
-```
-git config --global url."https://".insteadOf git://
-```
-
-[Source](http://stackoverflow.com/questions/16298986/unable-to-connect-to-github-com-for-cloning)
 
 ### ESLint giving errors for third-party scripts
 ##### Typical error message:

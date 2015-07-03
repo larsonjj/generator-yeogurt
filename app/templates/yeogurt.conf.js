@@ -15,23 +15,16 @@ var config = {
   // NOTE: folders NOT prefixed with underscore (_) will be copied to build target 1 to 1
   // EX: src/fonts -> build/fonts
   directories: {
-    // Source directory: author files location
     source: 'src',
-
-    // Destination directory: build target location
     destination: 'build',
-
-    // Temporary directory: temporary development files location
-    temporary: 'tmp',
-
-    // Extra configurable directories<% if (singlePageApplication) { %>
-    screens: '_screens',<% } %><% if (useDashboard) { %>
+    temporary: 'tmp',<% if (useDashboard) { %>
     docs: '_docs',<% } %>
     modules: '_modules',
     layouts: '_layouts',
     images: '_images',
     styles: '_styles',
-    scripts: '_scripts'
+    scripts: '_scripts',
+    data: '_data',
   }
 };
 

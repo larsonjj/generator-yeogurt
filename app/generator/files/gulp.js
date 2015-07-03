@@ -67,6 +67,12 @@ var taskFiles = function taskFiles() {
   }
 
   // ========
+  // Lib
+  // ========
+
+  this.template('gulp/lib/dir-to-obj.js', 'gulp/lib/dir-to-obj.js');
+
+  // ========
   // Tasks
   // ========
 
