@@ -13,8 +13,9 @@
     <title><%= projectName %></title>
     <meta name="description" content="A new Yeogurt application"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{{config.baseUrl}}styles/main.css"/>
+    {% block stylesheets %}{% endblock %}
 
-    <link rel="stylesheet" href="styles/main.css"/>
   </head>
   <body>
     <!--[if lt IE 9]>
@@ -25,6 +26,7 @@
 
     {% block content %}{% endblock %}
 
-    <script src="scripts/main.js"></script>
+    <script src="{{config.baseUrl}}scripts/main.js"></script>
+    {% block scripts %}{% endblock %}
   </body>
 </html>

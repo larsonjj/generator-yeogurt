@@ -30,6 +30,7 @@ var nunjucksTask = function nunjucksTask(options) {
     .pipe(plugins.changed(dest))
     .pipe(plugins.data({
       data: {
+        config: config,
         debug: true,
         site: {
           data: siteData
@@ -54,6 +55,7 @@ var nunjucksTask = function nunjucksTask(options) {
     return gulp.src(source)
     .pipe(plugins.data({
       data: {
+        config: config,
         debug: true,
         site: {
           data: siteData

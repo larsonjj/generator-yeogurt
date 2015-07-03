@@ -27,7 +27,9 @@ $(function() {
   };
 
   var filterItems = function() {
-    var $categories = $('.sidebar .active').map(function(i, item) {return $(item).data('category');});
+    var $categories = $('.sidebar .active').map(function(i, item) {
+      return $(item).data('category');
+    });
     $itemItems.addClass('hide');
     $itemItems.filter('.' + $categories.get().join('.')).removeClass('hide');
   };

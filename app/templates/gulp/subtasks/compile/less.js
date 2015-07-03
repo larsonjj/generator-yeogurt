@@ -11,7 +11,7 @@ var lessTask = function lessTask(options) {
   var plugins = options.plugins;
   var rootPath = options.rootPath;
   var browserSync = options.browserSync;
-  var source = path.join(rootPath, dirs.source, dirs.styles, '/main.less');
+  var source = path.join(rootPath, dirs.source, dirs.styles, '/*.less');
 
   // Serve
   gulp.task('less:serve', function() {

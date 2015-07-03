@@ -29,6 +29,7 @@ var jadeTask = function jadeTask(options) {
     .pipe(plugins.jade({
       jade: jade,
       locals: {
+        config: config,
         debug: true,
         site: {
           data: siteData
@@ -53,6 +54,7 @@ var jadeTask = function jadeTask(options) {
     .pipe(plugins.jade({
       jade: jade,
       locals: {
+        config: config,
         debug: false,
         site: {
           data: siteData

@@ -11,7 +11,7 @@ var sassTask = function sassTask(options) {
   var plugins = options.plugins;
   var rootPath = options.rootPath;
   var browserSync = options.browserSync;
-  var source = path.join(rootPath, dirs.source, dirs.styles, '/main.{scss,sass}');
+  var source = path.join(rootPath, dirs.source, dirs.styles, '/*.{scss,sass}');
 
   // Serve
   gulp.task('sass:serve', function () {

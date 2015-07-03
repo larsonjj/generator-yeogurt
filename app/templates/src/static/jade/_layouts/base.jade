@@ -13,8 +13,8 @@ head
   title <%= projectName %>
   meta(name='description', content= 'A new Yeogurt application')
   meta(name='viewport', content='width=device-width, initial-scale=1.0')
-
-  link(rel='stylesheet', href='styles/main.css')
+  block stylesheets
+    link(rel='stylesheet', href= config.baseUrl + 'styles/main.css')
 
 body
   <!--[if lt IE 9]>
@@ -23,6 +23,7 @@ body
 
   block content
 
-  script(src='scripts/main.js')
+  block scripts
+    script(src= config.baseUrl + 'scripts/main.js')
 
 </html>
