@@ -42,15 +42,6 @@ var taskFiles = function taskFiles() {
   }
 
   // ========
-  // Docs
-  // ========
-
-  // Auto-Dashboard
-  if (this.useDashboard) {
-    this.template('gulp/subtasks/docs/dashboard.js', 'gulp/subtasks/docs/dashboard.js');
-  }
-
-  // ========
   // Optimize
   // ========
 

@@ -17,8 +17,7 @@ var config = {
   directories: {
     source: 'src',
     destination: 'build',
-    temporary: 'tmp',<% if (useDashboard) { %>
-    docs: '_docs',<% } %>
+    temporary: 'tmp',
     modules: '_modules',
     layouts: '_layouts',
     images: '_images',

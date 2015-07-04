@@ -48,9 +48,7 @@ var serveTask = function serveTask(options) {
       'browserify:serve'<% } %><% if (cssOption === 'less') { %>,
       'less:serve'<% } %><% if (cssOption === 'sass') { %>,
       'sass:serve'<% } %><% if (cssOption === 'stylus') { %>,
-      'stylus:serve'<% } %><% if (useDashboard) { %>,
-      'copy:dashboard:serve',
-      'dashboard:serve'<% } %>
+      'stylus:serve'<% } %>
     ], function() {
 
       browserSync.init({
@@ -84,13 +82,13 @@ var serveTask = function serveTask(options) {
       gulp.watch([
         path.join(rootPath, dirs.source, '**/*.jade'),
         path.join(rootPath, dirs.source, dirs.data, '**/*.json')
-      ], ['jade:serve'<% if (useDashboard) { %>, 'dashboard:serve'<% } %>]);<% } else if (htmlOption === 'nunjucks') { %>
+      ], ['jade:serve']);<% } else if (htmlOption === 'nunjucks') { %>
 
       // Nunjucks Templates
       gulp.watch([
         path.join(rootPath, dirs.source, '**/*.nunjucks'),
         path.join(rootPath, dirs.source, dirs.data, '**/*.json')
-      ], ['nunjucks:serve'<% if (useDashboard) { %>, 'dashboard:serve'<% } %>]);
+      ], ['nunjucks:serve']);
       <% } %>
 
       // Copy
@@ -109,14 +107,7 @@ var serveTask = function serveTask(options) {
       // Images
       gulp.watch([
         path.join(rootPath, dirs.source, dirs.images, '**/*.{jpg,jpeg,gif,svg,png}')
-      ], ['imagemin:serve']);<% if (useDashboard) { %>
-
-      // Dashboard
-      gulp.watch([
-        path.join(rootPath, dirs.source, dirs.docs, 'dashboard/**/*'),<% if (htmlOption === 'jade') { %>
-        path.join(rootPath, dirs.source, '**/*.dash.{json,jade}')<% } else if (htmlOption === 'nunjucks') { %>
-        path.join(rootPath, dirs.source, '**/*.dash.{json,nunjucks}')<% } %>
-      ], ['dashboard:serve']);<% } %>
+      ], ['imagemin:serve']);
 
       // All other files
       gulp.watch([
