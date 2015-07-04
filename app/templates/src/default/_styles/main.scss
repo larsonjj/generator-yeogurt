@@ -9,10 +9,7 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}<% if (singlePageApplication) { %>
-
-// Screens and Modules
-@import '../_screens/home/home';<% } %><% if (!singlePageApplication) { %>
+}
 
 .yeogurt-info {
   text-align: center;
@@ -31,7 +28,7 @@
 
 .logo {
   margin-top: 15px;
-}<% } %>
+}
 
 // Styling on warning for users on IE7 or below
 .browsehappy {

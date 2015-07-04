@@ -8,10 +8,7 @@
 *:after
   -moz-box-sizing: border-box
   -webkit-box-sizing: border-box
-  box-sizing: border-box<% if (singlePageApplication) { %>
-
-// Screens and Modules
-@import ../_screens/home/home<% } %><% if (!singlePageApplication) { %>
+  box-sizing: border-box
 
 .yeogurt-info
   text-align: center
@@ -27,7 +24,7 @@
   right: 10px
 
 .logo
-  margin-top: 15px<% } %>
+  margin-top: 15px
 
 // Styling on warning for users on IE7 or below
 .browsehappy
