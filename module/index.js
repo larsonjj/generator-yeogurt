@@ -70,7 +70,7 @@ ModuleGenerator.prototype.ask = function ask() {
     this.testFile = path.join(
       answers.moduleFile,
       this._.slugify(this.name.toLowerCase()),
-      '__tests__',
+      'tests',
       this._.slugify(this.name.toLowerCase())
     );
 

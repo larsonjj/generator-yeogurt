@@ -30,14 +30,14 @@ describe('Static Site module sub-generator', function() {
             var module = 'mymodule';
 
             var filesToTest = [
-              'src/_modules/' + module + '/__tests__/' + module + '.spec.js',
+              'src/_modules/' + module + '/tests/' + module + '.spec.js',
               'src/_modules/' + module + '/' + module + '.js',
               'src/_modules/' + module + '/' + module + '.jade',
               'src/_modules/' + module + '/' + module + '.sass'
             ];
             var fileContentToTest = [
               ['src/_modules/' + module + '/' + module + '.js', /module\.exports/i],
-              ['src/_modules/' + module + '/__tests__/' + module + '.spec.js', /describe/i]
+              ['src/_modules/' + module + '/tests/' + module + '.spec.js', /describe/i]
             ];
             var fileContentToNotFind = [
               ['src/_modules/' + module + '/' + module + '.jade', /<div>/i]
@@ -104,14 +104,14 @@ describe('Static Site module sub-generator', function() {
             var module = 'mymodule';
 
             var filesToTest = [
-              'src/_modules/' + module + '/__tests__/' + module + '.spec.js',
+              'src/_modules/' + module + '/tests/' + module + '.spec.js',
               'src/_modules/' + module + '/' + module + '.js',
               'src/_modules/' + module + '/' + module + '.nunjucks',
               'src/_modules/' + module + '/' + module + '.sass'
             ];
             var fileContentToTest = [
               ['src/_modules/' + module + '/' + module + '.js', /module\.exports/i],
-              ['src/_modules/' + module + '/__tests__/' + module + '.spec.js', /describe/i]
+              ['src/_modules/' + module + '/tests/' + module + '.spec.js', /describe/i]
             ];
             var fileContentToNotFind = [
               ['src/_modules/' + module + '/' + module + '.nunjucks', /<div>/i]

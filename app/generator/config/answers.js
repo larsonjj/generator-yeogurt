@@ -17,7 +17,6 @@ var answersConfig = function answersConfig() {
     this.answers = _.merge(
       this.projectPrompts,
       this.clientPrompts,
-      this.documentationPrompts,
       this.testingPrompts
     );
   }
@@ -43,9 +42,6 @@ var answersConfig = function answersConfig() {
   // Testing
   this.testFramework = this.answers.testFramework;
   this.useTesting    = this.answers.useTesting;
-
-  // Documentation
-  this.useDashboard  = this.answers.useDashboard;
 
   // Default jsOption to Browserify
   this.jsOption = this.answers.jsOption || 'browserify';

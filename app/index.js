@@ -22,7 +22,6 @@ var order = [
   /* Files */
   'root',
   'image',
-  'docs',
   'task',
   'jade',
   'nunjucks',
