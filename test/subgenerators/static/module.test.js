@@ -45,7 +45,6 @@ describe('Static Site module sub-generator', function() {
 
             helpers.mockPrompt(this.app, {
               htmlOption: 'jade',
-              singlePageApplication: false,
               testFramework: 'jasmine',
               useTesting: true,
               jsOption: 'browserify',
@@ -64,31 +63,6 @@ describe('Static Site module sub-generator', function() {
                 done();
               });
             });
-          });
-        });
-      });
-    });
-    describe('Client modules with Dashboard', function() {
-      it('Handles defaults', function(done) {
-        // Filename
-        var module = 'mymodule';
-        var fileContentToTest = [
-          ['src/_modules/' + module + '/__dash__/' + module + '.dash.json', /status/i],
-          ['src/_modules/' + module + '/__dash__/' + module + '.dash.jade', /include/i]
-        ];
-
-        helpers.mockPrompt(this.app, {
-          htmlOption: 'jade',
-          singlePageApplication: false,
-          useDashboard: true
-        });
-        this.app.run([], function() {
-          createSubGenerator('module', module, {path: '../../../../'}, {
-              // mock prompt data
-              moduleFile: 'src/_modules'
-            }, function() {
-            assert.fileContent(fileContentToTest);
-            done();
           });
         });
       });
@@ -119,7 +93,6 @@ describe('Static Site module sub-generator', function() {
 
             helpers.mockPrompt(this.app, {
               htmlOption: 'nunjucks',
-              singlePageApplication: false,
               testFramework: 'jasmine',
               useTesting: true,
               cssOption: 'sass',
@@ -138,31 +111,6 @@ describe('Static Site module sub-generator', function() {
                 done();
               });
             });
-          });
-        });
-      });
-    });
-    describe('Client modules with Dashboard', function() {
-      it('Handles defaults', function(done) {
-        // Filename
-        var module = 'mymodule';
-        var fileContentToTest = [
-          ['src/_modules/' + module + '/__dash__/' + module + '.dash.json', /status/i],
-          ['src/_modules/' + module + '/__dash__/' + module + '.dash.nunjucks', /import/i]
-        ];
-
-        helpers.mockPrompt(this.app, {
-          htmlOption: 'nunjucks',
-          singlePageApplication: false,
-          useDashboard: true
-        });
-        this.app.run([], function() {
-          createSubGenerator('module', module, {path: '../../../../'}, {
-              // mock prompt data
-              moduleFile: 'src/_modules'
-            }, function() {
-            assert.fileContent(fileContentToTest);
-            done();
           });
         });
       });

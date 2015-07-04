@@ -31,7 +31,6 @@ var ModuleGenerator = module.exports = function ModuleGenerator() {
   this.testFramework = fileJSON.testFramework;
   this.useTesting = fileJSON.useTesting;
   this.htmlOption = fileJSON.htmlOption;
-  this.useDashboard = fileJSON.useDashboard;
 
 };
 
@@ -74,13 +73,6 @@ ModuleGenerator.prototype.ask = function ask() {
       this._.slugify(this.name.toLowerCase())
     );
 
-    this.dashFile = path.join(
-      answers.moduleFile,
-      this._.slugify(this.name.toLowerCase()),
-      '__dash__',
-      this._.slugify(this.name.toLowerCase()) + '.dash'
-    );
-
     done();
   }.bind(this));
 };
@@ -93,20 +85,12 @@ ModuleGenerator.prototype.files = function files() {
     if (this.useTesting) {
       this.template('module.spec.js', this.testFile + '.spec.js');
     }
-    if (this.useDashboard) {
-      this.template('module.dash.jade', this.dashFile + '.jade');
-      this.template('module.dash.json', this.dashFile + '.json');
-    }
   }
   else if (this.htmlOption === 'nunjucks') {
     this.template('module.nunjucks', this.moduleFile + '.nunjucks');
     this.template('module.js', this.moduleFile + '.js');
     if (this.useTesting) {
       this.template('module.spec.js', this.testFile + '.spec.js');
-    }
-    if (this.useDashboard) {
-      this.template('module.dash.nunjucks', this.dashFile + '.nunjucks');
-      this.template('module.dash.json', this.dashFile + '.json');
     }
   }
 

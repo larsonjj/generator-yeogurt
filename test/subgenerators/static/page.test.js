@@ -40,7 +40,6 @@ describe('Static Site page sub-generator', function() {
 
           helpers.mockPrompt(this.app, {
             htmlOption: 'jade',
-            singlePageApplication: false,
             testFramework: 'jasmine',
             useTesting: true,
             jsOption: 'browserify',
@@ -58,30 +57,6 @@ describe('Static Site page sub-generator', function() {
               assert.noFileContent(fileContentToNotFind);
               done();
             });
-          });
-        });
-      });
-    });
-    describe('Client page with Dashboard', function() {
-      it('Handles defaults', function(done) {
-        // Filename
-        var page = 'mypage';
-        var fileContentToTest = [
-          ['src/_pages/' + page + '/__dash__/' + page + '.dash.json', /status/i]
-        ];
-
-        helpers.mockPrompt(this.app, {
-          htmlOption: 'jade',
-          singlePageApplication: false,
-          useDashboard: true
-        });
-        this.app.run([], function() {
-          createSubGenerator('page', page, {path: '../../../../'}, {
-            // mock prompt data
-            pageFile: 'src/_pages',
-          }, function() {
-            assert.fileContent(fileContentToTest);
-            done();
           });
         });
       });
@@ -107,7 +82,6 @@ describe('Static Site page sub-generator', function() {
 
           helpers.mockPrompt(this.app, {
             htmlOption: 'nunjucks',
-            singlePageApplication: false,
             testFramework: 'jasmine',
             useTesting: true,
             jsOption: 'browserify'
@@ -124,30 +98,6 @@ describe('Static Site page sub-generator', function() {
               assert.noFileContent(fileContentToNotFind);
               done();
             });
-          });
-        });
-      });
-    });
-    describe('Client page with Dashboard', function() {
-      it('Handles defaults', function(done) {
-        // Filename
-        var page = 'mypage';
-        var fileContentToTest = [
-          ['src/_pages/' + page + '/__dash__/' + page + '.dash.json', /status/i]
-        ];
-
-        helpers.mockPrompt(this.app, {
-          htmlOption: 'nunjucks',
-          singlePageApplication: false,
-          useDashboard: true
-        });
-        this.app.run([], function() {
-          createSubGenerator('page', page, {path: '../../../../'}, {
-            // mock prompt data
-            pageFile: 'src/_pages',
-          }, function() {
-            assert.fileContent(fileContentToTest);
-            done();
           });
         });
       });

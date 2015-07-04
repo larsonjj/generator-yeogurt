@@ -31,7 +31,6 @@ var ModuleGenerator = module.exports = function ModuleGenerator() {
   this.testFramework = fileJSON.testFramework;
   this.useTesting = fileJSON.useTesting;
   this.htmlOption = fileJSON.htmlOption;
-  this.useDashboard = fileJSON.useDashboard;
 
 };
 

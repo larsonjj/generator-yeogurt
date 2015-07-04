@@ -1,6 +1,0 @@
-{
-  "status": "development",
-  "category": "page",
-  "label": "<%= _.titleize(name) %>",
-  "link": "../../<%= _.slugify(name.toLowerCase()) %>/"
-}

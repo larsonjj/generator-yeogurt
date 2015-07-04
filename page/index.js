@@ -28,7 +28,6 @@ var PageGenerator = module.exports = function PageGenerator() {
   this.testFramework = fileJSON.testFramework;
   this.useTesting = fileJSON.useTesting;
   this.htmlOption = fileJSON.htmlOption;
-  this.useDashboard = fileJSON.useDashboard;
 
 };
 
@@ -63,13 +62,6 @@ PageGenerator.prototype.ask = function ask() {
     // Get source directory
     this.rootDir = getDirCount(this.pageFile.replace(directories.source + '/', ''));
 
-    this.dashFile = path.join(
-        answers.pageFile,
-        this._.slugify(this.name.toLowerCase()),
-        '__dash__',
-        this._.slugify(this.name.toLowerCase()) + '.dash'
-      );
-
     done();
   }.bind(this));
 };
@@ -77,14 +69,8 @@ PageGenerator.prototype.ask = function ask() {
 PageGenerator.prototype.files = function files() {
   if (this.htmlOption === 'jade') {
     this.template('page.jade', this.pageFile + '.jade');
-    if (this.useDashboard) {
-      this.template('page.dash.json', this.dashFile + '.json');
-    }
   }
   else if (this.htmlOption === 'nunjucks') {
     this.template('page.nunjucks', this.pageFile + '.nunjucks');
-    if (this.useDashboard) {
-      this.template('page.dash.json', this.dashFile + '.json');
-    }
   }
 };
