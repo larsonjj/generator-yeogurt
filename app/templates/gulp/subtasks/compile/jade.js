@@ -12,8 +12,6 @@ var jadeTask = function jadeTask(options) {
   var plugins = options.plugins;
   var rootPath = options.rootPath;
   var browserSync = options.browserSync;
-  // Convert directory to JS Object
-  var siteData = dirToObj(path.join(rootPath, dirs.source, dirs.data));
 
   // Source file for jade tasks
   var source = [
@@ -24,6 +22,8 @@ var jadeTask = function jadeTask(options) {
   // Serve
   gulp.task('jade:serve', function() {
     var dest = path.join(rootPath, dirs.temporary);
+    // Convert directory to JS Object
+    var siteData = dirToObj(path.join(rootPath, dirs.source, dirs.data));
     return gulp.src(source)
     .pipe(plugins.changed(dest))
     .pipe(plugins.jade({
@@ -32,7 +32,7 @@ var jadeTask = function jadeTask(options) {
         config: config,
         debug: true,
         site: {
-          data: siteData
+          data: siteData[dirs.data]
         }
       }
     }))
@@ -50,6 +50,8 @@ var jadeTask = function jadeTask(options) {
   // Build
   gulp.task('jade:build', function() {
     var dest = path.join(rootPath, dirs.destination);
+    // Convert directory to JS Object
+    var siteData = dirToObj(path.join(rootPath, dirs.source, dirs.data));
     return gulp.src(source)
     .pipe(plugins.jade({
       jade: jade,
@@ -57,7 +59,7 @@ var jadeTask = function jadeTask(options) {
         config: config,
         debug: false,
         site: {
-          data: siteData
+          data: siteData[dirs.data]
         }
       }
     }))

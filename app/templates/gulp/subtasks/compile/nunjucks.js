@@ -11,8 +11,6 @@ var nunjucksTask = function nunjucksTask(options) {
   var plugins = options.plugins;
   var rootPath = options.rootPath;
   var browserSync = options.browserSync;
-  // Convert directory to JS Object
-  var siteData = dirToObj(path.join(rootPath, dirs.source, dirs.data));
 
   // Source file for nunjucks tasks
   var source = [
@@ -26,6 +24,8 @@ var nunjucksTask = function nunjucksTask(options) {
   // Serve
   gulp.task('nunjucks:serve', function() {
     var dest = path.join(rootPath, dirs.temporary);
+    // Convert directory to JS Object
+    var siteData = dirToObj(path.join(rootPath, dirs.source, dirs.data));
     return gulp.src(source)
     .pipe(plugins.changed(dest))
     .pipe(plugins.data({
@@ -52,6 +52,8 @@ var nunjucksTask = function nunjucksTask(options) {
   // Build
   gulp.task('nunjucks:build', function() {
     var dest = path.join(rootPath, dirs.destination);
+    // Convert directory to JS Object
+    var siteData = dirToObj(path.join(rootPath, dirs.source, dirs.data));
     return gulp.src(source)
     .pipe(plugins.data({
       data: {

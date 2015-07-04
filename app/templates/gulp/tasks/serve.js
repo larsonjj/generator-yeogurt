@@ -82,12 +82,14 @@ var serveTask = function serveTask(options) {
 
       // Jade Templates
       gulp.watch([
-        path.join(rootPath, dirs.source, '**/*.jade')
+        path.join(rootPath, dirs.source, '**/*.jade'),
+        path.join(rootPath, dirs.source, dirs.data, '**/*.json')
       ], ['jade:serve'<% if (useDashboard) { %>, 'dashboard:serve'<% } %>]);<% } else if (htmlOption === 'nunjucks') { %>
 
-      // Swig Templates
+      // Nunjucks Templates
       gulp.watch([
-        path.join(rootPath, dirs.source, '**/*.nunjucks')
+        path.join(rootPath, dirs.source, '**/*.nunjucks'),
+        path.join(rootPath, dirs.source, dirs.data, '**/*.json')
       ], ['nunjucks:serve'<% if (useDashboard) { %>, 'dashboard:serve'<% } %>]);
       <% } %>
 
@@ -121,7 +123,8 @@ var serveTask = function serveTask(options) {
         path.join(rootPath, dirs.temporary, '**/*')
       ]).on('change', browserSync.reload);
 
-  });
+    }
+  );
 
 };
 

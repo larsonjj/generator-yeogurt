@@ -10,7 +10,7 @@ var parseDirectory = function parseDirectory(filepath, obj) {
   if (stats.isDirectory()) {
     obj[path.basename(filepath)] = {};
     fs.readdirSync(filepath).map(function(child) {
-      obj[path.basename(filepath)] = dirToObj(
+      obj[path.basename(filepath)] = parseDirectory(
         path.join(filepath, child),
         obj[path.basename(filepath)]
       );
