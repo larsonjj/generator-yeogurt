@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "rimraf": "~2.2.0",
+    "babel-eslint": "^3.1.19",
     "gulp-plumber": "~1.0.1",
     "gulp-changed": "~1.2.1",
     "gulp-uglify": "~1.2.0",

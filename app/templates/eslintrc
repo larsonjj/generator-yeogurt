@@ -1,26 +1,24 @@
 {
-  "settings": {
-    "ecmascript": 6
-  },
+  "parser": "babel-eslint",
   "env": {
-      "browser": true,
-      "amd": true,
-      "node": true
+    "browser": true,
+    "amd": true,
+    "node": true,
+    "es6": true
   },
   "globals": {
-      "DocumentFragment": true,
-      "$": true,
-      "jQuery": true,
-      "it": true,
-      "describe": true,
-      "beforeEach": true,
-      "runs": true,
-      "spyOn": true,
-      "spyOnEvent": true,
-      "waitsFor": true,
-      "expect": true,<% if (testFramework === 'jasmine') { %>
-      "jasmine": true,<% } %>
-      "afterEach": true
+    "DocumentFragment": true,
+    "expect": true,
+    "it": true,
+    "describe": true,
+    "beforeEach": true,
+    "runs": true,
+    "spyOn": true,
+    "spyOnEvent": true,
+    "waitsFor": true,
+    "expect": true,
+    "afterEach": true,
+    "angular": true
   },
   "rules": {
     "indent": [2, 2],
@@ -28,14 +26,12 @@
     "brace-style": [1, "stroustrup"],
     "no-constant-condition": 1,
     "no-underscore-dangle": 0,
-    "no-use-before-define": 1,<% if (testFramework === 'mocha') { %>
-    "no-unused-expressions": 0,<% } %>
-    "no-comma-dangle": 0,
+    "no-use-before-define": 1,
     "func-names": 0,
-    "no-new": 0,
-    "new-cap": 0,
+    "no-new": false,
     "new-parens": 2,
     "no-ternary": 0,
+    "new-cap": 0,
     "no-unused-vars": [1, {"vars": "local", "args": "none"}],
     "quotes": [2, "single"],
     "one-var": 0,

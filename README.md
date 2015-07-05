@@ -91,21 +91,22 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 ## Features
 
 ### Included in every project
-- Built in preview server with [Browsersync](http://www.browsersync.io/)
-- [.editorconfig](http://editorconfig.org/) for consistent coding styles within text editors
+- Preview server with [Browsersync](http://www.browsersync.io/)
 - Automated build process that includes: compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, compression of Javascript, and optimization of images
+- [.editorconfig](http://editorconfig.org/) for consistent coding styles within text editors
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets
-- JavaScript Linting with [ESLint](http://eslint.org//)
+- JavaScript Linting with [ESLint](http://eslint.org/)
+- ES6/2015 support out of the box using [Babel](https://babeljs.io/)
 
 ### Available Options
 
 - Project/Site naming
-- Default ignores for [Git](http://git-scm.com/) or [SVN](http://subversion.apache.org/)
-- Stylesheets with [Less](http://lesscss.org/), [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass)), or [Stylus](http://learnboost.github.io/stylus/)
-- Modular JavaScript with [Browserify](http://browserify.org/).
-- JavaScript unit testing with [Jasmine](http://jasmine.github.io/) or [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/)
-- Test running with [Karma](http://karma-runner.github.io/0.12/index.html)
-- Markup with [Jade](http://jade-lang.com/) or [Swig](http://paularmstrong.github.io/swig/)
+- [Git](http://git-scm.com/) or [SVN](http://subversion.apache.org/) default ignores
+- [Less](http://lesscss.org/), [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass)), or [Stylus](http://learnboost.github.io/stylus/) for Stylesheets
+- [Browserify](http://browserify.org/) for modularizing JavaScript.
+- [Jasmine](http://jasmine.github.io/) or [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/) for JavaScript unit testing
+- [Karma](http://karma-runner.github.io/0.12/index.html) for running unit tests
+- [Jade](http://jade-lang.com/) or [Swig](http://paularmstrong.github.io/swig/) for templating
 
 ## Gulp Workflow
 
@@ -136,8 +137,6 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 |---------|-------
 |gulp test:watch| runs [`gulp test`](#gulp-test), but also watches test files and auto runs tests when changes are detected.
 
-***NOTE: you can add the `--allow-remote` option to any of these commands to allow remote devices on the same network to view/run your tests***
-
 ## Sub-Generators
 
 * [yeogurt:page](#page)
@@ -149,23 +148,69 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 ## Default Generators
 ***Note: (The following sub-generators can be used with any type of project)***
 
-### Script
-Creates a new module script.
+### Page
+Creates a new page.
 
 Example:
 
 ```
-$ yo yeogurt:script myscript
-? Where would you like to create this script?: client/scripts
-? Where would you like to create this script's test?: test/spec
+$ yo yeogurt:page contact
 ```
 
 Produces:
 
 ```
-client/scripts/myscript.js
-test/spec/myscript.spec.js
+src/contact/index.{jade,nunjucks}
 ```
+
+Example #2: Specifying a layout
+
+```
+$ yo yeogurt:page contact --layout=base
+```
+
+Produces:
+
+```
+// Page with the layout of 'src/_layouts/base'
+src/contact/index.{jade,nunjucks}
+```
+
+> NOTE: Pages will default to extending from `src/_layouts/base` if `--layout` is not provided
+
+### Module
+Creates a new module.
+
+Example:
+
+```
+$ yo yeogurt:module header
+```
+
+Produces:
+
+```
+src/_modules/header.{jade,nunjucks}
+src/_modules/header.{scss,sass,less,styl}
+src/_modules/header.js
+```
+
+### Layout
+Creates a new layout.
+
+Example:
+
+```
+$ yo yeogurt:layout one-col
+```
+
+Produces:
+
+```
+src/_layouts/one-col.{jade,nunjucks}
+```
+
+> NOTE: Layouts will always extend from 'src/_layouts/base'
 
 ## Adding third-party libraries
 Odds are that you will need to add some third party libraries to your project at some point. To do so, it is strongly recommended that you install them using [NPM](http://npmjs.com/):
@@ -177,7 +222,7 @@ npm install [package name] --save
 Once installed, you can access scripts within your JavaScript files using CommonJS like so:
 
 ```js
-var $ = require('jquery');
+import $ from 'jquery';
 
 $(function() {
   console.log('Hello');
@@ -197,12 +242,7 @@ And you can access stylesheets by importing them to you chosen preprocessor like
 ```
 
 ```less
-// LESS
-@import 'node_modules/normalize.css/normalize.css';
-```
-
-```stylus
-// Stylus
+// LESS or Stylus
 @import 'node_modules/normalize.css/normalize.css';
 ```
 
@@ -211,7 +251,7 @@ And you can access stylesheets by importing them to you chosen preprocessor like
 
 ### ESLint giving errors for third-party scripts
 ##### Typical error message:
-> Backbone is not defined
+> jQuery is not defined
 
 When adding third-party scripts, you should always link to them using `<script>` tags within your base template file (See [Adding third-party libraries](#adding-third-party-libraries)). However, doing so does not inform ESLint that your new library is defined globally. Thus, giving you errors.
 
@@ -223,7 +263,7 @@ To remedy this situation, all you need to do is open up your `.eslintrc` file in
 {
 ...
   globals: {
-    Backbone: true // Tells ESLint that Backbone is defined globally
+    jQuery: true // Tells ESLint that jQuery is defined globally
   }
 ...
 }

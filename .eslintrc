@@ -1,30 +1,24 @@
 {
-  "settings": {
-    "jsx": true,
-    "ecmascript": 6
-  },
+  "parser": "babel-eslint",
   "env": {
-      "browser": true,
-      "amd": true,
-      "node": true
+    "browser": true,
+    "amd": true,
+    "node": true,
+    "es6": true
   },
   "globals": {
-      "DocumentFragment": true,
-      "expect": true,
-      "$": true,
-      "Modernizr": true,
-      "jQuery": true,
-      "it": true,
-      "describe": true,
-      "beforeEach": true,
-      "runs": true,
-      "spyOn": true,
-      "spyOnEvent": true,
-      "waitsFor": true,
-      "expect": true,
-      "afterEach": true,
-      "JST": true,
-      "angular": true
+    "DocumentFragment": true,
+    "expect": true,
+    "it": true,
+    "describe": true,
+    "beforeEach": true,
+    "runs": true,
+    "spyOn": true,
+    "spyOnEvent": true,
+    "waitsFor": true,
+    "expect": true,
+    "afterEach": true,
+    "angular": true
   },
   "rules": {
     "indent": [2, 2],
