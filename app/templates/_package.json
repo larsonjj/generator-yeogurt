@@ -52,9 +52,30 @@
     "del": "~1.2.0"
   },
   "scripts": {
-    "clean": "rimraf node_modules tmp build"
+    "clean": "rimraf node_modules"
   },
   "engines": {
     "node": ">=0.12.0"
-  }
+  },
+  "//": "CUSTOM CONFIGURATION",
+  "config": {
+      "//": "Local Server Settings",
+      "host": "127.0.0.1",
+      "port": "9010",
+      "baseUrl": "/",
+      "//": "Gulp Task Directories",
+      "//": "NOTE: folders prefixed with an underscore (_) will have it removed when moved to build target (ex: src/_images -> build/images)",
+      "//": "NOTE: folders NOT prefixed with underscore (_) will be copied to build target 1 to 1 (ex: src/fonts -> build/fonts)",
+      "directories": {
+        "source": "src",
+        "destination": "build",
+        "temporary": "tmp",
+        "modules": "_modules",
+        "layouts": "_layouts",
+        "images": "_images",
+        "styles": "_styles",
+        "scripts": "_scripts",
+        "data": "_data"
+      },
+  },
 }
