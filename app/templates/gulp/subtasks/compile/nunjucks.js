@@ -19,7 +19,7 @@ var nunjucksTask = function nunjucksTask(options) {
   ];
 
   // Configure lookup path for nunjucks templates
-  plugins.nunjucksRender.nunjucks.configure([path.join(rootPath, dirs.source)]);
+  plugins.nunjucksRender.nunjucks.configure([path.join(rootPath, dirs.source)], {watch: false});
 
   // Serve
   gulp.task('nunjucks:serve', function() {
