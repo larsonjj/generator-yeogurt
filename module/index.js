@@ -35,7 +35,6 @@ var ModuleGenerator = module.exports = function ModuleGenerator() {
   this.cssOption = fileJSON.cssOption;
   this.sassSyntax = fileJSON.sassSyntax;
   this.testFramework = fileJSON.testFramework;
-  this.useTesting = fileJSON.useTesting;
   this.htmlOption = fileJSON.htmlOption;
 
 };
@@ -111,14 +110,14 @@ ModuleGenerator.prototype.files = function files() {
   if (this.htmlOption === 'jade') {
     this.template('module.jade', this.moduleFile + '.jade');
     this.template('module.js', this.moduleFile + '.js');
-    if (this.useTesting) {
+    if (this.testFramework !== 'none') {
       this.template('module.spec.js', this.testFile + '.spec.js');
     }
   }
   else if (this.htmlOption === 'nunjucks') {
     this.template('module.nunjucks', this.moduleFile + '.nunjucks');
     this.template('module.js', this.moduleFile + '.js');
-    if (this.useTesting) {
+    if (this.testFramework !== 'none') {
       this.template('module.spec.js', this.testFile + '.spec.js');
     }
   }

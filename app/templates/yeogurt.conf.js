@@ -23,7 +23,7 @@ var config = {
     images: '_images',
     styles: '_styles',
     scripts: '_scripts',
-    data: '_data',
+    data: '_data'
   }
 };
 

@@ -25,7 +25,7 @@ describe('Yeogurt generator using Default Configuration', function() {
       '.yo-rc.json',
       'README.md',
       '.editorconfig',
-      'gulpfile.js',
+      'gulpfile.babel.js',
       'package.json',
       'yeogurt.conf.js',
       '.editorconfig',

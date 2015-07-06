@@ -1,9 +1,0 @@
-node_modules
-*.log
-build
-.grunt
-.serve
-tmp
-secrets.js
-.DS_Store
-.yo-rc.json

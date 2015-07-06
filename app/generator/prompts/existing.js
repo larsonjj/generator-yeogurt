@@ -11,7 +11,7 @@ var existingConfigPrompt = function existingConfigPrompt() {
       type: 'confirm',
       name: 'existingConfig',
       message: 'Existing .yo-rc configuration found, would you like to use it?',
-      default: true,
+      default: true
     }], function(answers) {
       this.existingConfig = answers.existingConfig;
       cb();

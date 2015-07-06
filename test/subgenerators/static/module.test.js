@@ -43,7 +43,6 @@ describe('Static Site module sub-generator', function() {
             helpers.mockPrompt(this.app, {
               htmlOption: 'jade',
               testFramework: 'jasmine',
-              useTesting: true,
               jsOption: 'browserify',
               cssOption: 'sass',
               sassSyntax: 'sass',
@@ -78,7 +77,6 @@ describe('Static Site module sub-generator', function() {
             helpers.mockPrompt(this.app, {
               htmlOption: 'jade',
               testFramework: 'jasmine',
-              useTesting: true,
               jsOption: 'browserify',
               cssOption: 'sass',
               sassSyntax: 'sass',
@@ -123,7 +121,6 @@ describe('Static Site module sub-generator', function() {
             helpers.mockPrompt(this.app, {
               htmlOption: 'nunjucks',
               testFramework: 'jasmine',
-              useTesting: true,
               cssOption: 'sass',
               sassSyntax: 'sass',
               jsOption: 'browserify'

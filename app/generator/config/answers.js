@@ -24,23 +24,21 @@ var answersConfig = function answersConfig() {
   // Assign each answer property to `this` context to give the generator access to it
 
   // Project Info
-  this.projectName  = this.answers.projectName;
-  this.versionControl = this.answers.versionControl;
+  this.projectName = this.answers.projectName;
 
   // Client
-  this.htmlOption            = this.answers.htmlOption;
-  this.jsFramework           = this.answers.jsFramework;
-  this.jsOption              = this.answers.jsOption;
-  this.cssOption             = this.answers.cssOption;
-  this.sassSyntax            = this.answers.sassSyntax;
-  this.extras                = this.answers.extras;
+  this.htmlOption = this.answers.htmlOption;
+  this.jsFramework = this.answers.jsFramework;
+  this.jsOption = this.answers.jsOption;
+  this.cssOption = this.answers.cssOption;
+  this.sassSyntax = this.answers.sassSyntax;
+  this.extras = this.answers.extras;
 
   // Default to mocha for testing (cannot use jasmine server-side)
   this.answers.testFramework = this.answers.testFramework || 'mocha';
 
   // Testing
   this.testFramework = this.answers.testFramework;
-  this.useTesting    = this.answers.useTesting;
 
   // Default jsOption to Browserify
   this.jsOption = this.answers.jsOption || 'browserify';

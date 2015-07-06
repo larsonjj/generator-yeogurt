@@ -28,7 +28,6 @@ describe('Yeogurt generator testing', function() {
       helpers.mockPrompt(this.app, {
         jsFramework: 'none',
         jsOption: 'none',
-        useTesting: true,
         testFramework: 'jasmine'
       });
 
@@ -46,8 +45,7 @@ describe('Yeogurt generator testing', function() {
       ];
 
       helpers.mockPrompt(this.app, {
-        useTesting: false,
-        testFramework: 'jasmine'
+        testFramework: 'none'
       });
 
       this.app.run([], function() {

@@ -42,7 +42,7 @@
     "gulp-less": "~3.0.3",<% } %><% if (cssOption === 'stylus') { %>
     "gulp-stylus": "~2.0.5",<% } %>
     "gulp-newer": "~0.5.1",<% if (jsOption === 'browserify') { %>
-    "browserify" : "~10.0.0",<% } %><% if (useTesting) { %>
+    "browserify" : "~10.0.0",<% } %><% if (testFramework !== 'none') { %>
     "karma-phantomjs-launcher": "~0.1.2",
     "karma-chrome-launcher": "~0.1.2",<% if (testFramework === 'jasmine') { %>
     "karma-jasmine": "~0.2.0",<% } else if (testFramework === 'mocha') { %>
@@ -55,6 +55,6 @@
     "clean": "rimraf node_modules tmp build"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=0.12.0"
   }
 }

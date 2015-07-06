@@ -30,8 +30,8 @@ let browserSync = browserSyncLib.create();
 
 // Converts filepath/directory into a JS object recursively
 // ex: `js/data.json` -> `{js: {data: [JSON Data]}`
-var parseDirectory = (filepath, obj) => {
-  var stats = fs.lstatSync(filepath);
+let parseDirectory = (filepath, obj) => {
+  let stats = fs.lstatSync(filepath);
   if (stats.isDirectory()) {
     obj[path.basename(filepath)] = {};
     fs.readdirSync(filepath).map(function(child) {
@@ -56,8 +56,8 @@ var parseDirectory = (filepath, obj) => {
   return obj;
 };
 
-var dirToObj = (filepath) => {
-  var dataObj = {};
+let dirToObj = (filepath) => {
+  let dataObj = {};
   try {
     return parseDirectory(filepath, dataObj);
   }
@@ -68,9 +68,9 @@ var dirToObj = (filepath) => {
 <% if (htmlOption === 'jade') { %>
 // Jade template compile
 gulp.task('jade', () => {
-  var dest = path.join(__dirname, taskTarget);
+  let dest = path.join(__dirname, taskTarget);
   // Convert directory to JS Object
-  var siteData = dirToObj(path.join(__dirname, dirs.source, dirs.data));
+  let siteData = dirToObj(path.join(__dirname, dirs.source, dirs.data));
   return gulp.src([
     path.join(__dirname, dirs.source, '**/*.jade'),
     path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')
@@ -100,9 +100,9 @@ gulp.task('jade', () => {
 gulp.task('nunjucks', () => {
   // Configure lookup path for nunjucks templates
   plugins.nunjucksRender.nunjucks.configure([path.join(__dirname, dirs.source)], {watch: false});
-  var dest = path.join(__dirname, taskTarget);
+  let dest = path.join(__dirname, taskTarget);
   // Convert directory to JS Object
-  var siteData = dirToObj(path.join(__dirname, dirs.source, dirs.data));
+  let siteData = dirToObj(path.join(__dirname, dirs.source, dirs.data));
   return gulp.src([
     path.join(__dirname, dirs.source, '**/*.nunjucks'),
     path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')
@@ -131,7 +131,7 @@ gulp.task('nunjucks', () => {
 <% if (cssOption === 'sass') { %>
 // Sass compilation
 gulp.task('sass', () => {
-  var dest = path.join(__dirname, taskTarget, dirs.styles.replace(/^_/, ''));
+  let dest = path.join(__dirname, taskTarget, dirs.styles.replace(/^_/, ''));
   gulp.src(path.join(__dirname, dirs.source, dirs.styles, '/*.{scss,sass}'))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
@@ -148,7 +148,7 @@ gulp.task('sass', () => {
 
 // Less compilation
 gulp.task('less', () => {
-  var dest = path.join(__dirname, taskTarget, dirs.styles.replace(/^_/, ''));
+  let dest = path.join(__dirname, taskTarget, dirs.styles.replace(/^_/, ''));
   return gulp.src(path.join(__dirname, dirs.source, dirs.styles, '/*.less'))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
@@ -163,7 +163,7 @@ gulp.task('less', () => {
 
 // Stylus compilation
 gulp.task('stylus', () => {
-  var dest = path.join(__dirname, taskTarget, dirs.styles.replace(/^_/, ''));
+  let dest = path.join(__dirname, taskTarget, dirs.styles.replace(/^_/, ''));
   gulp.src(path.join(__dirname, dirs.source, dirs.styles, '/*.styl'))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
@@ -214,7 +214,7 @@ gulp.task('karma:unitWatch', (done) => {
 
 // Imagemin
 gulp.task('imagemin', () => {
-  var dest = path.join(__dirname, taskTarget, dirs.images.replace(/^_/, ''));
+  let dest = path.join(__dirname, taskTarget, dirs.images.replace(/^_/, ''));
   return gulp.src(path.join(__dirname, dirs.source, dirs.images, '**/*.{jpg,jpeg,gif,svg,png}'))
     .pipe(plugins.changed(dest))
     .pipe(gulpif(production, plugins.imagemin({
@@ -227,7 +227,7 @@ gulp.task('imagemin', () => {
 
 // Browserify
 // Default options
-var browserifyOptions = (entry) => {
+let browserifyOptions = (entry) => {
   return browserify(
     entry, {
     debug: true,
@@ -239,13 +239,13 @@ var browserifyOptions = (entry) => {
 };
 
 gulp.task('browserify', (done) => {
-  var dest = path.join(__dirname, taskTarget, dirs.scripts.replace(/^_/, ''));
+  let dest = path.join(__dirname, taskTarget, dirs.scripts.replace(/^_/, ''));
   glob(path.join(__dirname, dirs.source, dirs.scripts, '/*.js'), (err, files) => {
     if (err) {
       done(err);
     }
 
-    var tasks = files.map(function(entry) {
+    let tasks = files.map(function(entry) {
       return browserifyOptions(entry).bundle()
         .pipe(vsource(path.basename(entry)))
         .pipe(buffer())
@@ -262,12 +262,12 @@ gulp.task('browserify', (done) => {
 <% if (testFramework !== 'none') { %>
 // Browserify Unit Tests
 gulp.task('browserify:test', (done) => {
-  var dest = path.join(__dirname, dirs.temporary, dirs.scripts.replace(/^_/, ''));
+  let dest = path.join(__dirname, dirs.temporary, dirs.scripts.replace(/^_/, ''));
   glob(path.join(__dirname, dirs.source, '**/*.spec.js'), {}, (err, files) => {
     if (err) {
       return plugins.util.log('Error globbing browserify:test');
     }
-    var b = browserify({
+    let b = browserify({
       debug: true,
       transform: [
         require('envify'),
@@ -293,7 +293,7 @@ gulp.task('clean', del.bind(null, [
 
 // Serve
 gulp.task('copy', () => {
-  var dest = path.join(__dirname, taskTarget);
+  let dest = path.join(__dirname, taskTarget);
   return gulp.src([
       path.join(__dirname, dirs.source, '**/*'),
       path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')<% if (htmlOption === 'nunjucks') { %>,
@@ -338,7 +338,7 @@ gulp.task('serve', [
       server: {
         baseDir: taskTarget,
         routes: (() => {
-          var routes = {};
+          let routes = {};
 
           // Map base URL to routes
           routes[config.baseUrl] = taskTarget;
@@ -402,10 +402,12 @@ gulp.task('serve', [
 );
 
 // Testing
-gulp.task('test',<% if (!useTesting) { %> ['eslint']);<% } else { %> () => {
+gulp.task('test',<% if (!testFramework !== 'none') { %> ['eslint']);<% } else { %> () => {
   runSequence('eslint', 'browserify:test', 'karma:unit');
-});<% } %><% if (useTesting) { %>
+});<% } %><% if (testFramework !== 'none') { %>
 
+// Testing with Watch
+// Will watch test files for changes, and rerun tests when a change is detected
 gulp.task('test:watch', () => {
   runSequence('eslint', 'browserify:test', 'karma:unitWatch');
   gulp.watch([

@@ -13,7 +13,7 @@ A "Choose your own adventure" generator for creating static sites. Helps you har
 - [Features](#features)
 - [Gulp Workflow](#gulp-workflow)
 - [Sub-Generators](#sub-generators)
-- [Adding third-party libraries](#adding-third-party-libraries)
+- [Guides](#guides)
 - [Common Issues](#common-issues)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
@@ -27,15 +27,15 @@ A "Choose your own adventure" generator for creating static sites. Helps you har
 Check out the [features](#features) section to see everything this generator has to offer.
 
 ## Getting Started
-This generator utilizes [Yeoman](http://yeoman.io/) and [Gulp](http://gulpjs.com/) to Scaffold out projects, automate tasks, and manage front-end dependencies respectively. If this is your first time here, it is recommended you [read about these tools](http://yeoman.io/learning/index.html) before proceeding.
+This generator utilizes [Yeoman](http://yeoman.io/) and [Gulp](http://gulpjs.com/) to scaffold out projects, automate tasks, and manage front-end dependencies respectively. If this is your first time here, it is recommended you [read about these tools](http://yeoman.io/learning/index.html) before proceeding.
 
 ### Installation
 There are a few dependencies that this project relies on:
 
 #### Node.js
-Check to see if you already have Node installed. Do this by bringing up a terminal/command prompt and type `node -v`. If the response shows a version at or above `v0.10.x`, you are all set and can proceed to installing Yeoman, Gulp, and Bower. If you see an error and/or your version is too low, navigate to the [Node.js](http://nodejs.org/) website and install Node from there.
+Check to see if you already have Node installed. Do this by bringing up a terminal/command prompt and type `node -v`. If the response shows a version at or above `v0.12.x`, you are all set and can proceed to installing Yeoman, Gulp, and Bower. If you see an error and/or your version is too low, navigate to the [Node.js](http://nodejs.org/) website and install Node from there.
 
-#### Yeoman, Gulp
+#### Yeoman & Gulp
 Once you have Node installed, make sure you have these tools by opening up a terminal/command prompt and entering following commands:
 
 | Command  | Response
@@ -72,18 +72,17 @@ yo yeogurt --skip-install
 
 Follow all the prompts and choose what suits you most for the project you would like to create. When you finish with all of the prompts, your project scaffold will be created and all dependencies will be installed.
 
-***NOTE: If you used the `--skip-install` option, no dependencies will have been installed. You will need to run `npm install` in your project's root directory in order to get started running automated tasks***
+***NOTE: If you used the `--skip-install` option, no dependencies will have been installed and your gulp tasks will NOT work. You will need to run `npm install` in your project's root directory in order to get started running automated tasks***
 
 Now you can run:
 
-- `gulp` for testing and building a production version of your site.
 - `gulp serve` for previewing your site/app on a development server.
-- `gulp serve:dist` for previewing a production version of your site/app.
+- `gulp serve --production` for previewing a production version of your site/app.
+- `gulp` for testing and building a development version of your site.
+- `gulp --production` same as `gulp` but builds a production version of your site.
 - `gulp test` for linting your scripts running unit tests.
 
 You can learn more about what tasks are available in the [gulp tasks](#gulp-workflow) section.
-
-> IMPORTANT: SVN users should choose the 'SVN' version control option when running the generator. Then be sure to run the `svn-init.sh` (Linux, OSX) or `svn-init.bat` (Window) script in order to correctly setup ignores for your project. These scripts will be located in the root of your project folder. It is recommended that you do this before committing any code.
 
 Congratulations! You should now have successfully created a Yeogurt project and are ready to start building out your site/app.
 
@@ -101,12 +100,11 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 ### Available Options
 
 - Project/Site naming
-- [Git](http://git-scm.com/) or [SVN](http://subversion.apache.org/) default ignores
 - [Less](http://lesscss.org/), [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass)), or [Stylus](http://learnboost.github.io/stylus/) for Stylesheets
 - [Browserify](http://browserify.org/) for modularizing JavaScript.
 - [Jasmine](http://jasmine.github.io/) or [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/) for JavaScript unit testing
 - [Karma](http://karma-runner.github.io/0.12/index.html) for running unit tests
-- [Jade](http://jade-lang.com/) or [Swig](http://paularmstrong.github.io/swig/) for templating
+- [Jade](http://jade-lang.com/) or [Nunjucks](https://mozilla.github.io/nunjucks/) for templating
 
 ## Gulp Workflow
 
@@ -117,7 +115,7 @@ Runs [`gulp test`](#gulp-test) and compiles/creates temporary server files
 
 |Tasks| Description
 |---------|-------
-|gulp --production| Builds out an optimized site through compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, and optimization of images.
+|`gulp --production`| Builds out an optimized site through compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, and optimization of images.
 
 ### `gulp serve`
 Starts up a development server that watches files and automatically reloads them to the browser when a change is detected.
@@ -126,7 +124,7 @@ Starts up a development server that watches files and automatically reloads them
 
 |Tasks| Description
 |---------|-------
-|gulp serve --production|  starts up a server that loads a production version of the site
+|`gulp serve --production`|  starts up a server that loads a production version of the site
 
 ### `gulp test`
 Runs ESLint and Karma to lint and run JavaScript tests, respectively.
@@ -135,7 +133,7 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 
 |Tasks| Description
 |---------|-------
-|gulp test:watch| runs [`gulp test`](#gulp-test), but also watches test files and auto runs tests when changes are detected.
+|`gulp test:watch`| runs [`gulp test`](#gulp-test), but also watches test files and auto runs tests when changes are detected.
 
 > NOTE: test:watch is only available if you chose to unit test your javascript
 ## Sub-Generators
@@ -152,7 +150,7 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 ### Page
 Creates a new page.
 
-Example:
+#### Example:
 
 ```
 $ yo yeogurt:page contact
@@ -164,16 +162,16 @@ Produces:
 src/contact/index.{jade,nunjucks}
 ```
 
-Example #2: Specifying a layout
+#### Example #2: Specifying a layout
 
 ```
-$ yo yeogurt:page contact --layout=base
+$ yo yeogurt:page contact --layout=one-col
 ```
 
 Produces:
 
 ```
-// Page that extend from 'src/_layouts/base'
+// Page that extends from 'src/_layouts/one-col'
 src/contact/index.{jade,nunjucks}
 ```
 
@@ -182,7 +180,7 @@ src/contact/index.{jade,nunjucks}
 ### Module
 Creates a new module.
 
-Example:
+#### Example:
 
 ```
 $ yo yeogurt:module header
@@ -199,7 +197,7 @@ src/_modules/header.js
 ### Layout
 Creates a new layout.
 
-Example:
+#### Example:
 
 ```
 $ yo yeogurt:layout one-col
@@ -211,29 +209,31 @@ Produces:
 src/_layouts/one-col.{jade,nunjucks}
 ```
 
-Example #2: Specifying a layout
+#### Example #2: Specifying a layout
 
 ```
-$ yo yeogurt:page contact --layout=base
+$ yo yeogurt:page contact --layout=one-col
 ```
 
 Produces:
 
 ```
-// Layout that extend from 'src/_layouts/base'
+// Layout that extends from 'src/_layouts/one-col'
 src/contact/index.{jade,nunjucks}
 ```
 
 > NOTE: Layouts will default to extending from 'src/_layouts/base'
 
-## Adding third-party libraries
+## Guides
+
+### Adding third-party libraries
 Odds are that you will need to add some third party libraries to your project at some point. To do so, it is strongly recommended that you install them using [NPM](http://npmjs.com/):
 
 ```
 npm install [package name] --save
 ```
 
-Once installed, you can access scripts within your JavaScript files using CommonJS like so:
+Once installed, you can access scripts within your JavaScript files like so:
 
 ```js
 import $ from 'jquery';
@@ -259,6 +259,33 @@ And you can access stylesheets by importing them to you chosen preprocessor like
 // LESS or Stylus
 @import 'node_modules/normalize.css/normalize.css';
 ```
+
+### Using SVN
+If you plan on using SVN instead of Git, you will want to setup some default ignores to make sure you aren't committing extraneous/generated files to your codebase. To do this, adhere to the following steps:
+
+#### Step 1
+Create a new file in the root of your project named `.svnignore` and give it the following contents:
+
+```
+node_modules
+*.log
+build
+.grunt
+.serve
+tmp
+secrets.js
+.DS_Store
+.yo-rc.json
+```
+
+#### Step 2
+Run the following command:
+
+```
+svn propset svn:ignore -R -F .svnignore .
+```
+
+This command will go through your newly created `.svnignore` file and set the specified files/folders to be ignored by SVN. 
 
 
 ## Common Issues
