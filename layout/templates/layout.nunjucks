@@ -1,8 +1,13 @@
-{% extends '<%= rootDir %>base.nunjucks' %}
+{% extends './base.nunjucks' %}
 
-{# Provides layout level markup #}
+{# Add extra stylesheets #}
+{% block stylesheets %}{% endblock %}
+
 {% block layout %}
 <div class="layout-wrapper <%= _.slugify(name.toLowerCase()) %>">
   {% block <%= _.slugify(name.toLowerCase()) %> %}{% endblock %}
 </div>
 {% endblock %}
+
+{# Add extra scripts #}
+{% block scripts %}{% endblock %}

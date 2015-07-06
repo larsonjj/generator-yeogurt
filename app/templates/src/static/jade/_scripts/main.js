@@ -5,6 +5,6 @@
 
 import $ from 'jquery';
 
-$(function() {
+$(() => {
   console.log('Welcome to Yeogurt!');
 });

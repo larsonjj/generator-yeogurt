@@ -1,8 +1,7 @@
 'use strict';
 
-var init = function() {
-  // Intialize module
-};
-
-module.exports = init;
-
+export class <%= _.classify(name.toLowerCase()) %> {
+  constructor() {
+    console.log('<%= name %> module');
+  }
+}

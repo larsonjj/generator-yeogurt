@@ -9,7 +9,7 @@ try {
   yeogurtConf = require(path.join(process.cwd(), './yeogurt.conf'));
   var directories = yeogurtConf.directories;
 }
-catch(e) {
+catch (e) {
   return; // Do Nothing
 }
 
@@ -22,14 +22,6 @@ var ModuleGenerator = module.exports = function ModuleGenerator() {
 
   // options
   this.projectName = fileJSON.projectName;
-  this.jsFramework = fileJSON.jsFramework;
-  this.singlePageApplication = fileJSON.singlePageApplication;
-  this.jsOption = fileJSON.jsOption;
-  this.jsTemplate = fileJSON.jsTemplate;
-  this.cssOption = fileJSON.cssOption || 'css';
-  this.sassSyntax = fileJSON.sassSyntax;
-  this.testFramework = fileJSON.testFramework;
-  this.useTesting = fileJSON.useTesting;
   this.htmlOption = fileJSON.htmlOption;
 
 };
@@ -39,29 +31,11 @@ util.inherits(ModuleGenerator, yeoman.generators.NamedBase);
 // Prompts
 ModuleGenerator.prototype.ask = function ask() {
 
-  var self = this;
-  var done = this.async();
-  var prompts = [{
-    name: 'layoutFile',
-    message: 'Where would you like to create this layout?',
-    default: function(answers) {
-      return yeogurtConf ? directories.source + '/' + directories.layouts : directories.source + '/_layouts';
-    }
-  }];
+  this.layoutFile = path.join(
+    yeogurtConf ? path.join(directories.source, directories.layouts) : 'src/_layouts',
+    this._.slugify(this.name.toLowerCase())
+  );
 
-  this.prompt(prompts, function(answers) {
-
-    this.layoutFile = path.join(
-      answers.layoutFile,
-      this._.slugify(this.name.toLowerCase()),
-      this._.slugify(this.name.toLowerCase())
-    );
-
-    // Get source directory
-    this.rootDir = getDirCount(this.layoutFile.replace(directories.source + '/' + directories.layouts + '/', ''));
-
-    done();
-  }.bind(this));
 };
 
 ModuleGenerator.prototype.files = function files() {
@@ -70,20 +44,5 @@ ModuleGenerator.prototype.files = function files() {
   }
   else if (this.htmlOption === 'nunjucks') {
     this.template('layout.nunjucks', this.layoutFile + '.nunjucks');
-  }
-
-  if (this.cssOption === 'sass') {
-    if (this.sassSyntax === 'sass') {
-      this.template('layout.css', this.layoutFile.replace('server', 'src') + '.sass');
-    }
-    else {
-      this.template('layout.css', this.layoutFile.replace('server', 'src') + '.scss');
-    }
-  }
-  else if (this.cssOption === 'less') {
-    this.template('layout.css', this.layoutFile.replace('server', 'src') + '.less');
-  }
-  else if (this.cssOption === 'stylus') {
-    this.template('layout.css', this.layoutFile.replace('server', 'src') + '.styl');
   }
 };

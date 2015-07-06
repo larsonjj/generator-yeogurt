@@ -1,6 +1,12 @@
-extend <%= rootDir %>base
+extend ./base
+
+// Add extra stylesheets
+block append stylesheets
 
 block content
   //- Provides layout level markup
   .layout-wrapper.<%= _.slugify(name.toLowerCase()) %>
     block <%= _.slugify(name.toLowerCase()) %>
+
+// Add extra scripts
+block append scripts
