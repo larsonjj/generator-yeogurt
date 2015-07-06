@@ -34,10 +34,10 @@ Guidelines for bug reports:
    reported.
 
 2. **Check if the issue has been fixed** &mdash; try to reproduce it using the
-   latest `master` or development branch in the repository.
+   latest `master` branch in the repository.
 
-3. **Isolate the problem** &mdash; create a [reduced test
-   case](http://css-tricks.com/6263-reduced-test-cases/) and a live example (use [jsfiddle](http://jsfiddle.net) or [codepen](http://codepen.io)).
+3. **Provide `.yo-rc.json` file** &mdash; This file will let me know what choices you made
+   when generating a project as well as what version of the generator you used.
 
 A good bug report shouldn't leave others needing to chase you up for more
 information. Please try to be as detailed as possible in your report. What is
@@ -57,6 +57,8 @@ Example:
 > 3. Further steps, etc.
 >
 > `<url>` - a link to the reduced test case
+>
+> `.yo-rc.json` file contents
 >
 > Any other information you want to share that is relevant to the issue being
 > reported. This might include the lines of code that you have identified as
