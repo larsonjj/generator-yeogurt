@@ -36,11 +36,8 @@ describe('Static Site module sub-generator', function() {
               'src/_modules/' + module + '/' + module + '.sass'
             ];
             var fileContentToTest = [
-              ['src/_modules/' + module + '/' + module + '.js', /module\.exports/i],
+              ['src/_modules/' + module + '/' + module + '.js', /export/i],
               ['src/_modules/' + module + '/tests/' + module + '.spec.js', /describe/i]
-            ];
-            var fileContentToNotFind = [
-              ['src/_modules/' + module + '/' + module + '.jade', /<div>/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -59,7 +56,42 @@ describe('Static Site module sub-generator', function() {
               }, function() {
                 assert.file(filesToTest);
                 assert.fileContent(fileContentToTest);
-                assert.noFileContent(fileContentToNotFind);
+                done();
+              });
+            });
+          });
+          it('is Atomic', function(done) {
+            // Filename
+            var module = 'mymodule';
+
+            var filesToTest = [
+              'src/_modules/atoms/' + module + '/tests/' + module + '.spec.js',
+              'src/_modules/atoms/' + module + '/' + module + '.js',
+              'src/_modules/atoms/' + module + '/' + module + '.jade',
+              'src/_modules/atoms/' + module + '/' + module + '.sass'
+            ];
+            var fileContentToTest = [
+              ['src/_modules/atoms/' + module + '/' + module + '.js', /export/i],
+              ['src/_modules/atoms/' + module + '/tests/' + module + '.spec.js', /describe/i]
+            ];
+
+            helpers.mockPrompt(this.app, {
+              htmlOption: 'jade',
+              testFramework: 'jasmine',
+              useTesting: true,
+              jsOption: 'browserify',
+              cssOption: 'sass',
+              sassSyntax: 'sass',
+            });
+
+            this.app.run([], function() {
+              createSubGenerator('module', module, {atomic: true, path: '../../../../'}, {
+                // mock prompt data
+                moduleFile: 'src/_modules',
+                atomicType: 'atom'
+              }, function() {
+                assert.file(filesToTest);
+                assert.fileContent(fileContentToTest);
                 done();
               });
             });
@@ -84,11 +116,8 @@ describe('Static Site module sub-generator', function() {
               'src/_modules/' + module + '/' + module + '.sass'
             ];
             var fileContentToTest = [
-              ['src/_modules/' + module + '/' + module + '.js', /module\.exports/i],
+              ['src/_modules/' + module + '/' + module + '.js', /export/i],
               ['src/_modules/' + module + '/tests/' + module + '.spec.js', /describe/i]
-            ];
-            var fileContentToNotFind = [
-              ['src/_modules/' + module + '/' + module + '.nunjucks', /<div>/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -107,7 +136,6 @@ describe('Static Site module sub-generator', function() {
               }, function() {
                 assert.file(filesToTest);
                 assert.fileContent(fileContentToTest);
-                assert.noFileContent(fileContentToNotFind);
                 done();
               });
             });

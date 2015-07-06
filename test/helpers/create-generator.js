@@ -9,7 +9,7 @@ var createSubGenerator = function(type, args, options, mockPrompts, asserts) {
   var _path = _options.path || '../../../';
   var subGenerator = helpers.createGenerator('yeogurt:' + type, [
     _path + '/' + type
-  ], args, options);
+  ], args, _options);
 
   subGenerator.on('start', Output.mute);
   subGenerator.on('end', Output.unmute);
@@ -26,7 +26,7 @@ var createAppGenerator = function(args, options) {
   var _path = _options.path || '../../../app';
   var app = helpers.createGenerator('yeogurt:app', [
     _path
-  ], args, options);
+  ], args, _options);
 
   app.options['skip-install'] = true;
 

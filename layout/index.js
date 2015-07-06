@@ -1,7 +1,6 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var getDirCount = require('../helpers/get-dir-count');
 var path = require('path');
 var yeogurtConf;
 
@@ -17,6 +16,11 @@ var ModuleGenerator = module.exports = function ModuleGenerator() {
   // By calling `NamedBase` here, we get the argument to the subgenerator call
   // as `this.name`.
   yeoman.generators.NamedBase.apply(this, arguments);
+  this.option('layout', {
+    desc: 'Allow a custom layout for template to extend from',
+    type: String,
+    required: false
+  });
 
   var fileJSON = this.config.get('config');
 
@@ -30,6 +34,11 @@ util.inherits(ModuleGenerator, yeoman.generators.NamedBase);
 
 // Prompts
 ModuleGenerator.prototype.ask = function ask() {
+
+  this.layout = 'base';
+  if (this.options.layout) {
+    this.layout = this.options.layout;
+  }
 
   this.layoutFile = path.join(
     yeogurtConf ? path.join(directories.source, directories.layouts) : 'src/_layouts',

@@ -172,7 +172,7 @@ $ yo yeogurt:page contact --layout=base
 Produces:
 
 ```
-// Page with the layout of 'src/_layouts/base'
+// Page that extend from 'src/_layouts/base'
 src/contact/index.{jade,nunjucks}
 ```
 
@@ -210,7 +210,20 @@ Produces:
 src/_layouts/one-col.{jade,nunjucks}
 ```
 
-> NOTE: Layouts will always extend from 'src/_layouts/base'
+Example #2: Specifying a layout
+
+```
+$ yo yeogurt:page contact --layout=base
+```
+
+Produces:
+
+```
+// Layout that extend from 'src/_layouts/base'
+src/contact/index.{jade,nunjucks}
+```
+
+> NOTE: Layouts will default to extending from 'src/_layouts/base'
 
 ## Adding third-party libraries
 Odds are that you will need to add some third party libraries to your project at some point. To do so, it is strongly recommended that you install them using [NPM](http://npmjs.com/):

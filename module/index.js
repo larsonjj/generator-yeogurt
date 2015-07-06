@@ -1,7 +1,6 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var getDirCount = require('../helpers/get-dir-count');
 var path = require('path');
 var yeogurtConf;
 
@@ -9,7 +8,7 @@ try {
   yeogurtConf = require(path.join(process.cwd(), './yeogurt.conf'));
   var directories = yeogurtConf.directories;
 }
-catch(e) {
+catch (e) {
   return; // Do Nothing
 }
 
@@ -17,6 +16,13 @@ var ModuleGenerator = module.exports = function ModuleGenerator() {
   // By calling `NamedBase` here, we get the argument to the subgenerator call
   // as `this.name`.
   yeoman.generators.NamedBase.apply(this, arguments);
+
+  this.option('atomic', {
+    desc: 'Defines if this module is used in atomic design. ' +
+      'if so, allow it to be put in a atom, molecule, or organism folder',
+    type: Boolean,
+    required: false
+  });
 
   var fileJSON = this.config.get('config');
 
@@ -38,43 +44,66 @@ util.inherits(ModuleGenerator, yeoman.generators.NamedBase);
 
 // Prompts
 ModuleGenerator.prototype.ask = function ask() {
+  this.atomic = false;
+  if (this.options.atomic) {
+    this.atomic = this.options.atomic;
+  }
 
-  var self = this;
-  var done = this.async();
-  var prompts = [{
-    name: 'moduleFile',
-    message: 'Where would you like to create this module?',
-    default: function(answers) {
-      return yeogurtConf ? directories.source + '/' + directories.modules : directories.source + '/_modules';
-    }
-  }];
+  var moduleDir = yeogurtConf ?
+    path.join(directories.source, directories.modules) :
+    'src' + '/_modules';
 
-  this.prompt(prompts, function(answers) {
-
-    this.templateFile = path.join(
-      answers.moduleFile,
+  this.moduleFile = path.join(
+      moduleDir,
       this._.slugify(this.name.toLowerCase()),
       this._.slugify(this.name.toLowerCase())
     );
 
-    this.moduleFile = path.join(
-      answers.moduleFile,
-      this._.slugify(this.name.toLowerCase()),
-      this._.slugify(this.name.toLowerCase())
-    );
-
-    // Get source directory
-    this.rootDir = getDirCount(this.moduleFile.replace(directories.source + '/', ''));
-
-    this.testFile = path.join(
-      answers.moduleFile,
+  this.testFile = path.join(
+      moduleDir,
       this._.slugify(this.name.toLowerCase()),
       'tests',
       this._.slugify(this.name.toLowerCase())
     );
 
-    done();
-  }.bind(this));
+  if (this.atomic) {
+    var done = this.async();
+    var prompts = [{
+      name: 'atomicType',
+      type: 'list',
+      message: 'What type of atomic module is this?',
+      choices: ['Atom', 'Molecule', 'Organism'],
+      filter: function(val) {
+        var filterMap = {
+          'Atom': 'atom',
+          'Molecule': 'molecule',
+          'Organism': 'organism'
+        };
+
+        return filterMap[val];
+      }
+    }];
+
+    this.prompt(prompts, function(answers) {
+
+      this.moduleFile = path.join(
+        moduleDir,
+        answers.atomicType + 's',
+        this._.slugify(this.name.toLowerCase()),
+        this._.slugify(this.name.toLowerCase())
+      );
+
+      this.testFile = path.join(
+        moduleDir,
+        answers.atomicType + 's',
+        this._.slugify(this.name.toLowerCase()),
+        'tests',
+        this._.slugify(this.name.toLowerCase())
+      );
+
+      done();
+    }.bind(this));
+  }
 };
 
 ModuleGenerator.prototype.files = function files() {
