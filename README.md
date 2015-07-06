@@ -111,7 +111,13 @@ Congratulations! You should now have successfully created a Yeogurt project and 
 ## Gulp Workflow
 
 ### `gulp`
-Runs both [`gulp test`](#gulp-test) and [`gulp build`](#gulp-build).
+Runs [`gulp test`](#gulp-test) and compiles/creates temporary server files
+
+**Extra Task Target(s)**
+
+|Tasks| Description
+|---------|-------
+|gulp --production| Builds out an optimized site through compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, and optimization of images.
 
 ### `gulp serve`
 Starts up a development server that watches files and automatically reloads them to the browser when a change is detected.
@@ -120,13 +126,7 @@ Starts up a development server that watches files and automatically reloads them
 
 |Tasks| Description
 |---------|-------
-|gulp serve:docs| same as [`gulp serve`](#gulp-serve), but will also watch and recompile automated documentation (KSS, JSDoc, etc).
-|gulp serve:dist| runs [`gulp build`](#gulp-build) and starts up a server that loads the optimized files
-
-***NOTE: you can add the `--allow-remote` option to any of these commands to allow remote devices on the same network to view your site/app***
-
-### `gulp build`
-Builds out an optimized site through compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, optimization of images, and processing of [usemin blocks](Usemin blocks). All files created from this task are put in the `{project root}/dist/` folder.
+|gulp serve --production|  starts up a server that loads a production version of the site
 
 ### `gulp test`
 Runs ESLint and Karma to lint and run JavaScript tests, respectively.

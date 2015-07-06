@@ -8,7 +8,7 @@ var rootFiles = function rootFiles() {
   // Create needed Directories
 
   // root (/)
-  this.template('gulpfile.js', 'gulpfile.js');
+  this.template('gulpfile.babel.js', 'gulpfile.babel.js');
   this.template('_package.json', 'package.json');
   this.template('yeogurt.conf.js', 'yeogurt.conf.js');
   this.template('README.md', 'README.md');

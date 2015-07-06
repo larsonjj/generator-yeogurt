@@ -1,0 +1,414 @@
+import fs from 'fs';
+import path from 'path';
+import gulp from 'gulp';
+import gulpLoadPlugins from 'gulp-load-plugins';
+import browserSyncLib from 'browser-sync';
+import config from './yeogurt.conf';
+import minimist from 'minimist';
+import runSequence from 'run-sequence';
+import pngquant from 'imagemin-pngquant';
+import del from 'del';
+import autoprefixer from 'autoprefixer-core'
+import vsource from 'vinyl-source-stream';
+import buffer from 'vinyl-buffer';
+import es from 'event-stream';
+import glob from 'glob';
+import browserify from 'browserify';
+import gulpif from 'gulp-if';
+
+// Load all gulp plugins based on their names
+// EX: gulp-copy -> copy
+const plugins = gulpLoadPlugins();
+
+let argv = minimist(process.argv.slice(2));
+let production = !!(argv.production);
+let dirs = config.directories;
+let taskTarget = production ? dirs.destination : dirs.temporary;
+
+// Create a new browserSync instance
+let browserSync = browserSyncLib.create();
+
+// Converts filepath/directory into a JS object recursively
+// ex: `js/data.json` -> `{js: {data: [JSON Data]}`
+var parseDirectory = (filepath, obj) => {
+  var stats = fs.lstatSync(filepath);
+  if (stats.isDirectory()) {
+    obj[path.basename(filepath)] = {};
+    fs.readdirSync(filepath).map(function(child) {
+      obj[path.basename(filepath)] = parseDirectory(
+        path.join(filepath, child),
+        obj[path.basename(filepath)]
+      );
+    });
+  }
+  else {
+    try {
+      obj[path.basename(filepath).replace('.json', '')] = JSON.parse(
+        fs.readFileSync(filepath, {encoding: 'utf8'})
+      );
+    }
+    catch (e) {
+      console.error('Error reading JSON for file: ' + filepath);
+      console.error('===== Details Below =====');
+      console.error(e);
+    }
+  }
+  return obj;
+};
+
+var dirToObj = (filepath) => {
+  var dataObj = {};
+  try {
+    return parseDirectory(filepath, dataObj);
+  }
+  catch (e) {
+    // console.log('No data found')
+  }
+};
+<% if (htmlOption === 'jade') { %>
+// Jade template compile
+gulp.task('jade', () => {
+  var dest = path.join(__dirname, taskTarget);
+  // Convert directory to JS Object
+  var siteData = dirToObj(path.join(__dirname, dirs.source, dirs.data));
+  return gulp.src([
+    path.join(__dirname, dirs.source, '**/*.jade'),
+    path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')
+  ])
+  .pipe(plugins.changed(dest))
+  .pipe(plugins.jade({
+    jade: jade,
+    locals: {
+      config: config,
+      debug: true,
+      site: {
+        data: siteData[dirs.data]
+      }
+    }
+  }))
+  .pipe(plugins.htmlmin({
+    collapseBooleanAttributes: true,
+    conservativeCollapse: true,
+    removeCommentsFromCDATA: true,
+    removeEmptyAttributes: true,
+    removeRedundantAttributes: true
+  }))
+  .pipe(gulp.dest(dest))
+  .pipe(browserSync.stream());
+});<% } else if (htmlOption === 'nunjucks') { %>
+// Nunjucks template compile
+gulp.task('nunjucks', () => {
+  // Configure lookup path for nunjucks templates
+  plugins.nunjucksRender.nunjucks.configure([path.join(__dirname, dirs.source)], {watch: false});
+  var dest = path.join(__dirname, taskTarget);
+  // Convert directory to JS Object
+  var siteData = dirToObj(path.join(__dirname, dirs.source, dirs.data));
+  return gulp.src([
+    path.join(__dirname, dirs.source, '**/*.nunjucks'),
+    path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')
+  ])
+  .pipe(plugins.changed(dest))
+  .pipe(plugins.data({
+    data: {
+      config: config,
+      debug: true,
+      site: {
+        data: siteData
+      }
+    }
+  }))
+  .pipe(plugins.nunjucksRender())
+  .pipe(plugins.htmlmin({
+    collapseBooleanAttributes: true,
+    conservativeCollapse: true,
+    removeCommentsFromCDATA: true,
+    removeEmptyAttributes: true,
+    removeRedundantAttributes: true
+  }))
+  .pipe(gulp.dest(dest))
+  .pipe(browserSync.stream());
+});<% } %>
+<% if (cssOption === 'sass') { %>
+// Sass compilation
+gulp.task('sass', () => {
+  var dest = path.join(__dirname, taskTarget, dirs.styles.replace(/^_/, ''));
+  gulp.src(path.join(__dirname, dirs.source, dirs.styles, '/*.{scss,sass}'))
+    .pipe(plugins.plumber())
+    .pipe(plugins.sourcemaps.init())
+    .pipe(plugins.sass({
+      outputStyle: 'expanded',
+      precision: 10,
+      includePaths: [path.join(__dirname, dirs.source, dirs.styles) ]
+    }).on('error', plugins.sass.logError))
+    .pipe(plugins.postcss([autoprefixer({browsers: ['last 2 version', '> 5%', 'safari 5', 'ios 6', 'android 4']})]))
+    .pipe(plugins.sourcemaps.write())
+    .pipe(gulp.dest(dest))
+    .pipe(browserSync.stream());
+});<% } else if (cssOption === 'less') { %>
+
+// Less compilation
+gulp.task('less', () => {
+  var dest = path.join(__dirname, taskTarget, dirs.styles.replace(/^_/, ''));
+  return gulp.src(path.join(__dirname, dirs.source, dirs.styles, '/*.less'))
+    .pipe(plugins.plumber())
+    .pipe(plugins.sourcemaps.init())
+    .pipe(plugins.less({
+      paths: [path.join(__dirname, dirs.source, dirs.styles)]
+    }))
+    .pipe(plugins.postcss([autoprefixer({browsers: ['ie >= 9']})]))
+    .pipe(plugins.sourcemaps.write())
+    .pipe(gulp.dest(dest))
+    .pipe(browserSync.stream());
+});<% } else if (cssOption === 'stylus') { %>
+
+// Stylus compilation
+gulp.task('stylus', () => {
+  var dest = path.join(__dirname, taskTarget, dirs.styles.replace(/^_/, ''));
+  gulp.src(path.join(__dirname, dirs.source, dirs.styles, '/*.styl'))
+    .pipe(plugins.plumber())
+    .pipe(plugins.sourcemaps.init())
+    .pipe(plugins.stylus({
+      compress: false
+    }))
+    .pipe(plugins.postcss([autoprefixer({browsers: ['ie >= 9']})]))
+    .pipe(plugins.sourcemaps.write())
+    .pipe(gulp.dest(dest))
+    .pipe(browserSync.stream());
+});<% } %>
+
+// ESLint
+gulp.task('eslint', () => {
+  gulp.src([
+    path.join(__dirname, 'gulpfile.js'),
+    path.join(__dirname, dirs.source, '**/*.js'),
+    // Ignore all vendor folder files
+    path.join('!', __dirname, '**/vendor/**', '*')
+  ])
+  .pipe(browserSync.reload({stream: true, once: true}))
+  .pipe(plugins.eslint({
+    useEslintrc: true
+  }))
+  .pipe(plugins.eslint.format())
+  .pipe(plugins.if(!browserSync.active, plugins.eslint.failAfterError()));
+});
+<% if (testFramework !== 'none') { %>
+// Karma unit testing
+// Run tests once (no watching)
+gulp.task('karma:unit', (done) => {
+  karma.start({
+    configFile: path.join(__dirname, '/karma.conf.js'),
+    singleRun: true,
+    autoWatch: false
+  }, done);
+});
+
+// Run tests a continue watching for changes
+// If change is detected, run tests again
+gulp.task('karma:unitWatch', (done) => {
+  karma.start({
+    configFile: path.join(__dirname, '/karma.conf.js'),
+    singleRun: false,
+    autoWatch: true
+  }, done);
+});<% } %>
+
+// Imagemin
+gulp.task('imagemin', () => {
+  var dest = path.join(__dirname, taskTarget, dirs.images.replace(/^_/, ''));
+  return gulp.src(path.join(__dirname, dirs.source, dirs.images, '**/*.{jpg,jpeg,gif,svg,png}'))
+    .pipe(plugins.changed(dest))
+    .pipe(gulpif(production, plugins.imagemin({
+      progressive: true,
+      svgoPlugins: [{removeViewBox: false}],
+      use: [pngquant({speed: 10})]
+    })))
+    .pipe(gulp.dest(dest));
+});
+
+// Browserify
+// Default options
+var browserifyOptions = (entry) => {
+  return browserify(
+    entry, {
+    debug: true,
+    transform: [
+      require('envify'),
+      require('babelify')
+    ]
+  });
+};
+
+gulp.task('browserify', (done) => {
+  var dest = path.join(__dirname, taskTarget, dirs.scripts.replace(/^_/, ''));
+  glob(path.join(__dirname, dirs.source, dirs.scripts, '/*.js'), (err, files) => {
+    if (err) {
+      done(err);
+    }
+
+    var tasks = files.map(function(entry) {
+      return browserifyOptions(entry).bundle()
+        .pipe(vsource(path.basename(entry)))
+        .pipe(buffer())
+        .pipe(plugins.sourcemaps.init({loadMaps: true}))
+          .pipe(gulpif(production, plugins.uglify()))
+          .on('error', plugins.util.log)
+        .pipe(plugins.sourcemaps.write('./'))
+        .pipe(gulp.dest(dest))
+        .pipe(browserSync.stream());
+    });
+    es.merge(tasks).on('end', done);
+  });
+});
+<% if (testFramework !== 'none') { %>
+// Browserify Unit Tests
+gulp.task('browserify:test', (done) => {
+  var dest = path.join(__dirname, dirs.temporary, dirs.scripts.replace(/^_/, ''));
+  glob(path.join(__dirname, dirs.source, '**/*.spec.js'), {}, (err, files) => {
+    if (err) {
+      return plugins.util.log('Error globbing browserify:test');
+    }
+    var b = browserify({
+      debug: true,
+      transform: [
+        require('envify'),
+        require('babelify')
+      ]
+    });
+    files.forEach((file) => {
+      b.add(file);
+    });
+    b.bundle()
+      .pipe(vsource('main.js'))
+      .pipe(buffer())
+      .pipe(gulp.dest(dest));
+  });
+  done();
+});<% } %>
+
+// Clean
+gulp.task('clean', del.bind(null, [
+  path.join(__dirname, dirs.temporary),
+  path.join(__dirname, dirs.destination)
+]));
+
+// Serve
+gulp.task('copy', () => {
+  var dest = path.join(__dirname, taskTarget);
+  return gulp.src([
+      path.join(__dirname, dirs.source, '**/*'),
+      path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')<% if (htmlOption === 'nunjucks') { %>,
+      path.join('!', __dirname, dirs.source, '**/*.nunjucks')<% } else if (htmlOption === 'jade') { %>,
+      path.join('!', __dirname, dirs.source, '**/*.jade')<% } %>
+    ])
+    .pipe(plugins.changed(dest))
+    .pipe(gulp.dest(dest));
+});
+
+// Default task
+gulp.task('default', ['clean'], () => {
+  gulp.start('build');
+});
+
+// Build production-ready code
+gulp.task('build', [
+  'copy',
+  'imagemin',<% if (htmlOption === 'jade') { %>
+  'jade',<% } else if (htmlOption === 'nunjucks') {  %>
+  'nunjucks',<% } %><% if (cssOption === 'less') { %>
+  'less',<% } else if (cssOption === 'sass') { %>
+  'sass',<% } else if (cssOption === 'stylus') { %>
+  'stylus',<% } %>
+  'browserify'
+]);
+
+// Server tasks with watch
+gulp.task('serve', [
+    'imagemin',
+    'copy'<% if (htmlOption === 'jade') { %>,
+    'jade'<% } else if (htmlOption === 'nunjucks') {  %>,
+    'nunjucks'<% } %><% if (jsOption === 'browserify') { %>,
+    'browserify'<% } %><% if (cssOption === 'less') { %>,
+    'less'<% } %><% if (cssOption === 'sass') { %>,
+    'sass'<% } %><% if (cssOption === 'stylus') { %>,
+    'stylus'<% } %>
+  ], () => {
+
+    browserSync.init({
+      startPath: config.baseUrl,
+      server: {
+        baseDir: taskTarget,
+        routes: (() => {
+          var routes = {};
+
+          // Map base URL to routes
+          routes[config.baseUrl] = taskTarget;
+
+          return routes;
+        })()
+      }
+    });
+
+    if (!production) {
+<% if (cssOption === 'sass') { %>
+      // Styles
+      gulp.watch([
+        path.join(__dirname, dirs.source, dirs.styles, '**/*.{scss,sass}')
+      ], ['sass']);<% } else if (cssOption === 'less') { %>
+      gulp.watch([
+        path.join(__dirname, dirs.source, dirs.styles, '**/*.less')
+      ], ['less']);<% } else if (cssOption === 'stylus') { %>
+      gulp.watch([
+        path.join(__dirname, dirs.source, dirs.styles, '**/*.styl')
+      ], ['stylus']);
+      <% } %><% if (htmlOption === 'jade') { %>
+
+      // Jade Templates
+      gulp.watch([
+        path.join(__dirname, dirs.source, '**/*.jade'),
+        path.join(__dirname, dirs.source, dirs.data, '**/*.json')
+      ], ['jade']);<% } else if (htmlOption === 'nunjucks') { %>
+
+      // Nunjucks Templates
+      gulp.watch([
+        path.join(__dirname, dirs.source, '**/*.nunjucks'),
+        path.join(__dirname, dirs.source, dirs.data, '**/*.json')
+      ], ['nunjucks']);
+      <% } %>
+
+      // Copy
+      gulp.watch([
+        path.join(__dirname, dirs.source, '**/*'),
+        path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')<% if (htmlOption === 'nunjucks') { %>,
+        path.join('!', __dirname, dirs.source, '**/*.nunjucks')<% } else if (htmlOption === 'jade') { %>,
+        path.join('!', __dirname, dirs.source, '**/*.jade')<% } %>
+      ], ['copy']);
+
+      // Scripts
+      gulp.watch([
+        path.join(__dirname, dirs.source, '**/*.js')
+      ], ['browserify']);
+
+      // Images
+      gulp.watch([
+        path.join(__dirname, dirs.source, dirs.images, '**/*.{jpg,jpeg,gif,svg,png}')
+      ], ['imagemin']);
+
+      // All other files
+      gulp.watch([
+        path.join(__dirname, dirs.temporary, '**/*')
+      ]).on('change', browserSync.reload);
+    }
+  }
+);
+
+// Testing
+gulp.task('test',<% if (!useTesting) { %> ['eslint']);<% } else { %> () => {
+  runSequence('eslint', 'browserify:test', 'karma:unit');
+});<% } %><% if (useTesting) { %>
+
+gulp.task('test:watch', () => {
+  runSequence('eslint', 'browserify:test', 'karma:unitWatch');
+  gulp.watch([
+    path.join(__dirname, dirs.source, '**/*.js')
+  ], ['browserify:test']);
+});<% } %>
