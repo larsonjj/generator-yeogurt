@@ -12,16 +12,16 @@ var testTask = function testTask(options) {
   var rootPath = options.rootPath;
 
   // Testing
-  gulp.task('test', function() {
+  gulp.task('test',<% if (!useTesting) { %>['eslint']);<% } else { %> function() {
     runSequence('eslint', 'browserify:test', 'karma:unit');
-  });
+  });<% } %><% if (useTesting) { %>
 
   gulp.task('test:watch', function() {
     runSequence('eslint', 'browserify:test', 'karma:unitWatch');
     gulp.watch([
       path.join(rootPath, dirs.source, '**/*.js')
     ], ['browserify:test']);
-  });
+  });<% } %>
 
 };
 

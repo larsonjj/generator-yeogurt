@@ -137,6 +137,7 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 |---------|-------
 |gulp test:watch| runs [`gulp test`](#gulp-test), but also watches test files and auto runs tests when changes are detected.
 
+> NOTE: test:watch is only available if you chose to unit test your javascript
 ## Sub-Generators
 
 * [yeogurt:page](#page)

@@ -22,7 +22,7 @@ var parseDirectory = function parseDirectory(filepath, obj) {
         fs.readFileSync(filepath, {encoding: 'utf8'})
       );
     }
-    catch(e) {
+    catch (e) {
       console.error('Error reading JSON for file: ' + filepath);
       console.error('===== Details Below =====');
       console.error(e);
@@ -33,8 +33,12 @@ var parseDirectory = function parseDirectory(filepath, obj) {
 
 var dirToObj = function dirToObj(filepath) {
   var dataObj = {};
-  return parseDirectory(filepath, dataObj);
+  try {
+    return parseDirectory(filepath, dataObj);
+  }
+  catch (e) {
+    // console.log('No data found')
+  }
 };
-
 
 module.exports = dirToObj;
