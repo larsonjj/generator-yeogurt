@@ -2,15 +2,9 @@
 var util = require('util');
 var yeoman = require('yeoman-generator');
 var path = require('path');
-var yeogurtConf;
-
-try {
-  yeogurtConf = require(path.join(process.cwd(), './yeogurt.conf'));
-  var directories = yeogurtConf.directories;
-}
-catch (e) {
-  return; // Do Nothing
-}
+var pjson = require(path.join(process.cwd(), './package.json'));
+var config = pjson.config;
+var directories = config.directories;
 
 var ModuleGenerator = module.exports = function ModuleGenerator() {
   // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -48,7 +42,7 @@ ModuleGenerator.prototype.ask = function ask() {
     this.atomic = this.options.atomic;
   }
 
-  var moduleDir = yeogurtConf ?
+  var moduleDir = config ?
     path.join(directories.source, directories.modules) :
     'src' + '/_modules';
 

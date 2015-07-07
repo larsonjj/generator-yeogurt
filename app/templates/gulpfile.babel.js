@@ -3,7 +3,7 @@ import path from 'path';
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSyncLib from 'browser-sync';
-import config from './yeogurt.conf';
+import pjson from './package.json';
 import minimist from 'minimist';
 import runSequence from 'run-sequence';
 import pngquant from 'imagemin-pngquant';
@@ -20,6 +20,7 @@ import gulpif from 'gulp-if';
 // EX: gulp-copy -> copy
 const plugins = gulpLoadPlugins();
 
+let config = pjson.config;
 let argv = minimist(process.argv.slice(2));
 let production = !!(argv.production);
 let dirs = config.directories;

@@ -27,7 +27,6 @@ describe('Yeogurt generator using Default Configuration', function() {
       '.editorconfig',
       'gulpfile.babel.js',
       'package.json',
-      'yeogurt.conf.js',
       '.editorconfig',
       'src/',
       'src/_images',

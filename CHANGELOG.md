@@ -1,9 +1,10 @@
 ### v1.0.0:
 #### date: 2015-7-06
 ##### changes:
-* Added new `yeogurt.conf.js` file to handle preview server and directory configurations.
-  - Authors can now make changes to the generated directory structure by mapping their folders within `yeogurt.conf.js`.
+* Added new configuration data to the `package.json` file to handle preview server and directory configurations.
+  - Authors can now make changes to the generated directory structure by mapping their folders within `package.json`.
 * Added logic to read JSON files within the `_data` folder that will be loaded into chosen template engine attached to `site.data` object.
+* Added [envify](https://github.com/hughsk/envify) to ensure production code is used in browserify builds
 * Updated linter to use [ESLint](http://eslint.org/) instead of [JSHint](http://jshint.com/) for better ES6 support and easier configuration.
 * Updated [Grunt](http://gruntjs.com) tasks to now use [Gulp](http://gulpjs.com) instead. Have seen a major speedup as well as much less code needed.
 * Updated [Swig](http://paularmstrong.github.io/swig/) templates to now be [Nunjucks](https://mozilla.github.io/nunjucks/) as the syntax is identical. [Swig](http://paularmstrong.github.io/swig/) has also been somewhat abandoned and [Nunjucks](https://mozilla.github.io/nunjucks/) is backed by Mozilla
@@ -21,8 +22,8 @@
 * Updated all sub-generator unit tests to be created within their own `tests` folder.
 * Updated all scripts to utilize [Babel](http://babeljs.io), which enables ES6 features out of the box.
 * Removed [Injector](https://github.com/klei/grunt-injector) and [Wiredep](https://github.com/stephenplusplus/grunt-wiredep) as debugging them for errors was difficult and confusing.
-* Removed Single Page Application options. Created a new [generator](https://github.com/larsonjj/generator-neopolitan) to handle React, AngularJS, and Backbone applications.
-* Removed Node Server/Express Application options. Created a new [generator](https://github.com/larsonjj/generator-pistacheo) to handle server/api applications.
+* Removed React, AngularJS, and Backbone choices and move them to a new generator called [Neopolitan](https://github.com/larsonjj/generator-neopolitan)
+* Removed Node + Express choices and move them to a new generator called [Pistacheo](https://github.com/larsonjj/generator-pistacheo)
 * Removed RequireJS option. All projects use Browserify.
 * Removed Bower in favor of soley using NPM for dependency management.
 * Removed SVN as a version control option within prompts. Added [guide](https://github.com/larsonjj/generator-yeogurt#guides) for SVN usage instead.
