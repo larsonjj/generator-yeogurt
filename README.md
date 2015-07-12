@@ -26,6 +26,34 @@ A generator for creating static sites. Helps you harness the power of your favor
 ## What can I create with Yeogurt?
 - Build out static sites using [Jade](http://jade-lang.com/) or [Swig](http://paularmstrong.github.io/swig/).
 
+### Directory Layout
+```
+├── build/                     # Folder for production build output
+├── tmp/                       # Folder for temporary development output
+├── src
+|   ├── _data                  # JSON files that add data to templates
+|   ├── _images                # Images
+|   ├── _layouts               # Layout structure for app
+|   |   └── base.jade
+|   ├── _modules               # Reusable modules
+|   |   └── navbar
+|   |       ├── __tests__
+|   |       |   └── navbar.spec.js
+|   |       ├── navbar.jade
+|   |       ├── navbar.js
+|   |       └── navbar.scss
+|   ├── _styles               # Global styles, mixins, variables, etc
+|   |   └── main.scss         # Main stylesheet (import everything to this file)
+|   ├── _scripts              # Global scripts, base classes, etc
+|   |   └── main.js           # Main bootstrap file
+|   ├── fonts                 # Fonts
+|   ├── index.jade            # Homepage template
+|   ├── favicon.ico
+|   └── robots.txt
+├── gulpfile.babel.js         # Gulp task configuration (using ES6)
+└── package.json              # Dependencies and site/folder configuration
+```
+
 Check out the [features](#features) section to see everything this generator has to offer.
 
 ## Getting Started
