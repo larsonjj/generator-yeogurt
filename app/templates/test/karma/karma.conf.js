@@ -1,6 +1,13 @@
 // Karma configuration
 // http://karma-runner.github.io/0.10/config/configuration-file.html
 'use strict';
+var path = require('path');
+var pjson = require('./package.json');
+var config = pjson.config;
+var dirs = config.directories;
+var testFiles = path.join(__dirname, dirs.source, '**/*.spec.{js,jsx}');
+var preprocessors = {};
+preprocessors[testFiles] = ['browserify'];
 
 var karmaConf = function(config) {
   config.set({
@@ -8,15 +15,23 @@ var karmaConf = function(config) {
     basePath: '',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: [<% if (testFramework === 'jasmine') { %>'jasmine'<% } else if (testFramework === 'mocha') { %>'mocha', 'chai'<% } %>],
+    frameworks: ['browserify'<% if (testFramework === 'jasmine') { %>, 'jasmine'<% } else if (testFramework === 'mocha') { %>, 'mocha', 'chai'<% } %>],
 
     // list of files / patterns to load in the browser
-    files: [
-      'tmp/scripts/main.js'
-    ],
+    files: [testFiles],
 
     // list of files to exclude
     exclude: [],
+
+    preprocessors: preprocessors,
+
+    browserify: {
+      debug: true,
+      transform: [
+        require('envify'),
+        require('babelify')
+      ]
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'

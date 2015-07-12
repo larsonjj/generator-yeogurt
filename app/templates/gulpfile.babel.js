@@ -20,9 +20,14 @@ import gulpif from 'gulp-if';
 // EX: gulp-copy -> copy
 const plugins = gulpLoadPlugins();
 
+// Create karma server
+const karma = require('karma').server;
+
 let config = pjson.config;
 let argv = minimist(process.argv.slice(2));
 let production = !!(argv.production);
+let watch = !!(argv.watch);
+let open = !!(argv.open);
 let dirs = config.directories;
 let taskTarget = production ? dirs.destination : dirs.temporary;
 
@@ -192,26 +197,6 @@ gulp.task('eslint', () => {
   .pipe(plugins.eslint.format())
   .pipe(plugins.if(!browserSync.active, plugins.eslint.failAfterError()));
 });
-<% if (testFramework !== 'none') { %>
-// Karma unit testing
-// Run tests once (no watching)
-gulp.task('karma:unit', (done) => {
-  karma.start({
-    configFile: path.join(__dirname, '/karma.conf.js'),
-    singleRun: true,
-    autoWatch: false
-  }, done);
-});
-
-// Run tests a continue watching for changes
-// If change is detected, run tests again
-gulp.task('karma:unitWatch', (done) => {
-  karma.start({
-    configFile: path.join(__dirname, '/karma.conf.js'),
-    singleRun: false,
-    autoWatch: true
-  }, done);
-});<% } %>
 
 // Imagemin
 gulp.task('imagemin', () => {
@@ -226,65 +211,25 @@ gulp.task('imagemin', () => {
     .pipe(gulp.dest(dest));
 });
 
-// Browserify
-// Default options
-let browserifyOptions = (entry) => {
-  return browserify(
-    entry, {
+gulp.task('browserify', () => {
+  let dest = path.join(__dirname, taskTarget, dirs.scripts.replace(/^_/, ''));
+  browserify(
+    path.join(__dirname, dirs.source, dirs.scripts, '/main.<%if (jsFramework === 'react') { %>jsx<% } else { %>js<% } %>'), {
     debug: true,
     transform: [
       require('envify'),
       require('babelify')
     ]
-  });
-};
-
-gulp.task('browserify', (done) => {
-  let dest = path.join(__dirname, taskTarget, dirs.scripts.replace(/^_/, ''));
-  glob(path.join(__dirname, dirs.source, dirs.scripts, '/*.js'), (err, files) => {
-    if (err) {
-      done(err);
-    }
-
-    let tasks = files.map(function(entry) {
-      return browserifyOptions(entry).bundle()
-        .pipe(vsource(path.basename(entry)))
-        .pipe(buffer())
-        .pipe(plugins.sourcemaps.init({loadMaps: true}))
-          .pipe(gulpif(production, plugins.uglify()))
-          .on('error', plugins.util.log)
-        .pipe(plugins.sourcemaps.write('./'))
-        .pipe(gulp.dest(dest))
-        .pipe(browserSync.stream());
-    });
-    es.merge(tasks).on('end', done);
-  });
+  }).bundle()
+    .pipe(vsource(path.basename('main.js')))
+    .pipe(buffer())
+    .pipe(plugins.sourcemaps.init({loadMaps: true}))
+      .pipe(gulpif(production, plugins.uglify()))
+      .on('error', plugins.util.log)
+    .pipe(plugins.sourcemaps.write('./'))
+    .pipe(gulp.dest(dest))
+    .pipe(browserSync.stream());
 });
-<% if (testFramework !== 'none') { %>
-// Browserify Unit Tests
-gulp.task('browserify:test', (done) => {
-  let dest = path.join(__dirname, dirs.temporary, dirs.scripts.replace(/^_/, ''));
-  glob(path.join(__dirname, dirs.source, '**/*.spec.js'), {}, (err, files) => {
-    if (err) {
-      return plugins.util.log('Error globbing browserify:test');
-    }
-    let b = browserify({
-      debug: true,
-      transform: [
-        require('envify'),
-        require('babelify')
-      ]
-    });
-    files.forEach((file) => {
-      b.add(file);
-    });
-    b.bundle()
-      .pipe(vsource('main.js'))
-      .pipe(buffer())
-      .pipe(gulp.dest(dest));
-  });
-  done();
-});<% } %>
 
 // Clean
 gulp.task('clean', del.bind(null, [
@@ -335,6 +280,7 @@ gulp.task('serve', [
   ], () => {
 
     browserSync.init({
+      open: open ? 'local' : false,
       startPath: config.baseUrl,
       server: {
         baseDir: taskTarget,
@@ -403,15 +349,10 @@ gulp.task('serve', [
 );
 
 // Testing
-gulp.task('test',<% if (!testFramework !== 'none') { %> ['eslint']);<% } else { %> () => {
-  runSequence('eslint', 'browserify:test', 'karma:unit');
-});<% } %><% if (testFramework !== 'none') { %>
-
-// Testing with Watch
-// Will watch test files for changes, and rerun tests when a change is detected
-gulp.task('test:watch', () => {
-  runSequence('eslint', 'browserify:test', 'karma:unitWatch');
-  gulp.watch([
-    path.join(__dirname, dirs.source, '**/*.js')
-  ], ['browserify:test']);
+gulp.task('test',<% if (testFramework === 'none') { %> ['eslint']);<% } else { %> (done) => {
+  karma.start({
+    configFile: path.join(__dirname, '/karma.conf.js'),
+    singleRun: !watch,
+    autoWatch: watch
+  }, done);
 });<% } %>

@@ -4,7 +4,7 @@
 
 # Yeogurt Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-yeogurt.png?branch=master)](https://travis-ci.org/larsonjj/generator-yeogurt) [![NPM version](https://badge.fury.io/js/generator-yeogurt.png)](http://badge.fury.io/js/generator-yeogurt) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-yeogurt/badge.png)](https://coveralls.io/r/larsonjj/generator-yeogurt)
 
-A “Choose your own adventure” generator for creating static sites. Helps you harness the power of your favorite tools: Jade, Nunjucks, Gulp, and much more!
+A generator for creating static sites. Helps you harness the power of your favorite tools: Jade, Nunjucks, Gulp, and much more!
 
 # Table of Contents
 
@@ -125,6 +125,7 @@ Starts up a development server that watches files and automatically reloads them
 |Tasks| Description
 |---------|-------
 |`gulp serve --production`|  starts up a server that loads a production version of the site
+|`gulp serve --open`|  starts up a server and opens it withing your default browser
 
 ### `gulp test`
 Runs ESLint and Karma to lint and run JavaScript tests, respectively.
@@ -133,7 +134,7 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 
 |Tasks| Description
 |---------|-------
-|`gulp test:watch`| runs [`gulp test`](#gulp-test), but also watches test files and auto runs tests when changes are detected.
+|`gulp test --watch`| runs [`gulp test`](#gulp-test), but also watches test files and auto runs tests when changes are detected.
 
 > NOTE: test:watch is only available if you chose to unit test your javascript
 ## Sub-Generators

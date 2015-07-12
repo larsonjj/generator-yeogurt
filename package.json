@@ -1,7 +1,7 @@
 {
   "name": "generator-yeogurt",
   "version": "1.0.0",
-  "description": "A “Choose your own adventure” generator for creating static sites. Helps you harness the power of your favorite tools: Jade, Nunjucks, Gulp, and much more!",
+  "description": "A generator for creating static sites. Helps you harness the power of your favorite tools: Jade, Nunjucks, Gulp, and much more!",
   "keywords": [
     "yeoman-generator",
     "yeogurt",
