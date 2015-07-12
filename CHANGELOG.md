@@ -1,3 +1,40 @@
+### v1.0.0:
+#### date: 2015-7-11
+##### changes:
+* Added new configuration data to the `package.json` file to handle preview server and directory configurations.
+  - Authors can now make changes to the generated directory structure by mapping their folders within `package.json`.
+* Added logic to read JSON files within the `_data` folder that will be loaded into chosen template engine attached to `site.data` object.
+* Added [envify](https://github.com/hughsk/envify) to ensure production code is used in browserify builds
+* Updated linter to use [ESLint](http://eslint.org/) instead of [JSHint](http://jshint.com/) for better ES6 support and easier configuration.
+* Updated [Grunt](http://gruntjs.com) tasks to now use [Gulp](http://gulpjs.com) instead. Have seen a major speedup as well as much less code needed.
+* Updated [Swig](http://paularmstrong.github.io/swig/) templates to now be [Nunjucks](https://mozilla.github.io/nunjucks/) as the syntax is identical. [Swig](http://paularmstrong.github.io/swig/) has also been somewhat abandoned and [Nunjucks](https://mozilla.github.io/nunjucks/) is backed by Mozilla
+* Updated folder structure to utilize a [Jekyll](http://jekyllrb.com/docs/structure/)-esque underscore prefixes.
+  - Folders prefixed with an underscore (`_`) will not be copied over to build targets (ex. `_styles`).
+  - Folders NOT prefixed with an underscore (`_`) WILL be copied over to build targets (Ex. `fonts/`).
+  - Jade/Nunjucks templates will not be copied over.
+* Updated Karma to default to using Chrome as the default browser to launch when running tests.
+* Updated Node dependency to require `v0.12.0` and up.
+* Updated [LiveReload](http://livereload.com/) to instead use [BrowserSync](http://www.browsersync.io/).
+* Updated static site generators to the following:
+  - Page: Creates a new page within it's own folder (ex `contact/index.jade`). This created clean urls (ex: `localhost:3000/contact`).
+  - Module: Creates a new module within it's own folder (ex `_modules/newmodule/newmodule.jade`). Along with JavaScript, unit test, and stylesheet.
+  - Layout: Creates a new layout witin the layout folder (ex `_layouts/newlayout.jade`).
+* Updated all sub-generator unit tests to be created within their own `tests` folder.
+* Updated all scripts to utilize [Babel](http://babeljs.io), which enables ES6 features out of the box.
+* Removed [Injector](https://github.com/klei/grunt-injector) and [Wiredep](https://github.com/stephenplusplus/grunt-wiredep) as debugging them for errors was difficult and confusing.
+* Removed React, AngularJS, and Backbone choices and move them to a new generator called [Neopolitan](https://github.com/larsonjj/generator-neopolitan)
+* Removed Node + Express choices and move them to a new generator called [Pistacheo](https://github.com/larsonjj/generator-pistacheo)
+* Removed RequireJS option. All projects use Browserify.
+* Removed Bower in favor of soley using NPM for dependency management.
+* Removed SVN as a version control option within prompts. Added [guide](https://github.com/larsonjj/generator-yeogurt#guides) for SVN usage instead.
+* Removed authentication boilerplates (Deperecated in last release `0.14.x`).
+* Removed old guides as they will not work with this latest version of Yeogurt.
+* Removed style and script sub-generators as they were not that useful.
+* Removed IE8 Support. IE9 is the default lowest browser supported.
+* Removed Vanilla JavaScript and CSS options.
+* Removed Dashboard, KSS, and JSDoc automated documentation as each implementation was quite buggy and difficult to manage.
+  - NOTE: Dashboard can still be achieved with the new `_data` structure. Check out the [example](https://github.com/larsonjj/yeogurt-dashboard-example) on how to get it working.
+
 ### v0.14.6:
 #### date: 2015-5-03
 ##### changes:

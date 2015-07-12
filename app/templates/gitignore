@@ -1,8 +1,7 @@
 node_modules
 *.log
-dist
-client/bower_components
-.tmp
+build
+tmp
 .grunt
 server/config/secrets.js
 .DS_Store

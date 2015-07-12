@@ -14,20 +14,15 @@ var testingPrompts = function testingPrompts() {
   this.log('\n---- ' + 'Testing'.red.underline + ' ----\n');
 
   this.prompt([{
-    type: 'confirm',
-    name: 'useTesting',
-    message: 'Will you be ' + 'testing your client-side JavaScript'.blue + '?',
-    default: true
-  }, {
-    when: function(answers) { return answers.useTesting; },
     type: 'list',
     name: 'testFramework',
     message: 'Which JavaScript ' + 'testing framework'.blue + ' would you like to use?',
-    choices: ['Jasmine', 'Mocha'],
+    choices: ['Jasmine', 'Mocha', 'None'],
     filter: function(val) {
       var filterMap = {
         'Jasmine': 'jasmine',
-        'Mocha': 'mocha'
+        'Mocha': 'mocha',
+        'None': 'none'
       };
 
       return filterMap[val];

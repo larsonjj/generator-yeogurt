@@ -10,90 +10,18 @@ var clientPrompts = function clientPrompts() {
   }
 
   var cb = this.async();
-  var self = this;
 
   this.log('\n---- ' + 'Client'.red.underline + ' ----\n');
 
   this.prompt([{
-    type: 'confirm',
-    name: 'singlePageApplication',
-    message: 'Will this be a ' + 'Single Page Application'.blue + '?',
-    default: true
-  }, {
-    when: function(answers) { return !answers.singlePageApplication; },
     type: 'list',
     name: 'htmlOption',
     message: 'Which ' + 'HTML preprocessor'.blue + ' would you like to use?',
-    choices: ['Jade', 'Swig'],
+    choices: ['Jade', 'Nunjucks'],
     filter: function(val) {
       var filterMap = {
         'Jade': 'jade',
-        'Swig': 'swig'
-      };
-
-      return filterMap[val];
-    }
-  }, {
-    when: function(answers) { return answers.singlePageApplication && self.serverPrompts.useAuth; },
-    type: 'list',
-    name: 'jsFramework',
-    message: 'Which ' + 'JavaScript framework/library'.blue + ' would you like to use?',
-    choices: ['React', 'Backbone'],
-    filter: function(val) {
-      var filterMap = {
-        'React': 'react',
-        'Backbone': 'backbone'
-      };
-
-      return filterMap[val];
-    }
-  }, {
-    when: function(answers) { return answers.singlePageApplication && !self.serverPrompts.useAuth; },
-    type: 'list',
-    name: 'jsFramework',
-    message: 'Which ' + 'JavaScript framework/library'.blue + ' would you like to use?',
-    choices: ['React', 'Backbone', 'Angular'],
-    filter: function(val) {
-      var filterMap = {
-        'React': 'react',
-        'Backbone': 'backbone',
-        'Angular': 'angular'
-      };
-
-      return filterMap[val];
-    }
-  }, {
-    when: function(answers) { return answers.jsFramework === 'react'; },
-    type: 'confirm',
-    name: 'useJsx',
-    message: 'Would you like to use ' + 'React\'s JSX syntax'.blue + '?',
-    default: true
-  }, {
-    when: function(answers) {return answers.jsFramework === 'backbone';},
-    type: 'list',
-    name: 'jsTemplate',
-    message: 'Which ' + 'JavaScript templating library'.blue + ' would you like to use?',
-    choices: ['Underscore', 'Handlebars', 'Jade'],
-    filter: function(val) {
-      var filterMap = {
-        'Underscore': 'underscore',
-        'Handlebars': 'handlebars',
-        'Jade': 'jade'
-      };
-
-      return filterMap[val];
-    }
-  }, {
-    when: function(answers) { return answers.jsFramework !== 'react' && answers.jsFramework !== 'angular'; },
-    type: 'list',
-    name: 'jsOption',
-    message: 'Which ' + 'JavaScript module library'.blue + ' would you like to use?',
-    choices: ['Browserify', 'RequireJS', 'None'],
-    filter: function(val) {
-      var filterMap = {
-        'Browserify': 'browserify',
-        'RequireJS': 'requirejs',
-        'None': 'none'
+        'Nunjucks': 'nunjucks'
       };
 
       return filterMap[val];
@@ -102,19 +30,20 @@ var clientPrompts = function clientPrompts() {
     type: 'list',
     name: 'cssOption',
     message: 'What would you like to use to ' + 'write styles'.blue + '?',
-    choices: ['Sass', 'Less', 'Stylus', 'CSS'],
+    choices: ['Sass', 'Less', 'Stylus'],
     filter: function(val) {
       var filterMap = {
         'Sass': 'sass',
         'Less': 'less',
-        'Stylus': 'stylus',
-        'CSS': 'css'
+        'Stylus': 'stylus'
       };
 
       return filterMap[val];
     }
   }, {
-    when: function(answers) { return answers.cssOption === 'sass'; },
+    when: function(answers) {
+      return answers.cssOption === 'sass';
+    },
     type: 'list',
     name: 'sassSyntax',
     message: 'What ' + 'Sass syntax'.blue + ' would you like to use ?',

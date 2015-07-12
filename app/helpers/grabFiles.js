@@ -9,11 +9,14 @@ var grabFiles = function(filepaths, order) {
   var tempArray = [];
   filepaths.forEach(function(filepath) {
     fs.readdirSync(filepath).forEach(function(file) {
-      var filename = file.substring(file.lastIndexOf('/')+1).split('.');
+      // Remove file extension and get just the filename
+      // something.js --> something
+      var filename = file.substring(file.lastIndexOf('/') + 1).split('.')[0];
+      // Check to see if file has '.js' extension
       if (file.substr(-3) === '.js') {
         tempArray.push({
-          name: filename[0],
-          index: order.indexOf(filename[0]) > -1 ? order.indexOf(filename[0]) : order.length,
+          name: filename,
+          index: order.indexOf(filename) > -1 ? order.indexOf(filename) : order.length,
           code: require(filepath + '/' + file)
         });
       }

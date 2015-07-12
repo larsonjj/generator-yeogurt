@@ -5,9 +5,11 @@ var helpers = yeoman.test;
 var Output  = require('../helpers/mute');
 
 var createSubGenerator = function(type, args, options, mockPrompts, asserts) {
+  var _options = options || {};
+  var _path = _options.path || '../../../';
   var subGenerator = helpers.createGenerator('yeogurt:' + type, [
-    '../../../' + type
-  ], args, options);
+    _path + '/' + type
+  ], args, _options);
 
   subGenerator.on('start', Output.mute);
   subGenerator.on('end', Output.unmute);
@@ -20,9 +22,11 @@ var createSubGenerator = function(type, args, options, mockPrompts, asserts) {
 };
 
 var createAppGenerator = function(args, options) {
+  var _options = options || {};
+  var _path = _options.path || '../../../app';
   var app = helpers.createGenerator('yeogurt:app', [
-    '../../../app'
-  ], args, options);
+    _path
+  ], args, _options);
 
   app.options['skip-install'] = true;
 
