@@ -1,5 +1,5 @@
 ### v1.0.0:
-#### date: 2015-7-06
+#### date: 2015-7-11
 ##### changes:
 * Added new configuration data to the `package.json` file to handle preview server and directory configurations.
   - Authors can now make changes to the generated directory structure by mapping their folders within `package.json`.
