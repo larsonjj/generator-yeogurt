@@ -15,6 +15,7 @@ import es from 'event-stream';
 import glob from 'glob';
 import browserify from 'browserify';
 import gulpif from 'gulp-if';
+import jade from 'jade';
 
 // Load all gulp plugins based on their names
 // EX: gulp-copy -> copy
@@ -68,7 +69,7 @@ let dirToObj = (filepath) => {
     return parseDirectory(filepath, dataObj);
   }
   catch (e) {
-    // console.log('No data found')
+    return {_data: {}}
   }
 };
 <% if (htmlOption === 'jade') { %>
