@@ -20,9 +20,9 @@ import jade from 'jade';
 // Load all gulp plugins based on their names
 // EX: gulp-copy -> copy
 const plugins = gulpLoadPlugins();
-
+<% if (testFramework !== 'none') { %>
 // Create karma server
-const karma = require('karma').server;
+const karma = require('karma').server;<% } %>
 
 let config = pjson.config;
 let argv = minimist(process.argv.slice(2));
