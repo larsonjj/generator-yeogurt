@@ -14,8 +14,8 @@ import buffer from 'vinyl-buffer';
 import es from 'event-stream';
 import glob from 'glob';
 import browserify from 'browserify';
-import gulpif from 'gulp-if';
-import jade from 'jade';
+import gulpif from 'gulp-if';<% if (htmlOption === 'jade') { %>
+import jade from 'jade';<% } %>
 
 // Load all gulp plugins based on their names
 // EX: gulp-copy -> copy
@@ -175,7 +175,8 @@ gulp.task('stylus', () => {
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.stylus({
-      compress: false
+      compress: true,
+      'include css': true
     }))
     .pipe(plugins.postcss([autoprefixer({browsers: ['ie >= 9']})]))
     .pipe(plugins.sourcemaps.write())
