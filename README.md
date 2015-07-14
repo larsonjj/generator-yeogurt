@@ -288,8 +288,13 @@ And you can access stylesheets by importing them to you chosen preprocessor like
 ```
 
 ```less
-// LESS or Stylus
-@import 'node_modules/normalize.css/normalize.css';
+// LESS
+@import (inline) 'node_modules/normalize.css/normalize.css';
+```
+
+```stylus
+// Stylus
+@import '../../node_modules/normalize.css/normalize.css';
 ```
 
 ### Using SVN

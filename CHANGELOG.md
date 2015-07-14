@@ -1,3 +1,12 @@
+### v1.0.1:
+#### date: 2015-7-14
+##### changes:
+* Fixed JSON parse error when not using a test framework
+* Fixed karma loading module when not using a test framework
+* Fixed issue with loading normalize.css within main.less
+* Fixed issue with loading normalize.css within main.styl
+* Fixed issue with loading jade on nunjucks projects
+
 ### v1.0.0:
 #### date: 2015-7-11
 ##### changes:
