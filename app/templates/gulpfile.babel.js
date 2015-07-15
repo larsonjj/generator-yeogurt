@@ -229,8 +229,7 @@ gulp.task('browserify', () => {
       .pipe(gulpif(production, plugins.uglify()))
       .on('error', plugins.util.log)
     .pipe(plugins.sourcemaps.write('./'))
-    .pipe(gulp.dest(dest))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest(dest));
 });
 
 // Clean
