@@ -1,3 +1,8 @@
+### v1.0.2:
+#### date: 2015-7-16
+##### changes:
+* Fixed [#142](https://github.com/larsonjj/generator-yeogurt/issues/142). ESLint not ignoring vendor folders
+
 ### v1.0.1:
 #### date: 2015-7-14
 ##### changes:
