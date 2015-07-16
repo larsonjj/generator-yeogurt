@@ -80,7 +80,7 @@ gulp.task('jade', () => {
   let siteData = dirToObj(path.join(__dirname, dirs.source, dirs.data));
   return gulp.src([
     path.join(__dirname, dirs.source, '**/*.jade'),
-    path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')
+    '!' + path.join(__dirname, dirs.source, '{**/\_*,**/\_*/**}')
   ])
   .pipe(plugins.changed(dest))
   .pipe(plugins.jade({
@@ -112,7 +112,7 @@ gulp.task('nunjucks', () => {
   let siteData = dirToObj(path.join(__dirname, dirs.source, dirs.data));
   return gulp.src([
     path.join(__dirname, dirs.source, '**/*.nunjucks'),
-    path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')
+    '!' + path.join(__dirname, dirs.source, '{**/\_*,**/\_*/**}')
   ])
   .pipe(plugins.changed(dest))
   .pipe(plugins.data({
@@ -190,7 +190,7 @@ gulp.task('eslint', () => {
     path.join(__dirname, 'gulpfile.js'),
     path.join(__dirname, dirs.source, '**/*.js'),
     // Ignore all vendor folder files
-    path.join('!', __dirname, '**/vendor/**', '*')
+    '!' + path.join(__dirname, '**/vendor/**', '*')
   ])
   .pipe(browserSync.reload({stream: true, once: true}))
   .pipe(plugins.eslint({
@@ -229,8 +229,7 @@ gulp.task('browserify', () => {
       .pipe(gulpif(production, plugins.uglify()))
       .on('error', plugins.util.log)
     .pipe(plugins.sourcemaps.write('./'))
-    .pipe(gulp.dest(dest))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest(dest));
 });
 
 // Clean
@@ -244,9 +243,9 @@ gulp.task('copy', () => {
   let dest = path.join(__dirname, taskTarget);
   return gulp.src([
       path.join(__dirname, dirs.source, '**/*'),
-      path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')<% if (htmlOption === 'nunjucks') { %>,
-      path.join('!', __dirname, dirs.source, '**/*.nunjucks')<% } else if (htmlOption === 'jade') { %>,
-      path.join('!', __dirname, dirs.source, '**/*.jade')<% } %>
+      '!' + path.join(__dirname, dirs.source, '{**/\_*,**/\_*/**}')<% if (htmlOption === 'nunjucks') { %>,
+      '!' + path.join(__dirname, dirs.source, '**/*.nunjucks')<% } else if (htmlOption === 'jade') { %>,
+      '!' + path.join(__dirname, dirs.source, '**/*.jade')<% } %>
     ])
     .pipe(plugins.changed(dest))
     .pipe(gulp.dest(dest));
@@ -327,9 +326,9 @@ gulp.task('serve', [
       // Copy
       gulp.watch([
         path.join(__dirname, dirs.source, '**/*'),
-        path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')<% if (htmlOption === 'nunjucks') { %>,
-        path.join('!', __dirname, dirs.source, '**/*.nunjucks')<% } else if (htmlOption === 'jade') { %>,
-        path.join('!', __dirname, dirs.source, '**/*.jade')<% } %>
+        '!' + path.join(__dirname, dirs.source, '{**/\_*,**/\_*/**}')<% if (htmlOption === 'nunjucks') { %>,
+        '!' + path.join(__dirname, dirs.source, '**/*.nunjucks')<% } else if (htmlOption === 'jade') { %>,
+        '!' + path.join(__dirname, dirs.source, '**/*.jade')<% } %>
       ], ['copy']);
 
       // Scripts
