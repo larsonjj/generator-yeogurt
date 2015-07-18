@@ -110,7 +110,7 @@ Now you can run:
 - `gulp serve --production` for previewing a production version of your site/app.
 - `gulp` for testing and building a development version of your site.
 - `gulp --production` same as `gulp` but builds a production version of your site.
-- `gulp test` for linting your scripts running unit tests.
+- `gulp test` for linting your scripts and running unit tests.
 
 You can learn more about what tasks are available in the [gulp tasks](#gulp-workflow) section.
 
@@ -155,7 +155,7 @@ Starts up a development server that watches files and automatically reloads them
 |Tasks| Description
 |---------|-------
 |`gulp serve --production`|  starts up a server that loads a production version of the site
-|`gulp serve --open`|  starts up a server and opens it withing your default browser
+|`gulp serve --open`|  starts up a server and opens it within your default browser
 
 ### `gulp test`
 Runs ESLint and Karma to lint and run JavaScript tests, respectively.
@@ -331,7 +331,8 @@ This command will go through your newly created `.svnignore` file and set the sp
 ##### Typical error message:
 > jQuery is not defined
 
-When adding third-party scripts, you should always link to them using `<script>` tags within your base template file (See [Adding third-party libraries](#adding-third-party-libraries)). However, doing so does not inform ESLint that your new library is defined globally. Thus, giving you errors.
+When adding third-party scripts, you should always import them to your `_scripts/main.js` file (See [Adding third-party libraries](#adding-third-party-libraries)). 
+However, doing so does not inform ESLint that your new library is defined globally. Thus, giving you errors.
 
 ##### Solution
 To remedy this situation, all you need to do is open up your `.eslintrc` file in the root directory of you project, and add your new library name to the `global:` property array:
