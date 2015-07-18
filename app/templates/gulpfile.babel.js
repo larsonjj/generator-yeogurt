@@ -283,6 +283,7 @@ gulp.task('serve', [
     browserSync.init({
       open: open ? 'local' : false,
       startPath: config.baseUrl,
+      port: config.port || 3000,
       server: {
         baseDir: taskTarget,
         routes: (() => {

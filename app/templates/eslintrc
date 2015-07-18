@@ -2,7 +2,6 @@
   "parser": "babel-eslint",
   "env": {
     "browser": true,
-    "amd": true,
     "node": true,
     "es6": true
   },
@@ -17,8 +16,7 @@
     "spyOnEvent": true,
     "waitsFor": true,
     "expect": true,
-    "afterEach": true,
-    "angular": true
+    "afterEach": true
   },
   "rules": {
     "indent": [2, 2],

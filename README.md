@@ -11,8 +11,10 @@ A generator for creating static sites. Helps you harness the power of your favor
 # Table of Contents
 
 - [What can I create with Yeogurt?](#what-can-i-create-with-yeogurt)
-- [Getting Started](#getting-started)
 - [Features](#features)
+- [Getting Started](#getting-started)
+- [Setup](#setup)
+- [Directory Layout](#directory-layout)
 - [Gulp Workflow](#gulp-workflow)
 - [Sub-Generators](#sub-generators)
 - [Guides](#guides)
@@ -26,7 +28,84 @@ A generator for creating static sites. Helps you harness the power of your favor
 ## What can I create with Yeogurt?
 - Build out static sites using [Jade](http://jade-lang.com/) or [Swig](http://paularmstrong.github.io/swig/).
 
-### Directory Layout
+Check out the [features](#features) section to see everything this generator has to offer.
+
+## Features
+
+### Included in every project
+- Preview server with [Browsersync](http://www.browsersync.io/)
+- Automated build process that includes: compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, compression of Javascript, and optimization of images
+- [.editorconfig](http://editorconfig.org/) for consistent coding styles within text editors
+- [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets
+- JavaScript Linting with [ESLint](http://eslint.org/)
+- ES6/2015 support out of the box using [Babel](https://babeljs.io/)
+
+### Available Options
+
+- Project/Site naming
+- [Less](http://lesscss.org/), [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass)), or [Stylus](http://learnboost.github.io/stylus/) for Stylesheets
+- [Browserify](http://browserify.org/) for modularizing JavaScript.
+- [Jasmine](http://jasmine.github.io/) or [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/) for JavaScript unit testing
+- [Karma](http://karma-runner.github.io/0.12/index.html) for running unit tests
+- [Jade](http://jade-lang.com/) or [Nunjucks](https://mozilla.github.io/nunjucks/) for templating
+
+
+## Getting Started
+This generator utilizes [Yeoman](http://yeoman.io/) and [Gulp](http://gulpjs.com/) to scaffold out projects, automate tasks, and manage front-end dependencies respectively. If this is your first time here, it is recommended you [read about these tools](http://yeoman.io/learning/index.html) before proceeding.
+
+### Installation
+There are a few dependencies that this project relies on:
+
+> NOTE: For OSX users
+You may have some issues compiling code during installation of packages. Please install Xcode from App Store first. After Xcode is installed, 
+open Xcode and go to ***Preferences -> Download -> Command Line Tools -> Install*** to install command line tools.
+
+#### Node.js
+Check to see if you already have Node installed. Do this by bringing up a terminal/command prompt and type `node -v`. If the response shows a version at or above `v0.12.x`, you are all set and can proceed to installing Yeoman, Gulp, and Bower. If you see an error and/or your version is too low, navigate to the [Node.js](http://nodejs.org/) website and install Node from there.
+
+#### Yeoman & Gulp
+Once you have Node installed, make sure you have these tools by opening up a terminal/command prompt and entering following commands:
+
+| Command  | Response
+|---------- |:---------:
+| `yo -v`  | at or above `v1.2.1`
+| `gulp -v` | `gulp-cli` at or above `v0.3.9`
+
+If you get any errors and/or you're version(s) are too low, you should run `npm install -g yo gulp`. 
+This will install both tools and update them to their latest versions.
+
+
+#### Yeogurt
+Now that you have all the needed dependencies, you can install this generator with the following command: `npm install -g generator-yeogurt`
+
+That completes installation! So at this point you should have all the needed tools to start working Yeogurt.
+
+## Setup
+When starting a new project, you will want to: open up a terminal/command prompt, make a new directory, and navigate into it.
+
+```
+mkdir my-new-project && cd $_
+```
+
+then, run the Yeogurt generator.
+
+```
+yo yeogurt
+```
+
+***Optionally***, you can skip the automated installation of npm packages by passing in `--skip-install`. The main reason to use this is if you have spotty/no internet connection, but would still like to generate your project.
+
+```
+yo yeogurt --skip-install
+```
+
+Follow all the prompts and choose what suits you most for the project you would like to create. When you finish with all of the prompts, your project scaffold will be created and all dependencies will be installed.
+
+> NOTE: If you used the `--skip-install` option, no dependencies will have been installed and your gulp tasks will NOT work. 
+You will need to run `npm install` in your project's root directory in order to get started running automated tasks
+
+Once everything is installed, you will see a project structure like below:
+
 ```
 ├── build/                     # Folder for production build output
 ├── tmp/                       # Folder for temporary development output
@@ -54,57 +133,9 @@ A generator for creating static sites. Helps you harness the power of your favor
 └── package.json              # Dependencies and site/folder configuration
 ```
 
-Check out the [features](#features) section to see everything this generator has to offer.
+Congratulations! You should now have successfully created a Yeogurt project and are ready to start building out your site/app.
 
-## Getting Started
-This generator utilizes [Yeoman](http://yeoman.io/) and [Gulp](http://gulpjs.com/) to scaffold out projects, automate tasks, and manage front-end dependencies respectively. If this is your first time here, it is recommended you [read about these tools](http://yeoman.io/learning/index.html) before proceeding.
-
-### Installation
-There are a few dependencies that this project relies on:
-
-#### Node.js
-Check to see if you already have Node installed. Do this by bringing up a terminal/command prompt and type `node -v`. If the response shows a version at or above `v0.12.x`, you are all set and can proceed to installing Yeoman, Gulp, and Bower. If you see an error and/or your version is too low, navigate to the [Node.js](http://nodejs.org/) website and install Node from there.
-
-#### Yeoman & Gulp
-Once you have Node installed, make sure you have these tools by opening up a terminal/command prompt and entering following commands:
-
-| Command  | Response
-|---------- |:---------:
-| `yo -v`  | at or above `v1.2.1`
-| `gulp -v` | `gulp-cli` at or above `v0.3.9`
-
-If you get any errors and/or you're version(s) are too low, you should run `npm install -g yo gulp`. This will install all three tools and update them to their latest versions.
-
-
-#### Yeogurt
-Now that you have all the needed dependencies, you can install this generator with the following command: `npm install -g generator-yeogurt`
-
-That completes installation! So at this point you should have all the needed tools to start working Yeogurt.
-
-### Usage
-When starting a new project, you will want to: open up a terminal/command prompt, make a new directory, and navigate into it.
-
-```
-mkdir my-new-project && cd $_
-```
-
-then, run the Yeogurt generator.
-
-```
-yo yeogurt
-```
-
-Optionally, you can skip the automated installation of npm packages by passing in `--skip-install`. The main reason to use this is if you have spotty/no internet connection, but would still like to generate your project.
-
-```
-yo yeogurt --skip-install
-```
-
-Follow all the prompts and choose what suits you most for the project you would like to create. When you finish with all of the prompts, your project scaffold will be created and all dependencies will be installed.
-
-***NOTE: If you used the `--skip-install` option, no dependencies will have been installed and your gulp tasks will NOT work. You will need to run `npm install` in your project's root directory in order to get started running automated tasks***
-
-Now you can run:
+Now you can run the following gulp tasks:
 
 - `gulp serve` for previewing your site/app on a development server.
 - `gulp serve --production` for previewing a production version of your site/app.
@@ -114,27 +145,59 @@ Now you can run:
 
 You can learn more about what tasks are available in the [gulp tasks](#gulp-workflow) section.
 
-Congratulations! You should now have successfully created a Yeogurt project and are ready to start building out your site/app.
+## Configuration
 
+In the `package.json` file, within the root of the generated project, you have the ability to configure some project settings:
 
-## Features
+### Site
+| Setting | Description |
+| host    | Host URL of the development server (browserSync)
+| port    | Port of the development server (browserSync)
+| baseUrl | Root directory of your site
 
-### Included in every project
-- Preview server with [Browsersync](http://www.browsersync.io/)
-- Automated build process that includes: compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, compression of Javascript, and optimization of images
-- [.editorconfig](http://editorconfig.org/) for consistent coding styles within text editors
-- [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets
-- JavaScript Linting with [ESLint](http://eslint.org/)
-- ES6/2015 support out of the box using [Babel](https://babeljs.io/)
+### Main Directories
+| Setting | Description |
+| source      | Source folder for all development files (default location for [page subgenerator](https://github.com/larsonjj/generator-yeogurt#page))
+| destination | Build folder where production version of site is generated
+| temporary   | Temporary folder where development server files are generated
 
-### Available Options
+### Source Directories
+Folders relative to the `source` configured directory
 
-- Project/Site naming
-- [Less](http://lesscss.org/), [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass)), or [Stylus](http://learnboost.github.io/stylus/) for Stylesheets
-- [Browserify](http://browserify.org/) for modularizing JavaScript.
-- [Jasmine](http://jasmine.github.io/) or [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/) for JavaScript unit testing
-- [Karma](http://karma-runner.github.io/0.12/index.html) for running unit tests
-- [Jade](http://jade-lang.com/) or [Nunjucks](https://mozilla.github.io/nunjucks/) for templating
+| Setting | Description |
+| data     | Data folder where JSON files are loaded into templates
+| scripts  | Scripts folder where all `.js` files are located (main.js must be in root of this folder)
+| styles   | Styles folder where all stylesheet files are located (main stylesheet must be in root of this folder)
+| modules  | Modules folder where all reusable code should live (default location for [module subgenerator](https://github.com/larsonjj/generator-yeogurt#module))
+| layouts  | Layouts folder where all layout templates should live (default location for [layout subgenerator](https://github.com/larsonjj/generator-yeogurt#layout))
+| images   | Images folder where all `.png, jpeg, jpg, svg, gif` files should live
+
+***Default configuration:***
+
+```json
+"//": "CUSTOM CONFIGURATION",
+"config": {
+  "//": "Local Server Settings",
+  "host": "127.0.0.1",
+  "port": "9010",
+  "baseUrl": "/",
+  "//": "Gulp Task Directories",
+  "//": "NOTE: folders prefixed with an underscore (_) will have it removed when moved to build target (ex: src/_images -> build/images)",
+  "//": "NOTE: folders NOT prefixed with underscore (_) will be copied to build target 1 to 1 (ex: src/fonts -> build/fonts)",
+  "directories": {
+    "source": "src",
+    "destination": "build",
+    "temporary": "tmp",
+    "//": "Directories relative to `source` directory",
+    "modules": "_modules",
+    "layouts": "_layouts",
+    "images": "_images",
+    "styles": "_styles",
+    "scripts": "_scripts",
+    "data": "_data"
+  }
+}
+```
 
 ## Gulp Workflow
 
@@ -259,7 +322,8 @@ src/contact/index.{jade,nunjucks}
 ## Guides
 
 ### Adding third-party libraries
-Odds are that you will need to add some third party libraries to your project at some point. To do so, it is strongly recommended that you install them using [NPM](http://npmjs.com/):
+Odds are that you will need to add some third party libraries to your project at some point. 
+To do so, it is strongly recommended that you install them using [NPM](http://npmjs.com/):
 
 ```
 npm install [package name] --save
@@ -279,21 +343,33 @@ And you can access stylesheets by importing them to you chosen preprocessor like
 
 ```scss
 // SCSS
+@import 'node_modules/bootstrap/less/bootstrap';
+
+// CSS import
 @import 'node_modules/normalize.css/normalize';
 ```
 
 ```sass
 // SASS
+@import 'node_modules/bootstrap/less/bootstrap';
+
+// CSS import
 @import node_modules/normalize.css/normalize
 ```
 
 ```less
 // LESS
+@import 'node_modules/bootstrap/less/bootstrap';
+
+// CSS import
 @import (inline) 'node_modules/normalize.css/normalize.css';
 ```
 
 ```stylus
 // Stylus
+@import 'node_modules/bootstrap/less/bootstrap';
+
+// CSS import
 @import '../../node_modules/normalize.css/normalize.css';
 ```
 
@@ -307,10 +383,8 @@ Create a new file in the root of your project named `.svnignore` and give it the
 node_modules
 *.log
 build
-.grunt
-.serve
 tmp
-secrets.js
+.grunt
 .DS_Store
 .yo-rc.json
 ```
