@@ -148,7 +148,7 @@ gulp.task('sass', () => {
       includePaths: [path.join(__dirname, dirs.source, dirs.styles) ]
     }).on('error', plugins.sass.logError))
     .pipe(plugins.postcss([autoprefixer({browsers: ['last 2 version', '> 5%', 'safari 5', 'ios 6', 'android 4']})]))
-    .pipe(plugins.sourcemaps.write())
+    .pipe(plugins.sourcemaps.write('./'))
     .pipe(gulp.dest(dest))
     .pipe(browserSync.stream());
 });<% } else if (cssOption === 'less') { %>
@@ -163,7 +163,7 @@ gulp.task('less', () => {
       paths: [path.join(__dirname, dirs.source, dirs.styles)]
     }))
     .pipe(plugins.postcss([autoprefixer({browsers: ['ie >= 9']})]))
-    .pipe(plugins.sourcemaps.write())
+    .pipe(plugins.sourcemaps.write('./'))
     .pipe(gulp.dest(dest))
     .pipe(browserSync.stream());
 });<% } else if (cssOption === 'stylus') { %>
@@ -179,7 +179,7 @@ gulp.task('stylus', () => {
       'include css': true
     }))
     .pipe(plugins.postcss([autoprefixer({browsers: ['ie >= 9']})]))
-    .pipe(plugins.sourcemaps.write())
+    .pipe(plugins.sourcemaps.write('./'))
     .pipe(gulp.dest(dest))
     .pipe(browserSync.stream());
 });<% } %>
@@ -283,6 +283,7 @@ gulp.task('serve', [
     browserSync.init({
       open: open ? 'local' : false,
       startPath: config.baseUrl,
+      port: config.port || 3000,
       server: {
         baseDir: taskTarget,
         routes: (() => {

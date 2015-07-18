@@ -1,3 +1,9 @@
+### v1.0.3:
+#### date: 2015-7-17
+##### changes:
+* Fixed issue where css preprocessors had sourcemaps inline in production builds
+* Updated default port to 3000
+
 ### v1.0.2:
 #### date: 2015-7-16
 ##### changes:
