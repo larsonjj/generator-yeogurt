@@ -110,12 +110,12 @@ Once everything is installed, you will see a project structure like below:
 ├── build/                     # Folder for production build output
 ├── tmp/                       # Folder for temporary development output
 ├── src
-|   ├── _data                  # JSON files that add data to templates
+|   ├── _data                  # JSON files that add data to templates (Example, will not be generated)
 |   ├── _images                # Images
 |   ├── _layouts               # Layout structure for app
 |   |   └── base.jade
 |   ├── _modules               # Reusable modules
-|   |   └── navbar
+|   |   └── navbar             # Example module (will not be generated)
 |   |       ├── __tests__
 |   |       |   └── navbar.spec.js
 |   |       ├── navbar.jade
@@ -125,7 +125,7 @@ Once everything is installed, you will see a project structure like below:
 |   |   └── main.scss         # Main stylesheet (import everything to this file)
 |   ├── _scripts              # Global scripts, base classes, etc
 |   |   └── main.js           # Main bootstrap file
-|   ├── fonts                 # Fonts
+|   ├── fonts                 # Fonts (Example, will not be generated)
 |   ├── index.jade            # Homepage template
 |   ├── favicon.ico
 |   └── robots.txt
@@ -151,12 +151,14 @@ In the `package.json` file, within the root of the generated project, you have t
 
 ### Site
 | Setting | Description |
+|---------|-------
 | host    | Host URL of the development server (browserSync)
 | port    | Port of the development server (browserSync)
 | baseUrl | Root directory of your site
 
 ### Main Directories
 | Setting | Description |
+|---------|-------
 | source      | Source folder for all development files (default location for [page subgenerator](https://github.com/larsonjj/generator-yeogurt#page))
 | destination | Build folder where production version of site is generated
 | temporary   | Temporary folder where development server files are generated
@@ -165,6 +167,7 @@ In the `package.json` file, within the root of the generated project, you have t
 Folders relative to the `source` configured directory
 
 | Setting | Description |
+|---------|-------
 | data     | Data folder where JSON files are loaded into templates
 | scripts  | Scripts folder where all `.js` files are located (main.js must be in root of this folder)
 | styles   | Styles folder where all stylesheet files are located (main stylesheet must be in root of this folder)
