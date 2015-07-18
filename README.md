@@ -6,7 +6,7 @@
 
 A generator for creating static sites. Helps you harness the power of your favorite tools: Jade, Nunjucks, Gulp, and much more!
 
-> NOTE: If you want to create a Single Page Application using [React](http://facebook.github.io/react/) + [Reflux](https://github.com/spoike/refluxjs), [Marionette](http://marionettejs.com/), or [AngularJS](https://angularjs.org/), be sure to check out [generator-neopolitan](https://github.com/larsonjj/generator-neopolitan)
+> NOTE: If you want to create an Application using [React](http://facebook.github.io/react/) + [Reflux](https://github.com/spoike/refluxjs) + [React Router](https://github.com/rackt/react-router), be sure to check out [generator-neopolitan](https://github.com/larsonjj/generator-neopolitan)
 
 # Table of Contents
 
