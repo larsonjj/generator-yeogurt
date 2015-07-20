@@ -6,7 +6,7 @@
 
 A generator for creating static sites. Helps you harness the power of your favorite tools: Jade, Nunjucks, Gulp, and much more!
 
-> NOTE: If you want to create a Single Page Application using [React](http://facebook.github.io/react/) + [Reflux](https://github.com/spoike/refluxjs), [Marionette](http://marionettejs.com/), or [AngularJS](https://angularjs.org/), be sure to check out [generator-neopolitan](https://github.com/larsonjj/generator-neopolitan)
+> NOTE: If you want to create an Application using [React](http://facebook.github.io/react/) + [Reflux](https://github.com/spoike/refluxjs) + [React Router](https://github.com/rackt/react-router), be sure to check out [generator-neopolitan](https://github.com/larsonjj/generator-neopolitan)
 
 # Table of Contents
 
@@ -14,7 +14,6 @@ A generator for creating static sites. Helps you harness the power of your favor
 - [Features](#features)
 - [Getting Started](#getting-started)
 - [Setup](#setup)
-- [Directory Layout](#directory-layout)
 - [Gulp Workflow](#gulp-workflow)
 - [Sub-Generators](#sub-generators)
 - [Guides](#guides)
@@ -168,7 +167,7 @@ Folders relative to the `source` configured directory
 
 | Setting | Description |
 |---------|-------
-| data     | Data folder where JSON files are loaded into templates
+| [data](#data-files)     | Data folder where JSON files are loaded into templates
 | scripts  | Scripts folder where all `.js` files are located (main.js must be in root of this folder)
 | styles   | Styles folder where all stylesheet files are located (main stylesheet must be in root of this folder)
 | modules  | Modules folder where all reusable code should live (default location for [module subgenerator](https://github.com/larsonjj/generator-yeogurt#module))
@@ -374,6 +373,36 @@ And you can access stylesheets by importing them to you chosen preprocessor like
 
 // CSS import
 @import '../../node_modules/normalize.css/normalize.css';
+```
+
+### Data Files
+
+If you want to load global data into your templates (jade or nunjucks), you can add JSON files in `src/_data` folder.
+
+For example, add menu.json in `src/_data` folder:
+
+```json
+{
+  "name": "Home",
+  "link": "/",
+  "category": "Page",
+  "status": "Development"
+}
+```
+
+And it will be added to the `site.data` object so it can be used like so:
+
+```jade
+div
+  h1= site.data.menu.name
+```
+
+Which outputs to:
+
+```html
+<div>
+  <h1>Home</h1>
+</div>
 ```
 
 ### Using SVN
