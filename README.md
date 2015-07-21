@@ -345,6 +345,7 @@ And you can access stylesheets by importing them to you chosen preprocessor like
 
 ```scss
 // Using SCSS
+
 @import 'node_modules/bootstrap/less/bootstrap';
 
 // CSS import
@@ -353,6 +354,7 @@ And you can access stylesheets by importing them to you chosen preprocessor like
 
 ```sass
 // Using SASS
+
 @import 'node_modules/bootstrap/less/bootstrap';
 
 // CSS import
