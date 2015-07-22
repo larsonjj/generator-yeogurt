@@ -344,7 +344,8 @@ $(function() {
 And you can access stylesheets by importing them to you chosen preprocessor like so:
 
 ```scss
-// SCSS
+// Using SCSS
+
 @import 'node_modules/bootstrap/less/bootstrap';
 
 // CSS import
@@ -352,7 +353,8 @@ And you can access stylesheets by importing them to you chosen preprocessor like
 ```
 
 ```sass
-// SASS
+// Using SASS
+
 @import 'node_modules/bootstrap/less/bootstrap';
 
 // CSS import
@@ -360,7 +362,8 @@ And you can access stylesheets by importing them to you chosen preprocessor like
 ```
 
 ```less
-// LESS
+// Using LESS
+
 @import 'node_modules/bootstrap/less/bootstrap';
 
 // CSS import
@@ -368,8 +371,9 @@ And you can access stylesheets by importing them to you chosen preprocessor like
 ```
 
 ```stylus
-// Stylus
-@import 'node_modules/bootstrap/less/bootstrap';
+// Using Stylus
+
+@import '../../node_modules/bootstrap/less/bootstrap';
 
 // CSS import
 @import '../../node_modules/normalize.css/normalize.css';
