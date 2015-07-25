@@ -4,13 +4,12 @@
 
 # Yeogurt Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-yeogurt.png?branch=master)](https://travis-ci.org/larsonjj/generator-yeogurt) [![NPM version](https://badge.fury.io/js/generator-yeogurt.png)](http://badge.fury.io/js/generator-yeogurt) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-yeogurt/badge.png)](https://coveralls.io/r/larsonjj/generator-yeogurt)
 
-A generator for creating static sites. Helps you harness the power of your favorite tools: Jade, Nunjucks, Gulp, and much more!
+A generator for creating static sites. Helps you harness the power of your favorite tools: [Jade](http://jade-lang.com/), [Nunjucks](https://mozilla.github.io/nunjucks/), [Gulp](http://gulpjs.com), and much more!
 
 > NOTE: If you want to create an Application using [React](http://facebook.github.io/react/) + [Reflux](https://github.com/spoike/refluxjs) + [React Router](https://github.com/rackt/react-router), be sure to check out [generator-neopolitan](https://github.com/larsonjj/generator-neopolitan)
 
 # Table of Contents
 
-- [What can I create with Yeogurt?](#what-can-i-create-with-yeogurt)
 - [Features](#features)
 - [Getting Started](#getting-started)
 - [Setup](#setup)
@@ -23,11 +22,6 @@ A generator for creating static sites. Helps you harness the power of your favor
 - [Testing Generator](#testing-generator)
 - [Release History](#release-history)
 - [License](#license)
-
-## What can I create with Yeogurt?
-- Build out static sites using [Jade](http://jade-lang.com/) or [Swig](http://paularmstrong.github.io/swig/).
-
-Check out the [features](#features) section to see everything this generator has to offer.
 
 ## Features
 
