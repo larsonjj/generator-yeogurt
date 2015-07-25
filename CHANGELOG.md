@@ -1,3 +1,8 @@
+### v1.0.4:
+#### date: 2015-7-24
+##### changes:
+* Updated documentation
+
 ### v1.0.3:
 #### date: 2015-7-17
 ##### changes:
