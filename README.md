@@ -337,37 +337,41 @@ $(function() {
 
 And you can access stylesheets by importing them to you chosen preprocessor like so:
 
+**Using SCSS:**
+
 ```scss
-// Using SCSS
+// SCSS
+@import 'node_modules/bootstrap-sass-official/scss/bootstrap';
 
-@import 'node_modules/bootstrap/less/bootstrap';
-
-// CSS import
+// CSS
 @import 'node_modules/normalize.css/normalize';
 ```
 
+**Using SASS:**
+
 ```sass
-// Using SASS
+// SASS
+@import node_modules/bootstrap-sass-official/scss/bootstrap
 
-@import 'node_modules/bootstrap/less/bootstrap';
-
-// CSS import
+// CSS
 @import node_modules/normalize.css/normalize
 ```
 
-```less
-// Using LESS
+**Using LESS:**
 
+```less
+// LESS
 @import 'node_modules/bootstrap/less/bootstrap';
 
-// CSS import
+// CSS
 @import (inline) 'node_modules/normalize.css/normalize.css';
 ```
 
-```stylus
-// Using Stylus
+**Using Stylus:**
 
-@import '../../node_modules/bootstrap/less/bootstrap';
+```stylus
+// Stylus
+@import '../../node_modules/bootstrap-stylus/bootstrap';
 
 // CSS import
 @import '../../node_modules/normalize.css/normalize.css';
