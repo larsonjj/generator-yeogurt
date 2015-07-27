@@ -92,7 +92,7 @@ gulp.task('jade', () => {
         data: siteData[dirs.data]
       }
     }
-  }))
+  })).on('error', plugins.util.log)
   .pipe(plugins.htmlmin({
     collapseBooleanAttributes: true,
     conservativeCollapse: true,
@@ -124,7 +124,7 @@ gulp.task('nunjucks', () => {
       }
     }
   }))
-  .pipe(plugins.nunjucksRender())
+  .pipe(plugins.nunjucksRender()).on('error', plugins.util.log)
   .pipe(plugins.htmlmin({
     collapseBooleanAttributes: true,
     conservativeCollapse: true,
@@ -161,7 +161,7 @@ gulp.task('less', () => {
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.less({
       paths: [path.join(__dirname, dirs.source, dirs.styles)]
-    }))
+    })).on('error', plugins.util.log)
     .pipe(plugins.postcss([autoprefixer({browsers: ['ie >= 9']})]))
     .pipe(plugins.sourcemaps.write('./'))
     .pipe(gulp.dest(dest))
@@ -177,7 +177,7 @@ gulp.task('stylus', () => {
     .pipe(plugins.stylus({
       compress: true,
       'include css': true
-    }))
+    })).on('error', plugins.util.log)
     .pipe(plugins.postcss([autoprefixer({browsers: ['ie >= 9']})]))
     .pipe(plugins.sourcemaps.write('./'))
     .pipe(gulp.dest(dest))
