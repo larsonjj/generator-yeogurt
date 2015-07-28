@@ -6,7 +6,7 @@
 
 A generator for creating static sites. Helps you harness the power of your favorite tools: [Jade](http://jade-lang.com/), [Nunjucks](https://mozilla.github.io/nunjucks/), [Gulp](http://gulpjs.com), and much more!
 
-> NOTE: If you want to create an Application using [React](http://facebook.github.io/react/) + [Reflux](https://github.com/spoike/refluxjs) + [React Router](https://github.com/rackt/react-router), be sure to check out [generator-neopolitan](https://github.com/larsonjj/generator-neopolitan)
+> NOTE: If you want to create an Application using [React](http://facebook.github.io/react/), [React Router](https://github.com/rackt/react-router), and [Baobab](https://github.com/Yomguithereal/baobab), be sure to check out [generator-neopolitan](https://github.com/larsonjj/generator-neopolitan)
 
 # Table of Contents
 
@@ -31,13 +31,12 @@ A generator for creating static sites. Helps you harness the power of your favor
 - [.editorconfig](http://editorconfig.org/) for consistent coding styles within text editors
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets
 - JavaScript Linting with [ESLint](http://eslint.org/)
-- ES6/2015 support out of the box using [Babel](https://babeljs.io/)
+- ES6/2015 support out of the box using [Browserify](http://browserify.org/) with [Babel](https://babeljs.io/)
 
 ### Available Options
 
 - Project/Site naming
 - [Less](http://lesscss.org/), [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass)), or [Stylus](http://learnboost.github.io/stylus/) for Stylesheets
-- [Browserify](http://browserify.org/) for modularizing JavaScript.
 - [Jasmine](http://jasmine.github.io/) or [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/) for JavaScript unit testing
 - [Karma](http://karma-runner.github.io/0.12/index.html) for running unit tests
 - [Jade](http://jade-lang.com/) or [Nunjucks](https://mozilla.github.io/nunjucks/) for templating
@@ -337,37 +336,41 @@ $(function() {
 
 And you can access stylesheets by importing them to you chosen preprocessor like so:
 
+**Using SCSS:**
+
 ```scss
-// Using SCSS
+// SCSS
+@import 'node_modules/bootstrap-sass-official/scss/bootstrap';
 
-@import 'node_modules/bootstrap/less/bootstrap';
-
-// CSS import
+// CSS
 @import 'node_modules/normalize.css/normalize';
 ```
 
+**Using SASS:**
+
 ```sass
-// Using SASS
+// SASS
+@import node_modules/bootstrap-sass-official/scss/bootstrap
 
-@import 'node_modules/bootstrap/less/bootstrap';
-
-// CSS import
+// CSS
 @import node_modules/normalize.css/normalize
 ```
 
-```less
-// Using LESS
+**Using LESS:**
 
+```less
+// LESS
 @import 'node_modules/bootstrap/less/bootstrap';
 
-// CSS import
+// CSS
 @import (inline) 'node_modules/normalize.css/normalize.css';
 ```
 
-```stylus
-// Using Stylus
+**Using Stylus:**
 
-@import '../../node_modules/bootstrap/less/bootstrap';
+```stylus
+// Stylus
+@import '../../node_modules/bootstrap-stylus/bootstrap';
 
 // CSS import
 @import '../../node_modules/normalize.css/normalize.css';

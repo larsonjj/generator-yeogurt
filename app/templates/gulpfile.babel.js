@@ -83,6 +83,7 @@ gulp.task('jade', () => {
     '!' + path.join(__dirname, dirs.source, '{**/\_*,**/\_*/**}')
   ])
   .pipe(plugins.changed(dest))
+  .pipe(plugins.plumber())
   .pipe(plugins.jade({
     jade: jade,
     locals: {
@@ -115,6 +116,7 @@ gulp.task('nunjucks', () => {
     '!' + path.join(__dirname, dirs.source, '{**/\_*,**/\_*/**}')
   ])
   .pipe(plugins.changed(dest))
+  .pipe(plugins.plumber())
   .pipe(plugins.data({
     data: {
       config: config,
@@ -223,6 +225,16 @@ gulp.task('browserify', () => {
       require('babelify')
     ]
   }).bundle()
+    .on('error', function (err) {
+      plugins.util.log(
+        plugins.util.colors.red("Browserify compile error:"),
+        err.message,
+        '\n\n',
+        err.codeFrame.replace(' ', ''),
+        '\n'
+      );
+      this.emit('end');
+    })
     .pipe(vsource(path.basename('main.js')))
     .pipe(buffer())
     .pipe(plugins.sourcemaps.init({loadMaps: true}))
