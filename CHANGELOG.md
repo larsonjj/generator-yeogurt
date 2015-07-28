@@ -1,7 +1,7 @@
 ### v1.0.5:
 #### date: 2015-7-29
 ##### changes:
-* Fixed exiting out of gulp.watch on error for Jade, Nunjucks, Land Browserify
+* Fixed exiting out of gulp.watch on error for Jade, Nunjucks, and Browserify
 
 ### v1.0.4:
 #### date: 2015-7-24
