@@ -14,6 +14,8 @@ import buffer from 'vinyl-buffer';
 import es from 'event-stream';
 import glob from 'glob';
 import browserify from 'browserify';
+import envify from 'envify';
+import babelify from 'babelify';
 import gulpif from 'gulp-if';<% if (htmlOption === 'jade') { %>
 import jade from 'jade';<% } %>
 
@@ -215,22 +217,38 @@ gulp.task('imagemin', () => {
     .pipe(gulp.dest(dest));
 });
 
-gulp.task('browserify', () => {
-  let dest = path.join(__dirname, taskTarget, dirs.scripts.replace(/^_/, ''));
-  browserify(
-    path.join(__dirname, dirs.source, dirs.scripts, '/main.<%if (jsFramework === 'react') { %>jsx<% } else { %>js<% } %>'), {
-    debug: true,
-    transform: [
-      require('envify'),
-      require('babelify')
-    ]
-  }).bundle()
+// Browserify Task
+
+// Options
+let customOpts = {
+  entries: [path.join(__dirname, dirs.source, 'index.js')],
+  debug: true,
+  transform: [
+    envify,   // Sets NODE_ENV for better optimization of npm packages
+    babelify, // Enable ES6 features
+    resolvify // Enable module resolving for custom folders
+  ]
+}
+
+// Setup browserify
+let b = browserify(customOpts);
+
+if (!production) {
+  // Setup Watchify for faster builds
+  let opts = _.assign({}, watchify.args, customOpts);
+  b = watchify(browserify(opts));
+}
+
+let browserifyTask = function() {
+  let dest = path.join(__dirname, taskTarget);
+
+  return b.bundle()
     .on('error', function (err) {
       plugins.util.log(
         plugins.util.colors.red("Browserify compile error:"),
         err.message,
         '\n\n',
-        err.codeFrame.replace(' ', ''),
+        err.codeFrame,
         '\n'
       );
       this.emit('end');
@@ -242,7 +260,12 @@ gulp.task('browserify', () => {
       .on('error', plugins.util.log)
     .pipe(plugins.sourcemaps.write('./'))
     .pipe(gulp.dest(dest));
-});
+};
+
+b.on('update', browserifyTask); // on any dep update, runs the bundler
+b.on('log', plugins.util.log); // output build logs to terminal
+
+gulp.task('browserify', browserifyTask);
 
 // Clean
 gulp.task('clean', del.bind(null, [
