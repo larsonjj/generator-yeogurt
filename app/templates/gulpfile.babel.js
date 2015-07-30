@@ -14,6 +14,10 @@ import buffer from 'vinyl-buffer';
 import es from 'event-stream';
 import glob from 'glob';
 import browserify from 'browserify';
+import watchify from 'watchify';
+import envify from 'envify';
+import babelify from 'babelify';
+import _ from 'lodash';
 import gulpif from 'gulp-if';<% if (htmlOption === 'jade') { %>
 import jade from 'jade';<% } %>
 
@@ -101,8 +105,7 @@ gulp.task('jade', () => {
     removeEmptyAttributes: true,
     removeRedundantAttributes: true
   }))
-  .pipe(gulp.dest(dest))
-  .pipe(browserSync.stream());
+  .pipe(gulp.dest(dest));
 });<% } else if (htmlOption === 'nunjucks') { %>
 // Nunjucks template compile
 gulp.task('nunjucks', () => {
@@ -134,8 +137,7 @@ gulp.task('nunjucks', () => {
     removeEmptyAttributes: true,
     removeRedundantAttributes: true
   }))
-  .pipe(gulp.dest(dest))
-  .pipe(browserSync.stream());
+  .pipe(gulp.dest(dest));
 });<% } %>
 <% if (cssOption === 'sass') { %>
 // Sass compilation
@@ -215,22 +217,37 @@ gulp.task('imagemin', () => {
     .pipe(gulp.dest(dest));
 });
 
-gulp.task('browserify', () => {
+// Browserify Task
+
+// Options
+let customOpts = {
+  entries: [path.join(__dirname, dirs.source, dirs.scripts, 'main.js')],
+  debug: true,
+  transform: [
+    envify,  // Sets NODE_ENV for better optimization of npm packages
+    babelify // Enable ES6 features
+  ]
+}
+
+// Setup browserify
+let b = browserify(customOpts);
+
+if (!production) {
+  // Setup Watchify for faster builds
+  let opts = _.assign({}, watchify.args, customOpts);
+  b = watchify(browserify(opts));
+}
+
+let browserifyTask = function() {
   let dest = path.join(__dirname, taskTarget, dirs.scripts.replace(/^_/, ''));
-  browserify(
-    path.join(__dirname, dirs.source, dirs.scripts, '/main.<%if (jsFramework === 'react') { %>jsx<% } else { %>js<% } %>'), {
-    debug: true,
-    transform: [
-      require('envify'),
-      require('babelify')
-    ]
-  }).bundle()
+
+  return b.bundle()
     .on('error', function (err) {
       plugins.util.log(
         plugins.util.colors.red("Browserify compile error:"),
         err.message,
         '\n\n',
-        err.codeFrame.replace(' ', ''),
+        err.codeFrame,
         '\n'
       );
       this.emit('end');
@@ -242,7 +259,12 @@ gulp.task('browserify', () => {
       .on('error', plugins.util.log)
     .pipe(plugins.sourcemaps.write('./'))
     .pipe(gulp.dest(dest));
-});
+};
+
+b.on('update', browserifyTask); // on any dep update, runs the bundler
+b.on('log', plugins.util.log); // output build logs to terminal
+
+gulp.task('browserify', browserifyTask);
 
 // Clean
 gulp.task('clean', del.bind(null, [
@@ -343,11 +365,6 @@ gulp.task('serve', [
         '!' + path.join(__dirname, dirs.source, '**/*.nunjucks')<% } else if (htmlOption === 'jade') { %>,
         '!' + path.join(__dirname, dirs.source, '**/*.jade')<% } %>
       ], ['copy']);
-
-      // Scripts
-      gulp.watch([
-        path.join(__dirname, dirs.source, '**/*.js')
-      ], ['browserify']);
 
       // Images
       gulp.watch([

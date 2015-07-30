@@ -2,7 +2,7 @@
 
 import <%= _.classify(name) %> from '../<%= _.slugify(name.toLowerCase()) %>';
 
-describe('<%= _.classify(name) %> View', () =>
+describe('<%= _.classify(name) %> View', function() {
 
   beforeEach(() => {
     this.<%= _.camelize(name) %> = new <%= _.classify(name) %>();

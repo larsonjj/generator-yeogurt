@@ -22,7 +22,8 @@ describe('Yeogurt generator testing', function() {
   describe('With unit tests', function() {
     it('Creates expected files', function(done) {
       var expected = [
-        'karma.conf.js'
+        'karma.conf.js',
+        'phantomjs-shims.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -41,7 +42,7 @@ describe('Yeogurt generator testing', function() {
     it('Does not create certain files', function(done) {
       var notExpected = [
         'karma.conf.js',
-        'grunt/config/test/karma.js'
+        'phantomjs-shims.js'
       ];
 
       helpers.mockPrompt(this.app, {

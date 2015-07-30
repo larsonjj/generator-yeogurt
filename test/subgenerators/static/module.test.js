@@ -30,14 +30,14 @@ describe('Static Site module sub-generator', function() {
             var module = 'mymodule';
 
             var filesToTest = [
-              'src/_modules/' + module + '/tests/' + module + '.spec.js',
+              'src/_modules/' + module + '/tests/' + module + '.test.js',
               'src/_modules/' + module + '/' + module + '.js',
               'src/_modules/' + module + '/' + module + '.jade',
               'src/_modules/' + module + '/' + module + '.sass'
             ];
             var fileContentToTest = [
               ['src/_modules/' + module + '/' + module + '.js', /export/i],
-              ['src/_modules/' + module + '/tests/' + module + '.spec.js', /describe/i]
+              ['src/_modules/' + module + '/tests/' + module + '.test.js', /describe/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -64,14 +64,14 @@ describe('Static Site module sub-generator', function() {
             var module = 'mymodule';
 
             var filesToTest = [
-              'src/_modules/atoms/' + module + '/tests/' + module + '.spec.js',
+              'src/_modules/atoms/' + module + '/tests/' + module + '.test.js',
               'src/_modules/atoms/' + module + '/' + module + '.js',
               'src/_modules/atoms/' + module + '/' + module + '.jade',
               'src/_modules/atoms/' + module + '/' + module + '.sass'
             ];
             var fileContentToTest = [
               ['src/_modules/atoms/' + module + '/' + module + '.js', /export/i],
-              ['src/_modules/atoms/' + module + '/tests/' + module + '.spec.js', /describe/i]
+              ['src/_modules/atoms/' + module + '/tests/' + module + '.test.js', /describe/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -108,14 +108,14 @@ describe('Static Site module sub-generator', function() {
             var module = 'mymodule';
 
             var filesToTest = [
-              'src/_modules/' + module + '/tests/' + module + '.spec.js',
+              'src/_modules/' + module + '/tests/' + module + '.test.js',
               'src/_modules/' + module + '/' + module + '.js',
               'src/_modules/' + module + '/' + module + '.nunjucks',
               'src/_modules/' + module + '/' + module + '.sass'
             ];
             var fileContentToTest = [
               ['src/_modules/' + module + '/' + module + '.js', /export/i],
-              ['src/_modules/' + module + '/tests/' + module + '.spec.js', /describe/i]
+              ['src/_modules/' + module + '/tests/' + module + '.test.js', /describe/i]
             ];
 
             helpers.mockPrompt(this.app, {

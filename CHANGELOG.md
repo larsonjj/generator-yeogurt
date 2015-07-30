@@ -1,5 +1,13 @@
+### v1.0.6:
+#### date: 2015-7-30
+##### changes:
+* Added watchify to browserify task for faster rebuilds of JS
+* Changed *.spec files to *.test
+* Fixed unit test error with module subgenerator unit test files
+* Updated Karma to use phantomjs so there is no longer a hard dependency on Chrome
+
 ### v1.0.5:
-#### date: 2015-7-29
+#### date: 2015-7-28
 ##### changes:
 * Fixed exiting out of gulp.watch on error for Jade, Nunjucks, and Browserify
 
