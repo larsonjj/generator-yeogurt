@@ -112,7 +112,7 @@ ModuleGenerator.prototype.files = function files() {
     this.template('module.nunjucks', this.moduleFile + '.nunjucks');
     this.template('module.js', this.moduleFile + '.js');
     if (this.testFramework !== 'none') {
-      this.template('module.spec.js', this.testFile + '.spec.js');
+      this.template('module.test.js', this.testFile + '.test.js');
     }
   }
 
