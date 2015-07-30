@@ -5,7 +5,7 @@ var path = require('path');
 var pjson = require('./package.json');
 var config = pjson.config;
 var dirs = config.directories;
-var testFiles = path.join(__dirname, dirs.source, '**/*.spec.{js,jsx}');
+var testFiles = path.join(__dirname, dirs.source, '**/*.test.js');
 var preprocessors = {};
 preprocessors[testFiles] = ['browserify'];
 
@@ -18,7 +18,10 @@ var karmaConf = function(config) {
     frameworks: ['browserify'<% if (testFramework === 'jasmine') { %>, 'jasmine'<% } else if (testFramework === 'mocha') { %>, 'mocha', 'chai'<% } %>],
 
     // list of files / patterns to load in the browser
-    files: [testFiles],
+    files: [
+      './phantomjs-shims.js',
+      testFiles
+    ],
 
     // list of files to exclude
     exclude: [],
@@ -65,7 +68,7 @@ var karmaConf = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
     // If browser does not capture in given timeout [ms], kill it
     captureTimeout: 60000,

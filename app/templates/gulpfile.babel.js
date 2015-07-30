@@ -14,8 +14,10 @@ import buffer from 'vinyl-buffer';
 import es from 'event-stream';
 import glob from 'glob';
 import browserify from 'browserify';
+import watchify from 'watchify';
 import envify from 'envify';
 import babelify from 'babelify';
+import _ from 'lodash';
 import gulpif from 'gulp-if';<% if (htmlOption === 'jade') { %>
 import jade from 'jade';<% } %>
 
@@ -103,8 +105,7 @@ gulp.task('jade', () => {
     removeEmptyAttributes: true,
     removeRedundantAttributes: true
   }))
-  .pipe(gulp.dest(dest))
-  .pipe(browserSync.stream());
+  .pipe(gulp.dest(dest));
 });<% } else if (htmlOption === 'nunjucks') { %>
 // Nunjucks template compile
 gulp.task('nunjucks', () => {
@@ -136,8 +137,7 @@ gulp.task('nunjucks', () => {
     removeEmptyAttributes: true,
     removeRedundantAttributes: true
   }))
-  .pipe(gulp.dest(dest))
-  .pipe(browserSync.stream());
+  .pipe(gulp.dest(dest));
 });<% } %>
 <% if (cssOption === 'sass') { %>
 // Sass compilation
@@ -221,12 +221,11 @@ gulp.task('imagemin', () => {
 
 // Options
 let customOpts = {
-  entries: [path.join(__dirname, dirs.source, 'index.js')],
+  entries: [path.join(__dirname, dirs.source, dirs.scripts, 'main.js')],
   debug: true,
   transform: [
-    envify,   // Sets NODE_ENV for better optimization of npm packages
-    babelify, // Enable ES6 features
-    resolvify // Enable module resolving for custom folders
+    envify,  // Sets NODE_ENV for better optimization of npm packages
+    babelify // Enable ES6 features
   ]
 }
 
@@ -240,7 +239,7 @@ if (!production) {
 }
 
 let browserifyTask = function() {
-  let dest = path.join(__dirname, taskTarget);
+  let dest = path.join(__dirname, taskTarget, dirs.scripts.replace(/^_/, ''));
 
   return b.bundle()
     .on('error', function (err) {
@@ -366,11 +365,6 @@ gulp.task('serve', [
         '!' + path.join(__dirname, dirs.source, '**/*.nunjucks')<% } else if (htmlOption === 'jade') { %>,
         '!' + path.join(__dirname, dirs.source, '**/*.jade')<% } %>
       ], ['copy']);
-
-      // Scripts
-      gulp.watch([
-        path.join(__dirname, dirs.source, '**/*.js')
-      ], ['browserify']);
 
       // Images
       gulp.watch([
