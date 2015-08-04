@@ -335,13 +335,16 @@ gulp.task('serve', [
 <% if (cssOption === 'sass') { %>
       // Styles
       gulp.watch([
-        path.join(__dirname, dirs.source, dirs.styles, '**/*.{scss,sass}')
+        path.join(__dirname, dirs.source, dirs.styles, '**/*.{scss,sass}'),
+        path.join(__dirname, dirs.source, dirs.modules, '**/*.{scss,sass}')
       ], ['sass']);<% } else if (cssOption === 'less') { %>
       gulp.watch([
-        path.join(__dirname, dirs.source, dirs.styles, '**/*.less')
+        path.join(__dirname, dirs.source, dirs.styles, '**/*.less'),
+        path.join(__dirname, dirs.source, dirs.modules, '**/*.less'),
       ], ['less']);<% } else if (cssOption === 'stylus') { %>
       gulp.watch([
-        path.join(__dirname, dirs.source, dirs.styles, '**/*.styl')
+        path.join(__dirname, dirs.source, dirs.styles, '**/*.styl'),
+        path.join(__dirname, dirs.source, dirs.modules, '**/*.styl')
       ], ['stylus']);
       <% } %><% if (htmlOption === 'jade') { %>
 
