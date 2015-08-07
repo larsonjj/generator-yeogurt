@@ -1,3 +1,11 @@
+### v1.0.7:
+#### date: 2015-8-07
+##### changes:
+* Fixed production build for browserify
+* Fixed gulp.watch for module stylesheets
+* Added dependencies to remove npm v3 warnings
+* Moved babelify to devDependencies
+
 ### v1.0.6:
 #### date: 2015-7-30
 ##### changes:
