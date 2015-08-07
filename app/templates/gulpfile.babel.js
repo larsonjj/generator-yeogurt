@@ -23,8 +23,7 @@ import jade from 'jade';<% } %>
 
 // Load all gulp plugins based on their names
 // EX: gulp-copy -> copy
-const plugins = gulpLoadPlugins();
-<% if (testFramework !== 'none') { %>
+const plugins = gulpLoadPlugins();<% if (testFramework !== 'none') { %>
 // Create karma server
 const karma = require('karma').server;<% } %>
 
@@ -261,8 +260,10 @@ let browserifyTask = function() {
     .pipe(gulp.dest(dest));
 };
 
-b.on('update', browserifyTask); // on any dep update, runs the bundler
-b.on('log', plugins.util.log); // output build logs to terminal
+if (!production) {
+  b.on('update', browserifyTask); // on any dep update, runs the bundler
+  b.on('log', plugins.util.log); // output build logs to terminal
+}
 
 gulp.task('browserify', browserifyTask);
 
