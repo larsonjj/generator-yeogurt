@@ -419,7 +419,6 @@ build
 tmp
 .grunt
 .DS_Store
-.yo-rc.json
 ```
 
 #### Step 2
