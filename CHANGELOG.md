@@ -1,3 +1,8 @@
+### v1.0.8:
+#### date: 2015-8-07
+##### changes:
+* No longer ignore `.yo-rc.json` as it is needed for sub-generators
+
 ### v1.0.7:
 #### date: 2015-8-07
 ##### changes:
