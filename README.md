@@ -60,7 +60,7 @@ Once you have Node installed, make sure you have these tools by opening up a ter
 
 | Command  | Response
 |---------- |:---------:
-| `yo -v`  | at or above `v1.2.1`
+| `yo --version`  | at or above `v1.2.1`
 | `gulp -v` | `gulp-cli` at or above `v0.3.9`
 
 If you get any errors and/or you're version(s) are too low, you should run `npm install -g yo gulp`. 
