@@ -1,23 +1,28 @@
 'use strict';
 
+import fs from 'fs';
 import path from 'path';
 import foldero from 'foldero';
 import jade from 'jade';
 
 export default function(gulp, plugins, args, config, taskTarget) {
   var dirs = config.directories;
-  let dest = path.join(__dirname, taskTarget);
-  // Convert directory to JS Object
-  var siteData = foldero(path.join(dirs.source, dirs.data), {
-    relative: path.join(__dirname, '../'),
-    recurse: true
-  });
+  let dest = path.join(taskTarget);
+  let dataPath = path.join(dirs.source, dirs.data);
+  var siteData = {};
+  if (fs.existsSync(dataPath)) {
+    // Convert directory to JS Object
+    siteData = foldero(dataPath, {
+      relative: path.join('../'),
+      recurse: true
+    });
+  }
 
   // Jade template compile
   gulp.task('jade', () => {
     return gulp.src([
-      path.join(__dirname, dirs.source, '**/*.jade'),
-      '!' + path.join(__dirname, dirs.source, '{**/\_*,**/\_*/**}')
+      path.join(dirs.source, '**/*.jade'),
+      '!' + path.join(dirs.source, '{**/\_*,**/\_*/**}')
     ])
     .pipe(plugins.changed(dest))
     .pipe(plugins.plumber())

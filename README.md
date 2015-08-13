@@ -4,7 +4,7 @@
 
 # Yeogurt Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-yeogurt.png?branch=master)](https://travis-ci.org/larsonjj/generator-yeogurt) [![NPM version](https://badge.fury.io/js/generator-yeogurt.png)](http://badge.fury.io/js/generator-yeogurt) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-yeogurt/badge.png)](https://coveralls.io/r/larsonjj/generator-yeogurt)
 
-A generator for creating static sites. Helps you harness the power of your favorite tools: [Jade](http://jade-lang.com/), [Nunjucks](https://mozilla.github.io/nunjucks/), [Gulp](http://gulpjs.com), and much more!
+A generator for creating static sites. Helps you harness the power of your favorite tools: [Jade](http://jade-lang.com/) or [Nunjucks](https://mozilla.github.io/nunjucks/), [Gulp](http://gulpjs.com), ES6/2015, and much more!
 
 > NOTE: If you want to create an Application using [React](http://facebook.github.io/react/), [React Router](https://github.com/rackt/react-router), and [Baobab](https://github.com/Yomguithereal/baobab), be sure to check out [generator-neopolitan](https://github.com/larsonjj/generator-neopolitan)
 

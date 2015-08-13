@@ -14,7 +14,7 @@ import gulpif from 'gulp-if';
 export default function(gulp, plugins, args, config, taskTarget) {
   var dirs = config.directories;
   var entries = config.entries;
-  let dest = path.join(__dirname, taskTarget, dirs.scripts.replace(/^_/, ''));
+  let dest = path.join(taskTarget, dirs.scripts.replace(/^_/, ''));
 
   // Browserify Task
   let browserifyTask = function(entry) {
@@ -72,7 +72,7 @@ export default function(gulp, plugins, args, config, taskTarget) {
   };
 
   gulp.task('browserify', function(done) {
-    return glob(path.join(__dirname, dirs.source, dirs.scripts, entries.js), function(err, files) {
+    return glob(path.join(dirs.source, dirs.scripts, entries.js), {realpath: true}, function(err, files) {
       if (err) {
         done(err);
       }

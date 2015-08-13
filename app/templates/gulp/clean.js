@@ -8,7 +8,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
 
   // Clean
   gulp.task('clean', del.bind(null, [
-    path.join(__dirname, dirs.temporary),
-    path.join(__dirname, dirs.destination)
+    path.join(dirs.temporary),
+    path.join(dirs.destination)
   ]));
 }
