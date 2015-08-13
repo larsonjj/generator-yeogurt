@@ -1,3 +1,10 @@
+### v1.1.0:
+#### date: 2015-8-13
+##### changes:
+* Added `entries` data to `package.json` that allows users to configure what browserify and stylesheet preprocessors look for. This can be used to create multiple `.js` bundles and `.css` files
+* Updated browserify, browserSync, and gulp.watch tasks to play better together and run in parallel. (Should improve dev server bootup)
+* Added documentation on how to add a [custom dashboard](https://github.com/larsonjj/yeogurt-dashboard-example)
+
 ### v1.0.8:
 #### date: 2015-8-07
 ##### changes:

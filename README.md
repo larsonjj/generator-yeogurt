@@ -167,6 +167,17 @@ Folders relative to the `source` configured directory
 | layouts  | Layouts folder where all layout templates should live (default location for [layout subgenerator](https://github.com/larsonjj/generator-yeogurt#layout))
 | images   | Images folder where all `.png, jpeg, jpg, svg, gif` files should live
 
+
+### Entry files
+Files that should be searched for and created by build tasks.
+File strings and [Globs](https://github.com/isaacs/node-glob) can be used to process desired file(s).
+Ex: `main**.js` will process all files that start with `main` and end with `.js`
+
+| Setting | Description |
+|---------|-------
+| js     | Tells browserify what file(s) to bundle and generate at your desired build target
+| css  | Tells your stylesheet preprocessor (Sass, Less, etc) what file(s) to generate at your desired build target
+
 ***Default configuration:***
 
 ```json
@@ -190,6 +201,11 @@ Folders relative to the `source` configured directory
     "styles": "_styles",
     "scripts": "_scripts",
     "data": "_data"
+  },
+  "//": "Entry files",
+  "entries": {
+    "js": "main**.js",
+    "css": "main**.{scss,sass,styl,less}"
   }
 }
 ```
@@ -405,6 +421,14 @@ Which outputs to:
   <h1>Home</h1>
 </div>
 ```
+
+### Creating a dashboard
+
+Using data files, you can build a nice dashboard for your pages and modules.
+You can add an example dashboard to your Yeogurt project by going to this [Dashboard Example](https://github.com/larsonjj/yeogurt-dashboard-example) repository
+and following the instructions in the README.md.
+
+> NOTE: Example dashboard only works with Jaee currently
 
 ### Using SVN
 If you plan on using SVN instead of Git, you will want to setup some default ignores to make sure you aren't committing extraneous/generated files to your codebase. To do this, adhere to the following steps:
