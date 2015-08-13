@@ -1,3 +1,10 @@
+### v1.2.0:
+#### date: 2015-8-13
+##### changes:
+* Removed `_data` folder parsing logic in favor of the `foldero` npm package. Cleans up gulpfile.
+* Moved gulp tasks into their own files to increase readability
+* Added more information to generated README.md file to show generator version and technologies chosen
+
 ### v1.1.0:
 #### date: 2015-8-13
 ##### changes:
