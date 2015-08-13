@@ -406,6 +406,12 @@ Which outputs to:
 </div>
 ```
 
+### Creating a dashboard
+
+Using data files, you can build a nice dashboard for your pages and modules.
+You can add an example dashboard to your Yeogurt project by going to this [Dashboard Example](https://github.com/larsonjj/yeogurt-dashboard-example) repository
+and following the instructions in the README.md.
+
 ### Using SVN
 If you plan on using SVN instead of Git, you will want to setup some default ignores to make sure you aren't committing extraneous/generated files to your codebase. To do this, adhere to the following steps:
 
