@@ -315,7 +315,7 @@ Produces:
 src/_layouts/one-col.{jade,nunjucks}
 ```
 
-#### Example #2: Specifying a layout
+#### Example #2: Specifying a layout to extend from
 
 ```
 $ yo yeogurt:page contact --layout=one-col

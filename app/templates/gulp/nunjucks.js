@@ -3,6 +3,7 @@
 import fs from 'fs';
 import path from 'path';
 import foldero from 'foldero';
+import nunjucks from 'gulp-nunjucks-html';
 
 export default function(gulp, plugins, args, config, taskTarget) {
   var dirs = config.directories;
@@ -16,10 +17,6 @@ export default function(gulp, plugins, args, config, taskTarget) {
       recurse: true
     });
   }
-
-  // Configure lookup path for nunjucks templates
-  plugins.nunjucksRender.nunjucks.configure([path.join(dirs.source)], {watch: false});
-
   // Nunjucks template compile
   gulp.task('nunjucks', () => {
     return gulp.src([
@@ -37,7 +34,11 @@ export default function(gulp, plugins, args, config, taskTarget) {
         }
       }
     }))
-    .pipe(plugins.nunjucksRender())
+    .pipe(nunjucks({
+      searchPaths: [path.join(dirs.source)]
+    }).on('error', function(err) {
+      plugins.util.log(err);
+    }))
     .pipe(plugins.htmlmin({
       collapseBooleanAttributes: true,
       conservativeCollapse: true,

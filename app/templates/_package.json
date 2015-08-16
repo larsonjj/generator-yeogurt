@@ -31,7 +31,7 @@
     "gulp-jade": "~1.0.1",
     "jade": "~1.11.0",<% } %><% if (htmlOption === 'nunjucks') { %>
     "nunjucks": "~1.3.4",
-    "gulp-nunjucks-render": "~0.2.1",<% } %>
+    "gulp-nunjucks-html": "~1.2.2",<% } %>
     "gulp-postcss": "~5.1.8",
     "autoprefixer-core": "~5.2.0",
     "gulp-htmlmin": "~1.1.3",

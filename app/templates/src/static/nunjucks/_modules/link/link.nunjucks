@@ -1,0 +1,20 @@
+{% macro content(config) %}
+
+{% set _config = config or {} %}
+{% set _id = config.id or '' %}
+{% set _classes = config.classes or '' %}
+{% set _href = config.href or '#' %}
+{% set _target = config.target or '_self' %}
+{% set _rel = config.rel or 'void' %}
+{% set _text = config.text or 'Default Link' %}
+
+<a
+  id="{{_id}}"
+  class="link {{_classes}}"
+  href="{{_href}}"
+  target="{{_target}}"
+  rel="{{_rel}}"
+>
+{{_text}}
+</a>
+{% endmacro %}
