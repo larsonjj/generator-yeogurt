@@ -35,7 +35,8 @@ export default function(gulp, plugins, args, config, taskTarget) {
       }
     }))
     .pipe(nunjucks({
-      searchPaths: [path.join(dirs.source)]
+      searchPaths: [path.join(dirs.source)],
+      ext: 'html'
     }).on('error', function(err) {
       plugins.util.log(err);
     }))

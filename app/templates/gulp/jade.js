@@ -28,6 +28,7 @@ export default function(gulp, plugins, args, config, taskTarget) {
     .pipe(plugins.plumber())
     .pipe(plugins.jade({
       jade: jade,
+      pretty: true,
       locals: {
         config: config,
         debug: true,
