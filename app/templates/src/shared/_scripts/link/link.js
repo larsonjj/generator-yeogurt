@@ -2,6 +2,6 @@
 
 export default class Link {
   constructor() {
-    console.log('link module');
+    console.log('Link module');
   }
 }
