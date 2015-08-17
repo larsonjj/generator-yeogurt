@@ -54,7 +54,7 @@ h1= site.data.global.siteName //- Sample
 ul.menu
   each val in site.data.menu
     li= val //- Home, About
-```<% } else if (htmlOption) { %>
+```<% } else if (htmlOption === 'nunjucks') { %>
 ```nunjucks
 <h1>{{site.data.global.siteName}}</h1> <!-- Sample -->
 <ul class="menu">

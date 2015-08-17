@@ -1,10 +1,10 @@
 ### v1.2.0:
-#### date: 2015-8-13
+#### date: 2015-8-17
 ##### changes:
 * Removed `_data` folder parsing logic in favor of the `foldero` npm package. Cleans up gulpfile.
 * Moved gulp tasks into their own files to increase readability
 * Added more information to generated README.md file to show generator version and technologies chosen
-* Added README files to _modules and _data folders to give more instruction on what goes into those folders
+* Added README files to src folders to give more instruction on what goes into those folders
 * Added more information on how use bower and shim third-party dependencies for browserify
 * Added `--atomic` option to the module sub-generaator for those who want to use [atomic design](http://patternlab.io/about.html).
 * Added Link module to every generated project to serve as an example of how modules should be created.

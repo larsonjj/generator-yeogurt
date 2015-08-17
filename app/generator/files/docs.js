@@ -11,6 +11,7 @@ var docFiles = function docFiles() {
   this.template('src/shared/_scripts/README.md', 'src/_scripts/README.md');
   this.template('src/shared/_styles/README.md', 'src/_styles/README.md');
   this.template('src/shared/_images/README.md', 'src/_images/README.md');
+  this.template('src/shared/README.md', 'src/README.md');
 };
 
 module.exports = docFiles;
