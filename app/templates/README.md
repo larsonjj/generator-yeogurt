@@ -11,7 +11,7 @@ Describe your site/app here.
 ## Technologies used
 
 JavaScript
-- [Browserify](http://browserify.org/)
+- [Browserify](http://browserify.org/) with ES6/2015 support through [Babel](https://babeljs.io/)
 - [Node](https://nodejs.org/<% if (testFramework === 'jasmine' || testFramework === 'mocha') { %>
 
 Testing
@@ -53,11 +53,10 @@ The tasks are as follows:
 
 `gulp serve`: Compiles preprocessors and boots up development server
 `gulp serve --open`: Same as `gulp serve` but will also open up site/app in your default browser
-`gulp serve --production`: Same as `gulp serve` but will run all production tasks so you can view the site/app in it's final optimized form.
+`gulp serve --production`: Same as `gulp serve` but will run all production tasks so you can view the site/app in it's final optimized form
 
-`gulp`: Same as `gulp serve`, but will not start up development server
-`gulp --production`: Same as `gulp serve --production` but will not boot up production server<% if (testFramework === 'jasmine' || testFramework === 'mocha') { %>
+`gulp`: Same as `gulp serve`, but will also run `gulp test` and not start up development server
+`gulp --production`: Same as `gulp serve --production` also run `gulp test` and  not boot up production server
 
-`gulp test`: Runs all `*.test.js` file unit tests through [Karma](http://karma-runner.github.io/0.13/index.html) and <% if (testFramework === 'jasmine') { %>Jasmine<% } else if (testFramework === 'mocha') { %>Mocha + Chai<% } %>
-`gulp test --watch`: Same as `gulp test` but will constantly watch `*.test.js` files and rerun tests when changes are detected.
-<% } %>
+`gulp test`: Lints all `*.js` file in the `source` folder using eslint<% if (testFramework === 'jasmine' || testFramework === 'mocha') { %> and runs all `*.test.js` file unit tests through [Karma](http://karma-runner.github.io/0.13/index.html) and <% if (testFramework === 'jasmine') { %>Jasmine<% } else if (testFramework === 'mocha') { %>Mocha + Chai<% } %>
+`gulp test --watch`: Same as `gulp test` but will constantly watch `*.test.js` files and rerun tests when changes are detected<% } %>

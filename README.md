@@ -354,12 +354,11 @@ src/contact/index.{jade,nunjucks}
 Odds are that you will need to add some third party libraries to your project at some point. 
 To do so, it is strongly recommended that you install them using [NPM](http://npmjs.com/):
 
-
-#### Scripts
-
 ```
 npm install [package name] --save
 ```
+
+#### Scripts
 
 Once installed, you can access scripts within your JavaScript files like so:
 
@@ -432,7 +431,7 @@ npm install --save-dev browserify-shim
 
 Once it is installed, you will need to add it to your `gulp/browserify` task configuration like so:
 
-```
+```js
 import browserifyShim from 'browserify-shim';
 
 ...
@@ -475,7 +474,7 @@ Add the following to your `package.json` file:
 
 Now you can include your desired module/lib within your `src/_scripts/main.js` file:
 
-```
+```js
 import 'slick-carousel';
 
 ...
@@ -498,7 +497,7 @@ npm install -g bower
 Create a `bower.json` file within the root directory of your generated project
 with the following contents:
 
-```
+```json
 {
   "name": "Sample",
   "version": "0.0.1",

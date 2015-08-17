@@ -1,4 +1,6 @@
-import path from 'path';
+'use strict';
+<% if (testFramework === 'mocha' || testFramework === 'jasmine') { %>
+import path from 'path';<% } %>
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSyncLib from 'browser-sync';
