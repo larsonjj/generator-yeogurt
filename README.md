@@ -99,6 +99,7 @@ You will need to run `npm install` in your project's root directory in order to 
 Once everything is installed, you will see a project structure like below:
 
 ```
+├── gulp/                      # Folder for gulp tasks
 ├── build/                     # Folder for production build output
 ├── tmp/                       # Folder for temporary development output
 ├── src
