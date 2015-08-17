@@ -16,7 +16,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
       .pipe(plugins.less({
         paths: [path.join(dirs.source, dirs.styles)]
       }))
-      .pipe(plugins.postcss([autoprefixer({browsers: ['ie >= 9']})]))
+      .pipe(plugins.postcss([autoprefixer({browsers: ['last 2 version', '> 5%', 'safari 5', 'ios 6', 'android 4']})]))
       .pipe(plugins.sourcemaps.write('./'))
       .pipe(gulp.dest(dest))
       .pipe(browserSync.stream());
