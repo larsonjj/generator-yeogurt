@@ -12,16 +12,16 @@ Describe your site/app here.
 
 JavaScript
 - [Browserify](http://browserify.org/) with ES6/2015 support through [Babel](https://babeljs.io/)
-- [Node](https://nodejs.org/<% if (testFramework === 'jasmine' || testFramework === 'mocha') { %>
+- [Node](https://nodejs.org/)<% if (testFramework === 'jasmine' || testFramework === 'mocha') { %>
 
 Testing
-- [Karma](http://karma-runner.github.io/0.13/index.html<% if (testFramework === 'jasmine') { %>
-- [Jasmine](http://jasmine.github.io/<% } else if (testFramework === 'mocha') { %>
+- [Karma](http://karma-runner.github.io/0.13/index.html)<% if (testFramework === 'jasmine') { %>
+- [Jasmine](http://jasmine.github.io/)<% } else if (testFramework === 'mocha') { %>
 - [Mocha](http://mochajs.org/)<% } %><% } %>
 
 Styles<% if (cssOption === 'sass') { %>
 - [Sass](http://sass-lang.com/) via ([node-sass](https://github.com/sass/node-sass))<% } else if (cssOption === 'less') { %>
-- [Less](http://lesscss.org/<% } else if (cssOption === 'stylus') { %>
+- [Less](http://lesscss.org/)<% } else if (cssOption === 'stylus') { %>
 - [Stylus](https://learnboost.github.io/stylus/)<% } %>
 
 Markup<% if (htmlOption === 'jade') { %>
