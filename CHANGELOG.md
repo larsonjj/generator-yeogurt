@@ -1,3 +1,9 @@
+### v1.2.1:
+#### date: 2015-8-17
+##### changes:
+* Fixed nunjucks file creation issue
+* Fixed _data folder reading error
+
 ### v1.2.0:
 #### date: 2015-8-17
 ##### changes:
