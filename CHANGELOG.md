@@ -1,3 +1,8 @@
+### v1.2.2:
+#### date: 2015-8-17
+##### changes:
+* Updated Less and Stylus compilation to have the same autoprefixer settings as Sass.
+
 ### v1.2.1:
 #### date: 2015-8-17
 ##### changes:
