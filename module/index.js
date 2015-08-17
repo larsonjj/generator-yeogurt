@@ -6,6 +6,8 @@ var pjson = require(path.join(process.cwd(), './package.json'));
 var config = pjson.config;
 var directories = config.directories;
 
+require('colors');
+
 var ModuleGenerator = module.exports = function ModuleGenerator() {
   // By calling `NamedBase` here, we get the argument to the subgenerator call
   // as `this.name`.
@@ -47,59 +49,46 @@ ModuleGenerator.prototype.ask = function ask() {
     'src' + '/_modules';
 
   this.moduleFile = path.join(
+    moduleDir,
+    this._.slugify(this.name.toLowerCase()),
+    this._.slugify(this.name.toLowerCase())
+  );
+
+  this.testFile = path.join(
+    moduleDir,
+    this._.slugify(this.name.toLowerCase()),
+    'tests',
+    this._.slugify(this.name.toLowerCase())
+  );
+
+  if (['atom', 'molecule', 'organism'].indexOf(this.atomic) > -1) {
+    this.moduleFile = path.join(
       moduleDir,
+      this.atomic + 's',
       this._.slugify(this.name.toLowerCase()),
       this._.slugify(this.name.toLowerCase())
     );
 
-  this.testFile = path.join(
+    this.testFile = path.join(
       moduleDir,
+      this.atomic + 's',
       this._.slugify(this.name.toLowerCase()),
       'tests',
       this._.slugify(this.name.toLowerCase())
     );
-
-  if (this.atomic) {
-    var done = this.async();
-    var prompts = [{
-      name: 'atomicType',
-      type: 'list',
-      message: 'What type of atomic module is this?',
-      choices: ['Atom', 'Molecule', 'Organism'],
-      filter: function(val) {
-        var filterMap = {
-          'Atom': 'atom',
-          'Molecule': 'molecule',
-          'Organism': 'organism'
-        };
-
-        return filterMap[val];
-      }
-    }];
-
-    this.prompt(prompts, function(answers) {
-
-      this.moduleFile = path.join(
-        moduleDir,
-        answers.atomicType + 's',
-        this._.slugify(this.name.toLowerCase()),
-        this._.slugify(this.name.toLowerCase())
-      );
-
-      this.testFile = path.join(
-        moduleDir,
-        answers.atomicType + 's',
-        this._.slugify(this.name.toLowerCase()),
-        'tests',
-        this._.slugify(this.name.toLowerCase())
-      );
-
-      done();
-    }.bind(this));
+  }
+  else if (this.atomic) {
+    console.error('Error: Incorrect value given for --atomic option: '.red + this.atomic);
+    console.error('Error: Only "atom", "molecule", or "organism" are valid values.'.red);
+    this.abort = true;
   }
 };
 
 ModuleGenerator.prototype.files = function files() {
+
+  if (this.abort) {
+    return;
+  }
 
   if (this.htmlOption === 'jade') {
     this.template('module.jade', this.moduleFile + '.jade');

@@ -1,10 +1,10 @@
 /*global describe, beforeEach, it*/
 'use strict';
 
-var path  = require('path');
-var yeoman  = require('yeoman-generator');
+var path = require('path');
+var yeoman = require('yeoman-generator');
 var helpers = yeoman.test;
-var assert  = yeoman.assert;
+var assert = yeoman.assert;
 var createAppGenerator = require('../../helpers/create-generator').createAppGenerator;
 var createSubGenerator = require('../../helpers/create-generator').createSubGenerator;
 
@@ -45,7 +45,7 @@ describe('Static Site module sub-generator', function() {
               testFramework: 'jasmine',
               jsOption: 'browserify',
               cssOption: 'sass',
-              sassSyntax: 'sass',
+              sassSyntax: 'sass'
             });
 
             this.app.run([], function() {
@@ -79,14 +79,13 @@ describe('Static Site module sub-generator', function() {
               testFramework: 'jasmine',
               jsOption: 'browserify',
               cssOption: 'sass',
-              sassSyntax: 'sass',
+              sassSyntax: 'sass'
             });
 
             this.app.run([], function() {
-              createSubGenerator('module', module, {atomic: true, path: '../../../../'}, {
+              createSubGenerator('module', module, {atomic: 'atom', path: '../../../../'}, {
                 // mock prompt data
-                moduleFile: 'src/_modules',
-                atomicType: 'atom'
+                moduleFile: 'src/_modules'
               }, function() {
                 assert.file(filesToTest);
                 assert.fileContent(fileContentToTest);
@@ -175,7 +174,7 @@ describe('Static Site module sub-generator', function() {
 
       helpers.mockPrompt(this.app, {
         htmlOption: 'nunjucks',
-        cssOption: 'less',
+        cssOption: 'less'
       });
       this.app.run([], function() {
         createSubGenerator('module', module, {path: '../../../../'}, {
@@ -197,7 +196,7 @@ describe('Static Site module sub-generator', function() {
 
       helpers.mockPrompt(this.app, {
         htmlOption: 'nunjucks',
-        cssOption: 'stylus',
+        cssOption: 'stylus'
       });
       this.app.run([], function() {
         createSubGenerator('module', module, {path: '../../../../'}, {

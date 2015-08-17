@@ -1,0 +1,21 @@
+mixin link(config)
+  - var _config = config || {}
+  - var _id = config.id || ''
+  - var _classes = config.classes || ''
+  - var _href = config.href || '#'
+  - var _target = config.target || '_self'
+  - var _rel = config.rel || 'void'
+  - var _text = config.text || 'Default Link'
+
+  a.link(
+    id=id,
+    href=_href,
+    target=_target,
+    class=_classes,
+    rel=_rel
+  )
+    if block
+      block
+    else
+      != _text
+
