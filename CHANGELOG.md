@@ -1,3 +1,9 @@
+### v1.2.4:
+#### date: 2015-8-17
+##### changes:
+* Added test for generated Link module
+* Fixed markdown in README
+
 ### v1.2.3:
 #### date: 2015-8-17
 ##### changes:
