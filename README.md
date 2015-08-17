@@ -102,7 +102,7 @@ Once everything is installed, you will see a project structure like below:
 ├── build/                     # Folder for production build output
 ├── tmp/                       # Folder for temporary development output
 ├── src
-|   ├── _data                  # JSON files that add data to templates (Example, will not be generated)
+|   ├── _data                  # JSON files that add data to templates
 |   ├── _images                # Images
 |   ├── _layouts               # Layout structure for app
 |   |   └── base.jade

@@ -6,6 +6,8 @@ var pjson = require(path.join(process.cwd(), './package.json'));
 var config = pjson.config;
 var directories = config.directories;
 
+require('colors');
+
 var ModuleGenerator = module.exports = function ModuleGenerator() {
   // By calling `NamedBase` here, we get the argument to the subgenerator call
   // as `this.name`.
@@ -75,9 +77,18 @@ ModuleGenerator.prototype.ask = function ask() {
       this._.slugify(this.name.toLowerCase())
     );
   }
+  else if (this.atomic) {
+    console.error('Error: Incorrect value given for --atomic option: '.red + this.atomic);
+    console.error('Error: Only "atom", "molecule", or "organism" are valid values.'.red);
+    this.abort = true;
+  }
 };
 
 ModuleGenerator.prototype.files = function files() {
+
+  if (this.abort) {
+    return;
+  }
 
   if (this.htmlOption === 'jade') {
     this.template('module.jade', this.moduleFile + '.jade');
