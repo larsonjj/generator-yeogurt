@@ -13,7 +13,6 @@ export default function(gulp, plugins, args, config, taskTarget) {
   if (fs.existsSync(dataPath)) {
     // Convert directory to JS Object
     siteData = foldero(dataPath, {
-      relative: path.join('../'),
       recurse: true
     });
   }
