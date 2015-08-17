@@ -9,15 +9,30 @@ export default function(gulp, plugins, args, config, taskTarget) {
   var dirs = config.directories;
   let dest = path.join(taskTarget);
   let dataPath = path.join(dirs.source, dirs.data);
-  var siteData = {};
-  if (fs.existsSync(dataPath)) {
-    // Convert directory to JS Object
-    siteData = foldero(dataPath, {
-      recurse: true
-    });
-  }
+
   // Nunjucks template compile
   gulp.task('nunjucks', () => {
+    var siteData = {};
+    if (fs.existsSync(dataPath)) {
+      // Convert directory to JS Object
+      siteData = foldero(dataPath, {
+        recurse: true,
+        whitelist: '(.*/)*.+\.(json)$',
+        loader: function loadAsString(file) {
+          let json = {};
+          try {
+            json = JSON.parse(fs.readFileSync(file, 'utf8'));
+          }
+          catch(e) {
+            console.log('Error Parsing JSON file: ' + file);
+            console.log('==== Details Below ====');
+            console.log(e);
+          }
+          return json;
+        }
+      });
+    }
+
     return gulp.src([
       path.join(dirs.source, '**/*.nunjucks'),
       '!' + path.join(dirs.source, '{**/\_*,**/\_*/**}')

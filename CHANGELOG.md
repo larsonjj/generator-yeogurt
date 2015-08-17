@@ -1,3 +1,9 @@
+### v1.2.3:
+#### date: 2015-8-17
+##### changes:
+* Fixed data parsing for jade and nunjucks tasks
+* Added Link module import for styles
+
 ### v1.2.2:
 #### date: 2015-8-17
 ##### changes:
