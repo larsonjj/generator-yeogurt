@@ -107,12 +107,12 @@ Once everything is installed, you will see a project structure like below:
 |   ├── _layouts               # Layout structure for app
 |   |   └── base.jade
 |   ├── _modules               # Reusable modules
-|   |   └── navbar             # Example module (will not be generated)
+|   |   └── link
 |   |       ├── __tests__
-|   |       |   └── navbar.spec.js
-|   |       ├── navbar.jade
-|   |       ├── navbar.js
-|   |       └── navbar.scss
+|   |       |   └── link.spec.js
+|   |       ├── link.jade
+|   |       ├── link.js
+|   |       └── link.scss
 |   ├── _styles               # Global styles, mixins, variables, etc
 |   |   └── main.scss         # Main stylesheet (import everything to this file)
 |   ├── _scripts              # Global scripts, base classes, etc
@@ -160,7 +160,7 @@ Folders relative to the `source` configured directory
 
 | Setting | Description |
 |---------|-------
-| [data](#data-files)     | Data folder where JSON files are loaded into templates
+| [data](#data-files) | Data folder where JSON files are loaded into templates
 | scripts  | Scripts folder where all `.js` files are located (main.js must be in root of this folder)
 | styles   | Styles folder where all stylesheet files are located (main stylesheet must be in root of this folder)
 | modules  | Modules folder where all reusable code should live (default location for [module subgenerator](https://github.com/larsonjj/generator-yeogurt#module))
@@ -295,10 +295,28 @@ $ yo yeogurt:module header
 Produces:
 
 ```
-src/_modules/header.{jade,nunjucks}
-src/_modules/header.{scss,sass,less,styl}
-src/_modules/header.js
+src/_modules/header/header.{jade,nunjucks}
+src/_modules/header/header.{scss,sass,less,styl}
+src/_modules/header/header.js
+src/_modules/header/__tests__/header.test.js
 ```
+
+#### Example #2: Specifying module as atomic
+
+```
+$ yo yeogurt:module link --atomic=atom
+```
+
+Produces:
+
+```
+src/_modules/atoms/header/header.{jade,nunjucks}
+src/_modules/atoms/header/header.{scss,sass,less,styl}
+src/_modules/atoms/header/header.js
+src/_modules/atoms/header/__tests__/header.test.js
+```
+
+> NOTE: Possible `--atomic` options: atom, molecule, organism
 
 ### Layout
 Creates a new layout.
@@ -315,7 +333,7 @@ Produces:
 src/_layouts/one-col.{jade,nunjucks}
 ```
 
-#### Example #2: Specifying a layout to extend from
+#### Example #2: Specifying another layout to extend from
 
 ```
 $ yo yeogurt:page contact --layout=one-col
