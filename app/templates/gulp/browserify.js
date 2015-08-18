@@ -14,71 +14,80 @@ import gulpif from 'gulp-if';
 export default function(gulp, plugins, args, config, taskTarget) {
   var dirs = config.directories;
   var entries = config.entries;
-  let dest = path.join(taskTarget, dirs.scripts.replace(/^_/, ''));
 
-  // Browserify Task
-  let browserifyTask = function(entry) {
-    let customOpts = {
-      entries: [entry],
-      debug: true,
-      transform: [
-        envify,  // Sets NODE_ENV for better optimization of npm packages
-        babelify // Enable ES6 features
-      ]
-    };
+  let browserifyTask = function(files) {
+    return files.map(function(entry) {
+      let dest = path.resolve(taskTarget);
 
-    let bundler = browserify(customOpts);
+      // Options
+      let customOpts = {
+        entries: [entry],
+        debug: true,
+        transform: [
+          envify,  // Sets NODE_ENV for better optimization of npm packages
+          babelify // Enable ES6 features
+        ]
+      };
 
-    if (!args.production) {
-      // Setup Watchify for faster builds
-      let opts = _.assign({}, watchify.args, customOpts);
-      bundler = watchify(browserify(opts));
-    }
+      let bundler = browserify(customOpts);
 
-    let rebundle = function() {
-      let startTime = new Date().getTime();
-      bundler.bundle()
-        .on('error', function (err) {
-          plugins.util.log(
-            plugins.util.colors.red('Browserify compile error:'),
-            err.message,
-            '\n\n',
-            err.codeFrame,
-            '\n'
-          );
-          this.emit('end');
-        })
-        .pipe(vsource(path.basename(entry)))
-        .pipe(buffer())
-        .pipe(plugins.sourcemaps.init({loadMaps: true}))
-          .pipe(gulpif(args.production, plugins.uglify()))
-          .on('error', plugins.util.log)
-        .pipe(plugins.sourcemaps.write('./'))
-        .pipe(gulp.dest(dest))
-        .on('end', function() {
-          let time = (new Date().getTime() - startTime) / 1000;
-          return console.log(
-            plugins.util.colors.cyan(entry)
-            + ' was browserified: '
-            + plugins.util.colors.magenta(time + 's'));
-        });
-    };
+      if (!args.production) {
+        // Setup Watchify for faster builds
+        let opts = _.assign({}, watchify.args, customOpts);
+        bundler = watchify(browserify(opts));
+      }
 
-    if (!args.production) {
-      bundler.on('update', browserifyTask); // on any dep update, runs the bundler
-      bundler.on('log', plugins.util.log); // output build logs to terminal
-    }
-    return rebundle();
+      let rebundle = function() {
+        let startTime = new Date().getTime();
+        bundler.bundle()
+          .on('error', function (err) {
+            plugins.util.log(
+              plugins.util.colors.red('Browserify compile error:'),
+              err.message,
+              '\n\n',
+              err.codeFrame,
+              '\n'
+            );
+            this.emit('end');
+          })
+          .pipe(vsource(entry))
+          .pipe(buffer())
+          .pipe(plugins.sourcemaps.init({loadMaps: true}))
+            .pipe(gulpif(args.production, plugins.uglify()))
+            .on('error', plugins.util.log)
+          .pipe(plugins.rename(function(path) {
+            // Remove 'source' directory as well as prefixed folder underscores
+            // Ex: 'src/_scripts' --> '/scripts'
+            path.dirname = path.dirname.replace(dirs.source, '').replace('_', '');
+          }))
+          .pipe(plugins.sourcemaps.write('./'))
+          .pipe(gulp.dest(dest))
+          // Show which file was bundled and how long it took
+          .on('end', function() {
+            let time = (new Date().getTime() - startTime) / 1000;
+            return console.log(
+              plugins.util.colors.cyan(entry)
+              + ' was browserified: '
+              + plugins.util.colors.magenta(time + 's'));
+          });
+      };
+
+      if (!args.production) {
+        bundler.on('update', browserifyTask); // on any dep update, runs the bundler
+        bundler.on('log', plugins.util.log); // output build logs to terminal
+      }
+      return rebundle();
+    });
   };
 
+  // Browserify Task
   gulp.task('browserify', function(done) {
-    return glob(path.join(dirs.source, dirs.scripts, entries.js), {realpath: true}, function(err, files) {
+    return glob('./' + path.join(dirs.source, dirs.scripts, entries.js), function(err, files) {
       if (err) {
         done(err);
       }
-      return files.map(function(entry) {
-        return browserifyTask(entry);
-      });
+
+      return browserifyTask(files);
     });
   });
 }

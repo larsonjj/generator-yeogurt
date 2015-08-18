@@ -16,9 +16,17 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
       .pipe(plugins.sass({
         outputStyle: 'expanded',
         precision: 10,
-        includePaths: [path.join(dirs.source, dirs.styles) ]
+        includePaths: [
+          path.join(dirs.source, dirs.styles),
+          path.join(dirs.source, dirs.modules)
+        ]
       }).on('error', plugins.sass.logError))
       .pipe(plugins.postcss([autoprefixer({browsers: ['last 2 version', '> 5%', 'safari 5', 'ios 6', 'android 4']})]))
+      .pipe(plugins.rename(function(path) {
+        // Remove 'source' directory as well as prefixed folder underscores
+        // Ex: 'src/_styles' --> '/styles'
+        path.dirname = path.dirname.replace(dirs.source, '').replace('_', '');
+      }))
       .pipe(plugins.sourcemaps.write('./'))
       .pipe(gulp.dest(dest))
       .pipe(browserSync.stream());
