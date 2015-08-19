@@ -1,3 +1,10 @@
+### v1.2.5:
+#### date: 2015-8-19
+##### changes:
+* Added ability for stylesheet preprocessors and browserify to better handle entry globs in `package.json` configuration
+* Fixed nunjucks index template so it now shows the correct version of yeogurt when first generated
+* Updated subgenerator unit tests to have better coverage and folder structure
+
 ### v1.2.4:
 #### date: 2015-8-17
 ##### changes:

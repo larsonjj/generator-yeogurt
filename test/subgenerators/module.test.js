@@ -5,8 +5,8 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var helpers = yeoman.test;
 var assert = yeoman.assert;
-var createAppGenerator = require('../../helpers/create-generator').createAppGenerator;
-var createSubGenerator = require('../../helpers/create-generator').createSubGenerator;
+var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
+var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
 describe('Static Site module sub-generator', function() {
   beforeEach(function(done) {
@@ -15,7 +15,7 @@ describe('Static Site module sub-generator', function() {
         return done(err);
       }
 
-      this.app = createAppGenerator([], {path: '../../../../app'});
+      this.app = createAppGenerator([], {path: '../../../app'});
 
       done();
     }.bind(this));
@@ -49,7 +49,7 @@ describe('Static Site module sub-generator', function() {
             });
 
             this.app.run([], function() {
-              createSubGenerator('module', module, {path: '../../../../'}, {
+              createSubGenerator('module', module, {path: '../../../'}, {
                 // mock prompt data
                 moduleFile: 'src/_modules'
               }, function() {
@@ -83,12 +83,41 @@ describe('Static Site module sub-generator', function() {
             });
 
             this.app.run([], function() {
-              createSubGenerator('module', module, {atomic: 'atom', path: '../../../../'}, {
+              createSubGenerator('module', module, {atomic: 'atom', path: '../../../'}, {
                 // mock prompt data
                 moduleFile: 'src/_modules'
               }, function() {
                 assert.file(filesToTest);
                 assert.fileContent(fileContentToTest);
+                done();
+              });
+            });
+          });
+          it('is Atomic but not valid', function(done) {
+            // Filename
+            var module = 'mymodule';
+
+            var filesToTest = [
+              'src/_modules/atoms/' + module + '/tests/' + module + '.test.js',
+              'src/_modules/atoms/' + module + '/' + module + '.js',
+              'src/_modules/atoms/' + module + '/' + module + '.jade',
+              'src/_modules/atoms/' + module + '/' + module + '.sass'
+            ];
+
+            helpers.mockPrompt(this.app, {
+              htmlOption: 'jade',
+              testFramework: 'jasmine',
+              jsOption: 'browserify',
+              cssOption: 'sass',
+              sassSyntax: 'sass'
+            });
+
+            this.app.run([], function() {
+              createSubGenerator('module', module, {atomic: 'derp', path: '../../../'}, {
+                // mock prompt data
+                moduleFile: 'src/_modules'
+              }, function() {
+                assert.noFile(filesToTest);
                 done();
               });
             });
@@ -110,7 +139,7 @@ describe('Static Site module sub-generator', function() {
               'src/_modules/' + module + '/tests/' + module + '.test.js',
               'src/_modules/' + module + '/' + module + '.js',
               'src/_modules/' + module + '/' + module + '.nunjucks',
-              'src/_modules/' + module + '/' + module + '.sass'
+              'src/_modules/' + module + '/' + module + '.scss'
             ];
             var fileContentToTest = [
               ['src/_modules/' + module + '/' + module + '.js', /export/i],
@@ -121,12 +150,12 @@ describe('Static Site module sub-generator', function() {
               htmlOption: 'nunjucks',
               testFramework: 'jasmine',
               cssOption: 'sass',
-              sassSyntax: 'sass',
+              sassSyntax: 'scss',
               jsOption: 'browserify'
             });
 
             this.app.run([], function() {
-              createSubGenerator('module', module, {path: '../../../../'}, {
+              createSubGenerator('module', module, {path: '../../../'}, {
                 // mock prompt data
                 moduleFile: 'src/_modules'
               }, function() {
@@ -155,7 +184,7 @@ describe('Static Site module sub-generator', function() {
         sassSyntax: 'sass'
       });
       this.app.run([], function() {
-        createSubGenerator('module', module, {path: '../../../../'}, {
+        createSubGenerator('module', module, {path: '../../../'}, {
           // mock prompt data
           moduleFile: 'src/_modules'
         }, function() {
@@ -177,7 +206,7 @@ describe('Static Site module sub-generator', function() {
         cssOption: 'less'
       });
       this.app.run([], function() {
-        createSubGenerator('module', module, {path: '../../../../'}, {
+        createSubGenerator('module', module, {path: '../../../'}, {
           // mock prompt data
           moduleFile: 'src/_modules'
         }, function() {
@@ -199,7 +228,7 @@ describe('Static Site module sub-generator', function() {
         cssOption: 'stylus'
       });
       this.app.run([], function() {
-        createSubGenerator('module', module, {path: '../../../../'}, {
+        createSubGenerator('module', module, {path: '../../../'}, {
           // mock prompt data
           moduleFile: 'src/_modules'
         }, function() {

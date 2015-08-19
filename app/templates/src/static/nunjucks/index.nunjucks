@@ -17,5 +17,5 @@
     </p>
   </div>
 </div>
-<code class="version">v1.1.0</code>
+<code class="version">v<%= pkg.version %></code>
 {% endblock %}
