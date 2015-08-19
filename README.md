@@ -529,7 +529,8 @@ bower install --save [package name]
 ***Step 4: Use package***
 
 If the package installed is a javascript library, you will need to shim it. Instructions for this are in the [browserify-shim](#using-non-commonjs-modules-with-browserify-shim) section of this README.
-If the package is CSS, Sass, Less, or Stylus, you can follow the instructions in the [Stylesheets](#stylesheets) section of this README.md
+
+If the package is CSS, Sass, Less, or Stylus, you can follow the instructions in the [Stylesheets](#stylesheets) section of this README
 
 ### Data Files
 
