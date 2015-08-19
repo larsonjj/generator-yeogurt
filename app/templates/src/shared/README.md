@@ -17,7 +17,7 @@ You would acheive this by creating the following structure:
         └── index.{jade,nunjucks}
 ```
 
-## Subgenerator
+### Subgenerator
 
 You can easily create new pages using the built-in sub-generator like so:
 

@@ -484,7 +484,7 @@ import 'slick-carousel';
 $('#someId').slick(); // Activates slick plugin
 ```
 
-#### Using Bower (Must be used with [browserify-shim](#Using-Non-CommonJS-modules-with-browserify-shim))
+#### Using Bower
 
 If you can't find your desired package on the NPM registry and you wish to use Bower to manage some front-end packages, you can accomplish this in a couple steps:
 
@@ -526,9 +526,10 @@ with the following contents:
 bower install --save [package name]
 ```
 
-***Step 4: Shim library***
+***Step 4: Use package***
 
-After the package is installed, you will need to shim it. Instructions for this are in the [browserify-shim](#Using-Non-CommonJS-modules-with-browserify-shim) section of this README.
+If the package installed is a javascript library, you will need to shim it. Instructions for this are in the [browserify-shim](#using-non-commonjs-modules-with-browserify-shim) section of this README.
+If the package is CSS, Sass, Less, or Stylus, you can follow the instructions in the [Stylesheets](#stylesheets) section of this README.md
 
 ### Data Files
 

@@ -50,3 +50,7 @@ npm install [package name] --save
 // CSS import
 @import '../../node_modules/normalize.css/normalize.css';
 ```
+
+#### Using Bower
+
+Check out the instructions for using bower on the [Yeogurt README](https://github.com/larsonjj/generator-yeogurt#using-bower)
