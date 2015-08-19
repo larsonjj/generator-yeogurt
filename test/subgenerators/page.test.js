@@ -5,8 +5,8 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var helpers = yeoman.test;
 var assert = yeoman.assert;
-var createAppGenerator = require('../../helpers/create-generator').createAppGenerator;
-var createSubGenerator = require('../../helpers/create-generator').createSubGenerator;
+var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
+var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
 describe('Static Site page sub-generator', function() {
   beforeEach(function(done) {
@@ -15,7 +15,7 @@ describe('Static Site page sub-generator', function() {
         return done(err);
       }
 
-      this.app = createAppGenerator([], {path: '../../../../app'});
+      this.app = createAppGenerator([], {path: '../../../app'});
 
       done();
     }.bind(this));
@@ -43,7 +43,7 @@ describe('Static Site page sub-generator', function() {
           });
 
           this.app.run([], function() {
-            createSubGenerator('page', page, {path: '../../../../'}, {
+            createSubGenerator('page', page, {path: '../../../'}, {
               // mock prompt data
               pageFile: 'src/'
             }, function() {
@@ -73,7 +73,7 @@ describe('Static Site page sub-generator', function() {
           });
 
           this.app.run([], function() {
-            createSubGenerator('page', page, {layout: page, path: '../../../../'}, {
+            createSubGenerator('page', page, {layout: page, path: '../../../'}, {
               // mock prompt data
               pageFile: 'src/'
             }, function() {
@@ -109,7 +109,7 @@ describe('Static Site page sub-generator', function() {
           });
 
           this.app.run([], function() {
-            createSubGenerator('page', page, {layout: page, path: '../../../../'}, {
+            createSubGenerator('page', page, {layout: page, path: '../../../'}, {
               // mock prompt data
               pageFile: 'src/'
             }, function() {
@@ -139,7 +139,7 @@ describe('Static Site page sub-generator', function() {
           });
 
           this.app.run([], function() {
-            createSubGenerator('page', page, {layout: page, path: '../../../../'}, {
+            createSubGenerator('page', page, {layout: page, path: '../../../'}, {
               // mock prompt data
               pageFile: 'src/'
             }, function() {
