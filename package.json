@@ -1,6 +1,6 @@
 {
   "name": "generator-yeogurt",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "A generator for creating static sites. Helps you harness the power of your favorite tools: Jade or Nunjucks, Gulp, ES6/2015, and much more!",
   "keywords": [
     "yeoman-generator",
