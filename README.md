@@ -252,7 +252,6 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 ***Note: Generators need to be run from the root directory of your app.***
 
 ## Default Generators
-***Note: (The following sub-generators can be used with any type of project)***
 
 ### Page
 Creates a new page.
@@ -303,6 +302,8 @@ src/_modules/header/__tests__/header.test.js
 ```
 
 #### Example #2: Specifying module as atomic
+
+This is a great way to create modules that adhere to [atomic design](http://patternlab.io/about.html)
 
 ```
 $ yo yeogurt:module link --atomic=atom

@@ -5,8 +5,8 @@ var path  = require('path');
 var yeoman  = require('yeoman-generator');
 var helpers = yeoman.test;
 var assert  = yeoman.assert;
-var createAppGenerator = require('../../helpers/create-generator').createAppGenerator;
-var createSubGenerator = require('../../helpers/create-generator').createSubGenerator;
+var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
+var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
 
 describe('Static Site layout sub-generator', function() {
   beforeEach(function(done) {
@@ -15,7 +15,7 @@ describe('Static Site layout sub-generator', function() {
         return done(err);
       }
 
-      this.app = createAppGenerator([], {path: '../../../../app'});
+      this.app = createAppGenerator([], {path: '../../../app'});
 
       done();
     }.bind(this));
@@ -40,7 +40,7 @@ describe('Static Site layout sub-generator', function() {
           sassSyntax: 'scss'
         });
         this.app.run([], function() {
-          createSubGenerator('layout', layout, {path: '../../../../'}, {
+          createSubGenerator('layout', layout, {path: '../../../'}, {
             // mock prompt data
             layoutFile: 'src/_layouts'
           }, function() {
@@ -68,7 +68,7 @@ describe('Static Site layout sub-generator', function() {
           sassSyntax: 'scss'
         });
         this.app.run([], function() {
-          createSubGenerator('layout', layout, {layout: layout, path: '../../../../'}, {
+          createSubGenerator('layout', layout, {layout: layout, path: '../../../'}, {
             // mock prompt data
             layoutFile: 'src/_layouts'
           }, function() {
@@ -100,7 +100,7 @@ describe('Static Site layout sub-generator', function() {
           sassSyntax: 'scss'
         });
         this.app.run([], function() {
-          createSubGenerator('layout', layout, {path: '../../../../'}, {
+          createSubGenerator('layout', layout, {path: '../../../'}, {
             // mock prompt data
             layoutFile: 'src/_layouts'
           }, function() {
@@ -128,7 +128,7 @@ describe('Static Site layout sub-generator', function() {
           sassSyntax: 'scss'
         });
         this.app.run([], function() {
-          createSubGenerator('layout', layout, {layout: layout, path: '../../../../'}, {
+          createSubGenerator('layout', layout, {layout: layout, path: '../../../'}, {
             // mock prompt data
             layoutFile: 'src/_layouts'
           }, function() {
