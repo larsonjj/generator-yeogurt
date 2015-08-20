@@ -602,7 +602,7 @@ This command will go through your newly created `.svnignore` file and set the sp
 > jQuery is not defined
 
 When adding third-party scripts, you should always import them to your `_scripts/main.js` file (See [Adding third-party libraries](#adding-third-party-libraries)). 
-However, doing so does not inform ESLint that your new library is defined globally. Thus, giving you errors.
+However, if you [shimmed](#using-non-commonjs-modules-with-browserify-shim) the library/package to be global (ex: window.jQuery), ESLint will not know that your new library is defined globally. Thus, giving you errors.
 
 ##### Solution
 To remedy this situation, all you need to do is open up your `.eslintrc` file in the root directory of you project, and add your new library name to the `global:` property array:
