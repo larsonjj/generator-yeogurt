@@ -73,7 +73,7 @@ export default function(gulp, plugins, args, config, taskTarget) {
       };
 
       if (!args.production) {
-        bundler.on('update', browserifyTask); // on any dep update, runs the bundler
+        bundler.on('update', rebundle); // on any dep update, runs the bundler
         bundler.on('log', plugins.util.log); // output build logs to terminal
       }
       return rebundle();
