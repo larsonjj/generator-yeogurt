@@ -1,3 +1,8 @@
+### v1.2.7:
+#### date: 2015-8-27
+##### changes:
+* Fixed browserify rebundling. [#146](https://github.com/larsonjj/generator-yeogurt/pull/146)
+
 ### v1.2.6:
 #### date: 2015-8-19
 ##### changes:
