@@ -431,20 +431,6 @@ Browserify doesn't support Non-CommonJS scripts out of the box (jQuery plugins, 
 npm install --save-dev browserify-shim
 ```
 
-Once it is installed, you will need to add it to your `gulp/browserify` task configuration like so:
-
-```js
-import browserifyShim from 'browserify-shim';
-
-...
-
-transform: [
-  envify,  // Sets NODE_ENV for better optimization of npm packages
-  babelify, // Enable ES6 features
-  browserifyShim // <-- Enable shim
-]
-```
-
 ***Step 2: Install desired npm package***
 
 Now you can install your desired npm package:
@@ -460,6 +446,9 @@ npm install --save slick-carousel
 Add the following to your `package.json` file:
 
 ```json
+"browserify": {
+  "transform": [ "browserify-shim" ]
+},
 "browser": {
   "slick-carousel": "./node_modules/slick-carousel/slick/slick.js"
 },
