@@ -27,6 +27,7 @@ var ModuleGenerator = module.exports = function ModuleGenerator() {
   this.jsFramework = fileJSON.jsFramework;
   this.singlePageApplication = fileJSON.singlePageApplication;
   this.jsOption = fileJSON.jsOption;
+  this.jsPreprocessor = fileJSON.jsPreprocessor;
   this.jsTemplate = fileJSON.jsTemplate;
   this.cssOption = fileJSON.cssOption;
   this.sassSyntax = fileJSON.sassSyntax;
@@ -92,16 +93,29 @@ ModuleGenerator.prototype.files = function files() {
 
   if (this.htmlOption === 'jade') {
     this.template('module.jade', this.moduleFile + '.jade');
-    this.template('module.js', this.moduleFile + '.js');
+    if (this.jsPreprocessor === 'none') {
+      this.template('module.js', this.moduleFile + '.js');
+    }
+    else {
+      this.template('module.es6.js', this.moduleFile + '.js');
+    }
     if (this.testFramework !== 'none') {
-      this.template('module.test.js', this.testFile + '.test.js');
+      if (this.jsPreprocessor === 'none') {
+        this.template('module.test.js', this.testFile + '.test.js');
+      }
+      else {
+        this.template('module.test.es6.js', this.testFile + '.test.js');
+      }
     }
   }
   else if (this.htmlOption === 'nunjucks') {
     this.template('module.nunjucks', this.moduleFile + '.nunjucks');
     this.template('module.js', this.moduleFile + '.js');
-    if (this.testFramework !== 'none') {
+    if (this.jsPreprocessor === 'none') {
       this.template('module.test.js', this.testFile + '.test.js');
+    }
+    else {
+      this.template('module.test.es6.js', this.testFile + '.test.js');
     }
   }
 

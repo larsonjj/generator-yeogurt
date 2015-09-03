@@ -3,6 +3,7 @@
 ##### changes:
 * Fixed Link module issue where `config` should have been `_config` when referencing new options
 * Updated gulp.watch to ignore .css, .js, .html and .map files so browsers correctly inject styles and only reload the browser when necessary (much less reload spam)
+* Added new prompt to allow for ES5 rather than forcing ES6/2015 for JavaScript
 
 ### v1.2.7:
 #### date: 2015-8-27
