@@ -11,7 +11,7 @@ import vsource from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
 import gulpif from 'gulp-if';
 
-export default function(gulp, plugins, args, config, taskTarget) {
+export default function(gulp, plugins, args, config, taskTarget, browserSync) {
   var dirs = config.directories;
   var entries = config.entries;
 
@@ -55,20 +55,21 @@ export default function(gulp, plugins, args, config, taskTarget) {
           .pipe(plugins.sourcemaps.init({loadMaps: true}))
             .pipe(gulpif(args.production, plugins.uglify()))
             .on('error', plugins.util.log)
-          .pipe(plugins.rename(function(path) {
+          .pipe(plugins.rename(function(filepath) {
             // Remove 'source' directory as well as prefixed folder underscores
             // Ex: 'src/_scripts' --> '/scripts'
-            path.dirname = path.dirname.replace(dirs.source, '').replace('_', '');
+            filepath.dirname = filepath.dirname.replace(dirs.source, '').replace('_', '');
           }))
           .pipe(plugins.sourcemaps.write('./'))
           .pipe(gulp.dest(dest))
           // Show which file was bundled and how long it took
           .on('end', function() {
             let time = (new Date().getTime() - startTime) / 1000;
-            return console.log(
+            console.log(
               plugins.util.colors.cyan(entry)
               + ' was browserified: '
               + plugins.util.colors.magenta(time + 's'));
+            return browserSync.reload('*.js');
           });
       };
 

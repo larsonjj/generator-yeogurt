@@ -1,12 +1,12 @@
 {% macro content(config) %}
 
 {% set _config = config or {} %}
-{% set _id = config.id or '' %}
-{% set _classes = config.classes or '' %}
-{% set _href = config.href or '#' %}
-{% set _target = config.target or '_self' %}
-{% set _rel = config.rel or 'void' %}
-{% set _text = config.text or 'Default Link' %}
+{% set _id = _config.id or '' %}
+{% set _classes = _config.classes or '' %}
+{% set _href = _config.href or '#' %}
+{% set _target = _config.target or '_self' %}
+{% set _rel = _config.rel or 'void' %}
+{% set _text = _config.text or 'Default Link' %}
 
 <a
   id="{{_id}}"

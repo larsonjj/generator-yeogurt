@@ -51,7 +51,8 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
 
       // All other files
       gulp.watch([
-        path.join(dirs.temporary, '**/*')
+        path.join(dirs.temporary, '**/*'),
+        '!' + path.join(dirs.temporary, '**/*.{css,map,html,js}')
       ]).on('change', browserSync.reload);
     }
   });

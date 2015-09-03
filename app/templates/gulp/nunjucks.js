@@ -5,7 +5,7 @@ import path from 'path';
 import foldero from 'foldero';
 import nunjucks from 'gulp-nunjucks-html';
 
-export default function(gulp, plugins, args, config, taskTarget) {
+export default function(gulp, plugins, args, config, taskTarget, browserSync) {
   var dirs = config.directories;
   let dest = path.join(taskTarget);
   let dataPath = path.join(dirs.source, dirs.data);
@@ -61,6 +61,7 @@ export default function(gulp, plugins, args, config, taskTarget) {
       removeEmptyAttributes: true,
       removeRedundantAttributes: true
     }))
-    .pipe(gulp.dest(dest));
+    .pipe(gulp.dest(dest))
+    .on('end', browserSync.reload);
   });
 }
