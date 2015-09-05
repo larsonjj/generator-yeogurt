@@ -40,12 +40,10 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
     .pipe(plugins.changed(dest))
     .pipe(plugins.plumber())
     .pipe(plugins.data({
-      data: {
-        config: config,
-        debug: true,
-        site: {
-          data: siteData
-        }
+      config: config,
+      debug: true,
+      site: {
+        data: siteData[dirs.data]
       }
     }))
     .pipe(nunjucks({
