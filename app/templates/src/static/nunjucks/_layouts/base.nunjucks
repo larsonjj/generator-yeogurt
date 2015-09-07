@@ -1,3 +1,10 @@
+{# Custom Configuration #}
+{% block config %}
+  {# Setup site's base URL to match the "baseUrl" key within `package.json` #}
+  {# Otherwise default to relative pathing #}
+  {% set baseUrl = config.baseUrl or './' %}
+{% endblock %}
+
 <!DOCTYPE html>
 
 <!--[if lt IE 9]>
@@ -13,7 +20,7 @@
     <title><%= projectName %></title>
     <meta name="description" content="A new Yeogurt application"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="{{config.baseUrl}}styles/main.css"/>
+    <link rel="stylesheet" href="{{baseUrl}}styles/main.css"/>
     {% block stylesheets %}{% endblock %}
 
   </head>
@@ -26,7 +33,7 @@
 
     {% block content %}{% endblock %}
 
-    <script src="{{config.baseUrl}}scripts/main.js"></script>
+    <script src="{{baseUrl}}scripts/main.js"></script>
     {% block scripts %}{% endblock %}
   </body>
 </html>

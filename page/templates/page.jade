@@ -1,4 +1,8 @@
 extends ../<%= layoutDir %>/<%= layout %>
 
+block config
+  //- Correct base url pathing for this page
+  - var baseUrl = '../'
+
 block content
   p <%= _.slugify(name.toLowerCase()) %> page

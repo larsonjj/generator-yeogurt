@@ -1,6 +1,6 @@
 # Styles
 
-This "Styles" folder is designated for all of your global javascript files.
+This "Styles" folder is designated for all of your global stylesheet files.
 The key file in this folder is `main` as it is designated as your bootstrapping file (intializes/imports all your stylesheets) and is included in the `base.jade` file
 
 ## Adding third-party stylesheet libraries
@@ -9,7 +9,7 @@ To do so, it is strongly recommended that you install them using [NPM](http://np
 
 ```
 npm install [package name] --save
-```
+```<% if (cssOption === 'sass') { %>
 
 **Using SCSS:**
 
@@ -29,7 +29,7 @@ npm install [package name] --save
 
 // CSS
 @import node_modules/normalize.css/normalize
-```
+```<% } else if (cssOption === 'less') { %>
 
 **Using LESS:**
 
@@ -39,7 +39,7 @@ npm install [package name] --save
 
 // CSS
 @import (inline) 'node_modules/normalize.css/normalize.css';
-```
+```<% } else if (cssOption === 'stylus') { %>
 
 **Using Stylus:**
 
@@ -49,7 +49,7 @@ npm install [package name] --save
 
 // CSS import
 @import '../../node_modules/normalize.css/normalize.css';
-```
+```<% } %>
 
 #### Using Bower
 

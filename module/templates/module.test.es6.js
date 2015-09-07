@@ -1,4 +1,5 @@
-'use strict';
+<% if (testFramework === 'mocha') { %>/*eslint no-unused-expressions:0 */
+<% } %>'use strict';
 
 import <%= _.classify(name) %> from '../<%= _.slugify(name.toLowerCase()) %>';
 

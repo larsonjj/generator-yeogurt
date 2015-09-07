@@ -2,7 +2,7 @@
 
 This "Source" folder is where all of your files associated with this site will go
 and is considered the root ('/') of your site.
-Excluding sub-directories, this is also where all of your pages will be generated.
+This is also where all of your pages will be generated when using the [page subgenerator](#Subgenerator).
 
 ## Pages
 

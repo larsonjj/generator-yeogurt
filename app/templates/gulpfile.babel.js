@@ -62,7 +62,7 @@ gulp.task('serve', [
 ]);
 
 // Testing
-gulp.task('test',<% if (testFramework === 'none') { %> ['eslint']);<% } else { %> (done) => {
+gulp.task('test', ['eslint']<% if (testFramework === 'none') { %>);<% } else { %>, (done) => {
   karma.start({
     configFile: path.join(__dirname, '/karma.conf.js'),
     singleRun: !args.watch,

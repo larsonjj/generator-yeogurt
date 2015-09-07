@@ -1,17 +1,17 @@
 'use strict';
 
-import fs from 'fs';
-import path from 'path';
-import foldero from 'foldero';
-import jade from 'jade';
+var fs = require('fs');
+var path = require('path');
+var foldero = require('foldero');
+var nunjucks = require('gulp-nunjucks-html');
 
-export default function(gulp, plugins, args, config, taskTarget, browserSync) {
+module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) {
   var dirs = config.directories;
-  let dest = path.join(taskTarget);
-  let dataPath = path.join(dirs.source, dirs.data);
+  var dest = path.join(taskTarget);
+  var dataPath = path.join(dirs.source, dirs.data);
 
-  // Jade template compile
-  gulp.task('jade', () => {
+  // Nunjucks template compile
+  gulp.task('nunjucks', function() {
     var siteData = {};
     if (fs.existsSync(dataPath)) {
       // Convert directory to JS Object
@@ -19,7 +19,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
         recurse: true,
         whitelist: '(.*/)*.+\.(json)$',
         loader: function loadAsString(file) {
-          let json = {};
+          var json = {};
           try {
             json = JSON.parse(fs.readFileSync(file, 'utf8'));
           }
@@ -36,26 +36,30 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
     // Add --debug option to your gulp task to view
     // what data is being loaded into your templates
     if (args.debug) {
-      console.log('==== DEBUG: Data being injected to templates ====');
+      console.log('==== DEBUG: site.data being injected to templates ====');
       console.log(siteData);
+      console.log('\n==== DEBUG: package.json config being injected to templates ====');
+      console.log(config);
     }
 
     return gulp.src([
-      path.join(dirs.source, '**/*.jade'),
+      path.join(dirs.source, '**/*.nunjucks'),
       '!' + path.join(dirs.source, '{**/\_*,**/\_*/**}')
     ])
     .pipe(plugins.changed(dest))
     .pipe(plugins.plumber())
-    .pipe(plugins.jade({
-      jade: jade,
-      pretty: true,
-      locals: {
-        config: config,
-        debug: true,
-        site: {
-          data: siteData
-        }
+    .pipe(plugins.data({
+      config: config,
+      debug: true,
+      site: {
+        data: siteData
       }
+    }))
+    .pipe(nunjucks({
+      searchPaths: [path.join(dirs.source)],
+      ext: '.html'
+    }).on('error', function(err) {
+      plugins.util.log(err);
     }))
     .pipe(plugins.htmlmin({
       collapseBooleanAttributes: true,
@@ -67,4 +71,4 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
     .pipe(gulp.dest(dest))
     .on('end', browserSync.reload);
   });
-}
+};

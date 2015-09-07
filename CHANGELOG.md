@@ -1,9 +1,11 @@
-### v1.2.9:
+### v1.3.0:
 #### date: 2015-9-07
 ##### changes:
 * Added the `--debug` option to gulp tasks so user can view data being injected into their templates
+* Added new option to choose between ES5 and ES6/2015
 * Fixed issue where browserSync was running during a build
 * Fixed documentation errors for data loading
+* Updated sites to using relative pathing rather than absolute pathing. This allows for offline site viewing (no need for server)
 
 ### v1.2.8:
 #### date: 2015-9-02
