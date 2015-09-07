@@ -190,7 +190,7 @@ Ex: `main**.js` will process all files that start with `main` and end with `.js`
   "//": "Local Server Settings",
   "host": "127.0.0.1",
   "port": "9010",
-  "baseUrl": "/",
+  "baseUrl": "./",
   "//": "Gulp Task Directories",
   "//": "NOTE: folders prefixed with an underscore (_) will have it removed when moved to build target (ex: src/_images -> build/images)",
   "//": "NOTE: folders NOT prefixed with underscore (_) will be copied to build target 1 to 1 (ex: src/fonts -> build/fonts)",
