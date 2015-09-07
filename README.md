@@ -31,11 +31,11 @@ A generator for creating static sites. Helps you harness the power of your favor
 - [.editorconfig](http://editorconfig.org/) for consistent coding styles within text editors
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets
 - JavaScript Linting with [ESLint](http://eslint.org/)
-- ES6/2015 support out of the box using [Browserify](http://browserify.org/) with [Babel](https://babeljs.io/)
 
 ### Available Options
 
 - Project/Site naming
+- ES6/2015 support using [Babel](https://babeljs.io/)
 - [Less](http://lesscss.org/), [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass)), or [Stylus](http://learnboost.github.io/stylus/) for Stylesheets
 - [Jasmine](http://jasmine.github.io/) or [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/) for JavaScript unit testing
 - [Karma](http://karma-runner.github.io/0.12/index.html) for running unit tests
@@ -125,7 +125,7 @@ Once everything is installed, you will see a project structure like below:
 |   ├── index.jade            # Homepage template
 |   ├── favicon.ico
 |   └── robots.txt
-├── gulpfile.babel.js         # Gulp task configuration (using ES6)
+├── gulpfile.js               # Gulp task configuration
 └── package.json              # Dependencies and site/folder configuration
 ```
 
@@ -366,9 +366,17 @@ Once installed, you can access scripts within your JavaScript files like so:
 ```js
 // Example using jquery
 
-import $ from 'jquery';
+// ES5
+var $ = require('jquery');
 
 $(function() {
+  console.log('Hello');
+});
+
+// ES6/2015
+import $ from 'jquery';
+
+$(() => {
   console.log('Hello');
 });
 ```
@@ -465,6 +473,10 @@ Add the following to your `package.json` file:
 Now you can include your desired module/lib within your `src/_scripts/main.js` file:
 
 ```js
+// ES5
+require('slicl-carousel');
+
+// ES6
 import 'slick-carousel';
 
 ...

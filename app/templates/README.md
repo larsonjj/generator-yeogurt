@@ -11,7 +11,7 @@ Describe your site/app here.
 ## Technologies used
 
 JavaScript
-- [Browserify](http://browserify.org/) with ES6/2015 support through [Babel](https://babeljs.io/)
+- [Browserify](http://browserify.org/)<% if (jsPreprocessor === 'es6') { %> with ES6/2015 support through [Babel](https://babeljs.io/)<% } %>
 - [Node](https://nodejs.org/)<% if (testFramework === 'jasmine' || testFramework === 'mocha') { %>
 
 Testing
