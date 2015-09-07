@@ -33,6 +33,13 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
       });
     }
 
+    // Add --debug option to your gulp task to view
+    // what data is being loaded into your templates
+    if (args.debug) {
+      console.log('==== DEBUG: Data being injected to templates ====');
+      console.log(siteData);
+    }
+
     return gulp.src([
       path.join(dirs.source, '**/*.nunjucks'),
       '!' + path.join(dirs.source, '{**/\_*,**/\_*/**}')
@@ -40,12 +47,10 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
     .pipe(plugins.changed(dest))
     .pipe(plugins.plumber())
     .pipe(plugins.data({
-      data: {
-        config: config,
-        debug: true,
-        site: {
-          data: siteData
-        }
+      config: config,
+      debug: true,
+      site: {
+        data: siteData
       }
     }))
     .pipe(nunjucks({

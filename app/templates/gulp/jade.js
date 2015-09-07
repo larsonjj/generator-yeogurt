@@ -33,6 +33,13 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
       });
     }
 
+    // Add --debug option to your gulp task to view
+    // what data is being loaded into your templates
+    if (args.debug) {
+      console.log('==== DEBUG: Data being injected to templates ====');
+      console.log(siteData);
+    }
+
     return gulp.src([
       path.join(dirs.source, '**/*.jade'),
       '!' + path.join(dirs.source, '{**/\_*,**/\_*/**}')
