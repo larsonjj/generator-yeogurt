@@ -474,7 +474,7 @@ Now you can include your desired module/lib within your `src/_scripts/main.js` f
 
 ```js
 // ES5
-require('slicl-carousel');
+require('slick-carousel');
 
 // ES6
 import 'slick-carousel';
