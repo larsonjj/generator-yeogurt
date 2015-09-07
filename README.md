@@ -52,6 +52,9 @@ There are a few dependencies that this project relies on:
 You may have some issues compiling code during installation of packages. Please install Xcode from App Store first. After Xcode is installed, 
 open Xcode and go to ***Preferences -> Download -> Command Line Tools -> Install*** to install command line tools.
 
+> NOTE: For Windows users
+You may have some issues compiling [BrowserSync](http://www.browsersync.io/) during installation of packages. Please go to [http://www.browsersync.io/docs/#windows-users](http://www.browsersync.io/docs/#windows-users) for more information on how to get all the needed dependencies.
+
 #### Node.js
 Check to see if you already have Node installed. Do this by bringing up a terminal/command prompt and type `node -v`. If the response shows a version at or above `v0.12.x`, you are all set and can proceed to installing Yeoman, Gulp, and Bower. If you see an error and/or your version is too low, navigate to the [Node.js](http://nodejs.org/) website and install Node from there.
 
