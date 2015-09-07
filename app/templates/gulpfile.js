@@ -1,37 +1,37 @@
 'use strict';
 <% if (testFramework === 'mocha' || testFramework === 'jasmine') { %>
-import path from 'path';<% } %>
-import gulp from 'gulp';
-import gulpLoadPlugins from 'gulp-load-plugins';
-import browserSyncLib from 'browser-sync';
-import pjson from './package.json';
-import minimist from 'minimist';
-import wrench from 'wrench';
+var path = require('path');<% } %>
+var gulp = require('gulp');
+var gulpLoadPlugins = require('gulp-load-plugins');
+var browserSyncLib = require('browser-sync');
+var pjson = require('./package.json');
+var minimist = require('minimist');
+var wrench = require('wrench');
 
 // Load all gulp plugins based on their names
 // EX: gulp-copy -> copy
-const plugins = gulpLoadPlugins();<% if (testFramework !== 'none') { %>
+var plugins = gulpLoadPlugins();<% if (testFramework !== 'none') { %>
 // Create karma server
-const karma = require('karma').server;<% } %>
+var karma = require('karma').server;<% } %>
 
-let config = pjson.config;
-let args = minimist(process.argv.slice(2));
-let dirs = config.directories;
-let taskTarget = args.production ? dirs.destination : dirs.temporary;
+var config = pjson.config;
+var args = minimist(process.argv.slice(2));
+var dirs = config.directories;
+var taskTarget = args.production ? dirs.destination : dirs.temporary;
 
 // Create a new browserSync instance
-let browserSync = browserSyncLib.create();
+var browserSync = browserSyncLib.create();
 
 // This will grab all js in the `gulp` directory
 // in order to load all gulp tasks
-wrench.readdirSyncRecursive('./gulp').filter((file) => {
+wrench.readdirSyncRecursive('./gulp').filter(function(file) {
   return (/\.(js)$/i).test(file);
 }).map(function(file) {
   require('./gulp/' + file)(gulp, plugins, args, config, taskTarget, browserSync);
 });
 
 // Default task
-gulp.task('default', ['clean'], () => {
+gulp.task('default', ['clean'], function() {
   gulp.start('build');
 });
 
@@ -62,7 +62,7 @@ gulp.task('serve', [
 ]);
 
 // Testing
-gulp.task('test',<% if (testFramework === 'none') { %> ['eslint']);<% } else { %> (done) => {
+gulp.task('test',<% if (testFramework === 'none') { %> ['eslint']);<% } else { %> function(done) {
   karma.start({
     configFile: path.join(__dirname, '/karma.conf.js'),
     singleRun: !args.watch,
