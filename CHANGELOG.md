@@ -1,3 +1,8 @@
+### v1.3.1:
+#### date: 2015-9-07
+##### changes:
+* Fixed typos and other misc. documentation
+
 ### v1.3.0:
 #### date: 2015-9-07
 ##### changes:
