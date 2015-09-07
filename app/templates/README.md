@@ -60,3 +60,5 @@ The tasks are as follows:
 
 `gulp test`: Lints all `*.js` file in the `source` folder using eslint<% if (testFramework === 'jasmine' || testFramework === 'mocha') { %> and runs all `*.test.js` file unit tests through [Karma](http://karma-runner.github.io/0.13/index.html) and <% if (testFramework === 'jasmine') { %>Jasmine<% } else if (testFramework === 'mocha') { %>Mocha + Chai<% } %>
 `gulp test --watch`: Same as `gulp test` but will constantly watch `*.test.js` files and rerun tests when changes are detected<% } %>
+
+***Adding the `--debug` option to any gulp task displays extra debugging information (ex. data being loaded into your templates)***
