@@ -216,14 +216,8 @@ Ex: `main**.js` will process all files that start with `main` and end with `.js`
 
 ## Gulp Workflow
 
-### `gulp`
-Runs [`gulp test`](#gulp-test) and compiles/creates temporary server files
-
-**Extra Task Target(s)**
-
-|Tasks| Description
-|---------|-------
-|`gulp --production`| Builds out an optimized site through compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, and optimization of images.
+### `gulp --production`
+Runs [`gulp test`](#gulp-test) and builds out an optimized site through compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, and optimization of images.
 
 ### `gulp serve`
 Starts up a development server that watches files and automatically reloads them to the browser when a change is detected.
@@ -245,6 +239,8 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 |`gulp test --watch`| runs [`gulp test`](#gulp-test), but also watches test files and auto runs tests when changes are detected.
 
 > NOTE: test:watch is only available if you chose to unit test your javascript
+
+***Adding the `--debug` option to any gulp task displays extra debugging information (ex. data being loaded into your templates)***
 
 ## Sub-Generators
 

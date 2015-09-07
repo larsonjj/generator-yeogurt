@@ -8,7 +8,12 @@ var rootFiles = function rootFiles() {
   // Create needed Directories
 
   // root (/)
-  this.template('gulpfile.babel.js', 'gulpfile.babel.js');
+  if (this.jsPreprocessor === 'none') {
+    this.template('gulpfile.js', 'gulpfile.js');
+  }
+  else {
+    this.template('gulpfile.babel.js', 'gulpfile.babel.js');
+  }
   this.template('_package.json', 'package.json');
   this.template('README.md', 'README.md');
 

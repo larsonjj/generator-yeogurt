@@ -1,46 +1,44 @@
 'use strict';
 
-import path from 'path';
-import glob from 'glob';
-import browserify from 'browserify';
-import watchify from 'watchify';
-import envify from 'envify';
-import babelify from 'babelify';
-import _ from 'lodash';
-import vsource from 'vinyl-source-stream';
-import buffer from 'vinyl-buffer';
-import gulpif from 'gulp-if';
+var path = require('path');
+var glob = require('glob');
+var browserify = require('browserify');
+var watchify = require('watchify');
+var envify = require('envify');
+var _ = require('lodash');
+var vsource = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
+var gulpif = require('gulp-if');
 
-export default function(gulp, plugins, args, config, taskTarget, browserSync) {
+module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) {
   var dirs = config.directories;
   var entries = config.entries;
 
-  let browserifyTask = function(files) {
+  var browserifyTask = function(files) {
     return files.map(function(entry) {
-      let dest = path.resolve(taskTarget);
+      var dest = path.resolve(taskTarget);
 
       // Options
-      let customOpts = {
+      var customOpts = {
         entries: [entry],
         debug: true,
         transform: [
-          envify,  // Sets NODE_ENV for better optimization of npm packages
-          babelify // Enable ES6 features
+          envify  // Sets NODE_ENV for better optimization of npm packages
         ]
       };
 
-      let bundler = browserify(customOpts);
+      var bundler = browserify(customOpts);
 
       if (!args.production) {
         // Setup Watchify for faster builds
-        let opts = _.assign({}, watchify.args, customOpts);
+        var opts = _.assign({}, watchify.args, customOpts);
         bundler = watchify(browserify(opts));
       }
 
-      let rebundle = function() {
-        let startTime = new Date().getTime();
+      var rebundle = function() {
+        var startTime = new Date().getTime();
         bundler.bundle()
-          .on('error', function (err) {
+          .on('error', function(err) {
             plugins.util.log(
               plugins.util.colors.red('Browserify compile error:'),
               err.message,
@@ -64,7 +62,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
           .pipe(gulp.dest(dest))
           // Show which file was bundled and how long it took
           .on('end', function() {
-            let time = (new Date().getTime() - startTime) / 1000;
+            var time = (new Date().getTime() - startTime) / 1000;
             console.log(
               plugins.util.colors.cyan(entry)
               + ' was browserified: '
@@ -91,4 +89,4 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
       return browserifyTask(files);
     });
   });
-}
+};

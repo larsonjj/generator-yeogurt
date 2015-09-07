@@ -3,7 +3,7 @@
 import path from 'path';
 
 export default function(gulp, plugins, args, config, taskTarget, browserSync) {
-  var dirs = config.directories;
+  let dirs = config.directories;
   let dest = path.join(taskTarget);
 
   // Copy

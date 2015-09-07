@@ -1,12 +1,12 @@
-{
-  "parser": "babel-eslint",
+{<% if (jsPreprocessor === 'es6') { %>
+  "parser": "babel-eslint",<% } %>
   "env": {
     "browser": true,
-    "node": true,
-    "es6": true
+    "node": true<% if (jsPreprocessor === 'es6') { %>,
+    "es6": true<% } %>
   },
   "globals": {
-    "DocumentFragment": true,
+    "DocumentFragment": true<% if (testFramework !== 'none') { %>,
     "expect": true,
     "it": true,
     "describe": true,
@@ -16,7 +16,7 @@
     "spyOnEvent": true,
     "waitsFor": true,
     "expect": true,
-    "afterEach": true
+    "afterEach": true<% } %>
   },
   "rules": {
     "indent": [2, 2],

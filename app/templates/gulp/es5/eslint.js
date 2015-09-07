@@ -1,12 +1,15 @@
+/*eslint no-process-exit:0 */
+
 'use strict';
 
-import path from 'path';
+var path = require('path');
+var gulpif = require('gulp-if');
 
-export default function(gulp, plugins, args, config, taskTarget, browserSync) {
+module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) {
   var dirs = config.directories;
 
   // ESLint
-  gulp.task('eslint', () => {
+  gulp.task('eslint', function() {
     gulp.src([
       path.join('gulpfile.js'),
       path.join(dirs.source, '**/*.js'),
@@ -18,6 +21,11 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
       useEslintrc: true
     }))
     .pipe(plugins.eslint.format())
-    .pipe(plugins.if(!browserSync.active, plugins.eslint.failAfterError()));
+    .pipe(gulpif(!browserSync.active, plugins.eslint.failAfterError()))
+    .on('error', function() {
+      if (!browserSync.active) {
+        process.exit(1);
+      }
+    });
   });
-}
+};

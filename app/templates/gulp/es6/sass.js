@@ -4,8 +4,8 @@ import path from 'path';
 import autoprefixer from 'autoprefixer-core';
 
 export default function(gulp, plugins, args, config, taskTarget, browserSync) {
-  var dirs = config.directories;
-  var entries = config.entries;
+  let dirs = config.directories;
+  let entries = config.entries;
   let dest = path.join(taskTarget, dirs.styles.replace(/^_/, ''));
 
   // Sass compilation

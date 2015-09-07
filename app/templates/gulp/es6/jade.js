@@ -3,16 +3,16 @@
 import fs from 'fs';
 import path from 'path';
 import foldero from 'foldero';
-import nunjucks from 'gulp-nunjucks-html';
+import jade from 'jade';
 
 export default function(gulp, plugins, args, config, taskTarget, browserSync) {
-  var dirs = config.directories;
+  let dirs = config.directories;
   let dest = path.join(taskTarget);
   let dataPath = path.join(dirs.source, dirs.data);
 
-  // Nunjucks template compile
-  gulp.task('nunjucks', () => {
-    var siteData = {};
+  // Jade template compile
+  gulp.task('jade', () => {
+    let siteData = {};
     if (fs.existsSync(dataPath)) {
       // Convert directory to JS Object
       siteData = foldero(dataPath, {
@@ -33,26 +33,31 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
       });
     }
 
+    // Add --debug option to your gulp task to view
+    // what data is being loaded into your templates
+    if (args.debug) {
+      console.log('==== DEBUG: site.data being injected to templates ====');
+      console.log(siteData);
+      console.log('\n==== DEBUG: package.json config being injected to templates ====');
+      console.log(config);
+    }
+
     return gulp.src([
-      path.join(dirs.source, '**/*.nunjucks'),
+      path.join(dirs.source, '**/*.jade'),
       '!' + path.join(dirs.source, '{**/\_*,**/\_*/**}')
     ])
     .pipe(plugins.changed(dest))
     .pipe(plugins.plumber())
-    .pipe(plugins.data({
-      data: {
+    .pipe(plugins.jade({
+      jade: jade,
+      pretty: true,
+      locals: {
         config: config,
         debug: true,
         site: {
           data: siteData
         }
       }
-    }))
-    .pipe(nunjucks({
-      searchPaths: [path.join(dirs.source)],
-      ext: '.html'
-    }).on('error', function(err) {
-      plugins.util.log(err);
     }))
     .pipe(plugins.htmlmin({
       collapseBooleanAttributes: true,
