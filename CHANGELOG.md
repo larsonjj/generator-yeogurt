@@ -1,15 +1,18 @@
-### v1.2.9:
+### v1.3.0:
 #### date: 2015-9-07
 ##### changes:
 * Added the `--debug` option to gulp tasks so user can view data being injected into their templates
+* Added new option to choose between ES5 and ES6/2015
 * Fixed issue where browserSync was running during a build
 * Fixed documentation errors for data loading
+* Updated sites to using relative pathing rather than absolute pathing. This allows for offline site viewing (no need for server)
 
 ### v1.2.8:
 #### date: 2015-9-02
 ##### changes:
 * Fixed Link module issue where `config` should have been `_config` when referencing new options
 * Updated gulp.watch to ignore .css, .js, .html and .map files so browsers correctly inject styles and only reload the browser when necessary (much less reload spam)
+* Added new prompt to allow for ES5 rather than forcing ES6/2015 for JavaScript
 
 ### v1.2.7:
 #### date: 2015-8-27

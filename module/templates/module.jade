@@ -1,3 +1,5 @@
-mixin <%= _.slugify(name.toLowerCase()) %>()
+mixin <%= _.slugify(name.toLowerCase()) %>(config)
+  - var _config = config || {}
+
   div.<%= _.slugify(name.toLowerCase()) %>
     p This is an example paragraph for the <%= _.slugify(name.toLowerCase()) %> module

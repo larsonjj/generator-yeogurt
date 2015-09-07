@@ -1,5 +1,5 @@
 // Karma configuration
-// http://karma-runner.github.io/0.10/config/configuration-file.html
+// http://karma-runner.github.io/0.12/config/configuration-file.html
 'use strict';
 var path = require('path');
 var pjson = require('./package.json');
@@ -31,8 +31,8 @@ var karmaConf = function(config) {
     browserify: {
       debug: true,
       transform: [
-        require('envify'),
-        require('babelify')
+        require('envify')<% if (jsPreprocessor === 'es6') { %>,
+        require('babelify')<% } %>
       ]
     },
 
@@ -45,7 +45,7 @@ var karmaConf = function(config) {
     host: '0.0.0.0',
 
     // web server port
-    port: 9011,
+    port: 3012,
 
     // enable / disable colors in the output (reporters and logs)
     colors: true,
