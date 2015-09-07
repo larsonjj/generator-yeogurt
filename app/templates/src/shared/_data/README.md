@@ -17,9 +17,9 @@ If you have two json files in this data folder with the following contents:
 
 ```json
 [{
-  "name:": "Home"
+  "name": "Home"
 },{
-  "name:": "About"
+  "name": "About"
 }]
 ```
 
@@ -27,7 +27,7 @@ If you have two json files in this data folder with the following contents:
 
 ```json
 {
-  "siteName:": "Sample"
+  "siteName": "Sample"
 }
 ```
 
@@ -53,13 +53,13 @@ so you could access your data like so:
 h1= site.data.global.siteName //- Sample
 ul.menu
   each val in site.data.menu
-    li= val //- Home, About
+    li= val.name //- Home, About
 ```<% } else if (htmlOption === 'nunjucks') { %>
 ```nunjucks
 <h1>{{site.data.global.siteName}}</h1> <!-- Sample -->
 <ul class="menu">
 {% for val in site.data.menu %}
-  <li>{{ val }}</li> <!-- Home, About -->
+  <li>{{ val.name }}</li> <!-- Home, About -->
 {% endfor %}
 </ul>
 ```<% } %>

@@ -44,8 +44,7 @@ gulp.task('build', [
   'less'<% } else if (cssOption === 'sass') { %>,
   'sass'<% } else if (cssOption === 'stylus') { %>,
   'stylus'<% } %>,
-  'browserify',
-  'browserSync'
+  'browserify'
 ]);
 
 // Server tasks with watch

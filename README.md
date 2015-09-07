@@ -49,8 +49,11 @@ This generator utilizes [Yeoman](http://yeoman.io/) and [Gulp](http://gulpjs.com
 There are a few dependencies that this project relies on:
 
 > NOTE: For OSX users
-You may have some issues compiling code during installation of packages. Please install Xcode from App Store first. After Xcode is installed, 
+> You may have some issues compiling code during installation of packages. Please install Xcode from App Store first. After Xcode is installed, 
 open Xcode and go to ***Preferences -> Download -> Command Line Tools -> Install*** to install command line tools.
+
+> NOTE: For Windows users
+> You may have some issues compiling [BrowserSync](http://www.browsersync.io/) during installation of packages. Please go to [http://www.browsersync.io/docs/#windows-users](http://www.browsersync.io/docs/#windows-users) for more information on how to get all the needed dependencies.
 
 #### Node.js
 Check to see if you already have Node installed. Do this by bringing up a terminal/command prompt and type `node -v`. If the response shows a version at or above `v0.12.x`, you are all set and can proceed to installing Yeoman, Gulp, and Bower. If you see an error and/or your version is too low, navigate to the [Node.js](http://nodejs.org/) website and install Node from there.
@@ -213,14 +216,8 @@ Ex: `main**.js` will process all files that start with `main` and end with `.js`
 
 ## Gulp Workflow
 
-### `gulp`
-Runs [`gulp test`](#gulp-test) and compiles/creates temporary server files
-
-**Extra Task Target(s)**
-
-|Tasks| Description
-|---------|-------
-|`gulp --production`| Builds out an optimized site through compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, and optimization of images.
+### `gulp --production`
+Runs [`gulp test`](#gulp-test) and builds out an optimized site through compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, and optimization of images.
 
 ### `gulp serve`
 Starts up a development server that watches files and automatically reloads them to the browser when a change is detected.
@@ -242,6 +239,8 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 |`gulp test --watch`| runs [`gulp test`](#gulp-test), but also watches test files and auto runs tests when changes are detected.
 
 > NOTE: test:watch is only available if you chose to unit test your javascript
+
+***Adding the `--debug` option to any gulp task displays extra debugging information (ex. data being loaded into your templates)***
 
 ## Sub-Generators
 
@@ -431,20 +430,6 @@ Browserify doesn't support Non-CommonJS scripts out of the box (jQuery plugins, 
 npm install --save-dev browserify-shim
 ```
 
-Once it is installed, you will need to add it to your `gulp/browserify` task configuration like so:
-
-```js
-import browserifyShim from 'browserify-shim';
-
-...
-
-transform: [
-  envify,  // Sets NODE_ENV for better optimization of npm packages
-  babelify, // Enable ES6 features
-  browserifyShim // <-- Enable shim
-]
-```
-
 ***Step 2: Install desired npm package***
 
 Now you can install your desired npm package:
@@ -460,6 +445,9 @@ npm install --save slick-carousel
 Add the following to your `package.json` file:
 
 ```json
+"browserify": {
+  "transform": [ "browserify-shim" ]
+},
 "browser": {
   "slick-carousel": "./node_modules/slick-carousel/slick/slick.js"
 },
