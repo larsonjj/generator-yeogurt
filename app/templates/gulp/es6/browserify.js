@@ -43,9 +43,8 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
           .on('error', function(err) {
             plugins.util.log(
               plugins.util.colors.red('Browserify compile error:'),
-              err.message,
-              '\n\n',
-              err.codeFrame,
+              '\n',
+              err,
               '\n'
             );
             this.emit('end');
