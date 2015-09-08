@@ -1,3 +1,8 @@
+### v1.3.2:
+#### date: 2015-9-07
+##### changes:
+* Fixed browserify error messaging
+
 ### v1.3.1:
 #### date: 2015-9-07
 ##### changes:
