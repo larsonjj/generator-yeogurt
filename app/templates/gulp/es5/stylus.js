@@ -2,6 +2,8 @@
 
 var path = require('path');
 var autoprefixer = require('autoprefixer-core');
+var minifyCSS = require('gulp-minify-css');
+var gulpif = require('gulp-if');
 
 module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) {
   var dirs = config.directories;
@@ -23,6 +25,7 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
         // Ex: 'src/_styles' --> '/styles'
         filepath.dirname = filepath.dirname.replace(dirs.source, '').replace('_', '');
       }))
+      .pipe(gulpif(args.production, minifyCSS({rebase: false})))
       .pipe(plugins.sourcemaps.write('./'))
       .pipe(gulp.dest(dest))
       .pipe(browserSync.stream());
