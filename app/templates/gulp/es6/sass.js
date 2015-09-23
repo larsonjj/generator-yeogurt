@@ -28,7 +28,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
         // Ex: 'src/_styles' --> '/styles'
         path.dirname = path.dirname.replace(dirs.source, '').replace('_', '');
       }))
-      .pipe(gulpif(args.production, plugins.minifyCSS({rebase: false})))
+      .pipe(gulpif(args.production, plugins.minifyCss({rebase: false})))
       .pipe(plugins.sourcemaps.write('./'))
       .pipe(gulp.dest(dest))
       .pipe(browserSync.stream({match: '**/*.css'}));
