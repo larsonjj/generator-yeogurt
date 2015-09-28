@@ -581,7 +581,6 @@ node_modules
 *.log
 build
 tmp
-.grunt
 .DS_Store
 ```
 

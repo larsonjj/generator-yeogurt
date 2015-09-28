@@ -24,8 +24,8 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
         entries: [entry],
         debug: true,
         transform: [
-          envify,  // Sets NODE_ENV for better optimization of npm packages
-          babelify // Enable ES6 features
+          babelify, // Enable ES6 features
+          envify // Sets NODE_ENV for better optimization of npm packages
         ]
       };
 
