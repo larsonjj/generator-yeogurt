@@ -1,3 +1,9 @@
+### v1.3.3:
+#### date: 2015-9-27
+##### changes:
+* Minifify CSS in production. [#151](https://github.com/larsonjj/generator-yeogurt/pull/151)
+* Fix order of envify browserify transform when using ES6/2015
+
 ### v1.3.2:
 #### date: 2015-9-07
 ##### changes:
