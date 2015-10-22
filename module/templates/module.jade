@@ -1,6 +1,6 @@
 mixin <%= _.slugify(name.toLowerCase()) %>(spec)
   - spec = spec || {}
-  - spec._class = spec._class || ''
+  - spec.__class = spec.__class || ''
 
-  div(class=spec._class)&attributes(attributes)
+  div(class=spec.__class)&attributes(attributes)
     p This is an example paragraph for the <%= _.slugify(name.toLowerCase()) %> module
