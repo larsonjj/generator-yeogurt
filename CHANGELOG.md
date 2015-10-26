@@ -1,3 +1,13 @@
+### v1.4.0:
+#### date: 2015-10-26
+##### changes:
+* Updated all npm modules to their latest packages.
+* Changed autoprefixer-core to autoprefixer.
+* Fixed readme typo for layouts
+* Updated nunjucks modules to work better and have configurable options via 'spec' object
+* Changed 'config' object to 'spec' to avoid naming conflict with global configuration in templates
+* Updated jade modules to use the &attributes functionality
+
 ### v1.3.3:
 #### date: 2015-9-27
 ##### changes:
