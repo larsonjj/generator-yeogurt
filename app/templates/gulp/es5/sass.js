@@ -1,7 +1,7 @@
 'use strict';
 
 var path = require('path');
-var autoprefixer = require('autoprefixer-core');
+var autoprefixer = require('autoprefixer');
 var gulpif = require('gulp-if');
 
 module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) {

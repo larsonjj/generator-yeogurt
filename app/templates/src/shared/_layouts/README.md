@@ -52,7 +52,7 @@ block append scripts
 
 ## Sub-generator
 
-You can easily create new modules using the built-in sub-generator like so:
+You can easily create new layouts using the built-in sub-generator like so:
 
 ```
 yo yeogurt:layout two-col

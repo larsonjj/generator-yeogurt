@@ -1,7 +1,7 @@
 'use strict';
 
 import path from 'path';
-import autoprefixer from 'autoprefixer-core';
+import autoprefixer from 'autoprefixer';
 import gulpif from 'gulp-if';
 
 export default function(gulp, plugins, args, config, taskTarget, browserSync) {
