@@ -1,21 +1,10 @@
-mixin link(config)
-  - var _config = config || {}
-  - var _id = _config.id || ''
-  - var _classes = _config.classes || ''
-  - var _href = _config.href || '#'
-  - var _target = _config.target || ''
-  - var _rel = _config.rel || ''
-  - var _text = _config.text || 'Default Link'
+mixin link(spec)
+  - spec = spec || {}
+  - spec.__class = spec.__class || ''
+  - spec.text = spec.text || 'Default Link'
 
-  a.link(
-    id=id,
-    href=_href,
-    target=_target,
-    class=_classes,
-    rel=_rel
-  )
+  a.link(class=spec.__class)&attributes(attributes)
     if block
       block
     else
-      != _text
-
+      != spec.text

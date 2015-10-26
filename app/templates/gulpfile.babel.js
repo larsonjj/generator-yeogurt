@@ -12,7 +12,7 @@ import wrench from 'wrench';
 // EX: gulp-copy -> copy
 const plugins = gulpLoadPlugins();<% if (testFramework !== 'none') { %>
 // Create karma server
-const karma = require('karma').server;<% } %>
+const KarmaServer = require('karma').Server;<% } %>
 
 let config = pjson.config;
 let args = minimist(process.argv.slice(2));
@@ -63,9 +63,9 @@ gulp.task('serve', [
 
 // Testing
 gulp.task('test', ['eslint']<% if (testFramework === 'none') { %>);<% } else { %>, (done) => {
-  karma.start({
+  new KarmaServer({
     configFile: path.join(__dirname, '/karma.conf.js'),
     singleRun: !args.watch,
     autoWatch: args.watch
-  }, done);
+  }, done).start();
 });<% } %>

@@ -1,19 +1,17 @@
-{% macro content(config) %}
+{% macro content(spec) %}
 
-{% set _config = config or {} %}
-{% set _id = _config.id or '' %}
-{% set _classes = _config.classes or '' %}
-{% set _href = _config.href or '#' %}
-{% set _target = _config.target or '_self' %}
-{% set _rel = _config.rel or 'void' %}
-{% set _text = _config.text or 'Default Link' %}
+{% set spec = spec or {} %}
+{% set _id = spec.id or '' %}
+{% set _class = spec.class or '' %}
+{% set _href = spec.href or '#' %}
+{% set _target = spec.target or '_self' %}
+{% set _text = spec.text or 'Default Link' %}
 
 <a
   id="{{_id}}"
-  class="link {{_classes}}"
+  class="link {{_class}}"
   href="{{_href}}"
   target="{{_target}}"
-  rel="{{_rel}}"
 >
 {{_text}}
 </a>
