@@ -3,7 +3,8 @@
 var fs = require('fs');
 var path = require('path');
 var foldero = require('foldero');
-var jade = require('jade');
+var jade = require('jade');<% if (dataOption === 'yaml') { %>
+var yaml = require('js-yaml');<% } %>
 
 module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) {
   var dirs = config.directories;
@@ -16,12 +17,19 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
     if (fs.existsSync(dataPath)) {
       // Convert directory to JS Object
       siteData = foldero(dataPath, {
-        recurse: true,
-        whitelist: '(.*/)*.+\.(json)$',
+        recurse: true,<% if (dataOption === 'yaml') { %>
+        whitelist: '(.*/)*.+\.(json|ya?ml)$',<% } else { %>
+        whitelist: '(.*/)*.+\.(json)$', <% } %>
         loader: function loadAsString(file) {
           var json = {};
-          try {
-            json = JSON.parse(fs.readFileSync(file, 'utf8'));
+          try {<% if (dataOption === 'yaml') { %>
+            if (path.extname(file).match(/^.ya?ml$/)) {
+              json = yaml.safeLoad(fs.readFileSync(file, 'utf8'))
+            }
+            else {
+              json = JSON.parse(fs.readFileSync(file, 'utf8'));
+            }<% } else { %>
+            json = JSON.parse(fs.readFileSync(file, 'utf8'));<% } %>
           }
           catch(e) {
             console.log('Error Parsing JSON file: ' + file);
