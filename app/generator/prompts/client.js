@@ -28,19 +28,6 @@ var clientPrompts = function clientPrompts() {
     }
   }, {
     type: 'list',
-    name: 'dataOption',
-    message: 'Would you like to use ' + 'YAML'.blue + ' for your data files?',
-    choices: ['Yes', 'No'],
-    filter: function(val) {
-      var filterMap = {
-        'Yes': 'yaml',
-        'No': ''
-      };
-
-      return filterMap[val];
-    }
-  }, {
-    type: 'list',
     name: 'jsPreprocessor',
     message: 'What ' + 'JavaScript preprocessor'.blue + ' would you like to use?',
     choices: ['None', 'ES6 (Using Babel)'],

@@ -28,7 +28,6 @@ var answersConfig = function answersConfig() {
 
   // Client
   this.htmlOption = this.answers.htmlOption;
-  this.dataOption = this.answers.dataOption;
   this.jsFramework = this.answers.jsFramework;
   this.jsOption = this.answers.jsOption;
   this.jsPreprocessor = this.answers.jsPreprocessor;

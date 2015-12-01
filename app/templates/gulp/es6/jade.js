@@ -3,8 +3,8 @@
 import fs from 'fs';
 import path from 'path';
 import foldero from 'foldero';
-import jade from 'jade';<% if (dataOption === 'yaml') { %>
-import yaml from 'js-yaml';<% } %>
+import jade from 'jade';
+import yaml from 'js-yaml';
 
 export default function(gulp, plugins, args, config, taskTarget, browserSync) {
   let dirs = config.directories;
@@ -17,19 +17,17 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
     if (fs.existsSync(dataPath)) {
       // Convert directory to JS Object
       siteData = foldero(dataPath, {
-        recurse: true,<% if (dataOption === 'yaml') { %>
-        whitelist: '(.*/)*.+\.(json|ya?ml)$',<% } else { %>
-        whitelist: '(.*/)*.+\.(json)$', <% } %>
+        recurse: true,
+        whitelist: '(.*/)*.+\.(json|ya?ml)$',
         loader: function loadAsString(file) {
           let json = {};
-          try {<% if (dataOption === 'yaml') { %>
+          try
             if (path.extname(file).match(/^.ya?ml$/)) {
               json = yaml.safeLoad(fs.readFileSync(file, 'utf8'))
             }
             else {
               json = JSON.parse(fs.readFileSync(file, 'utf8'));
-            }<% } else { %>
-            json = JSON.parse(fs.readFileSync(file, 'utf8'));<% } %>
+            }
           }
           catch(e) {
             console.log('Error Parsing JSON file: ' + file);

@@ -45,8 +45,8 @@
     "gulp-sass": "~2.0.4",<% } %><% if (cssOption === 'less') { %>
     "gulp-less": "~3.0.3",<% } %><% if (cssOption === 'stylus') { %>
     "gulp-stylus": "~2.1.0",<% } %>
-    "gulp-newer": "~1.0.0",<% if (dataOption === 'yaml') { %>
-    "js-yaml": "^3.4.5",<% } %>
+    "gulp-newer": "~1.0.0",
+    "js-yaml": "^3.4.5",
     "watchify": "~3.5.0 ",
     "browserify" : "~12.0.0"<% if (testFramework !== 'none') { %>,
     "karma": "~0.13.14",

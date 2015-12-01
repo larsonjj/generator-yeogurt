@@ -1,6 +1,6 @@
 # Data
 
-This "Data" folder is the designated location for `json` <% if (dataOption === 'yaml') { %>and `yaml`<% } %> file data
+This "Data" folder is the designated location for `json` and `yaml` file data
 that will be injected into your templates under the `site.data` property.
 
 ## Example
@@ -8,10 +8,15 @@ that will be injected into your templates under the `site.data` property.
 If you have two data files in this data folder with the following contents:
 
 ```
-└── _data<% if (dataOption === 'yaml') { %>
-    ├── global.yml<% } else { %>
-    ├── global.json<% } %>
+└── _data
+    ├── global.yml
     └── menu.json
+```
+
+***global.yml***
+
+```yml
+siteName: Sample
 ```
 
 ***menu.json***
@@ -23,18 +28,6 @@ If you have two data files in this data folder with the following contents:
   "name": "About"
 }]
 ```
-
-<% if (dataOption === 'yaml') { %>***global.yml***
-
-```yml
-siteName: Sample
-```<% } else { %>***global.json***
-
-```json
-{
-  "siteName": "Sample"
-}
-```<% } %>
 
 They would be converted to the following object:
 
