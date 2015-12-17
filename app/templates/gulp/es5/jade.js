@@ -4,6 +4,7 @@ var fs = require('fs');
 var path = require('path');
 var foldero = require('foldero');
 var jade = require('jade');
+var yaml = require('js-yaml');
 
 module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) {
   var dirs = config.directories;
@@ -17,11 +18,16 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
       // Convert directory to JS Object
       siteData = foldero(dataPath, {
         recurse: true,
-        whitelist: '(.*/)*.+\.(json)$',
+        whitelist: '(.*/)*.+\.(json|ya?ml)$',
         loader: function loadAsString(file) {
           var json = {};
-          try {
-            json = JSON.parse(fs.readFileSync(file, 'utf8'));
+          try
+            if (path.extname(file).match(/^.ya?ml$/)) {
+              json = yaml.safeLoad(fs.readFileSync(file, 'utf8'))
+            }
+            else {
+              json = JSON.parse(fs.readFileSync(file, 'utf8'));
+            }
           }
           catch(e) {
             console.log('Error Parsing JSON file: ' + file);

@@ -1,16 +1,22 @@
 # Data
 
-This "Data" folder is the designated location for `json` file data
+This "Data" folder is the designated location for `json` and `yaml` file data
 that will be injected into your templates under the `site.data` property.
 
 ## Example
 
-If you have two json files in this data folder with the following contents:
+If you have two data files in this data folder with the following contents:
 
 ```
 └── _data
-    ├── global.json
+    ├── global.yml
     └── menu.json
+```
+
+***global.yml***
+
+```yml
+siteName: Sample
 ```
 
 ***menu.json***
@@ -21,14 +27,6 @@ If you have two json files in this data folder with the following contents:
 },{
   "name": "About"
 }]
-```
-
-***global.json***
-
-```json
-{
-  "siteName": "Sample"
-}
 ```
 
 They would be converted to the following object:
