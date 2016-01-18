@@ -21,16 +21,16 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
         whitelist: '(.*/)*.+\.(json|ya?ml)$',
         loader: function loadAsString(file) {
           let json = {};
-          try
+          try {
             if (path.extname(file).match(/^.ya?ml$/)) {
-              json = yaml.safeLoad(fs.readFileSync(file, 'utf8'))
+              json = yaml.safeLoad(fs.readFileSync(file, 'utf8'));
             }
             else {
               json = JSON.parse(fs.readFileSync(file, 'utf8'));
             }
           }
           catch(e) {
-            console.log('Error Parsing JSON file: ' + file);
+            console.log('Error Parsing JSON/YAML file: ' + file);
             console.log('==== Details Below ====');
             console.log(e);
           }

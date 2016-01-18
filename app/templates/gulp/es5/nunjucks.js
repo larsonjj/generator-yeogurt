@@ -4,6 +4,7 @@ var fs = require('fs');
 var path = require('path');
 var foldero = require('foldero');
 var nunjucks = require('gulp-nunjucks-html');
+var yaml = require('js-yaml');
 
 module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) {
   var dirs = config.directories;
@@ -21,7 +22,12 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
         loader: function loadAsString(file) {
           var json = {};
           try {
-            json = JSON.parse(fs.readFileSync(file, 'utf8'));
+            if (path.extname(file).match(/^.ya?ml$/)) {
+              json = yaml.safeLoad(fs.readFileSync(file, 'utf8'));
+            }
+            else {
+              json = JSON.parse(fs.readFileSync(file, 'utf8'));
+            }
           }
           catch(e) {
             console.log('Error Parsing JSON file: ' + file);

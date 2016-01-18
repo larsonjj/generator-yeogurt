@@ -21,9 +21,9 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
         whitelist: '(.*/)*.+\.(json|ya?ml)$',
         loader: function loadAsString(file) {
           var json = {};
-          try
+          try {
             if (path.extname(file).match(/^.ya?ml$/)) {
-              json = yaml.safeLoad(fs.readFileSync(file, 'utf8'))
+              json = yaml.safeLoad(fs.readFileSync(file, 'utf8'));
             }
             else {
               json = JSON.parse(fs.readFileSync(file, 'utf8'));
