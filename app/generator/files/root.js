@@ -13,6 +13,7 @@ var rootFiles = function rootFiles() {
   }
   else {
     this.template('gulpfile.babel.js', 'gulpfile.babel.js');
+    this.template('.babelrc', '.babelrc');
   }
   this.template('_package.json', 'package.json');
   this.template('README.md', 'README.md');

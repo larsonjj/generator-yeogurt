@@ -617,9 +617,6 @@ To remedy this situation, all you need to do is open up your `.eslintrc` file in
 }
 ```
 
-## Roadmap
-Check out the [Roadmap](ROADMAP.md) to see what's coming down the development pipeline.
-
 ## Contributing
 
 Anyone and everyone is welcome to contribute. Please take a moment to
