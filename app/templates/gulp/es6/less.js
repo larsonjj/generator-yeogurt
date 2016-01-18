@@ -29,6 +29,6 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
       .pipe(gulpif(args.production, plugins.minifyCss({rebase: false})))
       .pipe(plugins.sourcemaps.write('./'))
       .pipe(gulp.dest(dest))
-      .pipe(browserSync.stream());
+      .pipe(browserSync.stream({match: '**/*.css'}));
   });
 }
