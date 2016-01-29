@@ -125,16 +125,17 @@ describe('Static Site module sub-generator', function() {
           it('creates subdirectories', function(done) {
             // Filename
             var module = 'customdir/mymodule';
+            var moduleName = 'mymodule';
 
             var filesToTest = [
-              'src/_modules/' + module + '/tests/' + module + '.test.js',
-              'src/_modules/' + module + '/' + module + '.js',
-              'src/_modules/' + module + '/' + module + '.jade',
-              'src/_modules/' + module + '/' + module + '.sass'
+              'src/_modules/' + module + '/tests/' + moduleName + '.test.js',
+              'src/_modules/' + module + '/' + moduleName + '.js',
+              'src/_modules/' + module + '/' + moduleName + '.jade',
+              'src/_modules/' + module + '/' + moduleName + '.sass'
             ];
             var fileContentToTest = [
-              ['src/_modules/' + module + '/' + module + '.js', /export/i],
-              ['src/_modules/' + module + '/tests/' + module + '.test.js', /describe/i]
+              ['src/_modules/' + module + '/' + moduleName + '.js', /export/i],
+              ['src/_modules/' + module + '/tests/' + moduleName + '.test.js', /describe/i]
             ];
 
             helpers.mockPrompt(this.app, {
