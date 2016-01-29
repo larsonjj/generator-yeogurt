@@ -122,6 +122,40 @@ describe('Static Site module sub-generator', function() {
               });
             });
           });
+          it('creates subdirectories', function(done) {
+            // Filename
+            var module = 'customdir/mymodule';
+
+            var filesToTest = [
+              'src/_modules/' + module + '/tests/' + module + '.test.js',
+              'src/_modules/' + module + '/' + module + '.js',
+              'src/_modules/' + module + '/' + module + '.jade',
+              'src/_modules/' + module + '/' + module + '.sass'
+            ];
+            var fileContentToTest = [
+              ['src/_modules/' + module + '/' + module + '.js', /export/i],
+              ['src/_modules/' + module + '/tests/' + module + '.test.js', /describe/i]
+            ];
+
+            helpers.mockPrompt(this.app, {
+              htmlOption: 'jade',
+              testFramework: 'jasmine',
+              jsOption: 'browserify',
+              cssOption: 'sass',
+              sassSyntax: 'sass'
+            });
+
+            this.app.run([], function() {
+              createSubGenerator('module', module, {path: '../../../'}, {
+                // mock prompt data
+                moduleFile: 'src/_modules'
+              }, function() {
+                assert.file(filesToTest);
+                assert.fileContent(fileContentToTest);
+                done();
+              });
+            });            
+          });
         });
       });
     });
