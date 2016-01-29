@@ -49,6 +49,11 @@ ModuleGenerator.prototype.ask = function ask() {
     path.join(directories.source, directories.modules) :
     'src' + '/_modules';
 
+  if(this.name.split('/').length > 1) {
+    moduleDir += '/' + this.name.split('/').slice(0, -1).join('/');
+  }
+  this.name = this.name.split('/').slice(-1)[0];
+
   this.moduleFile = path.join(
     moduleDir,
     this._.slugify(this.name.toLowerCase()),
