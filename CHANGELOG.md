@@ -1,5 +1,5 @@
 ### v1.5.0:
-#### date: 2015-1-18
+#### date: 2016-1-18
 ##### changes:
 * Added YAML support for files in the generated `data/` folder. [#164](https://github.com/larsonjj/generator-yeogurt/pull/164)
 * Fixed style streams for Less compilation. [#160](https://github.com/larsonjj/generator-yeogurt/pull/160)

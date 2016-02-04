@@ -106,7 +106,7 @@ Once everything is installed, you will see a project structure like below:
 ├── build/                     # Folder for production build output
 ├── tmp/                       # Folder for temporary development output
 ├── src
-|   ├── _data                  # JSON files that add data to templates
+|   ├── _data                  # JSON/YAML files that add data to templates
 |   ├── _images                # Images
 |   ├── _layouts               # Layout structure for app
 |   |   └── base.jade
@@ -164,7 +164,7 @@ Folders relative to the `source` configured directory
 
 | Setting | Description |
 |---------|-------
-| [data](#data-files) | Data folder where JSON files are loaded into templates
+| [data](#data-files) | Data folder where JSON/YAML files are loaded into templates
 | scripts  | Scripts folder where all `.js` files are located (main.js must be in root of this folder)
 | styles   | Styles folder where all stylesheet files are located (main stylesheet must be in root of this folder)
 | modules  | Modules folder where all reusable code should live (default location for [module subgenerator](https://github.com/larsonjj/generator-yeogurt#module))
@@ -534,7 +534,7 @@ If the package is CSS, Sass, Less, or Stylus, you can follow the instructions in
 
 ### Data Files
 
-If you want to load global data into your templates (jade or nunjucks), you can add JSON files in `src/_data` folder.
+If you want to load global data into your templates (jade or nunjucks), you can add JSON/YAML files in `src/_data` folder.
 
 For example, add menu.json in `src/_data` folder:
 
