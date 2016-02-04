@@ -49,33 +49,45 @@ ModuleGenerator.prototype.ask = function ask() {
     path.join(directories.source, directories.modules) :
     'src' + '/_modules';
 
+  // Clean each part of the passed in path into usable file paths
+  // /each sdf.SDF => /each-sdf/sdf
+  this.path = this.name.split('/')
+    .map(function(item) {
+      return this._.slugify(item.toLowerCase());
+    }.bind(this))
+    .join('/');
+
+  // Get the last piece of the path
+  // Ex: `button` of `cool/awesome/button`
+  this.name = this.name.split('/').slice(-1)[0];
+
   this.moduleFile = path.join(
     moduleDir,
-    this._.slugify(this.name.toLowerCase()),
-    this._.slugify(this.name.toLowerCase())
+    this.path,
+    this.name
   );
 
   this.testFile = path.join(
     moduleDir,
-    this._.slugify(this.name.toLowerCase()),
+    this.path,
     'tests',
-    this._.slugify(this.name.toLowerCase())
+    this.name
   );
 
   if (['atom', 'molecule', 'organism'].indexOf(this.atomic) > -1) {
     this.moduleFile = path.join(
       moduleDir,
       this.atomic + 's',
-      this._.slugify(this.name.toLowerCase()),
-      this._.slugify(this.name.toLowerCase())
+      this.path,
+      this.name
     );
 
     this.testFile = path.join(
       moduleDir,
       this.atomic + 's',
-      this._.slugify(this.name.toLowerCase()),
+      this.path,
       'tests',
-      this._.slugify(this.name.toLowerCase())
+      this.name
     );
   }
   else if (this.atomic) {

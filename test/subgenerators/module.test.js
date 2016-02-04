@@ -122,6 +122,35 @@ describe('Static Site module sub-generator', function() {
               });
             });
           });
+          it('is Atomic and has multiple directories', function(done) {
+            // Filename
+            var module = 'really/cool/mymodule';
+
+            var filesToTest = [
+              'src/_modules/atoms/' + module + '/tests/' + module + '.test.js',
+              'src/_modules/atoms/' + module + '/' + module + '.js',
+              'src/_modules/atoms/' + module + '/' + module + '.jade',
+              'src/_modules/atoms/' + module + '/' + module + '.sass'
+            ];
+
+            helpers.mockPrompt(this.app, {
+              htmlOption: 'jade',
+              testFramework: 'jasmine',
+              jsOption: 'browserify',
+              cssOption: 'sass',
+              sassSyntax: 'sass'
+            });
+
+            this.app.run([], function() {
+              createSubGenerator('module', module, {atomic: 'atom', path: '../../../'}, {
+                // mock prompt data
+                moduleFile: 'src/_modules'
+              }, function() {
+                assert.noFile(filesToTest);
+                done();
+              });
+            });
+          });
         });
       });
     });
