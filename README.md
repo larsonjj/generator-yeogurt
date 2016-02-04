@@ -311,13 +311,28 @@ $ yo yeogurt:module link --atomic=atom
 Produces:
 
 ```
-src/_modules/atoms/header/header.{jade,nunjucks}
-src/_modules/atoms/header/header.{scss,sass,less,styl}
-src/_modules/atoms/header/header.js
-src/_modules/atoms/header/__tests__/header.test.js
+src/_modules/atoms/link/link.{jade,nunjucks}
+src/_modules/atoms/link/link.{scss,sass,less,styl}
+src/_modules/atoms/link/link.js
+src/_modules/atoms/link/__tests__/link.test.js
 ```
 
 > NOTE: Possible `--atomic` options: atom, molecule, organism
+
+#### Example #3: Specifying module multiple folder levels deep
+
+```
+$ yo yeogurt:module some/cool/link --atomic=atom
+```
+
+Produces:
+
+```
+src/_modules/atoms/some/cool/link/link.{jade,nunjucks}
+src/_modules/atoms/some/cool/link/link.{scss,sass,less,styl}
+src/_modules/atoms/some/cool/link/link.js
+src/_modules/atoms/some/cool/link/__tests__/link.test.js
+```
 
 ### Layout
 Creates a new layout.

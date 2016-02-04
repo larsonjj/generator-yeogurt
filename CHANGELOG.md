@@ -1,3 +1,9 @@
+### v1.5.1:
+#### date: 2016-2-04
+##### changes:
+* Removed extra key in .eslintrc [#167](https://github.com/larsonjj/generator-yeogurt/pull/167)
+* Added ability to enter in multiple directory paths when using the module sub-generator
+
 ### v1.5.0:
 #### date: 2016-1-18
 ##### changes:
