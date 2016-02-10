@@ -4,21 +4,41 @@
 
 'use strict';
 
+var _ = require('lodash');
+
 var projectPrompts = function projectPrompts() {
+  this.projectPrompts = {};
+  var prompts = {
+    projectName: {
+        type: 'input',
+        name: 'projectName',
+        message: 'What would you like to' + ' name your project'.blue + '?',
+        default: 'Sample'
+      }
+  };
+  var configPrompts = [];
+
   if (this.existingConfig) {
-    return;
+    var config = this.config.get('config');
+
+    if (config.projectName) {
+      this.projectPrompts.projectName = config.projectName;
+    }
+    else {
+      configPrompts.push(prompts.projectName);
+    }
+
+    if (!configPrompts.length) return;
+  }
+  else {
+    configPrompts = _.values(prompts);
   }
 
   var cb = this.async();
 
   this.log('\n---- ' + 'Project Info'.red.underline + ' ----\n');
 
-  this.prompt([{
-    type: 'input',
-    name: 'projectName',
-    message: 'What would you like to' + ' name your project'.blue + '?',
-    default: 'Sample'
-  }], function(answers) {
+  this.prompt(configPrompts, function(answers) {
     this.projectPrompts = answers;
 
     cb();
