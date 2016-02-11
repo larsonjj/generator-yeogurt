@@ -34,12 +34,13 @@ var testingPrompts = function testingPrompts() {
       this.testingPrompts = config.testFramework;
     }
     else {
-      configPrompts.push(prompts.testFramework)
+      configPrompts.push(prompts.testFramework);
     }
 
     if(!configPrompts.length) return;
   }
   else {
+    this.testingPrompts = this.options;
     configPrompts = _.values(_.omit(prompts, _.keys(this.options)));
   }
 

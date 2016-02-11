@@ -31,6 +31,7 @@ var projectPrompts = function projectPrompts() {
     if (!configPrompts.length) return;
   }
   else {
+    this.projectPrompts = this.options;
     configPrompts = _.values(_.omit(prompts, _.keys(this.options)));
   }
 

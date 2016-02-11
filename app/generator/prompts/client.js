@@ -106,6 +106,7 @@ var clientPrompts = function clientPrompts() {
     if(!configPrompts.length) return;
   }
   else {
+    this.clientPrompts = this.options;
     configPrompts = _.values(_.omit(prompts, _.keys(this.options)));
   }
 
