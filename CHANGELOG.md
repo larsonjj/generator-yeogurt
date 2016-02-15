@@ -1,3 +1,8 @@
+### v1.5.2:
+#### date: 2016-2-15
+##### changes:
+* Fixed Yaml data support [#170](https://github.com/larsonjj/generator-yeogurt/pull/170)
+
 ### v1.5.1:
 #### date: 2016-2-04
 ##### changes:
