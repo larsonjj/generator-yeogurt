@@ -18,7 +18,7 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
       // Convert directory to JS Object
       siteData = foldero(dataPath, {
         recurse: true,
-        whitelist: '(.*/)*.+\.(json)$',
+        whitelist: '(.*/)*.+\.(json|ya?ml)$',
         loader: function loadAsString(file) {
           var json = {};
           try {
