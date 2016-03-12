@@ -44,16 +44,17 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
             plugins.util.log(
               plugins.util.colors.red('Browserify compile error:'),
               '\n',
-              err,
+              err.stack,
               '\n'
             );
             this.emit('end');
           })
+          .on('error', plugins.notify.onError(config.defaultNotification))
           .pipe(vsource(entry))
           .pipe(buffer())
           .pipe(plugins.sourcemaps.init({loadMaps: true}))
             .pipe(gulpif(args.production, plugins.uglify()))
-            .on('error', plugins.util.log)
+            .on('error', plugins.notify.onError(config.defaultNotification))
           .pipe(plugins.rename(function(filepath) {
             // Remove 'source' directory as well as prefixed folder underscores
             // Ex: 'src/_scripts' --> '/scripts'

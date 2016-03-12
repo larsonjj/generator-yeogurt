@@ -20,6 +20,7 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
           path.join(dirs.source, dirs.modules)
         ]
       }))
+      .on('error', plugins.notify.onError(config.defaultNotification))
       .pipe(plugins.postcss([autoprefixer({browsers: ['last 2 version', '> 5%', 'safari 5', 'ios 6', 'android 4']})]))
       .pipe(plugins.rename(function(filepath) {
         // Remove 'source' directory as well as prefixed folder underscores
