@@ -17,11 +17,28 @@ var clientPrompts = function clientPrompts() {
     type: 'list',
     name: 'htmlOption',
     message: 'Which ' + 'HTML preprocessor'.blue + ' would you like to use?',
-    choices: ['Jade', 'Nunjucks'],
+    choices: ['Jade', 'Nunjucks', 'Twig'],
     filter: function(val) {
       var filterMap = {
         'Jade': 'jade',
-        'Nunjucks': 'nunjucks'
+        'Nunjucks': 'nunjucks',
+        'Twig': 'twig'
+      };
+
+      return filterMap[val];
+    }
+  }, {
+    when: function(answers) {
+      return answers.htmlOption === 'twig';
+    },
+    type: 'list',
+    name: 'viewExtension',
+    message: 'What ' + 'template file extension'.blue + ' would you like to use ?',
+    choices: ['twig', 'html'],
+    filter: function(val) {
+      var filterMap = {
+        'html': 'html',
+        'twig': 'twig'
       };
 
       return filterMap[val];
