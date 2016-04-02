@@ -48,4 +48,7 @@ ModuleGenerator.prototype.files = function files() {
   else if (this.htmlOption === 'nunjucks') {
     this.template('layout.nunjucks', this.layoutFile + '.nunjucks');
   }
+  else if (this.htmlOption === 'twig') {
+    this.template('layout.twig', this.layoutFile + '.twig');
+  }
 };

@@ -140,4 +140,64 @@ describe('Static Site layout sub-generator', function() {
       });
     });
   });
+
+  describe('Create layout files when using Static Twig', function() {
+    describe('Client layouts', function() {
+      it('Handles defaults', function(done) {
+        // Filename
+        var layout = 'mylayout';
+        var filesToTest = [
+          // add files and folders you expect to NOT exist here.
+          'src/_layouts/' + layout + '.twig',
+        ];
+        var fileContentToTest = [
+          ['src/_layouts/' + layout + '.twig', /extends/i]
+        ];
+
+        helpers.mockPrompt(this.app, {
+          htmlOption: 'twig',
+          cssOption: 'sass',
+          sassSyntax: 'scss'
+        });
+        this.app.run([], function() {
+          createSubGenerator('layout', layout, {path: '../../../'}, {
+            // mock prompt data
+            layoutFile: 'src/_layouts'
+          }, function() {
+            assert.file(filesToTest);
+            assert.fileContent(fileContentToTest);
+            done();
+          });
+        });
+      });
+      it('Handles custom layout', function(done) {
+        // Filename
+        var layout = 'mylayout';
+        var filesToTest = [
+          // add files and folders you expect to NOT exist here.
+          'src/_layouts/' + layout + '.twig'
+        ];
+        var fileContentToTest = [
+          ['src/_layouts/' + layout + '.twig', /extend/i],
+          ['src/_layouts/' + layout + '.twig', /mylayout/i]
+        ];
+
+        helpers.mockPrompt(this.app, {
+          htmlOption: 'twig',
+          cssOption: 'sass',
+          sassSyntax: 'scss'
+        });
+        this.app.run([], function() {
+          createSubGenerator('layout', layout, {layout: layout, path: '../../../'}, {
+            // mock prompt data
+            layoutFile: 'src/_layouts'
+          }, function() {
+            assert.file(filesToTest);
+            assert.fileContent(fileContentToTest);
+            done();
+          });
+        });
+      });
+    });
+  });
 });

@@ -152,4 +152,70 @@ describe('Static Site page sub-generator', function() {
       });
     });
   });
+
+  describe('Create page files when using Static Twig', function() {
+    describe('Client pages', function() {
+      describe('Using Browserify', function() {
+        it('Using Jasmine', function(done) {
+          // Filename
+          var page = 'mypage';
+
+          var filesToTest = [
+            'src/' + page + '/' + 'index.twig'
+          ];
+          var fileContentToTest = [
+            ['src/' + page + '/' + 'index.twig', /extends/i],
+            ['src/' + page + '/' + 'index.twig', /mypage/i]
+          ];
+
+          helpers.mockPrompt(this.app, {
+            htmlOption: 'twig',
+            testFramework: 'jasmine',
+            jsOption: 'browserify'
+          });
+
+          this.app.run([], function() {
+            createSubGenerator('page', page, {layout: page, path: '../../../'}, {
+              // mock prompt data
+              pageFile: 'src/'
+            }, function() {
+              assert.file(filesToTest);
+              assert.fileContent(fileContentToTest);
+              done();
+            });
+          });
+        });
+        it('With custom layout', function(done) {
+          // Filename
+          var page = 'mypage';
+
+          var filesToTest = [
+            'src/' + page + '/' + 'index.twig'
+          ];
+          var fileContentToTest = [
+            ['src/' + page + '/' + 'index.twig', /extends/i],
+            ['src/' + page + '/' + 'index.twig', /mypage/i]
+          ];
+
+          helpers.mockPrompt(this.app, {
+            htmlOption: 'twig',
+            testFramework: 'jasmine',
+            jsOption: 'browserify',
+            cssOption: 'stylus'
+          });
+
+          this.app.run([], function() {
+            createSubGenerator('page', page, {layout: page, path: '../../../'}, {
+              // mock prompt data
+              pageFile: 'src/'
+            }, function() {
+              assert.file(filesToTest);
+              assert.fileContent(fileContentToTest);
+              done();
+            });
+          });
+        });
+      });
+    });
+  });
 });

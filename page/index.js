@@ -51,4 +51,7 @@ PageGenerator.prototype.files = function files() {
   else if (this.htmlOption === 'nunjucks') {
     this.template('page.nunjucks', this.pageFile + '.nunjucks');
   }
+  else if (this.htmlOption === 'twig') {
+    this.template('page.twig', this.pageFile + '.twig');
+  }
 };

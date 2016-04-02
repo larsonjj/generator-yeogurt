@@ -198,6 +198,50 @@ describe('Static Site module sub-generator', function() {
       });
     });
   });
+
+  describe('Create module files when using Static Twig', function() {
+    describe('Client modules', function() {
+      describe('Handles defaults', function() {
+        describe('Using Browserify', function() {
+          it('Using Jasmine', function(done) {
+            // Filename
+            var module = 'mymodule';
+
+            var filesToTest = [
+              'src/_modules/' + module + '/tests/' + module + '.test.js',
+              'src/_modules/' + module + '/' + module + '.js',
+              'src/_modules/' + module + '/' + module + '.twig',
+              'src/_modules/' + module + '/' + module + '.scss'
+            ];
+            var fileContentToTest = [
+              ['src/_modules/' + module + '/' + module + '.js', /export/i],
+              ['src/_modules/' + module + '/tests/' + module + '.test.js', /describe/i]
+            ];
+
+            helpers.mockPrompt(this.app, {
+              htmlOption: 'twig',
+              testFramework: 'jasmine',
+              cssOption: 'sass',
+              sassSyntax: 'scss',
+              jsOption: 'browserify'
+            });
+
+            this.app.run([], function() {
+              createSubGenerator('module', module, {path: '../../../'}, {
+                // mock prompt data
+                moduleFile: 'src/_modules'
+              }, function() {
+                assert.file(filesToTest);
+                assert.fileContent(fileContentToTest);
+                done();
+              });
+            });
+          });
+        });
+      });
+    });
+  });
+
   describe('Handles Stylesheet Preprocessors', function() {
     it('Handles Sass with sass syntax', function(done) {
       // Filename

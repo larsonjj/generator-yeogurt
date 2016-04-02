@@ -1,0 +1,10 @@
+{% extends '<%= layoutDir %>/<%= layout %>.twig' %}
+
+{% block config %}
+  {# Correct base url pathing for this page #}
+  {% set baseUrl = '../' %}
+{% endblock %}
+
+{% block content %}
+<p><%= _.slugify(name.toLowerCase()) %> page</p>
+{% endblock %}
