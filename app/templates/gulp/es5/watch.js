@@ -37,7 +37,7 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
       <% } else if (htmlOption === 'twig') { %>
       // Twig Templates
       gulp.watch([
-        path.join(dirs.source, '**/*.<%= viewExtension %>'),
+        path.join(dirs.source, '**/*.twig'),
         path.join(dirs.source, dirs.data, '**/*.{json,yaml,yml}')
       ], ['twig']);
       <% } %>
@@ -48,7 +48,7 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
         '!' + path.join(dirs.source, '{**/\_*,**/\_*/**}')<% if (htmlOption === 'nunjucks') { %>,
         '!' + path.join(dirs.source, '**/*.nunjucks')<% } else if (htmlOption === 'jade') { %>,
         '!' + path.join(dirs.source, '**/*.jade')<% } else if (htmlOption === 'twig') { %>,
-        '!' + path.join(dirs.source, '**/*.<%= viewExtension %>')<% } %>
+        '!' + path.join(dirs.source, '**/*.twig')<% } %>
       ], ['copy']);
 
       // Images
@@ -60,7 +60,7 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
       gulp.watch([
         path.join(dirs.temporary, '**/*'),
         <% if (htmlOption === 'twig') { %>
-        '!' + path.join(dirs.temporary, '**/*.{css,map,<%= viewExtension %>,js}')
+        '!' + path.join(dirs.temporary, '**/*.{css,map,twig,js}')
         <% } else { %>
         '!' + path.join(dirs.temporary, '**/*.{css,map,html,js}')
         <% } %>

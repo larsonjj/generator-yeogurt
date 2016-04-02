@@ -28,22 +28,6 @@ var clientPrompts = function clientPrompts() {
       return filterMap[val];
     }
   }, {
-    when: function(answers) {
-      return answers.htmlOption === 'twig';
-    },
-    type: 'list',
-    name: 'viewExtension',
-    message: 'What ' + 'template file extension'.blue + ' would you like to use ?',
-    choices: ['twig', 'html'],
-    filter: function(val) {
-      var filterMap = {
-        'html': 'html',
-        'twig': 'twig'
-      };
-
-      return filterMap[val];
-    }
-  }, {
     type: 'list',
     name: 'jsPreprocessor',
     message: 'What ' + 'JavaScript preprocessor'.blue + ' would you like to use?',

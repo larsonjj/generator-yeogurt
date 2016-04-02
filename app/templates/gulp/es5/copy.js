@@ -13,7 +13,7 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
         '!' + path.join(dirs.source, '{**/\_*,**/\_*/**}')<% if (htmlOption === 'nunjucks') { %>,
         '!' + path.join(dirs.source, '**/*.nunjucks')<% } else if (htmlOption === 'jade') { %>,
         '!' + path.join(dirs.source, '**/*.jade')<% } else if (htmlOption === 'twig') { %>,
-        '!' + path.join(dirs.source, '**/*.<%= viewExtension %>')<% } %>
+        '!' + path.join(dirs.source, '**/*.twig')<% } %>
       ])
       .pipe(plugins.changed(dest))
       .pipe(gulp.dest(dest));

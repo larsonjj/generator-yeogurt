@@ -130,6 +130,16 @@ ModuleGenerator.prototype.files = function files() {
       this.template('module.test.es6.js', this.testFile + '.test.js');
     }
   }
+  else if (this.htmlOption === 'twig') {
+    this.template('module.twig', this.moduleFile + '.twig');
+    this.template('module.js', this.moduleFile + '.js');
+    if (this.jsPreprocessor === 'none') {
+      this.template('module.test.js', this.testFile + '.test.js');
+    }
+    else {
+      this.template('module.test.es6.js', this.testFile + '.test.js');
+    }
+  }
 
   if (this.cssOption === 'sass') {
     if (this.sassSyntax === 'sass') {

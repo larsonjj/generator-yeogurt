@@ -24,6 +24,7 @@ var order = [
   'task',
   'jade',
   'nunjucks',
+  'twig',
   'style',
   'tests',
   /* Config */

@@ -1,0 +1,9 @@
+{% macro content(spec) %}
+
+{% set spec = spec or {} %}
+{% set _class = spec.class or '' %}
+
+<div class="{{_class}}">
+  <p>This is an example paragraph for the <%= _.slugify(name.toLowerCase()) %> module</p>
+</div>
+{% endmacro %}

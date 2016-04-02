@@ -49,8 +49,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
     }
 
     return gulp.src([
-      path.join(dirs.source, '**/*.<%= viewExtension %>'),
-      path.join(dirs.source, '*.<%= viewExtension %>'),
+      path.join(dirs.source, '**/*.twig'),
       '!' + path.join(dirs.source, '{**/\_*,**/\_*/**}')
     ])
     .pipe(plugins.changed(dest))
