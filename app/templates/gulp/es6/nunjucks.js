@@ -30,7 +30,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
             }
           }
           catch(e) {
-            console.log('Error Parsing JSON file: ' + file);
+            console.log('Error Parsing DATA file: ' + file);
             console.log('==== Details Below ====');
             console.log(e);
           }
@@ -64,9 +64,11 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
     .pipe(nunjucks({
       searchPaths: [path.join(dirs.source)],
       ext: '.html'
-    }).on('error', function(err) {
+    })
+    .on('error', function(err) {
       plugins.util.log(err);
     }))
+    .on('error', plugins.notify.onError(config.defaultNotification))
     .pipe(plugins.htmlmin({
       collapseBooleanAttributes: true,
       conservativeCollapse: true,

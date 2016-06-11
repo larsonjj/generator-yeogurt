@@ -31,6 +31,7 @@ A generator for creating static sites. Helps you harness the power of your favor
 - [.editorconfig](http://editorconfig.org/) for consistent coding styles within text editors
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets
 - JavaScript Linting with [ESLint](http://eslint.org/)
+- System Notifications for build errors via [gulp-notify](https://github.com/mikaelbr/gulp-notify)
 
 ### Available Options
 

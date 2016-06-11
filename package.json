@@ -1,6 +1,6 @@
 {
   "name": "generator-yeogurt",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "A generator for creating static sites. Helps you harness the power of your favorite tools: Jade or Nunjucks, Gulp, ES6/2015, and much more!",
   "keywords": [
     "yeoman-generator",
@@ -43,7 +43,7 @@
   "devDependencies": {
     "babel-eslint": "^3.1.19",
     "coveralls": "~2.11.2",
-    "eslint": "^0.24.0",
+    "eslint": "~0.24.0",
     "fixture-stdout": "~0.2.1",
     "istanbul": "~0.3.6",
     "mocha": "~2.1.0",

@@ -1,3 +1,9 @@
+### v1.5.3:
+#### date: 2016-6-10
+##### changes:
+* Improve error handling when compiling js, sass/less/stylus [#170](https://github.com/larsonjj/generator-yeogurt/pull/172)
+* Updated dependencies
+
 ### v1.5.2:
 #### date: 2016-2-15
 ##### changes:
