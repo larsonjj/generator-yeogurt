@@ -15,6 +15,14 @@ var plugins = gulpLoadPlugins();<% if (testFramework !== 'none') { %>
 var KarmaServer = require('karma').Server;<% } %>
 
 var config = pjson.config;
+config.defaultNotification = function(err) {
+    return {
+        subtitle: err.plugin,
+        message: err.message,
+        sound: 'Funk',
+        onLast: true,
+    };
+};
 var args = minimist(process.argv.slice(2));
 var dirs = config.directories;
 var taskTarget = args.production ? dirs.destination : dirs.temporary;

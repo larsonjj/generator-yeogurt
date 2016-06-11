@@ -14,7 +14,17 @@ const plugins = gulpLoadPlugins();<% if (testFramework !== 'none') { %>
 // Create karma server
 const KarmaServer = require('karma').Server;<% } %>
 
-let config = pjson.config;
+const defaultNotification = function(err) {
+    return {
+        subtitle: err.plugin,
+        message: err.message,
+        sound: 'Funk',
+        onLast: true,
+    };
+};
+
+let config = Object.assign({}, pjson.config, defaultNotification);
+
 let args = minimist(process.argv.slice(2));
 let dirs = config.directories;
 let taskTarget = args.production ? dirs.destination : dirs.temporary;
