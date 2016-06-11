@@ -30,7 +30,7 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
             }
           }
           catch(e) {
-            console.log('Error Parsing JSON file: ' + file);
+            console.log('Error Parsing DATA file: ' + file);
             console.log('==== Details Below ====');
             console.log(e);
           }
