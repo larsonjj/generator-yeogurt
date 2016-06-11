@@ -22,6 +22,9 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
           path.join(dirs.source, dirs.modules)
         ]
       }))
+      .on('error', function(err) {
+        plugins.util.log(err);
+      })
       .on('error', plugins.notify.onError(config.defaultNotification))
       .pipe(plugins.postcss([autoprefixer({browsers: ['last 2 version', '> 5%', 'safari 5', 'ios 6', 'android 4']})]))
       .pipe(plugins.rename(function(path) {

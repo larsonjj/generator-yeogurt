@@ -9,12 +9,12 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
   // Copy
   gulp.task('copy', function() {
     return gulp.src([
-        path.join(dirs.source, '**/*'),
-        '!' + path.join(dirs.source, '{**/\_*,**/\_*/**}')<% if (htmlOption === 'nunjucks') { %>,
-        '!' + path.join(dirs.source, '**/*.nunjucks')<% } else if (htmlOption === 'jade') { %>,
-        '!' + path.join(dirs.source, '**/*.jade')<% } %>
-      ])
-      .pipe(plugins.changed(dest))
-      .pipe(gulp.dest(dest));
+      path.join(dirs.source, '**/*'),
+      '!' + path.join(dirs.source, '{**/\_*,**/\_*/**}')<% if (htmlOption === 'nunjucks') { %>,
+      '!' + path.join(dirs.source, '**/*.nunjucks')<% } else if (htmlOption === 'jade') { %>,
+      '!' + path.join(dirs.source, '**/*.jade')<% } %>
+    ])
+    .pipe(plugins.changed(dest))
+    .pipe(gulp.dest(dest));
   });
 };
