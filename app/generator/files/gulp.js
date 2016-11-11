@@ -14,8 +14,8 @@ var gulpFiles = function gulpFiles() {
     this.template('gulp/es5/imagemin.js', 'gulp/imagemin.js');
     this.template('gulp/es5/watch.js', 'gulp/watch.js');
 
-    if (this.htmlOption === 'jade') {
-      this.template('gulp/es5/jade.js', 'gulp/jade.js');
+    if (this.htmlOption === 'pug') {
+      this.template('gulp/es5/pug.js', 'gulp/pug.js');
     }
     else if (this.htmlOption === 'nunjucks') {
       this.template('gulp/es5/nunjucks.js', 'gulp/nunjucks.js');
@@ -40,8 +40,8 @@ var gulpFiles = function gulpFiles() {
     this.template('gulp/es6/imagemin.js', 'gulp/imagemin.js');
     this.template('gulp/es6/watch.js', 'gulp/watch.js');
 
-    if (this.htmlOption === 'jade') {
-      this.template('gulp/es6/jade.js', 'gulp/jade.js');
+    if (this.htmlOption === 'pug') {
+      this.template('gulp/es6/pug.js', 'gulp/pug.js');
     }
     else if (this.htmlOption === 'nunjucks') {
       this.template('gulp/es6/nunjucks.js', 'gulp/nunjucks.js');

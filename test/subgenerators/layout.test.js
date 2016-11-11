@@ -21,21 +21,21 @@ describe('Static Site layout sub-generator', function() {
     }.bind(this));
   });
 
-  describe('Create layout files when using Static Jade', function() {
+  describe('Create layout files when using Static Pug', function() {
     describe('Client layouts', function() {
       it('Handles defaults', function(done) {
         // Filename
         var layout = 'mylayout';
         var filesToTest = [
           // add files and folders you expect to NOT exist here.
-          'src/_layouts/' + layout + '.jade',
+          'src/_layouts/' + layout + '.pug',
         ];
         var fileContentToTest = [
-          ['src/_layouts/' + layout + '.jade', /extend/i]
+          ['src/_layouts/' + layout + '.pug', /extend/i]
         ];
 
         helpers.mockPrompt(this.app, {
-          htmlOption: 'jade',
+          htmlOption: 'pug',
           cssOption: 'sass',
           sassSyntax: 'scss'
         });
@@ -55,15 +55,15 @@ describe('Static Site layout sub-generator', function() {
         var layout = 'mylayout';
         var filesToTest = [
           // add files and folders you expect to NOT exist here.
-          'src/_layouts/' + layout + '.jade',
+          'src/_layouts/' + layout + '.pug',
         ];
         var fileContentToTest = [
-          ['src/_layouts/' + layout + '.jade', /extend/i],
-          ['src/_layouts/' + layout + '.jade', /mylayout/i]
+          ['src/_layouts/' + layout + '.pug', /extend/i],
+          ['src/_layouts/' + layout + '.pug', /mylayout/i]
         ];
 
         helpers.mockPrompt(this.app, {
-          htmlOption: 'jade',
+          htmlOption: 'pug',
           cssOption: 'sass',
           sassSyntax: 'scss'
         });

@@ -22,7 +22,7 @@ var order = [
   'root',
   'image',
   'task',
-  'jade',
+  'pug',
   'nunjucks',
   'style',
   'tests',

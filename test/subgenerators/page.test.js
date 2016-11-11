@@ -21,7 +21,7 @@ describe('Static Site page sub-generator', function() {
     }.bind(this));
   });
 
-  describe('Create page files when using Static Jade', function() {
+  describe('Create page files when using Static Pug', function() {
     describe('Client page', function() {
       describe('Using Browserify', function() {
         it('Using Jasmine', function(done) {
@@ -29,14 +29,14 @@ describe('Static Site page sub-generator', function() {
           var page = 'mypage';
 
           var filesToTest = [
-            'src/' + page + '/' + 'index.jade'
+            'src/' + page + '/' + 'index.pug'
           ];
           var fileContentToTest = [
-            ['src/' + page + '/' + 'index.jade', /extends/i]
+            ['src/' + page + '/' + 'index.pug', /extends/i]
           ];
 
           helpers.mockPrompt(this.app, {
-            htmlOption: 'jade',
+            htmlOption: 'pug',
             testFramework: 'jasmine',
             jsOption: 'browserify',
             cssOption: 'stylus'
@@ -58,15 +58,15 @@ describe('Static Site page sub-generator', function() {
           var page = 'mypage';
 
           var filesToTest = [
-            'src/' + page + '/' + 'index.jade'
+            'src/' + page + '/' + 'index.pug'
           ];
           var fileContentToTest = [
-            ['src/' + page + '/' + 'index.jade', /extends/i],
-            ['src/' + page + '/' + 'index.jade', /mypage/i]
+            ['src/' + page + '/' + 'index.pug', /extends/i],
+            ['src/' + page + '/' + 'index.pug', /mypage/i]
           ];
 
           helpers.mockPrompt(this.app, {
-            htmlOption: 'jade',
+            htmlOption: 'pug',
             testFramework: 'jasmine',
             jsOption: 'browserify',
             cssOption: 'stylus'

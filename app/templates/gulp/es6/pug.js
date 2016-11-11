@@ -1,26 +1,26 @@
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
-var foldero = require('foldero');
-var jade = require('jade');
-var yaml = require('js-yaml');
+import fs from 'fs';
+import path from 'path';
+import foldero from 'foldero';
+import pug from 'pug';
+import yaml from 'js-yaml';
 
-module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) {
-  var dirs = config.directories;
-  var dest = path.join(taskTarget);
-  var dataPath = path.join(dirs.source, dirs.data);
+export default function(gulp, plugins, args, config, taskTarget, browserSync) {
+  let dirs = config.directories;
+  let dest = path.join(taskTarget);
+  let dataPath = path.join(dirs.source, dirs.data);
 
-  // Jade template compile
-  gulp.task('jade', function() {
-    var siteData = {};
+  // Pug template compile
+  gulp.task('pug', () => {
+    let siteData = {};
     if (fs.existsSync(dataPath)) {
       // Convert directory to JS Object
       siteData = foldero(dataPath, {
         recurse: true,
         whitelist: '(.*/)*.+\.(json|ya?ml)$',
         loader: function loadAsString(file) {
-          var json = {};
+          let json = {};
           try {
             if (path.extname(file).match(/^.ya?ml$/)) {
               json = yaml.safeLoad(fs.readFileSync(file, 'utf8'));
@@ -49,13 +49,13 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
     }
 
     return gulp.src([
-      path.join(dirs.source, '**/*.jade'),
+      path.join(dirs.source, '**/*.pug'),
       '!' + path.join(dirs.source, '{**/\_*,**/\_*/**}')
     ])
     .pipe(plugins.changed(dest))
     .pipe(plugins.plumber())
-    .pipe(plugins.jade({
-      jade: jade,
+    .pipe(plugins.pug({
+      pug: pug,
       pretty: true,
       locals: {
         config: config,
@@ -75,4 +75,4 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
     .pipe(gulp.dest(dest))
     .on('end', browserSync.reload);
   });
-};
+}

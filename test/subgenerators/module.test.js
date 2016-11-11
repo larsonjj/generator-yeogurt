@@ -21,7 +21,7 @@ describe('Static Site module sub-generator', function() {
     }.bind(this));
   });
 
-  describe('Create module files when using Static Jade', function() {
+  describe('Create module files when using Static Pug', function() {
     describe('Client modules', function() {
       describe('Handles defaults', function() {
         describe('Using Browserify', function() {
@@ -32,7 +32,7 @@ describe('Static Site module sub-generator', function() {
             var filesToTest = [
               'src/_modules/' + module + '/tests/' + module + '.test.js',
               'src/_modules/' + module + '/' + module + '.js',
-              'src/_modules/' + module + '/' + module + '.jade',
+              'src/_modules/' + module + '/' + module + '.pug',
               'src/_modules/' + module + '/' + module + '.sass'
             ];
             var fileContentToTest = [
@@ -41,7 +41,7 @@ describe('Static Site module sub-generator', function() {
             ];
 
             helpers.mockPrompt(this.app, {
-              htmlOption: 'jade',
+              htmlOption: 'pug',
               testFramework: 'jasmine',
               jsOption: 'browserify',
               cssOption: 'sass',
@@ -66,7 +66,7 @@ describe('Static Site module sub-generator', function() {
             var filesToTest = [
               'src/_modules/atoms/' + module + '/tests/' + module + '.test.js',
               'src/_modules/atoms/' + module + '/' + module + '.js',
-              'src/_modules/atoms/' + module + '/' + module + '.jade',
+              'src/_modules/atoms/' + module + '/' + module + '.pug',
               'src/_modules/atoms/' + module + '/' + module + '.sass'
             ];
             var fileContentToTest = [
@@ -75,7 +75,7 @@ describe('Static Site module sub-generator', function() {
             ];
 
             helpers.mockPrompt(this.app, {
-              htmlOption: 'jade',
+              htmlOption: 'pug',
               testFramework: 'jasmine',
               jsOption: 'browserify',
               cssOption: 'sass',
@@ -100,12 +100,12 @@ describe('Static Site module sub-generator', function() {
             var filesToTest = [
               'src/_modules/atoms/' + module + '/tests/' + module + '.test.js',
               'src/_modules/atoms/' + module + '/' + module + '.js',
-              'src/_modules/atoms/' + module + '/' + module + '.jade',
+              'src/_modules/atoms/' + module + '/' + module + '.pug',
               'src/_modules/atoms/' + module + '/' + module + '.sass'
             ];
 
             helpers.mockPrompt(this.app, {
-              htmlOption: 'jade',
+              htmlOption: 'pug',
               testFramework: 'jasmine',
               jsOption: 'browserify',
               cssOption: 'sass',
@@ -129,12 +129,12 @@ describe('Static Site module sub-generator', function() {
             var filesToTest = [
               'src/_modules/atoms/' + module + '/tests/' + module + '.test.js',
               'src/_modules/atoms/' + module + '/' + module + '.js',
-              'src/_modules/atoms/' + module + '/' + module + '.jade',
+              'src/_modules/atoms/' + module + '/' + module + '.pug',
               'src/_modules/atoms/' + module + '/' + module + '.sass'
             ];
 
             helpers.mockPrompt(this.app, {
-              htmlOption: 'jade',
+              htmlOption: 'pug',
               testFramework: 'jasmine',
               jsOption: 'browserify',
               cssOption: 'sass',

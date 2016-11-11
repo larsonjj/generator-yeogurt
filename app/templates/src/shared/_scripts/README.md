@@ -1,7 +1,7 @@
 # Scripts
 
 This "Scripts" folder is designated for all of your global stylesheet files.
-The key file in this folder is `main.js` as it is designated as your bootstrapping file (intializes all your scripts) and is included in the `base.jade` file
+The key file in this folder is `main.js` as it is designated as your bootstrapping file (intializes all your scripts) and is included in the `base.pug` file
 
 By default, ES6/2015 features are enabled in your scripts by using [Babel](https://babeljs.io)
 

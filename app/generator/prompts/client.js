@@ -17,10 +17,10 @@ var clientPrompts = function clientPrompts() {
     type: 'list',
     name: 'htmlOption',
     message: 'Which ' + 'HTML preprocessor'.blue + ' would you like to use?',
-    choices: ['Jade', 'Nunjucks'],
+    choices: ['Pug', 'Nunjucks'],
     filter: function(val) {
       var filterMap = {
-        'Jade': 'jade',
+        'Pug': 'pug',
         'Nunjucks': 'nunjucks'
       };
 

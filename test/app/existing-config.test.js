@@ -25,12 +25,12 @@ describe('Yeogurt generator using existing configuration', function() {
       '.yo-rc.json'
     ];
     var fileContentToTest = [
-      ['.yo-rc.json', /jade/i]
+      ['.yo-rc.json', /pug/i]
     ];
 
     helpers.mockPrompt(this.app, {
       existingConfig: false,
-      htmlOption: 'jade'
+      htmlOption: 'pug'
     });
 
     this.app.run([], function() {

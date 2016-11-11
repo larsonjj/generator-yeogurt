@@ -103,8 +103,8 @@ ModuleGenerator.prototype.files = function files() {
     return;
   }
 
-  if (this.htmlOption === 'jade') {
-    this.template('module.jade', this.moduleFile + '.jade');
+  if (this.htmlOption === 'pug') {
+    this.template('module.pug', this.moduleFile + '.pug');
     if (this.jsPreprocessor === 'none') {
       this.template('module.js', this.moduleFile + '.js');
     }

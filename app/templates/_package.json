@@ -32,9 +32,9 @@
     "vinyl-buffer": "~1.0.0",
     "gulp-util": "~3.0.7",
     "gulp": "~3.9.0",
-    "browser-sync": "~2.13.0",<% if (htmlOption === 'jade') { %>
-    "gulp-jade": "~1.1.0",
-    "jade": "~1.11.0",<% } %><% if (htmlOption === 'nunjucks') { %>
+    "browser-sync": "~2.13.0",<% if (htmlOption === 'pug') { %>
+    "gulp-pug": "~3.1.0",
+    "pug": "~2.0.0",<% } %><% if (htmlOption === 'nunjucks') { %>
     "nunjucks": "~2.3.0",
     "gulp-nunjucks-html": "~2.0.0",<% } %>
     "gulp-postcss": "~6.0.1",
