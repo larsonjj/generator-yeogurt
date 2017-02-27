@@ -1,7 +1,7 @@
 <% if (testFramework === 'mocha') { %>/*eslint no-unused-expressions:0 */
 <% } %>'use strict';
 
-var <%= _.classify(name) %> = require('../<%= name %>');
+var <%= _.classify(name) %> = require('../<%= name.toLowerCase() %>');
 
 describe('<%= _.classify(name) %> View', function() {
 

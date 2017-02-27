@@ -36,7 +36,7 @@ ModuleGenerator.prototype.ask = function ask() {
 
   this.layoutFile = path.join(
     config ? path.join(directories.source, directories.layouts) : 'src/_layouts',
-    this._.slugify(this.name.toLowerCase())
+    this.name.toLowerCase()
   );
 
 };

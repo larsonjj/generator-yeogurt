@@ -5,8 +5,8 @@ block append stylesheets
 
 block content
   //- Provides layout level markup
-  .layout-wrapper.<%= _.slugify(name.toLowerCase()) %>
-    block <%= _.slugify(name.toLowerCase()) %>
+  .layout-wrapper.<%= name.toLowerCase() %>
+    block <%= name.toLowerCase() %>
 
 // Add extra scripts
 block append scripts

@@ -12,11 +12,11 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
   gulp.task('imagemin', function() {
     return gulp.src(path.join(dirs.source, dirs.images, '**/*.{jpg,jpeg,gif,svg,png}'))
       .pipe(plugins.changed(dest))
-      .pipe(gulpif(args.production, plugins.imagemin({
-        progressive: true,
-        svgoPlugins: [{removeViewBox: false}],
-        use: [pngquant({speed: 10})]
-      })))
+      .pipe(gulpif(args.production, plugins.imagemin([
+        imagemin.mozjpeg({progressive: true}),
+        imagemin.svgo({plugins: [{removeViewBox: false}]})
+        pngquant({speed: 10})
+      ])))
       .pipe(gulp.dest(dest));
   });
 };

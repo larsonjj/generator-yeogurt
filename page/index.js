@@ -38,7 +38,7 @@ PageGenerator.prototype.ask = function ask() {
 
   this.pageFile = path.join(
     config ? path.join(directories.source) : 'src/',
-    this._.slugify(this.name.toLowerCase()),
+    this.name.toLowerCase(),
     'index'
   );
 

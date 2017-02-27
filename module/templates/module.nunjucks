@@ -4,6 +4,6 @@
 {% set _class = spec.class or '' %}
 
 <div class="{{_class}}">
-  <p>This is an example paragraph for the <%= _.slugify(name.toLowerCase()) %> module</p>
+  <p>This is an example paragraph for the <%= name.toLowerCase() %> module</p>
 </div>
 {% endmacro %}

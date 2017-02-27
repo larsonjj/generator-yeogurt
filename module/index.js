@@ -50,10 +50,10 @@ ModuleGenerator.prototype.ask = function ask() {
     'src' + '/_modules';
 
   // Clean each part of the passed in path into usable file paths
-  // /each sdf.SDF => /each-sdf/sdf
+  // /each_sdf.SDF => /each_sdf/sdf
   this.path = this.name.split('/')
     .map(function(item) {
-      return this._.slugify(item.toLowerCase());
+      return item.toLowerCase();
     }.bind(this))
     .join('/');
 
