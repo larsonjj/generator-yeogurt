@@ -14,6 +14,8 @@
 * Removed support for IE9 and IE10 due to update to v14 of browserify
   - Microsoft has [dropped support for these browsers](https://www.microsoft.com/en-us/WindowsForBusiness/End-of-IE-support)
   - [Browsehappy banner](https://www.microsoft.com/en-us/WindowsForBusiness/End-of-IE-support) will now be displayed to IE10 and below
+* Fix HTML minification in production builds via [#189](https://github.com/larsonjj/generator-yeogurt/issues/189)
+* Fix naming issues for new module tests via [#201](https://github.com/larsonjj/generator-yeogurt/issues/201)
 
 ### v1.5.3:
 #### date: 2016-6-10
