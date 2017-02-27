@@ -7,7 +7,6 @@
   },
   "globals": {
     "DocumentFragment": true<% if (testFramework !== 'none') { %>,
-    "expect": true,
     "it": true,
     "describe": true,
     "beforeEach": true,
