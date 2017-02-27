@@ -50,10 +50,10 @@ ModuleGenerator.prototype.ask = function ask() {
     'src' + '/_modules';
 
   // Clean each part of the passed in path into usable file paths
-  // /each sdf.SDF => /each-sdf/sdf
+  // /each_sdf.SDF => /each_sdf/sdf
   this.path = this.name.split('/')
     .map(function(item) {
-      return this._.slugify(item.toLowerCase());
+      return item.toLowerCase();
     }.bind(this))
     .join('/');
 
@@ -103,46 +103,22 @@ ModuleGenerator.prototype.files = function files() {
     return;
   }
 
-  if (this.htmlOption === 'jade') {
-    this.template('module.jade', this.moduleFile + '.jade');
-    if (this.jsPreprocessor === 'none') {
-      this.template('module.js', this.moduleFile + '.js');
-    }
-    else {
-      this.template('module.es6.js', this.moduleFile + '.js');
-    }
-    if (this.testFramework !== 'none') {
-      if (this.jsPreprocessor === 'none') {
-        this.template('module.test.js', this.testFile + '.test.js');
-      }
-      else {
-        this.template('module.test.es6.js', this.testFile + '.test.js');
-      }
-    }
-  }
-  else if (this.htmlOption === 'nunjucks') {
-    this.template('module.nunjucks', this.moduleFile + '.nunjucks');
-    this.template('module.js', this.moduleFile + '.js');
-    if (this.jsPreprocessor === 'none') {
-      this.template('module.test.js', this.testFile + '.test.js');
-    }
-    else {
-      this.template('module.test.es6.js', this.testFile + '.test.js');
-    }
-  }
+  var htmlSuffix = (this.htmlOption === 'jade') ? '.jade' : '.nunjucks';
+  var jsSuffix = (this.jsPreprocessor === 'none') ? '.js' : '.es6.js';
+  var cssSuffix = _getCssSuffix(this.cssOption, this.sassSyntax);
 
-  if (this.cssOption === 'sass') {
-    if (this.sassSyntax === 'sass') {
-      this.template('module.css', this.moduleFile + '.sass');
-    }
-    else {
-      this.template('module.css', this.moduleFile + '.scss');
-    }
-  }
-  else if (this.cssOption === 'less') {
-    this.template('module.css', this.moduleFile + '.less');
-  }
-  else if (this.cssOption === 'stylus') {
-    this.template('module.css', this.moduleFile + '.styl');
+  this.template(('module' + htmlSuffix), (this.moduleFile + htmlSuffix));
+  this.template(('module' + jsSuffix), (this.moduleFile + '.js'));
+  this.template(('module.test' + jsSuffix), (this.testFile + '.test.js'));
+  this.template(('module.css'), (this.moduleFile + cssSuffix));
+
+  function _getCssSuffix(cssOption, sassSyntax) {
+    var sassSuffix = (sassSyntax === 'sass') ? '.sass' : '.scss'
+
+    var _result = '.less';
+    _result = (cssOption === 'sass') ? sassSuffix : _result;
+    _result = (cssOption === 'stylus') ? '.styl' : _result;
+
+    return _result;
   }
 };

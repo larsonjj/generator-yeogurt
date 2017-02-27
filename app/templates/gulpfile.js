@@ -6,7 +6,7 @@ var gulpLoadPlugins = require('gulp-load-plugins');
 var browserSyncLib = require('browser-sync');
 var pjson = require('./package.json');
 var minimist = require('minimist');
-var wrench = require('wrench');
+var glob = require('glob');
 
 // Load all gulp plugins based on their names
 // EX: gulp-copy -> copy
@@ -16,12 +16,12 @@ var KarmaServer = require('karma').Server;<% } %>
 
 var config = pjson.config;
 config.defaultNotification = function(err) {
-    return {
-        subtitle: err.plugin,
-        message: err.message,
-        sound: 'Funk',
-        onLast: true,
-    };
+  return {
+    subtitle: err.plugin,
+    message: err.message,
+    sound: 'Funk',
+    onLast: true,
+  };
 };
 var args = minimist(process.argv.slice(2));
 var dirs = config.directories;
@@ -32,10 +32,10 @@ var browserSync = browserSyncLib.create();
 
 // This will grab all js in the `gulp` directory
 // in order to load all gulp tasks
-wrench.readdirSyncRecursive('./gulp').filter(function(file) {
+glob.sync('./gulp/**/*.js').filter(function(file) {
   return (/\.(js)$/i).test(file);
 }).map(function(file) {
-  require('./gulp/' + file)(gulp, plugins, args, config, taskTarget, browserSync);
+  require(file)(gulp, plugins, args, config, taskTarget, browserSync);
 });
 
 // Default task

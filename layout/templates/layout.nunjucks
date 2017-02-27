@@ -4,8 +4,8 @@
 {% block stylesheets %}{% endblock %}
 
 {% block layout %}
-<div class="layout-wrapper <%= _.slugify(name.toLowerCase()) %>">
-  {% block <%= _.slugify(name.toLowerCase()) %> %}{% endblock %}
+<div class="layout-wrapper <%= name.toLowerCase() %>">
+  {% block <%= name.toLowerCase() %> %}{% endblock %}
 </div>
 {% endblock %}
 

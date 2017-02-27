@@ -1,3 +1,22 @@
+### v2.0.0:
+#### date: 2017-2-26
+##### changes:
+* Update all dependencies to their latest and made needed code changes
+* Removed now un-needed karma shims
+* No longer use `slugify` for filenames or naming via the CLI
+    - This allows for more expressiveness in CLI naming while using any sub-generators, but also means you can no longer use spaces when generating new pages, templates, or modules
+* Fix for ES6 test files via PR [#202](https://github.com/larsonjj/generator-yeogurt/pull/202)
+    - New unit test added to cover this use case
+* Updated mocha site link via PR [#198](https://github.com/larsonjj/generator-yeogurt/pull/198)
+* Fix browserSync streaming for Stylus via PR [#192](https://github.com/larsonjj/generator-yeogurt/pull/192/files)
+* Remove old artifact files from older version of generator
+* Removed [wrench](https://github.com/ryanmcgrath/wrench-js) package as it is deprecated
+* Removed support for IE9 and IE10 due to update to v14 of browserify
+  - Microsoft has [dropped support for these browsers](https://www.microsoft.com/en-us/WindowsForBusiness/End-of-IE-support)
+  - [Browsehappy banner](https://www.microsoft.com/en-us/WindowsForBusiness/End-of-IE-support) will now be displayed to IE10 and below
+* Fix HTML minification in production builds via [#189](https://github.com/larsonjj/generator-yeogurt/issues/189)
+* Fix naming issues for new module tests via [#201](https://github.com/larsonjj/generator-yeogurt/issues/201)
+
 ### v1.5.3:
 #### date: 2016-6-10
 ##### changes:

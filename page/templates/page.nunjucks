@@ -6,5 +6,5 @@
 {% endblock %}
 
 {% block content %}
-<p><%= _.slugify(name.toLowerCase()) %> page</p>
+<p><%= name.toLowerCase() %> page</p>
 {% endblock %}

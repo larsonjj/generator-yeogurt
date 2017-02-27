@@ -5,6 +5,7 @@ var path = require('path');
 var foldero = require('foldero');
 var jade = require('jade');
 var yaml = require('js-yaml');
+var gulpif = require('gulp-if');
 
 module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) {
   var dirs = config.directories;
@@ -65,13 +66,14 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
         }
       }
     }))
-    .pipe(plugins.htmlmin({
+    .pipe(gulpif(args.production, plugins.htmlmin({
       collapseBooleanAttributes: true,
       conservativeCollapse: true,
       removeCommentsFromCDATA: true,
       removeEmptyAttributes: true,
-      removeRedundantAttributes: true
-    }))
+      removeRedundantAttributes: true,
+      collapseWhitespace: true
+    })))
     .pipe(gulp.dest(dest))
     .on('end', browserSync.reload);
   });
