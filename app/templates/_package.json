@@ -61,7 +61,12 @@
     "chai": "~3.5.0"<% } %><% } %>
   },
   "scripts": {
-    "clean-deps": "rimraf node_modules"
+    "clean-deps": "rimraf node_modules",
+    "clean": "gulp clean",
+    "lint": "gulp eslint",
+    "serve:prod": "NODE_ENV=development gulp serve",
+    "serve": "NODE_ENV=production gulp serve --production",
+    "build": "NODE_ENV=production gulp --production"
   },
   "engines": {
     "node": ">=0.12.0"
