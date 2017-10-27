@@ -32,7 +32,9 @@
     "clean": "rimraf node_modules coverage test/app/temp test/subgenerators/temp",
     "test": "istanbul cover _mocha -- test/app/*.test.js test/subgenerators/*.test.js --reporter list --timeout 100000 && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "localtest": "mocha test/app/*.test.js test/subgenerators/*.test.js -b --reporter spec",
-    "localtest-report": "istanbul cover _mocha test/app/*.test.js test/subgenerators/*.test.js && open ./coverage/lcov-report/index.html"
+    "localtest-report": "istanbul cover _mocha test/app/*.test.js test/subgenerators/*.test.js && open ./coverage/lcov-report/index.html",
+    "preversion": "npm test",
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {
     "yeoman-generator": "~0.17.7",
