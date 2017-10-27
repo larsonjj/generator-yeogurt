@@ -56,7 +56,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
     .pipe(plugins.plumber())
     .pipe(plugins.data({
       config: config,
-      debug: true,
+      debug: !args.production,
       site: {
         data: siteData
       }
