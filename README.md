@@ -70,7 +70,10 @@ This will install both tools and update them to their latest versions.
 
 
 #### Yeogurt
-Now that you have all the needed dependencies, you can install this generator with the following command: `npm install -g generator-yeogurt`
+Now that you have all the needed dependencies, you can install this generator with the following command:
+```
+npm install -g generator-yeogurt
+```
 
 That completes installation! So at this point you should have all the needed tools to start working Yeogurt.
 
