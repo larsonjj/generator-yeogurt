@@ -1,3 +1,9 @@
+### v2.0.1:
+#### date: 2017-10-27
+##### changes:
+* Small README update [#210](https://github.com/larsonjj/generator-yeogurt/pull/210)
+* Fix production builds for Nunjucks [#207](https://github.com/larsonjj/generator-yeogurt/pull/207)
+
 ### v2.0.0:
 #### date: 2017-2-26
 ##### changes:
