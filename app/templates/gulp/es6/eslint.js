@@ -10,7 +10,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
 
   // ESLint
   gulp.task('eslint', () => {
-    gulp.src([
+    return gulp.src([
       path.join('gulpfile.js'),
       path.join(dirs.source, '**/*.js'),
       // Ignore all vendor folder files

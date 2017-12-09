@@ -30,7 +30,7 @@
     "vinyl-source-stream": "~1.1.0",
     "vinyl-buffer": "~1.0.0",
     "gulp-util": "~3.0.8",
-    "gulp": "~3.9.1",
+    "gulp": "git+https://github.com/gulpjs/gulp.git#4.0",
     "browser-sync": "~2.18.0",<% if (htmlOption === 'jade') { %>
     "gulp-jade": "~1.1.0",
     "jade": "~1.11.0",<% } %><% if (htmlOption === 'nunjucks') { %>

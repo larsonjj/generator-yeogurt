@@ -14,7 +14,7 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
   var dirs = config.directories;
   var entries = config.entries;
 
-  var browserifyTask = function(files) {
+  var browserifyTask = function(files, done) {
     return files.map(function(entry) {
       var dest = path.resolve(taskTarget);
 
@@ -67,6 +67,7 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
               plugins.util.colors.cyan(entry)
               + ' was browserified: '
               + plugins.util.colors.magenta(time + 's'));
+            done();
             return browserSync.reload('*.js');
           });
       };
@@ -83,10 +84,10 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
   gulp.task('browserify', function(done) {
     return glob('./' + path.join(dirs.source, dirs.scripts, entries.js), function(err, files) {
       if (err) {
-        done(err);
+        throw new Error(err);
       }
 
-      return browserifyTask(files);
+      return browserifyTask(files, done);
     });
   });
 };

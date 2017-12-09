@@ -6,7 +6,7 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
   var dirs = config.directories;
 
   // Watch task
-  gulp.task('watch', function() {
+  gulp.task('watch', function(done) {
     if (!args.production) {<% if (cssOption === 'sass') { %>
       // Styles
       gulp.watch([
@@ -55,5 +55,6 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
         '!' + path.join(dirs.temporary, '**/*.{css,map,html,js}')
       ]).on('change', browserSync.reload);
     }
+    done();
   });
 };

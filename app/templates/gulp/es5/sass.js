@@ -11,7 +11,7 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
 
   // Sass compilation
   gulp.task('sass', function() {
-    gulp.src(path.join(dirs.source, dirs.styles, entries.css))
+    return gulp.src(path.join(dirs.source, dirs.styles, entries.css))
       .pipe(plugins.plumber())
       .pipe(plugins.sourcemaps.init())
       .pipe(plugins.sass({

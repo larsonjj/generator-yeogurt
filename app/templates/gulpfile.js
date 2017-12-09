@@ -39,12 +39,10 @@ glob.sync('./gulp/**/*.js').filter(function(file) {
 });
 
 // Default task
-gulp.task('default', ['clean'], function() {
-  gulp.start('build');
-});
+gulp.task('default', gulp.series('clean', 'build'));
 
 // Build production-ready code
-gulp.task('build', [
+gulp.task('build', gulp.parallel(
   'copy',
   'imagemin'<% if (htmlOption === 'jade') { %>,
   'jade'<% } else if (htmlOption === 'nunjucks') {  %>,
@@ -53,27 +51,33 @@ gulp.task('build', [
   'sass'<% } else if (cssOption === 'stylus') { %>,
   'stylus'<% } %>,
   'browserify'
-]);
+);
 
 // Server tasks with watch
-gulp.task('serve', [
-  'imagemin',
-  'copy'<% if (htmlOption === 'jade') { %>,
-  'jade'<% } else if (htmlOption === 'nunjucks') {  %>,
-  'nunjucks'<% } %><% if (cssOption === 'less') { %>,
-  'less'<% } %><% if (cssOption === 'sass') { %>,
-  'sass'<% } %><% if (cssOption === 'stylus') { %>,
-  'stylus'<% } %>,
-  'browserify',
+gulp.task('serve', gulp.series(
+  gulp.parallel(
+    'imagemin',
+    'copy'<% if (htmlOption === 'jade') { %>,
+    'jade'<% } else if (htmlOption === 'nunjucks') {  %>,
+    'nunjucks'<% } %><% if (cssOption === 'less') { %>,
+    'less'<% } %><% if (cssOption === 'sass') { %>,
+    'sass'<% } %><% if (cssOption === 'stylus') { %>,
+    'stylus'<% } %>,
+    'browserify'
+  ),
   'browserSync',
   'watch'
-]);
+);
 
 // Testing
-gulp.task('test', ['eslint']<% if (testFramework === 'none') { %>);<% } else { %>, function(done) {
-  new KarmaServer({
-    configFile: path.join(__dirname, '/karma.conf.js'),
-    singleRun: !args.watch,
-    autoWatch: args.watch
-  }, done).start();
-});<% } %>
+gulp.task('test', gulp.series(
+  'eslint'
+  <% if (testFramework !== 'none') { %>, (done) => {
+    new KarmaServer({
+      configFile: path.join(__dirname, '/karma.conf.js'),
+      singleRun: !args.watch,
+      autoWatch: args.watch
+    }, done).start();
+  }
+  <% } %>
+);

@@ -15,7 +15,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
   let dirs = config.directories;
   let entries = config.entries;
 
-  let browserifyTask = (files) => {
+  let browserifyTask = (files, done) => {
     return files.map((entry) => {
       let dest = path.resolve(taskTarget);
 
@@ -39,7 +39,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
 
       let rebundle = function() {
         let startTime = new Date().getTime();
-        bundler.bundle()
+        return bundler.bundle()
           .on('error', function(err) {
             plugins.util.log(
               plugins.util.colors.red('Browserify compile error:'),
@@ -69,6 +69,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
               plugins.util.colors.cyan(entry)
               + ' was browserified: '
               + plugins.util.colors.magenta(time + 's'));
+            done();
             return browserSync.reload('*.js');
           });
       };
@@ -85,10 +86,10 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
   gulp.task('browserify', (done) => {
     return glob('./' + path.join(dirs.source, dirs.scripts, entries.js), function(err, files) {
       if (err) {
-        done(err);
+        throw new Error(err);
       }
 
-      return browserifyTask(files);
+      return browserifyTask(files, done);
     });
   });
 }
