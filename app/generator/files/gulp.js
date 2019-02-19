@@ -20,6 +20,9 @@ var gulpFiles = function gulpFiles() {
     else if (this.htmlOption === 'nunjucks') {
       this.template('gulp/es5/nunjucks.js', 'gulp/nunjucks.js');
     }
+    else if (this.htmlOption === 'pug') {
+      this.template('gulp/es5/pug.js', 'gulp/pug.js');
+    }
 
     if (this.cssOption === 'sass') {
       this.template('gulp/es5/sass.js', 'gulp/sass.js');
@@ -45,6 +48,9 @@ var gulpFiles = function gulpFiles() {
     }
     else if (this.htmlOption === 'nunjucks') {
       this.template('gulp/es6/nunjucks.js', 'gulp/nunjucks.js');
+    }
+    else if (this.htmlOption === 'pug') {
+      this.template('gulp/es6/pug.js', 'gulp/pug.js');
     }
 
     if (this.cssOption === 'sass') {

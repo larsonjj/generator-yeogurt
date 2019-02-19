@@ -87,6 +87,72 @@ describe('Static Site page sub-generator', function() {
     });
   });
 
+  describe('Create page files when using Static Pug', function() {
+    describe('Client page', function() {
+      describe('Using Browserify', function() {
+        it('Using Jasmine', function(done) {
+          // Filename
+          var page = 'mypage';
+
+          var filesToTest = [
+            'src/' + page + '/' + 'index.pug'
+          ];
+          var fileContentToTest = [
+            ['src/' + page + '/' + 'index.pug', /extends/i]
+          ];
+
+          helpers.mockPrompt(this.app, {
+            htmlOption: 'pug',
+            testFramework: 'jasmine',
+            jsOption: 'browserify',
+            cssOption: 'stylus'
+          });
+
+          this.app.run([], function() {
+            createSubGenerator('page', page, {path: '../../../'}, {
+              // mock prompt data
+              pageFile: 'src/'
+            }, function() {
+              assert.file(filesToTest);
+              assert.fileContent(fileContentToTest);
+              done();
+            });
+          });
+        });
+        it('With custom layout', function(done) {
+          // Filename
+          var page = 'mypage';
+
+          var filesToTest = [
+            'src/' + page + '/' + 'index.pug'
+          ];
+          var fileContentToTest = [
+            ['src/' + page + '/' + 'index.pug', /extends/i],
+            ['src/' + page + '/' + 'index.pug', /mypage/i]
+          ];
+
+          helpers.mockPrompt(this.app, {
+            htmlOption: 'pug',
+            testFramework: 'jasmine',
+            jsOption: 'browserify',
+            cssOption: 'stylus'
+          });
+
+          this.app.run([], function() {
+            createSubGenerator('page', page, {layout: page, path: '../../../'}, {
+              // mock prompt data
+              pageFile: 'src/'
+            }, function() {
+              assert.file(filesToTest);
+              assert.fileContent(fileContentToTest);
+              done();
+            });
+          });
+        });
+      });
+    });
+  });
+
   describe('Create page files when using Static Swig', function() {
     describe('Client pages', function() {
       describe('Using Browserify', function() {

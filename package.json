@@ -8,6 +8,7 @@
     "frontend",
     "html5",
     "jade",
+    "pug",
     "static site",
     "static",
     "nunjucks",
@@ -47,7 +48,7 @@
     "coveralls": "~2.11.2",
     "eslint": "~0.24.0",
     "fixture-stdout": "~0.2.1",
-    "istanbul": "~0.3.6",
+    "istanbul": "^0.4.5",
     "mocha": "~2.1.0",
     "mocha-lcov-reporter": "~0.0.2"
   },

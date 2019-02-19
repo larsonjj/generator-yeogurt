@@ -1,0 +1,10 @@
+mixin link(spec)
+  - spec = spec || {}
+  - spec.__class = spec.__class || ''
+  - spec.text = spec.text || 'Default Link'
+
+  a.link(class=spec.__class)&attributes(attributes)
+    if block
+      block
+    else
+      != spec.text

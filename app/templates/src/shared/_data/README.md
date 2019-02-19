@@ -52,6 +52,12 @@ h1= site.data.global.siteName //- Sample
 ul.menu
   each val in site.data.menu
     li= val.name //- Home, About
+```<% } else if (htmlOption === 'pug') { %>
+```pug
+h1= site.data.global.siteName //- Sample
+ul.menu
+  each val in site.data.menu
+    li= val.name //- Home, About
 ```<% } else if (htmlOption === 'nunjucks') { %>
 ```nunjucks
 <h1>{{site.data.global.siteName}}</h1> <!-- Sample -->

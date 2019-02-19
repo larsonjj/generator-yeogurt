@@ -103,7 +103,16 @@ ModuleGenerator.prototype.files = function files() {
     return;
   }
 
-  var htmlSuffix = (this.htmlOption === 'jade') ? '.jade' : '.nunjucks';
+  var htmlSuffix;
+
+  if(this.htmlOption === 'jade') {
+    htmlSuffix = '.jade';
+  } else if(this.htmlOption === 'pug') {
+    htmlSuffix = '.pug';
+  } else if(this.htmlOption === 'nunjucks') {
+    htmlSuffix = '.nunjucks';
+  }
+
   var jsSuffix = (this.jsPreprocessor === 'none') ? '.js' : '.es6.js';
   var cssSuffix = _getCssSuffix(this.cssOption, this.sassSyntax);
 

@@ -45,6 +45,9 @@ ModuleGenerator.prototype.files = function files() {
   if (this.htmlOption === 'jade') {
     this.template('layout.jade', this.layoutFile + '.jade');
   }
+  else if (this.htmlOption === 'pug') {
+    this.template('layout.pug', this.layoutFile + '.pug');
+  }
   else if (this.htmlOption === 'nunjucks') {
     this.template('layout.nunjucks', this.layoutFile + '.nunjucks');
   }

@@ -25,7 +25,8 @@ Styles<% if (cssOption === 'sass') { %>
 - [Stylus](https://learnboost.github.io/stylus/)<% } %>
 
 Markup<% if (htmlOption === 'jade') { %>
-- [Jade](http://jade-lang.com/)<% } else if (htmlOption === 'nunjucks') { %>
+- [Jade](http://jade-lang.com/)<% } else if (htmlOption === 'pug') { %>
+- [Pug](https://pugjs.org/api/getting-started.html)<% } else if (htmlOption === 'nunjucks') { %>
 - [Nunjucks](https://mozilla.github.io/nunjucks/)<% } %>
 
 Optimization

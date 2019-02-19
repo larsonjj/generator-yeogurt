@@ -81,6 +81,66 @@ describe('Static Site layout sub-generator', function() {
     });
   });
 
+  describe('Create layout files when using Static Pug', function() {
+    describe('Client layouts', function() {
+      it('Handles defaults', function(done) {
+        // Filename
+        var layout = 'mylayout';
+        var filesToTest = [
+          // add files and folders you expect to NOT exist here.
+          'src/_layouts/' + layout + '.pug',
+        ];
+        var fileContentToTest = [
+          ['src/_layouts/' + layout + '.pug', /extend/i]
+        ];
+
+        helpers.mockPrompt(this.app, {
+          htmlOption: 'pug',
+          cssOption: 'sass',
+          sassSyntax: 'scss'
+        });
+        this.app.run([], function() {
+          createSubGenerator('layout', layout, {path: '../../../'}, {
+            // mock prompt data
+            layoutFile: 'src/_layouts'
+          }, function() {
+            assert.file(filesToTest);
+            assert.fileContent(fileContentToTest);
+            done();
+          });
+        });
+      });
+      it('Handles custom layout', function(done) {
+        // Filename
+        var layout = 'mylayout';
+        var filesToTest = [
+          // add files and folders you expect to NOT exist here.
+          'src/_layouts/' + layout + '.pug',
+        ];
+        var fileContentToTest = [
+          ['src/_layouts/' + layout + '.pug', /extend/i],
+          ['src/_layouts/' + layout + '.pug', /mylayout/i]
+        ];
+
+        helpers.mockPrompt(this.app, {
+          htmlOption: 'pug',
+          cssOption: 'sass',
+          sassSyntax: 'scss'
+        });
+        this.app.run([], function() {
+          createSubGenerator('layout', layout, {layout: layout, path: '../../../'}, {
+            // mock prompt data
+            layoutFile: 'src/_layouts'
+          }, function() {
+            assert.file(filesToTest);
+            assert.fileContent(fileContentToTest);
+            done();
+          });
+        });
+      });
+    });
+  });
+
   describe('Create layout files when using Static Nunjucks', function() {
     describe('Client layouts', function() {
       it('Handles defaults', function(done) {

@@ -47,7 +47,8 @@ gulp.task('default', ['clean'], function() {
 gulp.task('build', [
   'copy',
   'imagemin'<% if (htmlOption === 'jade') { %>,
-  'jade'<% } else if (htmlOption === 'nunjucks') {  %>,
+  'jade'<% } else if (htmlOption === 'pug') {  %>,
+  'pug'<% } else if (htmlOption === 'nunjucks') {  %>,
   'nunjucks'<% } %><% if (cssOption === 'less') { %>,
   'less'<% } else if (cssOption === 'sass') { %>,
   'sass'<% } else if (cssOption === 'stylus') { %>,
@@ -59,7 +60,8 @@ gulp.task('build', [
 gulp.task('serve', [
   'imagemin',
   'copy'<% if (htmlOption === 'jade') { %>,
-  'jade'<% } else if (htmlOption === 'nunjucks') {  %>,
+  'jade'<% } else if (htmlOption === 'pug') {  %>,
+  'pug'<% } else if (htmlOption === 'nunjucks') {  %>,
   'nunjucks'<% } %><% if (cssOption === 'less') { %>,
   'less'<% } %><% if (cssOption === 'sass') { %>,
   'sass'<% } %><% if (cssOption === 'stylus') { %>,
