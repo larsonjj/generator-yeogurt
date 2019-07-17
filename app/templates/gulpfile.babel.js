@@ -37,45 +37,46 @@ let browserSync = browserSyncLib.create();
 glob.sync('./gulp/**/*.js').filter(function(file) {
   return (/\.(js)$/i).test(file);
 }).map(function(file) {
-  require(file)(gulp, plugins, args, config, taskTarget, browserSync);
-});
-
-// Default task
-gulp.task('default', ['clean'], () => {
-  gulp.start('build');
+  require(file).default(gulp, plugins, args, config, taskTarget, browserSync);
 });
 
 // Build production-ready code
-gulp.task('build', [
-  'copy',
-  'imagemin'<% if (htmlOption === 'jade') { %>,
-  'jade'<% } else if (htmlOption === 'nunjucks') {  %>,
-  'nunjucks'<% } %><% if (cssOption === 'less') { %>,
-  'less'<% } else if (cssOption === 'sass') { %>,
-  'sass'<% } else if (cssOption === 'stylus') { %>,
-  'stylus'<% } %>,
-  'browserify'
-]);
+gulp.task('build', gulp.series(
+  gulp.parallel(
+    'copy',
+    'imagemin'<% if (htmlOption === 'jade') { %>,
+    'jade'<% } else if (htmlOption === 'nunjucks') {  %>,
+    'nunjucks'<% } %><% if (cssOption === 'less') { %>,
+    'less'<% } else if (cssOption === 'sass') { %>,
+    'sass'<% } else if (cssOption === 'stylus') { %>,
+    'stylus'<% } %>,
+    'browserify'
+  )
+));
 
 // Server tasks with watch
-gulp.task('serve', [
-  'imagemin',
-  'copy'<% if (htmlOption === 'jade') { %>,
-  'jade'<% } else if (htmlOption === 'nunjucks') {  %>,
-  'nunjucks'<% } %><% if (cssOption === 'less') { %>,
-  'less'<% } %><% if (cssOption === 'sass') { %>,
-  'sass'<% } %><% if (cssOption === 'stylus') { %>,
-  'stylus'<% } %>,
-  'browserify',
+gulp.task('serve', gulp.series(
+  gulp.parallel(
+    'imagemin',
+    'copy'<% if (htmlOption === 'jade') { %>,
+    'jade'<% } else if (htmlOption === 'nunjucks') {  %>,
+    'nunjucks'<% } %><% if (cssOption === 'less') { %>,
+    'less'<% } %><% if (cssOption === 'sass') { %>,
+    'sass'<% } %><% if (cssOption === 'stylus') { %>,
+    'stylus'<% } %>,
+  'browserify'),
   'browserSync',
   'watch'
-]);
+));
+
+// Default task
+gulp.task('default', gulp.series('clean', 'build'));
 
 // Testing
-gulp.task('test', ['eslint']<% if (testFramework === 'none') { %>);<% } else { %>, (done) => {
+gulp.task('test', gulp.series('eslint'<% if (testFramework === 'none') { %>);<% } else { %>, (done) => {
   new KarmaServer({
     configFile: path.join(__dirname, '/karma.conf.js'),
     singleRun: !args.watch,
     autoWatch: args.watch
   }, done).start();
-});<% } %>
+}));<% } %>

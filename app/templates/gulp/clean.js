@@ -7,7 +7,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
   let dirs = config.directories;
 
   // Clean
-  gulp.task('clean', del.bind(null, [
+  gulp.task('clean', () => del([
     path.join(dirs.temporary),
     path.join(dirs.destination)
   ]));
