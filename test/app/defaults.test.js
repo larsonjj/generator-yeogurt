@@ -25,7 +25,7 @@ describe('Yeogurt generator using Default Configuration', function() {
       '.yo-rc.json',
       'README.md',
       '.editorconfig',
-      'gulpfile.js',
+      'gulpfile.babel.js',
       'gulp/',
       'gulp/watch.js',
       'gulp/browserify.js',
@@ -41,8 +41,7 @@ describe('Yeogurt generator using Default Configuration', function() {
     ];
 
     helpers.mockPrompt(this.app, {
-      existingConfig: false,
-      jsPreprocessor: 'none'
+      existingConfig: false
     });
 
     this.app.run([], function() {

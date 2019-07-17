@@ -27,7 +27,6 @@ var ModuleGenerator = module.exports = function ModuleGenerator() {
   this.jsFramework = fileJSON.jsFramework;
   this.singlePageApplication = fileJSON.singlePageApplication;
   this.jsOption = fileJSON.jsOption;
-  this.jsPreprocessor = fileJSON.jsPreprocessor;
   this.jsTemplate = fileJSON.jsTemplate;
   this.cssOption = fileJSON.cssOption;
   this.sassSyntax = fileJSON.sassSyntax;
@@ -104,7 +103,7 @@ ModuleGenerator.prototype.files = function files() {
   }
 
   var htmlSuffix = (this.htmlOption === 'jade') ? '.jade' : '.nunjucks';
-  var jsSuffix = (this.jsPreprocessor === 'none') ? '.js' : '.es6.js';
+  var jsSuffix = '.js';
   var cssSuffix = _getCssSuffix(this.cssOption, this.sassSyntax);
 
   this.template(('module' + htmlSuffix), (this.moduleFile + htmlSuffix));

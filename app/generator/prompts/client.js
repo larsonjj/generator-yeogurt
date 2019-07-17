@@ -28,19 +28,6 @@ var clientPrompts = function clientPrompts() {
     }
   }, {
     type: 'list',
-    name: 'jsPreprocessor',
-    message: 'What ' + 'JavaScript preprocessor'.blue + ' would you like to use?',
-    choices: ['None', 'ES6 (Using Babel)'],
-    filter: function(val) {
-      var filterMap = {
-        'None': 'none',
-        'ES6 (Using Babel)': 'es6'
-      };
-
-      return filterMap[val];
-    }
-  }, {
-    type: 'list',
     name: 'cssOption',
     message: 'What would you like to use to ' + 'write styles'.blue + '?',
     choices: ['Sass', 'Less', 'Stylus'],

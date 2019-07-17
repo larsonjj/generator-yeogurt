@@ -1,9 +1,9 @@
-{<% if (jsPreprocessor === 'es6') { %>
-  "parser": "babel-eslint",<% } %>
+{
+  "parser": "babel-eslint",
   "env": {
     "browser": true,
-    "node": true<% if (jsPreprocessor === 'es6') { %>,
-    "es6": true<% } %>
+    "node": true,
+    "es6": true
   },
   "globals": {
     "DocumentFragment": true<% if (testFramework !== 'none') { %>,

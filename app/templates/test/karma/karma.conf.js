@@ -30,8 +30,8 @@ var karmaConf = function(config) {
     browserify: {
       debug: true,
       transform: [
-        require('envify')<% if (jsPreprocessor === 'es6') { %>,
-        require('babelify')<% } %>
+        require('envify'),
+        require('babelify')
       ]
     },
 

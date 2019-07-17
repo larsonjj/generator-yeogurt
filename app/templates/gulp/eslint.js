@@ -2,16 +2,16 @@
 
 'use strict';
 
-var path = require('path');
-var gulpif = require('gulp-if');
+import path from 'path';
+import gulpif from 'gulp-if';
 
-module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) {
-  var dirs = config.directories;
+export default function(gulp, plugins, args, config, taskTarget, browserSync) {
+  let dirs = config.directories;
 
   // ESLint
-  gulp.task('eslint', function() {
+  gulp.task('eslint', () => {
     gulp.src([
-      path.join('gulpfile.js'),
+      path.join('gulpfile.babel.js'),
       path.join(dirs.source, '**/*.js'),
       // Ignore all vendor folder files
       '!' + path.join('**/vendor/**', '*')
@@ -28,4 +28,4 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
       }
     });
   });
-};
+}

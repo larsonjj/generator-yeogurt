@@ -383,9 +383,6 @@ Once installed, you can access scripts within your JavaScript files like so:
 ```js
 // Example using jquery
 
-// ES5
-var $ = require('jquery');
-
 $(function() {
   console.log('Hello');
 });
@@ -490,10 +487,6 @@ Add the following to your `package.json` file:
 Now you can include your desired module/lib within your `src/_scripts/main.js` file:
 
 ```js
-// ES5
-require('slick-carousel');
-
-// ES6
 import 'slick-carousel';
 
 ...
