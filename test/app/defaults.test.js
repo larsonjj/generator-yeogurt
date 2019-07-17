@@ -1,26 +1,13 @@
 /*global describe, beforeEach, it*/
 'use strict';
 
-var path = require('path');
-var yeoman = require('yeoman-generator');
-var helpers = yeoman.test;
-var assert = yeoman.assert;
-var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
+var assert = require('yeoman-assert');
+var helpers = require('yeoman-test');
+var createAppGenerator = require('../helpers/create-generator')
+  .createAppGenerator;
 
 describe('Yeogurt generator using Default Configuration', function() {
-  beforeEach(function(done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function(err) {
-      if (err) {
-        return done(err);
-      }
-
-      this.app = createAppGenerator();
-
-      done();
-    }.bind(this));
-  });
-
-  it('Creates expected files', function(done) {
+  it('Creates expected files', function() {
     var expected = [
       '.yo-rc.json',
       'README.md',
@@ -40,13 +27,10 @@ describe('Yeogurt generator using Default Configuration', function() {
       'src/favicon.ico'
     ];
 
-    helpers.mockPrompt(this.app, {
-      existingConfig: false
-    });
-
-    this.app.run([], function() {
-      assert.file(expected);
-      done();
-    });
+    return createAppGenerator()
+      .withPrompts({ existingConfig: false })
+      .then(function() {
+        assert.file(expected);
+      });
   });
 });
