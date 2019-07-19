@@ -3,12 +3,18 @@
 var path = require('path');
 var Generator = require('yeoman-generator');
 var _ = require('lodash');
-const commandExists = require('command-exists').sync;
+var commandExists = require('command-exists').sync;
+var copyTpl = require('../helpers/copy').copyTpl;
+var copy = require('../helpers/copy').copy;
 require('colors');
+
 
 module.exports = class extends Generator {
   initializing() {
-    this.pkg = require(path.join(__dirname, '../package.json'));
+    this.pkg = require(path.join(__dirname, '../../package.json'));
+    // Setup copy helpers
+    this.copy = copy.bind(this);
+    this.copyTpl = copyTpl.bind(this);
   }
 
   prompting() {
@@ -168,128 +174,116 @@ module.exports = class extends Generator {
       jsOption: this.jsOption
     };
 
-    const copy = (input, output) => {
-      this.fs.copy(this.templatePath(input), this.destinationPath(output));
-    };
-
-    const copyTpl = (input, output, data) => {
-      this.fs.copyTpl(
-        this.templatePath(input),
-        this.destinationPath(output),
-        data
-      );
-    };
-
     // Root files
-    copyTpl('gulpfile.babel.js', 'gulpfile.babel.js', templateData);
-    copyTpl('.babelrc', '.babelrc', templateData);
-    copyTpl('_package.json', 'package.json', templateData);
-    copyTpl('README.md', 'README.md', templateData);
-    copy(
+    this.copyTpl('gulpfile.babel.js', 'gulpfile.babel.js', templateData);
+    this.copyTpl('.babelrc', '.babelrc', templateData);
+    this.copyTpl('_package.json', 'package.json', templateData);
+    this.copyTpl('README.md', 'README.md', templateData);
+    this.copy(
       'src/shared/_images/yeogurt-swirl.png',
       'src/_images/yeogurt-swirl.png'
     );
 
-    copy('gitignore', '.gitignore');
-    copy('gitattributes', '.gitattributes');
+    this.copy('gitignore', '.gitignore');
+    this.copy('gitattributes', '.gitattributes');
 
-    copy('src/shared/robots.txt', 'src/robots.txt');
-    copy('src/shared/favicon.ico', 'src/favicon.ico');
+    this.copy('src/shared/robots.txt', 'src/robots.txt');
+    this.copy('src/shared/favicon.ico', 'src/favicon.ico');
 
-    copy('editorconfig', '.editorconfig');
-    copyTpl('eslintrc', '.eslintrc', templateData);
+    this.copy('editorconfig', '.editorconfig');
+    this.copyTpl('eslintrc', '.eslintrc', templateData);
 
     // README files
-    copyTpl('src/shared/_data/README.md', 'src/_data/README.md', templateData);
-    copyTpl(
+    this.copyTpl('src/shared/_data/README.md', 'src/_data/README.md', templateData);
+    this.copyTpl(
       'src/shared/_modules/README.md',
       'src/_modules/README.md',
       templateData
     );
-    copyTpl(
+    this.copyTpl(
       'src/shared/_layouts/README.md',
       'src/_layouts/README.md',
       templateData
     );
-    copyTpl(
+    this.copyTpl(
       'src/shared/_scripts/README.md',
       'src/_scripts/README.md',
       templateData
     );
-    copyTpl(
+    this.copyTpl(
       'src/shared/_styles/README.md',
       'src/_styles/README.md',
       templateData
     );
-    copyTpl(
+    this.copyTpl(
       'src/shared/_images/README.md',
       'src/_images/README.md',
       templateData
     );
-    copyTpl('src/shared/README.md', 'src/README.md', templateData);
+    this.copyTpl('src/shared/README.md', 'src/README.md', templateData);
 
     // Scripts (JS)
-    copyTpl(
+    this.copyTpl(
       'src/shared/_scripts/main.js',
       'src/_scripts/main.js',
       templateData
     );
-    copyTpl(
+    this.copyTpl(
       'src/shared/_modules/link/link.js',
       'src/_modules/link/link.js',
       templateData
     );
 
     // Gulp Tasks
-    copyTpl('gulp/browserify.js', 'gulp/browserify.js', templateData);
-    copyTpl('gulp/browserSync.js', 'gulp/browserSync.js', templateData);
-    copyTpl('gulp/clean.js', 'gulp/clean.js', templateData);
-    copyTpl('gulp/copy.js', 'gulp/copy.js', templateData);
-    copyTpl('gulp/eslint.js', 'gulp/eslint.js', templateData);
-    copyTpl('gulp/imagemin.js', 'gulp/imagemin.js', templateData);
-    copyTpl('gulp/watch.js', 'gulp/watch.js', templateData);
+    this.copyTpl('gulp/browserify.js', 'gulp/browserify.js', templateData);
+    this.copyTpl('gulp/browserSync.js', 'gulp/browserSync.js', templateData);
+    this.copyTpl('gulp/clean.js', 'gulp/clean.js', templateData);
+    this.copyTpl('gulp/copy.js', 'gulp/copy.js', templateData);
+    this.copyTpl('gulp/eslint.js', 'gulp/eslint.js', templateData);
+    this.copyTpl('gulp/imagemin.js', 'gulp/imagemin.js', templateData);
+    this.copyTpl('gulp/watch.js', 'gulp/watch.js', templateData);
 
     if (this.htmlOption === 'jade') {
-      copyTpl('gulp/jade.js', 'gulp/jade.js', templateData);
+      this.copyTpl('gulp/jade.js', 'gulp/jade.js', templateData);
     } else if (this.htmlOption === 'nunjucks') {
-      copyTpl('gulp/nunjucks.js', 'gulp/nunjucks.js', templateData);
+      this.copyTpl('gulp/nunjucks.js', 'gulp/nunjucks.js', templateData);
     }
 
     if (this.cssOption === 'sass') {
-      copyTpl('gulp/sass.js', 'gulp/sass.js', templateData);
+      this.copyTpl('gulp/sass.js', 'gulp/sass.js', templateData);
     } else if (this.cssOption === 'less') {
-      copyTpl('gulp/less.js', 'gulp/less.js', templateData);
+      this.copyTpl('gulp/less.js', 'gulp/less.js', templateData);
     }
     if (this.cssOption === 'stylus') {
-      copyTpl('gulp/stylus.js', 'gulp/stylus.js', templateData);
+      this.copyTpl('gulp/stylus.js', 'gulp/stylus.js', templateData);
     }
 
     // Markup (HTML Preprocessors)
     if (this.htmlOption === 'jade') {
-      copyTpl(
+      this.copyTpl(
         'src/static/jade/_layouts/base.jade',
         'src/_layouts/base.jade',
         templateData
       );
-      copyTpl(
+      this.copyTpl(
         'src/static/jade/_modules/link/link.jade',
         'src/_modules/link/link.jade',
         templateData
       );
-      copyTpl('src/static/jade/index.jade', 'src/index.jade', templateData);
+      this.copyTpl('src/static/jade/index.jade', 'src/index.jade', templateData);
     }
     if (this.htmlOption === 'nunjucks') {
-      copyTpl(
+      this.copyTpl(
         'src/static/nunjucks/_layouts/base.nunjucks',
         'src/_layouts/base.nunjucks',
         templateData
       );
-      copyTpl(
+      this.copyTpl(
         'src/static/nunjucks/_modules/link/link.nunjucks',
         'src/_modules/link/link.nunjucks',
         templateData
       );
-      copyTpl(
+      this.copyTpl(
         'src/static/nunjucks/index.nunjucks',
         'src/index.nunjucks',
         templateData
@@ -298,12 +292,12 @@ module.exports = class extends Generator {
 
     // Styling (CSS Preprocessors)
     if (this.cssOption === 'less') {
-      copyTpl(
+      this.copyTpl(
         'src/shared/_styles/main.less',
         'src/_styles/main.less',
         templateData
       );
-      copyTpl(
+      this.copyTpl(
         'src/shared/_styles/link/link.less',
         'src/_modules/link/link.less',
         templateData
@@ -311,23 +305,23 @@ module.exports = class extends Generator {
     }
     if (this.cssOption === 'sass') {
       if (this.sassSyntax === 'sass') {
-        copyTpl(
+        this.copyTpl(
           'src/shared/_styles/main.sass',
           'src/_styles/main.sass',
           templateData
         );
-        copyTpl(
+        this.copyTpl(
           'src/shared/_styles/link/link.sass',
           'src/_modules/link/link.sass',
           templateData
         );
       } else {
-        copyTpl(
+        this.copyTpl(
           'src/shared/_styles/main.scss',
           'src/_styles/main.scss',
           templateData
         );
-        copyTpl(
+        this.copyTpl(
           'src/shared/_styles/link/link.scss',
           'src/_modules/link/link.scss',
           templateData
@@ -335,12 +329,12 @@ module.exports = class extends Generator {
       }
     }
     if (this.cssOption === 'stylus') {
-      copyTpl(
+      this.copyTpl(
         'src/shared/_styles/main.styl',
         'src/_styles/main.styl',
         templateData
       );
-      copyTpl(
+      this.copyTpl(
         'src/shared/_styles/link/link.styl',
         'src/_modules/link/link.styl',
         templateData
@@ -349,8 +343,8 @@ module.exports = class extends Generator {
 
     // Testing
     if (this.testFramework !== 'none') {
-      copyTpl('test/karma/karma.conf.js', 'karma.conf.js', templateData);
-      copyTpl(
+      this.copyTpl('test/karma/karma.conf.js', 'karma.conf.js', templateData);
+      this.copyTpl(
         'src/shared/_modules/link/tests/link.test.js',
         'src/_modules/link/tests/link.test.js',
         templateData

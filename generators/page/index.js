@@ -5,6 +5,8 @@ var path = require('path');
 var pjson = require(path.join(process.cwd(), './package.json'));
 var config = pjson.config;
 var directories = config.directories;
+var copyTpl = require('../helpers/copy').copyTpl;
+var copy = require('../helpers/copy').copy;
 
 var PageGenerator = module.exports = function PageGenerator() {
   // By calling `NamedBase` here, we get the argument to the subgenerator call

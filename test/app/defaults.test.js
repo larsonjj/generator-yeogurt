@@ -2,7 +2,6 @@
 'use strict';
 
 var assert = require('yeoman-assert');
-var helpers = require('yeoman-test');
 var createAppGenerator = require('../helpers/create-generator')
   .createAppGenerator;
 
