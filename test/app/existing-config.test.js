@@ -14,7 +14,7 @@ describe('Yeogurt generator using existing configuration', function() {
       .withPrompts({ existingConfig: true, htmlOption: 'jade' })
       .then(function() {
         assert.file(expected);
-        assert.noFileContent(fileContentToTest);
+        assert.fileContent(fileContentToTest);
       });
   });
 

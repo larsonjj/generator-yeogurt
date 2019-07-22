@@ -17,9 +17,6 @@ module.exports = class extends Generator {
     // options
     this.projectName = fileJSON.projectName;
     this.htmlOption = fileJSON.htmlOption;
-    console.log('================')
-    console.log(fileJSON)
-    console.log('================')
 
     this.option('layout', {
       desc: 'Allow a custom layout for template to extend from',
