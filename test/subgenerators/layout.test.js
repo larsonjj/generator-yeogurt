@@ -29,11 +29,6 @@ describe('Static Site layout sub-generator', function() {
 
         return createSubGenerator('layout')
           .withArguments([layout])
-          .withPrompts({
-            htmlOption: 'jade',
-            cssOption: 'sass',
-            sassSyntax: 'scss'
-          })
           .then(function() {
             assert.file(filesToTest);
             assert.fileContent(fileContentToTest);
@@ -53,11 +48,6 @@ describe('Static Site layout sub-generator', function() {
 
         return createSubGenerator('layout')
           .withArguments([layout])
-          .withPrompts({
-            htmlOption: 'jade',
-            cssOption: 'sass',
-            sassSyntax: 'scss'
-          })
           .then(function() {
             assert.file(filesToTest);
             assert.fileContent(fileContentToTest);
@@ -87,11 +77,6 @@ describe('Static Site layout sub-generator', function() {
 
         return createSubGenerator('layout')
           .withArguments([layout])
-          .withPrompts({
-            htmlOption: 'nunjucks',
-            cssOption: 'sass',
-            sassSyntax: 'scss'
-          })
           .then(function() {
             assert.file(filesToTest);
             assert.fileContent(fileContentToTest);
@@ -111,11 +96,6 @@ describe('Static Site layout sub-generator', function() {
 
         return createSubGenerator('layout')
           .withArguments([layout])
-          .withPrompts({
-            htmlOption: 'nunjucks',
-            cssOption: 'sass',
-            sassSyntax: 'scss'
-          })
           .then(function() {
             assert.file(filesToTest);
             assert.fileContent(fileContentToTest);

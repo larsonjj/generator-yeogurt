@@ -95,7 +95,8 @@ module.exports = class extends Generator {
   writing() {
     const templateData = {
       _: _,
-      name: this.name
+      name: this.name,
+      testFramework: this.testFramework
     };
 
     if (this.abort) {
