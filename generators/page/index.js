@@ -1,56 +1,67 @@
 'use strict';
-var util = require('util');
-var yeoman = require('yeoman-generator');
+
+var _ = require('lodash');
 var path = require('path');
+var Generator = require('yeoman-generator');
 var pjson = require(path.join(process.cwd(), './package.json'));
 var config = pjson.config;
 var directories = config.directories;
 var copyTpl = require('../helpers/copy').copyTpl;
-var copy = require('../helpers/copy').copy;
 
-var PageGenerator = module.exports = function PageGenerator() {
-  // By calling `NamedBase` here, we get the argument to the subgenerator call
-  // as `this.name`.
-  yeoman.generators.NamedBase.apply(this, arguments);
-  this.option('layout', {
-    desc: 'Allow a custom layout for template to extend from',
-    type: String,
-    required: false
-  });
+module.exports = class extends Generator {
+  initializing() {
+    var fileJSON = this.config.get('config');
+    // Setup copy helpers
+    this.copyTpl = copyTpl.bind(this);
 
-  var fileJSON = this.config.get('config');
+    // options
+    this.projectName = fileJSON.projectName;
+    this.htmlOption = fileJSON.htmlOption;
 
-  // options
-  this.projectName = fileJSON.projectName;
-  this.htmlOption = fileJSON.htmlOption;
+    this.option('layout', {
+      desc: 'Allow a custom layout for template to extend from',
+      type: String,
+      required: false
+    });
 
-};
+    this.name = 'no-name';
+    if (this.arguments[0]) {
+      this.name = this.arguments[0];
+    }
 
-util.inherits(PageGenerator, yeoman.generators.NamedBase);
+    this.layout = 'base';
+    if (this.options.layout) {
+      this.layout = this.options.layout;
+    }
 
-// Prompts
-PageGenerator.prototype.ask = function ask() {
+    this.layoutDir = config ? directories.layouts : '_layouts';
 
-  this.layout = 'base';
-  if (this.options.layout) {
-    this.layout = this.options.layout;
+    this.layoutFile = path.join(
+      config
+        ? path.join(directories.source, directories.layouts)
+        : 'src/_layouts',
+      this.name
+    );
+
+    this.pageFile = path.join(
+      config ? path.join(directories.source) : 'src/',
+      this.name.toLowerCase(),
+      'index'
+    );
   }
 
-  this.layoutDir = config ? directories.layouts : '_layouts';
+  writing() {
+    const templateData = {
+      _: _,
+      name: this.name,
+      layout: this.layout,
+      layoutDir: this.layoutDir
+    };
 
-  this.pageFile = path.join(
-    config ? path.join(directories.source) : 'src/',
-    this.name.toLowerCase(),
-    'index'
-  );
-
-};
-
-PageGenerator.prototype.files = function files() {
-  if (this.htmlOption === 'jade') {
-    this.template('page.jade', this.pageFile + '.jade');
-  }
-  else if (this.htmlOption === 'nunjucks') {
-    this.template('page.nunjucks', this.pageFile + '.nunjucks');
+    if (this.htmlOption === 'jade') {
+      this.copyTpl('page.jade', this.pageFile + '.jade', templateData);
+    } else if (this.htmlOption === 'nunjucks') {
+      this.copyTpl('page.nunjucks', this.pageFile + '.nunjucks', templateData);
+    }
   }
 };

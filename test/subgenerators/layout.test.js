@@ -2,10 +2,25 @@
 'use strict';
 
 var assert = require('yeoman-assert');
+var fs = require('fs');
 var createSubGenerator = require('../helpers/create-generator')
   .createSubGenerator;
+var createAppGenerator = require('../helpers/create-generator')
+  .createAppGenerator;
 
 describe('Static Site layout sub-generator', function() {
+  beforeEach(function(done) {
+    createAppGenerator()
+      .inTmpDir(function(dir) {
+        console.log('==========================');
+        console.log(fs.readdirSync(dir));
+        console.log('==========================');
+      })
+      .withPrompts({
+        existingConfig: true
+      })
+      .on('end', done);
+  });
   describe('Create layout files when using Static Jade', function() {
     describe('Client layouts', function() {
       it('Handles defaults', function() {

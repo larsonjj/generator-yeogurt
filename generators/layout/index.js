@@ -1,8 +1,8 @@
 'use strict';
 
+var _ = require('lodash');
 var path = require('path');
 var Generator = require('yeoman-generator');
-var _ = require('lodash');
 var pjson = require(path.join(process.cwd(), './package.json'));
 var config = pjson.config;
 var directories = config.directories;
