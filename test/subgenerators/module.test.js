@@ -60,7 +60,7 @@ describe('Static Site module sub-generator', function() {
                 assert.fileContent(fileContentToTest);
               });
           });
-          it('is Atomic', function(done) {
+          it('is Atomic', function() {
             // Filename
             var moduleName = 'mymodule';
 
@@ -89,32 +89,14 @@ describe('Static Site module sub-generator', function() {
               ]
             ];
 
-            helpers.mockPrompt(this.app, {
-              htmlOption: 'jade',
-              testFramework: 'jasmine',
-              jsOption: 'browserify',
-              cssOption: 'sass',
-              sassSyntax: 'sass'
-            });
-
-            this.app.run([], function() {
-              createSubGenerator(
-                'module',
-                module,
-                { atomic: 'atom', path: '../../../' },
-                {
-                  // mock prompt data
-                  moduleFile: 'src/_modules'
-                },
-                function() {
-                  assert.file(filesToTest);
-                  assert.fileContent(fileContentToTest);
-                  done();
-                }
-              );
-            });
+            return createSubGenerator('module', { atomic: 'atom' })
+              .withArguments([moduleName])
+              .then(function() {
+                assert.file(filesToTest);
+                assert.fileContent(fileContentToTest);
+              });
           });
-          it('is Atomic but not valid', function(done) {
+          it('is Atomic but not valid', function() {
             // Filename
             var moduleName = 'mymodule';
 
@@ -129,31 +111,13 @@ describe('Static Site module sub-generator', function() {
               'src/_modules/atoms/' + moduleName + '/' + moduleName + '.sass'
             ];
 
-            helpers.mockPrompt(this.app, {
-              htmlOption: 'jade',
-              testFramework: 'jasmine',
-              jsOption: 'browserify',
-              cssOption: 'sass',
-              sassSyntax: 'sass'
-            });
-
-            this.app.run([], function() {
-              createSubGenerator(
-                'module',
-                module,
-                { atomic: 'derp', path: '../../../' },
-                {
-                  // mock prompt data
-                  moduleFile: 'src/_modules'
-                },
-                function() {
-                  assert.noFile(filesToTest);
-                  done();
-                }
-              );
-            });
+            return createSubGenerator('module', { atomic: '' })
+              .withArguments([moduleName])
+              .then(function() {
+                assert.noFile(filesToTest);
+              });
           });
-          it('is Atomic and has multiple directories', function(done) {
+          it('is Atomic and has multiple directories', function() {
             // Filename
             var moduleName = 'really/cool/mymodule';
 
@@ -168,29 +132,11 @@ describe('Static Site module sub-generator', function() {
               'src/_modules/atoms/' + moduleName + '/' + moduleName + '.sass'
             ];
 
-            helpers.mockPrompt(this.app, {
-              htmlOption: 'jade',
-              testFramework: 'jasmine',
-              jsOption: 'browserify',
-              cssOption: 'sass',
-              sassSyntax: 'sass'
-            });
-
-            this.app.run([], function() {
-              createSubGenerator(
-                'module',
-                module,
-                { atomic: 'atom', path: '../../../' },
-                {
-                  // mock prompt data
-                  moduleFile: 'src/_modules'
-                },
-                function() {
-                  assert.noFile(filesToTest);
-                  done();
-                }
-              );
-            });
+            return createSubGenerator('module', { atomic: 'atom' })
+              .withArguments([moduleName])
+              .then(function() {
+                assert.noFile(filesToTest);
+              });
           });
         });
       });
@@ -198,10 +144,20 @@ describe('Static Site module sub-generator', function() {
   });
 
   describe('Create module files when using Static Nunjucks', function() {
+    beforeEach(function() {
+      return createAppGenerator().withPrompts({
+        existingConfig: true,
+        htmlOption: 'nunjucks',
+        testFramework: 'jasmine',
+        jsOption: 'browserify',
+        cssOption: 'sass',
+        sassSyntax: 'scss'
+      });
+    });
     describe('Client modules', function() {
       describe('Handles defaults', function() {
         describe('Using Browserify', function() {
-          it('Using Jasmine', function(done) {
+          it('Using Jasmine', function() {
             // Filename
             var moduleName = 'mymodule';
 
@@ -230,30 +186,12 @@ describe('Static Site module sub-generator', function() {
               ]
             ];
 
-            helpers.mockPrompt(this.app, {
-              htmlOption: 'nunjucks',
-              testFramework: 'jasmine',
-              cssOption: 'sass',
-              sassSyntax: 'scss',
-              jsOption: 'browserify'
-            });
-
-            this.app.run([], function() {
-              createSubGenerator(
-                'module',
-                module,
-                { path: '../../../' },
-                {
-                  // mock prompt data
-                  moduleFile: 'src/_modules'
-                },
-                function() {
-                  assert.file(filesToTest);
-                  assert.fileContent(fileContentToTest);
-                  done();
-                }
-              );
-            });
+            return createSubGenerator('module')
+              .withArguments([moduleName])
+              .then(function() {
+                assert.file(filesToTest);
+                assert.fileContent(fileContentToTest);
+              });
           });
         });
       });

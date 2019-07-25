@@ -31,7 +31,7 @@ module.exports = class extends Generator {
       desc:
         'Defines if this module is used in atomic design. ' +
         'if so, allow it to be put in a atom, molecule, or organism folder',
-      type: Boolean,
+      type: String,
       required: false
     });
 
@@ -42,7 +42,7 @@ module.exports = class extends Generator {
       this.name = this.arguments[0].split('/').slice(-1)[0];
     }
 
-    this.atomic = false;
+    this.atomic = '';
     if (this.options.atomic) {
       this.atomic = this.options.atomic;
     }
