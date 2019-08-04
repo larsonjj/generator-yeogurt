@@ -385,7 +385,7 @@ module.exports = class extends Generator {
         '\n' +
           'Everything looks ready!'.blue +
           ' Get started by running "' +
-          'gulp serve'.green +
+          'npm run serve'.green +
           '".\n'
       );
     });

@@ -16,7 +16,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
   let entries = config.entries;
 
   let browserifyTask = (files, done) => {
-    return files.map((entry) => {
+    return files.map(entry => {
       let dest = path.resolve(taskTarget);
 
       // Options
@@ -39,7 +39,8 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
 
       let rebundle = function() {
         let startTime = new Date().getTime();
-        bundler.bundle()
+        bundler
+          .bundle()
           .on('error', function(err) {
             plugins.util.log(
               plugins.util.colors.red('Browserify compile error:'),
@@ -52,23 +53,28 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
           .on('error', plugins.notify.onError(config.defaultNotification))
           .pipe(vsource(entry))
           .pipe(buffer())
-          .pipe(plugins.sourcemaps.init({loadMaps: true}))
-            .pipe(gulpif(args.production, plugins.uglify()))
-            .on('error', plugins.notify.onError(config.defaultNotification))
-          .pipe(plugins.rename(function(filepath) {
-            // Remove 'source' directory as well as prefixed folder underscores
-            // Ex: 'src/_scripts' --> '/scripts'
-            filepath.dirname = filepath.dirname.replace(dirs.source, '').replace('_', '');
-          }))
+          .pipe(plugins.sourcemaps.init({ loadMaps: true }))
+          .pipe(gulpif(args.production, plugins.uglify()))
+          .on('error', plugins.notify.onError(config.defaultNotification))
+          .pipe(
+            plugins.rename(function(filepath) {
+              // Remove 'source' directory as well as prefixed folder underscores
+              // Ex: 'src/_scripts' --> '/scripts'
+              filepath.dirname = filepath.dirname
+                .replace(dirs.source, '')
+                .replace('_', '');
+            })
+          )
           .pipe(plugins.sourcemaps.write('./'))
           .pipe(gulp.dest(dest))
           // Show which file was bundled and how long it took
           .on('end', function() {
             let time = (new Date().getTime() - startTime) / 1000;
             console.log(
-              plugins.util.colors.cyan(entry)
-              + ' was browserified: '
-              + plugins.util.colors.magenta(time + 's'));
+              plugins.util.colors.cyan(entry) +
+                ' was browserified: ' +
+                plugins.util.colors.magenta(time + 's')
+            );
             done();
             return browserSync.reload('*.js');
           });
@@ -83,13 +89,16 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
   };
 
   // Browserify Task
-  gulp.task('browserify', (done) => {
-    return glob('./' + path.join(dirs.source, dirs.scripts, entries.js), function(err, files) {
-      if (err) {
-        throw new Error(err);
-      }
+  gulp.task('browserify', done => {
+    return glob(
+      './' + path.join(dirs.source, dirs.scripts, entries.js),
+      function(err, files) {
+        if (err) {
+          throw new Error(err);
+        }
 
-      return browserifyTask(files, done);
-    });
+        return browserifyTask(files, done);
+      }
+    );
   });
 }
