@@ -1,6 +1,6 @@
 'use strict';
 
-import { gulp, plugins, args, config, taskTarget, browserSync, dirs, entries } from '../shared-vars';
+import { gulp, plugins, args, config, taskTarget, browserSync, dirs, entries, join } from '../shared-vars';
 
 import path from 'path';
 import glob from 'glob';
@@ -89,7 +89,7 @@ let browserifyTask = (files, done) => {
 // Browserify Task
 gulp.task('browserify', done => {
   return glob(
-    './' + path.join(dirs.source, dirs.scripts, entries.js),
+    './' + join(dirs.source, dirs.scripts, entries.js),
     function(err, files) {
       if (err) {
         throw new Error(err);

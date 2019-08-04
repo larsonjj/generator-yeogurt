@@ -1,24 +1,24 @@
 'use strict';
 
-import { gulp, plugins, args, config, taskTarget, browserSync, dirs, entries } from '../shared-vars';
+import { gulp, plugins, args, config, taskTarget, browserSync, dirs, entries, join } from '../shared-vars';
 
 import path from 'path';
 import autoprefixer from 'autoprefixer';
 import gulpif from 'gulp-if';
 
-let dest = path.join(taskTarget, dirs.styles.replace(/^_/, ''));
+let dest = join(taskTarget, dirs.styles.replace(/^_/, ''));
 
 // Less compilation
 gulp.task('less', () => {
   return gulp
-    .src(path.join(dirs.source, dirs.styles, entries.css))
+    .src(join(dirs.source, dirs.styles, entries.css))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
     .pipe(
       plugins.less({
         paths: [
-          path.join(dirs.source, dirs.styles),
-          path.join(dirs.source, dirs.modules)
+          join(dirs.source, dirs.styles),
+          join(dirs.source, dirs.modules)
         ]
       })
     )

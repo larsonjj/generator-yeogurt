@@ -1,6 +1,6 @@
 'use strict';
 
-import { gulp, plugins, args, config, taskTarget, browserSync, dirs } from '../shared-vars';
+import { gulp, plugins, args, config, taskTarget, browserSync, dirs, join } from '../shared-vars';
 
 import fs from 'fs';
 import path from 'path';
@@ -8,8 +8,8 @@ import foldero from 'foldero';
 import nunjucks from 'gulp-nunjucks-html';
 import yaml from 'js-yaml';
 
-let dest = path.join(taskTarget);
-let dataPath = path.join(dirs.source, dirs.data);
+let dest = join(taskTarget);
+let dataPath = join(dirs.source, dirs.data);
 
 // Nunjucks template compile
 gulp.task('nunjucks', () => {
@@ -50,8 +50,8 @@ gulp.task('nunjucks', () => {
 
   return gulp
     .src([
-      path.join(dirs.source, '**/*.nunjucks'),
-      '!' + path.join(dirs.source, '{**/_*,**/_*/**}')
+      join(dirs.source, '**/*.nunjucks'),
+      '!' + join(dirs.source, '{**/_*,**/_*/**}')
     ])
     .pipe(plugins.changed(dest))
     .pipe(plugins.plumber())
@@ -66,7 +66,7 @@ gulp.task('nunjucks', () => {
     )
     .pipe(
       nunjucks({
-        searchPaths: [path.join(dirs.source)],
+        searchPaths: [join(dirs.source)],
         ext: '.html'
       }).on('error', function(err) {
         plugins.util.log(err);

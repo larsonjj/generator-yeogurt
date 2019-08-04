@@ -1,17 +1,16 @@
 'use strict';
 
-import { gulp, plugins, args, taskTarget, dirs } from '../shared-vars';
+import { gulp, plugins, args, taskTarget, dirs, join } from '../shared-vars';
 
-import path from 'path';
 import gulpif from 'gulp-if';
 import pngquant from 'imagemin-pngquant';
 
-let dest = path.join(taskTarget, dirs.images.replace(/^_/, ''));
+let dest = join(taskTarget, dirs.images.replace(/^_/, ''));
 
 // Imagemin
 gulp.task('imagemin', () => {
   return gulp
-    .src(path.join(dirs.source, dirs.images, '**/*.{jpg,jpeg,gif,svg,png}'))
+    .src(join(dirs.source, dirs.images, '**/*.{jpg,jpeg,gif,svg,png}'))
     .pipe(plugins.changed(dest))
     .pipe(
       gulpif(

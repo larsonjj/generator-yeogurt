@@ -30,4 +30,6 @@ const taskTarget = args.production ? dirs.destination : dirs.temporary;
 // Create a new browserSync instance
 const browserSync = browserSyncLib.create();
 
-export { gulp, plugins, args, config, taskTarget, browserSync, dirs, entries }
+const join = (...paths) => paths.join('/');
+
+export { gulp, plugins, args, config, taskTarget, browserSync, dirs, entries, join }

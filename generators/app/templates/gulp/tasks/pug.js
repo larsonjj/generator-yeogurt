@@ -1,6 +1,6 @@
 'use strict';
 
-import { gulp, plugins, args, config, taskTarget, browserSync, dirs } from '../shared-vars';
+import { gulp, plugins, args, config, taskTarget, browserSync, dirs, join } from '../shared-vars';
 
 import fs from 'fs';
 import path from 'path';
@@ -8,8 +8,8 @@ import foldero from 'foldero';
 import pug from 'pug';
 import yaml from 'js-yaml';
 
-let dest = path.join(taskTarget);
-let dataPath = path.join(dirs.source, dirs.data);
+let dest = join(taskTarget);
+let dataPath = join(dirs.source, dirs.data);
 
 // Pug template compile
 gulp.task('pug', () => {
@@ -50,8 +50,8 @@ gulp.task('pug', () => {
 
   return gulp
     .src([
-      path.join(dirs.source, '**/*.pug'),
-      '!' + path.join(dirs.source, '{**/_*,**/_*/**}')
+      join(dirs.source, '**/*.pug'),
+      '!' + join(dirs.source, '{**/_*,**/_*/**}')
     ])
     .pipe(plugins.changed(dest))
     .pipe(plugins.plumber())
