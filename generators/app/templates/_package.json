@@ -12,8 +12,6 @@
     "babelify": "~10.0.0",
     "babel-eslint": "~9.0.0",
     "eslint-config-prettier": "~6.0.0",
-    "husky": "~3.0.2",
-    "lint-staged": "~9.2.1",
     "prettier": "~1.16.4",
     "lodash": "~4.17.4",
     "foldero": "~0.1.1",
@@ -77,12 +75,6 @@
   },
   "engines": {
     "node": ">=8.14.0"
-  },
-  "lint-staged": {
-    "src/**/*.js": [
-      "prettier --single-quote --write",
-      "git add"
-    ]
   },
   "//": "CUSTOM CONFIGURATION",
   "config": {
