@@ -288,11 +288,7 @@ module.exports = class extends Generator {
         'src/_modules/link/link.pug',
         templateData
       );
-      this.copyTpl(
-        'src/static/pug/index.pug',
-        'src/index.pug',
-        templateData
-      );
+      this.copyTpl('src/static/pug/index.pug', 'src/index.pug', templateData);
     }
     if (this.htmlOption === 'nunjucks') {
       this.copyTpl(
@@ -373,22 +369,26 @@ module.exports = class extends Generator {
       );
     }
 
+    // Format files with prettier
+    this.spawnCommand('npm', ['run', 'format']);
+
     // Install dependencies
     const hasYarn = commandExists('yarn');
     this.installDependencies({
       npm: !hasYarn,
       yarn: hasYarn,
       bower: false,
-      skipInstall: this.options['skip-install'],
-      callback: function() {
-        self.log(
-          '\n' +
-            'Everything looks ready!'.blue +
-            ' Get started by running "' +
-            'gulp serve'.green +
-            '".\n'
-        );
-      }
+      skipInstall: this.options['skip-install']
+    });
+
+    this.on('end', () => {
+      this.log(
+        '\n' +
+          'Everything looks ready!'.blue +
+          ' Get started by running "' +
+          'gulp serve'.green +
+          '".\n'
+      );
     });
   }
 };

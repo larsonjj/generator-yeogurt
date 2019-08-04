@@ -2,15 +2,19 @@
   "name": "<%= projectName %>",
   "version": "0.0.1",
   "dependencies": {
-    "jquery": "~3.1.1",
-    "normalize.css": "~5.0.0"
+    "jquery": "~3.4.1",
+    "normalize.css": "~8.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "@babel/register": "7.4.4",
+    "@babel/core": "~7.0.0",
+    "@babel/preset-env": "~7.0.0",
+    "@babel/register": "~7.4.4",
     "babelify": "~10.0.0",
     "babel-eslint": "~9.0.0",
+    "eslint-config-prettier": "~6.0.0",
+    "husky": "~3.0.2",
+    "lint-staged": "~9.2.1",
+    "prettier": "~1.16.4",
     "lodash": "~4.17.4",
     "foldero": "~0.1.1",
     "minimist": "~1.2.0",
@@ -65,12 +69,19 @@
     "clean": "gulp clean",
     "lint": "gulp eslint",
     "test": "gulp test",
+    "format": "npx prettier --single-quote --write src/**/*.js",
     "serve": "NODE_ENV=development gulp serve",
     "serve:prod": "NODE_ENV=production gulp serve --production",
     "build": "NODE_ENV=production gulp --production"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=8.14.0"
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
   },
   "//": "CUSTOM CONFIGURATION",
   "config": {
