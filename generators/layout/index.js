@@ -49,8 +49,8 @@ module.exports = class extends Generator {
       layout: this.layout
     };
 
-    if (this.htmlOption === 'jade') {
-      this.copyTpl('layout.jade', this.layoutFile + '.jade', templateData);
+    if (this.htmlOption === 'pug') {
+      this.copyTpl('layout.pug', this.layoutFile + '.pug', templateData);
     } else if (this.htmlOption === 'nunjucks') {
       this.copyTpl('layout.nunjucks', this.layoutFile + '.nunjucks', templateData);
     }

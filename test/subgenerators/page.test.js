@@ -7,11 +7,11 @@ var createAppGenerator = require('../helpers/create-generator')
 var createSubGenerator = require('../helpers/create-generator')
   .createSubGenerator;
 describe('Static Site page sub-generator', function() {
-  describe('Create page files when using Static Jade', function() {
+  describe('Create page files when using Static Pug', function() {
     beforeEach(function() {
       return createAppGenerator().withPrompts({
         existingConfig: true,
-        htmlOption: 'jade',
+        htmlOption: 'pug',
         testFramework: 'jasmine',
         jsOption: 'browserify',
         cssOption: 'stylus'
@@ -22,9 +22,9 @@ describe('Static Site page sub-generator', function() {
         // Filename
         var pageName = 'mypage';
 
-        var filesToTest = ['src/' + pageName + '/' + 'index.jade'];
+        var filesToTest = ['src/' + pageName + '/' + 'index.pug'];
         var fileContentToTest = [
-          ['src/' + pageName + '/' + 'index.jade', /extends/i]
+          ['src/' + pageName + '/' + 'index.pug', /extends/i]
         ];
 
         return createSubGenerator('page')
@@ -38,10 +38,10 @@ describe('Static Site page sub-generator', function() {
         // Filename
         var pageName = 'mypage';
 
-        var filesToTest = ['src/' + pageName + '/' + 'index.jade'];
+        var filesToTest = ['src/' + pageName + '/' + 'index.pug'];
         var fileContentToTest = [
-          ['src/' + pageName + '/' + 'index.jade', /extends/i],
-          ['src/' + pageName + '/' + 'index.jade', /mypage/i]
+          ['src/' + pageName + '/' + 'index.pug', /extends/i],
+          ['src/' + pageName + '/' + 'index.pug', /mypage/i]
         ];
 
         return createSubGenerator('page', { layout: pageName })

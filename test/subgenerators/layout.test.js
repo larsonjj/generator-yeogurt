@@ -8,11 +8,11 @@ var createAppGenerator = require('../helpers/create-generator')
   .createAppGenerator;
 
 describe('Static Site layout sub-generator', function() {
-  describe('Create layout files when using Static Jade', function() {
+  describe('Create layout files when using Static Pug', function() {
     beforeEach(function() {
       return createAppGenerator().withPrompts({
         existingConfig: true,
-        htmlOption: 'jade'
+        htmlOption: 'pug'
       });
     });
     it('Handles defaults', function() {
@@ -20,9 +20,9 @@ describe('Static Site layout sub-generator', function() {
       var layout = 'mylayout';
       var filesToTest = [
         // add files and folders you expect to NOT exist here.
-        'src/_layouts/' + layout + '.jade'
+        'src/_layouts/' + layout + '.pug'
       ];
-      var fileContentToTest = [['src/_layouts/' + layout + '.jade', /extend/i]];
+      var fileContentToTest = [['src/_layouts/' + layout + '.pug', /extend/i]];
 
       return createSubGenerator('layout')
         .withArguments([layout])
@@ -36,11 +36,11 @@ describe('Static Site layout sub-generator', function() {
       var layout = 'mylayout';
       var filesToTest = [
         // add files and folders you expect to NOT exist here.
-        'src/_layouts/' + layout + '.jade'
+        'src/_layouts/' + layout + '.pug'
       ];
       var fileContentToTest = [
-        ['src/_layouts/' + layout + '.jade', /extend/i],
-        ['src/_layouts/' + layout + '.jade', /mylayout/i]
+        ['src/_layouts/' + layout + '.pug', /extend/i],
+        ['src/_layouts/' + layout + '.pug', /mylayout/i]
       ];
 
       return createSubGenerator('layout')
