@@ -11,7 +11,7 @@ A generator for creating static sites. Helps you harness the power of your favor
 - [Features](#features)
 - [Getting Started](#getting-started)
 - [Setup](#setup)
-- [Gulp Workflow](#gulp-workflow)
+- [npm Workflow](#npm-workflow)
 - [Sub-Generators](#sub-generators)
 - [Guides](#guides)
 - [Common Issues](#common-issues)
@@ -58,18 +58,17 @@ There are a few dependencies that this project relies on:
 
 #### Node.js
 
-Check to see if you already have Node installed. Do this by bringing up a terminal/command prompt and type `node -v`. If the response shows a version at or above `v0.12.x`, you are all set and can proceed to installing Yeoman, Gulp, and Bower. If you see an error and/or your version is too low, navigate to the [Node.js](http://nodejs.org/) website and install Node from there.
+Check to see if you already have Node installed. Do this by bringing up a terminal/command prompt and type `node -v`. If the response shows a version at or above `v8.14.x`, you are all set and can proceed to installing Yeoman. If you see an error and/or your version is too low, navigate to the [Node.js](http://nodejs.org/) website and install Node from there.
 
-#### Yeoman & Gulp
+#### Yeoman
 
 Once you have Node installed, make sure you have these tools by opening up a terminal/command prompt and entering following commands:
 
-| Command        |            Response             |
-| -------------- | :-----------------------------: |
-| `yo --version` |      at or above `v1.2.1`       |
-| `gulp -v`      | `gulp-cli` at or above `v0.3.9` |
+| Command        |       Response       |
+| -------------- | :------------------: |
+| `yo --version` | at or above `v1.8.0` |
 
-If you get any errors and/or you're version(s) are too low, you should run `npm install -g yo gulp`.
+If you get any errors and/or you're version(s) are too low, you should run `npm install -g yo`.
 This will install both tools and update them to their latest versions.
 
 #### Yeogurt
@@ -139,15 +138,14 @@ Once everything is installed, you will see a project structure like below:
 
 Congratulations! You should now have successfully created a Yeogurt project and are ready to start building out your site/app.
 
-Now you can run the following gulp tasks:
+Now you can run the following npm scripts:
 
-- `gulp serve` for previewing your site/app on a development server.
-- `gulp serve --production` for previewing a production version of your site/app.
-- `gulp` for testing and building a development version of your site.
-- `gulp --production` same as `gulp` but builds a production version of your site.
-- `gulp test` for linting your scripts and running unit tests.
+- `npm run serve` for previewing your site/app on a development server.
+- `npm run serve:prod` for previewing a production version of your site/app.
+- `npm run build` builds a production version of your site.
+- `npm test` for linting your scripts and running unit tests.
 
-You can learn more about what tasks are available in the [gulp tasks](#gulp-workflow) section.
+You can learn more about what scripts are available in the [npm scripts](#npm-workflow) section.
 
 ## Configuration
 
@@ -225,13 +223,13 @@ Ex: `main**.js` will process all files that start with `main` and end with `.js`
 }
 ```
 
-## Gulp Workflow
+## npm Workflow
 
-### `gulp --production`
+### `npm run build`
 
-Runs [`gulp test`](#gulp-test) and builds out an optimized site through compilation of preprocessors (Pug, Sass, etc), minification of CSS and HTML, uglification of Javascript, and optimization of images.
+Runs [`npm test`](#npm-test) and builds out an optimized site through compilation of preprocessors (Pug, Sass, etc), minification of CSS and HTML, uglification of Javascript, and optimization of images.
 
-### `gulp serve`
+### `npm run serve`
 
 Starts up a development server that watches files and automatically reloads them to the browser when a change is detected.
 
@@ -239,10 +237,10 @@ Starts up a development server that watches files and automatically reloads them
 
 | Tasks                     | Description                                                    |
 | ------------------------- | -------------------------------------------------------------- |
-| `gulp serve --production` | starts up a server that loads a production version of the site |
-| `gulp serve --open`       | starts up a server and opens it within your default browser    |
+| `npm run serve:prod` | starts up a server that loads a production version of the site |
+| `npm run serve -- --open`       | starts up a server and opens it within your default browser    |
 
-### `gulp test`
+### `npm test`
 
 Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 
@@ -250,11 +248,11 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 
 | Tasks               | Description                                                                                                |
 | ------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `gulp test --watch` | runs [`gulp test`](#gulp-test), but also watches test files and auto runs tests when changes are detected. |
+| `npm test -- --watch` | runs [`npm test`](#npm-test), but also watches test files and auto runs tests when changes are detected. |
 
 > NOTE: test:watch is only available if you chose to unit test your javascript
 
-**_Adding the `--debug` option to any gulp task displays extra debugging information (ex. data being loaded into your templates)_**
+**_Adding the `--debug` option to any npm script displays extra debugging information (ex. data being loaded into your templates)_**
 
 ## Sub-Generators
 

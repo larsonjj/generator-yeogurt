@@ -11,6 +11,7 @@
     "@babel/register": "~7.4.4",
     "babelify": "~10.0.0",
     "babel-eslint": "~9.0.0",
+    "eslint": "6.1.0",
     "eslint-config-prettier": "~6.0.0",
     "prettier": "~1.16.4",
     "lodash": "~4.17.4",
