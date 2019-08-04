@@ -75,7 +75,7 @@
     "build": "NODE_ENV=production npx gulp --production"
   },
   "engines": {
-    "node": ">=8.14.0"
+    "node": ">=8.16.0"
   },
   "browserslist": ["last 2 version", "> 5%", "safari 5", "ios 6", "android 4"],
   "//": "CUSTOM CONFIGURATION",

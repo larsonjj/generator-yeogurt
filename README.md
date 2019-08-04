@@ -58,7 +58,7 @@ There are a few dependencies that this project relies on:
 
 #### Node.js
 
-Check to see if you already have Node installed. Do this by bringing up a terminal/command prompt and type `node -v`. If the response shows a version at or above `v8.14.x`, you are all set and can proceed to installing Yeoman. If you see an error and/or your version is too low, navigate to the [Node.js](http://nodejs.org/) website and install Node from there.
+Check to see if you already have Node installed. Do this by bringing up a terminal/command prompt and type `node -v`. If the response shows a version at or above `v8.16.x`, you are all set and can proceed to installing Yeoman. If you see an error and/or your version is too low, navigate to the [Node.js](http://nodejs.org/) website and install Node from there.
 
 #### Yeoman
 

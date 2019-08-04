@@ -4,6 +4,7 @@
 
 ##### changes:
 
+- Update requirement of [Node](https://nodejs.org) from `>=0.12.0` to `>=8.16.0`
 - Update Jade to [Pug](https://pugjs.org/api/getting-started.html)
 - Update [Gulp](https://gulpjs.com) from v3 to v4
 - Update [Babel](https://babeljs.io) to v7
