@@ -4,11 +4,11 @@
 
 ##### changes:
 
-- Update Jade to Pug
-- Update Gulp from v3 to v4
-- Update Babel to v7
-- Update Yeoman to v4
-- Update eslint config to use Prettier rules
+- Update Jade to [Pug](https://pugjs.org/api/getting-started.html)
+- Update [Gulp](https://gulpjs.com) from v3 to v4
+- Update [Babel](https://babeljs.io) to v7
+- Update [Yeoman](https://yeoman.github.io/generator/) to v4
+- Update eslint config to use [Prettier](https://prettier.io) rules
 - Update Karma server to use Headless Chrome instead of PhantomJS
 - Update docs and configuration to use local npm scripts instead of global gulp commands
   - Example: `npm test` instead of `gulp test`
