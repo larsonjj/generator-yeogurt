@@ -3,7 +3,7 @@
 import { gulp, args, browserSync, dirs, join } from '../shared-vars';
 
 // Watch task
-gulp.task('watch', () => {
+gulp.task('watch', (done) => {
   if (!args.production) {<% if (cssOption === 'sass') { %>
     // Styles
     gulp.watch([
@@ -52,4 +52,5 @@ gulp.task('watch', () => {
       '!' + join(dirs.temporary, '**/*.{css,map,html,js}')
     ]).on('change', browserSync.reload);
   }
+  done();
 });
