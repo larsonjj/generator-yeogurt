@@ -8,7 +8,6 @@ var copyTpl = require('../helpers/copy').copyTpl;
 var copy = require('../helpers/copy').copy;
 require('colors');
 
-
 module.exports = class extends Generator {
   initializing() {
     this.pkg = require(path.join(__dirname, '../../package.json'));
@@ -52,7 +51,10 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'projectName',
         message: 'What would you like to' + ' name your project'.blue + '?',
-        default: 'Sample'
+        default: 'Sample',
+        when: function(answers) {
+          return !answers.existingConfig;
+        }
       },
       {
         type: 'list',
@@ -60,6 +62,9 @@ module.exports = class extends Generator {
         message:
           'Which ' + 'HTML preprocessor'.blue + ' would you like to use?',
         choices: ['Jade', 'Nunjucks'],
+        when: function(answers) {
+          return !answers.existingConfig;
+        },
         filter: function(val) {
           var filterMap = {
             Jade: 'jade',
@@ -74,6 +79,9 @@ module.exports = class extends Generator {
         name: 'cssOption',
         message: 'What would you like to use to ' + 'write styles'.blue + '?',
         choices: ['Sass', 'Less', 'Stylus'],
+        when: function(answers) {
+          return !answers.existingConfig;
+        },
         filter: function(val) {
           var filterMap = {
             Sass: 'sass',
@@ -86,12 +94,15 @@ module.exports = class extends Generator {
       },
       {
         when: function(answers) {
-          return answers.cssOption === 'sass';
+          return answers.cssOption === 'sass' && !answers.existingConfig;
         },
         type: 'list',
         name: 'sassSyntax',
         message: 'What ' + 'Sass syntax'.blue + ' would you like to use ?',
         choices: ['Scss', 'Sass'],
+        when: function(answers) {
+          return !answers.existingConfig;
+        },
         filter: function(val) {
           var filterMap = {
             Scss: 'scss',
@@ -109,6 +120,9 @@ module.exports = class extends Generator {
           'testing framework'.blue +
           ' would you like to use?',
         choices: ['Jasmine', 'Mocha', 'None'],
+        when: function(answers) {
+          return !answers.existingConfig;
+        },
         filter: function(val) {
           var filterMap = {
             Jasmine: 'jasmine',
@@ -194,7 +208,11 @@ module.exports = class extends Generator {
     this.copyTpl('eslintrc', '.eslintrc', templateData);
 
     // README files
-    this.copyTpl('src/shared/_data/README.md', 'src/_data/README.md', templateData);
+    this.copyTpl(
+      'src/shared/_data/README.md',
+      'src/_data/README.md',
+      templateData
+    );
     this.copyTpl(
       'src/shared/_modules/README.md',
       'src/_modules/README.md',
@@ -270,7 +288,11 @@ module.exports = class extends Generator {
         'src/_modules/link/link.jade',
         templateData
       );
-      this.copyTpl('src/static/jade/index.jade', 'src/index.jade', templateData);
+      this.copyTpl(
+        'src/static/jade/index.jade',
+        'src/index.jade',
+        templateData
+      );
     }
     if (this.htmlOption === 'nunjucks') {
       this.copyTpl(
