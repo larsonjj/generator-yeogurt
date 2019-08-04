@@ -21,13 +21,13 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
         path.join(dirs.source, dirs.styles, '**/*.styl'),
         path.join(dirs.source, dirs.modules, '**/*.styl')
       ], gulp.series('stylus'));
-      <% } %><% if (htmlOption === 'jade') { %>
+      <% } %><% if (htmlOption === 'pug') { %>
 
-      // Jade Templates
+      // Pug Templates
       gulp.watch([
-        path.join(dirs.source, '**/*.jade'),
+        path.join(dirs.source, '**/*.pug'),
         path.join(dirs.source, dirs.data, '**/*.{json,yaml,yml}')
-      ], gulp.series('jade'));<% } else if (htmlOption === 'nunjucks') { %>
+      ], gulp.series('pug'));<% } else if (htmlOption === 'nunjucks') { %>
 
       // Nunjucks Templates
       gulp.watch([
@@ -40,8 +40,8 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
       gulp.watch([
         path.join(dirs.source, '**/*'),
         '!' + path.join(dirs.source, '{**/\_*,**/\_*/**}')<% if (htmlOption === 'nunjucks') { %>,
-        '!' + path.join(dirs.source, '**/*.nunjucks')<% } else if (htmlOption === 'jade') { %>,
-        '!' + path.join(dirs.source, '**/*.jade')<% } %>
+        '!' + path.join(dirs.source, '**/*.nunjucks')<% } else if (htmlOption === 'pug') { %>,
+        '!' + path.join(dirs.source, '**/*.pug')<% } %>
       ], gulp.series('copy'));
 
       // Images

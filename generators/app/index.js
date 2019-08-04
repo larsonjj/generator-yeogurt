@@ -61,13 +61,13 @@ module.exports = class extends Generator {
         name: 'htmlOption',
         message:
           'Which ' + 'HTML preprocessor'.blue + ' would you like to use?',
-        choices: ['Jade', 'Nunjucks'],
+        choices: ['Pug', 'Nunjucks'],
         when: function(answers) {
           return !answers.existingConfig;
         },
         filter: function(val) {
           var filterMap = {
-            Jade: 'jade',
+            Pug: 'pug',
             Nunjucks: 'nunjucks'
           };
 
@@ -261,8 +261,8 @@ module.exports = class extends Generator {
     this.copyTpl('gulp/imagemin.js', 'gulp/imagemin.js', templateData);
     this.copyTpl('gulp/watch.js', 'gulp/watch.js', templateData);
 
-    if (this.htmlOption === 'jade') {
-      this.copyTpl('gulp/jade.js', 'gulp/jade.js', templateData);
+    if (this.htmlOption === 'pug') {
+      this.copyTpl('gulp/pug.js', 'gulp/pug.js', templateData);
     } else if (this.htmlOption === 'nunjucks') {
       this.copyTpl('gulp/nunjucks.js', 'gulp/nunjucks.js', templateData);
     }
@@ -277,20 +277,20 @@ module.exports = class extends Generator {
     }
 
     // Markup (HTML Preprocessors)
-    if (this.htmlOption === 'jade') {
+    if (this.htmlOption === 'pug') {
       this.copyTpl(
-        'src/static/jade/_layouts/base.jade',
-        'src/_layouts/base.jade',
+        'src/static/pug/_layouts/base.pug',
+        'src/_layouts/base.pug',
         templateData
       );
       this.copyTpl(
-        'src/static/jade/_modules/link/link.jade',
-        'src/_modules/link/link.jade',
+        'src/static/pug/_modules/link/link.pug',
+        'src/_modules/link/link.pug',
         templateData
       );
       this.copyTpl(
-        'src/static/jade/index.jade',
-        'src/index.jade',
+        'src/static/pug/index.pug',
+        'src/index.pug',
         templateData
       );
     }

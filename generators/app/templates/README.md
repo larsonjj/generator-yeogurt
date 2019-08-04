@@ -24,8 +24,8 @@ Styles<% if (cssOption === 'sass') { %>
 - [Less](http://lesscss.org/)<% } else if (cssOption === 'stylus') { %>
 - [Stylus](https://learnboost.github.io/stylus/)<% } %>
 
-Markup<% if (htmlOption === 'jade') { %>
-- [Jade](http://jade-lang.com/)<% } else if (htmlOption === 'nunjucks') { %>
+Markup<% if (htmlOption === 'pug') { %>
+- [Pug](http://pug-lang.com/)<% } else if (htmlOption === 'nunjucks') { %>
 - [Nunjucks](https://mozilla.github.io/nunjucks/)<% } %>
 
 Optimization

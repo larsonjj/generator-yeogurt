@@ -103,7 +103,7 @@ module.exports = class extends Generator {
       return;
     }
 
-    var htmlSuffix = this.htmlOption === 'jade' ? '.jade' : '.nunjucks';
+    var htmlSuffix = this.htmlOption === 'pug' ? '.pug' : '.nunjucks';
     var jsSuffix = '.js';
     var cssSuffix = this.getCssSuffix(this.cssOption, this.sassSyntax);
 

@@ -8,11 +8,11 @@ var createSubGenerator = require('../helpers/create-generator')
   .createSubGenerator;
 
 describe('Static Site module sub-generator', function() {
-  describe('Create module files when using Static Jade', function() {
+  describe('Create module files when using Static Pug', function() {
     beforeEach(function() {
       return createAppGenerator().withPrompts({
         existingConfig: true,
-        htmlOption: 'jade',
+        htmlOption: 'pug',
         testFramework: 'jasmine',
         jsOption: 'browserify',
         cssOption: 'sass',
@@ -27,7 +27,7 @@ describe('Static Site module sub-generator', function() {
         var filesToTest = [
           'src/_modules/' + moduleName + '/tests/' + moduleName + '.test.js',
           'src/_modules/' + moduleName + '/' + moduleName + '.js',
-          'src/_modules/' + moduleName + '/' + moduleName + '.jade',
+          'src/_modules/' + moduleName + '/' + moduleName + '.pug',
           'src/_modules/' + moduleName + '/' + moduleName + '.sass'
         ];
         var fileContentToTest = [
@@ -56,7 +56,7 @@ describe('Static Site module sub-generator', function() {
             moduleName +
             '.test.js',
           'src/_modules/atoms/' + moduleName + '/' + moduleName + '.js',
-          'src/_modules/atoms/' + moduleName + '/' + moduleName + '.jade',
+          'src/_modules/atoms/' + moduleName + '/' + moduleName + '.pug',
           'src/_modules/atoms/' + moduleName + '/' + moduleName + '.sass'
         ];
         var fileContentToTest = [
@@ -92,7 +92,7 @@ describe('Static Site module sub-generator', function() {
             moduleName +
             '.test.js',
           'src/_modules/atoms/' + moduleName + '/' + moduleName + '.js',
-          'src/_modules/atoms/' + moduleName + '/' + moduleName + '.jade',
+          'src/_modules/atoms/' + moduleName + '/' + moduleName + '.pug',
           'src/_modules/atoms/' + moduleName + '/' + moduleName + '.sass'
         ];
 
@@ -113,7 +113,7 @@ describe('Static Site module sub-generator', function() {
             moduleName +
             '.test.js',
           'src/_modules/atoms/' + moduleName + '/' + moduleName + '.js',
-          'src/_modules/atoms/' + moduleName + '/' + moduleName + '.jade',
+          'src/_modules/atoms/' + moduleName + '/' + moduleName + '.pug',
           'src/_modules/atoms/' + moduleName + '/' + moduleName + '.sass'
         ];
 

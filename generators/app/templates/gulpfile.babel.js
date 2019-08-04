@@ -44,8 +44,8 @@ glob.sync('./gulp/**/*.js').filter(function(file) {
 gulp.task('build', gulp.series(
   gulp.parallel(
     'copy',
-    'imagemin'<% if (htmlOption === 'jade') { %>,
-    'jade'<% } else if (htmlOption === 'nunjucks') {  %>,
+    'imagemin'<% if (htmlOption === 'pug') { %>,
+    'pug'<% } else if (htmlOption === 'nunjucks') {  %>,
     'nunjucks'<% } %><% if (cssOption === 'less') { %>,
     'less'<% } else if (cssOption === 'sass') { %>,
     'sass'<% } else if (cssOption === 'stylus') { %>,
@@ -58,8 +58,8 @@ gulp.task('build', gulp.series(
 gulp.task('serve', gulp.series(
   gulp.parallel(
     'imagemin',
-    'copy'<% if (htmlOption === 'jade') { %>,
-    'jade'<% } else if (htmlOption === 'nunjucks') {  %>,
+    'copy'<% if (htmlOption === 'pug') { %>,
+    'pug'<% } else if (htmlOption === 'nunjucks') {  %>,
     'nunjucks'<% } %><% if (cssOption === 'less') { %>,
     'less'<% } %><% if (cssOption === 'sass') { %>,
     'sass'<% } %><% if (cssOption === 'stylus') { %>,

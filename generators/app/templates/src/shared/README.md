@@ -7,14 +7,14 @@ This is also where all of your pages will be generated when using the [page subg
 ## Pages
 
 Pages are the main driver for static sites and also determine your site's routes.
-All page templates (except index.{jade,nunjucks}) should be placed in a folder named by your desired route.
+All page templates (except index.{pug,nunjucks}) should be placed in a folder named by your desired route.
 For example, a contact page would most likely be loaded at the `/contact` route.
 You would acheive this by creating the following structure:
 
 ```
 └── src
     └── contact
-        └── index.{jade,nunjucks}
+        └── index.{pug,nunjucks}
 ```
 
 ### Subgenerator
@@ -30,14 +30,14 @@ This will create the structure you saw above:
 ```
 └── src
     └── about
-        └── index.{jade,nunjucks}
+        └── index.{pug,nunjucks}
 ```
 
 So when you boot up your site and go to `/about` you will see your new page.
 
 ### Specifying a layout
 
-You can also create a new page that extends from a different layout file than `base.{jade,nunjucks}`.
+You can also create a new page that extends from a different layout file than `base.{pug,nunjucks}`.
 
 ```
 yo yeogurt:page about --layout=two-col

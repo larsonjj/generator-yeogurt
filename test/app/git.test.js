@@ -13,7 +13,7 @@ describe('Yeogurt generator using Git', function() {
     ];
 
     return createAppGenerator()
-      .withPrompts({ existingConfig: true, htmlOption: 'jade' })
+      .withPrompts({ existingConfig: true, htmlOption: 'pug' })
       .then(function() {
         assert.file(expected);
       });

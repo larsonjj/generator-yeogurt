@@ -3,7 +3,7 @@
 import fs from 'fs';
 import path from 'path';
 import foldero from 'foldero';
-import jade from 'jade';
+import pug from 'pug';
 import yaml from 'js-yaml';
 
 export default function(gulp, plugins, args, config, taskTarget, browserSync) {
@@ -11,8 +11,8 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
   let dest = path.join(taskTarget);
   let dataPath = path.join(dirs.source, dirs.data);
 
-  // Jade template compile
-  gulp.task('jade', () => {
+  // Pug template compile
+  gulp.task('pug', () => {
     let siteData = {};
     if (fs.existsSync(dataPath)) {
       // Convert directory to JS Object
@@ -49,13 +49,13 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
     }
 
     return gulp.src([
-      path.join(dirs.source, '**/*.jade'),
+      path.join(dirs.source, '**/*.pug'),
       '!' + path.join(dirs.source, '{**/\_*,**/\_*/**}')
     ])
     .pipe(plugins.changed(dest))
     .pipe(plugins.plumber())
-    .pipe(plugins.jade({
-      jade: jade,
+    .pipe(plugins.pug({
+      pug: pug,
       pretty: true,
       locals: {
         config: config,
