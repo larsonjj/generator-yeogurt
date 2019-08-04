@@ -64,9 +64,10 @@ gulp.task('serve', gulp.series(
     'less'<% } %><% if (cssOption === 'sass') { %>,
     'sass'<% } %><% if (cssOption === 'stylus') { %>,
     'stylus'<% } %>,
-  'browserify',
-  'browserSync',
-  'watch'),
+    'browserify',
+    'browserSync',
+    'watch'
+  )
 ));
 
 // Default task
