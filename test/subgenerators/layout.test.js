@@ -15,44 +15,40 @@ describe('Static Site layout sub-generator', function() {
         htmlOption: 'jade'
       });
     });
-    describe('Client layouts', function() {
-      it('Handles defaults', function() {
-        // Filename
-        var layout = 'mylayout';
-        var filesToTest = [
-          // add files and folders you expect to NOT exist here.
-          'src/_layouts/' + layout + '.jade'
-        ];
-        var fileContentToTest = [
-          ['src/_layouts/' + layout + '.jade', /extend/i]
-        ];
+    it('Handles defaults', function() {
+      // Filename
+      var layout = 'mylayout';
+      var filesToTest = [
+        // add files and folders you expect to NOT exist here.
+        'src/_layouts/' + layout + '.jade'
+      ];
+      var fileContentToTest = [['src/_layouts/' + layout + '.jade', /extend/i]];
 
-        return createSubGenerator('layout')
-          .withArguments([layout])
-          .then(function() {
-            assert.file(filesToTest);
-            assert.fileContent(fileContentToTest);
-          });
-      });
-      it('Handles custom layout', function() {
-        // Filename
-        var layout = 'mylayout';
-        var filesToTest = [
-          // add files and folders you expect to NOT exist here.
-          'src/_layouts/' + layout + '.jade'
-        ];
-        var fileContentToTest = [
-          ['src/_layouts/' + layout + '.jade', /extend/i],
-          ['src/_layouts/' + layout + '.jade', /mylayout/i]
-        ];
+      return createSubGenerator('layout')
+        .withArguments([layout])
+        .then(function() {
+          assert.file(filesToTest);
+          assert.fileContent(fileContentToTest);
+        });
+    });
+    it('Handles custom layout', function() {
+      // Filename
+      var layout = 'mylayout';
+      var filesToTest = [
+        // add files and folders you expect to NOT exist here.
+        'src/_layouts/' + layout + '.jade'
+      ];
+      var fileContentToTest = [
+        ['src/_layouts/' + layout + '.jade', /extend/i],
+        ['src/_layouts/' + layout + '.jade', /mylayout/i]
+      ];
 
-        return createSubGenerator('layout')
-          .withArguments([layout])
-          .then(function() {
-            assert.file(filesToTest);
-            assert.fileContent(fileContentToTest);
-          });
-      });
+      return createSubGenerator('layout')
+        .withArguments([layout])
+        .then(function() {
+          assert.file(filesToTest);
+          assert.fileContent(fileContentToTest);
+        });
     });
   });
 
@@ -63,44 +59,42 @@ describe('Static Site layout sub-generator', function() {
         htmlOption: 'nunjucks'
       });
     });
-    describe('Client layouts', function() {
-      it('Handles defaults', function() {
-        // Filename
-        var layout = 'mylayout';
-        var filesToTest = [
-          // add files and folders you expect to NOT exist here.
-          'src/_layouts/' + layout + '.nunjucks'
-        ];
-        var fileContentToTest = [
-          ['src/_layouts/' + layout + '.nunjucks', /extends/i]
-        ];
+    it('Handles defaults', function() {
+      // Filename
+      var layout = 'mylayout';
+      var filesToTest = [
+        // add files and folders you expect to NOT exist here.
+        'src/_layouts/' + layout + '.nunjucks'
+      ];
+      var fileContentToTest = [
+        ['src/_layouts/' + layout + '.nunjucks', /extends/i]
+      ];
 
-        return createSubGenerator('layout')
-          .withArguments([layout])
-          .then(function() {
-            assert.file(filesToTest);
-            assert.fileContent(fileContentToTest);
-          });
-      });
-      it('Handles custom layout', function() {
-        // Filename
-        var layout = 'mylayout';
-        var filesToTest = [
-          // add files and folders you expect to NOT exist here.
-          'src/_layouts/' + layout + '.nunjucks'
-        ];
-        var fileContentToTest = [
-          ['src/_layouts/' + layout + '.nunjucks', /extend/i],
-          ['src/_layouts/' + layout + '.nunjucks', /mylayout/i]
-        ];
+      return createSubGenerator('layout')
+        .withArguments([layout])
+        .then(function() {
+          assert.file(filesToTest);
+          assert.fileContent(fileContentToTest);
+        });
+    });
+    it('Handles custom layout', function() {
+      // Filename
+      var layout = 'mylayout';
+      var filesToTest = [
+        // add files and folders you expect to NOT exist here.
+        'src/_layouts/' + layout + '.nunjucks'
+      ];
+      var fileContentToTest = [
+        ['src/_layouts/' + layout + '.nunjucks', /extend/i],
+        ['src/_layouts/' + layout + '.nunjucks', /mylayout/i]
+      ];
 
-        return createSubGenerator('layout')
-          .withArguments([layout])
-          .then(function() {
-            assert.file(filesToTest);
-            assert.fileContent(fileContentToTest);
-          });
-      });
+      return createSubGenerator('layout')
+        .withArguments([layout])
+        .then(function() {
+          assert.file(filesToTest);
+          assert.fileContent(fileContentToTest);
+        });
     });
   });
 });
