@@ -260,6 +260,7 @@ module.exports = class extends Generator {
     this.copyTpl('gulp/eslint.js', 'gulp/eslint.js', templateData);
     this.copyTpl('gulp/imagemin.js', 'gulp/imagemin.js', templateData);
     this.copyTpl('gulp/watch.js', 'gulp/watch.js', templateData);
+    this.copyTpl('gulp/rev.js', 'gulp/rev.js', templateData);
 
     if (this.htmlOption === 'pug') {
       this.copyTpl('gulp/pug.js', 'gulp/pug.js', templateData);

@@ -22,7 +22,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
       // Options
       let customOpts = {
         entries: [entry],
-        debug: true,
+        debug: !args.production,
         transform: [
           babelify, // Enable ES6 features
           envify // Sets NODE_ENV for better optimization of npm packages
@@ -50,12 +50,15 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
             );
             this.emit('end');
           })
-          .on('error', plugins.notify.onError(config.defaultNotification))
           .pipe(vsource(entry))
           .pipe(buffer())
-          .pipe(plugins.sourcemaps.init({ loadMaps: true }))
+          .pipe(
+            gulpif(
+              !args.production,
+              plugins.sourcemaps.init({ loadMaps: true })
+            )
+          )
           .pipe(gulpif(args.production, plugins.uglify()))
-          .on('error', plugins.notify.onError(config.defaultNotification))
           .pipe(
             plugins.rename(function(filepath) {
               // Remove 'source' directory as well as prefixed folder underscores
@@ -65,7 +68,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
                 .replace('_', '');
             })
           )
-          .pipe(plugins.sourcemaps.write('./'))
+          .pipe(gulpif(!args.production, plugins.sourcemaps.write('./')))
           .pipe(gulp.dest(dest))
           // Show which file was bundled and how long it took
           .on('end', function() {
@@ -90,15 +93,15 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
 
   // Browserify Task
   gulp.task('browserify', done => {
-    return glob(
-      './' + path.join(dirs.source, dirs.scripts, entries.js),
-      function(err, files) {
-        if (err) {
-          throw new Error(err);
-        }
-
-        return browserifyTask(files, done);
+    glob('./' + path.join(dirs.source, dirs.scripts, entries.js), function(
+      err,
+      files
+    ) {
+      if (err) {
+        throw new Error(err);
       }
-    );
+
+      return browserifyTask(files, done);
+    });
   });
 }

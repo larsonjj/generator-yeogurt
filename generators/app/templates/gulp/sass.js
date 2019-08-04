@@ -12,7 +12,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
   // Sass compilation
   gulp.task('sass', () => {
     return gulp
-      .src(path.join(dirs.source, dirs.styles, entries.css))
+      .src(`${dirs.source}/${dirs.styles}/${entries.css}`)
       .pipe(plugins.plumber())
       .pipe(plugins.sourcemaps.init())
       .pipe(
@@ -28,7 +28,6 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
       .on('error', function(err) {
         plugins.util.log(err);
       })
-      .on('error', plugins.notify.onError(config.defaultNotification))
       .pipe(plugins.postcss([autoprefixer()]))
       .pipe(
         plugins.rename(function(path) {

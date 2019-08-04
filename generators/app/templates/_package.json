@@ -28,11 +28,14 @@
     "gulp-if": "~2.0.2",
     "gulp-imagemin": "~6.0.0",
     "gulp-load-plugins": "~2.0.0",
-    "gulp-notify": "~3.2.0",
     "gulp-plumber": "~1.2.1",
     "gulp-postcss": "~8.0.0",
     "gulp-rename": "~1.4.0",
     "gulp-sourcemaps": "~2.6.5",
+    "gulp-rev-rewrite": "2.0.0",
+    "gulp-filter": "6.0.0",
+    "gulp-rev": "9.0.0",
+    "gulp-rev-delete-original": "0.2.3",
     "gulp-util": "~3.0.8",
     "gulp-uglify": "~3.0.2",<% if (cssOption === 'sass') { %>
     "gulp-sass": "~4.0.2",<% } %><% if (cssOption === 'less') { %>

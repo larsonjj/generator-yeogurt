@@ -14,16 +14,7 @@ const plugins = gulpLoadPlugins();<% if (testFramework !== 'none') { %>
 // Create karma server
 const KarmaServer = require('karma').Server;<% } %>
 
-const defaultNotification = function(err) {
-  return {
-    subtitle: err.plugin,
-    message: err.message,
-    sound: 'Funk',
-    onLast: true,
-  };
-};
-
-let config = Object.assign({}, pjson.config, defaultNotification);
+let config = Object.assign({}, pjson.config);
 
 let args = minimist(process.argv.slice(2));
 let dirs = config.directories;
@@ -51,7 +42,8 @@ gulp.task('build', gulp.series(
     'sass'<% } else if (cssOption === 'stylus') { %>,
     'stylus'<% } %>,
     'browserify'
-  )
+  ),
+  'rev'
 ));
 
 // Server tasks with watch
@@ -74,7 +66,7 @@ gulp.task('serve', gulp.series(
 gulp.task('default', gulp.series('clean', 'build'));
 
 // Testing
-gulp.task('test', gulp.series('eslint'<% if (testFramework === 'none') { %>);<% } else { %>, (done) => {
+gulp.task('test', gulp.series('eslint'<% if (testFramework === 'none') { %>));<% } else { %>, (done) => {
   new KarmaServer({
     configFile: path.join(__dirname, '/karma.conf.js'),
     singleRun: !args.watch,

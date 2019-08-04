@@ -72,7 +72,9 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
           plugins.util.log(err);
         })
       )
-      .on('error', plugins.notify.onError(config.defaultNotification))
+      .on('error', function(err) {
+        plugins.util.log(err);
+      })
       .pipe(
         plugins.htmlmin({
           collapseBooleanAttributes: true,
