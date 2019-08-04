@@ -8,7 +8,6 @@ import browserify from 'browserify';
 import watchify from 'watchify';
 import envify from 'envify';
 import babelify from 'babelify';
-import _ from 'lodash';
 import vsource from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
 import gulpif from 'gulp-if';
@@ -31,7 +30,7 @@ let browserifyTask = (files, done) => {
 
     if (!args.production) {
       // Setup Watchify for faster builds
-      let opts = _.assign({}, watchify.args, customOpts);
+      let opts = Object.assign({}, watchify.args, customOpts);
       bundler = watchify(browserify(opts));
     }
 
