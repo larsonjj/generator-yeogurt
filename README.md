@@ -39,7 +39,7 @@ A generator for creating static sites. Helps you harness the power of your favor
 - [Less](http://lesscss.org/), [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass)), or [Stylus](http://learnboost.github.io/stylus/) for Stylesheets
 - [Jasmine](http://jasmine.github.io/) or [Mocha](http://mochajs.org/) + [Chai](http://chaijs.com/) for JavaScript unit testing
 - [Karma](http://karma-runner.github.io/0.12/index.html) for running unit tests
-- [Pug](http://pug-lang.com/) or [Nunjucks](https://mozilla.github.io/nunjucks/) for templating
+- [Pug](https://pugjs.org/api/reference.html) or [Nunjucks](https://mozilla.github.io/nunjucks/) for templating
 
 ## Getting Started
 
