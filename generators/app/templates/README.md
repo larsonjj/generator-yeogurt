@@ -1,4 +1,4 @@
-# <%= _.titleize(projectName) %> readme
+# <%= _.startCase(_.toLower(projectName)) %> readme
 
 Generated on <%= (new Date).toISOString().split('T')[0] %> using
 [<%= pkg.name %>@<%= pkg.version %>](https://github.com/larsonjj/generator-yeogurt)

@@ -1,153 +1,109 @@
 /*global describe, beforeEach, it*/
 'use strict';
 
-var path = require('path');
-var yeoman = require('yeoman-generator');
-var helpers = yeoman.test;
-var assert = yeoman.assert;
-var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
-var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
-
+var assert = require('yeoman-assert');
+var createAppGenerator = require('../helpers/create-generator')
+  .createAppGenerator;
+var createSubGenerator = require('../helpers/create-generator')
+  .createSubGenerator;
 describe('Static Site page sub-generator', function() {
-  beforeEach(function(done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function(err) {
-      if (err) {
-        return done(err);
-      }
-
-      this.app = createAppGenerator([], {path: '../../../app'});
-
-      done();
-    }.bind(this));
-  });
-
   describe('Create page files when using Static Jade', function() {
-    describe('Client page', function() {
-      describe('Using Browserify', function() {
-        it('Using Jasmine', function(done) {
-          // Filename
-          var page = 'mypage';
+    beforeEach(function() {
+      return createAppGenerator().withPrompts({
+        existingConfig: true,
+        htmlOption: 'jade',
+        testFramework: 'jasmine',
+        jsOption: 'browserify',
+        cssOption: 'stylus'
+      });
+    });
+    describe('Using Browserify', function() {
+      it('Using Jasmine', function() {
+        // Filename
+        var pageName = 'mypage';
 
-          var filesToTest = [
-            'src/' + page + '/' + 'index.jade'
-          ];
-          var fileContentToTest = [
-            ['src/' + page + '/' + 'index.jade', /extends/i]
-          ];
+        var filesToTest = ['src/' + pageName + '/' + 'index.jade'];
+        var fileContentToTest = [
+          ['src/' + pageName + '/' + 'index.jade', /extends/i]
+        ];
 
-          helpers.mockPrompt(this.app, {
-            htmlOption: 'jade',
-            testFramework: 'jasmine',
-            jsOption: 'browserify',
-            cssOption: 'stylus'
+        return createSubGenerator('page')
+          .withArguments([pageName])
+          .then(function() {
+            assert.file(filesToTest);
+            assert.fileContent(fileContentToTest);
           });
+      });
+      it('With custom layout', function() {
+        // Filename
+        var pageName = 'mypage';
 
-          this.app.run([], function() {
-            createSubGenerator('page', page, {path: '../../../'}, {
-              // mock prompt data
-              pageFile: 'src/'
-            }, function() {
-              assert.file(filesToTest);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
+        var filesToTest = ['src/' + pageName + '/' + 'index.jade'];
+        var fileContentToTest = [
+          ['src/' + pageName + '/' + 'index.jade', /extends/i],
+          ['src/' + pageName + '/' + 'index.jade', /mypage/i]
+        ];
+
+        return createSubGenerator('page', { layout: pageName })
+          .withArguments([pageName])
+          .then(function() {
+            assert.file(filesToTest);
+            assert.fileContent(fileContentToTest);
           });
-        });
-        it('With custom layout', function(done) {
-          // Filename
-          var page = 'mypage';
-
-          var filesToTest = [
-            'src/' + page + '/' + 'index.jade'
-          ];
-          var fileContentToTest = [
-            ['src/' + page + '/' + 'index.jade', /extends/i],
-            ['src/' + page + '/' + 'index.jade', /mypage/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            htmlOption: 'jade',
-            testFramework: 'jasmine',
-            jsOption: 'browserify',
-            cssOption: 'stylus'
-          });
-
-          this.app.run([], function() {
-            createSubGenerator('page', page, {layout: page, path: '../../../'}, {
-              // mock prompt data
-              pageFile: 'src/'
-            }, function() {
-              assert.file(filesToTest);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
-        });
       });
     });
   });
 
-  describe('Create page files when using Static Swig', function() {
-    describe('Client pages', function() {
-      describe('Using Browserify', function() {
-        it('Using Jasmine', function(done) {
-          // Filename
-          var page = 'mypage';
+  describe('Create page files when using Static Nunjucks', function() {
+    beforeEach(function() {
+      return createAppGenerator().withPrompts({
+        existingConfig: true,
+        htmlOption: 'nunjucks',
+        testFramework: 'jasmine',
+        jsOption: 'browserify',
+        cssOption: 'stylus'
+      });
+    });
+    describe('Using Browserify', function() {
+      it('Using Jasmine', function() {
+        // Filename
+        var pageName = 'mypage';
 
-          var filesToTest = [
-            'src/' + page + '/' + 'index.nunjucks'
-          ];
-          var fileContentToTest = [
-            ['src/' + page + '/' + 'index.nunjucks', /extends/i],
-            ['src/' + page + '/' + 'index.nunjucks', /mypage/i]
-          ];
+        var filesToTest = ['src/' + pageName + '/' + 'index.nunjucks'];
+        var fileContentToTest = [
+          ['src/' + pageName + '/' + 'index.nunjucks', /extends/i],
+          ['src/' + pageName + '/' + 'index.nunjucks', /mypage/i]
+        ];
 
-          helpers.mockPrompt(this.app, {
-            htmlOption: 'nunjucks',
-            testFramework: 'jasmine',
-            jsOption: 'browserify'
+        return createSubGenerator('page')
+          .withArguments([pageName])
+          .then(function() {
+            assert.file(filesToTest);
+            assert.fileContent(fileContentToTest);
+          });
+      });
+      it('With custom layout', function() {
+        // Filename
+        var pageName = 'mypage';
+
+        var filesToTest = ['src/' + pageName + '/' + 'index.nunjucks'];
+        var fileContentToTest = [
+          ['src/' + pageName + '/' + 'index.nunjucks', /extends/i],
+          ['src/' + pageName + '/' + 'index.nunjucks', /mypage/i]
+        ];
+
+        return createSubGenerator('page', { layout: pageName })
+          .withArguments([pageName])
+          .then(function() {
+            assert.file(filesToTest);
+            assert.fileContent(fileContentToTest);
           });
 
-          this.app.run([], function() {
-            createSubGenerator('page', page, {layout: page, path: '../../../'}, {
-              // mock prompt data
-              pageFile: 'src/'
-            }, function() {
-              assert.file(filesToTest);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
-        });
-        it('With custom layout', function(done) {
-          // Filename
-          var page = 'mypage';
-
-          var filesToTest = [
-            'src/' + page + '/' + 'index.nunjucks'
-          ];
-          var fileContentToTest = [
-            ['src/' + page + '/' + 'index.nunjucks', /extends/i],
-            ['src/' + page + '/' + 'index.nunjucks', /mypage/i]
-          ];
-
-          helpers.mockPrompt(this.app, {
-            htmlOption: 'nunjucks',
-            testFramework: 'jasmine',
-            jsOption: 'browserify',
-            cssOption: 'stylus'
-          });
-
-          this.app.run([], function() {
-            createSubGenerator('page', page, {layout: page, path: '../../../'}, {
-              // mock prompt data
-              pageFile: 'src/'
-            }, function() {
-              assert.file(filesToTest);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
-          });
+        helpers.mockPrompt(this.app, {
+          htmlOption: 'nunjucks',
+          testFramework: 'jasmine',
+          jsOption: 'browserify',
+          cssOption: 'stylus'
         });
       });
     });

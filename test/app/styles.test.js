@@ -1,92 +1,62 @@
 /*global describe, beforeEach, it*/
 'use strict';
 
-var path = require('path');
-var yeoman = require('yeoman-generator');
-var helpers = yeoman.test;
-var assert = yeoman.assert;
-var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
+var assert = require('yeoman-assert');
+var createAppGenerator = require('../helpers/create-generator')
+  .createAppGenerator;
 
 describe('Yeogurt generator using Styles', function() {
-  beforeEach(function(done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function(err) {
-      if (err) {
-        return done(err);
-      }
-
-      this.app = createAppGenerator();
-
-      done();
-    }.bind(this));
-  });
   describe('With Sass', function() {
-    it('Creates expected files', function(done) {
-      var expected = [
-        'src',
-        'src/_styles/main.scss'
-      ];
+    it('Creates expected files', function() {
+      var expected = ['src', 'src/_styles/main.scss'];
 
-      helpers.mockPrompt(this.app, {
-        cssOption: 'sass'
-      });
-      this.app.run([], function() {
-        assert.file(expected);
-        done();
-      });
+      return createAppGenerator()
+        .withPrompts({ existingConfig: false, cssOption: 'sass' })
+        .then(function() {
+          assert.file(expected);
+        });
     });
     describe('With Sass (not Scss) syntax', function() {
-      it('Creates expected content', function(done) {
-        var expected = [
-          'src/_styles/main.sass'
-        ];
+      it('Creates expected content', function() {
+        var expected = ['src/_styles/main.sass'];
 
-        helpers.mockPrompt(this.app, {
-          cssOption: 'sass',
-          sassSyntax: 'sass'
-        });
-        this.app.run([], function() {
-          assert.file(expected);
-          done();
-        });
+        return createAppGenerator()
+          .withPrompts({
+            existingConfig: false,
+            cssOption: 'sass',
+            sassSyntax: 'sass'
+          })
+          .then(function() {
+            assert.file(expected);
+          });
       });
     });
   });
   describe('With Less', function() {
-    it('Creates expected files', function(done) {
-      var expected = [
-        'src',
-        'src/_styles/main.less'
-      ];
-      var fileContentToTest = [
-        ['package.json', /less/i]
-      ];
+    it('Creates expected files', function() {
+      var expected = ['src', 'src/_styles/main.less'];
+      var fileContentToTest = [['package.json', /less/i]];
 
-      helpers.mockPrompt(this.app, {
-        cssOption: 'less'
-      });
-      this.app.run([], function() {
-        assert.file(expected);
-        assert.fileContent(fileContentToTest);
-        done();
-      });
+      return createAppGenerator()
+        .withPrompts({
+          existingConfig: false,
+          cssOption: 'less'
+        })
+        .then(function() {
+          assert.file(expected);
+          assert.fileContent(fileContentToTest);
+        });
     });
   });
   describe('With Stylus', function() {
-    it('Creates expected files', function(done) {
-      var expected = [
-        'src',
-        'src/_styles/main.styl'
-      ];
+    it('Creates expected files', function() {
+      var expected = ['src', 'src/_styles/main.styl'];
 
-      helpers.mockPrompt(this.app, {
-        cssOption: 'stylus',
-        useBootstrap: false,
-        useFoundation: false
-      });
-      this.app.run([], function() {
-        assert.file(expected);
-        done();
-      });
+      return createAppGenerator()
+        .withPrompts({ existingConfig: false, cssOption: 'stylus' })
+        .then(function() {
+          assert.file(expected);
+        });
     });
   });
 });
