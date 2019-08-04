@@ -101,7 +101,7 @@ module.exports = class extends Generator {
         message: 'What ' + 'Sass syntax'.blue + ' would you like to use ?',
         choices: ['Scss', 'Sass'],
         when: function(answers) {
-          return !answers.existingConfig;
+          return !answers.existingConfig && answers.cssOption === 'sass';
         },
         filter: function(val) {
           var filterMap = {
@@ -369,9 +369,6 @@ module.exports = class extends Generator {
       );
     }
 
-    // Format files with prettier
-    this.spawnCommand('npm', ['run', 'format']);
-
     // Install dependencies
     const hasYarn = commandExists('yarn');
     this.installDependencies({
@@ -382,6 +379,8 @@ module.exports = class extends Generator {
     });
 
     this.on('end', () => {
+      // Format files with prettier
+      this.spawnCommand('npm', ['run', 'format']);
       this.log(
         '\n' +
           'Everything looks ready!'.blue +
