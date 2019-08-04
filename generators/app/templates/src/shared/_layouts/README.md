@@ -102,4 +102,4 @@ block append scripts
 
 // Add extra scripts
 {% block scripts %}{% endblock }
-````
+````<% } %>
