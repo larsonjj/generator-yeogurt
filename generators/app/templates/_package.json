@@ -35,8 +35,8 @@
     "gulp-sass": "~4.0.2",<% } %><% if (cssOption === 'less') { %>
     "gulp-less": "~4.0.1",<% } %><% if (cssOption === 'stylus') { %>
     "gulp-stylus": "~2.7.0",<% } %><% if (htmlOption === 'pug') { %>
-    "gulp-pug": "~1.1.0",
-    "pug": "~1.11.0",<% } %><% if (htmlOption === 'nunjucks') { %>
+    "gulp-pug": "~4.0.1",
+    "pug": "~2.0.4",<% } %><% if (htmlOption === 'nunjucks') { %>
     "acorn": "6.2.0",
     "nunjucks": "~3.2.0",
     "gulp-nunjucks-html": "~2.0.0",<% } %>
