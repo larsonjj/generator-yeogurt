@@ -63,7 +63,7 @@ The tasks are as follows:
 
 `npm run serve`: Compiles preprocessors and boots up development server
 `npm run serve -- --open`: Same as `npm run serve` but will also open up site/app in your default browser
-`gulp serve:prod`: Same as `npm run serve` but will run all production tasks so you can view the site/app in it's final optimized form
+`npm run serve:prod`: Same as `npm run serve` but will run all production tasks so you can view the site/app in it's final optimized form
 
 `npm test`: Lints all `*.js` file in the `source` folder using eslint<% if (testFramework === 'jasmine' || testFramework === 'mocha') { %> and runs all `*.test.js` file unit tests through [Karma](http://karma-runner.github.io/0.13/index.html) and <% if (testFramework === 'jasmine') { %>Jasmine<% } else if (testFramework === 'mocha') { %>Mocha + Chai<% } %>
 `npm test -- --watch`: Same as `npm test` but will constantly watch `*.test.js` files and rerun tests when changes are detected<% } %>
