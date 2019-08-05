@@ -18,7 +18,7 @@ gulp.task('build', gulp.series(
   gulp.parallel(
     'copy',
     'imagemin'<% if (htmlOption === 'pug') { %>,
-    'pug'<% } else if (htmlOption === 'nunjucks') {  %>,
+    'pug'<% } else if (htmlOption === 'nunjucks') { %>,
     'nunjucks'<% } %><% if (cssOption === 'less') { %>,
     'less'<% } else if (cssOption === 'sass') { %>,
     'sass'<% } else if (cssOption === 'stylus') { %>,
