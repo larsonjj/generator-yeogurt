@@ -29,28 +29,12 @@ npm install [package name] --save
 
 // CSS
 @import node_modules/normalize.css/normalize
-```<% } else if (cssOption === 'less') { %>
+```<% } else if (cssOption === 'postcss') { %>
 
-**Using LESS:**
+**Using PostCSS:**
 
-```less
-// LESS
-@import 'node_modules/bootstrap/less/bootstrap';
-
-// CSS
-@import (inline) 'node_modules/normalize.css/normalize.css';
-```<% } else if (cssOption === 'stylus') { %>
-
-**Using Stylus:**
-
-```stylus
-// Stylus
-@import '../../node_modules/bootstrap-stylus/bootstrap';
-
-// CSS import
-@import '../../node_modules/normalize.css/normalize.css';
+```css
+// PostCSS Import
+@import 'node_modules/bootstrap-sass-official/css/bootstrap';
+@import 'normalize.css';
 ```<% } %>
-
-#### Using Bower
-
-Check out the instructions for using bower on the [Yeogurt README](https://github.com/larsonjj/generator-yeogurt#using-bower)

@@ -78,15 +78,14 @@ module.exports = class extends Generator {
         type: 'list',
         name: 'cssOption',
         message: 'What would you like to use to ' + 'write styles'.blue + '?',
-        choices: ['Sass', 'Less', 'Stylus'],
+        choices: ['Sass', 'PostCSS'],
         when: function(answers) {
           return !answers.existingConfig;
         },
         filter: function(val) {
           var filterMap = {
             Sass: 'sass',
-            Less: 'less',
-            Stylus: 'stylus'
+            PostCSS: 'postcss'
           };
 
           return filterMap[val];
@@ -271,11 +270,8 @@ module.exports = class extends Generator {
 
     if (this.cssOption === 'sass') {
       this.copyTpl('gulp/tasks/sass.js', 'gulp/tasks/sass.js', templateData);
-    } else if (this.cssOption === 'less') {
-      this.copyTpl('gulp/tasks/less.js', 'gulp/tasks/less.js', templateData);
-    }
-    if (this.cssOption === 'stylus') {
-      this.copyTpl('gulp/tasks/stylus.js', 'gulp/tasks/stylus.js', templateData);
+    } else if (this.cssOption === 'postcss') {
+      this.copyTpl('gulp/tasks/postcss.js', 'gulp/tasks/postcss.js', templateData);
     }
 
     // Markup (HTML Preprocessors)
@@ -311,15 +307,15 @@ module.exports = class extends Generator {
     }
 
     // Styling (CSS Preprocessors)
-    if (this.cssOption === 'less') {
+    if (this.cssOption === 'postcss') {
       this.copyTpl(
-        'src/shared/_styles/main.less',
-        'src/_styles/main.less',
+        'src/shared/_styles/main.css',
+        'src/_styles/main.css',
         templateData
       );
       this.copyTpl(
-        'src/shared/_styles/link/link.less',
-        'src/_modules/link/link.less',
+        'src/shared/_styles/link/link.css',
+        'src/_modules/link/link.css',
         templateData
       );
     }
@@ -347,18 +343,6 @@ module.exports = class extends Generator {
           templateData
         );
       }
-    }
-    if (this.cssOption === 'stylus') {
-      this.copyTpl(
-        'src/shared/_styles/main.styl',
-        'src/_styles/main.styl',
-        templateData
-      );
-      this.copyTpl(
-        'src/shared/_styles/link/link.styl',
-        'src/_modules/link/link.styl',
-        templateData
-      );
     }
 
     // Testing

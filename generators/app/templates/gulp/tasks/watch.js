@@ -13,16 +13,11 @@ gulp.task('watch', (done) => {
     gulp.watch([
       path.join(dirs.source, dirs.styles, '**/*.{scss,sass}'),
       path.join(dirs.source, dirs.modules, '**/*.{scss,sass}')
-    ], gulp.series('sass'));<% } else if (cssOption === 'less') { %>
+    ], gulp.series('sass'));<% } else if (cssOption === 'postcss') { %>
     gulp.watch([
-      path.join(dirs.source, dirs.styles, '**/*.less'),
-      path.join(dirs.source, dirs.modules, '**/*.less'),
-    ], gulp.series('less'));<% } else if (cssOption === 'stylus') { %>
-    gulp.watch([
-      path.join(dirs.source, dirs.styles, '**/*.styl'),
-      path.join(dirs.source, dirs.modules, '**/*.styl')
-    ], gulp.series('stylus'));
-    <% } %><% if (htmlOption === 'pug') { %>
+      path.join(dirs.source, dirs.styles, '**/*.css'),
+      path.join(dirs.source, dirs.modules, '**/*.css'),
+    ], gulp.series('postcss'));<% } %><% if (htmlOption === 'pug') { %>
 
     // Pug Templates
     gulp.watch([

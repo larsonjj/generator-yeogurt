@@ -1,11 +1,11 @@
-// Normalize Styles
-@import (inline) 'node_modules/normalize.css/normalize.css';
+/* Normalize Styles */
+@import 'normalize.css';
 
-// Import Modules
+/* Import Modules */
 @import '../_modules/link/link';
 
-// Box sizing partial styles:
-// Apply a natural box layout model to all elements
+/* Box sizing partial styles:
+   Apply a natural box layout model to all elements */
 *,
 *:before,
 *:after {

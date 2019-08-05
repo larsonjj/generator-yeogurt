@@ -14,7 +14,7 @@ describe('Static Site page sub-generator', function() {
         htmlOption: 'pug',
         testFramework: 'jasmine',
         jsOption: 'browserify',
-        cssOption: 'stylus'
+        cssOption: 'sass'
       });
     });
     describe('Using Browserify', function() {
@@ -61,7 +61,7 @@ describe('Static Site page sub-generator', function() {
         htmlOption: 'nunjucks',
         testFramework: 'jasmine',
         jsOption: 'browserify',
-        cssOption: 'stylus'
+        cssOption: 'sass'
       });
     });
     describe('Using Browserify', function() {
@@ -103,7 +103,7 @@ describe('Static Site page sub-generator', function() {
           htmlOption: 'nunjucks',
           testFramework: 'jasmine',
           jsOption: 'browserify',
-          cssOption: 'stylus'
+          cssOption: 'sass'
         });
       });
     });

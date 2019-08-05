@@ -19,6 +19,7 @@
 - Add favicon markup for layout templates
 - Remove ES5 JS option
 - Remove [gulp-notify](https://github.com/mikaelbr/gulp-notify) from build tasks
+- Remove [Less](http://lesscss.org) and [Stylus](http://stylus-lang.com) in favor of [PostCSS](https://github.com/postcss/postcss)
 
 ### v2.0.1:
 

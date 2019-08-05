@@ -35,7 +35,7 @@ A generator for creating static sites. Helps you harness the power of your favor
 
 - Project/Site naming
 - ES6/2015+ support using [Babel](https://babeljs.io/)
-- [Less](http://lesscss.org/), [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass)), or [Stylus](http://learnboost.github.io/stylus/) for Stylesheets
+- [PostCSS](https://github.com/postcss/postcss) or [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass))
 - [Jasmine](http://jasmine.github.io/) or [Mocha](http://mochajs.org/) + [Chai](http://chaijs.com/) for JavaScript unit testing
 - [Karma](http://karma-runner.github.io/0.12/index.html) for running unit tests
 - [Pug](https://pugjs.org/api/reference.html) or [Nunjucks](https://mozilla.github.io/nunjucks/) for templating
@@ -190,7 +190,7 @@ Ex: `main**.js` will process all files that start with `main` and end with `.js`
 | Setting | Description                                                                                                |
 | ------- | ---------------------------------------------------------------------------------------------------------- |
 | js      | Tells browserify what file(s) to bundle and generate at your desired build target                          |
-| css     | Tells your stylesheet preprocessor (Sass, Less, etc) what file(s) to generate at your desired build target |
+| css     | Tells your stylesheet preprocessor (Sass or PostCSS) what file(s) to generate at your desired build target |
 
 **_Default configuration:_**
 
@@ -219,7 +219,7 @@ Ex: `main**.js` will process all files that start with `main` and end with `.js`
   "//": "Entry files",
   "entries": {
     "js": "main**.js",
-    "css": "main**.{scss,sass,styl,less}"
+    "css": "main**.{scss,sass,css}"
   }
 }
 ```
@@ -310,7 +310,7 @@ Produces:
 
 ```
 src/_modules/header/header.{pug,nunjucks}
-src/_modules/header/header.{scss,sass,less,styl}
+src/_modules/header/header.{scss,sass,css}
 src/_modules/header/header.js
 src/_modules/header/__tests__/header.test.js
 ```
@@ -327,7 +327,7 @@ Produces:
 
 ```
 src/_modules/atoms/link/link.{pug,nunjucks}
-src/_modules/atoms/link/link.{scss,sass,less,styl}
+src/_modules/atoms/link/link.{scss,sass,css}
 src/_modules/atoms/link/link.js
 src/_modules/atoms/link/__tests__/link.test.js
 ```
@@ -344,7 +344,7 @@ Produces:
 
 ```
 src/_modules/atoms/some/cool/link/link.{pug,nunjucks}
-src/_modules/atoms/some/cool/link/link.{scss,sass,less,styl}
+src/_modules/atoms/some/cool/link/link.{scss,sass,css}
 src/_modules/atoms/some/cool/link/link.js
 src/_modules/atoms/some/cool/link/__tests__/link.test.js
 ```
@@ -434,24 +434,12 @@ You can also access stylesheets by importing them to you chosen preprocessor lik
 @import node_modules/normalize.css/normalize
 ```
 
-**Using LESS:**
+**Using PostCSS:**
 
-```less
-// LESS
-@import 'node_modules/bootstrap/less/bootstrap';
-
-// CSS
-@import (inline) 'node_modules/normalize.css/normalize.css';
-```
-
-**Using Stylus:**
-
-```stylus
-// Stylus
-@import '../../node_modules/bootstrap-stylus/bootstrap';
-
-// CSS import
-@import '../../node_modules/normalize.css/normalize.css';
+```css
+// PostCSS
+@import 'node_modules/bootstrap-sass-official/css/bootstrap';
+@import 'normalize.css';
 ```
 
 #### Using Non-CommonJS modules with browserify-shim
@@ -548,7 +536,7 @@ bower install --save [package name]
 
 If the package installed is a javascript library, you will need to shim it. Instructions for this are in the [browserify-shim](#using-non-commonjs-modules-with-browserify-shim) section of this README.
 
-If the package is CSS, Sass, Less, or Stylus, you can follow the instructions in the [Stylesheets](#stylesheets) section of this README
+If the package is CSS or Sass, you can follow the instructions in the [Stylesheets](#stylesheets) section of this README
 
 ### Data Files
 

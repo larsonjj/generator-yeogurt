@@ -13,7 +13,7 @@
     "nunjucks",
     "sass",
     "browsersync",
-    "less",
+    "postcss",
     "browserify"
   ],
   "homepage": "https://github.com/larsonjj/generator-yeogurt",

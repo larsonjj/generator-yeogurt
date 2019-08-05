@@ -19,10 +19,9 @@ gulp.task('build', gulp.series(
     'copy',
     'imagemin'<% if (htmlOption === 'pug') { %>,
     'pug'<% } else if (htmlOption === 'nunjucks') { %>,
-    'nunjucks'<% } %><% if (cssOption === 'less') { %>,
-    'less'<% } else if (cssOption === 'sass') { %>,
-    'sass'<% } else if (cssOption === 'stylus') { %>,
-    'stylus'<% } %>,
+    'nunjucks'<% } %><% if (cssOption === 'postcss') { %>,
+    'postcss'<% } else if (cssOption === 'sass') { %>,
+    'sass'<% } %>,
     'browserify'
   ),
   'rev'
@@ -34,10 +33,9 @@ gulp.task('serve', gulp.series(
     'imagemin',
     'copy'<% if (htmlOption === 'pug') { %>,
     'pug'<% } else if (htmlOption === 'nunjucks') {  %>,
-    'nunjucks'<% } %><% if (cssOption === 'less') { %>,
-    'less'<% } %><% if (cssOption === 'sass') { %>,
-    'sass'<% } %><% if (cssOption === 'stylus') { %>,
-    'stylus'<% } %>,
+    'nunjucks'<% } %><% if (cssOption === 'postcss') { %>,
+    'postcss'<% } %><% if (cssOption === 'sass') { %>,
+    'sass'<% } %>,
     'browserify',
     'browserSync',
     'watch'

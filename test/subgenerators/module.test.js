@@ -222,21 +222,21 @@ describe('Static Site module sub-generator', function() {
           });
       });
     });
-    describe('Handles Less', function() {
+    describe('Handles PostCSS', function() {
       beforeEach(function() {
         return createAppGenerator().withPrompts({
           existingConfig: true,
           htmlOption: 'nunjucks',
           jsOption: 'browserify',
-          cssOption: 'less'
+          cssOption: 'postcss'
         });
       });
-      it('With .less extension', function() {
+      it('With .css extension', function() {
         // Filename
         var moduleName = 'mymodule';
         var filesToTest = [
           // add files and folders you expect to NOT exist here.
-          'src/_modules/' + moduleName + '/' + moduleName + '.less'
+          'src/_modules/' + moduleName + '/' + moduleName + '.css'
         ];
 
         return createSubGenerator('module')
@@ -244,30 +244,6 @@ describe('Static Site module sub-generator', function() {
           .then(function() {
             assert.file(filesToTest);
           });
-      });
-      describe('Handles stylus', function() {
-        beforeEach(function() {
-          return createAppGenerator().withPrompts({
-            existingConfig: true,
-            htmlOption: 'nunjucks',
-            jsOption: 'browserify',
-            cssOption: 'stylus'
-          });
-        });
-        it('With .styl extension', function() {
-          // Filename
-          var moduleName = 'mymodule';
-          var filesToTest = [
-            // add files and folders you expect to NOT exist here.
-            'src/_modules/' + moduleName + '/' + moduleName + '.styl'
-          ];
-
-          return createSubGenerator('module')
-            .withArguments([moduleName])
-            .then(function() {
-              assert.file(filesToTest);
-            });
-        });
       });
     });
   });

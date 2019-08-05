@@ -124,9 +124,8 @@ module.exports = class extends Generator {
   getCssSuffix(cssOption, sassSyntax) {
     var sassSuffix = sassSyntax === 'sass' ? '.sass' : '.scss';
 
-    var _result = '.less';
+    var _result = '.css';
     _result = cssOption === 'sass' ? sassSuffix : _result;
-    _result = cssOption === 'stylus' ? '.styl' : _result;
 
     return _result;
   }

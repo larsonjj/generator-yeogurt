@@ -23,9 +23,8 @@ Testing
 
 Styles<% if (cssOption === 'sass') { %>
 
-- [Sass](http://sass-lang.com/) via ([node-sass](https://github.com/sass/node-sass))<% } else if (cssOption === 'less') { %>
-- [Less](http://lesscss.org/)<% } else if (cssOption === 'stylus') { %>
-- [Stylus](https://learnboost.github.io/stylus/)<% } %>
+- [Sass](http://sass-lang.com/) via ([node-sass](https://github.com/sass/node-sass))<% } else if (cssOption === 'postcss') { %>
+- [PostCSS](https://github.com/postcss/postcss)<% } %>
 
 Markup<% if (htmlOption === 'pug') { %>
 

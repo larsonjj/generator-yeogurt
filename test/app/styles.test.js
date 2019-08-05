@@ -32,30 +32,19 @@ describe('Yeogurt generator using Styles', function() {
       });
     });
   });
-  describe('With Less', function() {
+  describe('With PostCSS', function() {
     it('Creates expected files', function() {
-      var expected = ['src', 'src/_styles/main.less'];
-      var fileContentToTest = [['package.json', /less/i]];
+      var expected = ['src', 'src/_styles/main.css'];
+      var fileContentToTest = [['package.json', /css/i]];
 
       return createAppGenerator()
         .withPrompts({
           existingConfig: false,
-          cssOption: 'less'
+          cssOption: 'postcss'
         })
         .then(function() {
           assert.file(expected);
           assert.fileContent(fileContentToTest);
-        });
-    });
-  });
-  describe('With Stylus', function() {
-    it('Creates expected files', function() {
-      var expected = ['src', 'src/_styles/main.styl'];
-
-      return createAppGenerator()
-        .withPrompts({ existingConfig: false, cssOption: 'stylus' })
-        .then(function() {
-          assert.file(expected);
         });
     });
   });

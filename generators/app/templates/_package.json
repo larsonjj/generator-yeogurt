@@ -38,9 +38,8 @@
     "gulp-rev-delete-original": "0.2.3",
     "gulp-util": "~3.0.8",
     "gulp-uglify": "~3.0.2",<% if (cssOption === 'sass') { %>
-    "gulp-sass": "~4.0.2",<% } %><% if (cssOption === 'less') { %>
-    "gulp-less": "~4.0.1",<% } %><% if (cssOption === 'stylus') { %>
-    "gulp-stylus": "~2.7.0",<% } %><% if (htmlOption === 'pug') { %>
+    "gulp-sass": "~4.0.2",<% } %><% if (cssOption === 'postcss') { %>
+    "postcss-import": "12.0.1",<% } %><% if (htmlOption === 'pug') { %>
     "gulp-pug": "~4.0.1",
     "pug": "~2.0.4",<% } %><% if (htmlOption === 'nunjucks') { %>
     "acorn": "~6.2.0",
@@ -106,9 +105,8 @@
     "//": "Entry files",
     "entries": {
       "js": "main**.js"<% if (cssOption === 'sass') { %>,
-      "css": "main**.{sass,scss}"<% } else if (cssOption === 'less') { %>,
-      "css": "main**.less"<% } else if (cssOption === 'stylus') { %>,
-      "css": "main**.styl"<% } %>
+      "css": "main**.{sass,scss}"<% } else if (cssOption === 'postcss') { %>,
+      "css": "main**.css"<% } %>
     }
   }
 }
