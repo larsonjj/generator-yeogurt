@@ -22,7 +22,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
       // Options
       let customOpts = {
         entries: [entry],
-        debug: !args.production,
+        debug: true,
         transform: [
           babelify, // Enable ES6 features
           envify // Sets NODE_ENV for better optimization of npm packages
@@ -93,7 +93,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
 
   // Browserify Task
   gulp.task('browserify', done => {
-    glob('./' + path.join(dirs.source, dirs.scripts, entries.js), function(
+    glob(`${path.join(dirs.source, dirs.scripts)}/${entries.js}`, function(
       err,
       files
     ) {

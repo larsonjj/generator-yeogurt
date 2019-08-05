@@ -12,15 +12,25 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
 
   // Copy
   gulp.task('rev', () => {
-    const assetFilter = gulpFilter(['**', '!**/*.html'], { restore: true });
+    // gulp-rev-rewrite will mangle binary files (images, etc), so ignore them
+    const binaryAssetFilter = gulpFilter(
+      ['**', '!**/*.{ico,png,jpg,jpeg,gif,webp}'],
+      { restore: true }
+    );
+    const htmlFilter = gulpFilter(
+      ['**', '!**/*.html'],
+      { restore: true }
+    );
     return gulp
-      .src([`${dirs.destination}/**/*`, `!${dirs.destination}/**/*.{txt,md}`])
-      .pipe(assetFilter)
+      .src(`**/*.{js,css,html}`, { cwd: dirs.destination})
+      .pipe(htmlFilter)
       .pipe(gulpRev())
-      .pipe(gulpRevDel())
-      .pipe(assetFilter.restore)
+      .pipe(htmlFilter.restore)
+      .pipe(binaryAssetFilter)
       .pipe(gulpRevRewrite())
+      .pipe(binaryAssetFilter.restore)
       .pipe(gulp.dest(dest))
+      .pipe(gulpRevDel())
       .pipe(gulpRev.manifest())
       .pipe(gulp.dest(dest));
   });

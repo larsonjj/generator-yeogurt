@@ -49,10 +49,8 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
     }
 
     return gulp
-      .src([
-        path.join(dirs.source, '**/*.pug'),
-        '!' + path.join(dirs.source, '{**/_*,**/_*/**}')
-      ])
+      // Ignore underscore prefix folders/files (ex. _custom-layout.pug)
+      .src(['**/*.pug', '!{**/_*,**/_*/**}'], { cwd: dirs.source })
       .pipe(plugins.changed(dest))
       .pipe(plugins.plumber())
       .pipe(

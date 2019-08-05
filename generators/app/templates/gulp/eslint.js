@@ -11,12 +11,15 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
   // ESLint
   gulp.task('eslint', () => {
     return gulp
-      .src([
-        path.join('gulpfile.babel.js'),
-        path.join(dirs.source, '**/*.js'),
-        // Ignore all vendor folder files
-        '!' + path.join('**/vendor/**', '*')
-      ])
+      .src(
+        [
+          '../gulpfile.babel.js',
+          '**/*.js',
+          // Ignore all vendor folder files
+          '!**/vendor/**/*'
+        ],
+        { cwd: dirs.source }
+      )
       .pipe(browserSync.reload({ stream: true, once: true }))
       .pipe(
         plugins.eslint({

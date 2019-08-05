@@ -48,6 +48,7 @@
     "gulp-nunjucks-html": "~2.0.0",<% } %>
     "vinyl-buffer": "~1.0.1",
     "vinyl-source-stream": "~2.0.0",
+    "glob": "~7.1.4",
     "browser-sync": "~2.26.7",
     "autoprefixer": "~9.6.1",
     "envify": "~4.1.0",

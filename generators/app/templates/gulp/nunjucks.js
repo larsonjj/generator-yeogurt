@@ -48,43 +48,43 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
       console.log(config);
     }
 
-    return gulp
-      .src([
-        path.join(dirs.source, '**/*.nunjucks'),
-        '!' + path.join(dirs.source, '{**/_*,**/_*/**}')
-      ])
-      .pipe(plugins.changed(dest))
-      .pipe(plugins.plumber())
-      .pipe(
-        plugins.data({
-          config: config,
-          debug: !args.production,
-          site: {
-            data: siteData
-          }
-        })
-      )
-      .pipe(
-        nunjucks({
-          searchPaths: [path.join(dirs.source)],
-          ext: '.html'
-        }).on('error', function(err) {
+    return (
+      gulp
+        // Ignore underscore prefix folders/files (ex. _custom-layout.nunjucks)
+        .src(['**/*.nunjucks', '!{**/_*,**/_*/**}'], { cwd: dirs.source })
+        .pipe(plugins.changed(dest))
+        .pipe(plugins.plumber())
+        .pipe(
+          plugins.data({
+            config: config,
+            debug: !args.production,
+            site: {
+              data: siteData
+            }
+          })
+        )
+        .pipe(
+          nunjucks({
+            searchPaths: [path.join(dirs.source)],
+            ext: '.html'
+          }).on('error', function(err) {
+            plugins.util.log(err);
+          })
+        )
+        .on('error', function(err) {
           plugins.util.log(err);
         })
-      )
-      .on('error', function(err) {
-        plugins.util.log(err);
-      })
-      .pipe(
-        plugins.htmlmin({
-          collapseBooleanAttributes: true,
-          conservativeCollapse: true,
-          removeCommentsFromCDATA: true,
-          removeEmptyAttributes: true,
-          removeRedundantAttributes: true
-        })
-      )
-      .pipe(gulp.dest(dest))
-      .on('end', browserSync.reload);
+        .pipe(
+          plugins.htmlmin({
+            collapseBooleanAttributes: true,
+            conservativeCollapse: true,
+            removeCommentsFromCDATA: true,
+            removeEmptyAttributes: true,
+            removeRedundantAttributes: true
+          })
+        )
+        .pipe(gulp.dest(dest))
+        .on('end', browserSync.reload)
+    );
   });
 }

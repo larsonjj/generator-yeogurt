@@ -25,17 +25,16 @@ A generator for creating static sites. Helps you harness the power of your favor
 
 ### Included in every project
 
-- Preview server with [Browsersync](http://www.browsersync.io/)
-- Automated build process that includes: compilation of preprocessors (Pug, Sass, etc), minification of CSS and HTML, compression of Javascript, and optimization of images
+- Preview development server with [Browsersync](http://www.browsersync.io/)
+- Automated build process that includes: compilation of preprocessors (Pug, Sass, etc), minification of CSS/HTML/Javascript, cache-bust revisioning, and optimization of images
 - [.editorconfig](http://editorconfig.org/) for consistent coding styles within text editors
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets
 - JavaScript Linting with [ESLint](http://eslint.org/)
-- System Notifications for build errors via [gulp-notify](https://github.com/mikaelbr/gulp-notify)
 
 ### Available Options
 
 - Project/Site naming
-- ES6/2015 support using [Babel](https://babeljs.io/)
+- ES6/2015+ support using [Babel](https://babeljs.io/)
 - [Less](http://lesscss.org/), [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass)), or [Stylus](http://learnboost.github.io/stylus/) for Stylesheets
 - [Jasmine](http://jasmine.github.io/) or [Mocha](http://mochajs.org/) + [Chai](http://chaijs.com/) for JavaScript unit testing
 - [Karma](http://karma-runner.github.io/0.12/index.html) for running unit tests
@@ -43,7 +42,7 @@ A generator for creating static sites. Helps you harness the power of your favor
 
 ## Getting Started
 
-This generator utilizes [Yeoman](http://yeoman.io/) and [Gulp](http://gulpjs.com/) to scaffold out projects, automate tasks, and manage front-end dependencies respectively. If this is your first time here, it is recommended you [read about these tools](http://yeoman.io/learning/index.html) before proceeding.
+This generator utilizes [Yeoman](http://yeoman.io/) to scaffold out projects, automate tasks, and manage front-end dependencies respectively. If this is your first time here, it is recommended you [read about these tools](http://yeoman.io/learning/index.html) before proceeding.
 
 ### Installation
 

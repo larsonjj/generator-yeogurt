@@ -10,7 +10,7 @@ An example layout:
 ````pug
 extend ./base
 
-// Add extra stylesheets
+//- Add extra stylesheets
 block append stylesheets
 
 block content
@@ -21,13 +21,13 @@ block content
     block second
         //- Add second column content here
 
-// Add extra scripts
+//- Add extra scripts
 block append scripts
 ```<% } else if (htmlOption === 'nunjucks') { %>
 ```nunjucks
 {% extends "base.nunjucks" %}
 
-// Add extra stylesheets
+//- Add extra stylesheets
 {% block stylesheets %}{% endblock %}
 
 {% block content %}
@@ -42,7 +42,7 @@ block append scripts
   </div>
 {% endblock %}
 
-// Add extra scripts
+//- Add extra scripts
 {% block scripts %}{% endblock }
 ```<% } %>
 
@@ -76,7 +76,7 @@ This new layout will look something like this:
 ```pug
 extend ./two-col
 
-// Add extra stylesheets
+//- Add extra stylesheets
 block append stylesheets
 
 block content
@@ -84,13 +84,13 @@ block content
   .layout-wrapper.three-col
     block three-col
 
-// Add extra scripts
+//- Add extra scripts
 block append scripts
 ```<% } else if (htmlOption === 'nunjucks') { %>
 ```nunjucks
 {% extends "two-col.nunjucks" %}
 
-// Add extra stylesheets
+//- Add extra stylesheets
 {% block stylesheets %}{% endblock %}
 
 {% block content %}
@@ -100,6 +100,6 @@ block append scripts
   </div>
 {% endblock %}
 
-// Add extra scripts
+//- Add extra scripts
 {% block scripts %}{% endblock }
 ````<% } %>

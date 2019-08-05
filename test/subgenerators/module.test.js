@@ -25,7 +25,7 @@ describe('Static Site module sub-generator', function() {
         var moduleName = 'mymodule';
 
         var filesToTest = [
-          'src/_modules/' + moduleName + '/tests/' + moduleName + '.test.js',
+          'src/_modules/' + moduleName + '/__tests__/' + moduleName + '.test.js',
           'src/_modules/' + moduleName + '/' + moduleName + '.js',
           'src/_modules/' + moduleName + '/' + moduleName + '.pug',
           'src/_modules/' + moduleName + '/' + moduleName + '.sass'
@@ -33,7 +33,7 @@ describe('Static Site module sub-generator', function() {
         var fileContentToTest = [
           ['src/_modules/' + moduleName + '/' + moduleName + '.js', /export/i],
           [
-            'src/_modules/' + moduleName + '/tests/' + moduleName + '.test.js',
+            'src/_modules/' + moduleName + '/__tests__/' + moduleName + '.test.js',
             /describe/i
           ]
         ];
@@ -52,7 +52,7 @@ describe('Static Site module sub-generator', function() {
         var filesToTest = [
           'src/_modules/atoms/' +
             moduleName +
-            '/tests/' +
+            '/__tests__/' +
             moduleName +
             '.test.js',
           'src/_modules/atoms/' + moduleName + '/' + moduleName + '.js',
@@ -67,7 +67,7 @@ describe('Static Site module sub-generator', function() {
           [
             'src/_modules/atoms/' +
               moduleName +
-              '/tests/' +
+              '/__tests__/' +
               moduleName +
               '.test.js',
             /describe/i
@@ -88,7 +88,7 @@ describe('Static Site module sub-generator', function() {
         var filesToTest = [
           'src/_modules/atoms/' +
             moduleName +
-            '/tests/' +
+            '/__tests__/' +
             moduleName +
             '.test.js',
           'src/_modules/atoms/' + moduleName + '/' + moduleName + '.js',
@@ -109,7 +109,7 @@ describe('Static Site module sub-generator', function() {
         var filesToTest = [
           'src/_modules/atoms/' +
             moduleName +
-            '/tests/' +
+            '/__tests__/' +
             moduleName +
             '.test.js',
           'src/_modules/atoms/' + moduleName + '/' + moduleName + '.js',
@@ -142,7 +142,7 @@ describe('Static Site module sub-generator', function() {
         var moduleName = 'mymodule';
 
         var filesToTest = [
-          'src/_modules/' + moduleName + '/tests/' + moduleName + '.test.js',
+          'src/_modules/' + moduleName + '/__tests__/' + moduleName + '.test.js',
           'src/_modules/' + moduleName + '/' + moduleName + '.js',
           'src/_modules/' + moduleName + '/' + moduleName + '.nunjucks',
           'src/_modules/' + moduleName + '/' + moduleName + '.scss'
@@ -150,7 +150,7 @@ describe('Static Site module sub-generator', function() {
         var fileContentToTest = [
           ['src/_modules/' + moduleName + '/' + moduleName + '.js', /export/i],
           [
-            'src/_modules/' + moduleName + '/tests/' + moduleName + '.test.js',
+            'src/_modules/' + moduleName + '/__tests__/' + moduleName + '.test.js',
             /describe/i
           ]
         ];

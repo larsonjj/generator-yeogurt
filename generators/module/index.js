@@ -64,7 +64,7 @@ module.exports = class extends Generator {
 
     this.moduleFile = path.join(moduleDir, this.path, this.name);
 
-    this.testFile = path.join(moduleDir, this.path, 'tests', this.name);
+    this.testFile = path.join(moduleDir, this.path, '__tests__', this.name);
 
     if (['atom', 'molecule', 'organism'].indexOf(this.atomic) > -1) {
       this.moduleFile = path.join(
@@ -78,7 +78,7 @@ module.exports = class extends Generator {
         moduleDir,
         this.atomic + 's',
         this.path,
-        'tests',
+        '__tests__',
         this.name
       );
     } else if (this.atomic) {

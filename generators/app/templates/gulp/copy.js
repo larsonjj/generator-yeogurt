@@ -9,11 +9,11 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
   // Copy
   gulp.task('copy', () => {
     return gulp.src([
-      path.join(dirs.source, '**/*'),
-      '!' + path.join(dirs.source, '{**/\_*,**/\_*/**}')<% if (htmlOption === 'nunjucks') { %>,
-      '!' + path.join(dirs.source, '**/*.nunjucks')<% } else if (htmlOption === 'pug') { %>,
-      '!' + path.join(dirs.source, '**/*.pug')<% } %>
-    ])
+      '**/*',
+      '!{**/\_*,**/\_*/**,*.md}'<% if (htmlOption === 'nunjucks') { %>,
+      '!**/*.nunjucks'<% } else if (htmlOption === 'pug') { %>,
+      '!**/*.pug'<% } %>
+    ], { cwd: dirs.source })
     .pipe(plugins.changed(dest))
     .pipe(gulp.dest(dest));
   });

@@ -12,9 +12,9 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
   // Stylus compilation
   gulp.task('stylus', () => {
     return gulp
-      .src(`${dirs.source}/${dirs.styles}/${entries.css}`)
+      .src(entries.css, { cwd: path.join(dirs.source, dirs.styles) })
       .pipe(plugins.plumber())
-      .pipe(plugins.sourcemaps.init())
+      .pipe(gulpif(!args.production, plugins.sourcemaps.init()))
       .pipe(
         plugins.stylus({
           compress: true,
@@ -33,7 +33,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
         })
       )
       .pipe(gulpif(args.production, plugins.cssnano({ rebase: false })))
-      .pipe(plugins.sourcemaps.write('./'))
+      .pipe(gulpif(!args.production, plugins.sourcemaps.write('./')))
       .pipe(gulp.dest(dest))
       .pipe(browserSync.stream({ match: '**/*.css' }));
   });

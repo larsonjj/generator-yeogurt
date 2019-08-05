@@ -14,6 +14,7 @@
 - Update docs and configuration to use local npm scripts instead of global gulp commands
   - Example: `npm test` instead of `gulp test`
 - Update all npm packages
+- Update gulp tasks to no longer use `path.join` for globs. (Caused issues on windows)
 - Add asset revisions to production builds using [gulp-rev](https://github.com/sindresorhus/gulp-rev)
 - Add favicon markup for layout templates
 - Remove ES5 JS option

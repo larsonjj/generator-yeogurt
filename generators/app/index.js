@@ -364,8 +364,8 @@ module.exports = class extends Generator {
     if (this.testFramework !== 'none') {
       this.copyTpl('test/karma/karma.conf.js', 'karma.conf.js', templateData);
       this.copyTpl(
-        'src/shared/_modules/link/tests/link.test.js',
-        'src/_modules/link/tests/link.test.js',
+        'src/shared/_modules/link/__tests__/link.test.js',
+        'src/_modules/link/__tests__/link.test.js',
         templateData
       );
     }

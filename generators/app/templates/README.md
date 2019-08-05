@@ -17,7 +17,7 @@ JavaScript
 
 Testing
 
-- [Karma](http://karma-runner.github.io/0.13/index.html)<% if (testFramework === 'jasmine') { %>
+- [Karma](http://karma-runner.github.io/4.0/index.html)<% if (testFramework === 'jasmine') { %>
 - [Jasmine](http://jasmine.github.io/)<% } else if (testFramework === 'mocha') { %>
 - [Mocha](http://mochajs.org/)<% } %><% } %>
 
@@ -56,16 +56,16 @@ Code Management
 
 ## Automated tasks
 
-This project uses [Gulp](http://gulpjs.com) to run automated tasks for development and production builds.
+This project uses [Gulp](http://gulpjs.com) and npm scripts (i.e. `npm run...`) to run automated tasks for development and production builds.
 The tasks are as follows:
 
-`gulp --production`: Same as `gulp serve --production` also run `gulp test` and not boot up production server
+`npm run build`: Build a production version of your site/app
 
-`gulp serve`: Compiles preprocessors and boots up development server
-`gulp serve --open`: Same as `gulp serve` but will also open up site/app in your default browser
-`gulp serve --production`: Same as `gulp serve` but will run all production tasks so you can view the site/app in it's final optimized form
+`npm run serve`: Compiles preprocessors and boots up development server
+`npm run serve -- --open`: Same as `npm run serve` but will also open up site/app in your default browser
+`gulp serve:prod`: Same as `npm run serve` but will run all production tasks so you can view the site/app in it's final optimized form
 
-`gulp test`: Lints all `*.js` file in the `source` folder using eslint<% if (testFramework === 'jasmine' || testFramework === 'mocha') { %> and runs all `*.test.js` file unit tests through [Karma](http://karma-runner.github.io/0.13/index.html) and <% if (testFramework === 'jasmine') { %>Jasmine<% } else if (testFramework === 'mocha') { %>Mocha + Chai<% } %>
-`gulp test --watch`: Same as `gulp test` but will constantly watch `*.test.js` files and rerun tests when changes are detected<% } %>
+`npm test`: Lints all `*.js` file in the `source` folder using eslint<% if (testFramework === 'jasmine' || testFramework === 'mocha') { %> and runs all `*.test.js` file unit tests through [Karma](http://karma-runner.github.io/0.13/index.html) and <% if (testFramework === 'jasmine') { %>Jasmine<% } else if (testFramework === 'mocha') { %>Mocha + Chai<% } %>
+`npm test -- --watch`: Same as `npm test` but will constantly watch `*.test.js` files and rerun tests when changes are detected<% } %>
 
-**_Adding the `--debug` option to any gulp task displays extra debugging information (ex. data being loaded into your templates)_**
+**_Adding the `-- --debug` option to any npm script command to display extra debugging information (ex. data being loaded into your templates)_**

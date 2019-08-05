@@ -1,9 +1,7 @@
 'use strict';
 
-// Constructor
-var Link = function() {
-  this.name = 'Link';
-  console.log('%s module', this.name);
-};
-
-module.exports = Link;
+export class Link {
+  constructor() {
+    console.log('Link module');
+  }
+}

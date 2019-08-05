@@ -79,7 +79,3 @@ import 'slick-carousel';
 
 $('#someId').slick(); // Activates slick plugin
 ```
-
-#### Using Bower
-
-Check out the instructions for using bower on the [Yeogurt README](https://github.com/larsonjj/generator-yeogurt#using-bower)

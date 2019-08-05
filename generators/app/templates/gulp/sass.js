@@ -12,9 +12,11 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
   // Sass compilation
   gulp.task('sass', () => {
     return gulp
-      .src(`${dirs.source}/${dirs.styles}/${entries.css}`)
+      .src(entries.css, { cwd: path.join(dirs.source, dirs.styles) })
       .pipe(plugins.plumber())
-      .pipe(plugins.sourcemaps.init())
+      .pipe(
+        gulpif(!args.production, plugins.sourcemaps.init({ loadMaps: true }))
+      )
       .pipe(
         plugins.sass({
           outputStyle: 'expanded',
@@ -37,7 +39,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
         })
       )
       .pipe(gulpif(args.production, plugins.cssnano({ rebase: false })))
-      .pipe(plugins.sourcemaps.write('./'))
+      .pipe(gulpif(!args.production, plugins.sourcemaps.write('./')))
       .pipe(gulp.dest(dest))
       .pipe(browserSync.stream({ match: '**/*.css' }));
   });
