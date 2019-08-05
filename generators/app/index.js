@@ -253,28 +253,28 @@ module.exports = class extends Generator {
     );
 
     // Gulp Tasks
-    this.copyTpl('gulp/browserify.js', 'gulp/browserify.js', templateData);
-    this.copyTpl('gulp/browserSync.js', 'gulp/browserSync.js', templateData);
-    this.copyTpl('gulp/clean.js', 'gulp/clean.js', templateData);
-    this.copyTpl('gulp/copy.js', 'gulp/copy.js', templateData);
-    this.copyTpl('gulp/eslint.js', 'gulp/eslint.js', templateData);
-    this.copyTpl('gulp/imagemin.js', 'gulp/imagemin.js', templateData);
-    this.copyTpl('gulp/watch.js', 'gulp/watch.js', templateData);
-    this.copyTpl('gulp/rev.js', 'gulp/rev.js', templateData);
+    this.copyTpl('gulp/tasks/browserify.js', 'gulp/tasks/browserify.js', templateData);
+    this.copyTpl('gulp/tasks/browserSync.js', 'gulp/tasks/browserSync.js', templateData);
+    this.copyTpl('gulp/tasks/clean.js', 'gulp/tasks/clean.js', templateData);
+    this.copyTpl('gulp/tasks/copy.js', 'gulp/tasks/copy.js', templateData);
+    this.copyTpl('gulp/tasks/eslint.js', 'gulp/tasks/eslint.js', templateData);
+    this.copyTpl('gulp/tasks/imagemin.js', 'gulp/tasks/imagemin.js', templateData);
+    this.copyTpl('gulp/tasks/watch.js', 'gulp/tasks/watch.js', templateData);
+    this.copyTpl('gulp/tasks/rev.js', 'gulp/tasks/rev.js', templateData);
 
     if (this.htmlOption === 'pug') {
-      this.copyTpl('gulp/pug.js', 'gulp/pug.js', templateData);
+      this.copyTpl('gulp/tasks/pug.js', 'gulp/tasks/pug.js', templateData);
     } else if (this.htmlOption === 'nunjucks') {
-      this.copyTpl('gulp/nunjucks.js', 'gulp/nunjucks.js', templateData);
+      this.copyTpl('gulp/tasks/nunjucks.js', 'gulp/tasks/nunjucks.js', templateData);
     }
 
     if (this.cssOption === 'sass') {
-      this.copyTpl('gulp/sass.js', 'gulp/sass.js', templateData);
+      this.copyTpl('gulp/tasks/sass.js', 'gulp/tasks/sass.js', templateData);
     } else if (this.cssOption === 'less') {
-      this.copyTpl('gulp/less.js', 'gulp/less.js', templateData);
+      this.copyTpl('gulp/tasks/less.js', 'gulp/tasks/less.js', templateData);
     }
     if (this.cssOption === 'stylus') {
-      this.copyTpl('gulp/stylus.js', 'gulp/stylus.js', templateData);
+      this.copyTpl('gulp/tasks/stylus.js', 'gulp/tasks/stylus.js', templateData);
     }
 
     // Markup (HTML Preprocessors)

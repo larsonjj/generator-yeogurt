@@ -108,7 +108,9 @@ Follow all the prompts and choose what suits you most for the project you would 
 Once everything is installed, you will see a project structure like below:
 
 ```
-├── gulp/                      # Folder for gulp tasks
+├── gulp/
+|   ├── tasks                  # Folder for gulp tasks
+|   └── utils.js               # Build related logic/code
 ├── build/                     # Folder for production build output
 ├── tmp/                       # Folder for temporary development output
 ├── src
