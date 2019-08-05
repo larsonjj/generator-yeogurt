@@ -25,8 +25,12 @@ module.exports = class extends Generator {
     });
 
     this.name = 'no-name';
+    this.urlPath = '';
     if (this.arguments[0]) {
       this.name = this.arguments[0];
+      this.urlPath = this.name.split('/').reduce((acc, ele, i) => {
+        return acc + '../';
+      }, '');
     }
 
     this.layout = 'base';
@@ -54,6 +58,7 @@ module.exports = class extends Generator {
     const templateData = {
       _: _,
       name: this.name,
+      urlPath: this.urlPath,
       layout: this.layout,
       layoutDir: this.layoutDir
     };
