@@ -70,7 +70,7 @@ let browserifyTask = (files, done) => {
         // Show which file was bundled and how long it took
         .on('end', function() {
           let time = (new Date().getTime() - startTime) / 1000;
-          console.log(
+          plugins.util.log(
             plugins.util.colors.cyan(entry) +
               ' was browserified: ' +
               plugins.util.colors.magenta(time + 's')

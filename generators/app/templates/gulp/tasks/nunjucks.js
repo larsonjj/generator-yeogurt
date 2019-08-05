@@ -29,9 +29,9 @@ gulp.task('nunjucks', () => {
             json = JSON.parse(fs.readFileSync(file, 'utf8'));
           }
         } catch (e) {
-          console.log('Error Parsing DATA file: ' + file);
-          console.log('==== Details Below ====');
-          console.log(e);
+          plugins.util.log(`Error Parsing DATA file: ${file}`);
+          plugins.util.log('==== Details Below ====');
+          plugins.util.log(e);
         }
         return json;
       }
@@ -41,12 +41,10 @@ gulp.task('nunjucks', () => {
   // Add --debug option to your gulp task to view
   // what data is being loaded into your templates
   if (args.debug) {
-    console.log('==== DEBUG: site.data being injected to templates ====');
-    console.log(siteData);
-    console.log(
-      '\n==== DEBUG: package.json config being injected to templates ===='
-    );
-    console.log(config);
+    plugins.util.log('==== DEBUG: site.data being injected to templates ====');
+    plugins.util.log(siteData);
+    plugins.util.log('\n==== DEBUG: package.json config being injected to templates ====');
+    plugins.util.log(config);
   }
 
   return (
