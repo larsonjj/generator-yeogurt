@@ -1,41 +1,26 @@
 'use strict';
 
-var yeoman = require('yeoman-generator');
-var helpers = yeoman.test;
-var Output  = require('../helpers/mute');
+var path = require('path');
+var fs = require('fs-extra');
+var helpers = require('yeoman-test');
 
-var createSubGenerator = function(type, args, options, mockPrompts, asserts) {
+var createSubGenerator = function(type, options) {
   var _options = options || {};
-  var _path = _options.path || '../../../';
-  var subGenerator = helpers.createGenerator('yeogurt:' + type, [
-    _path + '/' + type
-  ], args, _options);
-
-  subGenerator.on('start', Output.mute);
-  subGenerator.on('end', Output.unmute);
-
-  helpers.mockPrompt(subGenerator, mockPrompts);
-
-  subGenerator.run([], function() {
-    asserts();
-  });
+  return helpers
+    .run(path.join(__dirname, '../../generators/' + type))
+    .inDir(path.join(__dirname, '../subgenerators/temp'), function(dir) {
+      var done = this.async(); // `this` is the RunContext object.
+      fs.copy(path.join(__dirname, '../app/temp'), dir, done);
+    })
+    .withOptions({ ..._options });
 };
 
-var createAppGenerator = function(args, options) {
+var createAppGenerator = function(options) {
   var _options = options || {};
-  var _path = _options.path || '../../../app';
-  var app = helpers.createGenerator('yeogurt:app', [
-    _path
-  ], args, _options);
-
-  app.options['skip-install'] = true;
-
-  // Prevent Yeoman writes while the generator runs
-  // and reenable them when it's finished to see the test results
-  app.on('start', Output.mute);
-  app.on('end', Output.unmute);
-
-  return app;
+  return helpers
+    .run(path.join(__dirname, '../../generators/app'))
+    .inDir(path.join(__dirname, '../app/temp'))
+    .withOptions({ 'skip-install': true, ..._options });
 };
 
 module.exports = {

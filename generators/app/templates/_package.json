@@ -1,0 +1,112 @@
+{
+  "name": "<%= projectName.toLowerCase() %>",
+  "version": "0.0.1",
+  "dependencies": {
+    "jquery": "~3.4.1",
+    "normalize.css": "~8.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "~7.0.0",
+    "@babel/preset-env": "~7.0.0",
+    "@babel/register": "~7.4.4",
+    "babelify": "~10.0.0",
+    "babel-eslint": "~9.0.0",
+    "eslint": "6.1.0",
+    "eslint-config-prettier": "~6.0.0",
+    "prettier": "~1.16.4",
+    "lodash": "~4.17.4",
+    "foldero": "~0.1.1",
+    "minimist": "~1.2.0",
+    "rimraf": "2.6.3",
+    "del": "~2.2.2",
+    "gulp": "~4.0.2",
+    "gulp-changed": "~4.0.0",
+    "gulp-cssnano": "~2.1.3",
+    "gulp-data": "~1.3.1",
+    "gulp-eslint": "~6.0.0",
+    "gulp-htmlmin": "~5.0.1",
+    "gulp-if": "~2.0.2",
+    "gulp-imagemin": "~6.0.0",
+    "gulp-load-plugins": "~2.0.0",
+    "gulp-plumber": "~1.2.1",
+    "gulp-postcss": "~8.0.0",
+    "gulp-rename": "~1.4.0",
+    "gulp-sourcemaps": "~2.6.5",
+    "gulp-rev-rewrite": "2.0.0",
+    "gulp-filter": "6.0.0",
+    "gulp-rev": "9.0.0",
+    "gulp-rev-delete-original": "0.2.3",
+    "gulp-util": "~3.0.8",
+    "gulp-uglify": "~3.0.2",<% if (cssOption === 'sass') { %>
+    "gulp-sass": "~4.0.2",<% } %><% if (cssOption === 'postcss') { %>
+    "postcss-import": "12.0.1",<% } %><% if (htmlOption === 'pug') { %>
+    "gulp-pug": "~4.0.1",
+    "pug": "~2.0.4",<% } %><% if (htmlOption === 'nunjucks') { %>
+    "acorn": "~6.2.0",
+    "nunjucks": "~3.2.0",
+    "gulp-nunjucks-html": "~2.0.0",<% } %>
+    "vinyl-buffer": "~1.0.1",
+    "vinyl-source-stream": "~2.0.0",
+    "glob": "~7.1.4",
+    "browser-sync": "~2.26.7",
+    "autoprefixer": "~9.6.1",
+    "envify": "~4.1.0",
+    "imagemin-svgo": "~7.0.0",
+    "imagemin-pngquant": "~7.0.0",
+    "js-yaml": "~3.13.0",
+    "watchify": "~3.11.0 ",
+    "browserify" : "~16.3.0"<% if (testFramework !== 'none') { %>,
+    "karma": "~4.2.0",
+    "karma-browserify": "~6.1.0",
+    "karma-chrome-launcher": "~3.0.0",
+    "puppeteer": "1.19.0"<% if (testFramework === 'jasmine') { %>,
+    "karma-jasmine": "~2.0.1",
+    "jasmine-core": "3.4.0"<% } else if (testFramework === 'mocha') { %>,
+    "karma-chai": "~0.1.0",
+    "karma-mocha": "~1.3.0",
+    "mocha": "~6.2.0",
+    "chai": "~4.2.0"<% } %><% } %>
+  },
+  "scripts": {
+    "clean-deps": "npx rimraf node_modules",
+    "clean": "npx gulp clean",
+    "lint": "npx gulp eslint",
+    "test": "npx gulp test",
+    "format": "npx prettier --single-quote --write src/**/*.js",
+    "serve": "NODE_ENV=development npx gulp serve",
+    "serve:prod": "NODE_ENV=production npx gulp serve --production",
+    "build": "NODE_ENV=production npx gulp --production"
+  },
+  "engines": {
+    "node": ">=8.16.0"
+  },
+  "browserslist": ["last 2 version", "> 5%", "safari 5", "ios 6", "android 4"],
+  "//": "CUSTOM CONFIGURATION",
+  "config": {
+    "//": "Local Server Settings",
+    "host": "127.0.0.1",
+    "port": "3000",
+    "baseUrl": "./",
+    "//": "Gulp Task Directories",
+    "//": "NOTE: folders prefixed with an underscore (_) will have it removed when moved to build target (ex: src/_images -> build/images)",
+    "//": "NOTE: folders NOT prefixed with underscore (_) will be copied to build target 1 to 1 (ex: src/fonts -> build/fonts)",
+    "directories": {
+      "source": "src",
+      "destination": "build",
+      "temporary": "tmp",
+      "//": "Directories relative to `source` directory",
+      "modules": "_modules",
+      "layouts": "_layouts",
+      "images": "_images",
+      "styles": "_styles",
+      "scripts": "_scripts",
+      "data": "_data"
+    },
+    "//": "Entry files",
+    "entries": {
+      "js": "main**.js"<% if (cssOption === 'sass') { %>,
+      "css": "main**.{sass,scss}"<% } else if (cssOption === 'postcss') { %>,
+      "css": "main**.css"<% } %>
+    }
+  }
+}

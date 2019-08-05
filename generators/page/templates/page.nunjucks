@@ -1,0 +1,10 @@
+{% extends '<%= layoutDir %>/<%= layout %>.nunjucks' %}
+
+{% block config %}
+  {# Correct base url pathing for this page #}
+  {% set baseUrl = '<%= urlPath %>' %}
+{% endblock %}
+
+{% block content %}
+<p><%= name.toLowerCase() %> page</p>
+{% endblock %}

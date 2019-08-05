@@ -1,304 +1,249 @@
 /*global describe, beforeEach, it*/
 'use strict';
 
-var path = require('path');
-var yeoman = require('yeoman-generator');
-var helpers = yeoman.test;
-var assert = yeoman.assert;
-var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
-var createSubGenerator = require('../helpers/create-generator').createSubGenerator;
+var assert = require('yeoman-assert');
+var createAppGenerator = require('../helpers/create-generator')
+  .createAppGenerator;
+var createSubGenerator = require('../helpers/create-generator')
+  .createSubGenerator;
 
 describe('Static Site module sub-generator', function() {
-  beforeEach(function(done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function(err) {
-      if (err) {
-        return done(err);
-      }
+  describe('Create module files when using Static Pug', function() {
+    beforeEach(function() {
+      return createAppGenerator().withPrompts({
+        existingConfig: true,
+        htmlOption: 'pug',
+        testFramework: 'jasmine',
+        jsOption: 'browserify',
+        cssOption: 'sass',
+        sassSyntax: 'sass'
+      });
+    });
+    describe('Using Browserify', function() {
+      it('Using Jasmine', function() {
+        // Filename
+        var moduleName = 'mymodule';
 
-      this.app = createAppGenerator([], {path: '../../../app'});
+        var filesToTest = [
+          'src/_modules/' + moduleName + '/__tests__/' + moduleName + '.test.js',
+          'src/_modules/' + moduleName + '/' + moduleName + '.js',
+          'src/_modules/' + moduleName + '/' + moduleName + '.pug',
+          'src/_modules/' + moduleName + '/' + moduleName + '.sass'
+        ];
+        var fileContentToTest = [
+          ['src/_modules/' + moduleName + '/' + moduleName + '.js', /export/i],
+          [
+            'src/_modules/' + moduleName + '/__tests__/' + moduleName + '.test.js',
+            /describe/i
+          ]
+        ];
 
-      done();
-    }.bind(this));
-  });
-
-  describe('Create module files when using Static Jade', function() {
-    describe('Client modules', function() {
-      describe('Handles defaults', function() {
-        describe('Using Browserify', function() {
-          it('Using Jasmine', function(done) {
-            // Filename
-            var module = 'mymodule';
-
-            var filesToTest = [
-              'src/_modules/' + module + '/tests/' + module + '.test.js',
-              'src/_modules/' + module + '/' + module + '.js',
-              'src/_modules/' + module + '/' + module + '.jade',
-              'src/_modules/' + module + '/' + module + '.sass'
-            ];
-            var fileContentToTest = [
-              ['src/_modules/' + module + '/' + module + '.js', /export/i],
-              ['src/_modules/' + module + '/tests/' + module + '.test.js', /describe/i]
-            ];
-
-            helpers.mockPrompt(this.app, {
-              htmlOption: 'jade',
-              testFramework: 'jasmine',
-              jsOption: 'browserify',
-              cssOption: 'sass',
-              sassSyntax: 'sass'
-            });
-
-            this.app.run([], function() {
-              createSubGenerator('module', module, {path: '../../../'}, {
-                // mock prompt data
-                moduleFile: 'src/_modules'
-              }, function() {
-                assert.file(filesToTest);
-                assert.fileContent(fileContentToTest);
-                done();
-              });
-            });
+        return createSubGenerator('module')
+          .withArguments([moduleName])
+          .then(function() {
+            assert.file(filesToTest);
+            assert.fileContent(fileContentToTest);
           });
-          it('Using ES6', function(done) {
-            // Filename
-            var module = 'mymodule';
+      });
+      it('is Atomic', function() {
+        // Filename
+        var moduleName = 'mymodule';
 
-            var filesToTest = [
-              'src/_modules/' + module + '/tests/' + module + '.test.js',
-              'src/_modules/' + module + '/' + module + '.js',
-              'src/_modules/' + module + '/' + module + '.jade',
-              'src/_modules/' + module + '/' + module + '.sass'
-            ];
-            var fileContentToTest = [
-              ['src/_modules/' + module + '/' + module + '.js', /default/i],
-              ['src/_modules/' + module + '/tests/' + module + '.test.js', /import/i]
-            ];
+        var filesToTest = [
+          'src/_modules/atoms/' +
+            moduleName +
+            '/__tests__/' +
+            moduleName +
+            '.test.js',
+          'src/_modules/atoms/' + moduleName + '/' + moduleName + '.js',
+          'src/_modules/atoms/' + moduleName + '/' + moduleName + '.pug',
+          'src/_modules/atoms/' + moduleName + '/' + moduleName + '.sass'
+        ];
+        var fileContentToTest = [
+          [
+            'src/_modules/atoms/' + moduleName + '/' + moduleName + '.js',
+            /export/i
+          ],
+          [
+            'src/_modules/atoms/' +
+              moduleName +
+              '/__tests__/' +
+              moduleName +
+              '.test.js',
+            /describe/i
+          ]
+        ];
 
-            helpers.mockPrompt(this.app, {
-              htmlOption: 'jade',
-              testFramework: 'jasmine',
-              jsOption: 'browserify',
-              jsPreprocessor: "es6",
-              cssOption: 'sass',
-              sassSyntax: 'sass'
-            });
-
-            this.app.run([], function() {
-              createSubGenerator('module', module, {path: '../../../'}, {
-                // mock prompt data
-                moduleFile: 'src/_modules'
-              }, function() {
-                assert.file(filesToTest);
-                assert.fileContent(fileContentToTest);
-                done();
-              });
-            });
+        return createSubGenerator('module', { atomic: 'atom' })
+          .withArguments([moduleName])
+          .then(function() {
+            assert.file(filesToTest);
+            assert.fileContent(fileContentToTest);
           });
-          it('is Atomic', function(done) {
-            // Filename
-            var module = 'mymodule';
+      });
+      it('is Atomic but not valid', function() {
+        // Filename
+        var moduleName = 'mymodule';
 
-            var filesToTest = [
-              'src/_modules/atoms/' + module + '/tests/' + module + '.test.js',
-              'src/_modules/atoms/' + module + '/' + module + '.js',
-              'src/_modules/atoms/' + module + '/' + module + '.jade',
-              'src/_modules/atoms/' + module + '/' + module + '.sass'
-            ];
-            var fileContentToTest = [
-              ['src/_modules/atoms/' + module + '/' + module + '.js', /export/i],
-              ['src/_modules/atoms/' + module + '/tests/' + module + '.test.js', /describe/i]
-            ];
+        var filesToTest = [
+          'src/_modules/atoms/' +
+            moduleName +
+            '/__tests__/' +
+            moduleName +
+            '.test.js',
+          'src/_modules/atoms/' + moduleName + '/' + moduleName + '.js',
+          'src/_modules/atoms/' + moduleName + '/' + moduleName + '.pug',
+          'src/_modules/atoms/' + moduleName + '/' + moduleName + '.sass'
+        ];
 
-            helpers.mockPrompt(this.app, {
-              htmlOption: 'jade',
-              testFramework: 'jasmine',
-              jsOption: 'browserify',
-              cssOption: 'sass',
-              sassSyntax: 'sass'
-            });
-
-            this.app.run([], function() {
-              createSubGenerator('module', module, {atomic: 'atom', path: '../../../'}, {
-                // mock prompt data
-                moduleFile: 'src/_modules'
-              }, function() {
-                assert.file(filesToTest);
-                assert.fileContent(fileContentToTest);
-                done();
-              });
-            });
+        return createSubGenerator('module', { atomic: '' })
+          .withArguments([moduleName])
+          .then(function() {
+            assert.noFile(filesToTest);
           });
-          it('is Atomic but not valid', function(done) {
-            // Filename
-            var module = 'mymodule';
+      });
+      it('is Atomic and has multiple directories', function() {
+        // Filename
+        var moduleName = 'really/cool/mymodule';
 
-            var filesToTest = [
-              'src/_modules/atoms/' + module + '/tests/' + module + '.test.js',
-              'src/_modules/atoms/' + module + '/' + module + '.js',
-              'src/_modules/atoms/' + module + '/' + module + '.jade',
-              'src/_modules/atoms/' + module + '/' + module + '.sass'
-            ];
+        var filesToTest = [
+          'src/_modules/atoms/' +
+            moduleName +
+            '/__tests__/' +
+            moduleName +
+            '.test.js',
+          'src/_modules/atoms/' + moduleName + '/' + moduleName + '.js',
+          'src/_modules/atoms/' + moduleName + '/' + moduleName + '.pug',
+          'src/_modules/atoms/' + moduleName + '/' + moduleName + '.sass'
+        ];
 
-            helpers.mockPrompt(this.app, {
-              htmlOption: 'jade',
-              testFramework: 'jasmine',
-              jsOption: 'browserify',
-              cssOption: 'sass',
-              sassSyntax: 'sass'
-            });
-
-            this.app.run([], function() {
-              createSubGenerator('module', module, {atomic: 'derp', path: '../../../'}, {
-                // mock prompt data
-                moduleFile: 'src/_modules'
-              }, function() {
-                assert.noFile(filesToTest);
-                done();
-              });
-            });
+        return createSubGenerator('module', { atomic: 'atom' })
+          .withArguments([moduleName])
+          .then(function() {
+            assert.noFile(filesToTest);
           });
-          it('is Atomic and has multiple directories', function(done) {
-            // Filename
-            var module = 'really/cool/mymodule';
-
-            var filesToTest = [
-              'src/_modules/atoms/' + module + '/tests/' + module + '.test.js',
-              'src/_modules/atoms/' + module + '/' + module + '.js',
-              'src/_modules/atoms/' + module + '/' + module + '.jade',
-              'src/_modules/atoms/' + module + '/' + module + '.sass'
-            ];
-
-            helpers.mockPrompt(this.app, {
-              htmlOption: 'jade',
-              testFramework: 'jasmine',
-              jsOption: 'browserify',
-              cssOption: 'sass',
-              sassSyntax: 'sass'
-            });
-
-            this.app.run([], function() {
-              createSubGenerator('module', module, {atomic: 'atom', path: '../../../'}, {
-                // mock prompt data
-                moduleFile: 'src/_modules'
-              }, function() {
-                assert.noFile(filesToTest);
-                done();
-              });
-            });
-          });
-        });
       });
     });
   });
 
-  describe('Create module files when using Static Swig', function() {
-    describe('Client modules', function() {
-      describe('Handles defaults', function() {
-        describe('Using Browserify', function() {
-          it('Using Jasmine', function(done) {
-            // Filename
-            var module = 'mymodule';
-
-            var filesToTest = [
-              'src/_modules/' + module + '/tests/' + module + '.test.js',
-              'src/_modules/' + module + '/' + module + '.js',
-              'src/_modules/' + module + '/' + module + '.nunjucks',
-              'src/_modules/' + module + '/' + module + '.scss'
-            ];
-            var fileContentToTest = [
-              ['src/_modules/' + module + '/' + module + '.js', /export/i],
-              ['src/_modules/' + module + '/tests/' + module + '.test.js', /describe/i]
-            ];
-
-            helpers.mockPrompt(this.app, {
-              htmlOption: 'nunjucks',
-              testFramework: 'jasmine',
-              cssOption: 'sass',
-              sassSyntax: 'scss',
-              jsOption: 'browserify'
-            });
-
-            this.app.run([], function() {
-              createSubGenerator('module', module, {path: '../../../'}, {
-                // mock prompt data
-                moduleFile: 'src/_modules'
-              }, function() {
-                assert.file(filesToTest);
-                assert.fileContent(fileContentToTest);
-                done();
-              });
-            });
-          });
+  describe('Create module files when using Static Nunjucks', function() {
+    describe('Using Browserify', function() {
+      beforeEach(function() {
+        return createAppGenerator().withPrompts({
+          existingConfig: true,
+          htmlOption: 'nunjucks',
+          testFramework: 'jasmine',
+          jsOption: 'browserify',
+          cssOption: 'sass'
         });
+      });
+      it('Using Jasmine', function() {
+        // Filename
+        var moduleName = 'mymodule';
+
+        var filesToTest = [
+          'src/_modules/' + moduleName + '/__tests__/' + moduleName + '.test.js',
+          'src/_modules/' + moduleName + '/' + moduleName + '.js',
+          'src/_modules/' + moduleName + '/' + moduleName + '.nunjucks',
+          'src/_modules/' + moduleName + '/' + moduleName + '.scss'
+        ];
+        var fileContentToTest = [
+          ['src/_modules/' + moduleName + '/' + moduleName + '.js', /export/i],
+          [
+            'src/_modules/' + moduleName + '/__tests__/' + moduleName + '.test.js',
+            /describe/i
+          ]
+        ];
+
+        return createSubGenerator('module')
+          .withArguments([moduleName])
+          .then(function() {
+            assert.file(filesToTest);
+            assert.fileContent(fileContentToTest);
+          });
       });
     });
   });
   describe('Handles Stylesheet Preprocessors', function() {
-    it('Handles Sass with sass syntax', function(done) {
-      // Filename
-      var module = 'mymodule';
-      var filesToTest = [
-        // add files and folders you expect to NOT exist here.
-        'src/_modules/' + module + '/' + module + '.sass'
-      ];
-
-      helpers.mockPrompt(this.app, {
-        htmlOption: 'nunjucks',
-        cssOption: 'sass',
-        sassSyntax: 'sass'
-      });
-      this.app.run([], function() {
-        createSubGenerator('module', module, {path: '../../../'}, {
-          // mock prompt data
-          moduleFile: 'src/_modules'
-        }, function() {
-          assert.file(filesToTest);
-          done();
+    describe('Handles Sass', function() {
+      beforeEach(function() {
+        return createAppGenerator().withPrompts({
+          existingConfig: true,
+          htmlOption: 'nunjucks',
+          jsOption: 'browserify',
+          cssOption: 'sass'
         });
+      });
+      it('With .scss extension', function() {
+        // Filename
+        var moduleName = 'mymodule';
+        var filesToTest = [
+          // add files and folders you expect to NOT exist here.
+          'src/_modules/' + moduleName + '/' + moduleName + '.scss'
+        ];
+
+        createAppGenerator().withPrompts({
+          existingConfig: true,
+          htmlOption: 'nunjucks',
+          jsOption: 'browserify',
+          cssOption: 'sass',
+          sassSyntax: 'scss'
+        });
+
+        return createSubGenerator('module')
+          .withArguments([moduleName])
+          .then(function() {
+            assert.file(filesToTest);
+          });
       });
     });
-    it('Handles Less', function(done) {
-      // Filename
-      var module = 'mymodule';
-      var filesToTest = [
-        // add files and folders you expect to NOT exist here.
-        'src/_modules/' + module + '/' + module + '.less'
-      ];
-
-      helpers.mockPrompt(this.app, {
-        htmlOption: 'nunjucks',
-        cssOption: 'less'
-      });
-      this.app.run([], function() {
-        createSubGenerator('module', module, {path: '../../../'}, {
-          // mock prompt data
-          moduleFile: 'src/_modules'
-        }, function() {
-          assert.file(filesToTest);
-          done();
+    describe('Handles Sass', function() {
+      beforeEach(function() {
+        return createAppGenerator().withPrompts({
+          existingConfig: true,
+          htmlOption: 'nunjucks',
+          jsOption: 'browserify',
+          cssOption: 'sass',
+          sassSyntax: 'sass'
         });
+      });
+      it('With .sass extension', function() {
+        // Filename
+        var moduleName = 'mymodule';
+        var filesToTest = [
+          // add files and folders you expect to NOT exist here.
+          'src/_modules/' + moduleName + '/' + moduleName + '.sass'
+        ];
+
+        return createSubGenerator('module')
+          .withArguments([moduleName])
+          .then(function() {
+            assert.file(filesToTest);
+          });
       });
     });
-    it('Handles stylus', function(done) {
-      // Filename
-      var module = 'mymodule';
-      var filesToTest = [
-        // add files and folders you expect to NOT exist here.
-        'src/_modules/' + module + '/' + module + '.styl'
-      ];
-
-      helpers.mockPrompt(this.app, {
-        htmlOption: 'nunjucks',
-        cssOption: 'stylus'
-      });
-      this.app.run([], function() {
-        createSubGenerator('module', module, {path: '../../../'}, {
-          // mock prompt data
-          moduleFile: 'src/_modules'
-        }, function() {
-          assert.file(filesToTest);
-          done();
+    describe('Handles PostCSS', function() {
+      beforeEach(function() {
+        return createAppGenerator().withPrompts({
+          existingConfig: true,
+          htmlOption: 'nunjucks',
+          jsOption: 'browserify',
+          cssOption: 'postcss'
         });
+      });
+      it('With .css extension', function() {
+        // Filename
+        var moduleName = 'mymodule';
+        var filesToTest = [
+          // add files and folders you expect to NOT exist here.
+          'src/_modules/' + moduleName + '/' + moduleName + '.css'
+        ];
+
+        return createSubGenerator('module')
+          .withArguments([moduleName])
+          .then(function() {
+            assert.file(filesToTest);
+          });
       });
     });
   });

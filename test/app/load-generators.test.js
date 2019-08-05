@@ -5,10 +5,10 @@ var assert  = require('assert');
 
 describe('Yeogurt generator and sub-generators', function() {
   it('can be imported without blowing up', function() {
-    assert(require('../../app') !== undefined);
+    assert(require('../../generators/app') !== undefined);
     // Sub-generators
-    assert(require('../../layout') !== undefined);
-    assert(require('../../page') !== undefined);
-    assert(require('../../module') !== undefined);
+    assert(require('../../generators/layout') !== undefined);
+    assert(require('../../generators/page') !== undefined);
+    assert(require('../../generators/module') !== undefined);
   });
 });
