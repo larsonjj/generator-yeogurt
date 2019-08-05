@@ -20,6 +20,7 @@ describe('Yeogurt generator using Default Configuration', function() {
       'gulp/tasks/clean.js',
       'gulp/tasks/eslint.js',
       'gulp/tasks/rev.js',
+      'gulp/utils.js',
       'package.json',
       '.editorconfig',
       'src/',

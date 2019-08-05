@@ -2,33 +2,15 @@
 <% if (testFramework === 'mocha' || testFramework === 'jasmine') { %>
 import path from 'path';<% } %>
 import gulp from 'gulp';
-import gulpLoadPlugins from 'gulp-load-plugins';
-import browserSyncLib from 'browser-sync';
-import pjson from './package.json';
-import minimist from 'minimist';
 import glob from 'glob';
-
-// Load all gulp plugins based on their names
-// EX: gulp-copy -> copy
-const plugins = gulpLoadPlugins();<% if (testFramework !== 'none') { %>
-// Create karma server
-const KarmaServer = require('karma').Server;<% } %>
-
-let config = Object.assign({}, pjson.config);
-
-let args = minimist(process.argv.slice(2));
-let dirs = config.directories;
-let taskTarget = args.production ? dirs.destination : dirs.temporary;
-
-// Create a new browserSync instance
-let browserSync = browserSyncLib.create();
+import { KarmaServer, args } from './gulp/utils';
 
 // This will grab all js in the `gulp` directory
 // in order to load all gulp tasks
 glob.sync('./gulp/tasks/**/*.js').filter(function(file) {
   return (/\.(js)$/i).test(file);
 }).map(function(file) {
-  require(file).default(gulp, plugins, args, config, taskTarget, browserSync);
+  require(file);
 });
 
 // Build production-ready code

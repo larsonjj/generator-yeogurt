@@ -252,7 +252,7 @@ module.exports = class extends Generator {
       templateData
     );
 
-    // Gulp Tasks
+    // Gulp files
     this.copyTpl('gulp/tasks/browserify.js', 'gulp/tasks/browserify.js', templateData);
     this.copyTpl('gulp/tasks/browserSync.js', 'gulp/tasks/browserSync.js', templateData);
     this.copyTpl('gulp/tasks/clean.js', 'gulp/tasks/clean.js', templateData);
@@ -261,6 +261,7 @@ module.exports = class extends Generator {
     this.copyTpl('gulp/tasks/imagemin.js', 'gulp/tasks/imagemin.js', templateData);
     this.copyTpl('gulp/tasks/watch.js', 'gulp/tasks/watch.js', templateData);
     this.copyTpl('gulp/tasks/rev.js', 'gulp/tasks/rev.js', templateData);
+    this.copyTpl('gulp/utils.js', 'gulp/utils.js', templateData);
 
     if (this.htmlOption === 'pug') {
       this.copyTpl('gulp/tasks/pug.js', 'gulp/tasks/pug.js', templateData);
