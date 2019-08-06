@@ -1,6 +1,14 @@
-### v3.0.0:
+### v3.0.1:
 
 #### date: 2019-08-05
+
+##### changes:
+
+- Fixed gulp watch tasks and karma config path.join statements to no longer be included in globs
+
+### v3.0.0:
+
+#### date: 2019-08-04
 
 ##### changes:
 
