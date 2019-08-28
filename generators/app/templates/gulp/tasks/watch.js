@@ -21,7 +21,7 @@ gulp.task('watch', (done) => {
 
     // Pug Templates
     gulp.watch([
-      dirs.source + '**/*.pug',
+      dirs.source + '/**/*.pug',
       path.join(dirs.source, dirs.data) + '/**/*.{json,yaml,yml}'
     ], gulp.series('pug'));<% } else if (htmlOption === 'nunjucks') { %>
 
@@ -34,7 +34,7 @@ gulp.task('watch', (done) => {
 
     // Copy
     gulp.watch([
-      dirs.source + '**/*',
+      dirs.source + '/**/*',
       '!' + dirs.source + '/{**/\_*,**/\_*/**}'<% if (htmlOption === 'nunjucks') { %>,
       '!' + dirs.source + '/**/*.nunjucks'<% } else if (htmlOption === 'pug') { %>,
       '!' + dirs.source + '/**/*.pug'<% } %>
