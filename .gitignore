@@ -2,6 +2,7 @@ node_modules
 *.log
 test/**/temp
 coverage/
+.nyc_output/
 .coveralls.yml
 .DS_Store
 .idea/
