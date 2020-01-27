@@ -1,3 +1,16 @@
+### v3.1.0:
+
+#### date: 2020-01-26
+
+##### changes:
+
+- Fixed gulp watch task by removing path.join() function calls in favor of pure string interpolation (Special thanks to @MucaInera with #228)
+- Updated depcrecated coverage package [istanbul](https://www.npmjs.com/package/istanbul) to [nyc](https://www.npmjs.com/package/nyc)
+- Fixed file not found errors in unit tests
+- Updated packages that had security vulnerabilities (#229 + #230)
+
+- Fixed gulp watch tasks and karma config path.join statements to no longer be included in globs
+- 
 ### v3.0.1:
 
 #### date: 2019-08-05
