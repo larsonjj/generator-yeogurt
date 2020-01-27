@@ -30,7 +30,7 @@
   },
   "scripts": {
     "clean": "npx rimraf coverage test/app/temp test/subgenerators/temp",
-    "test": "npm run localtest && npm run coverage",
+    "test": "npx nyc --reporter=text-lcov mocha ./test/app/*.test.js ./test/subgenerators/*.test.js && npm run coverage",
     "localtest": "npx mocha ./test/app/*.test.js ./test/subgenerators/*.test.js -b --reporter spec",
     "localtest-report": "npx nyc mocha test/app/*.test.js ./test/subgenerators/*.test.js && open ./coverage/lcov-report/index.html",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
