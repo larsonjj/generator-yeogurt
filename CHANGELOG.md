@@ -1,3 +1,12 @@
+### v3.1.1:
+
+#### date: 2020-01-26
+
+##### changes:
+
+- Removed deprecated gulp-util for fancy-log.
+- Added support for async/await (#221)
+
 ### v3.1.0:
 
 #### date: 2020-01-26
@@ -9,8 +18,6 @@
 - Fixed file not found errors in unit tests
 - Updated packages that had security vulnerabilities (#229 + #230)
 
-- Fixed gulp watch tasks and karma config path.join statements to no longer be included in globs
-- 
 ### v3.0.1:
 
 #### date: 2019-08-05
