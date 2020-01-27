@@ -16,20 +16,18 @@ describe('Yeogurt generator using Styles', function() {
           assert.file(expected);
         });
     });
-    describe('With Sass (not Scss) syntax', function() {
-      it('Creates expected content', function() {
-        var expected = ['src/_styles/main.sass'];
+    it('With Sass (not Scss) syntax. Creates expected content', function() {
+      var expected = ['src/_styles/main.sass'];
 
-        return createAppGenerator()
-          .withPrompts({
-            existingConfig: false,
-            cssOption: 'sass',
-            sassSyntax: 'sass'
-          })
-          .then(function() {
-            assert.file(expected);
-          });
-      });
+      return createAppGenerator()
+        .withPrompts({
+          existingConfig: false,
+          cssOption: 'sass',
+          sassSyntax: 'sass'
+        })
+        .then(function() {
+          assert.file(expected);
+        });
     });
   });
   describe('With PostCSS', function() {
