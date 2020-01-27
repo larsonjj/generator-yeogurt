@@ -5,6 +5,7 @@ import autoprefixer from 'autoprefixer';
 import gulpif from 'gulp-if';
 import gulp from 'gulp';
 import postCssImport from 'postcss-import';
+import fancyLog from 'fancy-log';
 import { plugins, args, config, taskTarget, browserSync } from '../utils';
 
 let dirs = config.directories;
@@ -28,7 +29,7 @@ gulp.task('postcss', () => {
     .pipe(gulpif(!args.production, plugins.sourcemaps.init({ loadMaps: true })))
     .pipe(plugins.postcss(postCssPlugins))
     .on('error', function(err) {
-      plugins.util.log(err);
+      fancyLog(err);
     })
     .pipe(
       plugins.rename(function(path) {

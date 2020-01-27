@@ -4,6 +4,7 @@ import path from 'path';
 import autoprefixer from 'autoprefixer';
 import gulpif from 'gulp-if';
 import gulp from 'gulp';
+import fancyLog from 'fancy-log';
 import { plugins, args, config, taskTarget, browserSync } from '../utils';
 
 let dirs = config.directories;
@@ -27,7 +28,7 @@ gulp.task('sass', () => {
       })
     )
     .on('error', function(err) {
-      plugins.util.log(err);
+      fancyLog(err);
     })
     .pipe(plugins.postcss([autoprefixer()]))
     .pipe(

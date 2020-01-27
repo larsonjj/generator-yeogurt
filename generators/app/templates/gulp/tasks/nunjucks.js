@@ -6,6 +6,7 @@ import foldero from 'foldero';
 import nunjucks from 'gulp-nunjucks-html';
 import yaml from 'js-yaml';
 import gulp from 'gulp';
+import fancyLog from 'fancy-log';
 import { plugins, args, config, taskTarget, browserSync } from '../utils';
 
 let dirs = config.directories;
@@ -29,9 +30,9 @@ gulp.task('nunjucks', () => {
             json = JSON.parse(fs.readFileSync(file, 'utf8'));
           }
         } catch (e) {
-          plugins.util.log(`Error Parsing DATA file: ${file}`);
-          plugins.util.log('==== Details Below ====');
-          plugins.util.log(e);
+          fancyLog(`Error Parsing DATA file: ${file}`);
+          fancyLog('==== Details Below ====');
+          fancyLog(e);
         }
         return json;
       }
@@ -41,10 +42,10 @@ gulp.task('nunjucks', () => {
   // Add --debug option to your gulp task to view
   // what data is being loaded into your templates
   if (args.debug) {
-    plugins.util.log('==== DEBUG: site.data being injected to templates ====');
-    plugins.util.log(siteData);
-    plugins.util.log('\n==== DEBUG: package.json config being injected to templates ====');
-    plugins.util.log(config);
+    fancyLog('==== DEBUG: site.data being injected to templates ====');
+    fancyLog(siteData);
+    fancyLog('\n==== DEBUG: package.json config being injected to templates ====');
+    fancyLog(config);
   }
 
   return (
@@ -67,11 +68,11 @@ gulp.task('nunjucks', () => {
           searchPaths: [dirs.source],
           ext: '.html'
         }).on('error', function(err) {
-          plugins.util.log(err);
+          fancyLog(err);
         })
       )
       .on('error', function(err) {
-        plugins.util.log(err);
+        fancyLog(err);
       })
       .pipe(
         plugins.htmlmin({
