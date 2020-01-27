@@ -29,10 +29,10 @@
     "url": "git://github.com/larsonjj/generator-yeogurt.git"
   },
   "scripts": {
-    "clean": "rimraf coverage test/app/temp test/subgenerators/temp",
-    "test": "nyc mocha -- test/app/*.test.js test/subgenerators/*.test.js --reporter list --timeout 100000 && cat .ae/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "localtest": "mocha test/app/*.test.js test/subgenerators/*.test.js -b --reporter spec",
-    "localtest-report": "nyc mocha test/app/*.test.js test/subgenerators/*.test.js && open ./coverage/lcov-report/index.html",
+    "clean": "npx rimraf coverage test/app/temp test/subgenerators/temp",
+    "test": "npx nyc mocha ./test/app/*.test.js ./test/subgenerators/*.test.js --reporter list --timeout 100000 && cat .ae/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "localtest": "npx mocha ./test/app/*.test.js ./test/subgenerators/*.test.js -b --reporter spec",
+    "localtest-report": "npx nyc mocha test/app/*.test.js ./test/subgenerators/*.test.js && open ./coverage/lcov-report/index.html",
     "preversion": "npm test",
     "postversion": "git push && git push --tags"
   },
@@ -59,8 +59,8 @@
     "yeoman-assert": "^3.1.1"
   },
   "engines": {
-    "node": ">=8.16.0",
-    "npm": ">=5.0.0"
+    "node": ">=10.18.1",
+    "npm": ">=6.0.0"
   },
   "license": "MIT"
 }

@@ -64,7 +64,7 @@ gulp.task('nunjucks', () => {
       )
       .pipe(
         nunjucks({
-          searchPaths: [path.join(dirs.source)],
+          searchPaths: [dirs.source],
           ext: '.html'
         }).on('error', function(err) {
           plugins.util.log(err);

@@ -182,14 +182,6 @@ describe('Static Site module sub-generator', function() {
           'src/_modules/' + moduleName + '/' + moduleName + '.scss'
         ];
 
-        createAppGenerator().withPrompts({
-          existingConfig: true,
-          htmlOption: 'nunjucks',
-          jsOption: 'browserify',
-          cssOption: 'sass',
-          sassSyntax: 'scss'
-        });
-
         return createSubGenerator('module')
           .withArguments([moduleName])
           .then(function() {

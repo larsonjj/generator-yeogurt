@@ -198,6 +198,7 @@ module.exports = class extends Generator {
     );
 
     this.copy('gitignore', '.gitignore');
+    this.copy('npmignore', '.npmignore');
     this.copy('gitattributes', '.gitattributes');
 
     this.copy('src/shared/robots.txt', 'src/robots.txt');
