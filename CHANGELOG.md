@@ -1,3 +1,11 @@
+### v3.1.2:
+
+#### date: 2020-02-01
+
+##### changes:
+
+- Fix issue with core-js and regenerator runtime not being added to package.json
+
 ### v3.1.1:
 
 #### date: 2020-01-26
